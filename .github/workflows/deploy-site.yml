@@ -2,7 +2,7 @@ name: Deploy Site on Content Update
 
 on:
   push:
-    branches: [main]
+    branches: [main, master]
   workflow_dispatch:  # Allow manual trigger
 
 jobs:
