@@ -1,0 +1,29 @@
+# Feature Flags
+features:
+  # Core Features
+  courses: true
+  articles: true
+
+  # Learning Features
+  studyGroups: true
+  certificates: true
+  gamification: true
+  progressTracking: true
+
+  # Advanced Features
+  researchLab: true
+  knowledgeBase: true
+  caseStudies: true
+
+  # Platform Features
+  offlineMode: true
+  darkMode: true
+  i18n: false
+
+  # Tutor Features
+  aiTutor: true
+  egoSuperego: true
+  proactiveSuggestions: true
+
+  # Eval (can run alongside content)
+  evaluation: true

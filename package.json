@@ -1,0 +1,33 @@
+{
+  "name": "@machinespirits/content-philosophy",
+  "version": "1.0.0",
+  "description": "Content package for Machine Spirits LMS - Philosophy of Technology curriculum",
+  "type": "module",
+  "main": "manifest.yaml",
+  "files": [
+    "manifest.yaml",
+    "courses/**",
+    "articles/**",
+    "assets/**",
+    "theme/**",
+    "prompts/**",
+    "config/**"
+  ],
+  "keywords": [
+    "machine-spirits",
+    "content-package",
+    "lms",
+    "philosophy",
+    "ai",
+    "education"
+  ],
+  "author": "Liam Magee",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/machinespirits/content-philosophy.git"
+  },
+  "peerDependencies": {
+    "@machinespirits/platform": "^1.0.0"
+  }
+}

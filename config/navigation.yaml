@@ -1,0 +1,27 @@
+# Navigation Configuration
+navigation:
+  primary:
+    - label: "Courses"
+      route: "#/courses"
+      icon: "book"
+    - label: "Research Lab"
+      route: "#/research"
+      icon: "flask"
+    - label: "Knowledge Base"
+      route: "#/kb"
+      icon: "database"
+  secondary:
+    - label: "Dashboard"
+      route: "#/dashboard"
+    - label: "Docs"
+      route: "#/docs"
+  mobile:
+    - label: "Courses"
+      route: "#/courses"
+      icon: "book"
+    - label: "Progress"
+      route: "#/dashboard"
+      icon: "chart"
+    - label: "Research"
+      route: "#/research"
+      icon: "flask"

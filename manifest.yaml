@@ -1,0 +1,39 @@
+# Content Package Manifest
+# Generated: 2026-01-17T09:23:05Z
+
+name: "@machinespirits/content-philosophy"
+version: "1.0.0"
+platform: "^1.0.0"
+
+# Site Identity
+site:
+  name: "Machine Spirits"
+  tagline: "Philosophy of Technology"
+  description: |
+    An open-source learning platform exploring AI, consciousness,
+    and the evolving relationship between human and machine learning.
+  url: "https://machinespirits.org"
+  author: "Liam Magee"
+  institution: "University of Illinois Urbana-Champaign"
+
+# Branding
+branding:
+  logo: "./assets/logo.svg"
+  favicon: "./assets/favicon.svg"
+  colors: "./theme/colors.yaml"
+  fonts: "./theme/fonts.yaml"
+
+# Content Sources
+content:
+  courses: "./courses"
+  articles: "./articles"
+  assets: "./assets"
+
+# Configuration
+navigation: "./config/navigation.yaml"
+features: "./config/features.yaml"
+
+# Tutor Customization
+tutor:
+  prompts: "./prompts"
+  defaultProfile: "experimental"

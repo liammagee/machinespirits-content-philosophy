@@ -1,0 +1,27 @@
+# Color Palette - Machine Spirits Theme
+palette:
+  primary: "#E63946"
+  primaryDark: "#c1121f"
+  primaryLight: "#ff6b6b"
+
+  background: "#0a0a0a"
+  surface: "#1a1a1a"
+  surfaceElevated: "#2a2a2a"
+
+  text: "#fafafa"
+  textMuted: "#a0a0a0"
+  textInverse: "#0a0a0a"
+
+  success: "#10b981"
+  warning: "#f59e0b"
+  error: "#ef4444"
+  info: "#3b82f6"
+
+# Semantic Colors
+semantic:
+  link: "primary"
+  linkHover: "primaryDark"
+  buttonPrimary: "primary"
+  buttonPrimaryHover: "primaryDark"
+  cardBackground: "surface"
+  cardBorder: "rgba(255,255,255,0.1)"

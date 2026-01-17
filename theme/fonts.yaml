@@ -1,0 +1,14 @@
+# Typography - Machine Spirits Theme
+fonts:
+  heading:
+    family: "Space Mono"
+    weights: [400, 700]
+    source: "google"
+  body:
+    family: "Inter"
+    weights: [400, 500, 600]
+    source: "google"
+  mono:
+    family: "Space Mono"
+    weights: [400, 700]
+    source: "google"
