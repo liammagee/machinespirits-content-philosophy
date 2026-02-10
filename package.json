@@ -27,7 +27,5 @@
     "type": "git",
     "url": "https://github.com/machinespirits/content-philosophy.git"
   },
-  "peerDependencies": {
-    "@machinespirits/platform": "^1.0.0"
-  }
+  "peerDependencies": {}
 }
