@@ -6,7 +6,7 @@ description: |
   This test course demonstrates all available activity types in the Machine Spirits LMS.
   Use it to verify that each activity type works correctly before deploying to production.
   Each lecture showcases 2-3 activity types with sample configurations.
-image: "/markdown/images/transformer.png"
+image: "/markdown/courses/dissertation/images/dissertation___1__singularity_and_the_concept_of_history_img_1.png"
 instructor: "Test Instructor"
 semester: "Testing"
 institution: "Machine Spirits LMS"

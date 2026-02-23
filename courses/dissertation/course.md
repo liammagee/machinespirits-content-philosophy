@@ -5,7 +5,7 @@ subtitle: "Strategies for Navigating Research and Writing with Technology"
 description: |
   A semi-structured collection of notes and lectures for doctoral and advanced
   graduate students navigating the dissertation writing process.
-image: "/markdown/images/transformer.png"
+image: "/markdown/courses/dissertation/images/dissertation___1__singularity_and_the_concept_of_history_img_1.png"
 instructor: "Liam Magee"
 semester: "Ongoing"
 institution: "University of Illinois Urbana-Champaign"

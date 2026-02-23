@@ -7,7 +7,7 @@ description: |
   Covering qualitative research, data analysis, mixed methods, and critical scholarship, participants
   learn to leverage AI tools like local LLMs, CAQDAS platforms, and generative AI for rigorous
   academic research while maintaining methodological integrity.
-image: "/markdown/courses/socsci_and_ai/images/socsci-thumbnail.png"
+image: "/markdown/courses/socsci_and_ai/images/bolashak___week_10___critique_and_scholarship_img_1.png"
 instructor: "Liam Magee"
 semester: "Spring 2025"
 institution: "Bolashak Program"
