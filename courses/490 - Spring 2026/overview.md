@@ -2,16 +2,40 @@
 
 Workshop 1: Introduction to Generative AI
 
+ - overview
+ - assessments
+ - what do we know about AI? how is it impacting eduction?
+ - Weekly Structure:
+   - Workshop Orientation
+   - Theory
+   - Discussion 
+   - Practice
+ 
+ 
+
+---
+
 Workshop 2: History - Machematics, War, Commerce, Gaming
+
+---
+
 
 Workshop 3: Technical Underpinnings
 
-Workshop 4
+---
 
-Workshop 5
+Workshop 4: Critique
+
+
+---
+
+Workshop 5: AI in Education
+
+---
 
 Workshop 6
 
+---
 
 Project:
  - Cyber-social Experiment

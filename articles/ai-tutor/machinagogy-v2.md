@@ -1,7 +1,11 @@
 ---
-title: "Machinagogy: Experiments in Staging Teaching Dramas with LLMs"
-author: "Liam Magee, University of Illinois Urbana-Champaign"
+title: "*Geist* in the Machine: Simulating Recognition and Inner Dialogue in AI-Mediated Teaching and Research"
+author: Liam Magee
 bibliography: references.bib
+header-includes: |
+  \usepackage{authblk}
+  \author{Liam Magee}
+  \affil{\small Learning Design and Leadership \\ Educational Policy, Organization and Leadership \\ University of Illinois Urbana-Champaign}
 abstract: |
     This paper describes an AI tutoring system built upon two psycho-social theoretic constructs: Hegelian recognition and Freudian psychodynamics. Two related interventions are proposed: recognition-enhanced prompts that instruct an AI tutor to treat the learner as an autonomous subject, and a multi-agent ego/superego architecture where an internal critic reviews tutor output. The paper also describes the nature of the human/machine relationship involved in this research itself, employing a reflexive methodology: Claude Code (Opus 4.5/4.6) builds, evaluates, and documents the AI tutor by authoring a companion scientific paper - a process termed "vibe scholarship" - in conjunction with human prompting and suggestion, which is itself documented and analyzed. The companion paper, included as appendix, reports a factorial evaluation across three generation models (DeepSeek V3.2, Haiku 4.5, Gemini Flash 3.0), finding recognition-enhanced prompts produce large, model-independent improvements (d=1.34-1.92) through a calibration mechanism that raises the floor of tutor performance. This result, significant in itself, is combined with the qualitative reflections in this paper to consider impacts of AI on the delicate dynamics of student / teacher and assistant / researcher relations.
 keywords:
