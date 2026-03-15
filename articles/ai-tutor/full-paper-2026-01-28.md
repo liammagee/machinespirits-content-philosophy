@@ -1,4 +1,5 @@
 ---
+title: "Machinagogy: Experiments in Staging Teaching Dramas with LLMs"
 bibliography: references.bib
 ---
 

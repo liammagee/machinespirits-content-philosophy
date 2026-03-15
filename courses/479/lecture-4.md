@@ -2,8 +2,8 @@
 
 
 - Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L. & Polosukhin, I. (2017). [Attention is all you need](https://i-share-uiu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=cdi_proquest_journals_2076493815&context=PC&vid=01CARLI_UIU:CARLI_UIU&search_scope=CentralIndex&tab=CentralIndex&lang=en). *Advances in Neural Information Processing Systems*, 30.
-- Petersen, S. E., & Posner, M. I. (2012). [The attention system of the human brain: 20 years after]([url](https://i-share-uiu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=cdi_pubmedcentral_primary_oai_pubmedcentral_nih_gov_3413263&context=PC&vid=01CARLI_UIU:CARLI_UIU&search_scope=CentralIndex&tab=CentralIndex&lang=en)). *Annual Review of Neuroscience*, 35(1), 73-89.
-- Terranova, T. (2012). [Attention, economy and the brain]([url](https://culturemachine.net/wp-content/uploads/2019/01/465-973-1-PB.pdf)). *Culture Machine*, 13.
+- Petersen, S. E., & Posner, M. I. (2012). [The attention system of the human brain: 20 years after](https://i-share-uiu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=cdi_pubmedcentral_primary_oai_pubmedcentral_nih_gov_3413263&context=PC&vid=01CARLI_UIU:CARLI_UIU&search_scope=CentralIndex&tab=CentralIndex&lang=en). *Annual Review of Neuroscience*, 35(1), 73-89.
+- Terranova, T. (2012). [Attention, economy and the brain](https://culturemachine.net/wp-content/uploads/2019/01/465-973-1-PB.pdf). *Culture Machine*, 13.
 
 
 

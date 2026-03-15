@@ -321,7 +321,7 @@ There are efforts to develop continuous learning systems, though none are yet de
 
 ### Let's see how your favourite LLM describes its experience...
 
-[https://chatgpt.com/share/68b5b22e-5084-8007-ad4d-e206eeb92aa2]([url](https://chatgpt.com/share/68b5b22e-5084-8007-ad4d-e206eeb92aa2))
+[https://chatgpt.com/share/68b5b22e-5084-8007-ad4d-e206eeb92aa2](https://chatgpt.com/share/68b5b22e-5084-8007-ad4d-e206eeb92aa2)
 
 ---
 
