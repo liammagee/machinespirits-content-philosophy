@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hegel Recognition Explorer</title>
+  <meta name="artifact-title" content="Hegel Recognition Explorer">
+  <meta name="artifact-description" content="Interactive visualization of the master-slave dialectic and stages of mutual recognition">
+  <meta name="artifact-tags" content="hegel,recognition,dialectic,interactive,philosophy">
+  <meta name="artifact-author" content="Claude">
+  <meta name="artifact-date" content="2026-03-15">
+  <meta name="artifact-course" content="479">
+  <meta name="artifact-lecture" content="lecture-3">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #E63946;
+      --red-dark: #c1121f;
+      --black: #0a0a0a;
+      --white: #fafafa;
+      --grey: #333;
+      --grey-light: #666;
+      --stage-gap: 2px;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+    body {
+      font-family: 'Space Mono', monospace;
+      background: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--red);
+      padding-bottom: 1.5rem;
+    }
+
+    header h1 {
+      font-size: 1.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      color: var(--red);
+    }
+
+    header p {
+      font-size: 0.75rem;
+      color: var(--grey-light);
+      letter-spacing: 0.08em;
+    }
+
+    /* Stage navigation */
+    .stage-nav {
+      display: flex;
+      gap: var(--stage-gap);
+      margin-bottom: 2rem;
+    }
+
+    .stage-btn {
+      flex: 1;
+      padding: 0.75rem 0.5rem;
+      background: var(--grey);
+      color: var(--grey-light);
+      border: none;
+      cursor: pointer;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .stage-btn:hover {
+      background: #444;
+      color: var(--white);
+    }
+
+    .stage-btn.active {
+      background: var(--red);
+      color: var(--white);
+    }
+
+    .stage-btn.completed::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--white);
+    }
+
+    /* Canvas area */
+    .visualization {
+      position: relative;
+      width: 100%;
+      height: 360px;
+      background: #111;
+      border: 1px solid #222;
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .visualization canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Description panel */
+    .description-panel {
+      background: #111;
+      border: 1px solid #222;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .description-panel h2 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--red);
+      margin-bottom: 0.75rem;
+    }
+
+    .description-panel p {
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: #ccc;
+    }
+
+    .description-panel .hegel-quote {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-left: 3px solid var(--red);
+      background: rgba(230, 57, 70, 0.05);
+      font-style: italic;
+      font-size: 0.75rem;
+      color: #aaa;
+      line-height: 1.7;
+    }
+
+    .description-panel .hegel-quote cite {
+      display: block;
+      margin-top: 0.5rem;
+      font-style: normal;
+      color: var(--grey-light);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .controls button {
+      padding: 0.6rem 1.5rem;
+      background: transparent;
+      color: var(--white);
+      border: 1px solid var(--red);
+      cursor: pointer;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.25s ease;
+    }
+
+    .controls button:hover {
+      background: var(--red);
+    }
+
+    .controls button.active {
+      background: var(--red);
+    }
+
+    /* Progress indicator */
+    .progress {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .progress-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--grey);
+      transition: all 0.4s ease;
+    }
+
+    .progress-dot.active {
+      background: var(--red);
+      box-shadow: 0 0 10px rgba(230, 57, 70, 0.5);
+    }
+
+    .progress-dot.completed {
+      background: var(--white);
+    }
+
+    .progress-line {
+      width: 40px;
+      height: 1px;
+      background: var(--grey);
+      transition: background 0.4s ease;
+    }
+
+    .progress-line.completed {
+      background: var(--white);
+    }
+
+    /* Key concepts grid */
+    .concepts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .concept-card {
+      padding: 1rem;
+      background: #111;
+      border: 1px solid #222;
+      transition: border-color 0.3s ease;
+    }
+
+    .concept-card:hover {
+      border-color: var(--red);
+    }
+
+    .concept-card h3 {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--red);
+      margin-bottom: 0.5rem;
+    }
+
+    .concept-card p {
+      font-size: 0.7rem;
+      line-height: 1.6;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Recognition Explorer</h1>
+      <p>Hegel's Master-Servant Dialectic &mdash; The Stages of Mutual Recognition</p>
+    </header>
+
+    <div class="progress" id="progress">
+      <div class="progress-dot active" data-stage="0"></div>
+      <div class="progress-line"></div>
+      <div class="progress-dot" data-stage="1"></div>
+      <div class="progress-line"></div>
+      <div class="progress-dot" data-stage="2"></div>
+      <div class="progress-line"></div>
+      <div class="progress-dot" data-stage="3"></div>
+    </div>
+
+    <div class="stage-nav" id="stageNav">
+      <button class="stage-btn active" data-stage="0">I. Self-Certainty</button>
+      <button class="stage-btn" data-stage="1">II. Struggle</button>
+      <button class="stage-btn" data-stage="2">III. Domination</button>
+      <button class="stage-btn" data-stage="3">IV. Mutual Recognition</button>
+    </div>
+
+    <div class="visualization">
+      <canvas id="canvas"></canvas>
+    </div>
+
+    <div class="controls">
+      <button type="button" id="prevBtn">&#8592; Previous</button>
+      <button type="button" id="playBtn">Auto-Play</button>
+      <button type="button" id="nextBtn">Next &#8594;</button>
+    </div>
+
+    <div class="description-panel" id="descPanel">
+      <h2 id="stageTitle">I. Self-Certainty</h2>
+      <p id="stageDesc">Each consciousness exists in immediate self-certainty, aware only of itself. The subject takes itself to be the whole truth, not yet recognising the necessity of an Other for genuine self-knowledge.</p>
+      <div class="hegel-quote" id="stageQuote">
+        "Self-consciousness exists in and for itself when, and by the fact that, it so exists for another; that is, it exists only in being acknowledged."
+        <cite>Hegel, Phenomenology of Spirit, &sect;178</cite>
+      </div>
+    </div>
+
+    <div class="concepts">
+      <div class="concept-card">
+        <h3>Anerkennung</h3>
+        <p>Recognition &mdash; the process by which self-consciousness achieves truth through acknowledgment by another self-consciousness.</p>
+      </div>
+      <div class="concept-card">
+        <h3>Herr und Knecht</h3>
+        <p>Master and Servant &mdash; the asymmetric relation arising from the struggle, where one risks death and the other submits.</p>
+      </div>
+      <div class="concept-card">
+        <h3>Arbeit</h3>
+        <p>Labour &mdash; the servant's transformative activity on nature, through which genuine self-knowledge and skill emerge.</p>
+      </div>
+      <div class="concept-card">
+        <h3>Aufhebung</h3>
+        <p>Sublation &mdash; the dialectical movement that simultaneously negates, preserves, and elevates the opposition into a higher unity.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ============================================================
+    // Stage data
+    // ============================================================
+    const stages = [
+      {
+        id: 0,
+        title: 'I. Self-Certainty',
+        desc: 'Each consciousness exists in immediate self-certainty, aware only of itself. The subject takes itself to be the whole truth, not yet recognising the necessity of an Other for genuine self-knowledge.',
+        quote: '"Self-consciousness exists in and for itself when, and by the fact that, it so exists for another; that is, it exists only in being acknowledged."',
+        cite: 'Hegel, Phenomenology of Spirit, \u00A7178',
+      },
+      {
+        id: 1,
+        title: 'II. Struggle for Recognition',
+        desc: 'Two self-consciousnesses encounter one another. Each must prove its freedom by risking life itself. A life-and-death struggle ensues \u2014 not for material gain, but for pure prestige and the acknowledgment of the Other.',
+        quote: '"They must engage in this struggle, for they must raise their certainty of being for themselves to truth."',
+        cite: 'Hegel, Phenomenology of Spirit, \u00A7187',
+      },
+      {
+        id: 2,
+        title: 'III. Domination and Servitude',
+        desc: 'One consciousness yields, choosing life over freedom, and becomes the Servant. The other, having risked death, becomes the Master. But the Master\'s recognition is hollow \u2014 it comes from one who is not free. Meanwhile, the Servant, through labour on nature, begins to develop genuine skill and self-knowledge.',
+        quote: '"The truth of the independent consciousness is accordingly the servile consciousness of the bondsman... it will become apparent that the latter turns into a truly independent consciousness."',
+        cite: 'Hegel, Phenomenology of Spirit, \u00A7193',
+      },
+      {
+        id: 3,
+        title: 'IV. Mutual Recognition',
+        desc: 'Through the dialectical reversal, the Servant\'s labour reveals a deeper truth: genuine freedom and self-knowledge emerge not from domination but from productive engagement with the world. Both consciousnesses can now recognise each other as free and equal \u2014 achieving the mutual recognition that was the implicit aim from the start.',
+        quote: '"They recognise themselves as mutually recognising one another."',
+        cite: 'Hegel, Phenomenology of Spirit, \u00A7184',
+      },
+    ];
+
+    // ============================================================
+    // State
+    // ============================================================
+    let currentStage = 0;
+    let autoPlaying = false;
+    let autoPlayTimer = null;
+    let animationId = null;
+
+    // DOM refs
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const stageNav = document.getElementById('stageNav');
+    const descPanel = document.getElementById('descPanel');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const playBtn = document.getElementById('playBtn');
+    const progressEl = document.getElementById('progress');
+
+    // ============================================================
+    // Canvas setup
+    // ============================================================
+    function resizeCanvas() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = rect.width * window.devicePixelRatio;
+      canvas.height = rect.height * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // ============================================================
+    // Agents (two consciousnesses)
+    // ============================================================
+    const W = () => canvas.width / window.devicePixelRatio;
+    const H = () => canvas.height / window.devicePixelRatio;
+
+    let agents = [];
+    let particles = [];
+    let time = 0;
+
+    function resetAgents() {
+      const w = W(), h = H();
+      agents = [
+        { x: w * 0.3, y: h * 0.5, vx: 0, vy: 0, radius: 28, color: '#E63946', label: 'A', opacity: 1, glow: 0 },
+        { x: w * 0.7, y: h * 0.5, vx: 0, vy: 0, radius: 28, color: '#fafafa', label: 'B', opacity: 1, glow: 0 },
+      ];
+      particles = [];
+    }
+    resetAgents();
+
+    // ============================================================
+    // Particle system
+    // ============================================================
+    function emitParticles(x, y, color, count) {
+      for (let i = 0; i < count; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 0.5 + Math.random() * 2;
+        particles.push({
+          x, y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          life: 1,
+          decay: 0.01 + Math.random() * 0.02,
+          radius: 1 + Math.random() * 2,
+          color,
+        });
+      }
+    }
+
+    function updateParticles() {
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= p.decay;
+        if (p.life <= 0) particles.splice(i, 1);
+      }
+    }
+
+    function drawParticles() {
+      for (const p of particles) {
+        ctx.globalAlpha = p.life * 0.6;
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    // ============================================================
+    // Stage-specific animation logic
+    // ============================================================
+    function updateStage0() {
+      // Self-certainty: two agents orbit in isolation
+      const w = W(), h = H();
+      const t = time * 0.015;
+      agents[0].x = w * 0.3 + Math.cos(t) * 30;
+      agents[0].y = h * 0.5 + Math.sin(t * 1.3) * 20;
+      agents[0].glow = 0.3 + Math.sin(t * 2) * 0.15;
+
+      agents[1].x = w * 0.7 + Math.cos(t + Math.PI) * 30;
+      agents[1].y = h * 0.5 + Math.sin(t * 1.3 + Math.PI) * 20;
+      agents[1].glow = 0.3 + Math.sin(t * 2 + 1) * 0.15;
+
+      agents[0].radius = 28;
+      agents[1].radius = 28;
+    }
+
+    function updateStage1() {
+      // Struggle: agents move towards each other, repel, vibrate
+      const w = W(), h = H();
+      const t = time * 0.02;
+      const cx = w * 0.5;
+      const cy = h * 0.5;
+
+      const dist = 60 + Math.sin(t * 3) * 40;
+      const shake = Math.sin(t * 15) * 3;
+
+      agents[0].x = cx - dist / 2 + shake;
+      agents[0].y = cy + Math.sin(t * 5) * 8;
+      agents[0].glow = 0.5 + Math.sin(t * 4) * 0.3;
+
+      agents[1].x = cx + dist / 2 - shake;
+      agents[1].y = cy + Math.cos(t * 5) * 8;
+      agents[1].glow = 0.5 + Math.cos(t * 4) * 0.3;
+
+      // Emit conflict particles
+      if (Math.random() < 0.3) {
+        emitParticles(cx, cy, '#E63946', 2);
+      }
+
+      agents[0].radius = 28;
+      agents[1].radius = 28;
+    }
+
+    function updateStage2() {
+      // Domination: one large (master), one small (servant)
+      const w = W(), h = H();
+      const t = time * 0.012;
+
+      // Master (A) - elevated, large
+      agents[0].x = w * 0.35 + Math.sin(t) * 10;
+      agents[0].y = h * 0.35;
+      agents[0].radius = 40;
+      agents[0].glow = 0.6;
+
+      // Servant (B) - lower, smaller, labouring
+      agents[1].x = w * 0.65 + Math.cos(t * 3) * 15;
+      agents[1].y = h * 0.65 + Math.sin(t * 2) * 5;
+      agents[1].radius = 20;
+      agents[1].glow = 0.15;
+
+      // Labour particles from servant
+      if (Math.random() < 0.15) {
+        emitParticles(agents[1].x + 30, agents[1].y, '#666', 1);
+      }
+
+      // Draw chain/link between them
+    }
+
+    function updateStage3() {
+      // Mutual recognition: agents orbit together, equal size, harmonious
+      const w = W(), h = H();
+      const t = time * 0.018;
+      const cx = w * 0.5;
+      const cy = h * 0.5;
+      const orbit = 55;
+
+      agents[0].x = cx + Math.cos(t) * orbit;
+      agents[0].y = cy + Math.sin(t) * orbit * 0.6;
+      agents[0].radius = 30;
+      agents[0].glow = 0.4 + Math.sin(t * 2) * 0.1;
+
+      agents[1].x = cx + Math.cos(t + Math.PI) * orbit;
+      agents[1].y = cy + Math.sin(t + Math.PI) * orbit * 0.6;
+      agents[1].radius = 30;
+      agents[1].glow = 0.4 + Math.sin(t * 2 + 1) * 0.1;
+
+      // Harmony particles
+      if (Math.random() < 0.08) {
+        const angle = Math.random() * Math.PI * 2;
+        emitParticles(
+          cx + Math.cos(angle) * orbit * 0.5,
+          cy + Math.sin(angle) * orbit * 0.3,
+          Math.random() > 0.5 ? '#E63946' : '#fafafa',
+          1
+        );
+      }
+    }
+
+    const updateFns = [updateStage0, updateStage1, updateStage2, updateStage3];
+
+    // ============================================================
+    // Drawing
+    // ============================================================
+    function drawAgent(a) {
+      // Glow
+      if (a.glow > 0) {
+        const grad = ctx.createRadialGradient(a.x, a.y, a.radius * 0.5, a.x, a.y, a.radius * 2.5);
+        grad.addColorStop(0, a.color + '40');
+        grad.addColorStop(1, 'transparent');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(a.x, a.y, a.radius * 2.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Body
+      ctx.globalAlpha = a.opacity;
+      ctx.fillStyle = a.color;
+      ctx.beginPath();
+      ctx.arc(a.x, a.y, a.radius, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Label
+      ctx.fillStyle = a.color === '#fafafa' ? '#0a0a0a' : '#fafafa';
+      ctx.font = `bold ${Math.round(a.radius * 0.6)}px "Space Mono", monospace`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(a.label, a.x, a.y);
+      ctx.globalAlpha = 1;
+    }
+
+    function drawConnection() {
+      if (currentStage === 2) {
+        // Asymmetric chain
+        ctx.strokeStyle = '#E6394660';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([4, 6]);
+        ctx.beginPath();
+        ctx.moveTo(agents[0].x, agents[0].y);
+        ctx.lineTo(agents[1].x, agents[1].y);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      } else if (currentStage === 3) {
+        // Mutual recognition arc
+        ctx.strokeStyle = '#E6394680';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        const cx = W() * 0.5;
+        const cy = H() * 0.5;
+        ctx.ellipse(cx, cy, 55, 33, 0, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+    }
+
+    function draw() {
+      const w = W(), h = H();
+      // Clear
+      ctx.fillStyle = '#0a0a0a';
+      ctx.fillRect(0, 0, w, h);
+
+      // Grid
+      ctx.strokeStyle = '#151515';
+      ctx.lineWidth = 0.5;
+      for (let x = 0; x < w; x += 40) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+      }
+      for (let y = 0; y < h; y += 40) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+      }
+
+      // Stage label
+      ctx.fillStyle = '#222';
+      ctx.font = '10px "Space Mono", monospace';
+      ctx.textAlign = 'left';
+      ctx.fillText(`STAGE ${currentStage + 1} / 4`, 12, 20);
+
+      drawConnection();
+      drawParticles();
+      for (const a of agents) drawAgent(a);
+    }
+
+    // ============================================================
+    // Animation loop
+    // ============================================================
+    function loop() {
+      time++;
+      updateFns[currentStage]();
+      updateParticles();
+      draw();
+      animationId = requestAnimationFrame(loop);
+    }
+    loop();
+
+    // ============================================================
+    // Navigation
+    // ============================================================
+    function goToStage(idx) {
+      if (idx < 0 || idx >= stages.length) return;
+      currentStage = idx;
+      const s = stages[idx];
+
+      // Update description
+      document.getElementById('stageTitle').textContent = s.title;
+      document.getElementById('stageDesc').textContent = s.desc;
+      document.getElementById('stageQuote').innerHTML = `${s.quote}<cite>${s.cite}</cite>`;
+
+      // Update nav buttons
+      stageNav.querySelectorAll('.stage-btn').forEach(btn => {
+        const si = parseInt(btn.dataset.stage);
+        btn.classList.toggle('active', si === idx);
+        btn.classList.toggle('completed', si < idx);
+      });
+
+      // Update progress dots
+      progressEl.querySelectorAll('.progress-dot').forEach(dot => {
+        const si = parseInt(dot.dataset.stage);
+        dot.classList.toggle('active', si === idx);
+        dot.classList.toggle('completed', si < idx);
+      });
+      progressEl.querySelectorAll('.progress-line').forEach((line, i) => {
+        line.classList.toggle('completed', i < idx);
+      });
+
+      // Reset agents for new stage
+      resetAgents();
+      particles = [];
+    }
+
+    stageNav.addEventListener('click', (e) => {
+      const btn = e.target.closest('.stage-btn');
+      if (btn) goToStage(parseInt(btn.dataset.stage));
+    });
+
+    prevBtn.addEventListener('click', () => goToStage(currentStage - 1));
+    nextBtn.addEventListener('click', () => goToStage(currentStage + 1));
+
+    playBtn.addEventListener('click', () => {
+      autoPlaying = !autoPlaying;
+      playBtn.textContent = autoPlaying ? 'Pause' : 'Auto-Play';
+      playBtn.classList.toggle('active', autoPlaying);
+
+      if (autoPlaying) {
+        autoPlayTimer = setInterval(() => {
+          const next = (currentStage + 1) % stages.length;
+          goToStage(next);
+        }, 5000);
+      } else {
+        clearInterval(autoPlayTimer);
+      }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goToStage(currentStage + 1);
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goToStage(currentStage - 1);
+      if (e.key === ' ') { e.preventDefault(); playBtn.click(); }
+    });
+  </script>
+</body>
+</html>

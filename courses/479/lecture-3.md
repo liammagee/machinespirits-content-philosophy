@@ -1,3 +1,13 @@
+---
+title: "Recognition and the Master-Servant Dialectic"
+week: 3
+course: "479"
+artifacts:
+  - slug: hegel-recognition-explorer
+    title: "Hegel Recognition Explorer"
+    position: after-content
+---
+
 ## Recognition and the Master-Servant Dialectic
 
 
