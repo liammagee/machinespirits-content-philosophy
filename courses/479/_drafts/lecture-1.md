@@ -1,7 +1,12 @@
+---
+title: "Welcome to Machine Learning and Human Learning"
+week: 1
+course: "479"
+---
 
 ## <a id="main-lecture"></a>Welcome to Machine Learning and Human Learning!
 
----
+* * *
 
 
 ### Towards Synthesis? Rethinking Learning in the AI Era
@@ -33,7 +38,7 @@ Through the course we will be studying this relationship in a number of ways. La
 
 
 
----
+* * *
 
 ## <a id="administration"></a>Administration
 
@@ -53,7 +58,7 @@ On to some basic notes about the course and administration.
 My preference is for these to be 90 minutes (6:00 - 7:30), with a brief break. I'm flexible here though. Essentially we have a lot we can present, discuss and practice. 
 
 ```
----
+* * *
 
 ### <a id="assessment"></a>Assessment
 
@@ -75,7 +80,7 @@ Michele has already authored a fantastic and comprehensive handbook, and I have 
 We can discuss which models, and how to access them in future weeks.
 ```
 
----
+* * *
 ### <a id="previous-course"></a>Current Course vs Previous Version
 
 
@@ -94,7 +99,7 @@ Despite this having the same name as that course, it is very different. And I wo
 ```
 
 
----
+* * *
 
 ### <a id="our-approach-in-2025"></a>Our Approach in 2025
 
@@ -124,7 +129,7 @@ In what will become a key theme for us here, just as Hegel is a lens for us to u
 ```
 
 
----
+* * *
 
 ## **Hegelian Critique of Empiricist Machine‑Learning Paradigms**
 
@@ -143,7 +148,7 @@ One final point here: for Hegel, experience is also organized by the concepts we
 
 ```
 
----
+* * *
 
 ## Hegel’s Social‑Consciousness Lens on Learning
 
@@ -156,7 +161,7 @@ One final point here: for Hegel, experience is also organized by the concepts we
 In addition – and here is the second reason – Hegel's account is rooted in our experience of *others*. In a way that prempts another learning theorist, Vygotsky, Hegel's account of human experience also involves a specific development from consciousness to self-consciousness. Ironically, our awareness of ourselves is closely connected to our awareness of other selves who are not our self - other people, in other words. This awareness means our experience and learning is *social*, conditioned and mediated by others. Now it is an open question as to whether machines are said to be social at all, but certainly not, as we'll see, in the sense that Hegel means. 
 ```
 
----
+* * *
 
 ## Hegel, History, and the AI‑Driven Future
 
@@ -169,7 +174,7 @@ In addition – and here is the second reason – Hegel's account is rooted in o
 The third reason relates less to Hegel's direct views about learning, and more to his understanding of history. Within the Western tradition of philosophy, Hegel is the first and central philosopher of history – in the sense that he discusses history as something like a wider social and collective learning project. History moreover has a tendency or direction: it moves towards gradual realization or recognition, what Hegel terms, grandiosely, as the Absolute Idea or Absolute Knowledge. Outside religion, perhaps few today would agree strongly with Hegel that history follows a determinate path. However, with the arrival of AI – and certainly with much of the hype that comes with it – we are also forced to confront a series of questions: where are we going with AI? Will we arrive at a singularity, when AI becomes smarter than humans? And what skills do future human learners need to navigate this particular historical moment? Hegel doesn't answer this question, but – especially in his confrontation with the major events of his own time, including the French Revolution – he is already opening a way for consideration of our position within a wider time and history. 
 ```
 
----
+* * *
 
 ## ** Hegel’s Reemergence in Contemporary AI & Language Debates
 
@@ -182,7 +187,7 @@ The third reason relates less to Hegel's direct views about learning, and more t
 Fourth, Hegel occupies an unusual position himself in the recent history of philosophy. Long regarded – for reasons we shall see, as we begin to look at some of his text – as an obscure and complex thinker without much value to mainstream philosophy, he has become central in recent decades to debates about language, norms and consciousness. Robert Brandom, a prominent American philosopher, has written for example an 800 page volume called *A Spirit of Trust: A Reading of Hegel's Phenomenology of Spirit*. Brandom, among others, is an important thinker in his own right about AI, and this suggests Hegel provides us with good background – if we want it – to contemporary discussions about learning and language. 
 ```
 
----
+* * *
 
 ### AI as a Productive Contradiction
 
@@ -197,7 +202,7 @@ Finally, a challenge for us today is to think through what Artificial Intelligen
 ```
 
 
----
+* * *
 
 ## <a id="5-reasons-for-Hegel"></a>Five Reasons for Hegel
 
@@ -214,7 +219,7 @@ Finally, a challenge for us today is to think through what Artificial Intelligen
 
 The course is structured over eight weeks, and each week introduces and discusses a new concept. 
 
----
+* * *
 
 ### **Week‑1 Overview & Upcoming Focus on Hegelian Experience**
 
@@ -228,7 +233,7 @@ The course is structured over eight weeks, and each week introduces and discusse
  
 ```
 
----
+* * *
 
 ### Experience
 
@@ -243,7 +248,7 @@ The course is structured over eight weeks, and each week introduces and discusse
 ```
 
 
----
+* * *
 
 ## **Attention Across Disciplines**
 
@@ -258,7 +263,7 @@ Attention
 
 ```  
 
----
+* * *
 
 ### Recognition as a Social Dimension of Learning
 
@@ -277,7 +282,7 @@ Attention
 The early parts of Phenomenology of Spirit is dominated by the ideas of Consciousness and Self-consciousness. We'll explore how these relate to Experience, Attention and Recognition (and whether indeed they "synthesize" these earlier ideas). We'll explore also later ideas of the Unconscious (Freud) and Nonconscious Cognition (Katherine Hayles). This leads us naturally to an obvious question: can machines be conscious? If not, can they be unconscious? 
 
 
----
+* * *
 
 ## Alignment Between Human Values and Machine Learning
 
@@ -292,7 +297,7 @@ Alignment is a "vogue" term in machine learning, and describes the process of al
 ```
 
 
----
+* * *
 
 ## ** Critique as the Hegelian Counterbalance to Alignment
 
@@ -307,7 +312,7 @@ Alignment is a "vogue" term in machine learning, and describes the process of al
 ``` 
 
 
----
+* * *
 
 ## Technosymbiosis as a Hegelian Synthesis
 
@@ -322,7 +327,7 @@ Finally, we return to where we started: with the concept of synthesis. However �
 ```
 
 
----
+* * *
 
 ## Technosymbiosis – A Dialectical Journey Toward Human‑Machine Co‑Development
 
@@ -352,7 +357,7 @@ But more to the point, I want people also to experiment with how these AI tools 
 
 
 
----
+* * *
 
 Authors:
 

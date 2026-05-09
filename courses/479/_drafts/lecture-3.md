@@ -33,7 +33,7 @@ In our discussion we will consider it as a useful background to thinking about t
 ```
 
 
----
+* * *
 
 ### Self-Consciousness
 
@@ -49,7 +49,7 @@ In our discussion we will consider it as a useful background to thinking about t
 Let's now work through the text. Last week we explored the development of *Consciousness*, a process that moved through moments of *sense-certainty*, *perception* and *understanding*. At the last of these stages, we arrive at a point of understanding the world around us as composed of sensible appearances which are determined by "supersensible" laws. However both appearance and law belong together in a "unity", locked in a relationship that is mutually dependent, and which Hegel describes as an "infinity".
 ```
 
----
+* * *
 
 ### Self-Consciousness (Quotes)
 
@@ -65,7 +65,7 @@ Paragraph 162 starts with:
 * Note: all quotes from the Pinkard (2018) translation.
 
 
----
+* * *
 
 ### Unity of Appearance and Reality
 
@@ -85,7 +85,7 @@ What does this mean? Not that we live in a world marked by simply a distinction 
 
 > When infinity is finally an object for consciousness, and consciousness is aware of it *as what it is*, then consciousness is *self-consciousness*. (para 163)
 
----
+* * *
 
 ### Self-Consciousness and Truth Beyond Appearance
 
@@ -98,7 +98,7 @@ When in other words we become aware of what we do when we see an object as deter
 
 ```
 
----
+* * *
 
 ### "Behind the so-called curtain"
 
@@ -113,7 +113,7 @@ Hegel's view is that there is indeed a truth beyond the world of appearance but 
 ```
 
 
----
+* * *
 
 ### Transition: Consciousness to Self‑Consciousness
 
@@ -137,7 +137,7 @@ First Hegel argues that the objects for consciousness had previously been someth
 
 
 
----
+* * *
 
 ### Self‑Consciousness: Moving toward Desire
 
@@ -162,7 +162,7 @@ As an aside, we might ask where does this desire come from? For Hegel, I think i
 ```
 
 
----
+* * *
 
 
 ### Satisfying Self‑Conscious Desire
@@ -182,7 +182,7 @@ After considerable discussion, Hegel determines eventually that:
 
 
 
----
+* * *
 
 ### Recognition: Self‑Consciousness is *Social*
 
@@ -200,7 +200,7 @@ Though Hegel's text here is especially ambiguous, it turns out that this "reflec
 
 
 
----
+* * *
 
 ### Self‑Consciousness Requires Mutual Recognition
 
@@ -217,7 +217,7 @@ So - where do things stand? This notional self-consciousness, this subject, seek
 ```
 
 
----
+* * *
 
 ### Recognition: Quotes
 
@@ -232,7 +232,7 @@ What is this "movement"?
 
 
 
----
+* * *
 
 
 ### Aside: Love as Hegelian Sublation?
@@ -247,7 +247,7 @@ This sounds very much like a modern understanding of *love*. When I fall in love
 
 ```
 
----
+* * *
 
 ### Self-Consciousness as *Negative* Reflection 
 
@@ -264,7 +264,7 @@ Later, in paragraph 186 we get a sense of how this term takes from the positive 
 
 
 
----
+* * *
 
 ### Recognition as Confrontation
 
@@ -289,7 +289,7 @@ Recognition is not, as we might assume in today's liberal society, a polite or e
 
 
 
----
+* * *
 
 ### Another Aside: Recognition as Reciprocal
 
@@ -308,7 +308,7 @@ Think about this in the context of our relationship to machines. Would a machine
 
 ```
 
----
+* * *
 
 
 ### Life‑Death Struggle of Recognition
@@ -334,7 +334,7 @@ Quickly following is Hegel's dramatic and existential characterization of this e
 ```
 
 
----
+* * *
 
 ### Yet Another Aside: Existential Struggle in Literature, Cinema
 
@@ -357,7 +357,7 @@ Another side note: people may be familiar with the American novelist Cormac McCa
 > The individual who has not risked his life may admittedly be recognized as a *person*, but he has not achieved the truth of being recognized as a self-sufficient self-consciousness. As each risks his own life, each must likewise aim at the death of the other, for that other no longer counts in his eyes as himself. (para 187)
 ```
 
----
+* * *
 
 ### Hegel's Paradoxical Struggle for Recognition
 
@@ -374,13 +374,13 @@ In this struggle to the death - a paradoxical struggle for recognition – there
 ```
 
 
----
+* * *
 
 ### Master-Servant 
 
 > In this experience self-consciousness learns that life is as essential to it as is pure self-consciousness. In immediate self-consciousness, the simple I is the absolute object. However, for us, that is, in itself, this object is absolute mediation and has durably existing self-sufficiency as its essential moment. The dissolution of that simple unity is the result of the first experience. It is by way of that experience that a pure self-consciousness is posited, and a consciousness is posited which exists not purely for itself but for an other, which is to say, is posited as an *existing* consciousness, that is, consciousness in the shape of *thinghood*. Both moments are essential – because they are initially not the same and are opposed, and because their reflection into unity has not yet resulted, they exist as two opposed shapes of consciousness. One is self-sufficient; for it, its essence is being-for-itself. The other is non-self-sufficient; for it, life, that is, being for an other, is the essence.
 
----
+* * *
 
 
 ### Master–Servant Dynamics in Hegel
@@ -402,7 +402,7 @@ This brings us to one of the most famous of Hegel's formulations:
 The master is the one who wins the struggle, and shows itself to be "being-for-itself" – a truly independent being, in other words, "self-sufficient", not beholden to anyone or anything. The servant is the one who submits, ultimately valuing life over its alternative, but acknowledging this life involves, in its "essence", "being for an other". The servant is relegated to an object; it becomes part of the world of things, of *thinghood*. The master is instead aloof from things, even though "he" still desires these things; the servant is the one who mediates the relationship between the master and the things the master desires, as Hegel puts it, to consume. The servant, moreover, must *work* to satisfy the master's desires.
 ```
 
----
+* * *
 
 ### Hegel's Master–Servant Recognition Problem
 
@@ -423,7 +423,7 @@ But there is in this situation, for Hegel, a problem. What the master really wan
 ```
 
 
----
+* * *
 
 
 ### Servant’s Path to Self‑Sufficiency
@@ -450,7 +450,7 @@ Why is this? What kind of "topsy-turvy" world is it that means the *servant* is 
 ```
 
 
----
+* * *
 
 ### Servant’s Work as Path to Self‑Awareness
 
@@ -472,14 +472,14 @@ What follows is Hegel's most important statement:
 
 
 
----
+* * *
 
 ### Work as education, cultivation, development
 
 
 > In the moment corresponding to desire in the master’s consciousness, the aspect of the non-essential relation to the thing seemed to fall to the lot of the servant, since the thing there retained its selfsufficiency. Desire has reserved to itself the pure negating of the object, and, as a result, it has reserved to itself that unmixed feeling for its own self.However, for that reason, this satisfaction is itself merely an act of vanishing, for it lacks the *objective* aspect, that is, *durable existence*. In contrast, work is desire *held in check*, it is vanishing staved off, that is, work **cultivates and educates** [my emphasis. "oder sie bildet" - related to *Bildung*, ].
 
----
+* * *
 
 ### Work as Formative Activity in Hegel
 
@@ -497,21 +497,21 @@ A couple of more long-ish quotes, to bring things to a close:
 ```
 
 
----
+* * *
 
 # Being-for-itself
 
 > However, what the formative activity means is not only that the serving consciousness as pure *being-for-itself* becomes in its own eyes an *existing being* within that formative activity  [in dem Bilden]. It also has the negative meaning of the first moment, that of fear. For in forming the thing, his own negativity, that is, his being-for-itself, only becomes an object in his own eyes in that he sublates the opposed existing *form*. However, this objective *negative* is precisely the alien essence before which he trembled, but now he destroys this alien negative and posits *himself* as such a negative within the element of continuance. He thereby becomes *for himself* an *existing-being-for-itself*. Being-for-itself in the master is to the servant *an other*, that is, it is only *for him*; in fear, being-for-itself exists *in itself within him*; in culturally formative activity [in dem Bilden], being-for-itself becomes for him *his own* being-for-itself, and he attains the consciousness that he himself exists in and for himself.  (para 196)
 
 
----
+* * *
 
 # A Mind of One's Own
 
 > he comes to acquire through his own means *a mind of his own*, and he does this precisely in the work in which there had seemed to be merely some *outsider’s mind*. – For this reflection, the two moments of fear and service per se, as well as the moments of culturally formative activity are both necessary (para 196)
 
 
----
+* * *
 
 ### Fear as Catalyst for Hegelian Work
 
@@ -523,7 +523,7 @@ A couple of more long-ish quotes, to bring things to a close:
 In other words, this process of work must, for Hegel, also be accompanied by the existential fear that commenced the dialectical and led to the servant being a servant as such – there is no shortcut to work that is led to it first by this fear of the master... 
 ```
 
----
+* * *
 
 ### Child‑Teacher Learning Analogy
 
@@ -537,7 +537,7 @@ What is a simple human analogy? Imagine a child for whom leaving the parent behi
 ```
 
 
----
+* * *
 
 ### Master–Servant Dynamics in Hegel
 
@@ -549,7 +549,7 @@ What is a simple human analogy? Imagine a child for whom leaving the parent behi
 So far we are not even a quarter of the way through Hegel's *Phenomenology of Mind*. Yet for our purposes I think we are at an important, if interim, conclusion. What we have seen is a critical inversion: the master acquires a position of domination, only to see that position become emptied out through hollow consumption of the servant's labors. It is not so much the case that the servant *becomes* the master - this would simply reverse the situation, without providing a way forward. Instead, in gaining mastery over the materials of their labor, they *synthesize* the *experience* of being both servant and master. And in that process, they seek to gain recognition, the fruit of this cultivation and education.
 ```
 
----
+* * *
 
 ### Discussion...
 
@@ -559,7 +559,7 @@ And how does this then relate back to our principal interest, the relationship b
 
 ![image](/markdown/images/self-consciousness-master-servant-1.png)
 
----
+* * *
 
 ### Learning vs Training in AI
 
@@ -577,7 +577,7 @@ One argument we might make is that we might need to distinguish *learning* from 
 
 
 
----
+* * *
 
 ### Stoicism, Skepticism and the Unhappy Consciousness
 
@@ -597,20 +597,20 @@ We won't discuss these in detail here, but the next steps involve three stages: 
 ```
 
 
----
+* * *
 
 ### Beyond the Master/Servant Dialectic...
 
 > This consciousness is thereby negative with regard to the relationship of mastery and servitude. Its activity consists in neither being the master who has his truth in the servant nor in being the servant who has his truth in the will of the master and in his serving the master. Instead, it consists in being free within all the dependencies of his individual existence, whether on the throne or in fetters, and in maintaining the lifelessness which consistently withdraws from the movement of existence, withdraws from actual activity as well as from suffering, and withdraws into the simple essentiality of thought.
 
----
+* * *
 
 ![image](/markdown/images/self-consciousness-skepticism.png)
 
 --- 
 ![image](/markdown/images/self-consciousness-unhappy-consciousness.png)
 
----
+* * *
 
 ### Chatbots and Self‑Consciousness Debate
 
@@ -647,7 +647,7 @@ We turn our attention to... a term that bridged the fields of machine and human 
 
 ```
 
----
+* * *
 
 ### Overall progress...
 
@@ -655,7 +655,7 @@ We turn our attention to... a term that bridged the fields of machine and human 
 
 
 
----
+* * *
 
 ### Discuss...
 
