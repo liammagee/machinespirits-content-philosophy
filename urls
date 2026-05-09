@@ -6,6 +6,8 @@
 #   ./urls published             # only published
 #   ./urls drafts                # only drafts
 #   ./urls hidden                # only hidden
+#   ./urls site                  # public URLs derived from published files
+#   ./urls site --base <url>     # override base (default https://machinespirits.org)
 #   ./urls --plain               # no colour, plain paths only
 
 set -euo pipefail
@@ -13,8 +15,14 @@ cd "$(dirname "$0")"
 
 mode="${1:-all}"
 plain=""
-for arg in "$@"; do
+base="https://machinespirits.org"
+for ((i=1; i<=$#; i++)); do
+  arg="${!i}"
   [ "$arg" = "--plain" ] && plain=1
+  if [ "$arg" = "--base" ]; then
+    next=$((i+1))
+    base="${!next}"
+  fi
 done
 
 if [ -z "$plain" ] && [ -t 1 ]; then
@@ -45,6 +53,53 @@ list_hidden() {
     | sort
 }
 
+# Mirror articleService.js toSlug: lowercase, non-alnum -> -, trim, collapse.
+to_slug() {
+  printf '%s' "$1" | tr '[:upper:]' '[:lower:]' \
+    | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//'
+}
+
+list_site_urls() {
+  # Homepage and all course landing pages.
+  echo "$base"
+  find courses -mindepth 1 -maxdepth 1 -type d 2>/dev/null \
+    | sort \
+    | while IFS= read -r d; do
+        local id="${d#courses/}"
+        printf '%s/#/course/%s\n' "$base" "$id"
+      done
+
+  # Each published .html becomes a hash-routed URL.
+  list_published \
+    | while IFS= read -r f; do
+        f="${f#./}"
+        case "$f" in
+          courses/*/course.html)
+            : # course landing already emitted above
+            ;;
+          courses/*/*.html)
+            rest="${f#courses/}"
+            id="${rest%%/*}"
+            file="${rest#*/}"
+            stem="${file%.html}"
+            printf '%s/#/%s-%s\n' "$base" "$id" "$(to_slug "$stem")"
+            ;;
+          articles/*/*.html)
+            rest="${f#articles/}"
+            subdir="${rest%%/*}"
+            file="${rest#*/}"
+            stem="${file%.html}"
+            printf '%s/#/%s-%s\n' "$base" "$subdir" "$(to_slug "$stem")"
+            ;;
+          articles/*.html)
+            file="${f#articles/}"
+            stem="${file%.html}"
+            printf '%s/#/%s\n' "$base" "$(to_slug "$stem")"
+            ;;
+        esac
+      done
+}
+
 print_section() {
   local title="$1" colour="$2" glyph="$3"
   shift 3
@@ -68,6 +123,9 @@ case "$mode" in
     ;;
   hidden)
     while IFS= read -r f; do printf "%s\n" "${f#./}"; done < <(list_hidden)
+    ;;
+  site|urls|web)
+    list_site_urls
     ;;
   all|--plain|"")
     pub=()
