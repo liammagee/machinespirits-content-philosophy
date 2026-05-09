@@ -35,6 +35,11 @@ else
 fi
 
 git commit -m "$msg"
+
+# Pull any remote changes (rebase keeps history linear) before pushing.
+# Safe with our single-commit workflow; protects against multi-author races.
+git pull --rebase --autostash
+
 git push
 
 sha=$(git rev-parse --short HEAD)
