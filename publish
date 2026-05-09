@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# Publish content edits to machinespirits.org.
+#
+# Stages everything in this repo, commits, and pushes. The push triggers
+# a GitHub Action that dispatches a `content-updated` event to the website
+# repo, which redeploys via Fly.io. Site is live in ~3-5 min.
+#
+# Usage:
+#   ./publish                          # auto-generated commit message
+#   ./publish "Add dictatorship essay" # custom message
+
+set -euo pipefail
+cd "$(dirname "$0")"
+
+if [ -n "$(git status --porcelain)" ]; then
+  :
+else
+  echo "Nothing to publish — working tree is clean."
+  exit 0
+fi
+
+git add -A
+
+if git diff --cached --quiet; then
+  echo "Nothing staged after add."
+  exit 0
+fi
+
+if [ $# -ge 1 ] && [ -n "$1" ]; then
+  msg="$1"
+else
+  count=$(git diff --cached --name-only | wc -l | tr -d ' ')
+  first=$(git diff --cached --name-only | head -1)
+  msg="Publish: ${count} file(s) updated (${first}, ...)"
+fi
+
+git commit -m "$msg"
+git push
+
+sha=$(git rev-parse --short HEAD)
+
+cat <<EOF
+
+Pushed ${sha}. Site rebuild starts now (~3-5 min).
+  Live:    https://machinespirits.org
+  Actions: https://github.com/liammagee/machinespirits/actions
+  Watch:   gh run watch -R liammagee/machinespirits
+EOF

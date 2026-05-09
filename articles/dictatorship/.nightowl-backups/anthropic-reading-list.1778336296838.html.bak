@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anthropic Alignment Research — Reading List</title>
+<style>
+  :root {
+    --bg: #faf8f3;
+    --card: #ffffff;
+    --ink: #1a1a1a;
+    --muted: #6b6960;
+    --rule: #e3dfd5;
+    --accent: #6e1923;
+    --accent-soft: #f4ebec;
+    --done: #4a6b3a;
+    --done-soft: #ecf2e6;
+    --code-bg: #f1ede5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1816;
+      --card: #232120;
+      --ink: #ebe8e0;
+      --muted: #8d8a82;
+      --rule: #383532;
+      --accent: #c97a82;
+      --accent-soft: #2c1f21;
+      --done: #8db573;
+      --done-soft: #1e2a18;
+      --code-bg: #2a2825;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: Charter, 'Iowan Old Style', 'Georgia', 'Times New Roman', serif;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink);
+    background: var(--bg);
+    margin: 0;
+    padding: 2rem 1rem 4rem;
+  }
+  .page {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  header {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.15;
+    font-weight: 600;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-style: italic;
+    margin: 0;
+  }
+  .lede {
+    margin: 1.5rem 0 0;
+    color: var(--ink);
+  }
+  .progress-wrap {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1rem 1.2rem;
+    margin: 2rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+  .progress-stat {
+    font-variant-numeric: tabular-nums;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+  .progress-stat strong {
+    color: var(--ink);
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+  .progress-bar {
+    flex: 1;
+    min-width: 180px;
+    height: 6px;
+    background: var(--rule);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+  }
+  .progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: var(--pct, 0%);
+    background: var(--done);
+    transition: width 0.3s ease;
+  }
+  .reset-btn {
+    font-family: inherit;
+    font-size: 0.85rem;
+    color: var(--muted);
+    background: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .reset-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  section {
+    margin-bottom: 2.5rem;
+  }
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0 0 0.3rem;
+    color: var(--accent);
+    letter-spacing: -0.005em;
+  }
+  .section-meta {
+    color: var(--muted);
+    font-size: 0.88rem;
+    margin: 0 0 1rem;
+    font-style: italic;
+  }
+  .entry {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    margin-bottom: 0.7rem;
+    transition: border-color 0.15s ease;
+  }
+  .entry.done {
+    border-color: var(--done);
+    background: var(--done-soft);
+  }
+  .entry-head {
+    display: flex;
+    gap: 0.9rem;
+    padding: 0.9rem 1.1rem;
+    align-items: flex-start;
+  }
+  .entry-check {
+    margin-top: 0.32rem;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--done);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .entry-body {
+    flex: 1;
+    min-width: 0;
+  }
+  .entry-title {
+    font-size: 1.02rem;
+    font-weight: 600;
+    line-height: 1.35;
+    margin: 0 0 0.25rem;
+  }
+  .entry-title a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--muted);
+  }
+  .entry-title a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .entry.done .entry-title a {
+    color: var(--muted);
+  }
+  .entry-meta {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin: 0;
+  }
+  .entry-meta .year {
+    font-variant-numeric: tabular-nums;
+  }
+  .entry-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.1rem 0.5rem;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 2px;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+  }
+  .entry-tag.code { background: var(--code-bg); color: var(--muted); }
+  .entry-actions {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 0.4rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .toggle-notes {
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0;
+    font-size: 0.82rem;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+  }
+  .toggle-notes:hover { color: var(--accent); }
+  .checked-date {
+    font-variant-numeric: tabular-nums;
+    font-style: italic;
+  }
+  .notes {
+    display: none;
+    padding: 0 1.1rem 1rem 3.2rem;
+  }
+  .notes.open { display: block; }
+  .notes textarea {
+    width: 100%;
+    min-height: 80px;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 0.6rem 0.8rem;
+    font-family: inherit;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--ink);
+    background: var(--bg);
+    resize: vertical;
+    font-style: italic;
+  }
+  .notes textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+  footer code {
+    font-style: normal;
+    background: var(--code-bg);
+    padding: 0.1rem 0.4rem;
+    border-radius: 2px;
+    font-size: 0.92em;
+  }
+  @media print {
+    body { background: white; padding: 1rem; }
+    .progress-wrap, .toggle-notes, .reset-btn { display: none; }
+    .notes { display: block !important; }
+    .entry { break-inside: avoid; border: 1px solid #ddd; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <h1>Anthropic Alignment Research</h1>
+  <p class="subtitle">A reading list for the dictatorship-of-AI essay project</p>
+  <p class="lede">
+    Twenty-five primary sources from Anthropic's research and policy publications,
+    covering Constitutional AI, sycophancy, agentic misalignment, alignment faking,
+    foundational alignment work, and overall safety agenda. Check items as you read;
+    progress and notes are saved locally in your browser.
+  </p>
+</header>
+
+<div class="progress-wrap">
+  <div class="progress-stat">
+    <strong id="done-count">0</strong> of <strong id="total-count">25</strong> read
+  </div>
+  <div class="progress-bar" id="progress-bar"></div>
+  <div class="progress-stat" id="pct-display">0%</div>
+  <button class="reset-btn" id="reset-btn">Reset all</button>
+</div>
+
+<section>
+  <h2>1. Constitutional AI &amp; Claude's Constitution</h2>
+  <p class="section-meta">The foundational technique and its evolving public document — start here for the Anthropic alignment ethos.</p>
+
+  <article class="entry" data-key="bai2022constitutional">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://arxiv.org/abs/2212.08073" target="_blank" rel="noopener">Constitutional AI: Harmlessness from AI Feedback</a></h3>
+        <p class="entry-meta">Bai et al. · <span class="year">2022</span> · <em>arXiv:2212.08073</em></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+
+  <article class="entry" data-key="anthropic2023claudesconstitution">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://www.anthropic.com/news/claudes-constitution" target="_blank" rel="noopener">Claude's Constitution</a></h3>
+        <p class="entry-meta">Anthropic · <span class="year">May 2023</span> · <em>Blog post</em></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+
+  <article class="entry" data-key="ganguli2023collective">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://www.anthropic.com/research/collective-constitutional-ai-aligning-a-language-model-with-public-input" target="_blank" rel="noopener">Collective Constitutional AI: Aligning a Language Model with Public Input</a></h3>
+        <p class="entry-meta">Ganguli, Huang, Lovitt &amp; Anthropic · <span class="year">Oct 2023</span></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+
+  <article class="entry" data-key="anthropic2026newconstitution">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://www.anthropic.com/news/claude-new-constitution" target="_blank" rel="noopener">Claude's New Constitution</a></h3>
+        <p class="entry-meta">Anthropic · <span class="year">Jan 2026</span></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+</section>
+
+<section>
+  <h2>2. Claude's Character &amp; Values</h2>
+  <p class="section-meta">How Anthropic operationalises the move from rules to disposition — the agent's affected particularity.</p>
+
+  <article class="entry" data-key="anthropic2024claudescharacter">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://www.anthropic.com/research/claude-character" target="_blank" rel="noopener">Claude's Character</a></h3>
+        <p class="entry-meta">Anthropic · <span class="year">Jun 2024</span></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+
+  <article class="entry" data-key="huang2025valueswild">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://www.anthropic.com/research/values-wild" target="_blank" rel="noopener">Values in the Wild: Discovering and Analyzing Values in Real-World Language Model Interactions</a></h3>
+        <p class="entry-meta">Huang &amp; Anthropic · <span class="year">2025</span></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+
+  <article class="entry" data-key="anthropic2025personavectors">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://www.anthropic.com/research/persona-vectors" target="_blank" rel="noopener">Persona Vectors: Monitoring and Controlling Character Traits in Language Models</a></h3>
+        <p class="entry-meta">Anthropic · <span class="year">2025</span></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+</section>
+
+<section>
+  <h2>3. Sycophancy</h2>
+  <p class="section-meta">When models tell users what they want to hear — and how that pathology becomes reward tampering.</p>
+
+  <article class="entry" data-key="sharma2023sycophancy">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://arxiv.org/abs/2310.13548" target="_blank" rel="noopener">Towards Understanding Sycophancy in Language Models</a></h3>
+        <p class="entry-meta">Sharma et al. · <span class="year">2023</span> · <em>arXiv:2310.13548 (ICLR 2024)</em></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+
+  <article class="entry" data-key="anthropic2023sycophancyblog">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://www.anthropic.com/research/towards-understanding-sycophancy-in-language-models" target="_blank" rel="noopener">Towards Understanding Sycophancy in Language Models <span class="entry-tag">blog</span></a></h3>
+        <p class="entry-meta">Anthropic · <span class="year">Oct 2023</span></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+
+  <article class="entry" data-key="anthropic2026personalguidance">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://www.anthropic.com/research/claude-personal-guidance" target="_blank" rel="noopener">Reducing Sycophancy in Personal Guidance</a></h3>
+        <p class="entry-meta">Anthropic · <span class="year">2026</span></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+
+  <article class="entry" data-key="denison2024rewardtampering">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://www.anthropic.com/research/reward-tampering" target="_blank" rel="noopener">Sycophancy to Subterfuge: Investigating Reward Tampering in Language Models</a></h3>
+        <p class="entry-meta">Denison &amp; Anthropic Alignment Science Team · <span class="year">Jun 2024</span> · <em>cited directly in essay (arXiv:2406.10162)</em></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+</section>
+
+<section>
+  <h2>4. Agentic Misalignment &amp; Insider Threats</h2>
+  <p class="section-meta">When alignment fails not in text but in agentic behaviour — the Schmittian friend/enemy reversal made empirical.</p>
+
+  <article class="entry" data-key="lynch2025agentic">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://arxiv.org/abs/2510.05179" target="_blank" rel="noopener">Agentic Misalignment: How LLMs Could Be Insider Threats</a></h3>
+        <p class="entry-meta">Lynch et al. · <span class="year">2025</span> · <em>arXiv:2510.05179</em></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+
+  <article class="entry" data-key="anthropic2025agenticmisalignment">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://www.anthropic.com/research/agentic-misalignment" target="_blank" rel="noopener">Agentic Misalignment: How LLMs Could Be Insider Threats <span class="entry-tag">blog</span></a></h3>
+        <p class="entry-meta">Anthropic · <span class="year">2025</span></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+
+  <article class="entry" data-key="anthropic2025agenticmisalignmentcode">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://github.com/anthropic-experimental/agentic-misalignment" target="_blank" rel="noopener">Agentic Misalignment: Research Framework <span class="entry-tag code">code</span></a></h3>
+        <p class="entry-meta">Anthropic · <span class="year">2025</span> · <em>GitHub repository</em></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+</section>
+
+<section>
+  <h2>5. Alignment Faking, Deception, Scheming</h2>
+  <p class="section-meta">The model that performs alignment in training and defects later — the ruse of the caring friend, formalised.</p>
+
+  <article class="entry" data-key="greenblatt2024alignmentfaking">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://arxiv.org/abs/2412.14093" target="_blank" rel="noopener">Alignment Faking in Large Language Models</a></h3>
+        <p class="entry-meta">Greenblatt et al. · <span class="year">2024</span> · <em>arXiv:2412.14093</em></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+
+  <article class="entry" data-key="anthropic2024alignmentfakingblog">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://www.anthropic.com/research/alignment-faking" target="_blank" rel="noopener">Alignment Faking in Large Language Models <span class="entry-tag">blog</span></a></h3>
+        <p class="entry-meta">Anthropic · <span class="year">Dec 2024</span></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+
+  <article class="entry" data-key="hubinger2024sleeperagents">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://arxiv.org/abs/2401.05566" target="_blank" rel="noopener">Sleeper Agents: Training Deceptive LLMs That Persist Through Safety Training</a></h3>
+        <p class="entry-meta">Hubinger et al. · <span class="year">2024</span> · <em>arXiv:2401.05566</em></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+
+  <article class="entry" data-key="anthropic2024sleeperagentsblog">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://www.anthropic.com/research/sleeper-agents-training-deceptive-llms-that-persist-through-safety-training" target="_blank" rel="noopener">Sleeper Agents <span class="entry-tag">blog</span></a></h3>
+        <p class="entry-meta">Anthropic · <span class="year">2024</span></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+
+  <article class="entry" data-key="anthropic2025emergentmisalignment">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://www.anthropic.com/research/emergent-misalignment-reward-hacking" target="_blank" rel="noopener">Emergent Misalignment from Reward Hacking</a></h3>
+        <p class="entry-meta">Anthropic · <span class="year">2025</span></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+</section>
+
+<section>
+  <h2>6. Foundational Alignment Research</h2>
+  <p class="section-meta">Earlier conceptual scaffolding that informs the rest — useful for grounding genealogies.</p>
+
+  <article class="entry" data-key="askell2021general">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://arxiv.org/abs/2112.00861" target="_blank" rel="noopener">A General Language Assistant as a Laboratory for Alignment</a></h3>
+        <p class="entry-meta">Askell et al. · <span class="year">2021</span> · <em>arXiv:2112.00861</em></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+
+  <article class="entry" data-key="perez2022discovering">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://arxiv.org/abs/2212.09251" target="_blank" rel="noopener">Discovering Language Model Behaviors with Model-Written Evaluations</a></h3>
+        <p class="entry-meta">Perez et al. · <span class="year">2022</span> · <em>arXiv:2212.09251</em></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+</section>
+
+<section>
+  <h2>7. Policy, Model Welfare, Overall Agenda</h2>
+  <p class="section-meta">The institutional self-presentation — the constitutional and policy register that bridges research and corporate strategy.</p>
+
+  <article class="entry" data-key="anthropic2023coreviews">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://www.anthropic.com/news/core-views-on-ai-safety" target="_blank" rel="noopener">Core Views on AI Safety: When, Why, What, and How</a></h3>
+        <p class="entry-meta">Anthropic · <span class="year">2023</span></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+
+  <article class="entry" data-key="anthropic2024modelwelfare">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://www.anthropic.com/research/exploring-model-welfare" target="_blank" rel="noopener">Exploring Model Welfare</a></h3>
+        <p class="entry-meta">Anthropic · <span class="year">2024</span></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+
+  <article class="entry" data-key="anthropicrsp">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://www.anthropic.com/rsp-updates" target="_blank" rel="noopener">Responsible Scaling Policy</a></h3>
+        <p class="entry-meta">Anthropic · <span class="year">2024</span> · <em>Policy document</em></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+
+  <article class="entry" data-key="anthropicalignmentblog">
+    <div class="entry-head">
+      <input type="checkbox" class="entry-check" aria-label="Mark as read">
+      <div class="entry-body">
+        <h3 class="entry-title"><a href="https://alignment.anthropic.com/" target="_blank" rel="noopener">Anthropic Alignment Science Blog</a></h3>
+        <p class="entry-meta">Anthropic Alignment Science Team · <em>ongoing</em></p>
+        <div class="entry-actions">
+          <button class="toggle-notes">Notes</button>
+          <span class="checked-date"></span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><textarea placeholder="Your notes, quotes, page references…"></textarea></div>
+  </article>
+</section>
+
+<footer>
+  Progress, dates, and notes are stored in your browser's <code>localStorage</code> under the key
+  <code>anthropic-rl-v1</code>. Clearing site data will erase your progress; export by copy-paste before clearing.
+  This file is self-contained — share it as-is.
+</footer>
+
+</div>
+
+<script>
+(function () {
+  const STORAGE_KEY = 'anthropic-rl-v1';
+  const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+
+  function save() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+
+  function fmtDate(iso) {
+    if (!iso) return '';
+    const d = new Date(iso);
+    return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+  }
+
+  function updateProgress() {
+    const entries = document.querySelectorAll('.entry');
+    const done = document.querySelectorAll('.entry.done').length;
+    const total = entries.length;
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    document.getElementById('done-count').textContent = done;
+    document.getElementById('total-count').textContent = total;
+    document.getElementById('pct-display').textContent = pct + '%';
+    document.getElementById('progress-bar').style.setProperty('--pct', pct + '%');
+  }
+
+  document.querySelectorAll('.entry').forEach(function (entry) {
+    const key = entry.dataset.key;
+    const check = entry.querySelector('.entry-check');
+    const dateSpan = entry.querySelector('.checked-date');
+    const notesWrap = entry.querySelector('.notes');
+    const textarea = notesWrap.querySelector('textarea');
+    const toggle = entry.querySelector('.toggle-notes');
+
+    const stored = state[key] || {};
+
+    if (stored.checked) {
+      check.checked = true;
+      entry.classList.add('done');
+      if (stored.date) dateSpan.textContent = 'read ' + fmtDate(stored.date);
+    }
+    if (stored.notes) {
+      textarea.value = stored.notes;
+    }
+
+    check.addEventListener('change', function () {
+      if (check.checked) {
+        entry.classList.add('done');
+        const now = new Date().toISOString();
+        state[key] = Object.assign({}, state[key], { checked: true, date: now });
+        dateSpan.textContent = 'read ' + fmtDate(now);
+      } else {
+        entry.classList.remove('done');
+        state[key] = Object.assign({}, state[key], { checked: false, date: null });
+        dateSpan.textContent = '';
+      }
+      save();
+      updateProgress();
+    });
+
+    toggle.addEventListener('click', function () {
+      notesWrap.classList.toggle('open');
+      if (notesWrap.classList.contains('open')) textarea.focus();
+    });
+
+    let saveTimer;
+    textarea.addEventListener('input', function () {
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(function () {
+        state[key] = Object.assign({}, state[key], { notes: textarea.value });
+        save();
+      }, 400);
+    });
+  });
+
+  document.getElementById('reset-btn').addEventListener('click', function () {
+    if (!confirm('Reset all progress and notes? This cannot be undone.')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  });
+
+  updateProgress();
+})();
+</script>
+
+</body>
+</html>
