@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>lecture-4</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h2 id="attention">Attention</h2>
+<ul>
+<li>Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L.,
+Gomez, A. N., Kaiser, L. &amp; Polosukhin, I. (2017). <a
+href="https://i-share-uiu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=cdi_proquest_journals_2076493815&amp;context=PC&amp;vid=01CARLI_UIU:CARLI_UIU&amp;search_scope=CentralIndex&amp;tab=CentralIndex&amp;lang=en">Attention
+is all you need</a>. <em>Advances in Neural Information Processing
+Systems</em>, 30.</li>
+<li>Petersen, S. E., &amp; Posner, M. I. (2012). <a
+href="https://i-share-uiu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=cdi_pubmedcentral_primary_oai_pubmedcentral_nih_gov_3413263&amp;context=PC&amp;vid=01CARLI_UIU:CARLI_UIU&amp;search_scope=CentralIndex&amp;tab=CentralIndex&amp;lang=en">The
+attention system of the human brain: 20 years after</a>. <em>Annual
+Review of Neuroscience</em>, 35(1), 73-89.</li>
+<li>Terranova, T. (2012). <a
+href="https://culturemachine.net/wp-content/uploads/2019/01/465-973-1-PB.pdf">Attention,
+economy and the brain</a>. <em>Culture Machine</em>, 13.</li>
+</ul>
+<pre class="notes"><code>As we&#39;ve noted in the week&#39;s online guide, this week we are moving both back and forward - back to the earlier moments of consciousness, perception in particular, but also forward to the much more recent developments in both neuro and computer science.
+
+What I propose this week is that we examine three key papers that all treat the concept of attention in a specific way. I won&#39;t be doing too much here to relate this concept to Hegel&#39;s unfolding architecture in *Phenomenology of Spirit* - we&#39;ll instead turn to that in the weeks ahead. But you may want to think how different meanings of attention might be situated with respect to both concepts of experience and recognition we&#39;ve covered to date.
+
+I&#39;ll start by looking at the Petersen &amp; Posner [-@stevene.petersen2012theattention] paper, *The Attention System of the Human Brain: 20 Years After*, then the Vaswani et al&#39;s [-@ashishvaswani2017attentionis] *Attention is All You Need* paper, and then finally Terranova&#39;s [-@tizianaterranova2012attentioneconomy] critique of the Attention Economy. In each case we&#39;ll provide a short summary, and connect the argument to the wider lecture and course content - then provide time for discussion.</code></pre>
+<hr />
+<hr />
+<h3 id="human-attention">Human Attention</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Attention Subsystem</th>
+<th>Part of Brain</th>
+<th>Reading Analogy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alerting</td>
+<td>Thalamus; Frontal area</td>
+<td>Be <em>ready</em> to read</td>
+</tr>
+<tr>
+<td>Orienting</td>
+<td>Temporoparietal Junction</td>
+<td><em>Direct</em> attention to text</td>
+</tr>
+<tr>
+<td>Executive: Sustain focus</td>
+<td>Cingulo-opercular</td>
+<td><em>Continue</em> to concentrate</td>
+</tr>
+<tr>
+<td>Executive: Switch focus</td>
+<td>Frontoparietal (eye field / superior parietal lob</td>
+<td>Realize that you are tired and <em>need a break</em></td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-09-14T18-41-01-466Z-7f762d1b.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<pre class="notes"><code>
+The first paper is an updated version of an earlier text from 1990, also by Posner and Petersen, at the beginning of the era of &quot;neuroimaging&quot;: using tomography, fMRI and EEG machines to monitor brain activity. Posner and Petersen suggest human attention involves three distinct but related subsystems and associated cognitive processes: alterting, orienting and executive (or executive control). We might think of these as involving become aware of something; turning our attention towards that thing; and then making some decision about that thing: is it dangerous, attractive, and so on.
+
+I&#39;ll briefly talk through these three functions.
+
+Alerting involves the initial registration of an external stimulus. They further distinguish two modes of alerting:  phasic, or short-term reactions, and tonic, or sustained vigilance. Both their initial and this updated paper located alerting function to the right hemisphere of the brain.
+
+Orienting involves some kind of fast directing of attention in response to the stimulus or goal. This might be the instant turning of the head toward a large sound; or the fixation of the head and eyes on the road ahead while driving in difficult conditions. This happens in the frontal and posterior parts of the brain.
+
+Finally, the executive function involves making decisions: to stay fixed upon an object that has gained attention, or to move on. In their revised article Petersen and Posner identify two distinct executive processes: one involving *sustained* focus or attention, another enabling a *switching* of tasks within the same overall attention frame or goal. The prefrontal cortex is responsible for the first of these - task focus – while the frontal eye field and superior parietal lobes together are responsible task switching. 
+
+</code></pre>
+<hr />
+<h3 id="hierarchy-and-networks">Hierarchy and Networks</h3>
+<ul>
+<li><ol type="a">
+<li>Connected, Ordered Hierarchy: different parts of the brain are
+responsible for <strong>different</strong> aspects of attention:
+alerting, orienting, executive functions (sustaining and switching
+attention)</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>Semi-redundant Networks: different parts of the brain coordinate on
+the <strong>same</strong> aspects of attention</li>
+</ol></li>
+</ul>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-09-14T18-41-01-466Z-7f762d1b.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<pre class="notes"><code>
+But what perhaps matters to us here is not so much which areas of the brain are involved in different aspects of attention. Instead we can note that attention involves (a) a connected *hierarchy* of functions or subsystems and (b) a *network* of parts performing the same or similar roles (with some redundancy).
+
+As we will see, it is not so much that use of attention in computer networks follows precisely what happens in our brains. The word &quot;attention&quot; is in some sense metaphorical, just as is the term &quot;neural networks&quot;. However at the level of architecture we will see some analogies. 
+</code></pre>
+<hr />
+<h3 id="attention-and-learning">Attention and Learning</h3>
+<figure>
+<img src="/markdown/images/attention-pedagogy-studies.png"
+alt="alt text" />
+<figcaption aria-hidden="true">alt text</figcaption>
+</figure>
+<pre class="notes"><code>
+Within the context of learning, we can also see how this new attention-oriented work helps to make sense of, in particular, learning *difficulties*. Impairments on different brain regions can result in complex but still localizable – and potentially addressable – limitations in how attention is alerted, directed, sustained and purposefully redirected, as conditions require. 
+
+Now while this is not a course diving into neuroscientific research, we can note in passing that this kind of neurological or neuroscientific research has impacted upon the theory and practice of pedagogy. A quick Google Scholar search shows for example how many results have integrated &quot;executive function&quot; into pedagogy research: 17,200 results since 2021.
+</code></pre>
+<hr />
+<h3 id="attention-and-childhood-development">Attention and Childhood
+Development</h3>
+<ul>
+<li>infants first develop alerting functions (with some orienting and
+executive ability)</li>
+<li>children develop mature orienting and basic executive
+(concentrating) functions</li>
+<li>adolescents and young adults develop higher order executive (both
+attention-sustaining and -switching) functions</li>
+</ul>
+<p><strong>References:</strong></p>
+<p><span style="font-size:0.8em;"></p>
+<ul>
+<li>Rueda, M. R., &amp; Posner, M. I. (2013). Development of attention
+networks.</li>
+<li>Posner, M. I., &amp; Rothbart, M. K. (2007). Research on attention
+networks as a model for the integration of psychological science. Annual
+Review of Psychology, 58, 1–23.</li>
+<li>Boen, R., Ferschmann, L., Vijayakumar, N., Overbye, K., Fjell, A.
+M., Espeseth, T., &amp; Tamnes, C. K. (2021). Development of attention
+networks from childhood to young adulthood: A study of performance,
+intraindividual variability and cortical thickness. Cortex, 138,
+138-151.</li>
+</ul>
+<p></span></p>
+<!--- Rueda, M. R., Posner, M. I., & Rothbart, M. K. (2004). Attentional control and self-regulation in early development. Trends in Cognitive Sciences, 8, 140–147.-->
+<pre class="notes"><code>
+Several of these studies show that the hierarchy of attention mechanisms - alerting to orienting to executing – also correspond to stages of learning and childhood development. Work by Posner and colleagues in particular has sought to demonstrate that:
+
+- **infants** first develop alerting functions (with some orienting and executive ability)
+- **children** develop mature orienting and basic executive (concentrating) functions
+- **adolescents and young adults** develop higher order executive (both attention-sustaining and -switching) functions
+</code></pre>
+<hr />
+<h3 id="neuroscience-and-hegel">Neuroscience and Hegel?</h3>
+<blockquote>
+<p>Without hesitation, the raw instinct of self-conscious reason will
+reject such a science of phrenology – as well as reject this other
+observing instinct of self-conscious reason, which, once it has
+blossomed into a foreshadowing <em>of cognition</em>, has spiritlessly
+grasped cognition as, “The outer is supposed to be an expression of the
+inner.” However, the worse the thought is, the less easy it sometimes is
+to say exactly where its badness lies, and it becomes even more
+difficult to explicate it. (para 340)</p>
+</blockquote>
+<pre class="notes"><code>And to keep concordance with Hegel, we might also note his own strong distrust of the &quot;neuroscience&quot; of his day – a now outdated field called &quot;phrenology&quot;, which involved measuring skulls to determinine cognitive aptitude. Much later in the *Phenomenology*, he savagely criticises the pseudoscience of phrenology for attempting to account for traits like intelligence based on bumps on the skull. Of course for Hegel, as we have seen, the development of Consciousness and Self-consciousness - and eventually Reason, Spirit and Absolute Knowledge – depends upon an infinitely supple and complex negotiation, both within ourselves and with others. This complex process of development cannot be &quot;read&quot; off the shape or dimensions of the skull. In a phrase that pre-empts where we go next week, Hegel states: 
+ 
+&gt; Without hesitation, the raw instinct of self-conscious reason will reject such a science of phrenology – as well as reject this other observing instinct of self-conscious reason, which, once it has blossomed into a foreshadowing *of cognition*, has spiritlessly grasped cognition as, “The outer is supposed to be an expression of the inner.” However, the worse the thought is, the less easy it sometimes is to say exactly where its badness lies, and it becomes even more difficult to explicate it. (para 340)
+</code></pre>
+<hr />
+<h3 id="neuroscience-a-modern-phrenology">Neuroscience: A Modern
+Phrenology?</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td><img
+src="/markdown/images/pasted-image-2025-09-14T22-33-13-908Z-4dbfa114.png"
+alt="Image" /></td>
+<td><img
+src="/markdown/images/pasted-image-2025-09-14T22-34-05-167Z-40814aab.png"
+alt="Image" /></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="the-gap-between-brain-and-mind">The Gap Between Brain and
+Mind</h3>
+<blockquote>
+<p>The idea of mapping psychological functions to brain structures has a
+venerable history, dating back to Galen’s ventricular doctrine (Green
+[2003]) and continuing to Gall’s phrenology (Gall and Spurzheim [1810]).
+Although those theories are now in disrepute, the advent of neuroimaging
+techniques, such as positron emission tomography (PET), functional
+magnetic resonance imaging (fMRI), electro-encephalography (EEG), and
+magnetoencephalography (MEG), gives the prospect of finding one-to-one
+correlations between psychological functions and brain structures new
+vigour, and the project is the main goal of the young field of cognitive
+neuroscience (Posner and DiGirolamo [2000]).1 Yet many doubt that
+cognitive neuroscience can give us such a psychological atlas, whereby
+the building blocks of mind get assigned to specific neural structures
+(Uttal [2001], [2011]).</p>
+</blockquote>
+<h4 id="references">References:</h4>
+<p><span style="font-size:0.8em;"></p>
+<ul>
+<li><p>Dobbs, D. (2005). Fact or phrenology?. Scientific American Mind,
+16(1), 24-31.</p></li>
+<li><p>Stea, J. N., Black, T. R., &amp; Di Domenico, S. I. (2022).
+Phrenology and neuroscience. In <em>Investigating Pop Psychology</em>
+(pp. 9-19). Routledge.</p></li>
+</ul>
+<p></span></p>
+<pre class="notes"><code>
+
+While neuroscience involves far more rigorous and detailed methods of investigation into the operations of the brain than phrenology, we can note in passing that it has attracted criticisms quite similar to those levelled by Hegel towards the &quot;neuroscience&quot; of his day. See for example the following quote from a recent book chapter by Stea, Black and Domenico, titled appropriately for our purposes &quot;Phrenology and Neuroscience.
+
+Despite the advances in science, for many today there remains a distinct gap between brain and mind, or the biological processing of signals and the rich descriptions of consciousness we get from philosophy, literature, art and religion. 
+
+How we understand this gap also affects our interpretation of the potential for machines to develop consciousness - our topic for next week. But for now, we need to look at how the concept of attention also applies to machine learning.</code></pre>
+<hr />
+<h3 id="machine-attention">Machine Attention</h3>
+<ul>
+<li>Pre-2017: Recurrent, convolutional networks (RNNs, CNNs)</li>
+<li>Problems: Recurrent networks degrade as the length of text
+grows</li>
+<li>Attention already used in combination with architectures</li>
+<li>But is Attention All You Need? The Vaswani et al. (2017)
+Transformers paper</li>
+<li>Implementation by OpenAI: <em>Improving Language Understanding by
+Generative Pre-Training</em> (Radford et al. 2018):
+<strong>GPT-1</strong>.</li>
+</ul>
+<pre class="notes"><code>Vaswani et al.&#39;s 2017 paper is a landmark in machine learning. Perhaps the most cited paper this century, this work by Google scholars was first actually implemented, not by Google, but by a young start-up company, OpenAI. There is a entire story of intrigue about how OpenAI was founded – with seed funding from Elon Musk – and eventually caught sight of this 2017 paper, understood its potential, and developed something called a &quot;Generative Pre-Training&quot; model 
+(*Improving Language Understanding by Generative Pre-Training*)[-@alecradford2018improvinglanguage].
+
+Now we don&#39;t have time or opportunity to fully talk through this paper and its technical details. We would need to venture too far into the history of neural networks and their application to language modelling. But we can say that *prior* to this paper, the state-of-the-art models were using recurrent or convlutional networks, sometimes with attention mechanisms built in. </code></pre>
+<hr />
+<h3 id="from-linear-to-grid-representations">From linear to grid
+representations</h3>
+<!-- | RNN | Transformer |
+| --- | --- |
+| ![rnn](/markdown/images/rnn.png) | ![transformer](/markdown/images/transformer.png) | -->
+<figure>
+<img
+src="/markdown/images/comparison-heatmap-2025-09-15T13-42-51-212Z.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<pre class="notes"><code>
+In short the problem with these systems was the need to maintain an ever-growing set of connections between the next token we would like to predict and the tokens or words that preceded it. 
+
+I&#39;ve used two heatmaps generated by GPT-5 to convey the general idea: RNNs process tokens in a linear way, from left to right, just as we read. But we quickly develop a long set of connections between tokens. 
+
+Instead transformers require every token in a sentence or sequence to be related to every other - no matter how far apart they are in the sequence. This reduces the *time* involved in processing data, at the cost of increased training time and model space - but these are (comparatively) cheap.
+
+Shortly we&#39;ll do a thought experiment that will hopefully make this more clear.
+</code></pre>
+<hr />
+<h3 id="some-general-terminology">Some general terminology…</h3>
+<h4 id="tokens-vs-words">Tokens vs Words</h4>
+<p><strong>Tokens</strong> are word-like pieces of data that are the
+foundational primitatives of language models. Why not words? There are
+many words in natural language, but often they involve commonly
+recurring terms (e.g. morphemes, prefixes, suffixes: ‘un-’, ‘-ing’).
+Roughly <strong>4</strong> tokens per <strong>3</strong> words.</p>
+<h4 id="training-vs-inference">Training vs Inference:</h4>
+<p><strong>Training</strong> involves building a large language model by
+processing large amounts of textual (or other) data, to develop up
+relationships between tokens.</p>
+<p><strong>Inference</strong> applies the trained model to a particular
+sequence, e.g. when you ask a question of ChatGPT.</p>
+<hr />
+<h3 id="terminology-continued">Terminology continued…</h3>
+<h4 id="neural-network-layers-weights-and-biases">Neural Network,
+Layers, Weights and Biases</h4>
+<p>Describes the structure of a language model: has
+<strong>interconnected</strong> nodes organized in
+<strong>layers</strong>. Each layer contains (typically) a
+<strong>weight</strong> matrix and <strong>bias</strong> vector.</p>
+<p>Much of the difference between models involves details about the
+architecture of a network and its layers; how much the weights and
+biases are trained; and what data is used in training.</p>
+<h4 id="feed-forward-backpropagation">Feed forward /
+Backpropagation</h4>
+<ol type="1">
+<li>First we estimate <strong>weights</strong> and
+<strong>biases</strong>, and generate a <strong>loss</strong>, measuring
+their accuracy.</li>
+<li>Second we use <strong>calculus</strong> to update all the
+weights</li>
+<li>Rinse and repeat, until loss is minimized.</li>
+</ol>
+<hr />
+<h3 id="is-ai-just-fancy-statistics">Is AI just fancy statistics?</h3>
+<ul>
+<li>Core Intuition: A <strong>language model</strong> approximates a
+<strong>function</strong> (with many parameters).</li>
+</ul>
+<figure>
+<img
+src="/markdown/images/linear-regression-2025-09-15T13-42-02-464Z.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<p>Typical multiple regression - a simplified 1-layer neural
+network:</p>
+<p><span class="math display">$$
+\begin{align}
+y_i &amp;= \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p
+x_{ip} + \varepsilon_i,
+\quad i = 1, \dots, n
+\end{align}
+$$</span></p>
+<p>So <strong>training</strong> is the attempt to produce an (ever more)
+accurate</p>
+<hr />
+<h3 id="attention-is-three-matrices-queries-keys-values">Attention is
+Three Matrices: Queries, Keys, Values</h3>
+<ul>
+<li>Queries: what each token is <strong>asking for</strong> from other
+tokens (in training or inference)</li>
+<li>Keys: the <strong>relative match</strong> of each token to this
+token</li>
+<li>Value: what the token <strong>represents</strong> (e.g. in syntax or
+semantic terms)</li>
+</ul>
+<p>This process is what is meant by <strong>attention</strong>.</p>
+<hr />
+<h3 id="thought-experiment">Thought Experiment</h3>
+<blockquote>
+<p>The cat sat on <span style="color: red;">the</span>…</p>
+</blockquote>
+<pre class="notes"><code>Let&#39;s work through the following thought experiment. We will imagine we have the following unfinished sentence, and we&#39;ll focus on the last word, `the`:</code></pre>
+<hr />
+<h3 id="sympathy-for-the-machine">Sympathy for the Machine…</h3>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Key</th>
+<th>Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>the</td>
+<td>The</td>
+<td>0.05**</td>
+</tr>
+<tr>
+<td>the</td>
+<td>cat</td>
+<td>0.15</td>
+</tr>
+<tr>
+<td>the</td>
+<td>sat</td>
+<td>0.25</td>
+</tr>
+<tr>
+<td>the</td>
+<td>on</td>
+<td>0.55</td>
+</tr>
+</tbody>
+</table>
+<p>** Because <code>the</code> rarely follows <code>the</code>!</p>
+<p>What does this set of probabilities refer to? The relevance or how
+much the word <code>the</code> <em>attends</em> to the other tokens in
+the sentence.</p>
+<pre class="notes"><code>Now let&#39;s think about this from the machine&#39;s point of view, during inference rather than training. We saw from preceding discussion that this word `the` maintains a place in three lists of words or tokens:
+
+- Query
+- Key
+- Value
+
+We are considering the second `the` as our *query* word, and we want to know what word should follow. We first compare it with every other word in the sentence, checking against their *key* values. This generates an initial set of probabilities, for which I&#39;ll just use some example values:
+
+
+
+| Query | Key | Weight |
+|-------|-----|--------|
+| the   | The | 0.05**  |
+| the   | cat | 0.15   |
+| the   | sat | 0.25   |
+| the   | on  | 0.55   |
+
+
+ ** Because `the` rarely follows `the`!
+
+What does this set of probabilities refer to? The relevance or how much the word `the` *attends* to the other tokens in the sentence. We are primed, in other words, more strongly in favour of &#39;on the&#39; than anything else.
+</code></pre>
+<hr />
+<h3 id="from-attention-to-context">From Attention to Context</h3>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-09-15T17-24-12-198Z-d12b6f9d.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<pre class="notes"><code>
+Now each of these tokens – *the*, *cat* etc – also contains a set of numbers relating to their *values*. The values are – if you like – the semantic space of the word: the **cattiness** of the &#39;cat&#39; (noun, animal, furry, etc); the **sittingness** of the &#39;sat&#39; (verb, temporal, positional, etc); the **on-ness** of the &#39;on&#39;) (preposition, relational term); the **the-ness** of the &#39;the&#39; (definite article, applies to nouns, connected to preposition). But also tied to the context of the current sentence.
+
+So once we have a sense of relative attention – how the &#39;the&#39; relates to other words in the sentence – we combine the values, which we can think of as a hybrid syntactico-semantic representation, with these attention weights. 
+
+This produces a **context** that governs prediction. 
+
+</code></pre>
+<hr />
+<h3
+id="iterated-context-from-tokens-to-quasi-phrases-sententces">Iterated
+Context: From tokens to quasi-phrases / sententces</h3>
+<ul>
+<li>‘the’ is no longer just a word or token</li>
+<li>its ‘the’-ness becomes a kind of 0.55 * ‘on’ + 0.25 + ’sat etc.</li>
+<li>All of these influences, derived from repeated attention, make ‘mat’
+a more likely continuation.</li>
+</ul>
+<pre class="notes"><code>
+This process is repeated over several or many layers of a network. At each layer we develop a richer representation of this context for each token. The mathematical representation of the &#39;the&#39; we are looking at accumulates the influence of the other tokens it attends to - and so do these other tokens themselves. These ultimately help to narrow the scope – or increase the bias - toward particular tokens such as &#39;mat&#39;.
+
+The &#39;the&#39;-ness becomes a highly specific and contextualized &#39;the&#39;-ness that is paired strongly with a prepositional phrase; is associated with a spatio-temporal situation - one of sitting; and is (less strongly) influenced by an agent. None of these roles are hard-coded; they are learned by the network. But at the same time they ressemble the rules of grammar and meaning we are used to.
+
+All of these influences, derived from repeated attention, make &#39;mat&#39; a likely continuation (from within the wider set of the model&#39;s vocabulary).
+</code></pre>
+<hr />
+<h3 id="from-context-to-prediction">From Context to Prediction</h3>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>the</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>cat</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>sat</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>on</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>mat</td>
+<td><strong>0.80</strong></td>
+</tr>
+<tr>
+<td>dog</td>
+<td>0.08</td>
+</tr>
+<tr>
+<td>house</td>
+<td>0.08</td>
+</tr>
+</tbody>
+</table>
+<pre class="notes"><code>This learned context is applied to every item in our initial vocabulary. That would include all the words we have used, plus (in a toy example), other nouns like &#39;mat&#39;, &#39;dog&#39;, &#39;house&#39;. This produces a final set of probabilities:
+
+
+And finally: we roll a virtual die, and produce a set of predictions. In this toy example, 80 per cent of the time the predicted completion of the sentence will be &#39;mat&#39;. 
+
+Note that this 80% of the time - not 100% - is what makes LLMs often &#39;probabilistic&#39;, &#39;stochastic&#39; and &#39;non-deterministic&#39;.
+
+As a further note: You might also imagine all of this computation gets expensive for (a) large vocabularies (like multiple human languages) and (b) long contexts (like novels). That is true! And why companies like Nvidia and TSMC have such extreme valuations today - to train and do inference on attention-based mechanisms involves hardware investments in the order of tens or hundreds of billions of dollars today.
+</code></pre>
+<hr />
+<h3 id="what-about-human-attention">What about human attention?</h3>
+<p>Let’s continue now with a further rough experiment.</p>
+<p>Start by <em>attending to</em> the following words I say:</p>
+<pre><code>The cat sat on the...</code></pre>
+<hr />
+<p>Now when I said:</p>
+<blockquote>
+<p>Start by <em>attending to</em> the following words I say:</p>
+</blockquote>
+<p>You are <em>alerted</em>. You have to shift from an everyday state to
+an alerted one, maybe by the fact that I’ve issued an imperative:
+‘Start’.</p>
+<p>What follows is your orientation to what actually does
+<em>follow</em> from the words ‘the following words I say’. You are
+oriented towards the completion:</p>
+<pre><code>The cat sat on the...</code></pre>
+<hr />
+<h3 id="executive-functions-and-metacognition">Executive Functions and
+Metacognition</h3>
+<p>Do you:</p>
+<ol type="1">
+<li>Complete the sentence?</li>
+<li>Keep listening to what I say?</li>
+</ol>
+<pre class="notes"><code>But then you are also possibly primed to the visual and audible *incompleteness*. The sentence doesn&#39;t end, instead your lecturer continues on with his exposition. The executive functions need to *decide*. What do you do? Do you:
+
+1. Complete the sentence?
+2. Keep listening to what I say?
+
+Or both? Because this is a trivial case, you can complete the sentence very fast, and I&#39;m not speaking too fast. Or do you *resist* the completion – ignoring my command altogether, or completing the sentence with another word? </code></pre>
+<hr />
+<h3 id="questions-on-human-attention">Questions on human attention</h3>
+<p>Think for a moment about this final activity. Is
+<strong>your</strong> completion different to the <strong>LLM</strong>?
+How much of this - pointing ahead to next week’s topic – is
+<strong>conscious</strong> or <strong>unconscious</strong>? Do you –
+like the Transformer model – draft a list of candidates, and pick the
+most <strong>likely</strong>? Is there a kind of metacognitive aspect
+that enables you to determine to <strong>sustain</strong> or
+<strong>switch</strong> your attention? Can you <strong>refuse</strong>
+to complete what you ought to - what your training suggests?</p>
+<hr />
+<h3 id="make-content-get-attention-profit">Make Content, Get Attention…
+Profit?</h3>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-09-15T17-02-44-763Z-71b12cf1.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<pre class="notes"><code>Turning now to Terranova&#39;s article, we come to the idea that attention is a kind of *commodity* and even *capital*, marked - like all commodities – by scarcity. It is an object that in itself warrants the *attention* of capital, of investors and advertisers, in the context of digital media. This is of course not new - the nephew of Sigmund Freud, Edward Bernays, pioneered many uses of what was then, in the early/mid twentieth century, new media, such as radio, magazines, film and television. But with the maturation of computers, the Internet, smartphones, social media and, today, AI, we come to a point at which we see attention as corroded or &quot;degraded&quot; by information. There is so much information, in other worrds, that human attentive processes become saturated, barely able to keep up.
+
+Terranova argues, citing Nicholas Carr, Catherine Malabou, Jonathan Crary and othres, that precisely the kind of neuroscientific research we discussed earlier makes possible a new corresponding *industrialization* of attention. By developing sophisticated techniques for securing attention (at alerting and orienting levels), it also seems as though the higher order &quot;executive functions&quot; are disrupted. In particular, the ability to &quot;switch&quot; is impaired - we find ourselves staring at the screen long past the point at which we intended to, when we initially and intentionally sought distraction. </code></pre>
+<hr />
+<h3 id="attention-and-imitation">Attention and Imitation</h3>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-09-13T20-55-12-927Z-6998cdbe.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<pre class="notes"><code>In a turn that also reminds us of our discussion of Hegel and the *social* process of learning, Terranova then discusses how attention to digital media in turn leads to another kind of by-passing of the deeper attention marked by executive function, due to social imitation. 
+
+But this need not be entirely negative. Here Terranova turns to another Italian theorist, Lazzarato, and his treatment of attention as the condition of social labour – and therefore a positive and productive force.
+
+But Terranova&#39;s discussion takes a negative turn again, through the work of Bernard Stiegler. Stiegler – a French philosopher writing on technology since the 1990s – famously argued that contemporary technologies short-circuit important cognitive processes of memory and social processes of communication, resulting in, as Stiegler put it, a grave risk of &quot;proletariatanization&quot;. Primal psychic and libidinal energy gets put to service, in this analysis, in the creation of value for companies that can direct our collective attention via &quot;social technologies&quot; and &quot;new forms of social relations&quot;.</code></pre>
+<hr />
+<h3 id="cooperation-or-proletariatanization">Cooperation or
+Proletariatanization?</h3>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-09-13T21-05-34-066Z-650d5d77.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<pre class="notes"><code>Collecting up both Lazzaratto and Stiegler&#39;s arguments, Terranova claims that – despite the very different valences or attitudes each brings to their analysis – both authors see attention as not simply a store of human attention that is only degraded by technologies. Rather, those technologies redirect attention, which in turn makes possible new kinds of subjects and social relations. For Lazzaratto, technology actually makes humans cooperate in ways that can resemble the internal structure of an individual brain. For Stiegler, technology is similarly integral to all human cognitive and social activity – but in its current form (the Internet, social media, and the general capitalization of attention and associated &quot;libidinal&quot; energies), it is tending toward the production of a simplified, proletarianized and even stupified society. </code></pre>
+<hr />
+<h3 id="is-attention-a-design-problem">Is Attention a Design
+Problem?</h3>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-09-13T21-21-01-254Z-b87a061e.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<pre class="notes"><code>The reason for including Terranova&#39;s analysis – aside from its wide-ranging survey of recent debates – is that in a certain sense it elaborates upon Hegel&#39;s insistence that self-consciousness and learning is essentially *social* in nature. Indeed both Lazzaratto and Stiegler&#39;s positions, which Terranova surveys, can be seen as extensions to Hegel&#39;s insight, though adjusted for the dramatic effects wrought by informatic technologies. 
+
+The individual human subject is affected by what others say and do, and digital technologies act like a concentrating device of those social habits. Let&#39;s exaggerate: every tweet, post or Tiktok we read or watch acts like a small encounter between two self-consciousnesses, which must resolve itself into a micro-master / servant dialectic enounter. Do we like the content, do we stay engaged to it - are we in other words, a servant to it? Or do we criticize, disengage and ultimately walk away? Is our self-regulation of our own attention a method also of self-mastery that resists servitude to others? Or are these attention-grabbing technologies too powerful for self-regulation, and do we need to treat attention management as a collective design problem?
+
+And where does this then bring us with respect to a technology that arguably exceeds what Terranova, Lazzaratto and Stiegler could ever have anticipated in terms of its potential capture of human attention - precisely via application of its own &quot;attention&quot; mechanisms?
+Hansen argues that as we enter the era of machine learning, platforms will increasingly predict,  and thereby control, even more fundamental processes than our attention: our conscious thinking itself. </code></pre>
+<hr />
+<h3 id="synthesizing-human-and-machine-attention">Synthesizing Human and
+Machine Attention?</h3>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-09-15T04-48-29-169Z-c40d94d6.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<p>Posner on the role of att -
+https://www.youtube.com/watch?v=PKzz1OAiTRQ -
+https://www.youtube.com/watch?v=uYUdwS7-WvA</p>
+<pre class="notes"><code>According to many neuroscience, attention is seen as critical to the operations of consciousness. Surprisingly, in recent discussions,  neuroscientists like Posner have also emphasized the experimental and social nature of attention formation, even in infants as they shape their alerting, orienting and executive facilities. Surprisingly, neuroscience may not be so far removed from Hegel&#39;s speculations on the nature of consciousness.
+
+ Next week we focus on this concept, bringing closer together Hegel&#39;s ideas on consciousness and self-consciousness with other theories. We&#39;ll see how some scholars, like N. Katherine Hayles, have sought to combine research into both human cognition and machine learning with more traditional philosophical concerns about the nature of consciousness. We will revisit attention, but also consider ideas of the &quot;unconscious&quot; – developed originally by Freud, but surprisingly relevant in the world of machine learning too – as well as Katherine Hayles&#39; work on what she terms &quot;nonconscious cognition&quot;, operating in the world of machines.</code></pre>
+</body>
+</html>

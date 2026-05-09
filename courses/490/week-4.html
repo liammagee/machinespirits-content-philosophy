@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>week-4</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h3
+id="pavlovian-machines-supervised-unsupervised-and-reinforcement-learning">Pavlovian
+Machines? Supervised, Unsupervised and Reinforcement Learning</h3>
+<p><a
+href="https://docs.google.com/presentation/d/1Sil2dxk73gQZInd99n3f2PvqsZkLzFqLCDxUTxHqNCk/edit?slide=id.p#slide=id.p">docs.google.com</a></p>
+<p>This week we turn to ideas of machine learning that borrow more
+directly from theories of human learning.</p>
+<p>As with Week 2, a couple of the papers (Ouyang et al. 2022; Guo et
+al., 2025) are again quite technical. I’d encourage skimming each, and
+paying greater attention to the methods of training. Ouyang et
+al. (2022) for example applies Reinforcement Learning from Human
+Feedback to refine GPT-3 into GPT-3.5 – becoming, by the end of 2022,
+ChatGPT. I’d suggest reviewing Guo et al.’s discussion of
+DeepSeek-R1-Zero – a key moment in how *unsupervised* reinforcement
+learning is now becoming possible. Also worth glancing at is the
+DeepMind paper on AlphaZero – a seminal moment in unsupervised learning.
+Finally, on a technical front, the Delua paper describes the general
+differences between supervised and unsupervised learning.</p>
+<p>I’ve included two psychology papers: one by Skinner, describing
+“operant behavior”, a classic paper of behaviouralism that reminds us –
+and helps to inspire – supervised learning. Kohler’s discussion of
+Pavlov’s dogs belongs to a similar tradition. Dewey’s approach to
+experiential learning seems similar, instead, to unsupervised
+learning.</p>
+<p>Finally, Cope &amp; Kalantzis’ history of cybernetics and the early
+days of AI makes some of these connections more explicit.</p>
+<p>Again, there’s a lot - and no need to read everything. Particularly
+on the technical material, feel free to scan and select sections that
+seem to echo earlier theories of human learning.</p>
+<p>A provocation for next week: machine learning borrows from theories
+of learning devised in the early part of the twentieth century. What has
+changed in how we view human learning since? And – if those changes are
+significant – why aren’t machines trained upon these updated theories
+and lessons?</p>
+<p><strong>Readings:</strong></p>
+<p>Cope, B., &amp; Kalantzis, M. (2022). The Cybernetics of Learning.
+_Educational Philosophy and Theory_, 54(14), 2352-2388. <a
+href="https://doi.org/10.1080/00131857.2022.2033213">https://doi.org/10.1080/00131857.2022.2033213</a></p>
+<p>DeepMind, G. (2019). _Alphazero: Shedding new light on chess, shogi,
+and go_. <a
+href="https://deepmind.google/discover/blog/alphazero-shedding-new-light-on-chess-shogi-and-go/">https://deepmind.google/discover/blog/alphazero-shedding-new-light-on-chess-shogi-and-go/</a></p>
+<p>Delua, J. (2021). Supervised versus unsupervised learning: What’s the
+difference? IBM. <a
+href="https://www.ibm.com/think/topics/supervised-vs-unsupervised-learning">https://www.ibm.com/think/topics/supervised-vs-unsupervised-learning</a></p>
+<p>Dewey, J. (1986, September). Experience and education. In The
+educational forum (Vol. 50, No. 3, pp. 241-252). Taylor &amp; Francis
+Group. <a
+href="https://www.schoolofeducators.com/wp-content/uploads/2011/12/EXPERIENCE-EDUCATION-JOHN-DEWEY.pdf">https://www.schoolofeducators.com/wp-content/uploads/2011/12/EXPERIENCE-EDUCATION-JOHN-DEWEY.pdf</a></p>
+<p>Guo, D., Yang, D., Zhang, H., Song, J., Zhang, R., Xu, R., … &amp;
+He, Y. (2025). Deepseek-r1: Incentivizing reasoning capability in llms
+via reinforcement learning. <a
+href="https://arxiv.org/abs/2501.12948">https://arxiv.org/abs/2501.12948</a></p>
+<p>Kohler, I. (1962). Pavlov and his dog. _The Journal of Genetic
+Psychology_, _100_(2), 331-335. - <a
+href="https://doi.org/10.1080/00221325.1962.10533601">https://doi.org/10.1080/00221325.1962.10533601</a></p>
+<p>Ouyang, L., Wu, J., Jiang, X., Almeida, D., Wainwright, C., Mishkin,
+P., … &amp; Lowe, R. (2022). Training language models to follow
+instructions with human feedback. _Advances in neural information
+processing systems_, _35_, 27730-27744. <a
+href="https://proceedings.neurips.cc/paper_files/paper/2022/file/b1efde53be364a73914f58805a001731-Paper-Conference.pdf">https://proceedings.neurips.cc/paper_files/paper/2022/file/b1efde53be364a73914f58805a001731-Paper-Conference.pdf</a></p>
+<p>Skinner, B. F. (1963). Operant behavior. _American psychologist_,
+_18_(8), 503. <a
+href="http://pdfs.semanticscholar.org/36fd/0131b5ae8f78db85b321ef93da67f6e3c534.pdf">http://pdfs.semanticscholar.org/36fd/0131b5ae8f78db85b321ef93da67f6e3c534.pdf</a></p>
+</body>
+</html>

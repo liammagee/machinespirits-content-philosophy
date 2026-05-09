@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>week-3</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h3 id="how-does-a-machine-learn">How does a Machine Learn?</h3>
+<p>This week we will look at getting some general intuition into the
+complex topic of machine learning. A number of readings are assigned to
+this week, all quite technical (and many pivotal in the development of
+AI). My strong recommendation will be to watch the Grant Sanderson video
+– a master class in exposition from an expert in conveying visual
+intuitions around the mathematics of AI – and then download and scan or
+skim-read as many of these papers as possible. I would spend a little
+time on (a) Markov, (b) Mikolov et al., and (c) Vaswani et al, as each
+of these papers marks a critical conceptual as well as technical
+transition in the history of generative AI.</p>
+<p>For people without technical backgrounds, do not worry if none of
+this makes any sense! While a proper understanding of deep learning
+would require many courses, we will be breaking things down in a way
+that hopefully provides some intuition in class.</p>
+<p><strong>Viewings / Readings:</strong></p>
+<p><em>*Highly recommended*</em> Sanderson, G. (2024). Visualizing
+transformers and attention | Talk for TNG Big Tech Day ’24, <a
+href="https://www.youtube.com/watch?v=KJtZARuO3JY">https://www.youtube.com/watch?v=KJtZARuO3JY</a></p>
+<p>Church, K. W., &amp; Mercer, R. L. (1993). Introduction to the
+Special Issue on Computational Linguistics Using Large Corpora.
+Computational Linguistics, 19(1), 1-24. <a
+href="https://aclanthology.org/J93-1001/">https://aclanthology.org/J93-1001/</a></p>
+<p>Cope, B., &amp; Kalantzis, M. (2023). Generative AI Comes to School
+(GPT and All That Fuss): What Now? Educational Philosophy and Theory,
+13-17. <a
+href="https://doi.org/10.1080/00131857.2023.2213437">https://doi.org/10.1080/00131857.2023.2213437</a></p>
+<p>Markov, A. A. (2006). An example of statistical investigation of the
+text Eugene Onegin concerning the connection of samples in chains.
+Science in Context, 19(4), 591-600. <a
+href="https://alpha60.de/research/markov/DavidLink_AnExampleOfStatistical_MarkovTrans_2007.pdf">https://alpha60.de/research/markov/DavidLink_AnExampleOfStatistical_MarkovTrans_2007.pdf</a></p>
+<p>Mikolov, T., Sutskever, I., Chen, K., Corrado, G. S., &amp; Dean, J.
+(2013). Distributed representations of words and phrases and their
+compositionality. Advances in neural information processing systems,
+26. <a
+href="https://arxiv.org/abs/1310.4546">https://arxiv.org/abs/1310.4546</a></p>
+<p>Miller, G. A. (1995). WordNet: a lexical database for English.
+Communications of the ACM, 38(11), 39-41. <a
+href="https://dl.acm.org/doi/10.1145/219717.219748">https://dl.acm.org/doi/10.1145/219717.219748</a></p>
+<p>Radford, A. (2018). Improving language understanding by generative
+pre-training. <a
+href="https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf">https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf</a></p>
+<p>Shannon, C. E. (1948). A mathematical theory of communication. The
+Bell System Technical Journal, 27(3), 379-423. <a
+href="https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf">https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf</a></p>
+<p>Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L.,
+Gomez, A. N., Kaiser, L., &amp; Polosukhin, I. (2017 [2023]). Attention
+Is All You Need. arXiv, 1706.03762. <a
+href="https://doi.org/10.48550/arXiv.1706.03762">https://doi.org/10.48550/arXiv.1706.03762</a></p>
+<p><strong>Assignment(s):</strong></p>
+<p>In your respective Google Sheet tab, respond to one or more of Week
+3’s questions.</p>
+</body>
+</html>

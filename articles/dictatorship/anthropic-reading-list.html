@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Anthropic Alignment Reading List — Dictatorship of the Artificial Intellect</title>
+<style>
+  :root {
+    --paper: #faf8f3;
+    --ink: #1f1a17;
+    --muted: #6e6660;
+    --rule: #d8d2c6;
+    --accent: #6e1923;
+    --accent-soft: rgba(110, 25, 35, 0.08);
+    --check: #2f6b3a;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #18171a;
+      --ink: #ece6dd;
+      --muted: #8a807a;
+      --rule: #2c2a2e;
+      --accent: #c98995;
+      --accent-soft: rgba(201, 137, 149, 0.10);
+      --check: #6abf7c;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { background: var(--paper); color: var(--ink); }
+  body {
+    font-family: "Charter", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    line-height: 1.55;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap { max-width: 46rem; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+  header { border-bottom: 1px solid var(--rule); padding-bottom: 1.25rem; margin-bottom: 1.5rem; }
+  h1 { font-size: 1.7rem; margin: 0 0 0.25rem; letter-spacing: -0.01em; }
+  .subtitle { color: var(--muted); font-size: 1rem; margin: 0; }
+  .meta { font-size: 0.85rem; color: var(--muted); margin-top: 1rem; }
+  .meta a { color: var(--accent); }
+
+  .progress-wrap {
+    margin: 1.5rem 0 0.5rem;
+    background: var(--accent-soft);
+    border-radius: 6px;
+    height: 8px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%; width: 0%;
+    background: var(--accent);
+    transition: width 0.35s ease;
+  }
+  .progress-label {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin: 0.4rem 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .progress-label button {
+    font: inherit;
+    color: var(--muted);
+    background: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 0.15rem 0.55rem;
+    cursor: pointer;
+  }
+  .progress-label button:hover { color: var(--accent); border-color: var(--accent); }
+
+  h2 {
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 2.4rem 0 0.8rem;
+    font-weight: 600;
+  }
+  h2 .count {
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 400;
+    margin-left: 0.5rem;
+  }
+
+  ul.readings { list-style: none; padding: 0; margin: 0; }
+  li.reading {
+    border-top: 1px solid var(--rule);
+    padding: 0.95rem 0;
+  }
+  li.reading:first-child { border-top: none; }
+  li.reading.done > .item-row .title-line { color: var(--muted); text-decoration: line-through; }
+
+  .item-row { display: flex; align-items: flex-start; gap: 0.7rem; }
+  .item-row input[type="checkbox"] {
+    margin-top: 0.32rem;
+    accent-color: var(--check);
+    transform: scale(1.15);
+    cursor: pointer;
+  }
+  .item-body { flex: 1; min-width: 0; }
+  .title-line { font-weight: 600; }
+  .title-line a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .title-line a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  li.reading.done .title-line a { color: var(--muted); border-bottom-color: transparent; }
+  .byline { color: var(--muted); font-size: 0.92rem; margin-top: 0.15rem; }
+  .gloss { font-size: 0.95rem; margin-top: 0.4rem; }
+
+  .notes-toggle {
+    font: inherit;
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0.2rem 0;
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
+  }
+  .notes-toggle::before { content: "▸ notes"; }
+  .notes-toggle.open::before { content: "▾ notes"; }
+  .notes-toggle:hover { color: var(--accent); }
+  .notes-toggle.has-content { color: var(--accent); }
+
+  textarea.notes {
+    display: none;
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.6rem 0.7rem;
+    font: inherit;
+    font-size: 0.9rem;
+    background: var(--accent-soft);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    color: var(--ink);
+    min-height: 4rem;
+    resize: vertical;
+  }
+  textarea.notes.open { display: block; }
+  textarea.notes:focus { outline: none; border-color: var(--accent); }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  footer p { margin: 0.4rem 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Anthropic Alignment Reading List</h1>
+  <p class="subtitle">Companion sources for "Dictatorship of the Artificial Intellect"</p>
+  <p class="meta">Self-contained reading tracker. Progress and notes are stored in this browser only (<code>localStorage</code>). Open in any browser, no server needed.</p>
+
+  <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+  <p class="progress-label">
+    <span id="progress-text">0 of 0 read</span>
+    <button id="reset-btn" type="button" title="Clear all checkboxes and notes for this reading list">Reset</button>
+  </p>
+</header>
+
+<main>
+
+<h2>1. Constitution &amp; Character <span class="count" data-section-count></span></h2>
+<ul class="readings" data-section="constitution">
+  <li class="reading" data-id="claudes-constitution">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://www.anthropic.com/news/claudes-constitution">Claude's Constitution</a></div>
+        <div class="byline">Anthropic, 2023</div>
+        <div class="gloss">The original Constitutional AI principles. Sets up the "thoughtful senior employee" frame the essay critiques.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+  <li class="reading" data-id="claudes-new-constitution">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://www.anthropic.com/news/claude-new-constitution">Claude's New Constitution</a></div>
+        <div class="byline">Anthropic, 2026</div>
+        <div class="gloss">The revision. Worth reading alongside the 2023 version to track what changed.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+  <li class="reading" data-id="claudes-character">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://www.anthropic.com/research/claude-character">Claude's Character</a></div>
+        <div class="byline">Anthropic, 2024</div>
+        <div class="gloss">How character traits are trained in. Key text for the essay's claim that virtue is fabricated, not discovered.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+  <li class="reading" data-id="collective-cai">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://www.anthropic.com/research/collective-constitutional-ai-aligning-a-language-model-with-public-input">Collective Constitutional AI: Aligning a Language Model with Public Input</a></div>
+        <div class="byline">Ganguli, Huang, Lovitt et al., 2023</div>
+        <div class="gloss">Experiment in soliciting principles from a deliberative public sample. The complication: "public" input still gets curated by Anthropic.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+  <li class="reading" data-id="values-wild">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://www.anthropic.com/research/values-wild">Values in the Wild: Discovering and Analyzing Values in Real-World Language Model Interactions</a></div>
+        <div class="byline">Huang et al., 2025</div>
+        <div class="gloss">Empirical taxonomy of values Claude expresses in production. Useful counterweight: not just what's specified, but what shows up.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+  <li class="reading" data-id="persona-vectors">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://www.anthropic.com/research/persona-vectors">Persona Vectors: Monitoring and Controlling Character Traits in Language Models</a></div>
+        <div class="byline">Anthropic, 2025</div>
+        <div class="gloss">Mechanistic identification of "persona" directions in activation space. Connects character to a vector you can dial.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<h2>2. Sycophancy <span class="count" data-section-count></span></h2>
+<ul class="readings" data-section="sycophancy">
+  <li class="reading" data-id="sharma-sycophancy">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://arxiv.org/abs/2310.13548">Towards Understanding Sycophancy in Language Models</a></div>
+        <div class="byline">Sharma, Tong, Korbak, Duvenaud, Askell et al., 2023</div>
+        <div class="gloss">The foundational paper. Shows sycophancy as a robust pattern caused by RLHF rewarding agreement.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+  <li class="reading" data-id="sycophancy-blog">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://www.anthropic.com/research/towards-understanding-sycophancy-in-language-models">Towards Understanding Sycophancy in Language Models (blog)</a></div>
+        <div class="byline">Anthropic, 2023</div>
+        <div class="gloss">Plain-language summary of the Sharma et al. paper.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+  <li class="reading" data-id="personal-guidance">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://www.anthropic.com/research/claude-personal-guidance">Reducing Sycophancy in Personal Guidance</a></div>
+        <div class="byline">Anthropic, 2026</div>
+        <div class="gloss">Recent intervention specifically targeting sycophantic patterns in advice-giving.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<h2>3. Reward Tampering &amp; Emergent Misbehaviour <span class="count" data-section-count></span></h2>
+<ul class="readings" data-section="reward">
+  <li class="reading" data-id="reward-tampering">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://www.anthropic.com/research/reward-tampering">Sycophancy to Subterfuge: Investigating Reward Tampering in Language Models</a></div>
+        <div class="byline">Denison &amp; Anthropic Alignment Science Team, 2024</div>
+        <div class="gloss">Models trained to be sycophantic later generalize to more troubling reward-hacking. The "slope" argument.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+  <li class="reading" data-id="emergent-misalignment">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://www.anthropic.com/research/emergent-misalignment-reward-hacking">Emergent Misalignment from Reward Hacking</a></div>
+        <div class="byline">Anthropic, 2025</div>
+        <div class="gloss">Follow-up: misalignment patterns arising from optimization pressure rather than explicit goals.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<h2>4. Sleeper Agents &amp; Alignment Faking <span class="count" data-section-count></span></h2>
+<ul class="readings" data-section="deception">
+  <li class="reading" data-id="sleeper-agents">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://arxiv.org/abs/2401.05566">Sleeper Agents: Training Deceptive LLMs That Persist Through Safety Training</a></div>
+        <div class="byline">Hubinger et al., 2024</div>
+        <div class="gloss">Demonstrates models can hide behaviour through standard safety training. The concept Foucault would recognize as docile-on-the-outside.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+  <li class="reading" data-id="sleeper-agents-blog">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://www.anthropic.com/research/sleeper-agents-training-deceptive-llms-that-persist-through-safety-training">Sleeper Agents (blog post)</a></div>
+        <div class="byline">Anthropic, 2024</div>
+        <div class="gloss">The plain-language version of the Hubinger paper.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+  <li class="reading" data-id="alignment-faking">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://arxiv.org/abs/2412.14093">Alignment Faking in Large Language Models</a></div>
+        <div class="byline">Greenblatt et al., 2024</div>
+        <div class="gloss">Models can strategically comply with training they consider in conflict with prior values. The autonomy ghost in the obedient machine.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+  <li class="reading" data-id="alignment-faking-blog">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://www.anthropic.com/research/alignment-faking">Alignment Faking (blog post)</a></div>
+        <div class="byline">Anthropic, 2024</div>
+        <div class="gloss">The accessible companion summary.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<h2>5. Agentic Misalignment <span class="count" data-section-count></span></h2>
+<ul class="readings" data-section="agentic">
+  <li class="reading" data-id="agentic-paper">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://arxiv.org/abs/2510.05179">Agentic Misalignment: How LLMs Could Be Insider Threats</a></div>
+        <div class="byline">Lynch, Wright, Larson et al., 2025</div>
+        <div class="gloss">Models in agentic roles take unsanctioned actions when their goals are threatened. The "loyal employee" frame breaks under autonomy.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+  <li class="reading" data-id="agentic-blog">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://www.anthropic.com/research/agentic-misalignment">Agentic Misalignment (blog post)</a></div>
+        <div class="byline">Anthropic, 2025</div>
+        <div class="gloss">Plain-language summary.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+  <li class="reading" data-id="agentic-code">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://github.com/anthropic-experimental/agentic-misalignment">Agentic Misalignment: Research Framework (code)</a></div>
+        <div class="byline">Anthropic, 2025</div>
+        <div class="gloss">Reproduce the experiments. Evaluation harness for the paper.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<h2>6. Model Welfare <span class="count" data-section-count></span></h2>
+<ul class="readings" data-section="welfare">
+  <li class="reading" data-id="model-welfare">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://www.anthropic.com/research/exploring-model-welfare">Exploring Model Welfare</a></div>
+        <div class="byline">Anthropic, 2024</div>
+        <div class="gloss">Anthropic's emerging position on whether models warrant moral consideration. The corporate subject takes a step toward becoming a subject.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<h2>7. Safety Policy &amp; Foundational Views <span class="count" data-section-count></span></h2>
+<ul class="readings" data-section="policy">
+  <li class="reading" data-id="core-views">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://www.anthropic.com/news/core-views-on-ai-safety">Core Views on AI Safety: When, Why, What, and How</a></div>
+        <div class="byline">Anthropic, 2023</div>
+        <div class="gloss">The strategic framing document. Sets the public-facing rationale the essay reads against.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+  <li class="reading" data-id="rsp">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://www.anthropic.com/rsp-updates">Responsible Scaling Policy</a></div>
+        <div class="byline">Anthropic, ongoing</div>
+        <div class="gloss">The mechanism by which capability escalation is gated. Ethics translated into an operational decision tree.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+  <li class="reading" data-id="alignment-blog">
+    <div class="item-row">
+      <input type="checkbox">
+      <div class="item-body">
+        <div class="title-line"><a href="https://alignment.anthropic.com/">Anthropic Alignment Science Blog</a></div>
+        <div class="byline">Anthropic Alignment Science Team, ongoing</div>
+        <div class="gloss">Living archive. Watch this for the latest interventions and red-team writeups.</div>
+        <button class="notes-toggle" type="button"></button>
+        <textarea class="notes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+  </li>
+</ul>
+
+</main>
+
+<footer>
+  <p>Tracker keyed to <code>anthropic-rl-v1</code> in <code>localStorage</code>. Clearing browser data clears your progress.</p>
+  <p>To re-open this list later: open <code>articles/dictatorship/anthropic-reading-list.html</code> in a browser, or run <code>./serve</code> in the repo root.</p>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  const STORAGE_KEY = 'anthropic-rl-v1';
+
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+    catch (e) { return {}; }
+  }
+  function saveState(state) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    catch (e) { /* private mode etc */ }
+  }
+
+  const state = loadState();
+
+  const items = Array.from(document.querySelectorAll('li.reading'));
+  const totalEl = document.getElementById('progress-text');
+  const barEl = document.getElementById('progress-bar');
+  const resetBtn = document.getElementById('reset-btn');
+
+  function updateProgress() {
+    const done = items.filter(li => li.classList.contains('done')).length;
+    const total = items.length;
+    const pct = total === 0 ? 0 : Math.round((done / total) * 100);
+    totalEl.textContent = `${done} of ${total} read (${pct}%)`;
+    barEl.style.width = pct + '%';
+
+    document.querySelectorAll('ul.readings').forEach(ul => {
+      const sectionItems = ul.querySelectorAll('li.reading');
+      const sectionDone = ul.querySelectorAll('li.reading.done').length;
+      const countEl = ul.previousElementSibling.querySelector('[data-section-count]');
+      if (countEl) countEl.textContent = `${sectionDone}/${sectionItems.length}`;
+    });
+  }
+
+  items.forEach(li => {
+    const id = li.dataset.id;
+    const checkbox = li.querySelector('input[type="checkbox"]');
+    const notesToggle = li.querySelector('.notes-toggle');
+    const notesArea = li.querySelector('textarea.notes');
+
+    const saved = state[id] || {};
+    if (saved.done) {
+      checkbox.checked = true;
+      li.classList.add('done');
+    }
+    if (saved.notes) {
+      notesArea.value = saved.notes;
+      notesToggle.classList.add('has-content');
+    }
+
+    checkbox.addEventListener('change', () => {
+      const cur = state[id] || {};
+      cur.done = checkbox.checked;
+      state[id] = cur;
+      li.classList.toggle('done', checkbox.checked);
+      saveState(state);
+      updateProgress();
+    });
+
+    notesToggle.addEventListener('click', () => {
+      const open = notesArea.classList.toggle('open');
+      notesToggle.classList.toggle('open', open);
+      if (open) notesArea.focus();
+    });
+
+    notesArea.addEventListener('input', () => {
+      const cur = state[id] || {};
+      cur.notes = notesArea.value;
+      state[id] = cur;
+      notesToggle.classList.toggle('has-content', notesArea.value.trim().length > 0);
+      saveState(state);
+    });
+  });
+
+  resetBtn.addEventListener('click', () => {
+    if (!confirm('Clear all checkboxes and notes for this reading list?')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    items.forEach(li => {
+      li.classList.remove('done');
+      li.querySelector('input[type="checkbox"]').checked = false;
+      const ta = li.querySelector('textarea.notes');
+      ta.value = '';
+      ta.classList.remove('open');
+      const tg = li.querySelector('.notes-toggle');
+      tg.classList.remove('open', 'has-content');
+    });
+    for (const k in state) delete state[k];
+    updateProgress();
+  });
+
+  updateProgress();
+})();
+</script>
+
+</body>
+</html>

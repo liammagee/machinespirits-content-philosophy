@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>lecture-2</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<hr />
+<h2
+id="lecture-2-anatomy-of-a-journal-article-wheres-the-gap-mapping-a-field">590
+Lecture 2: Anatomy of a Journal Article / Where’s the Gap? Mapping a
+Field</h2>
+<p>Topics:</p>
+<ul>
+<li>What is a Journal Article? What is a Literature Review? (hours
+1)</li>
+<li>Mapping a Field (and Minding the Gap) (hour 2)</li>
+<li>Design, Method and Structure of the Literature Review (hour 3)</li>
+</ul>
+<hr />
+<h2 id="recap-on-week-1">Recap on Week 1</h2>
+<ul>
+<li>What is this course about? Do we need another course on academic
+literature?</li>
+<li>Foundational: How to Develop a Literature Review</li>
+<li>Future-Oriented: How AI is Impacting Academic Literature /
+Scholarship</li>
+<li>Mix of Theory and Practice</li>
+</ul>
+<p>How do you build a sense of your field and its gaps? This course aims
+to make sense of a term – academic literature – at once mundane and
+mystical. It starts with fundamentals: how to build, annotate, analyze,
+map and translate a literature database into a literature review. It
+progresses to think about how AI and other technology can help foster
+more critical, analytic and reflexive modes of interpretation and
+understandings of the field.</p>
+<p>All required material (video lectures, readings etc.) will be
+provided to students.</p>
+<hr />
+<h2 id="recap-on-week-1-1">Recap on Week 1</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th><strong>Week</strong></th>
+<th><strong>Theory</strong></th>
+<th><strong>Practice</strong></th>
+<th><strong>Assessment</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td>Course Overview / Anatomy of a Journal Article / What Makes a Good
+Research Question?</td>
+<td>AI Tools for Literature</td>
+<td>First Draft of Research Topic / Research Question</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Academic Audiences and Techniques of Persuasion</td>
+<td>Where’s the Gap? Mapping a Field</td>
+<td>Design, Method and Structure of the Literature Review</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>Does Artificial Intelligence Mean Artificial Knowledge? How AI is
+Impacting Academia</td>
+<td>Vibe Scholarship (Is It as Bad as It Sounds?)</td>
+<td>Concept Map of the Literature</td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td>Finding Your Scholarly Voice: Peers / Audience / Venue / Field</td>
+<td>Drafting a section of your review in a <em>scientific</em> and
+<em>humanities</em> mode</td>
+<td>Literature Review Sample: In the Scientific Mode</td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td>“What Do I Know?” Towards A Sociology of Knowledge</td>
+<td>Framing Language: “Carry” Your Reader</td>
+<td>Frame up your Literature Review</td>
+</tr>
+<tr>
+<td><strong>6</strong></td>
+<td>The Reflexive Researcher and Interpreting Scholarship</td>
+<td>Reflecting on your positionality vis-a-vis interpretation; drafting
+a statement about AI’s epistemic role</td>
+<td>Statement on the Use of AI in Your Literature Review / Reflection on
+the Role of AI in Academia</td>
+</tr>
+<tr>
+<td><strong>7</strong></td>
+<td>The Automatic Academy? The Future of Scholarship</td>
+<td>Compiling a complete literature review</td>
+<td>Final Literature Review</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="anatomy-of-a-journal-article">Anatomy of a Journal Article</h2>
+<ul>
+<li>Think back to Weber: the “Journal Article” is the vehicle of choice
+for transmitting science (German: <em>Wissenschaft</em>, or what we
+would call knowledge)</li>
+<li>We read dozens, hundreds, thousands…</li>
+<li>Our life is conditioned by the results of journal articles
+<ul>
+<li>For example, “AI” is today completely dominated by a single paper,
+“Attention is All You Need” (GS cites: &gt; 200K)</li>
+</ul></li>
+<li>But what <em>is</em> a journal article? How do you <em>analyze</em>
+one? How do you <em>write</em> one?</li>
+</ul>
+<hr />
+<h3 id="quick-history">Quick history:</h3>
+<ul>
+<li>The “journal” is a recent invention</li>
+<li>Convenient communication of science (17-19th centuries)</li>
+<li>Involves the following “ontology”:
+<ul>
+<li>A collection of <strong>articles</strong></li>
+<li><strong>bold text</strong>Authors of the article</li>
+<li>An <strong>editor</strong> (who reviews and assembles articles)
+<ul>
+<li><strong>Peer reviewers</strong> (other scholars who the editor
+invites to review articles)</li>
+</ul></li>
+<li>A <strong>publisher</strong> (who <em>recruits</em> the editor,
+<em>typesets</em>, <em>sells</em> and <em>distributes</em> the journal
+to readers)</li>
+<li>A <strong>readership</strong> (who subscribes to the journal - very
+often <strong>university libraries</strong>)</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="aside-perversity-of-publishing">Aside: Perversity of
+Publishing</h3>
+<ul>
+<li><strong>University libraries</strong> pay subscriptions to the
+<strong>publisher</strong> for articles that its own employees have
+authored (and edited and reviewed)
+<ul>
+<li><strong>Why?</strong></li>
+</ul></li>
+<li>Are there alternatives?
+<ul>
+<li>Open access publishing (but questions of sustainability of volunteer
+labour / reputation / distribution reach)</li>
+<li>Rise of “predatory publishing” (&amp; dreaded “Article Processing
+Charge” - upto $8K USD)</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="what-is-the-purpose-of-an-article">What is the
+<strong>purpose</strong> of an article?</h3>
+<ul>
+<li>An article makes an <strong>argument</strong></li>
+<li>As such, it is a form of <strong>persuasive</strong> writing
+<ul>
+<li>It aims to <strong>change the mind</strong> of a reader</li>
+<li>But to do so, it must use <strong>evidence</strong> (and other
+things)</li>
+</ul></li>
+<li>All the parts of an article should contribute to this aim:
+<strong>persuasion</strong></li>
+</ul>
+<hr />
+<h3 id="another-aside-ai-authorship-of-journals">Another aside: AI
+Authorship of Journals</h3>
+<ul>
+<li>Would you read an article by a <strong>bot</strong>? Under what
+circumstances?</li>
+<li>What about a math paper?</li>
+</ul>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-10-24T14-24-09-631Z-f69f72d5.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-10-24T14-25-57-365Z-f250bc31.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="typical-structure-of-an-article">Typical structure of an
+Article</h3>
+<ul>
+<li>Introduction</li>
+<li>Literature Review</li>
+<li>Methodology</li>
+<li>Findings</li>
+<li>Results</li>
+<li>Conclusion</li>
+<li>But <strong>why</strong>? Why these parts?</li>
+</ul>
+<p>Let’s answer this collaboratively:</p>
+<p><a
+href="https://docs.google.com/document/d/1wyWkvOju-FPXxWnpSlzrrgugqy0RdZGNL6S3Kh5wHd4/edit?tab=t.0">ERAM
+590 - Google Docs</a></p>
+<hr />
+<h3 id="what-is-a-literature-review">What is a literature review?</h3>
+<p>Lots of answers, lots of guidance…</p>
+<p><a
+href="https://ldlprogram.web.illinois.edu/dissertation-resources/literature-review-guidelines/">Literature
+Review Guidelines – Learning Design and Leadership (LDL) Program</a></p>
+<p><a
+href="https://owl.purdue.edu/owl/research_and_citation/conducting_research/writing_a_literature_review.html">Writing
+a Literature Review - Purdue OWL® - Purdue University</a></p>
+<p><a
+href="https://writingcenter.unc.edu/tips-and-tools/literature-reviews/#:~:text=A%20literature%20review%20discusses%20published,combines%20both%20summary%20and%20synthesis.">Literature
+Reviews – The Writing Center • University of North Carolina at Chapel
+Hill</a></p>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-10-24T12-44-52-384Z-eb86c677.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="designing-a-literature-review">Designing a Literature
+Review</h3>
+<ul>
+<li>We have a Research Question / Topic</li>
+<li>What’s next? Just blast out a search on Google Scholar / University
+Website? Build a list of references, annotate, summarize, organize? Find
+the gap?
+<ul>
+<li>But can come across as arbitrary</li>
+</ul></li>
+<li><strong>Or</strong>: think of the Literature Review as a
+mini-research project within the project ( / article /
+dissertation)</li>
+</ul>
+<hr />
+<h2 id="learn-from-marx">Learn from Marx?</h2>
+<ul>
+<li>Order of <strong>analysis</strong> is different from order of
+<strong>presentation</strong>
+<ul>
+<li>In analysis we go from concrete (stuff we see) to abstract (concepts
+of thought)</li>
+<li>In presentation, we go from abstract (concepts) to concrete (the
+world of experience) - <strong>explaining</strong> the world of
+experience</li>
+</ul></li>
+</ul>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-10-27T20-32-03-568Z-232d5b70.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="google-geminis-view">Google Gemini’s view</h3>
+<p>“create an image showing how a literature review is a mini-argument
+embedded within the larger argument of an article or dissertation”</p>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-10-24T16-22-25-539Z-312a91eb.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h2 id="hour-2-might-get-here-early">Hour 2 (might get here early)…</h2>
+<h3 id="mapping-fields-and-minding-gaps">Mapping Fields and Minding
+Gaps</h3>
+<hr />
+<h3 id="whats-the-research-question-of-the-literature-review">What’s the
+“research question” of the Literature Review</h3>
+<ul>
+<li>What’s the gap in the literature? (should eventually coincide with
+the research question)
+<ul>
+<li>What are you <em>arguing</em>? That this gap exists… (perhaps other
+things too)</li>
+</ul></li>
+<li>Develop a <em>Methodology</em>:
+<ul>
+<li>Choose relevant search terms (think about AI’s ability to translate
+the terms you think of to the ones you don’t)
+<ul>
+<li>Pick a couple of relevant articles and read the references</li>
+</ul></li>
+<li>Choose an organization principles:
+<ul>
+<li>Organize by theme? What are the themes?</li>
+<li>Organize by time? How have debates on topic X <em>evolved</em>?</li>
+</ul></li>
+</ul></li>
+<li>Construct an <em>Introduction</em> and <em>Conclusion</em></li>
+</ul>
+<hr />
+<h3
+id="metaphors-of-knowledge-navigating-fields-and-finding-gaps">Metaphors
+of Knowledge: Navigating fields and finding gaps</h3>
+<ul>
+<li>What is the <strong>field</strong>? Talk your reader through
+it…</li>
+<li>What is the <strong>gap</strong>? Tell your reader how you get
+there…
+<ul>
+<li>work backwards - find the gap, <em>then</em> organize the
+steps…</li>
+</ul></li>
+<li>Use the language of <em>argument</em> / <em>metadiscourse</em>:
+<ul>
+<li>If we are on a “path” through the “field”, join the dots:
+<ul>
+<li>Move up / down: general - specific
+<ul>
+<li>“More generally…”, “At an abstract level”, “Theoretically…”,
+“Globally / Nationally…”</li>
+<li>“More specifically…”, “At an concrete level”, “Pratically”,
+“Locally</li>
+</ul></li>
+<li>Move side to side: similar - different
+<ul>
+<li>“Similarly…”, “Along the same lines…”,</li>
+<li>“However…”, “Conversely…”, “On the other hand…”, “In contrast…”</li>
+</ul></li>
+</ul></li>
+<li>“Control” your navigation:
+<ul>
+<li>“This review <em>will</em> cover…”, “The literature describes
+several facets of…”</li>
+<li>Add some drama: “Meanwhile…”, “Despite…”, “X has dispute Y’s
+findings…”</li>
+<li>“This review <em>has</em> covered…”</li>
+</ul></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="work-it-like-a-puzzle">Work it like a Puzzle</h3>
+<ul>
+<li>Look at the whole picture - does it make sense?</li>
+<li>Fill it in piece by piece</li>
+<li>Iterate - whole to part, part to whole</li>
+<li>More vocabularly: the <em>Hermeneutic Circle</em>
+<ul>
+<li>Understand the Whole (in order to Interpret the Path)</li>
+<li>Interpret the Path (in order to Understanding the Whole)</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="common-pitfalls">Common Pitfalls</h3>
+<ul>
+<li>The Annotated Bibliography and the Literature Review</li>
+<li>Tone: Navigating The Two Cultures (see Snow 1959)</li>
+<li>Lack of Signposting / metadiscourse / discourse markers / rhetorical
+statements</li>
+<li>Lack of persuasive purpose</li>
+<li>Laundry list of gaps -&gt; Narrow down on the one / two that you are
+likely to follow</li>
+</ul>
+<hr />
+<h3 id="more-on-tone">More on tone…</h3>
+<ul>
+<li>Tone: Navigating The Two Cultures (see Snow 1959)</li>
+<li>Scientist / Quantitative / Positivist
+<ul>
+<li>Lots of 3rd person / passive voice (“It was observed that…”) - But
+note, this is changing</li>
+</ul></li>
+<li>Humanist / Qualitative / Post-positivist or Interpretivist or
+Constuctivist
+<ul>
+<li>More 1st person / active voice (“We noticed that”)</li>
+</ul></li>
+<li>In the field of education, both “cultures” co-exist (sometimes even
+peacefully)</li>
+<li>How do you decide on your tone?</li>
+</ul>
+<hr />
+<h3 id="two-or-three-pseudo-random-articles">Two (or Three)
+(Pseudo-)Random Articles</h3>
+<ol type="1">
+<li>Keerthiraj, &amp; Misra, A. (2025). Who owns the future? AI, digital
+sovereignty, and the politics of knowledge. AI &amp; SOCIETY, 1-13.
+https://link.springer.com/article/10.1007/s00146-025-02641-y<br />
+</li>
+<li>Liu, J., Zhang, Y., Li, W., Wang, Q., Niu, P., &amp; Zhang, X.
+(2025). Adaptive vs. Planned Metacognitive Scaffolding for Computational
+Thinking: Evidence from Generative AI-Supported Programming in
+Elementary Education. Computers &amp; Education, 105473.
+https://www.sciencedirect.com/science/article/pii/S0360131525002416?casa_token=cBNpQ0r7f4oAAAAA:THnluE0eVY1uTJ3bnp1V6j-fsLEXobOB6QqoszFx_hsNacpAVPMmIe61gO70IXtFPiT2vIRcGPk</li>
+<li>Spivak, G. C. (2023). Can the subaltern speak?. In Imperialism
+(pp. 171-219). Routledge.
+http://users.uoa.gr/~cdokou/TheoryCriticismTexts/Spivak-Subaltern.pdf</li>
+</ol>
+<ul>
+<li>Why these two (three) examples? Contrasting methods, yes - but more
+than this, these articles reflect different orientations towards
+<em>scholarly techniques of persuasion</em></li>
+</ul>
+<hr />
+<h3 id="first-what-do-we-do-when-we-open-an-article">First: What do we
+do when we open an article?</h3>
+<ul>
+<li>What are the different ways of reading?</li>
+<li>2 Common Strategies:
+<ul>
+<li>Top to bottom</li>
+<li>Abstract, Introduction, Conclusion - then the rest</li>
+</ul></li>
+<li>Sometimes:
+<ul>
+<li>Literature Review first</li>
+<li>Methodology first (what did the researchers do?)</li>
+<li>References first (what “space” of academia does this belong
+in?)</li>
+</ul></li>
+</ul>
+<p>Other ideas?</p>
+<p><a
+href="https://docs.google.com/document/d/1wyWkvOju-FPXxWnpSlzrrgugqy0RdZGNL6S3Kh5wHd4/edit?tab=t.0">ERAM
+590 - Google Docs</a></p>
+<hr />
+<h3
+id="who-owns-the-future-ai-digital-sovereignty-and-the-politics-of-knowledge-keerthiraj-misra-a.-2025">Who
+owns the future? AI, digital sovereignty, and the politics of knowledge
+<em>Keerthiraj, &amp; Misra, A. (2025)</em></h3>
+<p>Keerthiraj, &amp; Misra, A. (2025). Who owns the future? AI, digital
+sovereignty, and the politics of knowledge. AI &amp; SOCIETY, 1-13.
+https://link.springer.com/article/10.1007/s00146-025-02641-y</p>
+<hr />
+<h3
+id="adaptive-vs.-planned-metacognitive-scaffolding-for-computational-thinking">Adaptive
+vs. Planned Metacognitive Scaffolding for Computational Thinking</h3>
+<p>Liu, J., Zhang, Y., Li, W., Wang, Q., Niu, P., &amp; Zhang, X.
+(2025). Adaptive vs. Planned Metacognitive Scaffolding for Computational
+Thinking: Evidence from Generative AI-Supported Programming in
+Elementary Education. Computers &amp; Education, 105473.
+https://www.sciencedirect.com/science/article/pii/S0360131525002416?casa_token=cBNpQ0r7f4oAAAAA:THnluE0eVY1uTJ3bnp1V6j-fsLEXobOB6QqoszFx_hsNacpAVPMmIe61gO70IXtFPiT2vIRcGPk</p>
+<hr />
+<h3 id="can-the-subaltern-speak">Can the subaltern speak?</h3>
+<p>Spivak, G. C. (2023). Can the subaltern speak?. In Imperialism
+(pp. 171-219). Routledge.
+http://users.uoa.gr/~cdokou/TheoryCriticismTexts/Spivak-Subaltern.pdf</p>
+<hr />
+<h2 id="hour-3">Hour 3</h2>
+<h3 id="designing-a-literature-review-1">Designing a Literature
+Review</h3>
+<hr />
+<h3 id="checklist">Checklist:</h3>
+<ol type="1">
+<li>What are the key terms of the (draft) research question? List
+them…</li>
+<li>What are the <em>norms</em> of your field? And what <em>is</em> your
+field?</li>
+<li>What is a reasonable <em>method</em> or <em>recipe</em> for your
+literature review?</li>
+<li>What are <em>related terms</em> (can AI find reasonable
+synonyms)?</li>
+<li>What do you get when you search <em>Google Scholar</em> /
+<em>library databases</em> for these terms?</li>
+<li>Do you have <em>existing articles</em> / authors to draw from?</li>
+<li>What <em>citation system</em> are you using? Can you code / organize
+literature in the way you’d like?</li>
+<li>What is the best <em>organization</em> of the literature? Thematic,
+field (for multi-/interdisciplinary work), chronological, spatial,
+general / special?</li>
+<li>Are there <em>classics</em> you are expected to cite? References
+with very large number of citations (e.g. Braun &amp; Clarke 2006;
+Vaswani et al. 2017; Bender et al. 2021)?</li>
+</ol>
+<hr />
+<h3 id="do-some-sketches-fast-review">Do some sketches: “fast”
+review</h3>
+<ul>
+<li><strong>Time</strong>, followed by <strong>theme</strong>, followed
+by <strong>space</strong></li>
+<li>Just be approximate</li>
+</ul>
+<p>“Criticism of AI <strong>dates back</strong> to the inception of the
+field itself. For example, Dreyfus (1966 - or thereabouts) discussed the
+brittleness of (etc)… By the early 1980s, scepticism voiced by
+philosophers such as Searle (1981) in his famous”Chinese room”
+experiment, contributed to the emergence of an AI winter. <strong>More
+recently</strong>, as generative AI has largely revived the field,
+criticism has been directed toward both issues of <strong>social justice
+and bias</strong> (e.g. Bender et al. 2021) and potential
+<strong>existential risk</strong> (e.g. lesswrong blog). In some cases,
+critical AI scholars have also argued the existential case is a
+convenient disguise that obscures more immediate negative social effects
+(Gebru and Torres 2024). Moreover scholars from <strong>outside the
+US</strong> - particularly in the Global South – have begun to argue AI
+constitutes a form of <strong>neocolonialism</strong>, impacting digital
+sovereignty (Keerthiraj, &amp; Misra 2025)”</p>
+<ul>
+<li>Can work with or without AI - useful just to test how this or that
+understanding helps make your case (about gaps)</li>
+<li>Don’t commit to this structure just yet!</li>
+</ul>
+<hr />
+<h3 id="then-develop-a-plan">Then develop a plan…</h3>
+<ol type="1">
+<li>Tentative gap - what do you think it is?</li>
+<li>Scaffold your review - how many sections? do you need subsections?
+Add preliminary citations</li>
+<li>Develop a sense of key transitions - what’s the drama in the review?
+“also argued”, “moreover” etc</li>
+<li>Be light, noncommital - prepared to cut/paste</li>
+<li>As your literature grows, you might need to <em>qualify</em> the
+statement of the gap. Maybe there <strong>are</strong> studies of the
+general topic X - but you can add <em>adjectives</em> to the gap
+(research question) to narrow it down… Go back to Step 1, rinse and
+repeat…</li>
+</ol>
+<hr />
+<h3 id="also-consider">Also consider</h3>
+<ul>
+<li>Different perspectives - outside the ordinary frame of discipline,
+time
+<ul>
+<li>e.g. “heteroscopia” (“many visions”) - concept by Jaireth (2001) to
+describe Indian cinema</li>
+<li>But also a useful term for thinking about machinic vision,
+generative AI</li>
+</ul></li>
+<li>Less-known authors (especially not widely cited) - this can enrich a
+review, demonstrating greater awareness beyond the same few authors /
+studies…
+<ul>
+<li>e.g. History of AI - typically focussed on US developments. But
+Schmidhuber (1922) argues the importance of developments in Ukraine
+(USSR), Japan, Finland in the 1960s/70s. Who knew?</li>
+</ul></li>
+<li><strong>In short: surprise us!</strong></li>
+</ul>
+<hr />
+<h3 id="growing-your-database">Growing your database</h3>
+<p>Different techniques for expanding your database:</p>
+<ul>
+<li>Search (Google Scholar / library databases)</li>
+<li>With existing articles:
+<ul>
+<li><strong>Go back</strong>: Scan <em>references</em> of this
+article</li>
+<li><strong>Go forward</strong>: Search for <em>citations</em> of this
+article</li>
+<li><strong>Go sideways</strong>: What else was published in the same
+journal / issue</li>
+</ul></li>
+<li>Check common “authorities”: Wikipedia, syllabi, AI
+<ul>
+<li>e.g. “Critical AI” - people will be citing Bender et al. (2021)
+stochastic parrots paper</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="this-weeks-activity">This Week’s Activity</h3>
+<ol type="1">
+<li>Write down the gap (should be close to your research question)</li>
+<li>Write down your assumed audience / field. What do you know about
+them? Do they prefer lots of recent citations (science)? Or fewer, with
+more emphasis on the classics (philosophy, theory, some qual
+studies)?</li>
+<li>Create a short plan / recipe method:
+<ul>
+<li>“Search for these terms / filters”</li>
+<li>“Create a database of 10 articles”</li>
+<li>“Scan the articles for relevance - discard those that are not
+relevant”</li>
+<li>“With remaining articles: review references, search for more recent
+citations”</li>
+<li>“Once I have 50 articles: code / annototate for relevance”</li>
+<li>“Map out review structure; add citations, continue to search under
+subheadings”</li>
+<li>“Supply list of refs to AI and ask if I’m missing anything crucial”
+&lt;!–</li>
+</ul></li>
+<li>Develop a rough structure of headings / subheadings</li>
+<li>Lay in some initial citations (if you know them), with indicative
+transitional language (“also”, “however” etc) –&gt;</li>
+</ol>
+<hr />
+<h3 id="next-weeks-readings">Next Week’s Readings</h3>
+<p><a
+href="https://sciencepolicy.colorado.edu/students/envs_5110/snow_1959.pdf">sciencepolicy.colorado.edu</a>
+<!-- 
+Aarseth, E. J. (1997). Cybertext: Perspectives on ergodic literature. JHU Press. [williamwolff.org](https://williamwolff.org/wp-content/uploads/2013/01/aarseth-ergodic-ch1-1997.pdf)  --></p>
+</body>
+</html>

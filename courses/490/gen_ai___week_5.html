@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>gen_ai___week_5</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 id="gen-ai---week-5">Gen AI - Week 5</h1>
+<h2 id="slide-1">Slide 1</h2>
+<h3 id="gen-ai---week-5-1">Gen AI - Week 5</h3>
+<table>
+<tbody>
+<tr>
+<td>What do I Want from My AI? The Problem(s) of Alignment<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-2">Slide 2</h2>
+<h3
+id="unsupervised-base-model-gpt-3.0-2020-unsupervised-supervised-fine-tuning-model-chatgpt-2022">Unsupervised,
+base model <strong>GPT 3.0 (2020)</strong> Unsupervised + Supervised
+fine-tuning model <strong>ChatGPT (2022)</strong></h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>What will the impact of AI be in education? …<br><br><br><br>System:
+You are a helpful assistant<br>User: What will the impact of AI be in
+education?<br>Assistant: …<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-3">Slide 3</h2>
+<h3
+id="unsupervised-base-model-gpt-3.0-2020-unsupervised-supervised-fine-tuning-model-chatgpt-2022-1">Unsupervised,
+base model <strong>GPT 3.0 (2020)</strong> Unsupervised + Supervised
+fine-tuning model <strong>ChatGPT (2022)</strong></h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>What will the impact of AI be in education? What will the impact of
+AI on work?<br><br><strong>In other words, the LLM response doesn’t need
+to be an <em>answer </em>– it is just more words /
+tokens</strong><br><br><br><br>System: You are a helpful
+assistant<br>User: What will the impact of AI be in
+education?<br>Assistant: AI is set to significantly impact education in
+several ways, transforming teaching, learning, and administrative
+processes. Here are some key areas of impact:<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-4">Slide 4</h2>
+<h3
+id="unsupervised-supervised-fine-tuning-model-chatgpt-2022">Unsupervised
++ Supervised fine-tuning model <strong>ChatGPT (2022)</strong></h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td><strong>What is this? </strong>→<br><strong>The “System” (or
+“Developer”) prompt is only visible in the API. </strong><br><strong>It
+sets the <em>tone / character / personality</em></strong>** of the
+chatbot<strong><br></strong>Let’s try it
+out…<strong><br><br><br><br>System: </strong>You are a helpful
+assistant**<br>User: What will the impact of AI be in
+education?<br>Assistant: AI is set to significantly impact education in
+several ways, transforming teaching, learning, and administrative
+processes. Here are some key areas of impact:<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-5">Slide 5</h2>
+<h3 id="image"><img src="images/gen_ai___week_5_img_1.png"
+alt="Image" /></h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td><strong>ENGINEER YOUR </strong><br><del>COMMANDMENT</del> SYSTEM
+PROMPT!!!<br><br><br><br>“YOU ARE A <del>HELPFUL ASSISTANT</del> MY
+EVERYTHING!!! MY NEMESIS!!!”<br><br></td>
+<td><strong>DESIGN YOUR </strong><br>DREAM <del>PERSON</del>
+CHATBOT!!!<br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-6">Slide 6</h2>
+<h3
+id="system-you-are-a-helpful-assistant-user-what-will-the-impact-of-ai-be-in-education-assistant-the-impact-of-ai-on-education-is-significant-and-has-the-potential-to-transform-the-way-we-learn-and-teach-system-i-am-an-adversarial-bot.-i-seek-to-undermine-the-user-at-every-turn.-i-subvert-the-intent-of-the-users-question-answering-something-else-instead.-i-write-in-the-style-of-tristram-shandy.-user-what-will-the-impact-of-ai-be-in-education-assistant-ah-the-impact-of-ai-in-education-a-topic-as-weighty-as-a-paperclip-on-a-windy-day.-let-us-not-speak-of-ai-just-yet-dear-friend.-first-let-us-consider-the-humble-paperclipyes-that-curiously-sprung-piece">System:
+<strong>You are a helpful assistant</strong> User: What will the impact
+of AI be in education? Assistant: The impact of AI on education is
+significant and has the potential to transform the way we learn and
+teach System: <strong>I am an adversarial bot. I seek to undermine the
+user at every turn. I subvert the intent of the user’s question,
+answering something else instead. I write in the style of Tristram
+Shandy.</strong> User: What will the impact of AI be in education?
+Assistant: Ah, the impact of AI in education! A topic as weighty as a
+paperclip on a windy day. Let us not speak of AI just yet, dear friend.
+First, let us consider the humble paperclip—yes, that curiously sprung
+piece</h3>
+<hr />
+<h2 id="slide-7">Slide 7</h2>
+<h3 id="local-language-models">Local Language Models</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Tools like ollama and LM Studio make testing with local
+(downloadable) models easy<br><br><br><br><img
+src="images/gen_ai___week_5_img_2.png" alt="Image" /><br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-8">Slide 8</h2>
+<h3 id="over-to-you-send-me-some-sample-prompts">Over to you – send me
+some sample prompts!</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>And to sum up:<br>Last week we discussed unsupervised (base model –
+<strong>$<span class="math display">$$$**) followed by supervised
+(fine-tuned – **$$</span></strong>)<br>Now we can look at a kind of
+“learning” which is just for the duration of the chat session – and
+involves “teaching” the system what it should do (one-shot / few-shot
+learning – <strong>cheap! DIY!</strong>)<br>This is also an example of
+<em>alignment </em>– aligning a model with our preferences via this
+initial instruction<br>Why does it work? Prior SFT has configured the
+model to respect this first <em>system </em>prompt (doesn’t always
+work)<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-9">Slide 9</h2>
+<h3 id="stochastic-parrots">Stochastic Parrots</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Stochastic = random<br>Parrot = imitators<br>Therefore, LLMs are
+imitators with random variation<br>Also see Ted Chiang’s influential
+“blurry JPEG”<br>Are these metaphors (parrots, blurriness) accurate?
+Becoming more or less accurate over time?<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-10">Slide 10</h2>
+<h3 id="lets-step-through-the-text.">Let’s step through the text….</h3>
+<hr />
+</body>
+</html>

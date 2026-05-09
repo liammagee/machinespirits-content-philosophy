@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>lecture-7</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 id="lecture-7">590 Lecture 7</h1>
+<hr />
+<h3 id="what-weve-covered">What We’ve Covered</h3>
+<ul>
+<li>Week 1: Research Topic &amp; Question</li>
+<li>Week 2: Method &amp; Recipe for the Literature Review</li>
+<li>Week 3: Vibe Scholarship - Applying AI to Close &amp; Distant
+Reading</li>
+<li>Week 4: Reading Spivak with AI &amp; Writing for Humanities and the
+Sciences</li>
+<li>Week 5: Structuring the Literature Review</li>
+<li>Week 6: Sociology of Knowledge / Reflexivity / Acknowledging AI</li>
+</ul>
+<hr />
+<h3 id="this-week---final-week">This Week - Final Week</h3>
+<ul>
+<li>Topical discussion: The Automatic Academy? The Future of
+Scholarship</li>
+<li>Synthesizing the course into a draft review - Preparation for Final
+Assessment</li>
+<li>Take summary paragraph from Week 6 and expand into 1,500 - 2,000
+words</li>
+<li>Re-cap on course purpose</li>
+</ul>
+<hr />
+<h3 id="the-automatic-academy-the-future-of-scholarship">The Automatic
+Academy? The Future of Scholarship</h3>
+<ul>
+<li>Let’s test ChatGPT group chat…</li>
+<li>Where is automation happening? Some examples….</li>
+</ul>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-12-07T05-19-16-293Z-eef41f0c.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="anthropic-interviewer">Anthropic Interviewer</h3>
+<ul>
+<li><a
+href="https://www.anthropic.com/news/anthropic-interviewer">Introducing
+Anthropic Interviewer  Anthropic</a> - Compare with Magee et al. 2023 -
+tables have turned (AI now interviewing the human)</li>
+</ul>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-12-08T23-26-42-224Z-973ff89f.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="thematic-analysis">Thematic Analysis</h3>
+<p>Human vs LLM thematic analysis: - Algorithms are biased - but run
+against human bias - Coding fatigue - too many themes, sense of
+duplication, saturation - The machine doesn’t tire… related but
+different biases</p>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-12-07T05-20-48-333Z-79dfa4c3.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="literature-gap-analysis---google-scholar-labs">Literature Gap
+Analysis - Google Scholar Labs</h3>
+<p><a
+href="https://scholar.google.com.au/scholar_labs/search?hl=en">Sign in -
+Google Accounts</a></p>
+<hr />
+<h3 id="agent-based-models">Agent-based Models</h3>
+<ul>
+<li><p>“Computational sociology” - building models to simulate complex
+behavior</p></li>
+<li><p><a
+href="https://ai.studio/apps/drive/1ARexRPADBB5GNS_UC8npDZ5I7PeLNq4P">Sign
+in - Google Accounts</a></p></li>
+<li><p>Claude <a
+href="https://claude.ai/chat/55dbf0a7-0eae-4f6f-b0fe-5e2aa24d96e5">claude.ai</a></p></li>
+</ul>
+<hr />
+<h3 id="mathematical-scientific-research">Mathematical / Scientific
+Research</h3>
+<ul>
+<li>Common approach now to problem-solving - so-called “neuro-symbolic”
+reasoning
+<ul>
+<li>LLM + tools - specifically Python</li>
+<li>Solve some problem - watch AI generate, run &amp; evaluate Python
+code</li>
+</ul></li>
+</ul>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-12-08T21-58-45-032Z-4b1c80ac.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-12-08T21-54-10-987Z-ab24f22a.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="social-science-survey-research">Social Science Survey
+Research</h3>
+<ul>
+<li>Design surveys</li>
+<li>Generate code and sample data for survey analysis</li>
+<li>Compare results to the literature</li>
+</ul>
+<hr />
+<h3 id="crisis-llm-generated-knowledge">Crisis: LLM-generated
+knowledge</h3>
+<ul>
+<li>Huge amounts of AI-generated submissions to journals</li>
+<li>“who, aside from the algorithms themselves, would want to read this
+LLM-generated content?”</li>
+</ul>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-12-08T04-12-42-025Z-ba155e22.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="the-problem-of-assessment">The Problem of Assessment</h3>
+<ul>
+<li>Why do we assess academic performance?</li>
+<li>Does it make sense in the age of AI? What about Artificial Super
+Intelligence?</li>
+<li>Think of the entire apparatus of the education “industry”: rubrics,
+criteria, marking, validation?
+<ul>
+<li>What are we even assessing? Individual aptitude, historical
+priviledge? Or the specific confluence of <em>individual X</em> with
+<em>AI Y</em>?</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="analogy-high-responders-to-technology">Analogy: “High
+Responders” to Technology</h3>
+<ul>
+<li>Example: Nike’s “supershoes” - some people respond better than
+others</li>
+<li>Are some of us “high responders” to AI? Can
+<ul>
+<li>What is the role of assessment in preparing for a future of work? Is
+it just an arbitrary ranking?</li>
+</ul></li>
+</ul>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-12-07T23-20-40-662Z-ab0822db.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="vibe-is-perhaps-a-serious-skill">“Vibe” is perhaps a serious
+skill…</h3>
+<ul>
+<li>What does Rick Rubin (music producer) actually “know”?</li>
+<li>In scholarship: developing a “feel” for questions worth asking - and
+how to answer them
+<ul>
+<li><strong>Important?</strong> AI accelerates locating dead ends…
+<em>This is not the gap you think it is</em>.</li>
+</ul></li>
+</ul>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-12-07T23-39-40-150Z-d07acf37.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="from-the-heart-of-silicon-valley">From the Heart of Silicon
+Valley…</h3>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-12-07T23-15-49-636Z-8b535cf0.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-12-07T23-11-24-929Z-c65ec6ef.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="skills-are-always-meta-skills">Skills are always “Meta”
+Skills</h3>
+<ul>
+<li>My bias: develop the liberal arts - these are the “super shoes” /
+meta skills for an era of LLMs</li>
+<li>AI literacy = general literacy? The more “expressive” you are, the
+more you can make a LLM “sing”.</li>
+<li>Perhaps these skills are not really that assessable</li>
+<li>What difference does it make? What does a world without
+<em>differentiation</em> (skills, work ethic, etc) mean?</li>
+</ul>
+<hr />
+<h3 id="implications-the-post-assessment-age">Implications? The
+Post-Assessment Age</h3>
+<ul>
+<li>Does everyone just get a free car now? The return of the “planned
+economy”</li>
+</ul>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-12-07T23-08-30-920Z-2fff3a47.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-12-07T23-16-31-310Z-1501741c.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="stieglers-nightmare">Stiegler’s Nightmare</h3>
+<ul>
+<li><em>The Automatic Society</em></li>
+<li>Proletarianization:
+<ul>
+<li>From loss of <em>ownership</em> (Marx - means to production) to loss
+of <em>knowledge</em> (more literally “savoir-faire”: know-how)
+<ul>
+<li>Connected also with the rise of <em>knowledge economy</em>,
+<em>immaterial labor</em>: work is now cognitive, informatic -
+susceptible to automation by <em>artificial</em> cognition</li>
+</ul></li>
+<li>Plato’s <em>Pharmakon</em>: writing is poison (destroys memory) but
+also cure (sustains memory)</li>
+</ul></li>
+<li>Technology leads to collective loss of <em>knowing-how</em> - Can be
+“cured” by alternative organizations of technology and social conditions
+(but how? answers are non-specific, strangely reactionary)</li>
+</ul>
+<hr />
+<h3 id="ruha-benjamins-race-after-technology">Ruha Benjamin’s <em>Race
+After Technology</em></h3>
+<ul>
+<li>“Abolitionist Tools”</li>
+<li>Translation to scholarly contexts: thinking AI as a
+<em>liberational</em> technology - non-competitive knowledge without
+assessment, careerism, quantification, discrimination</li>
+</ul>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-12-08T00-18-46-487Z-bb3fc6d7.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="filling-gaps-vs-producing-spaces">Filling gaps vs Producing
+spaces</h3>
+<ul>
+<li>Perhaps: to re-thinking knowledge beyond a logic of accumulation
+(the metaphor of filling “gaps” might be a trap for us here - as through
+knowledge is a <em>container</em>)
+<ul>
+<li>Instead focus on knowledge as creative, expansive - instead
+<em>producing</em> gaps, spaces - <em>fractal</em> metaphor</li>
+</ul></li>
+</ul>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-12-08T04-27-36-189Z-33065933.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="what-does-this-all-mean">What does this all mean?</h3>
+<ul>
+<li>AI is disruptive, threatening: to what we think of as the correct,
+established ways of doing things can be accelerated, automated.</li>
+<li>De-stabilized (already low) confidence in academic institutions -
+anyone now can produce a report</li>
+<li>Yet now <em>indispensable</em> to the work of scholarship</li>
+<li>Requires new fundamental orientations toward the purposes and
+methods of scholarship, knowing…</li>
+</ul>
+<hr />
+<h3 id="final-assignment">Final assignment</h3>
+<ul>
+<li>My emphasis on this course is on the <strong>workshop</strong>
+nature of the material - aims to prepare for general / special field,
+other literature review work</li>
+<li>Grading will be indicative of this
+<ul>
+<li>What is an “<strong>A</strong>”?</li>
+<li>Roughly <strong>1 - 1.5K</strong> words - use of
+<strong>concise</strong> language</li>
+<li><strong>Heavy</strong> use of signposting / metadiscourse</li>
+<li>Demonstration of clear principle of <strong>organization</strong>
+(thematic / chronological / developmental etc)</li>
+<li>Appropriate use of language for the apparent
+<strong>audience</strong></li>
+<li>Some sense of an <strong>independent and critical stance
+</strong>toward your material</li>
+<li>Statement of <strong>gap filled</strong> (or <strong>space to be
+produced</strong>) by your research
+<ul>
+<li>And the <strong>persuasiveness</strong> of this statement, given the
+<strong>preceding evidence</strong> from the literature</li>
+</ul></li>
+<li>Due <strong>acknowledgement of AI</strong></li>
+</ul></li>
+<li>I won’t know your field: I won’t be grading on whether you include
+everything</li>
+</ul>
+<hr />
+<h3 id="activity-dialectical-exchange">Activity: Dialectical
+Exchange</h3>
+<ul>
+<li>Background: What is the <em>dialectic</em>?
+<ul>
+<li>Socratic dialectic - find the truth via relentless questioning
+(think: TV lawyers)
+<ul>
+<li>Truth is “whittled away” from the error that surrounds it</li>
+<li>Question (Socrates) and answer (respondent) progressively move
+towards the truth (truth is journey / process)</li>
+</ul></li>
+<li>Hegelian dialectic: same idea, but more formal:
+<ul>
+<li><em>Thesis</em>: the current status quo</li>
+<li><em>Antithesis</em>: an opposing view</li>
+<li><em>Synthesis</em>: the reconciliation of <em>thesis</em> and
+<em>antithesis</em></li>
+</ul></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="can-ai-be-a-dialectical-partner-guide">Can AI be a dialectical
+partner / guide?</h3>
+<p><a
+href="https://platform.claude.com/docs/en/release-notes/system-prompts">System
+Prompts - Claude Docs</a></p>
+<p><a
+href="https://docs.google.com/document/d/1wyWkvOju-FPXxWnpSlzrrgugqy0RdZGNL6S3Kh5wHd4/edit?tab=t.p1f3avygez4c">ERAM
+590 - Google Docs</a></p>
+<p>Following Claude’s example we are going to develop a fancy multipart
+prompt: - Assignment (from the syllabus) - Criteria - Assessment -
+Review Synopsis - Review Structural Principle - Review Audience -
+Dialectic Prompt</p>
+<p>Why so fancy?</p>
+<hr />
+<h3 id="variants-on-the-dialectic-prompt">Variants on the Dialectic
+Prompt</h3>
+<blockquote>
+<p>I need to write this literature review. Don’t write it for me.
+Instead, be my dialectical guide. Using criteria, structural principle
+and audience, help me develop the synopsis into an ‘A’ grade paper!</p>
+</blockquote>
+<blockquote>
+<p>Be my Socratic dialogue partner.</p>
+</blockquote>
+<blockquote>
+<p>I want to illustrate for a class the process of the dialectic, with
+AI as partner / guide. Below is a synposis of a literature review. Let’s
+call this the “thesis”. Can you examine this thesis, engaging in a
+dialectical process to pose an antithesis - then help arrive at a
+synthesis?</p>
+</blockquote>
+<hr />
+<p><dialectic_guide> <assignment> Final Literature Review (40%)
+Throughout the course you will develop a literature review around a
+research topic and question of your choice. This may relate to a future
+dissertation topic or question, or some other research question. In
+total, the Literature Review should be 6-8 pages in length.
+</assignment> <criteria> • Develop novel, significant and feasible
+research question • Compile relevant map of the field relating to the
+research question • Choose and apply appropriate citation practices
+(science / humanities / mix) for question &amp; field • Use framing /
+signposting / metadiscursive language • Show reflexivity as a scholar •
+Acknowledge and demonstrate appropriate use of AI • Use all of the above
+to highlight a plausible gap in the literature </criteria> <assessment>
+- What is an “<strong>A</strong>”? - Roughly <strong>1.5 - 2.0K</strong>
+words - use of <strong>concise</strong> language -
+<strong>Heavy</strong> use of signposting / metadiscourse -
+Demonstration of clear principle of <strong>organization</strong>
+(thematic / chronological / developmental etc) - Appropriate use of
+language for the apparent <strong>audience</strong> - Some sense of an
+<strong>independent and critical stance </strong>toward your material -
+Statement of <strong>gap filled</strong> (or <strong>space to be
+produced</strong>) by your research - And the
+<strong>persuasiveness</strong> of this statement, given the
+<strong>preceding evidence</strong> from the literature - Due
+<strong>acknowledgement of AI</strong> <assessment> <review_synopsis> In
+this review, I begin by outlining current research on the technical
+performance and global expansion of LEO satellite networks. I then
+examine scholarship addressing digital inclusion challenges in
+underserved regions, highlighting persistent infrastructural and
+socioeconomic barriers. I further explore studies on technology-enabled
+learning initiatives, emphasizing what is known—and what remains
+speculative—about satellite-supported education models. Finally, I
+demonstrate that while these bodies of research each contribute
+important insights, none sufficiently integrate technical, social, and
+pedagogical perspectives to explain how LEO satellites can equitably
+support learners in remote communities. As a result, this review
+establishes the need for a unified, implementation-focused framework
+that bridges technological capability with educational equity.
+</review_synopsis> <review_structural_principle> The literature review
+will be organized according to theme. </review_structural_principle>
+<review_audience> Tech-savvy but critical scholars. Probably trained in
+STS (Latour, Law, Benjamin etc). </review_audience> <dialectic_prompt> I
+need to write this literature review. Don’t write it for me. Instead, be
+my dialectical guide. Using criteria, structural principle and audience,
+help me develop the synopsis into an ‘A’ grade paper!
+</dialectic_prompt> &lt;/dialectic_guide</p>
+<hr />
+<h3 id="re-cap-on-course-purpose">Re-cap on course purpose</h3>
+<p>Dual: - ERAM - focus on mechanics, technical detail of the literature
+review - But also examine how AI is being worked into practices of
+scholarship - and to be attentive and crtical towards that - Future is
+complex, challenging - “cyber-social” – with mixed effects and
+opportunities - Need for critical AI literacies - stay vigilant!</p>
+</body>
+</html>

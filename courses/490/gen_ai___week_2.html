@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>gen_ai___week_2</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 id="gen-ai---week-2">Gen AI - Week 2</h1>
+<h2 id="slide-1">Slide 1</h2>
+<h3 id="how-do-machines-learn">How do Machines Learn?</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td><img src="images/gen_ai____week_2_img_1.png"
+alt="Image" /><br><br><br><br>MidJourney:<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-2">Slide 2</h2>
+<h3 id="from-last-week">From last week…</h3>
+<hr />
+<h2 id="slide-3">Slide 3</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>17th / 18th Centuries — Dawn of Modernity</th>
+<th>19th / early 20th — Modernity Proper</th>
+<th>mid 20th – early 21st — Post/Late Modernity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Renaissance -&gt; Enlightenment</td>
+<td>England as the Factory of the World: High precision mass
+mechanization</td>
+<td>Politics and economics: false “sciences” (2 world wars, Great
+Depression)</td>
+</tr>
+<tr>
+<td>Rationality</td>
+<td>The Horror of the machine - Romanticism, Frankenstein, the rise of
+the Gothic genre</td>
+<td>Paradox: Computation arises out of negative mathematics, 1930s
+(Godel, Church, Turing): what computation cannot do</td>
+</tr>
+<tr>
+<td>Mathematics (Descartes, Leibniz, Newton)</td>
+<td>1820s - Luddism, English Socialism</td>
+<td>First computers in 2nd world war: differencing engines (Leibniz,
+Babbage – ChatGPT) - do calculus sums for missile trajectories (gravity,
+acceleration)</td>
+</tr>
+<tr>
+<td>Science (Bacon, Newton)</td>
+<td>1830s/40s - Babbage, Lovelace, Engels, Marx (Marx cited Babbage -
+Marxism is partly a response to technology, and the “General Intellect”
+also looks like AI)</td>
+<td>Post-war 1950s: AI, but also cybernetics, information theory
+(Shannon), the Turing test, game theory (Nash, von Neumann) - back to
+“calculemus”?</td>
+</tr>
+<tr>
+<td>Philosophy (Descartes, Spinoza, Leibniz)</td>
+<td>Comte: Positivist sociology (society can be scientific)</td>
+<td>Markets as perfect computers: neoliberalism as epistemology.</td>
+</tr>
+<tr>
+<td>The Birth of the (political) Subject (Luther, Calvin &gt; Descartes,
+Rousseau)</td>
+<td>Darwin: Man is not the centre of things… (but evolution leads an
+orientation towards history - perfectable or degenerative)</td>
+<td>Post-fordism, immaterial / flexibilized / cognitive labor,</td>
+</tr>
+<tr>
+<td>“Calculemus!” (Let us Calculate - Leibniz) - but see Nietzche’s
+reaction…</td>
+<td>Ricouer: “Hermeneutics of Suspicion” (Marx, Nietzsche, Freud) -
+beyond Descartes: forces of ideology / will to power / unconscious
+desire…</td>
+<td>Counter-narratives: Cultural Marxism, existentialism,
+poststructuralism, “ends” talk (End of Man - Foucault; end of History -
+Fukuyama; end of the grand narrative - Lyotard)</td>
+</tr>
+<tr>
+<td>Proto-Industrialization / Globalization / Colonization</td>
+<td>Fordism / Taylorism</td>
+<td>Post-Enlightenment disenchantment</td>
+</tr>
+<tr>
+<td>Machines: Steam Engine / Jacquard Loom.</td>
+<td></td>
+<td>AI Winter / Spring / glorious Summer? Transhumanism, return to
+Enlightenment, or enshittification (Doctorow)?</td>
+</tr>
+</tbody>
+</table>
+<!-- ### **17th / 18th Centuries - Dawn of Modernity** Renaissance -> Enlightenment Rationality Mathematics (Descartes, Leibniz, Newton) Science (Bacon, Newton) Philosophy (Descartes, Spinoza, Leibniz) The Birth of the (political) Subject (Luther, Calvin > Descartes, Rousseau) “Calculemus!” (Let us Calculate - Leibniz) - but see Nietzche’s reaction… Proto-Industrialization / Globalization / Colonization Machines: Steam Engine / Jacquard Loom.   **19th / early 20th - Modernity Proper** England as the Factory of the World: High precision mass mechanization The Horror of the machine - Romanticism, Frankenstein, the rise of the Gothic genre 1820s - Luddism, English Socialism 1830s/40s - Babbage, Lovelace, Engels, Marx (Marx cited Babbage - Marxism is partly a response to technology, and the “General Intellect” also looks like AI) Comte: Positivist sociology (society can be scientific)  Darwin: Man is not the centre of things… (but evolution leads an orientation towards history - perfectable or degenerative) Ricouer: “Hermeneutics of Suspicion” (Marx, Nietzsche, Freud) - beyond Descartes: forces of  ideology / will to power / unconscious desire… Fordism / Taylorism   **mid 20th - early 21st - Post/Late Modernity ** Politics and economics: false “sciences” (2 world wars, Great Depression) Paradox: Computation arises out of negative mathematics, 1930s (Godel, Church, Turing): what computation **cannot **do First computers in 2nd world war: differencing engines (Leibniz, Babbage – ChatGPT) - do calculus sums for missile trajectories (gravity, acceleration) Post-war 1950s: AI, but also cybernetics, information theory (Shannon), the Turing test, game theory (Nash, von Neumann) - back to “calculemus”? Markets as perfect computers: neoliberalism as epistemology.  Post-fordism, immaterial / flexibilized / cognitive labor,  Counter-narratives: Cultural Marxism, existentialism, poststructuralism, “ends” talk (End of Man - Foucault; end of History - Fukuyama; end of the grand narrative - Lyotard) Post-Enlightenment disenchantment AI Winter / Spring / glorious Summer? Transhumanism, return to Enlightenment, or enshittification (Doctorow)?   -->
+<hr />
+<h2 id="slide-4">Slide 4</h2>
+<h3 id="looking-ahead">Looking ahead…</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>What <strong>fundamentals</strong> makes for AI / Machine Learning /
+Deep Learning / Neural network?<br>Trigonometry (Ancient Egypt, Babylon,
+India, Greece)<br>Calculus (17th century – Leibniz,
+Newton)<br>Probability [think “stochastic parrots”] (18th/19th century –
+Euler, Gauss, Laplanche, Fourier)<br>Linear algebra (19th century –
+James John Sylvester)<br>Markov Models (very early 20th century – Andrej
+Markov)<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-5">Slide 5</h2>
+<h3 id="and-a-bold-proposition">And a bold proposition…</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>All the <strong>mathematics</strong> for AI in 2025 was developed by
+the end of the 19th century (with applications, like Markov models, in
+1906/1913)<br>Are the last 125 years just <strong>hardware</strong>,
+<strong>networks</strong> &amp; <strong>data </strong>(see LeCun 2021 -
+who doesn’t (quite) say this)?<br>Is our sense of <strong>modernity
+</strong>just the long shadow cast by the Enlightenment (17th / 18th
+century)?<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-6">Slide 6</h2>
+<h3
+id="find-a-poem-e.g.-httpsearlybirdbooks.commost-famous-poems-1.-the-raven-by-edgar-allen-poe-deep-into-that-darkness-peering-long-i-stood-there-wondering-fearing-doubting-dreaming-dreams-no-mortals-ever-dared-to-dream-before-but-the-silence-was-unbroken-and-the-stillness-gave-no-token-and-the-only-word-there-spoken-was-the-whispered-word-lenore-this-i-whispered-and-an-echo-murmured-back-the-word-lenore-merely-this-and-nothing-more.">Find
+a poem, e.g.: https://earlybirdbooks.com/most-famous-poems <strong>1.
+The Raven</strong> <strong>by Edgar Allen Poe</strong> Deep into that
+darkness peering, Long I stood there, wondering, fearing, Doubting,
+dreaming dreams no mortals Ever dared to dream before; But the silence
+was unbroken, And the stillness gave no token, And the only word there
+spoken Was the whispered word, “Lenore!” This I whispered, and an echo
+Murmured back the word, “Lenore!” Merely this, and nothing more.</h3>
+<hr />
+<h2 id="slide-7">Slide 7</h2>
+<h3 id="today-introducing-the-exciting-new-llm-deeppeer.">Today:
+Introducing the exciting new LLM, <em>DeepPeer….</em></h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Going to:<br>Build a human analog “graphics processing
+unit”<br>Create a Language Model, <em>DeepPeer</em> – a competitor to
+<em>DeepSeek</em>, but built by <em>peers</em><br>Write some
+award-winning poetry<br>Move from <strong>1913</strong> (<em>Markov</em>
+model) to <strong>2013</strong> (<em>Word2vec</em> - Mikolov et al.) and
+<strong>2017</strong> (<em>Transformers</em> - Vaswani et
+al.)<br>Develop some intuitions about language generation and stochastic
+parrots<br><br></td>
+<td><img src="images/gen_ai____week_2_img_2.png"
+alt="Image" /><br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-8">Slide 8</h2>
+<h3
+id="find-a-poem-e.g.-httpsearlybirdbooks.commost-famous-poems-1.-the-raven-by-edgar-allen-poe-deep-into-that-darkness-peering-long-i-stood-there-wondering-fearing-doubting-dreaming-dreams-no-mortals-ever-dared-to-dream-before-but-the-silence-was-unbroken-and-the-stillness-gave-no-token-and-the-only-word-there-spoken-was-the-whispered-word-lenore-this-i-whispered-and-an-echo-murmured-back-the-word-lenore-merely-this-and-nothing-more.-1">Find
+a poem, e.g.: https://earlybirdbooks.com/most-famous-poems <strong>1.
+The Raven</strong> <strong>by Edgar Allen Poe</strong>
+<strong>Deep</strong> into that darkness <strong>peer</strong>ing, Long
+I stood there, wondering, fearing, Doubting, dreaming dreams no mortals
+Ever dared to dream before; But the silence was unbroken, And the
+stillness gave no token, And the only word there spoken Was the
+whispered word, “Lenore!” This I whispered, and an echo Murmured back
+the word, “Lenore!” Merely this, and nothing more.</h3>
+<hr />
+<h2 id="slide-9">Slide 9</h2>
+<h3 id="instructions">Instructions</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Go to
+https://docs.google.com/spreadsheets/d/1RUgrHCiRAuCLTjWTXWqzqM87isRvAzEP1b5roPcbgJQ/edit?gid=2005356127#gid=2005356127<br>Find
+the spreadsheet with your name on it<br>Change the line:
+“<strong>Deep</strong> into that darkness <strong>peer</strong>ing,”
+(line 1, Poe’s <em>The Raven</em>) with <em>just one line</em> of any
+poem (or song) of your choosing<br>For each pair of letters:<br>Find the
+row with the first letter (only lower case)<br>And the column with the
+second letter<br>If no number exists, enter “1”<br>If a number exists,
+add 1 to it<br>For example:<br>“D” and “e” (from “Deep…”) - find row “d”
+and column “e” (cell F5), and enter a 1.<br>Then move to “e” and “e”,
+“e” and “p”, “p” and “ “ , “ “ and “i”<br>Ignore numbers, other
+punctuations (but not spaces, commas, periods, exclamation and question
+marks)<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-10">Slide 10</h2>
+<h3 id="let-us-calculate">Let Us Calculate!</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>What kind of poetry have we created with <em>DeepPeer</em>?<br>How
+could the poetry be improved? (and can even it be
+improved?)<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-11">Slide 11</h2>
+<h3 id="refinements">Refinements…</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>What would happen if we chose <em>more than one</em> letter
+(n-gram)?<br>What if instead of a few lines of poetry, we used <em>the
+whole Internet</em>?<br>What about if we chose <em>words</em> (or parts
+of words - morphemes or byte pairs)?<br>What if we could also learn
+<em>semantic</em> relationships – not just contiguity?
+(<em>word2vec</em> - Mikolov et al 2013)<br>What if the
+<em>position</em> of words also mattered? <br>What if we could <em>look
+ahead</em> as well as behind? (<em>Transformers</em> - Vaswani et al
+2017)<br>What if we could indicate that some answers are
+<em>useless</em>, <em>false</em> or <em>harmful?</em> (Ouyang et al,
+2022)<br>What if the model could somehow <em>evaluate itself</em>?
+(Reinforcement Learning)<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-12">Slide 12</h2>
+<h3 id="from-1913-to-2013-and-from-markov-to-mikolov-et-al.-google">From
+1913 to 2013 (and from Markov to Mikolov et al. @ Google)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Word2vec - vector <em>embeddings</em><br>Vector: a list of numbers
+(usually floating point, i.e. decimal), substituted for a word (or
+token)<br>In the language modelling word, usually initialized
+<em>randomly</em><br>E.g. “cat” -&gt; [0.1, 0.6123,
+<strong>0.8</strong>, 0.312]. “Chat” = [0.8, 0.2, <strong>0.8</strong>,
+0.12]<br>Why? By using a series of numbers, instead of just one, or the
+word itself, training can track <em>multiple dimensions</em> of word use
+– semantics, grammar, sound etc.<br>Word2vec demonstrated how this could
+work:<br>“King” is to “Queen” as “man” is to “woman”<br>Post-training:
+Words exist in a multidimensional space - as long as the vector
+itself<br>The direction of a single token vector (e.g. “cat”) can be
+compared to other vectors, using <em>cosine similarity</em> (dust off
+trigonometry, and thank the ancient Egyptians, Babylonians, Indians and
+Greeks)<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-13">Slide 13</h2>
+<h3 id="from-2013-to-2017-vaswani-et-al.-also-google">From 2013 to 2017
+(Vaswani et al., also @ Google)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Transformers – “Attention is All You Need” (and the rise of the
+declarative sentence paper title)<br>No easy intuitions (always contain
+more than meets the eye)! But we can say:<br>Positions are added to
+embeddings<br>Words “attend” to other words - the first word can be
+related to the last in a sentence for example - not reliant upon words
+immediately following or preceding<br>Scale - from 100s of dimensions
+(word2vec) to 10s of thousands / trillions<br>Output: a <em>probability
+distribution</em> of next tokens<br>Attention mechanism = parallelizable
+(just like <em>DeepPeer</em>…)<br>GPUs instead of humans<br>And you
+might also see some future problems with bias, hallucination,
+repetition, plagiarization – <em>stochastic parrots</em> (future
+weeks)<br>Researchers at start-up OpenAI (not Google) saw potential;
+developed GPT-1, GPT-2, GPT-3<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-14">Slide 14</h2>
+<h3 id="some-notes-on-poetics">Some notes on poetics…</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>We might say: it’s no accident Markov uses Pushkin’s poetry as his
+example…<br>Big movements across late 19th / early 20th century in
+poetic experimentation:<br>French symbolism (Charles Baudelaire, Arthur
+Rimbaud, Stéphane Mallarmé – with Edgar Allen Poe as a surprise
+influence in the background). <strong>Language as material,
+plastic</strong> – an object in its own right.<br>Concrete poetry –
+poems focussed on visual form (see Mallarmé’s <em>Un Coup de Dés Jamais
+N’Abolira Le Hasard</em> in particular) – obsessions with
+<strong>chance, randomness, contingency</strong><br><strong>Nonsense
+poetry</strong> (Edward Lear, Lewis Carroll) – onomatopoeia,
+sound/sense<br>The Unconscious Speaks! <strong>Automatic writing, free
+association</strong> (influenced by Freud). See particularly the
+operations of condensation and displacement – (later: metaphor and
+metonymy). Ideas of similarity and contiguity – not necessarily of
+logical relations – between symbols &amp; signs: precursors to
+AI<br><strong>Futurism</strong> (Marinetti), <strong>Modernism</strong>
+(Pound, Eliot, Joyce), <strong>Surrealism</strong> (Andre Breton <em>et
+al.</em>)<br>Russian / Soviet experimentation: Bakhtin, Eisenstein,
+Bugakov etc <br>1920: Rossum’s Universal Robots: Karel Čapek, Czech sci
+fi<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-15">Slide 15</h2>
+<h3 id="image"><img src="images/gen_ai____week_2_img_3.png"
+alt="Image" /></h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Rimbaud, A. (1883 [<strong>1871</strong>]). <em>Un coup de dés
+jamais n’abolira le hasard</em>.<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-16">Slide 16</h2>
+<h3 id="image-image"><img src="images/gen_ai____week_2_img_4.png"
+alt="Image" /> <img src="images/gen_ai____week_2_img_5.png"
+alt="Image" /></h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Mallarmé, S. (1914 [<strong>1897</strong>]). <em>Un coup de dés
+jamais n’abolira le hasard</em>.<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-17">Slide 17</h2>
+<h3
+id="in-the-frimbled-gloam-of-the-cyber-splen-where-quorbling-circuits-quazzle-and-spindrift-ken-the-glimmering-zibbles-of-neon-sprockets-spin-in-a-whirligig-of-blazz-and-bleema-codes-din-beware-the-quixwock-of-the-dataverse-deep-its-scramblified-jinxed-glibbers-in-quantum-sleep-it-slithers-on-byte-winds-through-the-phantasmaglow-with-a-zing-zorp-and-fraffle-in-a-pulsating-flow.-armed-with-a-scrobble-stick-of-ultra-glim-twine-our-coder-in-blorptastic-resolve-doth-entwine-ping-pang-goes-the-circuit-skrim-skram-the-byte-as-he-plunges-into-the-fuzzling-depths-of-digital-night.-the-quixwock-shrieks-its-crinkled-clack-clabb-cry-while-datasparks-flutter-in-a-kizzle-filled-sky.-its-quantum-quaggles-fizzing-and-flonging-in-time-beat-a-jiggery-jabber-of-algorithms-sublime.-at-last-amid-a-frenzy-of-zorpful-delight-the-coder-outwits-the-wock-in-a-bluster-of-light.-now-in-this-realm-of-radical-zimbled-lore-neon-neologs-and-onomatopoeic-dreams-soar-evermore-chatgpt-o3-mini-high-2025.-write-a-poem-about-ai-using-style-of-jabberwocky-with-neologisms-and-onomatopoeia-image">In
+the frimbled gloam of the cyber-splen, Where quorbling circuits quazzle
+and spindrift ken, The glimmering zibbles of neon-sprockets spin, In a
+whirligig of blazz and bleem—a code’s din! Beware the Quixwock of the
+dataverse deep, Its scramblified, jinxed glibbers in quantum sleep! It
+slithers on byte-winds through the phantasmaglow, With a “Zing-Zorp!”
+and “Fraffle!” in a pulsating flow. Armed with a scrobble-stick of
+ultra-glim twine, Our coder, in blorptastic resolve, doth entwine:
+“Ping-Pang!” goes the circuit, “Skrim-Skram!” the byte, As he plunges
+into the fuzzling depths of digital night. The Quixwock shrieks its
+crinkled “Clack-Clabb!” cry, While datasparks flutter in a kizzle-filled
+sky. Its quantum quaggles, fizzing and flonging in time, Beat a
+jiggery-jabber of algorithms sublime. At last, amid a frenzy of zorpful
+delight, The coder outwits the wock in a bluster of light. Now, in this
+realm of radical zimbled lore, Neon neologs and onomatopoeic dreams soar
+evermore! ChatGPT, o3-mini-high (2025). “<em>Write a poem about AI using
+style of Jabberwocky, with neologisms and onomatopoeia</em>” <img
+src="images/gen_ai____week_2_img_6.png" alt="Image" /></h3>
+<table>
+<tbody>
+<tr>
+<td>The Jabberwock, as illustrated by John Tenniel, 1871<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-18">Slide 18</h2>
+<h3
+id="we-obsess-about-the-technical-underpinnings-of-llms-but-we-should-be-alert-to-the-profound-influences-of-poetic-experimentation-alongside-the-rise-of-linguistics-ferdinand-de-saussure-and-thinking-of-language-not-merely-as-the-translation-of-speech-but-as-an-independent-system-should-we-see-llms-as-an-extension-of-a-literary-and-artistic-avant-garde-in-a-curious-roundabout-llms-also-mark-the-return-of-the-humanities-do-we-even-need-to-code-anymore-its-even-in-the-name-chat.-maybe-a-liberal-arts-degree-is-all-we-need-now-philosophy-a-lot-of-work-over-the-relation-of-techne-and-poiesis-think-of-the-profound-shift-in-skills-this-entails-ftrom-writing-code-issuing-commands-clicking-toolbars-menus-buttons-and-links-drag-and-drop-swipe-etc-to-how-do-i-address-myself-to-my-computer-some-support-from-the-tech-sector.">We
+obsess about the <em>technical</em> underpinnings of LLMs; but we should
+be alert to the profound influences of <em>poetic experimentation</em>
+Alongside the rise of linguistics – Ferdinand de Saussure and thinking
+of language not merely as the translation of speech but as an
+independent <em>system</em> Should we see LLMs as an extension of a
+literary and artistic <em>avant garde</em>? In a curious roundabout,
+LLMs also mark the return of the humanities: Do we even need to code
+anymore? It’s even in the name: “chat”. Maybe a liberal arts degree is
+all we need now? Philosophy: a lot of work over the relation of
+<em>techne</em> and <em>poiesis</em> Think of the profound shift in
+skills this entails Ftrom: writing code, issuing commands, clicking
+toolbars, menus, buttons and links, drag-and-drop, swipe etc To: <em>how
+do I address myself to my computer</em>? Some support from the tech
+sector….</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td><img src="images/gen_ai____week_2_img_7.png"
+alt="Image" /><br><br><br><br><img
+src="images/gen_ai____week_2_img_8.png" alt="Image" /><br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+</body>
+</html>

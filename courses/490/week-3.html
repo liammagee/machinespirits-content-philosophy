@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>week-3</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h3 id="how-do-we-talk-to-ai">How Do We Talk to AI?</h3>
+<p><a
+href="https://docs.google.com/presentation/d/1tm5q1JTfKU-YSJIKuFny1D2aU8-jMtwVxfRyBx9yGc4/edit?slide=id.p#slide=id.p">Gen
+AI - Week 3 - Google Slides</a></p>
+<p><strong>How Do We Talk to AI?</strong></p>
+<p>This week we move on from the more technically intensive readings to
+think about the question: how do we talk to machines?</p>
+<p>This (no less demanding) question is, on the one hand, the topic of a
+thousand social media posts promising to teach you everything you need
+to know about the new (and dubiously named) discipline of “prompt
+engineering”. On the other, it also opens up a more profound space for
+exploring what it means to talk at all – with machines, with each other,
+with ourselves.</p>
+<p>Accordingly I’ve selected an array of readings this week that aim to
+stretch our thinking about “talk”, as a performance (Austin 1962), as a
+defiant act of truth (Foucault 2020), and as user interaction
+(Weizenbaum 1966, Mollick &amp; Mollick 2023, Magee et al. 2024).</p>
+<p>I want first to reflect a little on J.L. Austin’s seminal text, “How
+to Do Things With Words”. This book – a series of lectures – instigated
+attention to the “pragmatics” of language, and inspired, among others,
+Searle’s Chinese room thought experiment. Again I don’t suggest reading
+this end-to-end, but perhaps focus on getting some conceptual
+understanding of Austin’s distinctions between:</p>
+<p>- performative / constative utterances<br />
+- locutionary / illocutionary / perlocutionary speech acts</p>
+<p>Perhaps the question for us is “How to Get AI to Do Things with
+Words”.</p>
+<p>Then, with Ethan and Lilach Mollick’s paper, we will examine how
+different prompts can be used to play roles on the pedagogical “stage”.
+I’ve also assigned a paper I have developed recently with colleagues
+titled “The Drama Machine”. It is long, and I don’t suggest you read all
+of it, but rather focus on the principal idea: that LLMs have
+internalized vast amounts of information about how people perform with
+language, and this internalization can simulate quite complex character
+enactments.</p>
+<p>Both papers are in some ways throwbacks to the early days of AI, when
+psychoanalysis and dramaturgy were more prominent theoretical rubrics.
+As if on cue, we look at a classic AI paper, Weizenbaum’s 1966
+presentation of ELIZA: a system that simulated a certain therapeutic
+approach, to surprising effect given the technical limits of the
+time.</p>
+<p>Finally, for those with theoretical inclinations, I’ve included
+Michel Foucault’s work on “Discourse and Truth and Parrhesia”. Perhaps
+more of a placeholder for discussions in future weeks, Foucault’s
+analysis of parrhesia in classical (Greek and Roman) discourse holds
+special relevance for how we view AI’s social role: as truth-teller, as
+performer, as stochastic parrot, as assistant, and so on.</p>
+<p>I realise several of these texts also skate across traditions and
+language not all of you may be familiar with, and I’d encourage people
+supplement their readings with queries to AI itself. For example:</p>
+<p>- Tell me about Austin’s different kinds of speech acts, and how
+these relate to LLMs.<br />
+- How could Foucault’s discussion of parrhesia relate to contemporary
+discussions about AI?</p>
+<p>For those wanting a (slightly surreal) rendition of “The Drama
+Machine” paper rendered by AI, quite dramatically:</p>
+<p><a
+href="https://notebooklm.google.com/notebook/60047a4e-2674-4d6c-b896-67e5f3166580/audio">https://notebooklm.google.com/notebook/60047a4e-2674-4d6c-b896-67e5f3166580/audio</a></p>
+<p>I’d of course encourage people who enjoy podcast enactments to
+explore other texts – as some of you have been doing.</p>
+<p><strong>Readings:</strong></p>
+<p>Austin, J. L. (1975). <em>How to Do Things with Words</em>. Harvard
+University Press. <a
+href="https://archive.org/embed/HowToDoThingsWithWordsAUSTIN">https://archive.org/embed/HowToDoThingsWithWordsAUSTIN</a></p>
+<p>Foucault, M. (2020). <em>“Discourse and Truth” and “Parresia”</em>.
+University of Chicago Press. <a
+href="https://i-share-uiu.primo.exlibrisgroup.com/permalink/01CARLI_UIU/q00vor/cdi_gale_lrcgauss_A609143295">https://i-share-uiu.primo.exlibrisgroup.com/permalink/01CARLI_UIU/q00vor/cdi_gale_lrcgauss_A609143295</a></p>
+<p>Magee, L., Arora, V., Gollings, G., &amp; Lam-Saw, N. (2024). The
+Drama Machine: Simulating Character Development with LLM Agents.
+<em>arXiv preprint arXiv:2408.01725</em>. <a
+href="https://arxiv.org/abs/2408.01725">https://arxiv.org/abs/2408.01725</a></p>
+<p>Notebook version: <a
+href="https://notebooklm.google.com/notebook/60047a4e-2674-4d6c-b896-67e5f3166580/audio">https://notebooklm.google.com/notebook/60047a4e-2674-4d6c-b896-67e5f3166580/audio</a></p>
+<p>Mollick, E. R., &amp; Mollick, L. (2023). Assigning AI: Seven
+Approaches for Students, with Prompts. <em>SSRN</em>. <a
+href="http://dx.doi.org/10.2139/ssrn.4475995">http://dx.doi.org/10.2139/ssrn.4475995</a></p>
+<p>Weizenbaum, J. (1966). ELIZA – A Computer Program for the Study of
+Natural Language Communication Between Man and Machine.
+<em>Communications of the ACM</em>, 9(1), 36-45. <a
+href="https://dl.acm.org/doi/10.1145/365153.365168">https://dl.acm.org/doi/10.1145/365153.365168</a></p>
+<p><strong>Assignment(s):</strong></p>
+<ul>
+<li>First draft of project completed; revision in the light of AI
+review; submission of draft for peer review.</li>
+<li>Blogpost 3: project update.</li>
+</ul>
+</body>
+</html>

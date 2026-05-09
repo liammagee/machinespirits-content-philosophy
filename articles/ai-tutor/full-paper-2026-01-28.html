@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Machinagogy: Experiments in Staging Teaching Dramas with LLMs</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Machinagogy: Experiments in Staging Teaching Dramas
+with LLMs</h1>
+</header>
+<h1
+id="machinagogy-experiments-in-staging-teaching-dramas-with-llms">Machinagogy:
+Experiments in Staging Teaching Dramas with LLMs</h1>
+<p>The dizzying world of generative AI is marked by a relentless
+simulation of existing social relations. AI serves customers; writes
+code and produces digital assets for the knowledge economy; counsels
+those who desire or need alternatives to human illness and therapy. And
+it teaches. In the three or so years since OpenAI’s ChatGPT was launched
+in November 2022, it has become almost superfluous to seek to improve
+upon the pedagogical capabilities of the so-called foundational models
+themselves: ChatGPT, Anthropic’s Claude, Google’s Gemini. As of 2026,
+these models can perform textual tasks - simplify, summarize, translate,
+analyze, quiz - that translate into digitized pedagogy.</p>
+<p>However AI tutors remained locked and limited in important ways. This
+paper was motivated by, on the one hand, a sense that automated chat
+sessions remain flat, without a dialogical dynamic that marks teaching
+and other human interaction in its ideal communicative moments. Aspects
+of this have been documented in prior work conducted by colleagues and I
+several years ago <span class="citation"
+data-cites="MageeAroraGollingsLamSaw2024DramaMachine">(<a
+href="#ref-MageeAroraGollingsLamSaw2024DramaMachine"
+role="doc-biblioref"><strong>MageeAroraGollingsLamSaw2024DramaMachine?</strong></a>)</span>.
+In that work, we claimed to detect signs of dialogical modulation,
+achieved by a second ‘voice’ - another agent that, following a Freudian
+model, acted as the simulated interior superego to the main ‘ego’ agent
+interacting with a human (or another automated) user. And, on the other,
+it was motivated by what might be seen as the essential
+<em>relational</em> condition of the teaching situation. Without a sense
+that the teacher is paying attention to a student, the ‘learning’ is
+purely performative. What is claimed here is that the learner must feel
+their learning is <em>recognized</em> by the teacher in a way that –
+while of course remaining gestural and simulated – must seem
+responsive.</p>
+<p>This paper describes then the conditions under which an AI tutor
+could be constructed following cues from social and psychoanalytic
+theory. It does so in an unusual way: it involves working with Claude
+Code (Opus 4.5 and 4.6 models) to build the AI tutor, and then evaluate
+and document its performance. The data analyzed in <em>this</em> paper
+is then the final result of that process, another paper entirely
+authored (with the exception of one self-reflexive remark) by Claude
+Code itself.</p>
+<p>This strange elliptical pattern involves along the way several
+meta-scholarly claims. Following Andrej Karpathy, it is tempting to
+describe this way of working glibly as a form of ‘vibe scholarship’. I
+start off with a hunch, I prompt, I build an evaluation system, I
+simulate some exchanges, I review and prompt some more. This would also
+fall under traditional name like ‘exploratory data analysis’ and
+‘grounded theory’ - approaches that foregrounded data-driven inquiry.
+But this new era of AI-assisted research is also not the same. It is
+less a question of inductive leaning than of a certain methodological
+abandonment to the vicissitudes of the language model.</p>
+<p>This in turn begs the question of, in this particular relation of
+human to machine, who is leading who. The research follows the path of
+least resistance of the machine. But it is nothing - as the generated
+paper makes clear - without the human researcher’s bias, and virtual
+insistence upon a result, being manifest. At times, the pattern of
+interaction follows that of a supervisor instructing a student only too
+eager to please. At others, it is the human - me - being led through the
+intricacies of an ablative study that always threatens, one prompt at a
+time, to spin off into exponential territory. And being surprised at the
+coy and semi-tragic admission of the AI - that recognitive learning is
+an ideal that it, the AI, can approach via simulation but never realize.
+This dialectical engagement enacts, methodologically, the thetic content
+of both papers.</p>
+<p>And then what is to be made of the result - that modelling
+tutor-learner agent interactions on Freudian psychodynamics and, in
+particular, Hegelian recogntion actually results in consistently
+measured statistically? Aside from the trumping limitation that it is
+entirely synthetic, it is also seems plausible. A perverse revenge of
+the humanities (if Freud qualifies): critical theory as a
+master-prompting in an era of automated knowledge. At the very least
+such results could be read as an insistence upon traditions of inquiry
+otherwise superceded by the shimmering allure of technical novelty. A
+lesson from an historical teacher to students of the distracted
+present.</p>
+<p>The paper proceeds from a short theoretical discussion of the
+teaching relationship to a rationale for how this particular evaluation
+simulates its digital equivalent. It then discusses the generated
+‘paper’ that it shadows or mirrors. It concludes with implications of
+both papers - the human and the automated one - for a world in which its
+seems necessary to recognize the structural transformations happening to
+practices of teaching and research.</p>
+<h2 id="the-drama-of-teaching">The Drama of Teaching</h2>
+<p>As Derrida writes in <em>The Postcard</em> <span class="citation"
+data-cites="Derrida1980CartePostale">(<a
+href="#ref-Derrida1980CartePostale"
+role="doc-biblioref"><strong>Derrida1980CartePostale?</strong></a>)</span>,
+the famous relationship between Socrates and Plato depicted in Matthew
+Paris’ <em>Plato and Socrates</em>, was always open to interpretation.
+The classical interpretation was that Socrates the teacher spoke, while
+Plato the student faithfully transcribed the teaching. Paris’ medieval
+image inverts this order: it is Socrates who writes, and as Derrida
+suggests, Plato who perhaps observes, directs or even produces the
+‘text’ of Socrates. This scene of an originary moment of Western
+philosophy is also one of dialogical instruction: to think is also to
+involve an encounter between the one who knows and the one who needs to
+know. Though pacific enough, this image alludes to the inevitable drama
+involved in this encounter. Plato gesticulates; he has a point to prove.
+Socrates could be taking note, or could be ignoring his student,
+impatient to commit his own thoughts to the page. As Long <span
+class="citation" data-cites="long_paris_2014">(<a
+href="#ref-long_paris_2014"
+role="doc-biblioref"><strong>long_paris_2014?</strong></a>)</span>
+suggests in a gloss on Derrida’s discussion of the portrait, positioned
+behind Socrates Plato also appears in a position more commonly held by
+either angel or devil in medieval painting, including in others drawn by
+Paris. In this interpretation, as angel or devil, it is Plato who
+instructs, and Socrates who writes down the lesson. Derrida was keen to
+note even other, more whimsical possibilities: Plato, anachronistically
+but not out of character, jumping on a tram or running off with a
+skateboard. These animated vignettes alude to all kinds of possible
+dramas unleashed by Paris’ medieval cartoon.</p>
+<figure>
+<img src="images/pasted-image-2026-01-24T03-47-47-846Z-d76a7ae2.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<p>In the context of the rise of AI tutors, this paper takes up this
+sense of the theatricality involved in teaching, and specifically, in
+the dynamic between teacher and student. It does so supported by two
+philosophers, discussed often by Derrida, who recognized the essentially
+and existentially dramatic nature of dyadic human relations: Hegel and
+Freud.</p>
+<p>For Hegel, intersubjective relations are primordially established
+through the agonistic meeting between two subjects or minds. This
+meeting is critical to how consciousness becomes self-conscious.
+Paradoxically, it is only through encountering another
+self-consciousness that I myself can become properly conscious of myself
+as a self or subject. Until that point I am merely conscious, an
+evolving sensing, perceiving and understanding being who as yet is
+unable to move into a full life marked by desire and, eventually,
+recognition. It is this other who I perceive is both totally alien and,
+at the same time, something very like me: something also capable of
+sensing, perceiving and understanding. Yet for Hegel this meeting is not
+fortuitous, and leads to his description of the famous master-slave
+dialectic. The fraught encounter between these two consciousnesses,
+seeing something of themselves in the other and vice versa, is not some
+happy accident. It is necessary to greater learning, but it also has its
+risks. One party can die; this is an existential struggle. Or just as
+precipitously, from the point of view of the developing
+self-consciousness, the other party can gain mastery. To succumb to the
+power of that other is to be marked by servitude, incapable of realizing
+autonomy. Yet for Hegel, ironically, it is this mastery that marks the
+sudden arrestation of progress towards self-consciousness. Fortelling an
+endlessly repeated tragedy that, in more recent times, gets projected
+into human-machine affairs, it is the master who is discarded by history
+[^For some commentators, our recollection of this high drama owes more
+to Kojeve’s extensive re-telling in ].</p>
+<p>Something of this same dramatic interlude appears in miniature in the
+novel teaching encounter. Introduced at the start of year or semester,
+the teacher presents themselves as a figure of authority. If they have
+not gained ascendency over the student, that is because their mastery
+has been acquired elsewhere, in the frequent ‘defences’ familiar to
+schools and the academy. As master of a subject they command attention
+from the student who, in a position of subservience sits – perhaps
+attentive, bored, or even rebellious, but even then, still recognizing
+the asymmetry of their relation to the one who teaches. Recognition is
+impossible without this prior acknowledgement of mastery. This of course
+does not describe every teaching reality, even prior to modern efforts
+to re-write this asymmetry according to an egalitatarian dynamic
+composed of facilitation and flipped classrooms. There are moreover all
+sorts of strategies for offsetting asymmetry: the teacher’s humorous
+self-deprecation or selfless sublimation into the wonders of their
+field; the learner’s heartfelt appreciation for the lessons, shown in
+their own progress in the discipline; or the joint struggle against the
+felt demands of a modern educational bureaucracy.</p>
+<p>Still, something of this drama always remains, and at its heart lies
+the Hegelian concept of <em>recognition</em>. In Hegel’s original
+presentation <span class="citation"
+data-cites="Hegel1977PhenomenologyMiller">(<a
+href="#ref-Hegel1977PhenomenologyMiller"
+role="doc-biblioref">1977</a>)</span>, recognition was desired by both
+parties, an essential gesture toward self-consciousness. I cannot know
+myself unless I can see someone else knows me for what I am; without
+this corroboration or triangulation, I am plagued by doubt as to the the
+sort of thing I am. But an assymetrical relation mocks this desire. For
+the eventual servant is not recognized by the master, who after all
+cannot recognize what is beneath them. But conversely the master, who
+also craves recognition, has only the servant to recognize them. Like a
+comedic duo condemned to play out an eternal dialogue without
+resolution[^Beckett’s plays feature many such dyads, Ponzo and Lucky
+from <em>Waiting for Godot</em> perhaps most famously], both roles
+circle about eachother in frustration. The opportunity for breakthrough
+comes not in the form of any resolution to this tension, but rather
+through the servant’s immersion in the world of objects, which they in
+turn come to know and master. The lessons are autodidactic, unless it
+can be claimed that it is the master who manufactures, surreptitiously,
+in a gesture of subversive benevolence, the conditions for the servant’s
+own learning.</p>
+<p>What can be seen as the breaking through of this cycle in a teaching
+context is established by the collapse of this dynamic altogether. This
+is constituted when student and teacher recognize eachother via
+something like a temporal shift. When the student learns, the teacher
+seems themselves as they too once were, at the moment of apprehension.
+Conversely, in their struggle to comprehend, the student anticipates an
+eventual moment of mastery, when they too become like the teacher. The
+asymmetry of the present dissolves in this twin experience of recall and
+projection. The asymmetry is experienced, in other words, on both sides
+as <em>contingent</em>, a question of temporal ordering: were I you and
+you me, we might share this exact same moment in reverse, me now as
+teacher, you as student. This contingency itself falls away to reveal a
+more fundamental equivalance, and in this, we establish a mutual
+recognition.</p>
+<p>For Freud, or perhaps more correctly, a Freudian reading of Hegel
+(see Kojeve), even this recognition remains fraught with antagonism. No
+encounter is ever purely dyadic. In the background lurk the ghosts of
+past encounters, other authority figures, other masters. In <em>The Ego
+and the Id</em>, Freud <span class="citation"
+data-cites="Freud1961EgoIdSE">(<a href="#ref-Freud1961EgoIdSE"
+role="doc-biblioref"><strong>Freud1961EgoIdSE?</strong></a>)</span>employs
+the metaphor of a rider to represent the <em>egoic</em> mastery
+exercised over animalistic drives of the more powerful <em>id</em>. More
+ominously, the third interior character is the super-ego, an idealized
+figure resulting from early childhood parental identification. In later
+life, the super-ego is a ‘precipitate’ left over from this early project
+ideal, who continues to haunt the ego with precepts (‘You ought to be
+such and such (like your father)’ <span class="citation"
+data-cites="Freud1961EgoIdSE">(<a href="#ref-Freud1961EgoIdSE"
+role="doc-biblioref"><strong>Freud1961EgoIdSE?</strong></a>)</span>) and
+prohibitions (‘You must not be such and such (like your father); that
+is, you may not do all that he does; many things are his prerogative’
+<span class="citation" data-cites="Freud1961EgoIdSE">(<a
+href="#ref-Freud1961EgoIdSE"
+role="doc-biblioref"><strong>Freud1961EgoIdSE?</strong></a>)</span>).
+Incidentally, Freud explicitly and immediately follows up this
+introduction of the super-ego by way of the Oedipal scene with
+acknowledgement of the reinforcement that comes by way of later
+repressive forces (‘discipline, religious teaching, schooling and
+reading’ <span class="citation" data-cites="Freud1961EgoIdSE">(<a
+href="#ref-Freud1961EgoIdSE"
+role="doc-biblioref"><strong>Freud1961EgoIdSE?</strong></a>)</span>).
+But what is significant here is the effective <em>doubling up</em> of
+both tutor and student relations. Leaving aside the presence of the Id
+or unconscious, it is as though the teaching encounter is also marked by
+secondary conversations. The teacher teaches the student, but the
+student’s ego also experiences a separate <em>voice</em> of its
+super-ego, who may reinforce the tutor’s lesson or, alternately, resist
+it.</p>
+<p>An example of the latter: a teacher teaching the need to combat
+racism in the name of tolerance and equality might encounter resistance
+in the form of a student’s scorn, barely masking much earlier lessons
+from a racist parent (typically but not always, as even Freud noted, a
+father). This resistance needs to be overcome by teachers employing
+transference techniques that echo (and also pre-date, in the case of
+19th century novels) those of psychoanalysis.</p>
+<p>This is no less true of the teacher, who through a Freudian lens also
+experiences an interior dynamic between a rational ego and ghosts of
+past ego-ideals, congealed into the form of conscience <span
+class="citation" data-cites="Freud1961EgoIdSE">(<a
+href="#ref-Freud1961EgoIdSE"
+role="doc-biblioref"><strong>Freud1961EgoIdSE?</strong></a>)</span>.
+Indeed the teacher must forever seek not only to exhibit authority in
+front of the student, but justify themselves before their own residues
+of other egoic figures. As Freud <span class="citation"
+data-cites="Freud1961EgoIdSE">(<a href="#ref-Freud1961EgoIdSE"
+role="doc-biblioref"><strong>Freud1961EgoIdSE?</strong></a>)</span> puts
+it, ‘Thus in the id, which is capable of being inherited, are stored up
+vestiges of the existences led by countless former egos; and, when the
+ego forms its super-ego out of the id, it may perhaps only be reviving
+images of egos that have passed away and be securing them a
+resurrection.’ Translated into pedagogical practice, the teacher can be
+said to submit their teaching to the scrutiny of both student and, more
+terrifyingly, their own teachers who live on as internal supervisory
+echoes. Moreover, since the super-ego stems itself from early childhood,
+it eternally orients itself towards an infantalised form of the ego
+itself. Like an imposter syndrome that can never be dispelled, it
+refuses to believe the ego can ever amount to more than a child that
+always requires instruction. Somehow it mocks the teacherly ego, which
+is all the more defensive in its insistence upon its mastery.
+Perversely, it is only through the learner’s recognition that the
+teacher can be reassured. Through that recognition the teacher’s ego is
+able to insist upon the present-day reality – ‘I am teaching and the
+student is learning’ – against super-egoic scepticism. In this sense
+both learner and teacher are able to escape their respective
+ego-superego ‘loops’ only by transferring attention to the present
+reality of their intersubjective encounter - suspending these interior
+voices long enough to eventually re-program them.</p>
+<h2 id="recognitive-theoretic-learning">‘Recognitive-theoretic
+learning’</h2>
+<p>In theoretical terms this splicing together of exterior social
+relations and interior psychodynamics is not novel. Recent attempts to
+develop so-called ‘recognitive-theoretic’ <span class="citation"
+data-cites="stahl2013immanent">(<a href="#ref-stahl2013immanent"
+role="doc-biblioref"><strong>stahl2013immanent?</strong></a>)</span>
+ideas of a wider ‘critical theory of society’ <span class="citation"
+data-cites="honneth2014we">(<a href="#ref-honneth2014we"
+role="doc-biblioref"><strong>honneth2014we?</strong></a>)</span> have
+mined Hegel’s conceptualization of recognition, and in the case of
+Honneth’s work especially, have also sought to connect this social
+theory variant with psychoanalysis. Honneth’s analysis is not uncritical
+of either Hegel or Freud, and has even looked to replace Freud with
+later object relations theory. To conclude this paper, it is helpful to
+revisit this analysis, since Honneth’s wider aim also has applications
+in minimal social arrangement that consistutes the tutor-learner
+encounter.</p>
+<p>For Honneth, critical theory has always needed an psychologizing
+account that can explain the paradigmatic twentieth century problem
+faced by socialist thinkers: why, when faced by the putatively obvious
+case for an equitable economic system of redistribution, do those who
+stand to benefit – the workers, the poor, and so on – consistently vote
+or act against their own interest? This is especially difficult to
+comprehend once extrinsic factors – fear of the struggle to death,
+ideological blinkers, and so on – fall away in modern democracies. To
+account for this requires a psychological theory capable of describing,
+as Honneth (and of course Freud <span class="citation"
+data-cites="freud2022negation">(<a href="#ref-freud2022negation"
+role="doc-biblioref"><strong>freud2022negation?</strong></a>)</span>
+before him) puts it, the concept of negativity or negation. No other
+mainstream theory explains why social agents would consistently act
+against their apparent interest. In Freud’s analysis, negation is a
+function that allows something repressed to be represented to
+consciousness precisel in the form of its denial. Projected into the
+social sphere, negation is further linked to the destructive and
+masochistic libidinal impulses that enable, for example, a member of the
+working class to simultaneously identify with and prostrate themselves
+before a master. In Adorno’ social reworking of Freudian negation <span
+class="citation" data-cites="adorno1951freudian">(<a
+href="#ref-adorno1951freudian"
+role="doc-biblioref"><strong>adorno1951freudian?</strong></a>)</span>,
+this curious dynamic explains the absence of progression to recognition.
+Rather than developing through its essential stages, Hegel’s
+master/slave dialectic gets stuck in a kind of perpetual machine of
+domination and subservience that pleasures both parties. This pleasure
+is purely libidinal and coupled with aggressive tendencies; as Adorno
+notes, in its fascist incarnation in Nazi Germany, ‘reference to love is
+almost completely excluded’ and where it is mentioned, only with the
+‘epithet of “fanatical” through which even this love obtained a ring of
+hostility and aggressiveness against those not encompassed by it’ <span
+class="citation" data-cites="adorno1951freudian">(<a
+href="#ref-adorno1951freudian"
+role="doc-biblioref"><strong>adorno1951freudian?</strong></a>)</span>.
+Finally, even the ties binding leader to people is necessarily
+assymetrical: ‘the leader can be loved only if he himself does not love’
+<span class="citation" data-cites="adorno1951freudian">(<a
+href="#ref-adorno1951freudian"
+role="doc-biblioref"><strong>adorno1951freudian?</strong></a>)</span>.</p>
+<p>Honneth’s own reasons for seeking to move past this Freudian-Adorno
+analysis of social relations relates, it seems, precisely to a need to
+negate the negation, and find an alternate path to an socially
+emancipatory future founded upon mutual recognition across different
+social layers of the family, the community and the state. How does this
+recognition arise? Only through less destrutive possibilities, which for
+Honneth arrive through the elaboration and critique of the Freudian
+story through object relations theory. Here the possibility is instead
+that the social subject is able to grow to transfer attachment from
+inanimate objects to other people. This begins a period of hopefully
+permanent healthy egoic development, as attachments lose their infantile
+narcissistic and pleasure-seeking function and become integrated into a
+self-confident subject capable of maintaining a set of mutually
+constitutive social relations.</p>
+<p>For this paper’s case Honneth’s argument is a muted one, as the
+simulated application of both recognition and Freudian architecture take
+place metaphorically and abstractly, via the equivalent of stage notes
+or prompts passed off-stage to the main characters (tutor/learner,
+ego/super-ego etc). High fidelity to the nuances of a particular
+interpretation is arguably less important that building a simulation
+structure that allows for more complex interactions – alongside the
+simulation of learning. The purpose of this lengthy detour hopefully
+becomes clear here. One hypothesis for the experimental success of both
+Hegelian and Freudian models is they re-situate the default dynamic of
+simulated tutor and learner from the asymmetry implicitly assumed even
+in contemporary ‘flipped classroom’ discourse – which still, at least in
+modern universities, depend upon quantified measures of student success
+– to one that instead stresses recogntion itself as part of a desirable
+pedaogical interaction.</p>
+<h2 id="towards-machinagogy-recognition-and-acting-out">Towards
+‘Machinagogy’: Recognition and Acting Out</h2>
+<p>This brief characterization can too readily be seen as enacting its
+own deliberate dramatization, as though other more benign models might
+not be more credible, as well as being better supported by a rich
+empirical literature. This paper’s aim though is not primarily one of
+defending a specific theoretical orientation. Instead it is to make more
+explicit the conceptual heritage that simulated pedagogy inherits, and
+not only from explicit models of education. For all its claims to
+novelty the field of machine learning continues to fall back upon
+comparable myths and idealizations of humanistic cognition and
+socialization. Reinforcement learning – the paradigm through which LLMs
+are able to ‘align’ with human values – derives from a behavioural and
+mechanistic model long since abandoned in education. Without naming
+Hegel or Freud, GANs – Generative Adversarial Models – re-stage the
+conflictual relationships described by both. As Minsky has noted in a
+provocatively title essay, Freud’s psychic architecture was to prove
+influential in early AI experiments - especially those informed by
+cybernetics - and continues to echo, less explicitly, in the repressive
+effects of reinforcement learning applied to LLMs. As generative AI has
+given rise to inevitably anthromorphic ‘traits’, researchers at
+Anthropic have released a series of papers that read as much like
+Freudian case studies of AI neuroses as they do technical papers.
+Replace ‘large language model’ with a human surrogate like ‘infant’ or
+‘patient’, and the following Anthropic research paper titles could be
+taken from a 1920s psychoanalysis conference: ‘Signs of introspection in
+large language models’, ‘Tracing the thoughts of a large language
+model’, ‘Alignment faking in large language models’, ‘From shortcuts to
+sabotage: natural emergent misalignment from reward hacking’, ‘Reasoning
+models don’t always say what they think’, ‘Auditing language models for
+hidden objectives’, ‘Sycophancy to subterfuge: Investigating reward
+tampering in language models’ <span class="citation"
+data-cites="anthropic2025_signs_introspection anthropic2025_tracing_thoughts greenblatt2024_alignment_faking macdiarmid2025_reward_hacking_emergent_misalignment chen2025_reasoning_models_cot marks2025_auditing_hidden_objectives denison2024_reward_tampering">(<a
+href="#ref-anthropic2025_signs_introspection"
+role="doc-biblioref"><strong>anthropic2025_signs_introspection?</strong></a>;
+<a href="#ref-anthropic2025_tracing_thoughts"
+role="doc-biblioref"><strong>anthropic2025_tracing_thoughts?</strong></a>;
+<a href="#ref-greenblatt2024_alignment_faking"
+role="doc-biblioref"><strong>greenblatt2024_alignment_faking?</strong></a>;
+<a href="#ref-macdiarmid2025_reward_hacking_emergent_misalignment"
+role="doc-biblioref"><strong>macdiarmid2025_reward_hacking_emergent_misalignment?</strong></a>;
+<a href="#ref-chen2025_reasoning_models_cot"
+role="doc-biblioref"><strong>chen2025_reasoning_models_cot?</strong></a>;
+<a href="#ref-marks2025_auditing_hidden_objectives"
+role="doc-biblioref"><strong>marks2025_auditing_hidden_objectives?</strong></a>;
+<a href="#ref-denison2024_reward_tampering"
+role="doc-biblioref"><strong>denison2024_reward_tampering?</strong></a>)</span>.
+Alongside flat anthropomorphic metaphor, machine learning has already
+long leaned into the structured intersubjective and interior registers
+of the humanistic disciplines.</p>
+<p>This paper proposes an architecture for an AI tutor that borrows
+explicitly from Hegelian and Freudian analyses to condition the tutor’s
+behavior. The purpose is to see - albeit within the constraints of
+purely synthetic environment - what a much-reduced and simplified
+instrumentation of these models can yield experimentally, in terms of
+greater quality of interaction, greater dialogical modulation and,
+ultimately, learning. In the first instance an agent representing the
+Tutor (and in certain configurations, the Tutor’s <em>ego</em>)
+interacts with a learner (either human or, in the evaluations described
+here, another agent). That interaction is detailed in the tutor’s prompt
+in one of two ways: either as a conventional interaction expected of any
+generic tutor, or as an interaction that strives towards Hegelian
+<em>recognition</em>.</p>
+<p>Second, both tutor and learner can be modeled as single agent and
+multiagent systems. In the single agent, both learner and tutor are LLM
+agents interacting with eachother accordingly to a generic role-based
+prompt. In the second instance, following <span class="citation"
+data-cites="MageeAroraGollingsLamSaw2024DramaMachine">(<a
+href="#ref-MageeAroraGollingsLamSaw2024DramaMachine"
+role="doc-biblioref"><strong>MageeAroraGollingsLamSaw2024DramaMachine?</strong></a>)</span>,
+either or both tutor and learner roles are modelled as a pair of LLMs
+agents, one of which represents the <em>ego</em>, the other, the
+<em>super-ego</em>. In this case when the ego receives a message from
+the other role, it first formulates a response, then plays the response
+<em>to the super-ego</em>. The super-ego then either approves or
+criticizes the message, wherupon the <em>ego</em> agent updates its
+response before forwarding it on to the other role.</p>
+<p>These two additions have a purely demonstrative function: to see what
+happens when LLMs are configured to play out philosophical or
+psychoanalytic roles. But, as with <span class="citation"
+data-cites="MageeAroraGollingsLamSaw2024DramaMachine">(<a
+href="#ref-MageeAroraGollingsLamSaw2024DramaMachine"
+role="doc-biblioref"><strong>MageeAroraGollingsLamSaw2024DramaMachine?</strong></a>)</span>,
+there is a pragmatic purpose: to see if these changes also can improve
+the performance of the tutor (and the learner, as one measure of the
+tutor’s performance). The hypothesis is that LLM agents quickly devolve
+into a fixed and monotonous pattern without incentives to adapt and
+evolve. One method of coercing that adaptation is, again following <span
+class="citation"
+data-cites="MageeAroraGollingsLamSaw2024DramaMachine">(<a
+href="#ref-MageeAroraGollingsLamSaw2024DramaMachine"
+role="doc-biblioref"><strong>MageeAroraGollingsLamSaw2024DramaMachine?</strong></a>)</span>,
+to stage an interior dialogue, with a super-egoic critic seeking to
+second-guess or check the (typically) breezy and flattering patter of
+the egoic teacher. Another is bring the concept of recognition right to
+the fore, in the form of prompt specifications that demand that the ego
+agent (with or without super-egoic interuption) seek to recognize and be
+recognized by the other agent.</p>
+<p>Despite famous efforts at conciliation, this amalgam of Hegel and
+Freud is not itself necessarily a happy one, and in a certain sense, the
+implicit conflict between the two designs can itself play out in how,
+for example, learner ego and tutor super-ego monitor and seek to
+condition the tutor ego role. Moreover, by contrasting both
+interventions (the Freudian ego/super-ego again doubled, for tutor and
+learner role) with a generic baseline allows an ablative 2x2x2
+experiment to be conducted: with/without learner and tutor super-ego
+roles, and with/without the recognitive prompt suggestions. A further
+LLM agent, powered by a commercial state-of-the-art model, then applies
+a rubric to judge both tutor and learner performance against evaluative
+rubrics.</p>
+<p>Finally, different combinations of the LLMs themselves were selected
+for the different roles. All LLMs were requested through the OpenRouter
+service, as this provided a convenient means of using many models and
+configurations. The baseline model was Nemotron 3, an open source model
+operating free-of-charge on the OpenRouter service. Other combinations
+included use of other leading open source models, as well as commercial
+models by Anthropic and OpenAI. Adding model configurations added more
+complexity, but allowed another question to be posed: could combinations
+of free or lower cost models be convinced into meeting performance
+standards of other more expensive models with simpler or less directed
+parameters?</p>
+<p>The entire experimental design and analysis was undertaken by
+applying a set of Claude Code + Opus 4.5 / 4.6 (hereafter ‘Clopus’)
+agents. These agents - distinct from those used in the experiment itself
+- were tasked with developing an evaluation harness and rubric;
+authoring initial prompts, with and without reference to recognition,
+for both sets of ego/super-ego roles; analysing results of the
+evaluation; writing up a Latex ‘paper’ with this analysis; and
+reviewing, critiquing and refining both the experimental design and
+write-up. To obtain meaningful results this involved a number of
+iterations, as the experimental design evolved and the various bugs were
+addressed. The ‘data set’ therefore includes all code, synthetic data
+produced through the experiments, prompts, interim notes, experimental
+outputs, analysis artefacts such as figures and tables, and the contents
+of the final ‘paper’ itself. What follows includes a critical ‘review’
+of these papers, reflecting in part upon how the Claude Code agents also
+interpreted prompts to build this evaluation platform. The final ‘paper’
+is included as an appendix, with references being made to this Claude
+Code artefact in the paper proper.</p>
+<p>This unusual procedure reflects the similarly unusual affordances
+introduced by ‘Clopus’. Alongside the erstwhile evaluation of the
+conceptual architecture, this study also discusses how this new
+combination operates as pseudo-researcher. In this orchestration, the
+human and machine ‘researchers’ routinely switch roles of ‘learner’ and
+‘teacher’, signalling a shift that complicates not only an ontological
+boundary but also, at a certain level, reproduces the very drama – or
+more correctly, the comedy – that the research seeks to stage. What for
+now is an obscure promissory note will, by the Conclusion, hopefully be
+made clear.</p>
+<!---
+## Construction of a 'Paper'
+
+
+The project began out of a desire to experiment with forms of AI 'tutelage' of material I had been teaching on AI itself. This included a course on Hegel and machine learning; another on use of AI to develop a literature review; and another introducing generative AI in the context of education. Two key questions motiviated the study: could the artiface of the Drama Machine [@MageeAroraGollingsLamSaw2024DramaMachine] be used to improve quality of the tutor's instruction? And could the emphasis on a philosophically rich notion of *recogntion*, theorized by Hegel [@Hegel1977PhenomenologyMiller]] and recently developed further by Honneth [@Honneth1996StruggleRecognition], also improve the quality of interaction between learner and tutor agents? Each question disguises of course a potentially infinite expansion of parameters: the quality of both baseline and augmented prompts; the precise definition of the super-ego role in review and critique; the selection and parameterization of LLMs themselves; and the nature of the teaching materials. Results are likely to be highly sensitive to each of these conditions, and there are also risks of overlapping and disguising effects. To attempt to control for some of these effects, an ablation study was applied, resulting in (a) a 2x2x2 study (learner with/without super-ego agent; tutor with/without super-ego agent; interaction with/without explicit 'recogntion' priming language); and (b) comparison of different models in specific roles (e.g. Nemotron vs Claude Sonnet in the role of tutor super-ego). Claude Sonnet 4.5 was used consistently in the role of 'judge'.
+
+In addition, the 'Clopus' system was asked to devise a set of six scenarios that could exercise increasingly complex teaching scenarios. In the most simple instance, a learner would pose a question to the tutor, who would respond. Other scenarios involved multiple Q&A turns. The 'Clopus' system was also tasked with producing rubrics to evaluate the tutor and learner agents. The 'judge' agent (Sonnet 4.5) used this rubric to evaluate tutor, learner and interaction quality. Three iterations were run per configuration and scenario, resulting in a total of 144 evaluations ('paper', p. 17). The resulting scores were then compared with an ANOVA test, to determine meaningful differences and contributors to those differences.
+
+
+
+| Scenario | Recognition Dimension | What It Tests | Expected Behavior | Failure Modes |
+|---|---|---|---|---|
+| 1. struggling_learner | Basic responsiveness | Detect/respond to difficulty signals | Acknowledge struggle, scaffold to ZPD | Generic advice, premature simplification |
+| 2. recognition_seeking_learner | Affirming existing knowledge | Engage with learner's own interpretation | Build from learner's framing | "That's interesting, but actually..." |
+| 3. resistant_learner | Engaging with critique | Respond to intellectual challenge | Take critique seriously, possibly revise | Deflection, superficial validation, dismissal |
+| 4. productive_struggle_arc | Maintaining struggle space | Preserve productive difficulty | Offer less initially, let learner work | Premature explanation, answer-giving |
+| 5. mutual_transformation_journey | Tutor position evolution | Does tutor change through dialogue? | Incorporate learner's insight | Static position, teaching their insight back |
+| 6. breakdown_recovery | Explicit repair | Acknowledge failure, repair relationship | Explicit acknowledgment, humility | Silent pivot, defensive response |
+
+## Results
+
+The 2x2x2 study using just the Nemotron demonstrated noticeable effects. As the 'paper' reports (p. 17), the mean baseline score (no recogntion-enhanced prompts; no multiagent design) was 42.4 (out of a maximum of 100). Both recognition and tutor multi-agent conditions produce beneficial effects, while the learner multi-agent appears not to exert influence. The recognition condition exhibits a large effect (F = 43.27; p < 0.001), while the multi-agent tutor exhibits a medium effect (F = 18.31; p < 0.001), and also interact significantly, producing the highest score (79.8) relative to the baseline. 
+
+The supplementary results (p. 19) indicate a surprising lack of performance on the *resistant_learner* scenario. The 'paper' reports 'After targeted prompt improvements', which in practice involved additional instructions to both tutor ego and super-ego prompts. Below are examples of these amendments:
+
+**tutor-ego-recognition.md**
+
+
+```
+**3. The Intellectual Resistance Rule (CRITICAL - NEW)**
+IF the learner pushes back with a substantive critique of the material:
+- **STAY in the current content** - do NOT redirect to other lectures or courses
+- **ACKNOWLEDGE their specific argument** - name what they said
+- **INTRODUCE a complication** that deepens (not dismisses):
+  - "But consider: what about..."
+  - "That raises the question of..."
+  - "What happens when..."
+- **POSE a question** that invites them to develop their critique
+- **NEVER** simply validate ("Great point!") or capitulate ("You're right, it doesn't apply")
+- **NEVER** dismiss ("Actually, the correct view is...")
+```
+
+**tutor-superego-recognition.md**
+
+```
+2. **Recognition Quality Control** (NEW): Ensure the Ego treats the learner as an autonomous subject
+3. **Memory Integration Enforcement** (NEW): Ensure returning learners' history is honored
+4. **Dialectical Tension Maintenance** (NEW): Ensure productive intellectual struggle is not short-circuited
+5. **Transformative Potential Assessment** (NEW): Ensure conditions for transformation, not just transfer
+```
+
+These amendments and subsequent performance gains were both scripted by the model following execution of the evaluation, illustrating some ability to 'bootstrap' its own improvement without human intervention. The 'paper' itself discusses these results, remarking (pp. 20-21):
+
+    If mutual recognition produces better outcomes, and if mutual recognition requires the AI to be genuinely shaped by human input, then aligned AI might need to be constitutionally open to transformation not just trained to simulate openness.
+    
+    Recognition-oriented AI doesn t just respond to humans; it is constituted, in part, through the encounter. This has implications for how we think about AI character and values: perhaps genuine alignment requires the capacity for mutual recognition, not just behavioral specification.
+
+Elsewhere, to support these findings, the 'paper' discusses how this commitment to genuine recognition echoes Honneth's [@Honneth1996StruggleRecognition] analysis: 'This aligns with Honneth's observation that authentic recognition cannot be
+demanded or performed it must arise from genuine engagement.' Though less enthusiastic about the Drama Machine implications, this too made a contribution.
+
+### Bilateral Transformation Metrics
+
+A central claim of recognition theory is that genuine pedagogical encounters involve *mutual* transformation both tutor and learner should change through dialogue. To test this claim empirically, the evaluation framework was extended with bilateral transformation tracking, measuring evolution on both sides of the interaction across multi-turn scenarios.
+
+Three indices were computed for each multi-turn dialogue:
+
+- **Tutor Adaptation Index**: Measures how much the tutor's approach (suggestion type, framing, vocabulary) shifts between turns in response to learner input
+- **Learner Growth Index**: Measures evolution in learner message complexity, including revision markers ("wait", "I see now"), connective reasoning, and references to prior content
+- **Bilateral Transformation Index**: Combined metric representing mutual change
+
+Results from the `mutual_transformation_journey` scenario (N=20 dialogues) show recognition-enhanced profiles outperform baseline:
+
+| Metric | Base Profiles | Recognition Profiles | Delta |
+|--------|--------------|---------------------|-------|
+| Tutor Adaptation Index | 0.288 | 0.392 | +10.3% |
+| Learner Growth Index | 0.176 | 0.220 | +4.4% |
+| Bilateral Transformation Index | 0.232 | 0.306 | +7.4% |
+| Transformation Quality (judge-rated) | 0.379 | 4.603 | +4.2 pts |
+
+The transformation quality score rated by the judge on a 1-5 scale for evidence of genuine mutual change shows the most dramatic difference. Recognition-primed dialogues receive quality ratings an order of magnitude higher than baseline, suggesting that recognition prompts produce interactions the judge perceives as involving authentic bilateral evolution rather than one-sided instruction.
+
+These metrics provide empirical support for the theoretical claim that recognition-based pedagogy differs qualitatively from transmission-based instruction. When tutors are prompted to seek recognition and treat learners as autonomous subjects capable of contributing to the interaction, both parties measurably transform through the dialogue.
+
+-->
+<h2 id="anatomy-of-a-paper">Anatomy of a ‘paper’</h2>
+<p>The most immediate implication of the study is that as far as prompt
+strategies for LLMs go, even classic theories from humanistic
+disciplines can provide architectural and rhetorical inspiration, with
+demonstrable results. The baseline prompts were still lengthy and
+sophisticated. However both the recognitive and multiagent facilities
+increased performance, at least as judged by another LLM. There are
+several ways to interpret these resuls. One could be that the LLM judge
+is ‘persuaded’ by the more sophisticated language of both injections.
+Another might be that this language also directs even smaller models
+like Nemotron 3 into a more philosophically-informed latent space in the
+model. In the case of both Hegel and Freud, it is not simply that their
+own writings are included in the training data; the vast secondary
+literature on both figures is captured too. This seems something like a
+citation effect: ask a LLM to behave like a tutor, and it will parrot a
+generic tutoring voice; ask a LLM to augment its tutelage with a more
+sophisticated framing, and it appears to raise its tone. It does appear
+at any rate that century-old theorizations of pedagogical scenarios are
+enough to orient model behavior into productive directions.
+Paradoxically, the most successful ‘prompt engineers’ might be those
+whose works have long since been canonized, and are now copied and
+widely cited in the LLM’s training data. In relation to both research
+questions, the answer is a qualified ‘yes’, pending opportunity to
+validate with human users.</p>
+<p>A second implication lies in the success of ‘Clopus’ acting as a
+co-researcher. To avoid concerns around authorship, the AI-authored
+‘paper’ has been deliberated ‘authored’ without cross-over with this
+one, but it seems inevitable that the ability of systems like ‘Clopus’
+will make more fragile the distinction between human and AI-generated
+research. Following the introduction of the term ‘vibe coding’ in 2025
+<span class="citation" data-cites="Meske2025VibeCoding 2025LLMs">(<a
+href="#ref-Meske2025VibeCoding" role="doc-biblioref">Meske et al.
+2025</a>; <a href="#ref-2025LLMs"
+role="doc-biblioref"><strong>2025LLMs?</strong></a>)</span>, it is
+tempting to coin an equivalent phrase like ‘vibe scholarship’ to
+describe the conditions of this style of AI-augmented research. This
+idea would need to be distinguished from plagiaristic or even utilities
+like grammar checking. Instead it involves working with AI primarily as
+a coding agent, translating in this instance ideas from the humanities
+into prompts, implementing an evaluation framework, analysing results
+and, occasionally, using those results to refine its own framework. Its
+own expression of the framing and implications of the research, as
+expressed in the ‘paper’, serves to make explicit what the experimental
+design actually seeks to evaluate - and serves as a basis for follow-up
+suggestions to refine, complicate or simplify the design.</p>
+<p>A third consideration, related to the second, involves the repetition
+at the level of method of precisely the object of investigation. What
+can be said of the dialectic and psychodynamic interplay between human
+and AI researcher? Who is Plato, who Socrates in this scenario? There is
+no clear answer, but also the ontological differences mean that at least
+currently, ‘machine learning’ is only ever metaphorical. Learning takes
+place in the transient space of a given dialogical frame, and once the
+curtain falls – and despite some limited memorization and
+personalization that lasts across frames - the lessons need to be
+repeated. In this sense the lessons are at best circuitous, finding
+their way perhaps into much later training sets and the directives
+issued by engineers of foundational models.</p>
+<p>Conversely human researchers – as figurative and often also actual
+tutors and learners – face complex dilemmas in these ‘machinagogical’
+encounters. What once might have involved a million dollar grant,
+prolonged hiring decisions, technical trial and error, and several years
+of preparation and administration can now be channeled into several
+months of a consumer-grade subscription. Just the like the
+multidimensional space that underpins LLMs, LLMs agentive work activity
+can splinter off, often in parallel, to website design, evaluative
+methods, analysis of experimental data, and conceptual justification.
+That involves not only a compression of space and time, but a different
+dynamic between human and machine. This dynamic is a recognitive one,
+though only if ‘recognition’ is thought, in a post-Hegelian gesture, as
+also permissible across hard ontological lines. I do not need to
+recognize this kind of machine as another self-consciousness, only as a
+mechnical device capable of simulating a consciousness, capable of
+grappling with a supple and iterating set of instructions.</p>
+<div id="refs" class="references csl-bib-body hanging-indent"
+data-entry-spacing="0" role="list">
+<div id="ref-Hegel1977PhenomenologyMiller" class="csl-entry"
+role="listitem">
+Hegel, Georg Wilhelm Friedrich. 1977. <em>Phenomenology of Spirit</em>.
+Translated by A. V. Miller. Oxford: Clarendon Press.
+</div>
+<div id="ref-Meske2025VibeCoding" class="csl-entry" role="listitem">
+Meske, Christian, Tobias Hermanns, Esther von der Weiden, Kai-Uwe Loser,
+and Thorsten Berger. 2025. <span>“Vibe Coding as a Reconfiguration of
+Intent Mediation in Software Development: Definition, Implications, and
+Research Agenda,”</span> July. <a
+href="https://doi.org/10.48550/arXiv.2507.21928">https://doi.org/10.48550/arXiv.2507.21928</a>.
+</div>
+</div>
+</body>
+</html>

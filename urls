@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+# List what's published, drafted, and hidden according to CONVENTIONS.md.
+#
+# Usage:
+#   ./urls                       # all three sections
+#   ./urls published             # only published
+#   ./urls drafts                # only drafts
+#   ./urls hidden                # only hidden
+#   ./urls --plain               # no colour, plain paths only
+
+set -euo pipefail
+cd "$(dirname "$0")"
+
+mode="${1:-all}"
+plain=""
+for arg in "$@"; do
+  [ "$arg" = "--plain" ] && plain=1
+done
+
+if [ -z "$plain" ] && [ -t 1 ]; then
+  bold=$'\033[1m'; dim=$'\033[2m'
+  green=$'\033[32m'; yellow=$'\033[33m'; gray=$'\033[90m'
+  reset=$'\033[0m'
+else
+  bold=""; dim=""; green=""; yellow=""; gray=""; reset=""
+fi
+
+list_published() {
+  find articles courses -name "*.html" -type f 2>/dev/null \
+    | grep -v "/_" \
+    | sort
+}
+
+list_drafts() {
+  find articles courses -name "*.md" -type f 2>/dev/null \
+    | grep -v "/_" \
+    | sort \
+    | while IFS= read -r md; do
+        [ -f "${md%.md}.html" ] || echo "$md"
+      done
+}
+
+list_hidden() {
+  find articles courses -path "*/_*" -type f \( -name "*.md" -o -name "*.html" \) 2>/dev/null \
+    | sort
+}
+
+print_section() {
+  local title="$1" colour="$2" glyph="$3"
+  shift 3
+  echo "${bold}${title}${reset}"
+  if [ "$#" -eq 0 ]; then
+    echo "  ${dim}(none)${reset}"
+  else
+    for f in "$@"; do
+      printf "  ${colour}${glyph}${reset} %s\n" "${f#./}"
+    done
+  fi
+  echo
+}
+
+case "$mode" in
+  published|pub)
+    while IFS= read -r f; do printf "%s\n" "${f#./}"; done < <(list_published)
+    ;;
+  drafts|draft)
+    while IFS= read -r f; do printf "%s\n" "${f#./}"; done < <(list_drafts)
+    ;;
+  hidden)
+    while IFS= read -r f; do printf "%s\n" "${f#./}"; done < <(list_hidden)
+    ;;
+  all|--plain|"")
+    pub=()
+    while IFS= read -r f; do pub+=("$f"); done < <(list_published)
+    drafts=()
+    while IFS= read -r f; do drafts+=("$f"); done < <(list_drafts)
+    hidden=()
+    while IFS= read -r f; do hidden+=("$f"); done < <(list_hidden)
+
+    echo
+    print_section "Published — visible to indexer" "$green" "●" "${pub[@]+"${pub[@]}"}"
+    print_section "Drafts — Markdown without rendered HTML (run ./build)" "$yellow" "○" "${drafts[@]+"${drafts[@]}"}"
+    print_section "Hidden — inside _*/ paths" "$gray" "·" "${hidden[@]+"${hidden[@]}"}"
+
+    echo "${dim}Summary: ${#pub[@]} published, ${#drafts[@]} drafts, ${#hidden[@]} hidden${reset}"
+    ;;
+  --help|-h)
+    sed -n '2,/^$/p' "$0" | sed 's/^# \?//'
+    ;;
+  *)
+    echo "Unknown mode: $mode" >&2
+    exit 1
+    ;;
+esac

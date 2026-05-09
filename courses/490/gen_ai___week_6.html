@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>gen_ai___week_6</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 id="gen-ai---week-6">Gen AI - Week 6</h1>
+<h2 id="slide-1">Slide 1</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>ACCELERATE NOW!<br><br><br><br>A brief History <br><br>of the
+near-future<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-2">Slide 2</h2>
+<h3 id="more-stochastic-parrots">More Stochastic parrots</h3>
+<hr />
+<h2 id="slide-3">Slide 3</h2>
+<h3 id="whats-so-bad-about-technology">What’s so bad about
+technology?</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Stochastic Parrots peck away at the deeper impulses behind
+AI:<br>Feminist critique of white male fantasies of <em>speed</em>
+(think of Marinetti), <em>size</em> (large language models),
+<em>scale</em><br>Gebru, Torres (2024): <em>The TESCREAL Bundle:
+Eugenics and the Promise of Utopia through Artificial General
+Intelligence</em><br>Interconnections between eugenics, longtermism,
+effective altruism, pursuit of AGI, accelerationism – a coherent
+ideology?<br>Technology (<em>pace</em> Aaron) associated with
+<em>techne</em>: skill, craft, practice<br>Contrasted with
+<em>episteme</em>, theoretical knowledge (Aristotle)<br>Contrasted with
+<em>poesis</em>: closer to manifesting, bringing forth, revealing
+(Heidegger)<br><em>Techne</em> is the non-theoretical, non-poetic: the
+messy making of things<br>Contemporary stereotypes: the artist vs the
+<em>technician</em>; the abstract thinker or strategist vs the person
+concerned with <em>technique</em><br>Does Silicon Valley still struggle
+with an inferiority complex?<br>It is not <strong>academic</strong>
+(technical knowledge is shallow, ephemeral – no episteme)<br>It is not
+<strong>artistic</strong> (technicians cannot be cool – no poeisis)
+<br>Techbros go cultural: Gates’ infamous dance, Zuckerberg’s “glow up”,
+Musk’s SNL appearance, the Silicon Valley “philosophers” (Thiel,
+Schmidt, Andreesen, Karp, Friedman)<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-4">Slide 4</h2>
+<h3
+id="why-so-defensive-polite-society-artists-academics-value-slow-deep-sustained-patient-non-egoic-social-something-crass-desperate-antisocial-about-the-technical-sphere-unfeeling-mechanical-not-really-connected-to-meaning-bender-et-al.-technology-retains-this-sense-of-gendered-immaturity-boys-toys-restlessness-tinkering-uncritical-optimism-inflated-dramatism-end-of-the-world-save-the-world-rhetoric-hubristic-movements-transhumanism-singularitarianism-effective-altruism-gebru-torres-2024.-shift-from-parody-ridicule-to-alarmism-fear-critique-activism-but-also-genuine-what-can-actually-be-done-once-power-is-embedded-in-technological-infrastructure-it-is-hard-to-dislodge.-the-black-box-society-pasquale-2015-the-automatic-society-stiegler-2016-algocracy-algorithmic-governance-aneesh-2006-issar-aneesh-2021-automating-inequality-eubanks-2018-surveillance-capitalism-zuboff-2014-point-to-these-problems.-do-we-even-know-why-algorithms-make-the-decisions-they-do-ai-continuation-of-this-fantasy-a-sort-of-neo-colonization-or-territorialization-deleuze-guattari-of-interior-and-exterior-worlds-the-illusion-of-control-and-mastery-at-the-micro-level-of-individual-cognition-the-banishing-of-forgetfulness-dyslexia-malapropisms-reasoning-failures-class-gendered-or-racialized-linguistic-registers.-ai-helps-us-write-talk-properly-it-normalizes-aberrant-discourse.-we-can-all-be-academics-now-commodity-fetishism-in-the-marxian-sense-the-social-relations-between-people-everyday-communication-art-etc-are-turned-into-the-ultimate-product-the-thing-that-generates-engenders-a-machine-of-endless-and-relentless-cultural-production-we-marvel-at-the-technology-not-the-human-history-of-art-that-makes-the-technology-possible-revenge-of-the-nerds-techne-becomes-both-episteme-and-poesis.-no-longer-opposed-techne-is-now-meta-technology.-lets-have-those-arrogant-scholars-and-artists-come-to-us.">Why
+so defensive? “Polite society” – artists, academics – value slow, deep,
+sustained, patient, non-egoic, social Something crass, desperate,
+antisocial about the technical sphere – unfeeling, mechanical, not
+really connected to <em>meaning</em> (Bender et al.) Technology retains
+this sense of <em>gendered</em> <strong>immaturity</strong>: “boys’
+toys”, restlessness, tinkering, uncritical optimism, inflated dramatism
+(end-of-the-world + save-the-world rhetoric), <em>hubristic</em>
+movements (transhumanism, singularitarianism, effective altruism – Gebru
+&amp; Torres 2024). Shift from parody, ridicule to alarmism, fear,
+critique, activism But also, genuine: What can actually be done? Once
+power is embedded in technological infrastructure, it is hard to
+dislodge. The Black Box Society (Pasquale 2015); The Automatic Society
+(Stiegler 2016); algocracy / algorithmic governance (Aneesh 2006; Issar
+&amp; Aneesh 2021); Automating Inequality (Eubanks 2018); Surveillance
+Capitalism (Zuboff 2014) point to these problems. Do we even know why
+algorithms make the decisions they do? AI: Continuation of this fantasy,
+a sort of <em>neo-colonization or territorialization</em> (Deleuze &amp;
+Guattari) of <strong>interior </strong>and** exterior worlds** The
+illusion of <em>control and mastery</em>, at the micro-level of
+individual cognition: the banishing of forgetfulness, dyslexia,
+malapropisms, reasoning failures, class, gendered or racialized
+linguistic <em>registers</em>. AI helps us write &amp; talk properly; it
+<strong>normalizes</strong> aberrant discourse. We can all be academics
+now? <em>Commodity</em> <em>fetishism</em> (in the Marxian sense): the
+social relations between people (everyday communication, art etc) are
+turned into the ultimate product – the thing that <em>generates</em>,
+<em>engenders</em>, a machine of endless (and relentless) cultural
+production – we marvel at the technology, not the human history of art
+that makes the technology possible <strong>Revenge of the
+Nerds</strong>: <em>Techne</em> becomes both <em>episteme</em> and
+<em>poesis.</em> No longer opposed, techne is now
+<em>meta-technology</em>. “Let’s have those arrogant scholars and
+artists come to us”.</h3>
+<hr />
+<h2 id="slide-5">Slide 5</h2>
+<h3 id="image-marinetti-image"><img
+src="images/gen_ai___week_6_img_1.png" alt="Image" /> Marinetti <img
+src="images/gen_ai___week_6_img_2.png" alt="Image" /></h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Extreme: racist, sexist, proto-fascist. Marinetti a friend and
+supporter of Mussolini in the 1910s<br>Celebrates youth, speed, breaks
+with the past (leads to concern about fascism’s reactionary tendencies).
+Desire for violence. Technology is not computation; it is fast cars,
+streetcars, trains<br>Later echoes? Punk? Grunge? Techno? Anarchism?
+Other subcultures<br>Blends hedonism, nihilism, violence, speed.
+Coincidentally the rise of psychoanalysis and theorisation of the
+Pleasure Principle and the Death Instinct (1920). <br>Post-war echoes:
+Benedek’s <em>The Wild One</em> (1953). Goddard’s <em>Un Bout de
+Souffle</em> (1960), J.G. Ballard’s <em>Crash</em> (1973), Saura’s
+<em>Deprisa Deprisa</em> (1981)<br>“Standing on the world’s summit we
+launch once again our insolent challenge to the stars!” – think of the
+role of rockets and Mars in contemporary futurist fantasies<br><br></td>
+<td><img src="images/gen_ai___week_6_img_3.png"
+alt="Image" /><br><br><br><br><img
+src="images/gen_ai___week_6_img_4.png" alt="Image" /><br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-6">Slide 6</h2>
+<h3
+id="all-watched-over-by-machines-of-loving-grace-richard-brautigan-1967">All
+watched over by Machines of Loving Grace RICHARD BRAUTIGAN, 1967</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>I like to think (and<br>the sooner the better!)<br>of a cybernetic
+meadow<br>where mammals and computers<br>live together in
+mutually<br>programming harmony<br>like pure water<br>touching clear
+sky.<br><br><br><br>I like to think<br>(right now, please!)<br>of a
+cybernetic forest<br>filled with pines and electronics<br>where deer
+stroll peacefully<br>past computers<br>as if they were flowers<br>with
+spinning blossoms.<br><br><br><br><strong>Responses?
+</strong>Desirable?** Sinister? <strong>IRONIC?
+</strong>IDEALISTIC?**<br><br></td>
+<td>I like to think<br>(it has to be!)<br>of a cybernetic
+ecology<br>where we are free of our labors<br>and joined back to
+nature,<br>returned to our mammal<br>brothers and sisters,<br>and all
+watched over<br>by machines of loving grace.<br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-7">Slide 7</h2>
+<h3 id="accelerate-to-the-left-and-to-the-right">#ACCELERATE, TO THE
+LEFT AND TO THE RIGHT</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td><strong>Left Accelerationist Tendencies:</strong><br>Accelerate
+Capitalism until it <em>Collapses</em> upon Itself<br>Fixed Capital /
+Dead is a <em>Social Product</em>, Shared Inhertance (Marx)<br><em>Fully
+Automated Luxury Communism</em> (Bastani, Williams, Srnicek)<br>Break
+free of Oppressive Identities – Make Your Own through Technology
+(Haraway’s Cyborg)<br>Better, Scientific Breakthroughs
+(Amodei)<br>Universal Basic Income?!<br><br></td>
+<td><strong>Right Accelerationist Tendencies:</strong><br>The World is
+<em>Agonistic</em>, Zero Sum Game (Peter Thiel, via Carl Schmitt
+(1930s)) <br>Accelerate Capitalism Forever (Trickle-down Economics; All
+Boats Rise)<br>Reward Innovation – Aim to Monopolise<br>Also Regressive:
+Protect Traditional Identities (Thiel’s Christianity)<br>Better,
+Scientific Breakthroughs (Amodei)<br>Universal Basic
+Income?!<br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-8">Slide 8</h2>
+<h3 id="the-cyborgian-process-of-production">The cyborgian process of
+production</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>For Marx (in this celebrated “Fragment on Machines” at any rate), we
+get a cyborgian image of labour – the machine at its centre, human
+workers merely appendages<br>But, once adopted into the production
+process of capital, the means of labour passes through different
+metamorphoses, whose <strong>culmination is the machine</strong>, or
+rather, an automatic system of machinery (system of machinery: the
+automatic one is merely its most complete, most adequate form, and alone
+transforms machinery into a system), set in motion by an
+<strong>automaton, a moving power that moves itself</strong>; this
+automaton consisting of <strong>numerous mechanical and intellectual
+organs</strong>, so that the workers themselves are cast merely as its
+<strong>conscious linkages</strong>.<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-9">Slide 9</h2>
+<h3 id="a-future-without-work">A future without work?</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>“Capital itself is the moving <strong>contradiction</strong>, [in]
+that it presses to <strong>reduce labour time to a minimum</strong>,
+while it posits labour time, on the other side, as <strong>sole measure
+</strong>and** source of wealth<strong>.”<br>“What capital adds is that
+it increases the </strong>surplus labour time of the mass** by all the
+means of <strong>art and science</strong>, because its wealth consists
+directly in the appropriation of surplus labour time; since value
+directly its purpose, not use value. It is thus, <strong>despite
+itself</strong>, instrumental in creating the means of <strong>social
+disposable time</strong>, in order to reduce labour time for the whole
+society to a diminishing minimum, and thus to <strong>free everyone’s
+time for their own development</strong>.” <br>Marx imagines here the
+acceleration of capitalism:<br>Capitalism wants profit, and therefore to
+create as much “surplus labour time” as possible. More surplus labour =
+more surplus value = more profit<br>So it develops technology (“art and
+science”) to exploit workers more<br><strong>But </strong>this really
+means capitalism means the necessities of life are made more
+efficiently<br>Eventually (?) this surplus becomes “social disposable
+time” which can be employed – not for the capitalists’ profit – but for
+“their own development” (i.e. whatever you want) <br>Marx’
+<strong>accelerationist paradox</strong>: factory machinery exploits
+labour, but also creates the conditions for eventual emancipation and
+utopia<br>Also important: Marx sees machinery as involving social (not
+individual) production. <br>Dead labour / fixed capital is
+<em>durable</em>. It is, if we like, the gift of preceding generations
+to our own: techniques and material that enable us to live with
+<strong>less</strong> “circulating” labour. We don’t need to work as
+hard to survive.<br>Moreover we become new kinds of subjects: “Free time
+– which is both idle time and time for higher activity – has naturally
+transformed its possessor into a different subject, and he then enters
+into the direct production process as this different subject.”<br>This
+is not the Marx we grew up with: he wants a future without work,
+focussed on <strong>human development and growth</strong>…<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-10">Slide 10</h2>
+<h3 id="accelerate-into-history">#Accelerate into history?</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Williams &amp; Scnicek: what if this accelerationist Marx was right?
+Accelerate to deliver universal luxury (Bastani: Fully Automated Luxury
+Communism)<br>Thiel: Essentially an agonistic view of geopolitics.
+Technology &amp; AI become tools to protect national interest (invests
+in Palantir, Anduril). Accelerate<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+</body>
+</html>

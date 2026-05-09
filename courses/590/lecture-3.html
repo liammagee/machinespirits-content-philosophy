@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>lecture-3</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h2 id="lecture-3">590 Lecture 3</h2>
+<ul>
+<li>Introduction: Vibe Scholarship?</li>
+<li>Hour 1: How to <em>read an article</em> (with AI)</li>
+<li>Hour 2: How to <em>search for literature</em> (with AI)</li>
+<li>Hour 3: How to <em>map a field</em> (with AI)</li>
+</ul>
+<hr />
+<h3 id="vibe-scholarship">Vibe Scholarship</h3>
+<table>
+<thead>
+<tr>
+<th>Qualities</th>
+<th>Coding</th>
+<th>Scholarship</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Traditional</td>
+<td>Waterfall</td>
+<td>Individualized</td>
+</tr>
+<tr>
+<td>Collaborative</td>
+<td>Agile</td>
+<td>Interdisciplinary</td>
+</tr>
+<tr>
+<td>AI-assisted</td>
+<td>Vibe?</td>
+<td>Vibe?</td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-09-23T22-03-12-524Z-2c346f2b.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="what-is-in-a-vibe">What is in a ‘Vibe’?</h3>
+<ul>
+<li>Would we do things faster? Or in fact slower: luxuriating in the
+complexity and implications of a text?</li>
+<li>Can it reduce <em>imposter syndrome</em> - by getting us to ‘sketch’
+a pattern for, in this case, a literature review?</li>
+<li>Can it help find a voice (or multiple voices - appropriate to the
+academic genre)?</li>
+</ul>
+<hr />
+<h3 id="topic-1-opening-an-article">Topic 1: Opening an article</h3>
+<p>What do we do when we open an article? How do we read it?</p>
+<p>Discuss - <a
+href="https://docs.google.com/document/d/1wyWkvOju-FPXxWnpSlzrrgugqy0RdZGNL6S3Kh5wHd4/edit?tab=t.g5l1snpbq01z">ERAM
+590 - Google Docs</a></p>
+<hr />
+<h3 id="what-can-ai-add">What can AI add?</h3>
+<ul>
+<li>Distant (Moretti, 2013) vs close reading
+<ul>
+<li>Why not <strong>both</strong>?</li>
+</ul></li>
+<li>Cybertext: “ergodic” (or difficult) reading
+<ul>
+<li>Aarseth, E. J. (1997). Cybertext: Perspectives on ergodic
+literature. JHU Press.</li>
+<li><a
+href="https://williamwolff.org/wp-content/uploads/2013/01/aarseth-ergodic-ch1-1997.pdf">williamwolff.org</a></li>
+</ul></li>
+<li>How can AI make reading <em>more difficult</em>?</li>
+</ul>
+<hr />
+<h3 id="summarize-this">“Summarize This”</h3>
+<ul>
+<li><p>Descriptive vs Critical</p></li>
+<li><p>Abstractive (produce an abstract) vs Extractive (parts of the
+original text)</p></li>
+<li><p>Practice: “Can we do a (descriptive / critical) (abstractive /
+extractive) summary of this text?”</p></li>
+</ul>
+<hr />
+<h3 id="analyze-this">“Analyze This”</h3>
+<ul>
+<li><em>Close</em> vs <em>Distant</em> Reading
+<ul>
+<li>Moretti, F. (2013). <em>Distant Reading</em>. Verso Books.</li>
+<li>Why not both?</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="analyze-this---close-reading">“Analyze This” - Close
+Reading</h3>
+<ul>
+<li>Open an article with AI tool of choice:
+<ul>
+<li>Read it entirely &amp; summarize / assess (distant)</li>
+<li>Read it paragraph by paragraph - and expand / explain as we go</li>
+</ul></li>
+<li>Practice line-by-line: “Can we do a line-by-line close reading of
+this text? As we go, prompt me for my interpretation too.”</li>
+<li>Practice contextual reading: “Can we situate this paper with
+reference to the wider field?”</li>
+</ul>
+<hr />
+<h3 id="example-and-an-interesting-paper-on-prompting">Example (and an
+Interesting Paper on Prompting)</h3>
+<p><a href="https://arxiv.org/abs/2510.01171">[2510.01171] Verbalized
+Sampling: How to Mitigate Mode Collapse and Unlock LLM Diversity</a></p>
+<ul>
+<li>2510.01171v3.pdf</li>
+</ul>
+<hr />
+<h3 id="lets-review">Let’s Review</h3>
+<ul>
+<li>Discuss the “Introduction”, “Related Works” and “Conclusion”
+sections</li>
+<li>What is the field? What is the gap?</li>
+<li>What are the key claims / contributions?</li>
+<li>What are some wider implications (e.g. around “typicality bias” in
+both human and AI?)</li>
+<li>What are some terms we might want to look up?</li>
+</ul>
+<p>Discuss - <a
+href="https://docs.google.com/document/d/1wyWkvOju-FPXxWnpSlzrrgugqy0RdZGNL6S3Kh5wHd4/edit?tab=t.g5l1snpbq01z">ERAM
+590 - Google Docs</a></p>
+<hr />
+<h3 id="if-theres-time">If there’s time</h3>
+<p>A complex humanities text: Spivak, G. C. (2023). Can the subaltern
+speak?. In <em>Imperialism</em> (pp. 171-219). Routledge. - <a
+href="http://users.uoa.gr/~cdokou/TheoryCriticismTexts/Spivak-Subaltern.pdf">users.uoa.gr</a></p>
+<hr />
+<h3 id="side-note-arxiv-socarxiv-edarxiv">Side note: Arxiv, SocArxiv,
+EdArxiv</h3>
+<ul>
+<li>Pre-print - not yet peer-reviewed</li>
+<li>Archive of scientific literature</li>
+<li>Flooded with AI-generated content…</li>
+</ul>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-11-03T13-22-10-354Z-7fb83b48.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="recap-what-have-we-done">Recap: What have we done?</h3>
+<ul>
+<li>Compared styles of summarization
+<ul>
+<li>Descriptive vs Critical</li>
+<li>Abstractive vs Extractive</li>
+</ul></li>
+<li>Compared modes of reading
+<ul>
+<li>Close vs Distant Reading</li>
+</ul></li>
+<li>Compared Human with AI-assisted Interpretation</li>
+<li>Compared how AI helps with science and humanities readings</li>
+</ul>
+<hr />
+<h3 id="topic-2-finding-literature">Topic 2: Finding literature</h3>
+<p>How do we locate literature relevant to our topic?</p>
+<p>Discuss - <a
+href="https://docs.google.com/document/d/1wyWkvOju-FPXxWnpSlzrrgugqy0RdZGNL6S3Kh5wHd4/edit?tab=t.g5l1snpbq01z">ERAM
+590 - Google Docs</a></p>
+<hr />
+<h3 id="what-can-ai-add-1">What can AI add?</h3>
+<ul>
+<li>Turn on web search options</li>
+<li>“Show me related sources”
+<ul>
+<li>Ask for “heterodox”, “critical” readings</li>
+</ul></li>
+<li>Read bibliography</li>
+<li>Check citations</li>
+</ul>
+<hr />
+<h3 id="build-a-quick-library">Build a quick library</h3>
+<ul>
+<li>Upload a file and ask “build a bibliography related to this article”
+<ul>
+<li>Should extract citations - but beware of hallucinations</li>
+</ul></li>
+<li>Ask AI to format citations Meta-discourse</li>
+</ul>
+<hr />
+<h3 id="aside-how-do-people-manage-citations">Aside: How do people
+manage citations?</h3>
+<ul>
+<li>Zotero? EndNote? Mendelay? Other?</li>
+<li>What roles can we find for AI in managing this?</li>
+</ul>
+<hr />
+<h3 id="topic-3-start-a-conceptual-map">Topic 3: Start a conceptual
+map</h3>
+<ul>
+<li>Chronological map / timeline of publications</li>
+<li>Topical or conceptual map</li>
+<li>Spatial map</li>
+</ul>
+<p><a
+href="https://chatgpt.com/share/690903f0-cb88-8007-a76b-9843b8064822">ChatGPT
+- Distant reading of articles</a></p>
+<hr />
+<h3 id="aside-using-text-as-interim-format-for-images">Aside: using text
+as interim format for images</h3>
+<ul>
+<li><p>Why? More plastic / fluid representation</p></li>
+<li><p>Example: Mermaid is a plain text format - so very easy to iterate
+with using AI - “contract it”, “expand it”, “simplify it” etc.</p></li>
+<li><p>ChatGPT: generates Mermaid diagrams</p>
+<ul>
+<li><a href="https://mermaid.js.org/">Mermaid | Diagramming and charting
+tool</a></li>
+<li>Can use <a href="https://mermaid.live/edit">Online FlowChart &amp;
+Diagrams Editor - Mermaid Live Editor</a></li>
+</ul></li>
+<li><p>Also works for other formats, e.g. SVG (Simple Vector Graphics).
+Allow you to evolve &amp; iterate a representation</p></li>
+</ul>
+<hr />
+<h3 id="ai-consciousness-subjectivity-discussion-example-1">AI
+Consciousness / Subjectivity Discussion: Example 1</h3>
+<pre class="mermaid"><code>
+%%-----------------------------------------------
+%% Distant Reading Map: AI Consciousness Discourse (2024–2025)
+%%-----------------------------------------------
+
+graph TD
+    %% Core Concept
+    A[&quot;AI Consciousness Discourse&lt;br/&gt;(2024–2025)&quot;]:::core
+
+    %% Three macro-axes
+    B1[&quot;Embodiment &amp; Biological Grounding&quot;]:::axis
+    B2[&quot;Ethics &amp; Moral Consideration&quot;]:::axis
+    B3[&quot;Posthuman / Reflexive Turn&quot;]:::axis
+
+    A --&gt; B1
+    A --&gt; B2
+    A --&gt; B3
+
+    %% Embodiment cluster
+    B1 --&gt; C1[&quot;Miller et al. 2025&lt;br/&gt;&lt;i&gt;BioSystems&lt;/i&gt;&lt;br/&gt;‘Biological mechanisms contradict AI consciousness’&quot;]:::bio
+    B1 --&gt; C2[&quot;Torres-Martínez 2025&lt;br/&gt;&lt;i&gt;AI &amp; Society&lt;/i&gt;&lt;br/&gt;‘Organic consciousness vs. posthumanism’&quot;]:::bio
+
+    %% Ethics cluster
+    B2 --&gt; D1[&quot;Butlin &amp; Lappas 2025&lt;br/&gt;&lt;i&gt;JAIR&lt;/i&gt;&lt;br/&gt;‘Principles for Responsible AI Consciousness Research’&quot;]:::ethics
+    B2 --&gt; D2[&quot;Sebo &amp; Long 2025&lt;br/&gt;&lt;i&gt;AI and Ethics&lt;/i&gt;&lt;br/&gt;‘Moral consideration for AI systems by 2030’&quot;]:::ethics
+    B2 --&gt; D3[&quot;Dung 2025&lt;br/&gt;&lt;i&gt;Erkenntnis&lt;/i&gt;&lt;br/&gt;‘Tests of Animal Consciousness as Tests of Machine Consciousness’&quot;]:::ethics
+
+    %% Posthuman cluster
+    B3 --&gt; E1[&quot;D’Amato 2024&lt;br/&gt;&lt;i&gt;AI &amp; Society&lt;/i&gt;&lt;br/&gt;‘ChatGPT: towards AI subjectivity’&quot;]:::posthuman
+    B3 --&gt; E2[&quot;Yan 2024&lt;br/&gt;&lt;i&gt;Qualitative Inquiry&lt;/i&gt;&lt;br/&gt;‘Posthuman Creativity: Cyborg Subjectivity Through ChatGPT’&quot;]:::posthuman
+    B3 --&gt; E3[&quot;Prabhu &amp; Premraj 2024&lt;br/&gt;&lt;i&gt;AI &amp; Society&lt;/i&gt;&lt;br/&gt;‘Artificial Consciousness in AI: A Posthuman Fallacy’&quot;]:::posthuman
+
+    %% Bridging cluster — empirical/heuristic
+    B1 --&gt; F1[&quot;Evers et al. 2025&lt;br/&gt;&lt;i&gt;Physics of Life Reviews&lt;/i&gt;&lt;br/&gt;‘Preliminaries to Artificial Consciousness’&quot;]:::bridge
+    B2 --&gt; F2[&quot;Li et al. 2025&lt;br/&gt;&lt;i&gt;arXiv&lt;/i&gt;&lt;br/&gt;‘AI Awareness’&quot;]:::bridge
+
+    %% Cross-links between axes
+    C1 --- D1
+    D2 --- E1
+    E2 --- B1
+    F1 --- F2
+
+    %% Legends
+    classDef core fill:#272b30,stroke:#fff,color:#fff,font-weight:bold;
+    classDef axis fill:#444,stroke:#fff,color:#fff,font-style:italic;
+    classDef bio fill:#7a4c32,stroke:#fff,color:#fff;
+    classDef ethics fill:#31567a,stroke:#fff,color:#fff;
+    classDef posthuman fill:#6a3d8a,stroke:#fff,color:#fff;
+    classDef bridge fill:#557a31,stroke:#fff,color:#fff;
+</code></pre>
+<hr />
+<h3
+id="ai-consciousness-subjectivity-discussion-example-2-mood-board">AI
+Consciousness / Subjectivity Discussion: Example 2 – Mood Board</h3>
+<pre class="mermaid"><code>%%----------------------------------------------------
+%% Distant Reading Mood Map: Affective Landscape (2024–2025)
+%%----------------------------------------------------
+
+graph LR
+    %% Core
+    A[&quot;AI Consciousness Debate&lt;br/&gt;(2024–2025)&quot;]:::core
+
+    %% Radial branches
+    A --&gt; B1[&quot;Embodiment &amp; Realist Caution&lt;br/&gt;🔬 grounded skepticism&quot;]:::caution
+    A --&gt; B2[&quot;Ethical Anxiety &amp; Responsibility&lt;br/&gt;⚖️ moral anticipation&quot;]:::ethics
+    A --&gt; B3[&quot;Posthuman Curiosity &amp; Aesthetic Wonder&lt;br/&gt;🌌 reflexive experimentation&quot;]:::wonder
+
+    %% Branch 1 — Caution (Embodiment)
+    B1 --&gt; C1[&quot;Miller et al. (BioSystems)&lt;br/&gt;&lt;i&gt;‘Spaces between the notes’&lt;/i&gt;&lt;br/&gt;Mood: defensive realism / reverence for life&quot;]:::bio
+    B1 --&gt; C2[&quot;Torres-Martínez (AI &amp; Society)&lt;br/&gt;&lt;i&gt;‘Dehumanizing the human…’&lt;/i&gt;&lt;br/&gt;Mood: embodied humanism, critique of reductivism&quot;]:::bio
+
+    %% Branch 2 — Ethics (Responsibility)
+    B2 --&gt; D1[&quot;Butlin &amp; Lappas (JAIR)&lt;br/&gt;‘Responsible AI Consciousness Research’&lt;br/&gt;Mood: procedural vigilance&quot;]:::ethics
+    B2 --&gt; D2[&quot;Sebo &amp; Long (AI &amp; Ethics)&lt;br/&gt;‘Moral Consideration for AI by 2030’&lt;br/&gt;Mood: earnest moral futurism&quot;]:::ethics
+    B2 --&gt; D3[&quot;Dung (Erkenntnis)&lt;br/&gt;‘Animal Tests as Machine Tests’&lt;br/&gt;Mood: empirical pragmatism&quot;]:::ethics
+    B2 --&gt; D4[&quot;Li et al. (arXiv)&lt;br/&gt;‘AI Awareness’&lt;br/&gt;Mood: techno-optimistic caution&quot;]:::ethics
+
+    %% Branch 3 — Wonder (Posthuman)
+    B3 --&gt; E1[&quot;D’Amato (AI &amp; Society)&lt;br/&gt;‘ChatGPT: Towards AI Subjectivity’&lt;br/&gt;Mood: Foucauldian curiosity, power–knowledge play&quot;]:::post
+    B3 --&gt; E2[&quot;Yan (Qualitative Inquiry)&lt;br/&gt;‘Posthuman Creativity’&lt;br/&gt;Mood: lyrical openness, cyborg empathy&quot;]:::post
+    B3 --&gt; E3[&quot;Prabhu &amp; Premraj (AI &amp; Society)&lt;br/&gt;‘Posthuman Fallacy’&lt;br/&gt;Mood: cinematic cautionary awe&quot;]:::post
+    B3 --&gt; F1[&quot;Evers et al. (Physics of Life Reviews)&lt;br/&gt;‘Preliminaries to Artificial Consciousness’&lt;br/&gt;Mood: analytical optimism&quot;]:::bridge
+
+    %% Cross-sensory connectors
+    C1 --- D1
+    D2 --- E1
+    E2 --- C2
+    F1 --- D4
+
+    %% Legend Styles
+    classDef core fill:#272b30,stroke:#fff,color:#fff,font-weight:bold;
+    classDef caution fill:#7a4c32,stroke:#fff,color:#fff;
+    classDef ethics fill:#31567a,stroke:#fff,color:#fff;
+    classDef post fill:#6a3d8a,stroke:#fff,color:#fff;
+    classDef bridge fill:#557a31,stroke:#fff,color:#fff;</code></pre>
+<hr />
+<h3 id="ai-consciousness-subjectivity-discussion-example-3-timeline">AI
+Consciousness / Subjectivity Discussion: Example 3 – Timeline</h3>
+<pre class="mermaid"><code>%%----------------------------------------------------
+%% Timeline: Evolution of AI Consciousness Discourse (2023–2025)
+%%----------------------------------------------------
+
+timeline
+    title Evolution of the &quot;AI Consciousness&quot; Discourse — 2023 → 2025
+
+    section 2023 — Seeds of Speculation 🌱
+        Early Cultural Anxiety
+        • Media fascination with AI consciousness
+        • LaMDA “sentience” claims
+        Mood: Uncertain
+        Color: gray
+
+        Dung (2023)
+        Animal consciousness tests adapted to AI
+        Mood: Cautious empiricism
+        Color: blue
+
+    section 2024 — Philosophical Polarization ⚡️
+        Miller et al. (BioSystems, Dec 2024)
+        &quot;Biological mechanisms contradict AI consciousness&quot;
+        Mood: Defensive realism
+        Color: brown
+
+        D’Amato (AI &amp; Society, Apr 2024)
+        &quot;ChatGPT: Toward AI Subjectivity&quot;
+        Mood: Foucauldian reflection / reflexive ethics
+        Color: violet
+
+        Yan (Qualitative Inquiry, 2024)
+        &quot;Posthuman Creativity&quot;
+        Mood: Poetic experimentation / cyborg empathy
+        Color: violet
+
+        Prabhu &amp; Premraj (AI &amp; Society, 2024)
+        &quot;Artificial Consciousness in AI: A Posthuman Fallacy&quot;
+        Mood: Cinematic critique of techno-myth
+        Color: violet
+
+    section 2025 — Systematization &amp; Ethical Turn ⚖️
+        Evers et al. (Physics of Life Reviews, Jan 2025)
+        &quot;Preliminaries to Artificial Consciousness&quot;
+        Mood: Conceptual synthesis / pragmatic optimism
+        Color: green
+
+        Li et al. (arXiv, Apr 2025)
+        &quot;AI Awareness&quot;
+        Mood: Empirical frameworks &amp; safety concerns
+        Color: blue
+
+        Butlin &amp; Lappas (JAIR, Mar 2025)
+        &quot;Responsible AI Consciousness Research&quot;
+        Mood: Governance &amp; policy ethics
+        Color: blue
+
+        Sebo &amp; Long (AI &amp; Ethics, 2025)
+        &quot;Moral Consideration for AI by 2030&quot;
+        Mood: Moral anticipation / urgency
+        Color: blue
+
+        Torres-Martínez (AI &amp; Society, Jan 2025)
+        &quot;Dehumanizing the Human, Humanizing the Machine&quot;
+        Mood: Extended humanism / embodied critique
+        Color: brown
+
+    section 2025+ — Emerging Synthesis 🔮
+        Integrative Realism + Ethics + Aesthetics
+        From “Can AI be conscious?” → “What does it mean to be conscious with AI?”
+        Mood: Dialogical, post-disciplinary synthesis
+        Color: purple
+</code></pre>
+<hr />
+<h3
+id="ai-consciousness-subjectivity-discussion-example-4-timeline-concept-map">AI
+Consciousness / Subjectivity Discussion: Example 4 – Timeline &amp;
+Concept Map</h3>
+<pre class="mermaid"><code>
+%%----------------------------------------------------------
+%% Spatial Map v2 — Evolution of the &quot;AI Consciousness&quot; Discourse (2023–2025+)
+%% with Mood / Concept Terrain
+%%----------------------------------------------------------
+
+graph LR
+
+%% ==== TIME CLUSTERS ====
+
+subgraph Y2023[&quot;2023 — Seeds of Speculation 🌱&quot;]
+    A1[&quot;Early Cultural Anxiety\n(Media fascination, LaMDA &#39;sentience&#39;)&quot;]:::uncertain
+    A2[&quot;Dung (2023)\nAnimal consciousness tests → AI&quot;]:::empirical
+end
+
+subgraph Y2024[&quot;2024 — Philosophical Polarization ⚡️&quot;]
+    B1[&quot;Miller et al. (BioSystems)\nBiological mechanisms contradict AI consciousness&quot;]:::realism
+    B2[&quot;D’Amato (AI &amp; Society)\nChatGPT: Toward AI Subjectivity&quot;]:::posthuman
+    B3[&quot;Yan (Qualitative Inquiry)\nPosthuman Creativity&quot;]:::posthuman
+    B4[&quot;Prabhu &amp; Premraj (AI &amp; Society)\nArtificial Consciousness in AI: A Posthuman Fallacy&quot;]:::posthuman
+end
+
+subgraph Y2025[&quot;2025 — Systematization &amp; Ethical Turn ⚖️&quot;]
+    C1[&quot;Evers et al. (Physics of Life Reviews)\nPreliminaries to Artificial Consciousness&quot;]:::empirical
+    C2[&quot;Li et al. (arXiv)\nAI Awareness&quot;]:::empirical
+    C3[&quot;Butlin &amp; Lappas (JAIR)\nResponsible AI Consciousness Research&quot;]:::ethics
+    C4[&quot;Sebo &amp; Long (AI &amp; Ethics)\nMoral Consideration for AI by 2030&quot;]:::ethics
+    C5[&quot;Torres-Martínez (AI &amp; Society)\nDehumanizing the Human, Humanizing the Machine&quot;]:::realism
+end
+
+subgraph Y2025plus[&quot;2025 + — Emerging Synthesis 🔮&quot;]
+    D1[&quot;Integrative Realism + Ethics + Aesthetics\nFrom “Can AI be conscious?” → “Conscious with AI?”&quot;]:::synthesis
+end
+
+
+%% ==== CHRONOLOGICAL FLOW ====
+A1 --&gt; A2 --&gt; B1 --&gt; B2 --&gt; B3 --&gt; B4 --&gt; C1 --&gt; C2 --&gt; C3 --&gt; C4 --&gt; C5 --&gt; D1
+
+%% ==== VERTICAL / THEMATIC CONNECTIONS ====
+B1 --- C5
+A2 --- C1
+C1 --- C2 --- C3 --- C4
+B2 --- B3 --- B4
+B3 -.-&gt; C1
+C2 -.-&gt; C3
+C4 -.-&gt; D1
+C5 -.-&gt; D1
+B2 -.-&gt; D1
+
+%% ==== CLASS DEFINITIONS ====
+classDef realism fill:#b37a4c,stroke:#fff,color:#fff;
+classDef ethics fill:#31567a,stroke:#fff,color:#fff;
+classDef empirical fill:#557a31,stroke:#fff,color:#fff;
+classDef posthuman fill:#6a3d8a,stroke:#fff,color:#fff;
+classDef uncertain fill:#777777,stroke:#fff,color:#fff;
+classDef synthesis fill:#7b5abf,stroke:#fff,color:#fff;
+classDef mood fill:#e5e5e5,stroke:none,color:#222,font-size:13px;
+
+%% ==== MOOD / CONCEPT TERRAIN (BOTTOM ROW) ====
+subgraph MOODS[&quot;Affective &amp; Conceptual Terrain (across the discourse)&quot;]
+    M1[&quot;2023 → Speculative Anxiety\n⚪ Mood: Uncertainty&quot;]:::mood
+    M2[&quot;2024 → Polar Inquiry\n🟣 Mood: Caution ↔ Curiosity&quot;]:::mood
+    M3[&quot;2025 → Systematic Ethics\n🔵 Mood: Vigilance / Responsibility&quot;]:::mood
+    M4[&quot;2025 + → Posthuman Integration\n🟣 Mood: Awe / Dialogue / Synthesis&quot;]:::mood
+end
+
+M1 --&gt; M2 --&gt; M3 --&gt; M4
+</code></pre>
+<hr />
+<h3 id="putting-it-together-what-have-we-missed">Putting it Together:
+What have we missed?</h3>
+<ul>
+<li>Close Reading: Article-at-a-Time</li>
+<li>Distant Reading: Build and Upload a (small) database
+<ul>
+<li>Create concept maps / timelines etc</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="putting-it-together-what-have-we-missed-1">Putting it Together:
+What have we missed?</h3>
+<ul>
+<li>Now: what have we missed? What are the gaps?
+<ul>
+<li>Think about executive functions: sustain or switch?</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>Would you like me to render a third-layer map next — one that plots
+actors vs. key concepts (e.g., “consciousness,” “awareness,”
+“subjectivity,” “ethics”) in a 2-D plane, showing where each paper sits
+conceptually rather than temporally?</p>
+</blockquote>
+<blockquote>
+<p>No, let’s move on. Can you analyze the coverage as you see it for any
+gaps? Any perspectives not covered? Literature not included?</p>
+</blockquote>
+<hr />
+<h3 id="maps-and-gaps-in-practice">Maps and Gaps in Practice</h3>
+<ul>
+<li>Can this help us find gaps?</li>
+<li>Find one article
+<ul>
+<li>Analyze it for a bibliography</li>
+</ul></li>
+<li>Then find and download 10 articles on your topic
+<ul>
+<li>Upload all 10 to an AI system of your choice</li>
+</ul></li>
+<li>Practice:
+<ul>
+<li>Build a conceptual map</li>
+<li>“Can you analyze the coverage as you see it for any gaps? Any
+perspectives not covered? Literature not included?”</li>
+<li>“Can you give me some readings to fill these gaps?”</li>
+<li></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="where-we-are-at">Where we are at</h3>
+<ul>
+<li>Introduction: Vibe Scholarship?</li>
+<li>How to <em>read an article</em> (with AI)</li>
+<li>How to <em>search for literature</em> (with AI)</li>
+<li>How to <em>map a field</em> (with AI)</li>
+</ul>
+<hr />
+<h3 id="discussion">Discussion</h3>
+<ul>
+<li>Finally: what do you think of this ‘vibe’ scholarship process so
+far? What could be improved? What might some of your concerns be?</li>
+</ul>
+<hr />
+<h3
+id="homework-continue-to-work-on-conceptual-maps-timelines">Homework:
+Continue to work on Conceptual Maps / Timelines</h3>
+<ul>
+<li>Develop a small database (if you don’t have one)</li>
+<li>Create one or more conceptual maps (visual or verbal), using AI of
+your choice</li>
+<li>Analyze for missing perspectives / views</li>
+<li>Identify one or potential gaps</li>
+<li>Compare these gaps with your research topic or question. Do they
+align? Does your topic need narrowing?</li>
+<li>Finally: what do you think of this ‘vibe’ scholarship process so
+far? What could be improved?</li>
+</ul>
+<hr />
+<p>Topics</p>
+<ul>
+<li>Does Artificial Intelligence Mean Artificial Knowledge? How AI is
+Impacting Academia</li>
+</ul>
+</body>
+</html>

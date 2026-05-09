@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>lecture-6</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 id="lecture-6">590 Lecture 6</h1>
+<hr />
+<h3 id="what-weve-covered">What We’ve Covered</h3>
+<ul>
+<li>Week 1: Research Topic &amp; Question</li>
+<li>Week 2: Method &amp; Recipe for the Literature Review</li>
+<li>Week 3: Vibe Scholarship - Applying AI to Close &amp; Distant
+Reading</li>
+<li>Week 4: Reading Spivak with AI &amp; Writing for Humanities and the
+Sciences</li>
+<li>Week 5: Structuring the Literature Review</li>
+</ul>
+<hr />
+<h3 id="this-week">This Week</h3>
+<ul>
+<li>Hour 1:
+<ul>
+<li>Sociology of Knowledge and Applications to your Literature
+Review</li>
+<li>Reflexivity and Positionality: how do we interpret other
+scholarship?</li>
+</ul></li>
+<li>Hour 2: Group work - write a literature review summary</li>
+<li>Hour 3: How Do You Acknowledge AI in Literature Review?
+<ul>
+<li>And What is AI doing to Academia and the state of Knowledge?</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="next-week">Next Week</h3>
+<ul>
+<li>Synthesizing the course into a draft review</li>
+</ul>
+<hr />
+<h3 id="sociology-of-knowledge">Sociology of Knowledge</h3>
+<ul>
+<li>Study of academic / scholarly societies</li>
+<li>Navel gazing? Perhaps. But relevant for all academia because it
+helps us calibrate our writing (tone / citations )</li>
+<li>We’ve already touched on this
+<ul>
+<li>Two Cultures (Snow (1959) – Humanities and the Sciences)</li>
+</ul></li>
+<li>But also: what are <strong>financial</strong> /
+<strong>political</strong> drivers of research? What are the conceptual
+or ideological <strong>frames</strong>? What are the standards for
+<strong>evidence</strong> or <strong>truth</strong>? Compare Spivak
+(1988) to Zhang et al. (2025)</li>
+</ul>
+<hr />
+<h3 id="sociology-of-knowledge-key-figures-developments">Sociology of
+Knowledge: Key figures &amp; developments</h3>
+<ul>
+<li>Karl Marx (19th century): How do <em>material conditions</em>
+influence <em>thought</em>?</li>
+<li>Emile Durkheim (1912): <em>The Elementary Forms of Religious
+Life</em></li>
+<li>Max Weber (1917): <em>Science as a Vocation</em></li>
+<li>Karl Mannheim (1929): <em>Ideology and Utopia</em></li>
+<li>Sigmund Freud (1930): <em>Civilization and its Discontents</em></li>
+<li>Thomas Kuhn (1962): <em>The Structure of Scientific
+Revolutions</em></li>
+<li>Berger, Luckmann (1966): <em>The Social Construction of
+Reality</em></li>
+<li>Michel Foucault (1966): <em>The Order of Things</em></li>
+<li>Michel Foucault (1966, 1969): <em>The Archaeology of
+Knowledge</em></li>
+<li>David Bloor (1976), <em>Knowledge and social imagery</em></li>
+<li>Bourdieu (1977): <em>Outline of a Theory of Practice</em></li>
+<li>Bruno Latour, Steve Woolgar (1979), <em>Laboratory Life</em></li>
+<li>Edward Said (1976), <em>Orientalism</em></li>
+<li>Gayatri Spivak (1987), <em>In Other Words</em></li>
+<li>Judith Butler (1990), <em>Gender Trouble</em></li>
+</ul>
+<hr />
+<h3 id="sociology-of-knowledge-key-figures-developments-1">Sociology of
+Knowledge: Key figures &amp; developments</h3>
+<p>Courtesy of Google’s Nano Banana Pro. Not quite right, but thanks
+anyway!</p>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-12-01T05-37-53-195Z-7683733a.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="sociology-of-knowledge-common-points">Sociology of Knowledge:
+Common Points?</h3>
+<ul>
+<li>Thinking is not independent of <strong>conditions</strong> of
+life</li>
+<li>What are “conditions”?
+<ul>
+<li>Class (Marx), race, gender (Said, Butler, Spivak)</li>
+<li>Social facts - fads &amp; fashions (Durkheim)</li>
+<li>Ideology - what fundamental beliefs structure or make possible our
+thinking (Mannheim)</li>
+<li>Paradigms (Kuhn), epistemes (Foucault), habitus (Bourdieu):
+background forms of knowing and being</li>
+</ul></li>
+<li>Related to unconscious bias (Freud)</li>
+</ul>
+<hr />
+<h3 id="why-does-this-matter">Why does this matter?</h3>
+<ul>
+<li>Often asked to account for your <strong>positionality</strong></li>
+<li>Hard to do! What is your <em>unconscious bias</em>? What are you
+<em>conscious of being unconscious of</em>?
+<ul>
+<li>If you knew, it wouldn’t be unconscious!</li>
+</ul></li>
+<li>Critique of critique - mobilized in the problem of “irregular
+verbs”:
+<ul>
+<li>“<strong>I think</strong> critically and independently”</li>
+<li>“<strong>You think</strong> according to the influences of your
+economic class and upbringing”</li>
+<li>“<strong>She / He / They think</strong> as unaware and naive victims
+of ideology”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="questions-about-an-academic-community">Questions about an
+academic community:</h3>
+<ul>
+<li>What is its <strong>jargon</strong>? Do you want to reproduce,
+challenge or modify this jargon?
+<ul>
+<li>“Jargon” itself can be used as a piece of dismissive or pejorative
+jargon. All disciplines have and need their vocabulary…</li>
+</ul></li>
+<li>What are its <strong>standards of evidence</strong>? What does it
+<strong>find persuasive</strong>? What are the <strong>key
+questions</strong> it is asking?</li>
+<li>How stringent are its expectations about <strong>method</strong>,
+<strong>citation</strong>, <strong>formatting</strong>?</li>
+<li>What are its markers of <strong>distinction</strong> and
+<strong>discernment</strong> – “tickets to the game”?</li>
+<li>Conversely: what seem to be the things <strong>not to
+say</strong>?</li>
+</ul>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-11-17T14-35-30-763Z-2f11122a.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="how-can-you-develop-this-tacit-sense-possibilities">How can you
+develop this tacit sense? Possibilities:</h3>
+<ul>
+<li>Treat it like a research project - <em>study academics</em> like an
+community
+<ul>
+<li>Read journals</li>
+<li>Attend conferences</li>
+<li>Observe faculty</li>
+<li>Join committees</li>
+<li>Read or scan ‘campus’ novels &amp; drama</li>
+<li>Maintain a reflective journal</li>
+<li>Share your own research, ask for feedback</li>
+<li>Ask AI to play the role of an academic in a field</li>
+</ul></li>
+<li>All of this can be input into a <em>discourse analysis</em> or
+<em>thematic analysis</em> of a field</li>
+<li>Is it over-thinking?</li>
+</ul>
+<hr />
+<h3 id="relationship-to-literature-review">Relationship to Literature
+Review</h3>
+<ul>
+<li>Write with your audience in mind</li>
+<li>But - very important! – not as though you are already “in the
+club”</li>
+<li>Take a reference to Spivak. You might know your audience is likely
+familiar with Spivak’s work. But of course you don’t say:
+<ul>
+<li>“<em>As we all know</em>, Spivak argued that”</li>
+<li>Instead it is as though your audience forgot Spivak’s point and you
+gently remind them: “Spivak argued that…”</li>
+<li>But then you might twist this familiarity: “In the age of AI, it
+might seem Spivak’s arguments regarding grammatization have dated.
+However,…”</li>
+</ul></li>
+<li>So a literature review can translate your own sociological research
+into some careful phrasing that both <em>reassures</em> and
+<em>surprises</em> your community</li>
+</ul>
+<hr />
+<h3 id="reflexivity-and-positionality">Reflexivity and
+Positionality</h3>
+<ul>
+<li>Most people are familiar with ideas of reflexivity and positionality
+<ul>
+<li>As we have seen, can be difficult to describe in relation to our own
+position</li>
+</ul></li>
+<li>Discussed in a lot of literature and traditions</li>
+</ul>
+<hr />
+<h3 id="reflexivity-and-positionality-example-of-bourdieu">Reflexivity
+and Positionality: Example of Bourdieu</h3>
+<ul>
+<li>What reflexive positionality is <strong>not</strong>:
+<ul>
+<li>autobiography or identity (“as an Australian white male…”)</li>
+<li>radical self-doubt (“given my positionality, all truth claims I make
+are necessarily flawed…”)</li>
+</ul></li>
+<li>instead it aims to understand the academic self who speaks…
+<ul>
+<li>part of a liberal settler/colonial academic tradition</li>
+<li>informed by history, syllabus, academic canons, experience of
+teacher influence (inner critical voice) - Bourdieusian concept of
+<em>habitus</em></li>
+<li>these <em>influence</em> (not necessarily determine) what it is that
+I say, how I interpret</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="reflexivity-and-positionality-example-of-bourdieu-1">Reflexivity
+and Positionality: Example of Bourdieu</h3>
+<ul>
+<li>Strangely a Bourdieusian sene of positionality is everything that is
+<strong>not me</strong> - but rather the structural conditions under
+which
+<ul>
+<li>I find such-and-such to be problem (e.g. why do I perceive it to be
+unethical - where does my sense of ethics come from?)</li>
+<li>I find this or that theory appealing</li>
+<li>I prefer scientific / humanities writing prerrable</li>
+</ul></li>
+<li>For Bourdieu, reflexivity is like the holding up a mirror - but then
+paying attention to everything in the <em>background of the
+self</em></li>
+</ul>
+<hr />
+<h3 id="reflexivity-and-positionality-2">Reflexivity and Positionality
+(2)</h3>
+<ul>
+<li>Generally discussed in relation to methods and data analysis</li>
+<li>How does it affect the literature review? What is it that we bring
+to the table when we read academic writing?
+<ul>
+<li>Discuss!</li>
+</ul></li>
+</ul>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-12-01T22-49-06-943Z-ca3dc567.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="breaking-the-rules-from-gap-to-structure">Breaking the rules:
+From gap to structure</h3>
+<ul>
+<li>Sometimes you <em>know</em> what the gap is. The structure of a
+review feels like <em>fraudulent</em> - as though you are pretending to
+explain to the reader this and that about the literature review, only to
+arrive at some kind of magical <em>gap</em>.</li>
+<li>Remember Marx: order of <strong>presentation</strong> not always the
+order of <strong>analysis</strong> (not a statement about Marx’
+politics!)</li>
+<li>Can we learn from this? Can we work <em>backwards</em>? From
+example, from gap to special field to general field?</li>
+</ul>
+<hr />
+<h3 id="detective-novel-start-with-whodunnit-work-backwards">Detective
+Novel: Start with ‘whodunnit’, work backwards</h3>
+<ul>
+<li>Start with a statement of the gap (solution to the crime)</li>
+<li>Surround the gap with the narrative - the key actors, the setting,
+the clues…</li>
+</ul>
+<hr />
+<h3
+id="collaborating-with-others-including-ai-on-the-literature-review">Collaborating
+with Others (including AI) on the Literature Review</h3>
+<ol type="1">
+<li>Review Week 5 - Structuring the Literature Review
+<ul>
+<li>Discuss: what worked? what didn’t?</li>
+</ul></li>
+<li>Now <em>imagine</em> you have discovered the gap in the literature
+<ul>
+<li>Develop it as a statement, and write it down under “Week 6”</li>
+</ul></li>
+<li>Write a <em>non-existent summary</em> of your literature review
+<ul>
+<li>Purpose: introduce a reader to your topic</li>
+<li>4-5 sentences</li>
+<li>Use signposting / metadiscourse heavily</li>
+<li>If you have a preferred structure from week 5, use that</li>
+<li>Sample: “In this review, I start by discussing A… I then examine
+research on B… I further consider C… Finally I show how none of A, B or
+C address the issue of D.”</li>
+</ul></li>
+<li>Review each other’s statement of a gap
+<ul>
+<li>Write a single sentence about each other person’s summary. Assess
+what you found (a) clear (or unclear); and (b) whether - just from the
+summary – you thought the claim about the gap could be
+<em>persuasive</em></li>
+<li>Take notes on your own tab of what others say</li>
+</ul></li>
+<li>Then ask an AI of your choice to review your summary paragraph on
+the same criteria: clarity, likelihood of a gap</li>
+<li>Finally refine the summary paragraph yourself and add <em>that</em>
+to week 6.</li>
+</ol>
+<hr />
+<h3 id="homework-ai-in-scholarship">Homework: AI in Scholarship</h3>
+<ul>
+<li>What do you say?</li>
+<li>Let’s take the group exercise, and write one or two sentences about
+how you thought AI contributed</li>
+</ul>
+</body>
+</html>

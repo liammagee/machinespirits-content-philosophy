@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>week-1</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 id="introduction-to-generative-ai-for-education">Introduction to
+Generative AI for Education</h1>
+<h2 id="generative-ai-for-education-overview">Generative AI for
+Education: Overview</h2>
+<p>Welcome to Introduction to Generative AI for Education!</p>
+<p>Essential links:</p>
+<ul>
+<li>CGScholar:
+https://cgscholar.com/communities/141?active-tab=feed&amp;active-switch=members</li>
+<li>Weekly Workshop Zoom link -
+https://illinois.zoom.us/j/86072392676?pwd=2jtxdxceBVvTv2BSxnbMoS0mmFkvwV.1</li>
+<li>Google doc -
+https://docs.google.com/document/d/1ilFZ02OM83n-mnHsmUPPMgE61k7NIAG4ZB0cX5Nc2BY/edit?tab=t.0#heading=h.nrro8a66e42m</li>
+</ul>
+<pre class="notes"><code>Welcome to *Introduction to Generative AI for Education*!
+
+What&#39;s this course about? Why does this course exist? In 2026, in some sense, we no longer need a course introducing us to Generative AI - for education or for anything else. It might even seem, for those of us following the latest developments of OpenAI&#39;s ChatGPT, Anthropic&#39;s Claude, or new agentic systems like OpenClaw, as though we are even reaching the point of *singularity* in the field of education. A point at which, at least for self-paced adult learners, the role of traditional education might be receding into the shadows of tradition itself.
+
+This course will contest this characterization. But in 2026 it can seem difficult to how to approach a technology that has become so popular precisely because it is &quot;professorial&quot;. The approach we will take will lean in on the idea that &quot;generative AI&quot; is an object we need to approach from several perspectives or lens. Accordingly, each week after this one will outline one of these perspectives - historical, technological, practitioner, critical, pedagogical and futurological. These lens do not comprise a single coherent doctrine of AI - and I will be encouraging you to notice and document the tensions between them. But they will help us move away from can at times appear narrow discourses of unbridled hope or hopeless fear. By the end of the course, I am hoping these different perspectives will each introduce AI in a way that adds something to your own theory and practice.
+
+For this week there are no readings. We will be introducing ourselves - sharing something of our experiences as researchers and practitioners in AI – and I will also discuss the assessment and structure for the course in more detail. Look forward to seeing you next week!
+
+
+Additional comments:
+
+The large number of students here already signals a strong interest all the same. It is as though despite the vast volumes of materials about Generative AI - much generated of course by generative AI itself - there is still something we wish to get out of active discussion of the topic. 
+
+The course was first run by me last year, and the approach will be largely the same. However I have expanded what was 90-120 minute sessions into a full 2 hours 50 minute session, as I felt we were frequently short of time for discussions and practice. So nominally we&#39;ll blocking out the time if we need it - with a 10 minute break roughly half way through. 
+
+Each session, including today, will be run as a workshop - a mix of theory / lecture, discussion and practice. 
+
+</code></pre>
+<hr />
+<h2 id="course-description">Course Description</h2>
+<p>From the course description:
+https://ldlprogram.web.illinois.edu/overview/course-descriptions/</p>
+<blockquote>
+<p>Explores applications of Generative AI in Education. Topics include:
+AI predecessors (symbolic, data-driven, and connectionist AI); Large
+Language Models and statistical approaches to meaning in text; machine
+learning (supervised, unsupervised and reinforcement learning, including
+deep learning and neural nets); chatbot architectures and prompt
+engineering; fine-tuning for domain-specific applications; multimodal
+AI; guardrails (including managing AI bias, “jailbreaks,”
+“hallucinations,” explainability, intellectual property, privacy and
+security); and applications of Generative AI in education</p>
+</blockquote>
+<blockquote>
+<p>All required material (video lectures, readings etc.) will be
+provided to students, as per the tentative schedule below.</p>
+</blockquote>
+<hr />
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul>
+<li>Develop an understanding of generative AI according to the six
+themes:
+<ul>
+<li>Historical</li>
+<li>Technological</li>
+<li>Practitioner</li>
+<li>Critical</li>
+<li>Pedagogical</li>
+<li>Futurological</li>
+</ul></li>
+<li>Respond to AI with a self-styled “intervention” that addresses a
+pedagogical or social challenge</li>
+<li>Be prepared to address a range of scenarios raised by AI in
+education</li>
+</ul>
+<pre class="notes"><code>Why &quot;intervention&quot;? the idea is that we want to identify some kind of problem that unaddressed or question that is unknown. The intervention aims to mobilize AI itself to produce something creative, disruptive, provocative, engaging, critical - this way we will gain both practical knowledge in use of AI and theoretical or critical knowledge about AI in the context of education. 
+
+Accordingly, much of our focus in these sessions will be on design-style workshops - thinking through the readings and applying them to a rolling brief of our intervention. 
+</code></pre>
+<hr />
+<h2 id="contact-details">Contact Details</h2>
+<p>Dr Liam Magee Email: lmagee@illinois.edu No office hours or TA; can
+meet by appointment. Will aim to be responsive.</p>
+<h3 id="about-me">About Me</h3>
+<ul>
+<li>Australian academic</li>
+<li>Started at UIUC in Fall 2024</li>
+<li>Focussed on AI, society and technology</li>
+<li>Interested in intersections with philosophy and psychoanalysis</li>
+</ul>
+<hr />
+<h2 id="course-information">Course Information</h2>
+<p>Weekly Workshops: <strong>Mondays, March 23 to May 4, 5:30 -
+8:20</strong></p>
+<p>Each session: likely 2x - Theory / Lecture - ~30 minutes - Breakout
+rooms / Group Discussion / Readings - ~30 minutes - Practice - ~30
+minutes - With 10 minute interval</p>
+<p>In the spirit of our approach: intervene! Ask questions, make
+comments, correct, provoke (to a point)!</p>
+<pre class="notes"><code>With lectures: I encourage you to chat / raise hands / ask questions / comment. Lots of material to work through, but hope to keep things dynamic and interactive. 
+</code></pre>
+<hr />
+<h2 id="structure">Structure</h2>
+<p>Built around 6 weekly themes:</p>
+<p>March 23 - Week 1: Introduction March 30 - Week 2: <strong>Historical
+Lens</strong> April 6 - Week 3: <strong>Technological Lens</strong>
+April 13 - Week 4: <strong>Practitioner Lens</strong> April 20 - Week 5:
+<strong>Critical Lens</strong> April 27 - Week 6: <strong>Pedagogical
+Lens</strong> May 4 - Week 7: <strong>Futurological Lens</strong></p>
+<pre class="notes"><code>Aside from this week, each week will have a specific AI theme or &quot;lens&quot; - a way of viewing, understanding and applying AI in the context of education. I&#39;m aware many of you are teachers, and might be undertaking this course with different motives: to think about how to improve lesson plans with AI; to teach students about AI; to develop policies to address AI plagiarism. Alongside their wider scholarly interests, I&#39;m hoping these different lens will offer something novel through which to see these practical issues in different ways - and that you&#39;ll also have something to contribute to them.
+</code></pre>
+<hr />
+<h2 id="assessment">Assessment</h2>
+<ul>
+<li>Formative: six responses to each week’s questions <strong>(6 x 5% =
+30%)</strong>
+<ul>
+<li>Due midnight Sunday of the following week</li>
+</ul></li>
+<li>Summative - an <em>intervention</em>: <strong>70%</strong>
+<ul>
+<li>Due May 16 11:59PM</li>
+<li>Interim checkpoints:
+<ul>
+<li>Week 4: Demonstrations of AI use</li>
+<li>Week 7: Showcase the “interventions” - virtual conference,
+opportunity for peer feedback.</li>
+</ul></li>
+</ul></li>
+</ul>
+<pre class="notes"><code>Key point is really to acknowledge the weekly activities lead up to the final assessment.
+</code></pre>
+<hr />
+<h2 id="formative-assessment-building-weekly-tasks">Formative Assessment
+Building: Weekly Tasks</h2>
+<p>All assessments are due <strong>Sunday midnight CST</strong> of the
+following week. Six weekly tasks x 5% per cent = 30% overall grade. Each
+response builds towards the final assessment. Aim to write 300-500 words
+per week.</p>
+<p><strong>Week 2 (due April 5 11:59PM): Brainstorming an “Intervention”
+</strong> Indicative Questions: what about the history of AI has
+interested you? Are you surprised with where things have arrived at?
+What is it you feel most needs saying about AI today?</p>
+<p><strong>Week 3 (due April 12 11:59PM): Storyboarding</strong>
+Indicative Questions: What about the technical foundations might be
+important to understand? How much does the non-expert need to know? What
+format &amp; genre are you thinking about?</p>
+<p><strong>Week 4 (due April 19 11:59PM): Practicing AI</strong>
+Indicative Questions: what parts of AI interest you most? Text
+scaffolding? Code generation? Image / video / music production? Having a
+“guide”? What are emerging best practices for AI use? and what works for
+you?</p>
+<p><strong>Week 5 (due April 26 11:59PM): Developing an Edge</strong>
+Indicative Questions: what criticisms of AI resonate for you? Are you
+optimistic some / all can or have been addressed? What, conversely, that
+no overnight AI update is likely to “fix”? And how will you communicate
+this in your intervention?</p>
+<p><strong>Week 6 (due May 2 11:59PM): Consider the Teaching
+“Moment”</strong> Indicative Questions: what would you want others to
+know about AI? Is your lesson direct (e.g. “here’s the lesson…”) or
+indirect (e.g. “something to think about”)? What about this could you
+carry across to a classroom, and at what levels?</p>
+<p><strong>Week 7 (due May 9 11:59PM): Showcasing the
+Intervention</strong> Indicative Questions: how did others respond to
+your intervention? What worked, and what needs worked? What does your
+intervention teach us about the future? What did you learn yourself?</p>
+<pre class="notes"><code>These questions will appear week-to-week. They may vary slightly, but the intent should be clear - to offer opportunity to reflect on the course material. 
+
+Please enter responses in the shared Google Doc. You are encouraged – but not required - to add comments to other people&#39;s responses.
+</code></pre>
+<hr />
+<h2 id="summative-term-assessment-an-intervention">Summative Term
+Assessment: An “Intervention”</h2>
+<p>What kind of intervention? Any of the following artefacts
+<strong>[1]</strong>: - Presentation (15-20 slides) - A0 Conference
+Poster - Research Experiment / Paper - School Curriculum - Policy
+Document - Comic strip - Movie - Mock product pitch / ad campaign for a
+new AI service - Include details of: products/services; prompts; ~cost
+(if any - note use of free services is completely fine) - Intervention
+should involve use of at least 3 of the lens - Respond to a key
+challenge, question or issue about technology</p>
+<p><em>And</em> a <strong>[2]</strong> 500-1,000 word reflection /
+artist’s statement / director’s pitch / researcher’s statement etc (with
+sources) <em>And</em> a <strong>[3]</strong> critical 1,000-2,000 word
+“assessment” of the intervention (follows from week 7 showcase)</p>
+<p><strong>Week 8 (due May 16 11:59PM): Refinement, Reflection,
+Submission</strong></p>
+<pre class="notes"><code>Task: Develop an **intervention** in the field of education that employs AI in a significant but critical way.
+
+What kind of intervention? Any of the following:
+ - Presentation (15-20 slides)
+ - A0 Conference Poster 
+ - Research Paper
+ - Curriculum
+ - Policy Document
+
+It should aim to integrate something of each of six “lenses” we’ve introduced in this course: historical, technological, practitioner, critical, pedagogical, futurological. 
+</code></pre>
+<hr />
+<h2 id="assessment-criteria-formative-weekly-responses">Assessment
+Criteria: Formative Weekly Responses</h2>
+<ul>
+<li>Cite at least one of the weekly readings / materials</li>
+<li>Demonstate critical engagement with the material</li>
+<li>Appropriate length, tone, citation practices</li>
+<li>Accumulates into <em>summative assessment</em></li>
+</ul>
+<hr />
+<h2 id="assessment-criteria-summative-final-assessment">Assessment
+Criteria: Summative Final Assessment</h2>
+<ul>
+<li><em>Creative responsiveness</em> of intervention to challenges and
+opportunities of AI</li>
+<li>Evidence of <em>critical engagement</em> to course concepts and
+materials</li>
+<li><em>Coherence</em> and <em>rigor</em> of accompanying statement</li>
+<li>Evidence of <em>reflection</em> and <em>reflexivity</em> in your own
+assessment</li>
+<li>Incorporation of at least one recognizable educational or social
+<em>theoretical</em> orientation that anchors the intervention (we will
+discuss this)</li>
+<li>Use of at least <em>six</em> relevant academic references</li>
+<li>Assessed in <strong>total</strong> (intervention / reflection /
+self-assessment)</li>
+</ul>
+<pre class="notes"><code>
+I&#39;ll be providing an example case study later in this session.
+</code></pre>
+<hr />
+<h2 id="process-of-submission-why-a-single-google-doc">Process of
+submission: Why a single Google Doc?</h2>
+<ul>
+<li>Keeps the idea of workshops / brainstorming / iterating / design
+thinking</li>
+<li>Enables peer sharing / review</li>
+<li>Weekly accumulation becomes easier to track</li>
+<li>But alternatives (e.g. Word submissions) are fine - just let me
+know</li>
+</ul>
+<hr />
+<h2 id="a-note-on-ai-use-for-this-course">A Note on AI use for this
+course</h2>
+<p>AI use with <em>acknowledgement</em> is <em>encouraged</em> for the
+intervention artefact [1] itself. We will be discussing how this might
+work as we progress through the course. For weekly activities, and for
+reflection [2] and assessment [3] parts of the final project, it
+shouldn’t be necessary or desirable.</p>
+<hr />
+<h2 id="a-note-on-accessibility">A Note on Accessibility</h2>
+<p>This course is aimed at providing wide exposure to range of tools as
+well as readings. Parts of these tools - including these presentations -
+will be using AI as a way to exemplify some of what we can do with AI.
+That does raise issues though. I will be checking content for WCAG 2.1
+Level AA compliance, but please let me know if any materials are
+inaccessible.</p>
+<hr />
+<h3 id="week-2-6-reading-group-carousels">Week 2-6: Reading Group
+Carousels</h3>
+<ul>
+<li>Rotating groups: pick a reading, discuss</li>
+<li>Choose a spokesperson</li>
+<li>Return to the wider group: present the reading and respond</li>
+</ul>
+<pre class="notes"><code>These will take roughly 1/3 of our time, and should act as bridges between theory / lecture material and practical activities. </code></pre>
+<hr />
+<h2 id="course-resources">Course resources</h2>
+<ul>
+<li>Shared Google Doc: each week - Zoom chat, other links will be added
+to Google Docs as an informal wiki</li>
+</ul>
+<h3 id="for-technical-topics">For technical topics:</h3>
+<ul>
+<li>Andrej Karpathy: <a
+href="https://www.youtube.com/@AndrejKarpathy">Andrej Karpathy -
+YouTube</a>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=7xTGNNLPyMI">Deep Dive into
+LLMs like ChatGPT - YouTube</a> - very long, watch in parts</li>
+</ul></li>
+<li>3brown1blue: <a
+href="https://www.youtube.com/watch?v=aircAruvnKk&amp;list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi">But
+what is a neural network? | Deep learning chapter 1 - YouTube</a></li>
+</ul>
+<h3 id="ai-tools">AI tools</h3>
+<ul>
+<li>Microsoft Co-pilot, ChatGPT, Google Gemini: available at UIUC
+<ul>
+<li><a href="https://genai.illinois.edu/ai-apps/">AI Apps – Enterprise
+GenAI</a></li>
+</ul></li>
+<li>Others are available with free versions: Claude, Midjourney etc</li>
+<li><strong>None of the assessment will depend upon the choice or level
+of AI tool</strong>.</li>
+</ul>
+<hr />
+<h2 id="setting-the-scene-karpathy-on-agents">Setting the Scene:
+Karpathy on Agents</h2>
+<ul>
+<li>See 0:00 - 9:10.</li>
+</ul>
+<hr />
+<p><a href="https://www.youtube.com/watch?v=kwSVtQ7dziU">The End of
+Coding: Andrej Karpathy on Agents, AutoResearch, and the Loopy Era of AI
+- YouTube</a></p>
+<hr />
+<h2 id="short-game-telephone-ai---in-groups">Short game: Telephone-AI -
+in Groups</h2>
+<ul>
+<li>Use Zoom chat</li>
+<li>Go to ChatGPT</li>
+<li>First person takes an answer I’ll provide
+<ul>
+<li>Has to guess the question</li>
+<li>Enters the question into AI</li>
+<li>Copies the answer, messages the next person</li>
+<li>Repeat, until everyone has had a guess</li>
+<li>Last person answers: What was the <em>original question</em>?</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="discussion-introductions">Discussion &amp; Introductions</h2>
+<p>6 Questions - any or all of:</p>
+<ol type="1">
+<li>What has been your experience of generative AI in education?</li>
+<li>What is your level of technical expertise?</li>
+<li>What criticisms have you had of generative AI?</li>
+<li>How have you applied it - in teaching or elsewhere, in professional
+or personal life?</li>
+<li>What are your hopes and fears about the future of AI?</li>
+<li>What do you think is still needed for generative AI in education
+today?</li>
+</ol>
+<pre class="notes"><code>
+Introduce yourself - who you are, your professional background, your interest in education, your experience with AI.</code></pre>
+<hr />
+<p>Break - 10 minutes</p>
+<hr />
+<h2 id="resume-lessons-from-the-discussion">Resume: Lessons from the
+discussion?</h2>
+<p>What was the Telephone-AI question?</p>
+<hr />
+<h2 id="ai-in-2026-an-opinionated-take">AI in 2026: An Opinionated
+Take</h2>
+<p>What’s going on in the world of AI today?</p>
+<hr />
+<h2 id="ai-consolidation">AI Consolidation</h2>
+<ul>
+<li>“Big Three”: OpenAI’s ChatGPT, Anthropic’s Claude, Google’s Gemini
+<ul>
+<li>Other big names have slowed down: Xai, Meta, Microsoft Copilot</li>
+<li>Apple: using Google Gemini</li>
+<li>Amazon: investor in Anthropic, provider for OpenAI</li>
+</ul></li>
+<li>Shift from free / $20 per month to:
+<ul>
+<li>Advertising (ChatGPT)</li>
+<li>Higher tier models ($200 per month)</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="rise-of-open-source-models">Rise of open source models</h2>
+<ul>
+<li>Mostly developed in China
+<ul>
+<li>Xiaomi</li>
+<li>Alibaba Qwen</li>
+<li>Kimi</li>
+<li>Minimax</li>
+<li>DeepSeek</li>
+</ul></li>
+<li>Mistral (France)</li>
+<li>Nemotron (Nvidia)</li>
+<li>Estimated 3-9 months beyond commercial models</li>
+<li>Issues around “benchmaxxing”; IP theft(!); hosting / exfiltration of
+data</li>
+</ul>
+<hr />
+<h2 id="contradictory-tendencies-increasing-demand">Contradictory
+tendencies: Increasing demand…</h2>
+<ul>
+<li>Scaling laws (Week 3)</li>
+<li>Bigger models</li>
+<li>More “thinking” (inference) time</li>
+<li>Huge investment data centers, power plants</li>
+</ul>
+<hr />
+<h2 id="but-also">…but also:</h2>
+<ul>
+<li>More efficient GPUs (see Nvidia)</li>
+<li>Better algorithms (especially from Chinese labs)</li>
+<li>Better hardware (Apple): Open source models run locally</li>
+</ul>
+<p>In Workshop 4 we’ll be examining criticisms of the environmental and
+social costs of AI. As a note for now: these differing trends make long
+term estimation hard to predict.</p>
+<hr />
+<h2 id="agentive-ai">Agentive AI</h2>
+<ul>
+<li>Code automation
+<ul>
+<li>OpenAI Codex</li>
+<li>Claude Code</li>
+<li>Google Gemini</li>
+</ul></li>
+<li>Computer use:
+<ul>
+<li>OpenClaw: local agent, social media for chatbots</li>
+<li>Claude Cowork</li>
+</ul></li>
+<li>Design:
+<ul>
+<li>Google Stitch, Nano Banana 2, Midjourney</li>
+<li>Embedded tools in Adobe, Figma etc</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="education-issues-cons">Education Issues: Cons</h2>
+<ul>
+<li>Plagiarism &amp; Cognitive Offloading</li>
+<li>Biased Results &amp; Unequal Access</li>
+<li>Potential Obsolescence of Teachers?</li>
+<li>Perverse Effects: Automated Assignments &gt; Automated Grading
+<ul>
+<li>Bernard Stiegler’s <em>The Automatic Society</em>?</li>
+</ul></li>
+<li>Subtle Changes: transfer of expertise from human to machine?</li>
+</ul>
+<hr />
+<h2 id="education-issues-pros">Education Issues: Pros</h2>
+<ul>
+<li>Personalized, adaptive learning</li>
+<li>Accessibility</li>
+<li>Can support Universal Design for Learning
+<ul>
+<li>Attractive as a form of inclusive education</li>
+<li>But expensive, time-consuming</li>
+<li>Can AI generate multiple forms of engagement, representation,
+activities?</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="however-bigger-picture-issues">However: “Bigger Picture”
+Issues</h2>
+<ol type="1">
+<li>Predicted Erasure of White-Collar (Cognitive) Labor
+<ul>
+<li>Programming</li>
+<li>Design</li>
+<li>Games</li>
+<li>Entry-level professions</li>
+</ul></li>
+<li>What happens When AI works properly? Social media as Harbinger:
+Addictive, Compulsive AI; AI “Psychosis”</li>
+<li>Concentration of Power: Owners of AI; Power Users of AI; The rest of
+us?</li>
+</ol>
+<hr />
+<h2 id="what-do-we-need-to-learn-now-what-do-we-need-to-teach">What do
+we need to learn now? What do we need to teach?</h2>
+<ul>
+<li>“Core” Machine Learning? highly specialized (calculus, probability,
+linear algebra)</li>
+<li>“Prompt engineering”? But AI can write prompts…</li>
+<li>Hardware? Again, specialized - traditionally male dominated</li>
+<li>Services?
+<ul>
+<li>plumbing, electrician - Jensen Huang - but what about robots?</li>
+<li>Care industries? (hospitals, childcare, counselling)</li>
+</ul></li>
+<li>Humanities? Peter Thiel…</li>
+</ul>
+<p>No easy answers.</p>
+<hr />
+<figure>
+<img src="images/pasted-image-2026-03-23T03-45-24-207Z-faad918f.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h2 id="crisis-in-higher-ed">Crisis in Higher Ed</h2>
+<ul>
+<li>Spiralling costs</li>
+<li>Increased distrust in “traditional” knowledge, expertise (the COVID
+effect? Mis/disinformation?)</li>
+<li>Lack of effective pathways to professional, higher paid labor</li>
+<li>Not yet, but anticipated</li>
+</ul>
+<hr />
+<h2 id="case-study-geist-in-the-machine-magee-2026">Case Study:
+<em>Geist</em> in the Machine (Magee 2026)</h2>
+<ul>
+<li>Geist in the Machine: Simulating Recognition and Inner Dialogue in
+AI-Mediated Teaching and Research -
+https://arxiv.org/abs/2603.10450</li>
+<li>What is it? Experiment over winter to test (a) approaches to AI
+teaching and (b) developments in AI research</li>
+<li>Builds upon earlier work (<em>The Drama Machine</em>, The Drama
+Machine: Simulating Character Development with LLM Agents)</li>
+</ul>
+<hr />
+<h2 id="case-study-key-concepts">Case Study: Key Concepts</h2>
+<ul>
+<li><em>Vibe coding</em> (Karpathy)</li>
+<li>Vibe scholarship?
+<ul>
+<li>Really: Vibe-then-validate: version 1.0 -&gt; version 2.0</li>
+</ul></li>
+<li>Centrality of <em>recognition</em> for self-consciousness (Hegel,
+1807; Honneth 1996)</li>
+<li>Importance of the <em>unconscious</em> (Freud 1923)</li>
+<li>Rise of <em>nonconscious cognition</em> (Katherine Hayles 2017)</li>
+<li>But <strong>what happens when we <em>know</em> we are not recognized
+but we <em>feel</em> recognized by a machine</strong>?
+<ul>
+<li>Nonconscious <em>re</em>cognition (Magee 2026)</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="what-ai-can-do-for-research">What AI can do for research</h2>
+<ul>
+<li>Generate prompts</li>
+<li>Generate simulated dialogue</li>
+<li>Generate rubrics for evaluation</li>
+<li>Generate test harness to apply rubric to evaluate prompts and
+dialogue</li>
+<li>Generate quantitative analysis of rubric scores (control vs
+experiment)</li>
+<li>Generate qualitative analysis of dialogue (word frequencies,
+thematic analysis)</li>
+<li>Generate <strong>NONSENSE</strong> - subtle bugs can percolate
+through to produce “theoretical results”. Need to validate, iterate -
+still vital “human-in-the-loop” - <em>we</em> are the triangulation</li>
+</ul>
+<hr />
+<h2 id="connection-to-this-course">Connection to this course</h2>
+<ul>
+<li>Ideas for using AI to produce “interventions” - be
+<strong>creative</strong> (“vibe coding” etc), but also be prepared to
+<strong>verify</strong> and <strong>validate</strong></li>
+<li>Think about wider impacts of AI-generated knowledge
+<ul>
+<li>and what does this mean for the crisis in higher - and really all -
+education?</li>
+</ul></li>
+<li>How does your choice of intervention - story, research, film,
+report, curriculum, policy - condition how you do or do not use AI
+yourself?</li>
+</ul>
+<hr />
+<h2 id="for-next-week-historical-lens">For next week: Historical
+Lens</h2>
+<p>Questions to keep in mind:</p>
+<ul>
+<li>How did we get here? What are the key events in the history of
+knowledge that led to AI?
+<ul>
+<li>What mattered <em>mathematically</em>?</li>
+<li>What mattered <em>computationally</em>?</li>
+<li>What mattered <em>economically</em>?</li>
+<li>What mattered <em>socially</em> and <em>politically</em>?</li>
+</ul></li>
+<li>Hypothetical 1: Why wasn’t AI invented in India / China / Ancient
+Greece / elsewhere?</li>
+<li>Hypothetical 2: How did an obscure company focussed on gaming cards
+in the 1990s become the biggest in the world?</li>
+<li>Hypothetical 3: When did machines begin to <em>learn</em>? Or are
+they even <em>learning</em> now?</li>
+</ul>
+<p>https://cgscholar.com/posts/1199?communityId=141</p>
+<hr />
+<p>End of Week 1! Questions, Comments?</p>
+<!--
+
+---
+
+Workshop 1: Historical Lens
+
+[docs.google.com](https://docs.google.com/presentation/d/1Ef2cOYSKH5goLC6U6ikBKZf7aBwqZtn2ifGeihnn-l4/edit?slide=id.p#slide=id.p)
+
+
+---
+
+Workshop 2: Technological Lens
+
+[docs.google.com](https://docs.google.com/presentation/d/1Hlvpcow63mGnqoDLvaCIOBu_I5LKFBc5qT2TkSdzDXo/edit?slide=id.p#slide=id.p)
+
+---
+
+Workshop 3: Practitioner Lens
+
+[Gen AI - Week 3 - Google Slides](https://docs.google.com/presentation/d/1tm5q1JTfKU-YSJIKuFny1D2aU8-jMtwVxfRyBx9yGc4/edit?slide=id.p#slide=id.p)
+
+---
+
+Workshop 4: Critical Lens
+
+[docs.google.com](https://docs.google.com/presentation/d/1Sil2dxk73gQZInd99n3f2PvqsZkLzFqLCDxUTxHqNCk/edit?slide=id.p#slide=id.p)
+
+[Gen AI - Week 5 - Google Slides](https://docs.google.com/presentation/d/1Jfm7tsq58fX0kEOUcNGvuSKeoXW0flGFPUwpMWu5pmA/edit?usp=sharing)
+
+
+
+---
+
+Workshop 5: Pedagogical Lens (II)
+
+[Gen AI - Week 6 - Google Slides](https://docs.google.com/presentation/d/1-6sre1_FQSRBWxg03xjLYbp77iSljhDitDGbEhHzFhY/edit?slide=id.p#slide=id.p)
+
+
+---
+
+Workshop 6: Showcase
+
+Showcase
+
+
+
+-->
+</body>
+</html>

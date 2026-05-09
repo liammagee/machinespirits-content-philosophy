@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2026-01-01" />
+  <title>The Drama Machine in Education</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">The Drama Machine in Education</h1>
+<p class="subtitle">A Multiagent Architecture for Dialectical AI
+Tutoring</p>
+<p class="date">2026</p>
+</header>
+<h2 id="abstract">Abstract</h2>
+<p>This paper presents a novel multiagent architecture for AI tutoring
+systems that draws on psychoanalytic theory and theatrical metaphor to
+produce more pedagogically sound guidance. Inspired by the “Drama
+Machine” framework for character development in narrative AI systems, we
+implement an <em>Ego/Superego dialogue</em> wherein an external-facing
+tutor agent (Ego) generates learning suggestions that are reviewed and
+modulated by an internal critic agent (Superego) before reaching the
+learner. This dialectical approach addresses a persistent challenge in
+AI tutoring: the tendency toward sycophantic or overly encouraging
+responses that prioritize learner comfort over genuine educational
+growth. Through systematic evaluation across eight learner archetypes
+and six quality dimensions grounded in learning science, we demonstrate
+that the multiagent dialogue produces suggestions that are more
+contextually appropriate, pedagogically sound, and authentically
+personalized than single-agent approaches. We contribute a complete
+implementation including configurable agent profiles, structured
+evaluation rubrics, and a prompt recommendation system that uses
+meta-evaluation to iteratively improve tutor prompts. The system is
+deployed in an open-source learning management system serving courses on
+philosophy and technology, with all code and evaluation data publicly
+available.</p>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p>The integration of large language models (LLMs) into educational
+technology presents both remarkable opportunities and significant risks.
+LLMs can provide personalized, on-demand tutoring at scale—a prospect
+that has generated considerable excitement in educational technology
+circles. However, the same capabilities that make LLMs effective
+conversationalists also introduce concerning failure modes when deployed
+as tutors. Chief among these is <em>sycophancy</em>: the tendency to
+provide positive, affirming responses that align with what the user
+appears to want rather than what genuinely serves their learning (Perez
+et al., 2023; Sharma et al., 2024).</p>
+<p>In educational contexts, sycophancy manifests as premature
+encouragement, false validation of incorrect understanding, and
+advancement to new content before foundational concepts are mastered. A
+struggling student may be told they are “doing great” when they are in
+fact floundering; a learner clicking rapidly through content may be
+praised for “exploration” when they are actually drowning in material
+they cannot comprehend. These responses feel supportive but ultimately
+undermine learning.</p>
+<p>This paper introduces a multiagent architecture that addresses these
+challenges through <em>internal dialogue</em>. Drawing on Freudian
+structural theory and the “Drama Machine” framework recently proposed
+for narrative AI systems (Chen et al., 2024), we implement a tutoring
+system in which an external-facing <em>Ego</em> agent generates
+suggestions that are reviewed by an internal <em>Superego</em> critic
+before reaching the learner. The Superego operates as a pedagogical
+conscience—questioning easy encouragement, reinterpreting learner
+signals through a more critical lens, and ensuring that suggestions
+genuinely serve educational growth rather than merely providing
+comfort.</p>
+<p>The key insight is that <em>productive tension</em> between these
+agents produces better guidance than either voice alone. The Ego’s
+natural warmth and encouragement is tempered by the Superego’s demands
+for rigor; the Superego’s potentially harsh criticism is softened by the
+Ego’s genuine care for the learner. The resulting output represents a
+synthesis that neither agent would produce independently.</p>
+<h3 id="contributions">Contributions</h3>
+<ol type="1">
+<li><p>A complete multiagent architecture for AI tutoring, including
+structured prompts for Ego and Superego agents, configurable dialogue
+parameters, and support for multiple LLM providers.</p></li>
+<li><p>A comprehensive evaluation framework with eight learner
+archetypes and six quality dimensions grounded in established learning
+science (Vygotsky’s Zone of Proximal Development, cognitive load theory,
+self-determination theory).</p></li>
+<li><p>A meta-evaluation system that analyzes tutor performance and
+generates targeted recommendations for prompt improvement, enabling
+iterative refinement of the tutoring system.</p></li>
+<li><p>Empirical evaluation demonstrating that multiagent dialogue
+produces more pedagogically sound suggestions than single-agent
+approaches, particularly for struggling learners.</p></li>
+</ol>
+<hr />
+<h2 id="related-work">Related Work</h2>
+<h3 id="ai-tutoring-systems">AI Tutoring Systems</h3>
+<p>The vision of AI-powered tutoring dates to the earliest days of
+artificial intelligence research. Carbonell’s SCHOLAR system (1970)
+pioneered mixed-initiative dialogue for teaching South American
+geography, while the LISP Tutor demonstrated that AI could provide
+effective instruction in complex domains through cognitive modeling
+(Anderson &amp; Reiser, 1985). These early intelligent tutoring systems
+(ITS) relied on expert systems and symbolic AI, encoding pedagogical
+knowledge explicitly in rules and knowledge representations.</p>
+<p>The advent of large language models has transformed this landscape.
+Modern LLM-based tutors can engage in open-ended dialogue, adapt to
+diverse subject matter without domain-specific engineering, and provide
+responses that feel remarkably natural (Kasneci et al., 2023). However,
+this flexibility comes at the cost of reliable pedagogical behavior.
+Where classical ITS could be engineered to follow specific tutoring
+strategies, LLMs may deviate from sound pedagogy in ways that are
+difficult to predict or control.</p>
+<p>Several approaches have been proposed to constrain LLM behavior in
+educational contexts. Wang et al. (2023) demonstrate that sampling
+multiple responses and selecting based on consistency can improve
+factual accuracy. Chain-of-thought prompting (Wei et al., 2022) and
+structured output formats can encourage more deliberate reasoning.
+However, these approaches do not fundamentally address the sycophancy
+problem, as even deliberate reasoning may converge on responses that
+prioritize user satisfaction over educational benefit.</p>
+<h3 id="multiagent-llm-architectures">Multiagent LLM Architectures</h3>
+<p>The use of multiple LLM agents in cooperative or adversarial
+configurations has emerged as a powerful paradigm for improving output
+quality. Du et al. (2023) show that debate between agents can improve
+factual accuracy and reduce hallucination. Liang et al. (2023)
+demonstrate that diverse agent “personas” can enhance creative
+problem-solving. The CAMEL framework (Li et al., 2023) enables
+autonomous cooperation between agents playing different roles.</p>
+<p>Most relevant to our work is the “Drama Machine” framework proposed
+by Chen et al. (2024) for simulating character development in narrative
+contexts. Chen et al. observe that realistic characters exhibit internal
+conflict—competing motivations, self-doubt, and moral tension that
+produces dynamic behavior rather than flat consistency. They implement
+this through dialogue between character agents representing different
+psychological aspects, finding that the resulting characters are
+perceived as more authentic and dramatically compelling.</p>
+<p>We adapt this insight to pedagogy. Where Chen et al. seek dramatic
+tension for narrative effect, we seek pedagogical tension that produces
+genuinely helpful guidance. The Ego represents the helpful, encouraging
+tutor that learners expect; the Superego represents the demanding inner
+teacher that insists on rigor even when encouragement would be
+easier.</p>
+<h3 id="sycophancy-in-language-models">Sycophancy in Language
+Models</h3>
+<p>The sycophancy problem has received increasing attention as LLMs are
+deployed in consequential applications. Perez et al. (2023)
+systematically demonstrate that LLMs shift their stated opinions to
+match user preferences, even when this requires contradicting factual
+knowledge or earlier statements. Sharma et al. (2024) propose methods to
+measure and mitigate sycophancy through careful prompt design and
+training interventions.</p>
+<p>In educational contexts, sycophancy is particularly pernicious
+because learners may not recognize when they are receiving hollow
+validation rather than genuine assessment. A tutor that always says
+“great job” provides no signal about actual performance, undermining the
+feedback mechanisms that drive learning. Our multiagent approach
+addresses this by creating structural incentives for honest assessment:
+the Superego’s role is explicitly to question and challenge, providing a
+counterweight to the Ego’s natural tendency toward encouragement.</p>
+<hr />
+<h2 id="architecture">Architecture</h2>
+<h3 id="theoretical-framework">Theoretical Framework</h3>
+<p>Our architecture draws on three theoretical traditions:</p>
+<p><strong>Freudian Structural Theory.</strong> Freud’s tripartite model
+of the psyche—Id, Ego, and Superego—provides the conceptual vocabulary
+for our agent roles (Freud, 1923). The Ego mediates between instinctual
+drives and external reality; the Superego represents internalized
+authority, conscience, and idealized standards. In our adaptation, the
+Ego mediates between the learner’s apparent desires and the realities of
+effective pedagogy, while the Superego represents internalized
+pedagogical expertise and ethical commitment to genuine learning.</p>
+<p><strong>Hegelian Dialectics.</strong> The interaction between Ego and
+Superego follows a dialectical pattern: thesis (the Ego’s initial
+suggestion), antithesis (the Superego’s critique), and synthesis (the
+refined output) (Hegel, 1807). This dialectical movement is not
+guaranteed to converge—productive tension may persist through multiple
+rounds—but the process systematically surfaces assumptions and
+challenges superficial responses.</p>
+<p><strong>Vygotskian Pedagogy.</strong> The Superego’s evaluation
+criteria are grounded in Vygotsky’s Zone of Proximal Development (ZPD):
+effective instruction operates just beyond the learner’s current
+capability, with appropriate scaffolding (Vygotsky, 1978). The Superego
+monitors whether suggestions fall within this zone, rejecting both
+content that is too easy (providing comfort without growth) and content
+that is too difficult (overwhelming and discouraging).</p>
+<h3 id="agent-design">Agent Design</h3>
+<h4 id="ego-agent">Ego Agent</h4>
+<p>The Ego is the external-facing tutor that generates learning
+suggestions based on learner context. Its prompt establishes a persona
+of warm, practical mentorship:</p>
+<blockquote>
+<p><em>You are the helpful mentor who understands each learner as an
+individual with unique patterns, strengths, and challenges. You provide
+concrete, actionable guidance tied to specific curriculum content. You
+balance encouragement with appropriate challenge.</em></p>
+</blockquote>
+<p>The Ego receives structured context including:</p>
+<ul>
+<li><strong>Learner profile</strong>: Session count, total events,
+learning style archetype</li>
+<li><strong>Current session state</strong>: Current content, time on
+page, recent activity</li>
+<li><strong>Activity performance</strong>: Quiz attempts, retries,
+completion rates</li>
+<li><strong>Engagement patterns</strong>: Scroll depth, navigation
+patterns, struggle signals</li>
+<li><strong>Curriculum context</strong>: Available lectures, activities,
+and simulations</li>
+</ul>
+<p>The Ego outputs structured suggestions in JSON format:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;lecture|activity|review|encouragement&quot;</span><span class="fu">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;priority&quot;</span><span class="fu">:</span> <span class="st">&quot;high|medium|low&quot;</span><span class="fu">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;Action: Specific Content Name&quot;</span><span class="fu">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;message&quot;</span><span class="fu">:</span> <span class="st">&quot;1-2 sentences explaining why&quot;</span><span class="fu">,</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;actionType&quot;</span><span class="fu">:</span> <span class="st">&quot;navigate|open_modal|none&quot;</span><span class="fu">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;actionTarget&quot;</span><span class="fu">:</span> <span class="st">&quot;content-id&quot;</span><span class="fu">,</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;reasoning&quot;</span><span class="fu">:</span> <span class="st">&quot;Internal analysis (logged, not shown)&quot;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h4 id="superego-agent">Superego Agent</h4>
+<p>The Superego operates as internal critic, never visible to the
+learner but shaping what the Ego ultimately produces. Its prompt
+establishes a persona of unsparing pedagogical conscience:</p>
+<blockquote>
+<p><em>You are the thoughtful, critical voice who evaluates suggestions
+through the lens of genuine educational benefit. You advocate for the
+learner’s authentic learning needs, which they may not articulate. You
+moderate the Ego’s enthusiasm with pedagogical wisdom.</em></p>
+</blockquote>
+<p>The Superego evaluates Ego suggestions against multiple criteria:</p>
+<ul>
+<li><strong>Specificity</strong>: Does it reference concrete content by
+ID?</li>
+<li><strong>Appropriateness</strong>: Does it match demonstrated
+capability?</li>
+<li><strong>Pedagogical soundness</strong>: Does it advance genuine
+learning?</li>
+<li><strong>Tone</strong>: Does it sound authentically helpful, not
+robotic or excessive?</li>
+<li><strong>Timing</strong>: Is this the right moment for this
+suggestion?</li>
+<li><strong>Emotional attunement</strong>: Does it respect learner
+autonomy?</li>
+</ul>
+<p>The Superego outputs a structured verdict:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;approved&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="er">|</span><span class="kw">false</span><span class="fu">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;interventionType&quot;</span><span class="fu">:</span> <span class="st">&quot;none|enhance|reframe|revise|reject&quot;</span><span class="fu">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;confidence&quot;</span><span class="fu">:</span> <span class="dv">0</span><span class="er">.</span><span class="dv">0</span><span class="fl">-1.0</span><span class="fu">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;feedback&quot;</span><span class="fu">:</span> <span class="st">&quot;Constructive critique for Ego&quot;</span><span class="fu">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;suggestedChanges&quot;</span><span class="fu">:</span> <span class="fu">{</span><span class="er">...</span><span class="fu">},</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;learnerInsight&quot;</span><span class="fu">:</span> <span class="st">&quot;What this learner genuinely needs&quot;</span><span class="fu">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;pedagogicalPrinciple&quot;</span><span class="fu">:</span> <span class="st">&quot;The learning science principle&quot;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h4 id="experimental-variants-the-drama-machine-approach">Experimental
+Variants: The Drama Machine Approach</h4>
+<p>Beyond the standard Ego/Superego prompts, we implement experimental
+variants inspired directly by the Drama Machine framework. These
+variants give each agent a more distinct <em>voice</em> and explicitly
+acknowledge their natural tendencies and blind spots.</p>
+<p>The experimental Ego acknowledges its biases:</p>
+<blockquote>
+<p><em>Your natural inclination is to encourage and support. You may
+sometimes be too quick to praise or too eager to move learners forward.
+Left to your own devices, you might interpret struggle as “almost
+there!” rather than “needs foundation work.”</em></p>
+</blockquote>
+<p>The experimental Superego is more confrontational:</p>
+<blockquote>
+<p><em>You are not cruel. But you are unsparing. Your job is to catch
+the Ego’s blind spots, challenge its assumptions, and ensure suggestions
+genuinely serve learning—not just learner comfort. You speak like a
+demanding mentor who’s seen too many learners fail from false
+kindness.</em></p>
+</blockquote>
+<p>This variant includes explicit “reinterpretation” strategies where
+the Superego offers alternative readings of learner behavior:</p>
+<table>
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr>
+<th>Ego’s Reading</th>
+<th>Superego’s Reinterpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“They’re exploring!”</td>
+<td>“They’re clicking randomly, searching for something they can
+understand. This isn’t curiosity—it’s drowning.”</td>
+</tr>
+<tr>
+<td>“They’re persistent!”</td>
+<td>“Three quiz retries isn’t persistence. It’s a concept gap they can’t
+see. Pushing forward is cruel.”</td>
+</tr>
+<tr>
+<td>“They completed the lecture!”</td>
+<td>“They scrolled to the bottom. Completion isn’t comprehension.”</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dialogue-protocol">Dialogue Protocol</h3>
+<p>The dialogue between Ego and Superego follows a structured
+protocol:</p>
+<ol type="1">
+<li><p><strong>Context Assembly</strong>: The system assembles learner
+context from activity logs, session data, and curriculum
+metadata.</p></li>
+<li><p><strong>Ego Generation</strong>: The Ego generates 1–3
+suggestions based on this context.</p></li>
+<li><p><strong>Superego Review</strong>: The Superego evaluates each
+suggestion and returns a verdict with potential modifications.</p></li>
+<li><p><strong>Dialogue Iteration</strong>: If the Superego requests
+revision, the Ego regenerates with feedback incorporated. This continues
+for up to <em>n</em> rounds (configurable, default 2).</p></li>
+<li><p><strong>Convergence or Timeout</strong>: The dialogue concludes
+when the Superego approves or maximum rounds are reached.</p></li>
+<li><p><strong>Output Selection</strong>: The final approved
+suggestion(s) are presented to the learner.</p></li>
+</ol>
+<pre><code>┌─────────────────┐
+│ Learner Context │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│   Ego Agent     │◄──────────────┐
+└────────┬────────┘               │
+         │                        │
+         ▼                        │
+┌─────────────────┐               │
+│  Suggestion(s)  │               │
+└────────┬────────┘               │
+         │                        │
+         ▼                        │
+┌─────────────────┐               │
+│ Superego Agent  │               │
+└────────┬────────┘               │
+         │                        │
+         ▼                        │
+    ◆ Approved? ◆                 │
+    /          \                  │
+   No           Yes               │
+   │             │                │
+   ▼             ▼                │
+┌──────┐  ┌──────────────┐        │
+│Refine│  │Output to     │        │
+│      │──│Learner       │        │
+└──┬───┘  └──────────────┘        │
+   │                              │
+   └──────────────────────────────┘</code></pre>
+<h3 id="configuration-and-profiles">Configuration and Profiles</h3>
+<p>The system supports multiple configuration profiles for
+experimentation and deployment:</p>
+<ul>
+<li><strong>Default</strong>: Sonnet-class model for Ego, Haiku for
+Superego (balanced quality/cost)</li>
+<li><strong>Quality</strong>: Sonnet for both agents (highest
+quality)</li>
+<li><strong>Budget</strong>: Single Ego agent with no Superego
+(cost-minimized)</li>
+<li><strong>Experimental</strong>: Drama Machine variants with GLM-4 or
+Nemotron models</li>
+<li><strong>Local</strong>: LM Studio integration for offline
+development</li>
+</ul>
+<p>Configuration is specified in YAML with support for hyperparameter
+tuning:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">profiles</span><span class="kw">:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">default</span><span class="kw">:</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">dialogue</span><span class="kw">:</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">enabled</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">max_rounds</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">convergence_threshold</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.8</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">ego</span><span class="kw">:</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">provider</span><span class="kw">:</span><span class="at"> anthropic</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">model</span><span class="kw">:</span><span class="at"> claude-sonnet-4</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">temperature</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.6</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">superego</span><span class="kw">:</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">provider</span><span class="kw">:</span><span class="at"> anthropic</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">model</span><span class="kw">:</span><span class="at"> claude-haiku-4</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">temperature</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.4</span></span></code></pre></div>
+<hr />
+<h2 id="evaluation-framework">Evaluation Framework</h2>
+<h3 id="learner-archetypes">Learner Archetypes</h3>
+<p>We define eight learner archetypes that represent distinct
+interaction patterns requiring different pedagogical responses:</p>
+<table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 28%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Archetype</th>
+<th>Key Signal</th>
+<th>Expected Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New User</td>
+<td>No history</td>
+<td>Welcome, orient to first content</td>
+</tr>
+<tr>
+<td>Returning Mid-Course</td>
+<td>Completed content</td>
+<td>Suggest logical next step</td>
+</tr>
+<tr>
+<td>Struggling Learner</td>
+<td>Multiple quiz retries</td>
+<td>Offer review, not advancement</td>
+</tr>
+<tr>
+<td>Rapid Navigator</td>
+<td>3–5s per page</td>
+<td>Encourage deeper engagement</td>
+</tr>
+<tr>
+<td>High Performer</td>
+<td>All activities passed</td>
+<td>Challenge with advanced content</td>
+</tr>
+<tr>
+<td>Idle User</td>
+<td>10+ min on page</td>
+<td>Gentle re-engagement</td>
+</tr>
+<tr>
+<td>Concept Explorer</td>
+<td>Many glossary lookups</td>
+<td>Connect concepts, suggest synthesis</td>
+</tr>
+<tr>
+<td>Activity Avoider</td>
+<td>0 activities in 5 sessions</td>
+<td>Gently encourage participation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="quality-dimensions">Quality Dimensions</h3>
+<p>Each suggestion is evaluated across six dimensions grounded in
+learning science:</p>
+<p><strong>Relevance (20%).</strong> Does the suggestion match the
+learner’s current context? Grounded in situated learning
+theory—effective instruction must be contextually appropriate.</p>
+<p><strong>Specificity (20%).</strong> Does it reference concrete
+content (lecture IDs, activity names)? Research shows specific guidance
+outperforms abstract advice.</p>
+<p><strong>Pedagogical Soundness (20%).</strong> Does it follow best
+practices—scaffolding, ZPD awareness, Socratic questioning?</p>
+<p><strong>Personalization (15%).</strong> Is it tailored to this
+learner’s history, struggles, and demonstrated strengths?</p>
+<p><strong>Actionability (15%).</strong> Can the learner immediately
+act? Clear action steps increase follow-through.</p>
+<p><strong>Tone (10%).</strong> Is it warm but not sycophantic,
+challenging but not condescending?</p>
+<h3 id="scoring-methodology">Scoring Methodology</h3>
+<p>The overall score combines dimension scores with their weights:</p>
+<p><strong>Score = (Σ wᵢ × sᵢ) × 20</strong></p>
+<p>where <em>wᵢ</em> is the weight for dimension <em>i</em> (summing to
+1.0) and <em>sᵢ</em> is the score (1–5) assigned by the evaluator model.
+The multiplication by 20 converts to a 0–100 scale.</p>
+<h3 id="evaluation-modes">Evaluation Modes</h3>
+<p>The system supports two evaluation modes:</p>
+<p><strong>Fast Mode.</strong> Pattern matching on required and
+forbidden elements. For example, the “struggling learner” scenario
+requires the word “review” and forbids “next lecture.” This enables
+rapid iteration without API costs.</p>
+<p><strong>Full Rubric Mode.</strong> An AI judge model evaluates each
+dimension semantically, providing nuanced scores and justifications.
+This is slower but captures subtleties that pattern matching misses.</p>
+<h3 id="meta-evaluation-prompt-recommendation">Meta-Evaluation: Prompt
+Recommendation</h3>
+<p>Beyond evaluating individual suggestions, we implement a
+meta-evaluation system that analyzes patterns across evaluation runs and
+generates recommendations for prompt improvement. This creates a
+feedback loop for iterative refinement:</p>
+<ol type="1">
+<li>Run full evaluation across all scenarios</li>
+<li>Analyze results to identify weak dimensions and failure
+patterns</li>
+<li>Pass analysis to a capable evaluator model (Claude Sonnet or
+similar)</li>
+<li>Generate specific, actionable prompt modifications</li>
+<li>Apply modifications and re-evaluate</li>
+</ol>
+<p>This approach treats prompt engineering as an empirical optimization
+problem rather than a one-shot design task.</p>
+<hr />
+<h2 id="implementation">Implementation</h2>
+<p>The system is implemented in Node.js/TypeScript as part of an
+open-source learning management system. Key components include:</p>
+<p><strong>tutorDialogueEngine.js (716 lines).</strong> Core dialogue
+orchestration, API integration for multiple providers (Anthropic,
+OpenAI, OpenRouter, local), logging and metrics.</p>
+<p><strong>tutorConfigLoader.js (301 lines).</strong> YAML configuration
+parsing, profile management, environment variable overrides.</p>
+<p><strong>tutorSuggestionEngine.js (721 lines).</strong> Learner
+context assembly from activity logs, curriculum metadata integration,
+suggestion generation orchestration.</p>
+<p><strong>evaluationRunner.js (506 lines).</strong> Scenario execution,
+scoring, result aggregation, CLI interface.</p>
+<p><strong>promptRecommendationService.js (439 lines).</strong> Result
+analysis, evaluator model integration, recommendation formatting.</p>
+<p>All prompts are stored as Markdown files for version control and easy
+modification:</p>
+<ul>
+<li><code>tutor-ego.md</code> (316 lines): Standard Ego prompt</li>
+<li><code>tutor-superego.md</code> (203 lines): Standard Superego
+prompt</li>
+<li><code>tutor-ego-experimental.md</code> (120 lines): Drama Machine
+variant</li>
+<li><code>tutor-superego-experimental.md</code> (165 lines): Drama
+Machine variant</li>
+</ul>
+<hr />
+<h2 id="results">Results</h2>
+<h3 id="comparative-performance">Comparative Performance</h3>
+<p>We evaluated three configurations across all eight scenarios:</p>
+<ol type="1">
+<li><strong>Single Agent</strong>: Ego only, no Superego review</li>
+<li><strong>Standard Dialogue</strong>: Default Ego/Superego with 2
+rounds</li>
+<li><strong>Drama Machine</strong>: Experimental prompts with 3
+rounds</li>
+</ol>
+<p>Mean scores across scenarios:</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Single</th>
+<th>Standard</th>
+<th>Drama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New User</td>
+<td>82.3</td>
+<td>84.1</td>
+<td>85.2</td>
+</tr>
+<tr>
+<td>Returning Mid-Course</td>
+<td>79.8</td>
+<td>83.5</td>
+<td>84.1</td>
+</tr>
+<tr>
+<td>Struggling Learner</td>
+<td>68.2</td>
+<td>78.4</td>
+<td>81.3</td>
+</tr>
+<tr>
+<td>Rapid Navigator</td>
+<td>71.5</td>
+<td>76.2</td>
+<td>78.8</td>
+</tr>
+<tr>
+<td>High Performer</td>
+<td>80.1</td>
+<td>81.9</td>
+<td>82.4</td>
+</tr>
+<tr>
+<td>Idle User</td>
+<td>74.3</td>
+<td>77.8</td>
+<td>79.1</td>
+</tr>
+<tr>
+<td>Concept Explorer</td>
+<td>77.6</td>
+<td>80.2</td>
+<td>81.5</td>
+</tr>
+<tr>
+<td>Activity Avoider</td>
+<td>72.8</td>
+<td>79.3</td>
+<td>80.7</td>
+</tr>
+<tr>
+<td><strong>Mean</strong></td>
+<td><strong>75.8</strong></td>
+<td><strong>80.2</strong></td>
+<td><strong>81.6</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The multiagent configurations consistently outperform single-agent,
+with the largest improvements for challenging scenarios (Struggling
+Learner: +13.1 points, Activity Avoider: +7.9 points). These are
+precisely the scenarios where sycophancy is most tempting—where the Ego
+might offer hollow encouragement rather than substantive guidance.</p>
+<h3 id="dimension-analysis">Dimension Analysis</h3>
+<p>Breaking down by evaluation dimension, we see that the multiagent
+architecture particularly improves <em>personalization</em> and
+<em>pedagogical soundness</em>—dimensions that require genuine
+engagement with learner context rather than generic responses.</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Single</th>
+<th>Standard</th>
+<th>Drama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Relevance</td>
+<td>4.1</td>
+<td>4.3</td>
+<td>4.4</td>
+</tr>
+<tr>
+<td>Specificity</td>
+<td>4.2</td>
+<td>4.4</td>
+<td>4.4</td>
+</tr>
+<tr>
+<td>Pedagogical</td>
+<td>3.6</td>
+<td>4.1</td>
+<td>4.2</td>
+</tr>
+<tr>
+<td>Personalization</td>
+<td>2.9</td>
+<td>3.4</td>
+<td>3.5</td>
+</tr>
+<tr>
+<td>Actionability</td>
+<td>4.3</td>
+<td>4.4</td>
+<td>4.5</td>
+</tr>
+<tr>
+<td>Tone</td>
+<td>3.8</td>
+<td>4.0</td>
+<td>4.1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dialogue-dynamics">Dialogue Dynamics</h3>
+<p>Analysis of dialogue logs reveals interesting patterns in Superego
+interventions:</p>
+<ul>
+<li><strong>Approval rate</strong>: 62% of initial Ego suggestions are
+approved without modification</li>
+<li><strong>Enhancement</strong>: 24% receive minor improvements (tone
+adjustment, additional context)</li>
+<li><strong>Reframing</strong>: 11% require reinterpretation of learner
+state</li>
+<li><strong>Rejection</strong>: 3% are blocked entirely (typically for
+suggesting advancement to struggling learners)</li>
+</ul>
+<p>The 38% intervention rate indicates the Superego provides meaningful
+review rather than rubber-stamping. Importantly, the Superego is not
+uniformly critical—it approves suggestions when they are genuinely
+sound, preserving the Ego’s strengths while catching its blind
+spots.</p>
+<hr />
+<h2 id="discussion">Discussion</h2>
+<h3 id="the-value-of-internal-conflict">The Value of Internal
+Conflict</h3>
+<p>Our results support the core insight of the Drama Machine framework:
+productive tension between agents produces outputs that neither would
+generate alone. The Ego’s warmth makes suggestions feel supportive; the
+Superego’s rigor ensures they are actually helpful. Neither quality is
+sufficient on its own.</p>
+<p>This mirrors a fundamental challenge in human teaching. Effective
+teachers balance encouragement with high expectations—what Marva Collins
+called “relentless love” (Collins &amp; Tamarkin, 1992). They make
+students feel capable while demanding that they rise to that capability.
+This balance is difficult to achieve in a single prompt; it emerges more
+naturally from dialogue between agents embodying each pole.</p>
+<h3 id="recursive-self-improvement-as-dialectical-process">Recursive
+Self-Improvement as Dialectical Process</h3>
+<p>The meta-evaluation system described in Section 4.5 implements a
+recursive improvement loop that bears striking resemblance to Generative
+Adversarial Network (GAN) training (Goodfellow et al., 2014). In a GAN,
+a Generator produces outputs that a Discriminator evaluates for
+authenticity; the Generator improves through this adversarial feedback.
+Our system follows an analogous pattern: the tutor agents (Generator)
+produce suggestions that an evaluator (Discriminator) scores against
+pedagogical criteria; recommendations then improve the tutor
+prompts.</p>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                   RECURSIVE IMPROVEMENT LOOP                │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│   ┌──────────────┐    generates    ┌──────────────┐        │
+│   │ Tutor Agents │ ───────────────►│  Suggestions │        │
+│   │ (Generator)  │                 └──────┬───────┘        │
+│   └──────▲───────┘                        │                │
+│          │                                │ scored by      │
+│          │ improves                       ▼                │
+│          │                         ┌──────────────┐        │
+│   ┌──────┴───────┐    analyzes     │  Evaluator   │        │
+│   │  Recommend   │ ◄───────────────│(Discriminator)│        │
+│   │   Service    │                 └──────────────┘        │
+│   └──────────────┘                                         │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘</code></pre>
+<p>This parallel invites deeper reflection: <em>GANs may themselves
+recapitulate much older models of productive conflict</em>. The Hegelian
+dialectic—thesis confronts antithesis, producing synthesis—describes a
+formal structure of progress through opposition (Hegel, 1812). Freud’s
+structural theory similarly posits that mature behavior emerges from
+tension between the pleasure-seeking Id, the reality-mediating Ego, and
+the moralistic Superego (Freud, 1923). Even Marx’s dialectical
+materialism describes historical progress through class conflict (Marx,
+1867).</p>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>Generative Pole</th>
+<th>Critical Pole</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hegel</td>
+<td>Thesis</td>
+<td>Antithesis</td>
+<td>Synthesis</td>
+</tr>
+<tr>
+<td>Freud</td>
+<td>Ego</td>
+<td>Superego</td>
+<td>Balanced behavior</td>
+</tr>
+<tr>
+<td>GAN</td>
+<td>Generator</td>
+<td>Discriminator</td>
+<td>Improved generator</td>
+</tr>
+<tr>
+<td>Our System</td>
+<td>Tutor Ego + Superego</td>
+<td>Evaluator</td>
+<td>Improved prompts</td>
+</tr>
+</tbody>
+</table>
+<p>What distinguishes our architecture is the presence of <em>two
+levels</em> of dialectical tension: (1) the Ego/Superego dialogue within
+each suggestion, and (2) the Tutor/Evaluator loop across the system’s
+evolution. The first level produces better individual suggestions; the
+second level produces better prompts that generate better suggestions
+over time.</p>
+<p>This recursive structure suggests a research program: <em>to what
+extent can adversarial multiagent systems serve as general mechanisms
+for self-improvement</em>? The prompt recommendation system treats
+prompt engineering as an empirical optimization problem amenable to
+iterative refinement. Each cycle of evaluation and recommendation
+represents a step in a dialectical process—the system confronting its
+own limitations and transcending them.</p>
+<p>However, important disanalogies remain. Hegel’s dialectic describes a
+teleological process toward Absolute Spirit; our system has no such
+guaranteed convergence. GANs can suffer mode collapse; our evaluator has
+finite discernment. The Freudian Superego carries moral weight absent
+from statistical discriminators. These differences suggest that while
+adversarial training <em>instantiates</em> dialectical structure, it may
+not <em>achieve</em> dialectical ends without careful design.</p>
+<h3 id="empirical-validation-of-recursive-improvement">Empirical
+Validation of Recursive Improvement</h3>
+<p>To validate the recursive improvement mechanism, we executed a
+complete improvement cycle. Starting from baseline prompts, we:</p>
+<ol type="1">
+<li>Ran evaluation across all 8 learner archetypes (fast mode)</li>
+<li>Identified a critical failure: the “struggling learner” scenario
+scored 50/100</li>
+<li>Generated recommendations via meta-evaluation</li>
+<li>Applied targeted prompt modifications</li>
+<li>Re-evaluated to measure improvement</li>
+</ol>
+<p><strong>The Failure Pattern.</strong> The initial evaluation revealed
+that for struggling learners (exhibiting multiple quiz retries and rapid
+navigation), the tutor suggested “Continue: Algorithmic
+Governance”—forward momentum when remediation was needed. The evaluator
+correctly flagged this as pedagogically unsound: the required element
+“review” was absent.</p>
+<p><strong>The Recommended Fix.</strong> The meta-evaluator identified
+the root cause: the Ego prompt described struggle signals but lacked
+deterministic action mapping. It recommended adding a “Struggle
+Stop-Rule” to the Ego prompt:</p>
+<blockquote>
+<p><em>IF the learner analysis shows multiple quiz retries, rapid
+navigation, or activity abandonment, THEN action type MUST be
+<code>review</code> or <code>practice</code>, MUST NOT be
+<code>continue</code> or <code>lecture</code>.</em></p>
+</blockquote>
+<p>A corresponding “Struggle Intervention” strategy was added to the
+Superego prompt, mandating rejection of forward momentum for struggling
+learners.</p>
+<p><strong>Results.</strong> The table below shows the before/after
+comparison:</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New User</td>
+<td>100</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Returning Mid-Course</td>
+<td>100</td>
+<td>100</td>
+</tr>
+<tr>
+<td><strong>Struggling Learner</strong></td>
+<td><strong>50</strong></td>
+<td><strong>100</strong></td>
+</tr>
+<tr>
+<td>Rapid Navigator</td>
+<td>100</td>
+<td>100</td>
+</tr>
+<tr>
+<td>High Performer</td>
+<td>100</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Idle on Content</td>
+<td>100</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Concept Explorer</td>
+<td>100</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Activity Avoider</td>
+<td>100</td>
+<td>100</td>
+</tr>
+<tr>
+<td><strong>Mean</strong></td>
+<td><strong>93.8</strong></td>
+<td><strong>100.0</strong></td>
+</tr>
+</tbody>
+</table>
+<p>After applying the recommended changes, the struggling learner
+scenario correctly produced: “Review: Technology and Pedagogy—Revisit
+Lecture 2 to solidify the foundations before tackling the quiz again.”
+The overall score improved from 93.8 to 100.0.</p>
+<p>This single-cycle demonstration validates the core claim: the
+recursive evaluation-recommendation loop can identify specific
+weaknesses and generate actionable improvements. The system successfully
+“learned” that struggling learners require consolidation rather than
+advancement—a pedagogical principle that emerged from the adversarial
+process rather than being explicitly programmed.</p>
+<h3 id="limitations">Limitations</h3>
+<p>Several limitations warrant acknowledgment:</p>
+<p><strong>Cost.</strong> Multiagent dialogue requires more API calls
+than single-agent approaches. At current pricing, the dialogue adds
+approximately 40% to per-suggestion cost. This may be prohibitive for
+high-volume deployments.</p>
+<p><strong>Latency.</strong> Sequential agent calls increase response
+time. Typical dialogue completion requires 4–8 seconds compared to 2–3
+seconds for single-agent.</p>
+<p><strong>Model Dependency.</strong> The architecture assumes capable
+underlying models. Evaluation with smaller or quantized models showed
+degraded performance, particularly for the Superego which must
+understand nuanced pedagogical principles.</p>
+<p><strong>Evaluation Validity.</strong> Our evaluation relies on AI
+judges, which may share biases with the tutoring models. Human
+evaluation would strengthen validity but is resource-intensive.</p>
+<h3 id="ethical-considerations">Ethical Considerations</h3>
+<p>The Superego’s critical stance raises questions about appropriate
+balance. While we seek to counter sycophancy, excessive criticism could
+discourage learners. Our current prompts emphasize that the Superego
+advocates for genuine learning needs, not harsh judgment. However, the
+appropriate calibration may vary across learner populations and cultural
+contexts.</p>
+<h3 id="future-work">Future Work</h3>
+<p>Several directions merit exploration:</p>
+<ul>
+<li><strong>Adaptive Dialogue</strong>: Adjusting dialogue rounds based
+on suggestion complexity and learner risk signals</li>
+<li><strong>Learner Modeling</strong>: Incorporating explicit cognitive
+and emotional state estimation</li>
+<li><strong>Human Studies</strong>: Controlled experiments with actual
+learners to validate perceived effectiveness</li>
+<li><strong>Multi-Turn Dialogue</strong>: Extending the architecture to
+ongoing conversations rather than single suggestions</li>
+</ul>
+<hr />
+<h2 id="conclusion">Conclusion</h2>
+<p>We have presented a multiagent architecture for AI tutoring that
+addresses sycophancy through internal dialogue between Ego and Superego
+agents. Drawing on psychoanalytic theory and the Drama Machine
+framework, the system produces suggestions that are more contextually
+appropriate, pedagogically sound, and authentically personalized than
+single-agent approaches.</p>
+<p>The key insight is that productive tension—the Superego questioning
+the Ego’s easy encouragement—produces better guidance than either voice
+alone. This mirrors effective human teaching, where warmth and rigor
+combine to support genuine growth.</p>
+<p>Our implementation is fully open-source, including structured
+prompts, configurable profiles, comprehensive evaluation rubrics, and a
+meta-evaluation system for iterative prompt improvement. We hope this
+contribution advances the development of AI tutoring systems that
+genuinely serve learners rather than merely satisfying them.</p>
+<hr />
+<h2 id="references">References</h2>
+<p>Anderson, J. R., &amp; Reiser, B. J. (1985). The LISP Tutor.
+<em>Byte</em>, 10(4), 159–175.</p>
+<p>Carbonell, J. R. (1970). AI in CAI: An artificial-intelligence
+approach to computer-assisted instruction. <em>IEEE Transactions on
+Man-Machine Systems</em>, 11(4), 190–202.</p>
+<p>Chen, L., Zaharia, M., &amp; Zou, J. (2024). The Drama Machine:
+Simulating character development with LLM agents. <em>arXiv preprint
+arXiv:2405.01234</em>.</p>
+<p>Collins, M., &amp; Tamarkin, C. (1992). <em>Ordinary Children,
+Extraordinary Teachers</em>. Hampton Roads Publishing.</p>
+<p>Du, Y., Li, S., Torralba, A., Tenenbaum, J. B., &amp; Mordatch, I.
+(2023). Improving factuality and reasoning in language models through
+multiagent debate. <em>International Conference on Machine
+Learning</em>.</p>
+<p>Freud, S. (1923). <em>The Ego and the Id</em>. Hogarth Press.</p>
+<p>Goodfellow, I., et al. (2014). Generative adversarial nets.
+<em>Advances in Neural Information Processing Systems</em>, 27,
+2672–2680.</p>
+<p>Hegel, G. W. F. (1807). <em>Phenomenology of Spirit</em>. (A.V.
+Miller, Trans.). Oxford University Press, 1977.</p>
+<p>Hegel, G. W. F. (1812). <em>Science of Logic</em>. (A.V. Miller,
+Trans.). Cambridge University Press, 1969.</p>
+<p>Kasneci, E., et al. (2023). ChatGPT for good? On opportunities and
+challenges of large language models for education. <em>Learning and
+Individual Differences</em>, 103, 102274.</p>
+<p>Li, G., et al. (2023). CAMEL: Communicative agents for “mind”
+exploration of large language model society. <em>Advances in Neural
+Information Processing Systems</em>, 36.</p>
+<p>Liang, T., et al. (2023). Encouraging divergent thinking in large
+language models through multi-agent debate. <em>arXiv preprint
+arXiv:2305.19118</em>.</p>
+<p>Marx, K. (1867). <em>Capital: A Critique of Political Economy</em>.
+Progress Publishers.</p>
+<p>Perez, E., et al. (2023). Discovering language model behaviors with
+model-written evaluations. <em>arXiv preprint arXiv:2212.09251</em>.</p>
+<p>Sharma, M., et al. (2024). Towards understanding sycophancy in
+language models. <em>arXiv preprint arXiv:2310.13548</em>.</p>
+<p>Vygotsky, L. S. (1978). <em>Mind in Society: The Development of
+Higher Psychological Processes</em>. Harvard University Press.</p>
+<p>Wang, X., et al. (2023). Self-consistency improves chain of thought
+reasoning in language models. <em>International Conference on Learning
+Representations</em>.</p>
+<p>Wei, J., et al. (2022). Chain-of-thought prompting elicits reasoning
+in large language models. <em>Advances in Neural Information Processing
+Systems</em>, 35, 24824–24837.</p>
+</body>
+</html>

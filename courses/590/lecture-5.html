@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>lecture-5</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 id="lecture-5">590 Lecture 5</h1>
+<hr />
+<h3 id="what-weve-covered">What We’ve Covered</h3>
+<ul>
+<li>Week 1: Research Topic &amp; Question</li>
+<li>Week 2: Method &amp; Recipe for the Literature Review</li>
+<li>Week 3: Vibe Scholarship - Applying AI to Close &amp; Distant
+Reading</li>
+<li>Week 4: Reading Spivak with AI &amp; Writing for Humanities and the
+Sciences</li>
+</ul>
+<hr />
+<h3 id="this-week">This week</h3>
+<ul>
+<li>What I had planned, and what we’ll do
+<ul>
+<li>Conceptual Discussion: “What Do I Know?” Towards A Sociology of
+Knowledge</li>
+<li>Framing Language: “Carry” Your Reader</li>
+<li>Frame up your Literature Review</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="common-pitfalls-of-literature-reviews">Common Pitfalls of
+Literature Reviews</h3>
+<ol type="1">
+<li>Length - some reviews extend to 15k, 25k, 30k words. This is too
+long!</li>
+<li>Conversely, no signposting - straight into “X said this, Y said
+that”
+<ul>
+<li>Issue of the “so what” question. Why does the reader care, or need
+to know this?</li>
+<li>Having sympathy for the reader / reviewer / examiner…</li>
+</ul></li>
+<li>“Gap” not justified by the preceding review. The review must read
+like a (legal?) dossier of <strong>evidence</strong> about the claim of
+gaps
+<ul>
+<li>Styles may differ (e.g. Spivak (1988) and Zhang et al. (2025))</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="well-continue-to-focus-on">We’ll continue to focus on…</h3>
+<ol type="1">
+<li><strong>Concise</strong> writing (AI as concise writer – from prose
+to (prosaic) poetry)</li>
+<li><strong>Structure</strong> and <strong>metadiscourse</strong> -
+guide your reader through the evidence (AI as roleplay - lawyer?)</li>
+<li><strong>Evidence-based</strong> argument: gaps must be discovered
+(AI as lawyer)</li>
+</ol>
+<hr />
+<h3 id="if-it-helps">If it helps…</h3>
+<ul>
+<li>A literature review concludes with an <strong>argument</strong> for
+existence of gaps</li>
+<li>This argument must be <strong>proved</strong>: corroborated by the
+evidence supplied in the review</li>
+<li>This is hard to do and difficult to learn!</li>
+</ul>
+<hr />
+<h3 id="structuring-your-literature-review">Structuring Your Literature
+Review</h3>
+<p>Pick a <strong>principle</strong>: - General &gt; Specific – can
+confirm but also <strong>contrast</strong> (“General theories of
+pedagogy suggest… <em>However</em> studies of adult language learners
+also show…”) - Chronological (“By the 1960s, discussions of AI had
+already become more muted…”) - Thematic (“The concept of ‘attention’ is
+used in roughly similar ways in machine and human learning…”) - Spatial
+(“Studies in Asian universities show that …; in contrast, findings from
+North American universities suggest…”) - Developmental (“First I will
+present an outline of the mind/body problem. I then move on to look at
+critiques of the very distinction itself…”) - Other models? - Nested
+Categories (chronology then thematic, etc)?</p>
+<hr />
+<h3 id="some-guiding-notes">Some Guiding Notes</h3>
+<ul>
+<li><em>Specialization</em>: Can work well when you want to convey a
+sense of <strong>narrowing</strong> down a focus: Education &gt; K12
+&gt; Math learning &gt; Algebra &gt; in rural Mid-west schools</li>
+<li><em>Chronological</em>: Can work well when you want to convey a
+sense of <strong>progress</strong>
+<ul>
+<li>And how your work <strong>extends</strong> that progress</li>
+</ul></li>
+<li><em>Thematic</em>: Can work well when you want to convey a sense of
+<strong>overlaps</strong>, <strong>intersection</strong> and
+<strong>gaps</strong>
+<ul>
+<li>And how your work discovers and fills one of these gaps</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="some-guiding-notes-2">Some Guiding Notes (2)</h3>
+<ul>
+<li><em>Spatial</em>: Works well when you want to convey a sense of
+cultural, spatial or geographic difference
+<ul>
+<li>And how your study attends to a location or zone not previously
+studied</li>
+</ul></li>
+<li><em>Developmental</em>: Works well when you plan to build your
+argument through a sequence of positions / thinkers / ideas
+<ul>
+<li>And show how you will blend, contrast or critique all of these
+positions / thinkers / ideas</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="nested-categories">Nested categories</h3>
+<ul>
+<li>3 themes - each with their own history</li>
+<li>Or: General &gt; Special - special might involve
+<em>chronological</em> and <em>spatial</em> differences. “General
+pedagogy theories developed in the early/mid-twentieth century of
+pedagogy suggest… More recent studies suggest national and local
+cultures play a greater role. For instance, Indian scholars of K12
+learning have shown…”</li>
+</ul>
+<hr />
+<h3 id="how-do-i-decide">How do I Decide?</h3>
+<ul>
+<li>Often iterative:
+<ul>
+<li>Go <strong>forward</strong> to discover the gap</li>
+<li>Move <strong>back</strong> from the gap to discover the
+structure</li>
+</ul></li>
+<li>Experiment with different structures
+<ul>
+<li>Mock up your structure (more on this soon)</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="metadiscourse-signposting">Metadiscourse / Signposting</h3>
+<ul>
+<li>Assume your reader does <strong>not know</strong> the
+literature</li>
+<li>A literature review is often <strong>pedagogical</strong> - teaching
+the reader about a field, in order to persuade them about the gap your
+research fills</li>
+<li>Helps <strong>you</strong> in authoring - does Y really follow from
+X?</li>
+<li>Be prepared to write / re-write this metadiscursive text often -
+especially early, as you experiment with structural principles
+(chronological etc)</li>
+</ul>
+<hr />
+<h3 id="making-it-explicit">Making It Explicit</h3>
+<ul>
+<li>Cannot be too explicit about your structure:
+<ul>
+<li>Introduction (future tense):
+<ul>
+<li>“In this literature review I will…”</li>
+<li>(or if you prefer) “This review will…”</li>
+</ul></li>
+<li>Conclusion (past tense):
+<ul>
+<li>“In this review, I have discussed literature relating to…”</li>
+<li>(or if you prefer) “This review has…”</li>
+</ul></li>
+<li>Along the way:
+<ul>
+<li>“In the last section, I discussed…. In the next, I will…”</li>
+<li>Can be blended through connective language. “While the <em>preceding
+studies</em> illustrated how use of AI in education has been studied
+extensively, less has been said about how AI contributes to the
+student/teacher relationship. Some exceptions include studies by X, Y
+and Z…”</li>
+</ul></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="develop-a-repertoire-of-metadiscourse">Develop a Repertoire of
+Metadiscourse</h3>
+<ul>
+<li>Ask AI for suggestions…
+<ul>
+<li>“Give me examples of metadiscourse for a literature review”</li>
+<li>Or “Give me a table and distinguish between metadiscourse used in
+(a) scientific and (b) humanities discussions of literature”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="play-as-metadiscourse-detective">Play as “Metadiscourse
+Detective”</h3>
+<ol type="1">
+<li>Go to:
+https://ai.studio/apps/drive/1rKenX37bOW6E6u8xri1H1giuVqvoNi45</li>
+<li>Play “Identify Metadiscourse”.</li>
+<li>“Change Mode”, then play “Add Metadiscourse”</li>
+</ol>
+<hr />
+<h3 id="group-work-make-your-own-literature-review-game">Group work:
+Make Your Own Literature Review Game</h3>
+<ol type="1">
+<li>Discuss and develop one key challenge with developing a literature
+review. Could relate to structuring, metadiscourse / signposting, or
+anything else.</li>
+<li>Go to:
+https://ai.studio/apps/drive/1rKenX37bOW6E6u8xri1H1giuVqvoNi45</li>
+<li>Write a prompt that builds a game or app that helps practice or
+address the key challenge.</li>
+<li>Test and iterate!</li>
+<li>Share and write-up results…</li>
+</ol>
+<hr />
+<h3 id="sociology-of-knowledge">Sociology of Knowledge</h3>
+<ul>
+<li>Study of academic / scholarly societies</li>
+<li>Navel gazing? Perhaps. But relevant for all academia because it
+helps us calibrate our writing (tone / citations )</li>
+<li>We’ve already touched on this
+<ul>
+<li>Two Cultures (Snow) – Humanities and the Sciences)</li>
+</ul></li>
+<li>But also: what are <strong>financial</strong> /
+<strong>political</strong> drivers of research? What are the conceptual
+or ideological <strong>frames</strong>? What are the standards for
+<strong>evidence</strong> or <strong>truth</strong>? Compare Spivak
+(1988) to Zhang et al. (2025)</li>
+</ul>
+<hr />
+<h3 id="sociology-of-knowledge-key-figures">Sociology of Knowledge: Key
+figures</h3>
+<ul>
+<li>Karl Marx (19th century): How do <em>material conditions</em>
+influence <em>thought</em>?</li>
+<li>Emile Durkheim (1912): <em>The Elementary Forms of Religious
+Life</em></li>
+<li>Sigmund Freud (1930): <em>Civilization and its Discontents</em></li>
+<li>Karl Mannheim (1929): <em>Ideology and Utopia</em></li>
+<li>Thomas Kuhn (1962): <em>The Structure of Scientific
+Revolutions</em></li>
+<li>Berger, Luckmann (1966): <em>The Social Construction of
+Reality</em></li>
+<li>Bourdieu (1977): <em>Outline of a Theory of Practice</em></li>
+<li>Michel Foucault (1966, 1969): <em>The Order of Things</em>, <em>The
+Archaeology of Knowledge</em></li>
+<li>David Bloor (1976), <em>Knowledge and social imagery</em></li>
+<li>Bruno Latour, Steve Woolgar (1979), <em>Laboratory Life</em></li>
+<li>Edward Said (1976), <em>Orientalism</em></li>
+<li>Gayatri Spivak (1987), <em>In Other Words</em></li>
+<li>Judith Butler (1990), <em>Gender Trouble</em></li>
+</ul>
+<hr />
+<h3 id="sociology-of-knowledge-common-points">Sociology of Knowledge:
+Common Points?</h3>
+<ul>
+<li>Thinking is not independent of <strong>conditions</strong> of
+life</li>
+<li>What are “conditions”?
+<ul>
+<li>Class (Marx), race, gender (Said, Butler, Spivak)</li>
+<li>Social facts - fads &amp; fashions (Durkheim)</li>
+<li>Ideology - what fundamental beliefs structure or make possible our
+thinking (Mannheim)</li>
+<li>Paradigms (Kuhn), epistemes (Foucault), habitus (Bourdieu):
+background forms of knowing and being</li>
+</ul></li>
+<li>Related to unconscious bias (Freud)</li>
+</ul>
+<hr />
+<h3 id="why-does-this-matter">Why does this matter?</h3>
+<ul>
+<li>Often asked to account for your <strong>positionality</strong></li>
+<li>Hard to do! What is your <em>unconscious bias</em>? What are you
+<em>conscious of being unconscious of</em>?
+<ul>
+<li>If you knew, it wouldn’t be unconscious!</li>
+</ul></li>
+<li>Irregular verbs:
+<ul>
+<li>“<strong>I think</strong> critically and independently”</li>
+<li>“<strong>You think</strong> according to the influences of your
+economic class and upbringing”</li>
+<li>“<strong>She / He / They think</strong> as unaware and naive victims
+of ideology”</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="questions-about-an-academic-community">Questions about an
+academic community:</h3>
+<ul>
+<li>What is its <strong>jargon</strong>? Do you want to reproduce,
+challenge or modify this jargon?</li>
+<li>What are its <strong>standards of evidence</strong>? What does it
+<strong>find persuasive</strong>? What are the <strong>key
+questions</strong> it is asking?</li>
+<li>How stringent are its expectations about <strong>method</strong>,
+<strong>citation</strong>, <strong>formatting</strong>?</li>
+<li>What are its markers of <strong>distinction</strong> and
+<strong>discernment</strong> – “tickets to the game”?</li>
+<li>Conversely: what seem to be the things <strong>not to
+say</strong>?</li>
+</ul>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-11-17T14-35-30-763Z-2f11122a.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="how-can-you-develop-this-tacit-sense-options">How can you
+develop this tacit sense? Options:</h3>
+<ul>
+<li>Treat it like a research project - study academics like an community
+<ul>
+<li>Read journals</li>
+<li>Attend conferences</li>
+<li>Observe faculty</li>
+<li>Join committees</li>
+<li>Read or scan ‘campus’ novels &amp; drama</li>
+<li>Maintain a reflective journal</li>
+<li>Share your own research, ask for feedback</li>
+<li>Ask AI to play the role of an academic in a field</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="relationship-to-literature-review">Relationship to Literature
+Review</h3>
+<ul>
+<li>Write with your audience in mind</li>
+<li>But - very important! – not as though you are already “in the
+club”</li>
+<li>Take a reference to Spivak. You might know your audience is likely
+familiar with Spivak’s work. But of course you don’t say:
+<ul>
+<li>“<em>As we all know</em>, Spivak argued that”</li>
+<li>Instead it is as though your audience forgot Spivak’s point and you
+gently remind them: “Spivak argued that…”</li>
+<li>But then you might twist this familiarity: “In the age of AI, it
+might seem Spivak’s arguments regarding grammatization have dated.
+However,…”</li>
+</ul></li>
+<li>So a literature review can translate your own sociological research
+into some careful phrasing that both <em>reassures</em> and
+<em>surprises</em> your community</li>
+</ul>
+<hr />
+<h3 id="homework-structuring-and-scaffolding-your-review">Homework!
+Structuring and scaffolding your review</h3>
+<ul>
+<li>Revisit the recipe from week 3</li>
+<li>Prepare 3 variations of the literature you have collected:
+<ul>
+<li>Chronological</li>
+<li>Thematic</li>
+<li>Nested / Blended (can be any combination of options)</li>
+</ul></li>
+<li>For each: develop 3-6 headings that shows how you might organize the
+literature you have collected so far</li>
+<li>Add this to Week 5</li>
+<li>Ask AI to do the same thing with your article collection, and write
+3-5 sentences evaluating how useful you thought its results were</li>
+</ul>
+</body>
+</html>

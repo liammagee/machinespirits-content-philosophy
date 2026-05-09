@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>week-5</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h2 id="the-problems-of-alignment">“The Problem(s) of Alignment”</h2>
+<p>This week we turn from the comparatively benign world of learning and
+training to enter that of AI in the wild – and the many problems that
+emerge with aligning or counter-aligning behavior.</p>
+<p>The focus for the week is the now-classic “Stochastic Parrots” paper
+by Emily Bender, Timnit Gebru, Angelina McMillan-Major and Margaret
+Mitchell. We’ll spend some time talking this paper through, as it has
+influenced what has widely come to be known as “Critical AI” (and <a
+href="https://criticalai.org/">launched a journal</a> of the same
+name).</p>
+<p>I have contributed to two of the papers this week. The first, on
+truth, is partly a response to the Stochastic Parrots paper, and other
+conversations in relation to AI and hallucination. Working in part from
+Foucault’s discussion of *parrhesia*, discussed in a previous week, in
+that paper we sought to think about the different ways truth itself is
+understood, and how this might reflect upon our judgments of AI. In
+particular I want to unpack the example of “two plus two equals”.</p>
+<p>In the second paper, we look at the question of alignment from an
+historical standpoint. We argue there that alignment is closely
+connected to quite fundamental questions of how people use language
+<em>normatively</em>. Alignment in other words relates to processes of
+control via language: not only in the obvious cases of censorship, but
+also in the intricate ways in which language marks and reproduces social
+power. We are perhaps today on the verge of seeing AI that can employ
+subtle linguistic cues to align us - a kind of counter-alignment or
+manipulation, as interesting case of Claude (Denison et al. 2024)
+shows.</p>
+<p>If you’re stretched for time, I’d read the articles in that order
+(Bender et al, Munn et al, Hristova et al, Denison et al). We’ll spend
+most of the time in class with the Bender et al reading.</p>
+<p>For those looking for further reading in Critical AI, I’ve included
+several other key texts, including a reading list that will be
+especially useful for those of you also looking to teach Critical
+AI.</p>
+<p>In addition – if you’re looking for a question to think about ahead
+of class – try to think of a single sentence that would articulate all
+you could ever want from your “dream” aligned AI. </p>
+<h2 id="readings">Readings</h2>
+<p>Bender, E. M., Gebru, T., McMillan-Major, A., &amp; Shmitchell, S.
+(2021, March). On the Dangers of Stochastic Parrots: Can Language Models
+be Too Big?��. In <em>Proceedings of the 2021 ACM Conference on
+Fairness, Accountability, and Transparency</em> (pp. 610-623). <a
+href="https://dl.acm.org/doi/10.1145/3442188.3445922">https://dl.acm.org/doi/10.1145/3442188.3445922</a>  </p>
+<p>Denison, C., MacDiarmid, M., Barez, F., Duvenaud, D., Kravec, S.,
+Marks, S., Schiefer, N., Soklaski, R., Tamkin, A., Kaplan, J.,
+Shlegeris, B., Bowman, S. R., Perez, E., &amp; Hubinger, E. (2024).
+Sycophancy to Subterfuge: Investigating reward-tampering in large
+language models. <a
+href="https://arxiv.org/html/2406.10162v2">https://arxiv.org/html/2406.10162v2</a></p>
+<p>Hristova, T., Magee, L., &amp; Soldatic, K. (2024). The Problem of
+Alignment. <em>AI &amp; SOCIETY</em>, 1-15. <a
+href="https://doi.org/10.1007/s00146-024-02039-2">https://doi.org/10.1007/s00146-024-02039-2</a></p>
+<p>Munn, L., Magee, L., &amp; Arora, V. (2023). Truth Machines:
+Synthesizing Veracity in AI Language Models. <em>AI and Society</em>. <a
+href="https://doi.org/10.1007/s00146-023-01756-4">https://doi.org/10.1007/s00146-023-01756-4</a></p>
+<h3 id="wider-readings-on-critical-ai">Wider Readings on Critical
+AI</h3>
+<p>Noble, S. U. (2018). <em>Algorithms of Oppression</em>. New York
+University Press.</p>
+<p>Ruha, B. (2019). <em>Race After Technology: Abolitionist Tools for
+the New Jim Code</em>. Polity Press.</p>
+<p>Stiegler, B. (2013). Die Aufklärung in the age of philosophical
+engineering. In Digital Enlightenment Yearbook 2013 (pp. 29-39). IOS
+Press. <a
+href="https://www.iri.centrepompidou.fr/wp-content/uploads/2011/02/Stiegler-The-Aufklarung-x.pdf">https://www.iri.centrepompidou.fr/wp-content/uploads/2011/02/Stiegler-The-Aufklarung-x.pdf</a></p>
+<p>“Teaching Critical AI Literacies” reading list: <a
+href="https://docs.google.com/document/d/1TAXqYGid8sQz8v1ngTLD1qZBx2rNKHeKn9mcfWbFzRQ/edit?tab=t.0#heading=h.kgds7i8l6uca">https://docs.google.com/document/d/1TAXqYGid8sQz8v1ngTLD1qZBx2rNKHeKn9mcfWbFzRQ/edit?tab=t.0#heading=h.kgds7i8l6uca</a></p>
+<h2 id="assignments">Assignment(s)</h2>
+<p>In your respective Google Sheet tab, respond to one or more of Week
+5’s questions.</p>
+</body>
+</html>

@@ -12,6 +12,9 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
+# Render any stale Markdown to HTML before staging.
+./build
+
 if [ -n "$(git status --porcelain)" ]; then
   :
 else

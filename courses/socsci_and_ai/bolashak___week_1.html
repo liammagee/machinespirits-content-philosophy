@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>bolashak___week_1</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 id="bolashak---week-1">Bolashak - Week 1</h1>
+<h2 id="slide-1">Slide 1</h2>
+<h3 id="reviewing-ai">Reviewing AI</h3>
+<table>
+<tbody>
+<tr>
+<td>A Series of Distinctions<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-2">Slide 2</h2>
+<h3 id="interlude-installing-ollama-a-local-ai-server">Interlude:
+Installing Ollama (a Local AI server)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Steps:<br>Visit https://ollama.com/<br>Download for your platform
+(Windows, macOS, Linux)<br>Open Command Line (Windows) or Terminal
+(macOS, Linux)<br>Enter:<br>ollama run llama3.2:3b<br>ollama run
+deepseek-r1:8b<br>ollama run phi4<br>Wait! Language models take time to
+download. Then use your local LLM…<br><br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-3">Slide 3</h2>
+<h3 id="high-level-overview-ai-vs">High level Overview: AI vs?</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Artificial Intelligence<br><br></td>
+<td>Natural Intelligence?<br><br>Inspirations: Philosophy of Mind,
+Cybernetics, Psychoanalysis, Childhood Psychology, Neural &amp;
+Cognitive Science, Literature, Drama, Game Theory…<br><br>But is there
+<strong>consensus</strong> on what intelligence is?<br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-4">Slide 4</h2>
+<h3 id="high-level-overview-ai-vs-1">High level Overview: AI vs?</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Artificial Intelligence<br><br></td>
+<td>Artificial Stupidity?<br>“It is claimed that the interrogator could
+distinguish the machine from the man simply by setting them a number of
+problems in arithmetic. The machine would be unmasked because of its
+deadly accuracy.”<br><em>— Turing, 1950, “Computing Machinery and
+Intelligence”.</em><br>“Artificial Intelligence has achieved super-human
+performance in some tasks, such as arithmetic or games; in this article
+we argue that sometimes AI’s ability might need to be artificially
+constrained. Such deliberate limiting is called Artificial
+Stupidity.”<br>* – Trazzi, M., &amp; Yampolskiy, R. V. (2020).
+Artificial stupidity: Data we need to make machines our equals.
+Patterns, 1(2)*<br>For a Philosophy of Stupidity / Bêtise: Avital
+Ronell, Bernard Stiegler.<br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-5">Slide 5</h2>
+<h3 id="ai-what-is-it">AI – What Is It?</h3>
+<table>
+<tbody>
+<tr>
+<td>Symbolic Reasoning<br><br></td>
+<td>Connectionist Reasoning<br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-6">Slide 6</h2>
+<h3 id="ai-what-is-it-symbolism-vs-connectionism">AI – What Is It?
+Symbolism vs Connectionism</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Symbolic Reasoning - Deduction<br>All men are mortal<br>Socrates is
+a man<br>Socrates is mortal<br><br><strong>Modus Ponens</strong><br>All
+A are B (or “if A, then B”)<br>C is A<br>Therefore C is B
+)<br><strong>Example: Semantic Web; “Reasoning” Language
+Models?</strong><br><br></td>
+<td>Connectionist Reasoning - Induction<br>If “men” and “mortal” appear
+in the <strong>same sentence</strong>, assume they are connected
+(semantically, grammatically etc)<br>Freudian free association (some
+meaningful relationship due to contiguity:<br>”It is a rule of
+psycho-analytic technique that an internal connection which is still
+undisclosed will announce its presence by means of a contiguity—a
+temporal proximity—of associations; just as in writing, if ‘a’ and ‘b’
+are put side by side, it means that the syllable ‘ab’ is to be formed
+out of them.” <br>– Freud, S. (1997). Dora: An Analysis of a Case of
+Hysteria. Simon and Schuster.<br>Markov Chains - relationship between
+letters, next letter prediction <br>Markov, A. A. (2006[1913]). An
+example of statistical investigation of the text Eugene Onegin
+concerning the connection of samples in chains. Science in Context,
+19(4), 591-600.<strong>Example: ChatGPT</strong><br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-7">Slide 7</h2>
+<h3
+id="connectionism-supervised-vs-unsupervised-learning">Connectionism:
+Supervised vs Unsupervised Learning</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Supervised Learning<br>Statistics: Linear Regression, Correlations.
+Is this Hypothesis True?<br>Machine Learning: <strong>classify
+</strong>this text / image<br><em>Discriminative (this
+</em><strong><em>or</em></strong>* that – cat ****or****
+dog)*<br><br></td>
+<td>Unsupervised Learning<br>Statistics: Factor Analysis, Principal
+Component Analysis – What’s in this Data?<br>Machine Learning:
+<strong>predict</strong> or <strong>generate </strong>next
+token<br><em>Generative (what comes
+</em><strong><em>next</em></strong><em>? Next token
+prediction)</em><br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-8">Slide 8</h2>
+<h3
+id="unsupervised-learning-trained-specialised-vs-pre-trained-general">Unsupervised
+Learning: Trained (Specialised) vs Pre-trained (General)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Trained<br><strong>Data </strong>from a specialized field or
+domain<br><strong>Train</strong> a model to understand the data<br>Test
+model <strong>prediction</strong> reproduces the training
+data<br><strong>Do not expect generalization</strong> (to other data
+sets)<br><br></td>
+<td>Pre-trained<br>Very large data set from many domains / fields /
+languages2. Train a model to understand general patterns in the data3.
+Test model prediction reproduces the training data4. <strong>Do expect
+generalization</strong> (to other data sets)5.
+<strong>Fine-tune</strong> for specialization – or other
+techniques<br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-9">Slide 9</h2>
+<h3
+id="unsupervised-learning-trained-specialised-vs-pre-trained-general-1">Unsupervised
+Learning: Trained (Specialised) vs Pre-trained (General)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Trained<br><strong>Data </strong>from a specialized field or
+domain<br><strong>Train</strong> a model to understand the data<br>Test
+model <strong>prediction</strong> reproduces the training
+data<br><strong>Do not expect generalization</strong> (to other data
+sets)<br><br></td>
+<td>Pre-trained<br>Very large data set from many domains / fields /
+languages2. Train a model to understand general patterns in the data3.
+Test model prediction reproduces the training data4. <strong>Do expect
+generalization</strong> (to other data sets)5.
+<strong>Fine-tune</strong> for specialization – or other techniques…
+Generalized Pre-Training model = “GPT” for short<br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-10">Slide 10</h2>
+<h3 id="pre-trained-general-base-vs-instruct-aligned-models">Pre-trained
+(General): Base vs Instruct / Aligned Models</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Base model (GPT-3 - 2020)<br>“as-is”<em><br></em> But it is biased,
+unaligned with human values, so…<br><br></td>
+<td>Instruct Model (GPT-3.5, ChatGPT - 2022)<br>1. Take the base model,
+and generate many statements<br> 2. Have humans score those statements
+on criteria: Helpful, Truthful, Harmless<br> 3. Re-train the model,
+providing “rewards” as its outputs measure closer to “good”
+statements<br>Ouyang, et al (2022). <em>Training language models to
+follow instructions with human feedback</em>. Advances in neural
+information processing systems, 35, 27730-27744.<br>Reinforcement
+Learning<br> - with Human Feedback (RLHF)<br> - with AI Feedback
+(RLAIF)<br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-11">Slide 11</h2>
+<h3 id="more-things">More things…</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>In-context “training”<br><strong>Fine-tuning</strong><br>Or
+<strong>give examples</strong> in a prompt <br>No examples = Zero-shot
+learning<br>1 example = One-shot learning<br>Few examples = Few-shot
+learningGPT-3: Brown, T., et al. (2020). <em>Language models are
+</em><strong><em>few-shot</em></strong>* learners*. Advances in neural
+information processing systems, 33, 1877-1901.<br><br></td>
+<td>Retrieval-Augmented Generation<br>I want to know what I was thinking
+when I was happy…<br>But GPT doesn’t know my style / facts about my life
+etc.<br>Fortunately my life is recorded in Dropbox…Can I (a) search
+Dropbox for happy memories, and add these as context to
+GPT?<br>Steps:<br>Do Semantic Search<br>Retrieve relevant
+excerpts<br>Add these excerpts to my prompt<br>GPT can answer due this
+<strong>new context</strong><br><strong>Note: relevant for Literature
+Reviews, Qualitative Data Analysis!!</strong><br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-12">Slide 12</h2>
+<h3 id="closed-vs-open-source">Closed vs Open Source</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Closed<br>“Open”AI?<br>GPT-1, GPT-2: open source<br>GPT-3 onwards:
+closed source<br>Anthropic’s Claude<br>Google Gemini<br><br></td>
+<td>Open<br>GPT-NEO<br>Llama (Meta)<br>Mistral<br>DeepSeek<br>Qwen
+(Alibaba)<br>Phi (Microsoft)<br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-13">Slide 13</h2>
+<h3 id="remote-service-vs-local-similar-to-closed-vs-open">Remote
+(Service) vs Local (similar to Closed vs Open)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>RemoteLarge models<br>Data is online - may be used for training
+(fails IRB tests)<br>Monthly subscription <br>Additional
+features<br>Examples: ChatGPT, Anthropic’s Claude, Google Gemini,
+DeepSeek, OpenRouter<br><br></td>
+<td>Local<br><br>Small models only<br>Data is offline - private,
+secure,<br>Hardware costs (Macbook or NVidia GPUs)<br>Relies upon open
+source software<br>Examples: Llama, DeepSeek, Phi, etc<br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-14">Slide 14</h2>
+<h3 id="chat-vs-api">Chat vs API</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Chat<br>Web Interface<br>Non-technical<br>Less customization<br>Pay
+by month<br><br></td>
+<td>API<br>Code Interface (Python / JavaScript)<br>Some coding
+required<br>Can be integrated into apps, websites, devices, drones
+etc<br>Pay by token<br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-15">Slide 15</h2>
+<h3 id="training-vs-inference-time">Training vs Inference Time</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Regular Model<br>(OpenAI GPT-4o; DeepSeek-v3)<br>Expensive
+Training<br>Cheap Inference<br>Next token prediction<br><br></td>
+<td>Thinking Model <br>(OpenAI o1, o3; DeepSeek-R1)<br>Expensive
+Training<br>Expensive Inference (“Thinking”)<br>Next token
+prediction…<br>Then review….<br>Then predict again<br>Kahneman, D.
+(2011). Thinking, fast and slow. <em>Farrar, Straus and
+Giroux</em>.<br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-16">Slide 16</h2>
+<h3 id="other-considerations">Other Considerations</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Free vs Paid<br>Text vs Multimodality (Images, video)<br>Geopolitics
+of AI: US / China / EU / ???<br>Need to stay on “cutting edge” for
+research / work? Consider access to ChatGPT Plus (perhaps Claude /
+Google Gemini)<br><br></td>
+<td>Tools<br>Web Search<br>Voice interface<br>Code Execution<br>Computer
+control (Agents)<br>Task reminders<br>Project
+organization<br>Collaboration<br>Deep Research<br>Memorization /
+Personalization<br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-17">Slide 17</h2>
+<h3 id="to-explore">To Explore…</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Large Language Models<br>OpenAI ($20 per month (Plus) / $200 per
+month (Pro))<br>Anthropic Claude <br>Google
+Gemini<br>DeepSeek<br>QwenChat<br>Meta.ai <br>Grok (x.com)<br>Microsoft
+Co-pilot<br>Mistral<br><br></td>
+<td>Tools<br><strong>Search</strong>:
+Perplexity<br><strong>Summarization</strong>: NotebookLM
+<br><strong>Research Assistance</strong>: Google DeepResearch / OpenAI
+DeepResearch<br><strong>Multiple AI models</strong>: Poe / OpenRouter
+(CGScholar)<br><strong>Image Generators</strong>:
+Midjourney<br><strong>Voice</strong>:
+ElevenLabs<br><strong>Video</strong>: Kling, Luma Labs<br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-18">Slide 18</h2>
+<h3 id="other-considerations-1">Other Considerations</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Free vs Paid<br>Text vs Multimodality (Images, video)<br>Geopolitics
+of AI: US / China / EU / ???<br>Legality (can DeepSeek be used?
+downloaded?)<br>Model augmentations (code execution, project management,
+collaboration, etc etc) <br>&amp; associated effects of vendor
+lock-in<br><br></td>
+<td>Need to stay on “cutting edge” for research / work? Consider access
+to ChatGPT Plus (perhaps Claude / Google Gemini)<br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-19">Slide 19</h2>
+<h3 id="prompting-and-role-playing">Prompting and Role-playing</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Prompting<br><strong>How</strong> do we talk to AI?<br>“Explain it
+to me like I’m 5 years old”<br>“Here’s an example”<br>“Here are a series
+of documents. Compare and contrast”.<br>“Develop a structure /
+conceptual map for my literature review…”<br>“Review my draft and give
+me critical feedback…”<br>“Here’s my draft. I’ve got writer’s block.
+Give me some inspiration.”<br>“Here’s my first draft, some feedback, and
+follow-up draft. Have I addressed everything?”<br><br></td>
+<td>Role-playing in Research<br><strong>Who</strong> is the AI? “I am an
+expert / a student“<br>Your Co-pilot / Co-worker / Colleague?<br>Your
+(Anonymous) Critic?<br>Your Student?<br>Your Advisor, Mentor or
+Boss?<br>Your Research Assistant? <br>Your Research
+Participant?<br><strong>Which models</strong> respond best to
+<strong>different roles</strong>?<br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="slide-20">Slide 20</h2>
+<h3 id="more-ideas">More ideas?</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td>Prompting<br><strong>What</strong> do you find works
+well?<br><br></td>
+<td>AI In General<br><strong>What</strong> do you think will happen
+next?<br><br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+</body>
+</html>
