@@ -79,7 +79,7 @@ What does this mean? Not that we live in a world marked by simply a distinction 
 
 ```
 
---- 
+* * *
 
 ### Appearance/Reality as Infinity =  Self-consciousness
 
@@ -607,7 +607,7 @@ We won't discuss these in detail here, but the next steps involve three stages: 
 
 ![image](/markdown/images/self-consciousness-skepticism.png)
 
---- 
+* * *
 ![image](/markdown/images/self-consciousness-unhappy-consciousness.png)
 
 * * *
@@ -631,7 +631,7 @@ And finally – do we find in the existential struggles described by Hegel, a li
 
 
 
---- 
+* * *
 
 ## Next week
 
