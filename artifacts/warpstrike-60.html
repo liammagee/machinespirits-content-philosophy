@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warpstrike 60</title>
+  <meta name="artifact-title" content="Warpstrike 60">
+  <meta name="artifact-description" content="A 60-second arcade-style space shooter built with Three.js. Vibe-coded experiment in fast-paced WebGL gameplay.">
+  <meta name="artifact-tags" content="game,threejs,webgl,interactive,vibecoded,arcade">
+  <meta name="artifact-author" content="Liam Magee">
+  <meta name="artifact-date" content="2026-05-10">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: #0a0a0a;
+      color: #fafafa;
+      font-family: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      overflow: hidden;
+    }
+
+    .frame {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 1rem;
+      background: #0a0a0a;
+      border-bottom: 1px solid #222;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+    }
+
+    .title {
+      text-transform: uppercase;
+      color: #fafafa;
+    }
+
+    .title span {
+      color: #E63946;
+    }
+
+    .links a {
+      color: #fafafa;
+      text-decoration: none;
+      margin-left: 1rem;
+      opacity: 0.7;
+      transition: opacity 0.15s;
+    }
+
+    .links a:hover {
+      opacity: 1;
+      color: #E63946;
+    }
+
+    iframe {
+      flex: 1 1 auto;
+      width: 100%;
+      border: 0;
+      background: #000;
+      display: block;
+    }
+
+    .fallback {
+      display: none;
+      flex: 1 1 auto;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .fallback a {
+      color: #E63946;
+    }
+
+    @media (max-width: 600px) {
+      header { font-size: 0.7rem; padding: 0.5rem 0.75rem; }
+      .links a { margin-left: 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <header>
+      <div class="title"><span>▶</span> Warpstrike 60</div>
+      <div class="links">
+        <a href="https://warpstrike-60.fly.dev/" target="_blank" rel="noopener">Play fullscreen ↗</a>
+      </div>
+    </header>
+    <iframe
+      src="https://warpstrike-60.fly.dev/"
+      title="Warpstrike 60"
+      allow="autoplay; fullscreen; gamepad"
+      allowfullscreen></iframe>
+    <noscript>
+      <div class="fallback" style="display:flex">
+        <p>Warpstrike 60 needs JavaScript and an embedded frame to run.</p>
+        <p>Open it directly: <a href="https://warpstrike-60.fly.dev/">warpstrike-60.fly.dev</a></p>
+      </div>
+    </noscript>
+  </div>
+</body>
+</html>
