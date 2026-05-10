@@ -15,6 +15,9 @@ cd "$(dirname "$0")"
 # Render any stale Markdown to HTML before staging.
 ./build
 
+# Regenerate the sitemap from the current published set.
+./sitemap
+
 if [ -n "$(git status --porcelain)" ]; then
   :
 else

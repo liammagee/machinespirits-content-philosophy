@@ -1,0 +1,609 @@
+#!/usr/bin/env python3
+# Generate articles/sitemap.html from the current published content set.
+#
+# Usage:
+#   ./sitemap                # write articles/sitemap.html
+#   ./sitemap --stdout       # print to stdout, don't write
+#   ./sitemap --check        # exit 1 if the on-disk sitemap is stale
+#
+# The sitemap is a hand-authored-feeling page listing every published article
+# and course material, grouped by topic. Links use the /content/<path> static
+# URL scheme so they bypass the SPA and resolve to raw files served by
+# express.static.
+#
+# Title extraction tries, in order:
+#   1. `title:` field in YAML frontmatter of the sibling .md
+#   2. First markdown `# H1` in the .md body
+#   3. First `<h1>` or `<h2>` in the rendered .html
+#   4. A humanised version of the filename slug
+#
+# Topic display names for course folders come from each `course.md`'s title.
+# Article topics use a small dict of overrides; new topics get a humanised
+# folder name automatically.
+
+from __future__ import annotations
+
+import re
+import sys
+from html import escape
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+OUT = ROOT / "articles" / "sitemap.html"
+
+# ---------- Helpers --------------------------------------------------------
+
+ACRONYMS = {"ai", "ml", "lms", "eps", "caqdas", "llm", "llms", "api", "url", "urls", "pdf"}
+LOWERCASE_WORDS = {"and", "or", "the", "of", "in", "on", "with", "a", "an", "for", "to", "from", "by"}
+
+
+def humanise(slug: str) -> str:
+    """Turn 'gen_ai___week_5' into 'Gen AI — Week 5'."""
+    s = slug.replace("___", " — ").replace("__", ": ").replace("_", " ").replace("-", " ")
+    words = s.split()
+    out = []
+    for i, w in enumerate(words):
+        lw = w.lower().strip(":—")
+        if lw in ACRONYMS:
+            # Preserve trailing punctuation
+            out.append(w.upper())
+        elif w.isdigit():
+            out.append(w)
+        elif i > 0 and lw in LOWERCASE_WORDS:
+            out.append(lw)
+        elif w in {"—", ":"}:
+            out.append(w)
+        else:
+            out.append(w[:1].upper() + w[1:].lower())
+    return " ".join(out)
+
+
+def is_hidden(path: Path) -> bool:
+    return any(part.startswith("_") for part in path.parts)
+
+
+def list_published() -> list[Path]:
+    """Mirror ./urls published: every articles/**/*.html and courses/**/*.html outside _*/ paths."""
+    files = []
+    for root_name in ("articles", "courses"):
+        for p in (ROOT / root_name).rglob("*.html"):
+            rel = p.relative_to(ROOT)
+            if is_hidden(rel):
+                continue
+            # Skip the sitemap itself
+            if rel.as_posix() == "articles/sitemap.html":
+                continue
+            files.append(rel)
+    return sorted(files, key=lambda p: p.as_posix())
+
+
+def read_frontmatter_title(md: Path) -> str | None:
+    if not md.exists():
+        return None
+    text = md.read_text(encoding="utf-8", errors="replace")
+    if not text.startswith("---"):
+        return None
+    end = text.find("\n---", 3)
+    if end < 0:
+        return None
+    fm = text[3:end]
+    m = re.search(r"^title:\s*(.+?)\s*$", fm, re.MULTILINE)
+    if not m:
+        return None
+    title = m.group(1).strip()
+    if (title.startswith('"') and title.endswith('"')) or (title.startswith("'") and title.endswith("'")):
+        title = title[1:-1]
+    return title or None
+
+
+def read_md_h1(md: Path) -> str | None:
+    if not md.exists():
+        return None
+    text = md.read_text(encoding="utf-8", errors="replace")
+    # Strip frontmatter
+    body = text
+    if text.startswith("---"):
+        end = text.find("\n---", 3)
+        if end > 0:
+            body = text[end + 4:]
+    m = re.search(r"^# +(.+?)\s*$", body, re.MULTILINE)
+    return m.group(1).strip() if m else None
+
+
+def read_html_heading(html: Path) -> str | None:
+    if not html.exists():
+        return None
+    text = html.read_text(encoding="utf-8", errors="replace")
+    for tag in ("h1", "h2"):
+        m = re.search(rf"<{tag}[^>]*>(.+?)</{tag}>", text, re.DOTALL | re.IGNORECASE)
+        if m:
+            inner = re.sub(r"<[^>]+>", "", m.group(1))
+            inner = inner.strip()
+            if inner:
+                return inner
+    return None
+
+
+def normalise_ws(s: str) -> str:
+    """Collapse any run of whitespace (including newlines) into a single space."""
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def title_for(rel: Path) -> str:
+    """Best-available title for a published HTML file."""
+    md = ROOT / rel.with_suffix(".md")
+    html = ROOT / rel
+    for fn in (read_frontmatter_title, read_md_h1):
+        t = fn(md)
+        if t:
+            return normalise_ws(t)
+    t = read_html_heading(html)
+    if t:
+        return normalise_ws(t)
+    return humanise(rel.stem)
+
+
+# ---------- Topic / course metadata ---------------------------------------
+
+# Optional curated names + blurbs for article topics. Anything not listed
+# falls back to a humanised folder name with no blurb.
+ARTICLE_TOPICS: dict[str, dict] = {
+    "ai-pedagogy": {
+        "name": "AI Pedagogy",
+        "blurb": "On teaching, learning, and the place of generative AI in education.",
+    },
+    "ai-tutor": {
+        "name": "AI Tutor",
+        "blurb": "Drafts, full papers, and reviews from the <em>Machinagogy</em> project.",
+    },
+    "dictatorship": {
+        "name": "Dictatorship of the Artificial Intellect",
+        "blurb": "A book-in-progress on AI, alignment, and political form.",
+    },
+    "dissertations-critique": {
+        "name": "Dissertations Critique",
+        "blurb": None,
+    },
+    "hegel-essays": {
+        "name": "Hegel — Essays",
+        "blurb": "Original essays engaging with Hegelian themes.",
+    },
+    "hegel-primary-texts": {
+        "name": "Hegel — Primary Texts",
+        "blurb": "Annotated readings from Hegel's major works.",
+    },
+    "lms-docs": {
+        "name": "LMS Documentation",
+        "blurb": "Practical guides for using the Machine Spirits platform.",
+    },
+    "markdown-citations": {
+        "name": "Markdown Citations",
+        "blurb": None,
+    },
+    "publications": {
+        "name": "Publications",
+        "blurb": None,
+    },
+    "stochastic-society": {
+        "name": "Stochastic Society",
+        "blurb": None,
+    },
+    "vibe-scholarship": {
+        "name": "Vibe Scholarship",
+        "blurb": "On the texture of contemporary academic work in the AI era.",
+    },
+    "web-design-ai": {
+        "name": "Web Design in the AI Era",
+        "blurb": None,
+    },
+}
+
+COURSE_BLURBS: dict[str, str] = {
+    "479": "An introduction to machine learning through the lens of Hegelian philosophy.",
+    "480": "Critical perspectives on platformization, datafication, and algorithmic governance in education.",
+    "490": "Weekly materials. Three parallel sets — original <code>week-*</code>, the <code>gen_ai_week_*</code> migration set, and the Spring 2026 revision — are all preserved.",
+    "490-spring-2026": "Revised weekly materials for the Spring 2026 cohort.",
+    "590": "Reading and writing scholarly literature with AI tools.",
+    "dissertation": "Materials from the AI Dissertation Group: literature reviews, assessment, alignment, and the singularity.",
+    "socsci_and_ai": "Materials from the Bolashak programme on AI methods in social science research.",
+    "test": "A sandbox demonstrating the platform's interactive activity types.",
+}
+
+# Full display names override anything derived from course.md / folder.
+COURSE_NAMES: dict[str, str] = {
+    "490-spring-2026": "EPS 490 — Spring 2026",
+    "socsci_and_ai": "Social Science Research and AI (Bolashak)",
+    "test": "Activity Types Test Course",
+}
+
+# Prefix added in front of the course.md title when no full override exists.
+COURSE_PREFIXES: dict[str, str] = {
+    "479": "EPS 479 — ",
+    "480": "EPS 480 — ",
+    "490": "EPS 490 — ",
+    "590": "EPS 590 — ",
+}
+
+
+# ---------- Item ordering --------------------------------------------------
+
+def article_item_key(rel: Path) -> tuple:
+    """Sort articles by stem alphabetically."""
+    return (rel.stem,)
+
+
+def course_item_key(rel: Path) -> tuple:
+    """Course: course.html first, then by stem in 'natural' order (week-2 < week-10)."""
+    stem = rel.stem
+    is_course = 0 if stem == "course" else 1
+    # Natural sort: split into (text, number) tuples
+    parts = re.split(r"(\d+)", stem)
+    natural = tuple(int(p) if p.isdigit() else p for p in parts)
+    return (is_course, natural)
+
+
+def marker_for(rel: Path) -> str:
+    """A small left-side marker for a list item: course landing, week/lecture number, or generic ▸."""
+    stem = rel.stem
+    if stem == "course":
+        return "§"
+    m = re.search(r"(?:lecture|week)[\W_]*(\d+)", stem, re.IGNORECASE)
+    if m:
+        return m.group(1)
+    if "overview" in stem.lower() or "roadmap" in stem.lower():
+        return "▤"
+    if "question" in stem.lower():
+        return "?"
+    return "▸"
+
+
+# ---------- Rendering ------------------------------------------------------
+
+def url_for(rel: Path) -> str:
+    return "/content/" + rel.as_posix()
+
+
+def render_item(rel: Path, title: str) -> str:
+    return (
+        f'      <li class="item">'
+        f'<span class="marker">{escape(marker_for(rel))}</span>'
+        f'<a href="{escape(url_for(rel))}">{title}</a>'
+        f'<span class="slug">{escape(rel.stem)}</span></li>'
+    )
+
+
+def safe_title_html(title: str) -> str:
+    """Allow a small set of inline tags from frontmatter titles; escape everything else."""
+    # Pandoc-style markdown emphasis: *foo* → <em>foo</em>
+    def emph(m): return f"<em>{escape(m.group(1))}</em>"
+    title = re.sub(r"\*([^*]+)\*", emph, title)
+    # Strip any other HTML for safety, but keep <em>
+    return re.sub(r"<(?!/?em\b)[^>]+>", "", title)
+
+
+def render_group(label: str, slug: str, blurb: str | None, items: list[tuple[Path, str]], path_prefix: str) -> str:
+    head_id = f' id="{escape(slug)}"' if slug else ""
+    blurb_html = f'    <p class="group-blurb">{blurb}</p>\n' if blurb else ""
+    items_html = "\n".join(render_item(rel, safe_title_html(title)) for rel, title in items)
+    return (
+        f'  <div class="group" data-group="{escape(slug)}">\n'
+        f'    <div class="group-head"{head_id}><h3>{label}</h3>'
+        f'<span class="group-tag">{escape(path_prefix)}</span></div>\n'
+        f'{blurb_html}'
+        f'    <ul class="items">\n{items_html}\n    </ul>\n'
+        f'  </div>\n'
+    )
+
+
+def build_articles_section(files: list[Path]) -> tuple[str, int]:
+    """Return (HTML, item count)."""
+    # Group by topic folder
+    groups: dict[str, list[Path]] = {}
+    for rel in files:
+        if rel.parts[0] != "articles":
+            continue
+        topic = rel.parts[1]
+        groups.setdefault(topic, []).append(rel)
+
+    parts = []
+    count = 0
+
+    # Order topics: those in ARTICLE_TOPICS first (in dict order), then any extras alphabetically.
+    ordered_topics = list(ARTICLE_TOPICS.keys()) + sorted(g for g in groups if g not in ARTICLE_TOPICS)
+    seen = set()
+    for topic in ordered_topics:
+        if topic in seen or topic not in groups:
+            continue
+        seen.add(topic)
+        meta = ARTICLE_TOPICS.get(topic, {})
+        name = meta.get("name") or humanise(topic)
+        blurb = meta.get("blurb")
+        items = sorted(groups[topic], key=article_item_key)
+        rendered_items = [(rel, title_for(rel)) for rel in items]
+        parts.append(render_group(escape(name), topic, blurb, rendered_items, f"articles/{topic}"))
+        count += len(items)
+
+    body = "\n".join(parts)
+    return body, count
+
+
+def build_courses_section(files: list[Path]) -> tuple[str, int]:
+    groups: dict[str, list[Path]] = {}
+    for rel in files:
+        if rel.parts[0] != "courses":
+            continue
+        cid = rel.parts[1]
+        groups.setdefault(cid, []).append(rel)
+
+    parts = []
+    count = 0
+
+    # Order: known courses first (in COURSE_BLURBS order), then extras alphabetically
+    known = list(COURSE_BLURBS.keys())
+    ordered_ids = known + sorted(g for g in groups if g not in COURSE_BLURBS)
+    seen = set()
+    for cid in ordered_ids:
+        if cid in seen or cid not in groups:
+            continue
+        seen.add(cid)
+
+        course_html = ROOT / "courses" / cid / "course.html"
+        if cid in COURSE_NAMES:
+            display = COURSE_NAMES[cid]
+        else:
+            course_title = title_for(Path("courses") / cid / "course.html") if course_html.exists() else humanise(cid)
+            prefix = COURSE_PREFIXES.get(cid, "")
+            display = f"{prefix}{course_title}"
+
+        # Wrap the heading with a link to the course landing if it exists
+        if course_html.exists():
+            display_html = f'<a href="{escape(url_for(Path("courses") / cid / "course.html"))}">{escape(display)}</a>'
+        else:
+            display_html = escape(display)
+
+        items = sorted(groups[cid], key=course_item_key)
+        rendered_items = [(rel, title_for(rel)) for rel in items]
+        blurb = COURSE_BLURBS.get(cid)
+        parts.append(render_group(display_html, cid, blurb, rendered_items, f"courses/{cid}"))
+        count += len(items)
+
+    body = "\n".join(parts)
+    return body, count
+
+
+# ---------- Page shell -----------------------------------------------------
+
+PAGE = """<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sitemap — Machine Spirits</title>
+<meta name="description" content="A sitemap of all articles, course materials, and notes published on Machine Spirits.">
+<style>
+  :root {{
+    --paper: #faf8f3;
+    --ink: #1f1a17;
+    --muted: #6e6660;
+    --rule: #d8d2c6;
+    --accent: #6e1923;
+    --accent-soft: rgba(110, 25, 35, 0.06);
+    color-scheme: light dark;
+  }}
+  @media (prefers-color-scheme: dark) {{
+    :root {{
+      --paper: #18171a;
+      --ink: #ece6dd;
+      --muted: #8a807a;
+      --rule: #2c2a2e;
+      --accent: #c98995;
+      --accent-soft: rgba(201, 137, 149, 0.08);
+    }}
+  }}
+  * {{ box-sizing: border-box; }}
+  html, body {{ background: var(--paper); color: var(--ink); }}
+  body {{
+    font-family: "Charter", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    line-height: 1.55;
+    margin: 0; padding: 0;
+    -webkit-font-smoothing: antialiased;
+  }}
+  .wrap {{ max-width: 50rem; margin: 0 auto; padding: 3rem 1.5rem 6rem; }}
+  header {{ border-bottom: 1px solid var(--rule); padding-bottom: 1.4rem; margin-bottom: 1.8rem; }}
+  .eyebrow {{ font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); margin: 0 0 0.4rem; font-weight: 600; }}
+  h1 {{ font-size: 1.9rem; margin: 0 0 0.35rem; letter-spacing: -0.01em; line-height: 1.2; }}
+  .subtitle {{ color: var(--muted); font-size: 1.02rem; margin: 0; font-style: italic; }}
+  .lede {{ color: var(--ink); font-size: 1rem; margin: 1.2rem 0 0; max-width: 38rem; }}
+  .lede a, .toc a:hover, .group-head h3 a:hover, li.item a:hover {{ color: var(--accent); }}
+  .controls {{ display: flex; gap: 0.75rem; align-items: center; margin: 1.4rem 0 0; flex-wrap: wrap; }}
+  .search {{
+    flex: 1 1 18rem;
+    font: inherit; font-size: 0.95rem;
+    padding: 0.55rem 0.8rem;
+    border: 1px solid var(--rule); border-radius: 4px;
+    background: var(--paper); color: var(--ink);
+  }}
+  .search:focus {{ outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }}
+  .count-badge {{ font-size: 0.85rem; color: var(--muted); }}
+  .count-badge strong {{ color: var(--ink); font-weight: 600; }}
+  .toc {{ margin: 1.6rem 0 0; padding: 0.9rem 1rem; background: var(--accent-soft); border-radius: 4px; font-size: 0.88rem; line-height: 1.9; }}
+  .toc-label {{ text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.72rem; color: var(--muted); margin-right: 0.6rem; font-weight: 600; }}
+  .toc a {{ color: var(--ink); text-decoration: none; margin-right: 0.9rem; border-bottom: 1px dotted var(--muted); }}
+  .toc a:hover {{ border-bottom-color: var(--accent); }}
+  section {{ margin: 2.8rem 0 0; }}
+  section > h2 {{ font-size: 0.92rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin: 0 0 0.2rem; font-weight: 600; border-bottom: 2px solid var(--rule); padding-bottom: 0.5rem; }}
+  section > h2 .count {{ text-transform: none; letter-spacing: 0; font-size: 0.82rem; color: var(--muted); font-weight: 400; margin-left: 0.4rem; }}
+  section > .blurb {{ color: var(--muted); font-style: italic; font-size: 0.92rem; margin: 0.7rem 0 0; max-width: 38rem; }}
+  .group {{ margin: 1.6rem 0 0; }}
+  .group-head {{ display: flex; align-items: baseline; gap: 0.6rem; margin: 0 0 0.3rem; }}
+  .group-head h3 {{ font-size: 1.08rem; margin: 0; font-weight: 600; letter-spacing: -0.005em; }}
+  .group-head h3 a {{ color: var(--ink); text-decoration: none; }}
+  .group-tag {{ font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace; }}
+  .group-blurb {{ color: var(--muted); font-size: 0.92rem; margin: 0 0 0.55rem; font-style: italic; }}
+  ul.items {{ list-style: none; padding: 0; margin: 0; }}
+  li.item {{ border-top: 1px solid var(--rule); padding: 0.55rem 0; display: flex; align-items: baseline; gap: 0.7rem; }}
+  li.item .marker {{ color: var(--muted); font-size: 0.78rem; flex: 0 0 1.4rem; font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace; }}
+  li.item a {{ color: var(--ink); text-decoration: none; flex: 1 1 auto; }}
+  li.item .slug {{ color: var(--muted); font-size: 0.78rem; font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace; flex: 0 0 auto; text-align: right; opacity: 0.7; }}
+  @media (max-width: 560px) {{ li.item {{ flex-wrap: wrap; }} li.item .slug {{ display: none; }} }}
+  li.item.hidden {{ display: none; }}
+  .group.empty {{ display: none; }}
+  .no-results {{ text-align: center; color: var(--muted); font-style: italic; padding: 2rem 0; display: none; }}
+  .no-results.show {{ display: block; }}
+  footer {{ margin-top: 4rem; padding-top: 1.4rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.85rem; }}
+  footer a {{ color: var(--accent); }}
+  footer code {{ font-size: 0.95em; }}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <p class="eyebrow">Machine Spirits</p>
+  <h1>Sitemap</h1>
+  <p class="subtitle">Articles, course materials, and notes on the philosophy of technology.</p>
+  <p class="lede">A complete listing of everything published on this site, organised by topic and course. Use the search box to filter, or jump to a section below.</p>
+  <div class="controls">
+    <input class="search" id="search" type="search" placeholder="Filter by title, topic, or slug…" autocomplete="off" spellcheck="false">
+    <span class="count-badge"><strong id="count-shown">{total}</strong> of <strong id="count-total">{total}</strong> entries</span>
+  </div>
+  <nav class="toc">
+    <span class="toc-label">Jump to</span>
+    {toc}
+  </nav>
+</header>
+
+<section id="articles">
+  <h2>Articles <span class="count">{articles_count}</span></h2>
+{articles_body}
+</section>
+
+<section id="courses">
+  <h2>Courses <span class="count">{courses_count}</span></h2>
+{courses_body}
+</section>
+
+<p class="no-results" id="no-results">No entries match your search.</p>
+
+<footer>
+  <p>This sitemap is auto-generated by <code>./sitemap</code> from the current published content set. Generated <time>{generated}</time>. Source: <a href="https://github.com/liammagee/machinespirits-content-philosophy">liammagee/machinespirits-content-philosophy</a>.</p>
+</footer>
+</div>
+<script>
+(function () {{
+  const input = document.getElementById('search');
+  const items = document.querySelectorAll('li.item');
+  const groups = document.querySelectorAll('.group');
+  const sections = document.querySelectorAll('section');
+  const shown = document.getElementById('count-shown');
+  const empty = document.getElementById('no-results');
+  function norm(s) {{ return (s || '').toLowerCase(); }}
+  function filter() {{
+    const q = norm(input.value.trim());
+    let visible = 0;
+    items.forEach(li => {{
+      const txt = norm(li.textContent);
+      const match = !q || txt.includes(q);
+      li.classList.toggle('hidden', !match);
+      if (match) visible++;
+    }});
+    groups.forEach(g => {{
+      const any = g.querySelector('li.item:not(.hidden)');
+      g.classList.toggle('empty', !any);
+    }});
+    sections.forEach(s => {{
+      const any = s.querySelector('li.item:not(.hidden)');
+      s.style.display = any ? '' : 'none';
+    }});
+    shown.textContent = visible;
+    empty.classList.toggle('show', visible === 0);
+  }}
+  input.addEventListener('input', filter);
+  filter();
+}})();
+</script>
+</body>
+</html>
+"""
+
+
+def build_toc(article_topics: list[str], course_ids: list[str]) -> str:
+    links = ['<a href="#articles">Articles</a>', '<a href="#courses">Courses</a>']
+    for slug, label in (("hegel-essays", "Hegel"), ("ai-tutor", "AI Tutor"), ("vibe-scholarship", "Vibe Scholarship")):
+        if slug in article_topics:
+            links.append(f'<a href="#{slug}">{label}</a>')
+    # Course shortcuts: keep the label tidy (EPS 479, EPS 490 Spring, Dissertation).
+    course_labels = {
+        "479": "EPS 479",
+        "480": "EPS 480",
+        "490": "EPS 490",
+        "490-spring-2026": "EPS 490 Spring",
+        "590": "EPS 590",
+        "dissertation": "Dissertation",
+    }
+    for cid in course_ids:
+        if cid in course_labels:
+            links.append(f'<a href="#{cid}">{course_labels[cid]}</a>')
+    return "\n    ".join(links)
+
+
+def render_page(files: list[Path]) -> str:
+    from datetime import date
+
+    articles_body, articles_count = build_articles_section(files)
+    courses_body, courses_count = build_courses_section(files)
+    total = articles_count + courses_count
+
+    article_topics = sorted({f.parts[1] for f in files if f.parts[0] == "articles"})
+    course_ids = sorted({f.parts[1] for f in files if f.parts[0] == "courses"})
+
+    return PAGE.format(
+        total=total,
+        articles_count=articles_count,
+        courses_count=courses_count,
+        articles_body=articles_body,
+        courses_body=courses_body,
+        toc=build_toc(article_topics, course_ids),
+        generated=date.today().isoformat(),
+    )
+
+
+# ---------- Entry point ----------------------------------------------------
+
+def main(argv: list[str]) -> int:
+    mode = argv[1] if len(argv) > 1 else ""
+    files = list_published()
+    html = render_page(files)
+
+    if mode == "--stdout":
+        sys.stdout.write(html)
+        return 0
+
+    if mode == "--check":
+        existing = OUT.read_text(encoding="utf-8") if OUT.exists() else ""
+        if existing != html:
+            print("sitemap.html is stale. Run ./sitemap to regenerate.", file=sys.stderr)
+            return 1
+        print("sitemap.html is up to date.")
+        return 0
+
+    if mode in ("--help", "-h"):
+        # Print the docstring header
+        with open(__file__, "r") as f:
+            for line in f:
+                if line.startswith("# "):
+                    print(line[2:].rstrip())
+                elif line.startswith("#!"):
+                    continue
+                else:
+                    break
+        return 0
+
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(html, encoding="utf-8")
+    rel = OUT.relative_to(ROOT)
+    print(f"Wrote {rel} ({len(files)} entries).")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv))
