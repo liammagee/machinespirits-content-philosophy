@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Index — Machine Spirits</title>
+<meta name="description" content="An index of all articles, course materials, and notes published on Machine Spirits.">
+<style>
+  :root {
+    --paper: #faf8f3;
+    --ink: #1f1a17;
+    --muted: #6e6660;
+    --rule: #d8d2c6;
+    --accent: #6e1923;
+    --accent-soft: rgba(110, 25, 35, 0.06);
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #18171a;
+      --ink: #ece6dd;
+      --muted: #8a807a;
+      --rule: #2c2a2e;
+      --accent: #c98995;
+      --accent-soft: rgba(201, 137, 149, 0.08);
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { background: var(--paper); color: var(--ink); }
+  body {
+    font-family: "Charter", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    line-height: 1.55;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 50rem; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+
+  header { border-bottom: 1px solid var(--rule); padding-bottom: 1.4rem; margin-bottom: 1.8rem; }
+  .eyebrow {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    margin: 0 0 0.4rem;
+    font-weight: 600;
+  }
+  h1 { font-size: 1.9rem; margin: 0 0 0.35rem; letter-spacing: -0.01em; line-height: 1.2; }
+  .subtitle { color: var(--muted); font-size: 1.02rem; margin: 0; font-style: italic; }
+  .lede { color: var(--ink); font-size: 1rem; margin: 1.2rem 0 0; max-width: 38rem; }
+  .lede a { color: var(--accent); }
+
+  .controls {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin: 1.4rem 0 0;
+    flex-wrap: wrap;
+  }
+  .search {
+    flex: 1 1 18rem;
+    font: inherit;
+    font-size: 0.95rem;
+    padding: 0.55rem 0.8rem;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    background: var(--paper);
+    color: var(--ink);
+  }
+  .search:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+  .count-badge {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .count-badge strong { color: var(--ink); font-weight: 600; }
+
+  .toc {
+    margin: 1.6rem 0 0;
+    padding: 0.9rem 1rem;
+    background: var(--accent-soft);
+    border-radius: 4px;
+    font-size: 0.88rem;
+    line-height: 1.9;
+  }
+  .toc-label {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-right: 0.6rem;
+    font-weight: 600;
+  }
+  .toc a {
+    color: var(--ink);
+    text-decoration: none;
+    margin-right: 0.9rem;
+    border-bottom: 1px dotted var(--muted);
+  }
+  .toc a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  section { margin: 2.8rem 0 0; }
+  section > h2 {
+    font-size: 0.92rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin: 0 0 0.2rem;
+    font-weight: 600;
+    border-bottom: 2px solid var(--rule);
+    padding-bottom: 0.5rem;
+  }
+  section > h2 .count {
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-weight: 400;
+    margin-left: 0.4rem;
+  }
+  section > .blurb {
+    color: var(--muted);
+    font-style: italic;
+    font-size: 0.92rem;
+    margin: 0.7rem 0 0;
+    max-width: 38rem;
+  }
+
+  .group { margin: 1.6rem 0 0; }
+  .group-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin: 0 0 0.3rem;
+  }
+  .group-head h3 {
+    font-size: 1.08rem;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+  .group-head h3 a { color: var(--ink); text-decoration: none; }
+  .group-head h3 a:hover { color: var(--accent); }
+  .group-tag {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+  }
+  .group-blurb {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin: 0 0 0.55rem;
+    font-style: italic;
+  }
+
+  ul.items { list-style: none; padding: 0; margin: 0; }
+  li.item {
+    border-top: 1px solid var(--rule);
+    padding: 0.55rem 0;
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+  }
+  li.item:first-child { border-top: 1px solid var(--rule); }
+  li.item .marker {
+    color: var(--muted);
+    font-size: 0.78rem;
+    flex: 0 0 1.4rem;
+    font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+  }
+  li.item a {
+    color: var(--ink);
+    text-decoration: none;
+    flex: 1 1 auto;
+  }
+  li.item a:hover { color: var(--accent); }
+  li.item .slug {
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-family: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+    flex: 0 0 auto;
+    text-align: right;
+    opacity: 0.7;
+  }
+  @media (max-width: 560px) {
+    li.item { flex-wrap: wrap; }
+    li.item .slug { display: none; }
+  }
+
+  li.item.hidden { display: none; }
+  .group.empty { display: none; }
+  .no-results {
+    text-align: center;
+    color: var(--muted);
+    font-style: italic;
+    padding: 2rem 0;
+    display: none;
+  }
+  .no-results.show { display: block; }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Machine Spirits</p>
+  <h1>Index of all content</h1>
+  <p class="subtitle">Articles, course materials, and notes on the philosophy of technology.</p>
+  <p class="lede">A complete listing of everything published on this site, organised by topic and course. Use the search box to filter, or jump to a section below.</p>
+
+  <div class="controls">
+    <input class="search" id="search" type="search" placeholder="Filter by title, topic, or slug…" autocomplete="off" spellcheck="false">
+    <span class="count-badge"><strong id="count-shown">101</strong> of <strong id="count-total">101</strong> entries</span>
+  </div>
+
+  <nav class="toc">
+    <span class="toc-label">Jump to</span>
+    <a href="#articles">Articles</a>
+    <a href="#courses">Courses</a>
+    <a href="#hegel-essays">Hegel</a>
+    <a href="#ai-tutor">AI Tutor</a>
+    <a href="#vibe-scholarship">Vibe Scholarship</a>
+    <a href="#479">EPS 479</a>
+    <a href="#480">EPS 480</a>
+    <a href="#490">EPS 490</a>
+    <a href="#590">EPS 590</a>
+    <a href="#dissertation">Dissertation</a>
+  </nav>
+</header>
+
+<section id="articles">
+  <h2>Articles <span class="count">22</span></h2>
+  <p class="blurb">Essays, working papers, and reading lists, grouped by theme.</p>
+
+  <div class="group" data-group="ai-pedagogy">
+    <div class="group-head"><h3>AI Pedagogy</h3><span class="group-tag">articles/ai-pedagogy</span></div>
+    <p class="group-blurb">On teaching, learning, and the place of generative AI in education.</p>
+    <ul class="items">
+      <li class="item"><span class="marker">▸</span><a href="/#/ai-pedagogy-era-ai">Learning in the Era of AI</a><span class="slug">era-ai</span></li>
+      <li class="item"><span class="marker">▸</span><a href="/#/ai-pedagogy-multiagent-tutor-architecture">The Drama Machine in Education</a><span class="slug">multiagent-tutor-architecture</span></li>
+      <li class="item"><span class="marker">▸</span><a href="/#/ai-pedagogy-robo-phenomenology">Robo-Phenomenology</a><span class="slug">robo-phenomenology</span></li>
+    </ul>
+  </div>
+
+  <div class="group" data-group="ai-tutor">
+    <div class="group-head" id="ai-tutor"><h3>AI Tutor</h3><span class="group-tag">articles/ai-tutor</span></div>
+    <p class="group-blurb">Drafts, full papers, and reviews from the <em>Machinagogy</em> project.</p>
+    <ul class="items">
+      <li class="item"><span class="marker">▸</span><a href="/#/ai-tutor-machinagogy-v2"><em>Geist</em> in the Machine: Simulating Recognition and Inner Dialogue in AI-Mediated Teaching and Research</a><span class="slug">machinagogy-v2</span></li>
+      <li class="item"><span class="marker">▸</span><a href="/#/ai-tutor-full-paper-2026-01-28">Machinagogy: Experiments in Staging Teaching Dramas with LLMs</a><span class="slug">full-paper-2026-01-28</span></li>
+      <li class="item"><span class="marker">▸</span><a href="/#/ai-tutor-review-machinagogy-v2">Review of Machinagogy v2</a><span class="slug">review-machinagogy-v2</span></li>
+    </ul>
+  </div>
+
+  <div class="group" data-group="dictatorship">
+    <div class="group-head"><h3>Dictatorship of the Artificial Intellect</h3><span class="group-tag">articles/dictatorship</span></div>
+    <p class="group-blurb">A book-in-progress on AI, alignment, and political form.</p>
+    <ul class="items">
+      <li class="item"><span class="marker">▸</span><a href="/#/dictatorship-anthropic-reading-list">Anthropic Alignment Reading List</a><span class="slug">anthropic-reading-list</span></li>
+    </ul>
+  </div>
+
+  <div class="group" data-group="dissertations-critique">
+    <div class="group-head"><h3>Dissertations Critique</h3><span class="group-tag">articles/dissertations-critique</span></div>
+    <ul class="items">
+      <li class="item"><span class="marker">▸</span><a href="/#/dissertations-critique-thoughts-on-dissertations">Thoughts on Dissertations</a><span class="slug">thoughts-on-dissertations</span></li>
+    </ul>
+  </div>
+
+  <div class="group" data-group="hegel-essays">
+    <div class="group-head" id="hegel-essays"><h3>Hegel — Essays</h3><span class="group-tag">articles/hegel-essays</span></div>
+    <p class="group-blurb">Original essays engaging with Hegelian themes.</p>
+    <ul class="items">
+      <li class="item"><span class="marker">▸</span><a href="/#/hegel-essays-discarded-master">The Discarded Master</a><span class="slug">discarded-master</span></li>
+      <li class="item"><span class="marker">▸</span><a href="/#/hegel-essays-hegel-voice-1">Character Development in Contemporary Cinema</a><span class="slug">hegel-voice-1</span></li>
+      <li class="item"><span class="marker">▸</span><a href="/#/hegel-essays-hegel-voice-2">Back to the Future with Hegel</a><span class="slug">hegel-voice-2</span></li>
+    </ul>
+  </div>
+
+  <div class="group" data-group="hegel-primary-texts">
+    <div class="group-head"><h3>Hegel — Primary Texts</h3><span class="group-tag">articles/hegel-primary-texts</span></div>
+    <p class="group-blurb">Annotated readings from Hegel's major works.</p>
+    <ul class="items">
+      <li class="item"><span class="marker">▸</span><a href="/#/hegel-primary-texts-history-philosophy">Lectures on the Philosophy of History</a><span class="slug">history-philosophy</span></li>
+      <li class="item"><span class="marker">▸</span><a href="/#/hegel-primary-texts-logic-being">Science of Logic: Doctrine of Being</a><span class="slug">logic-being</span></li>
+      <li class="item"><span class="marker">▸</span><a href="/#/hegel-primary-texts-philosophy-right">Philosophy of Right</a><span class="slug">philosophy-right</span></li>
+    </ul>
+  </div>
+
+  <div class="group" data-group="lms-docs">
+    <div class="group-head"><h3>LMS Documentation</h3><span class="group-tag">articles/lms-docs</span></div>
+    <p class="group-blurb">Practical guides for using the Machine Spirits platform.</p>
+    <ul class="items">
+      <li class="item"><span class="marker">▸</span><a href="/#/lms-docs-instructor-guide">Instructor Guide</a><span class="slug">instructor-guide</span></li>
+      <li class="item"><span class="marker">▸</span><a href="/#/lms-docs-student-guide">Student Guide</a><span class="slug">student-guide</span></li>
+    </ul>
+  </div>
+
+  <div class="group" data-group="markdown-citations">
+    <div class="group-head"><h3>Markdown Citations</h3><span class="group-tag">articles/markdown-citations</span></div>
+    <ul class="items">
+      <li class="item"><span class="marker">▸</span><a href="/#/markdown-citations-markdown-bibtex-guide">Fast, Nice-Looking Citations: Markdown + BibTeX in Practice</a><span class="slug">markdown-bibtex-guide</span></li>
+    </ul>
+  </div>
+
+  <div class="group" data-group="publications">
+    <div class="group-head"><h3>Publications</h3><span class="group-tag">articles/publications</span></div>
+    <ul class="items">
+      <li class="item"><span class="marker">▸</span><a href="/#/publications-publications">Publications — AI &amp; Related</a><span class="slug">publications</span></li>
+    </ul>
+  </div>
+
+  <div class="group" data-group="stochastic-society">
+    <div class="group-head"><h3>Stochastic Society</h3><span class="group-tag">articles/stochastic-society</span></div>
+    <ul class="items">
+      <li class="item"><span class="marker">▸</span><a href="/#/stochastic-society-stochastic-society">Stochastic Society</a><span class="slug">stochastic-society</span></li>
+    </ul>
+  </div>
+
+  <div class="group" data-group="vibe-scholarship">
+    <div class="group-head" id="vibe-scholarship"><h3>Vibe Scholarship</h3><span class="group-tag">articles/vibe-scholarship</span></div>
+    <p class="group-blurb">On the texture of contemporary academic work in the AI era.</p>
+    <ul class="items">
+      <li class="item"><span class="marker">▸</span><a href="/#/vibe-scholarship-vibe-scholarship-article">Vibe Scholarship: Accessible Academia or Intellectual Fraud?</a><span class="slug">vibe-scholarship-article</span></li>
+      <li class="item"><span class="marker">▸</span><a href="/#/vibe-scholarship-vibe-scholarship">Vibe Scholarship Workshop</a><span class="slug">vibe-scholarship</span></li>
+    </ul>
+  </div>
+
+  <div class="group" data-group="web-design-ai">
+    <div class="group-head"><h3>Web Design in the AI Era</h3><span class="group-tag">articles/web-design-ai</span></div>
+    <ul class="items">
+      <li class="item"><span class="marker">▸</span><a href="/#/web-design-ai-web-design-ai-era">Web Design in the AI Era</a><span class="slug">web-design-ai-era</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="courses">
+  <h2>Courses <span class="count">79</span></h2>
+  <p class="blurb">Lecture notes, slide decks, and weekly readings from courses taught at UIUC and elsewhere.</p>
+
+  <div class="group" data-group="479">
+    <div class="group-head" id="479"><h3><a href="/#/course/479">EPS 479 — Machine Learning and Human Learning</a></h3><span class="group-tag">courses/479</span></div>
+    <p class="group-blurb">An introduction to machine learning through the lens of Hegelian philosophy.</p>
+    <ul class="items">
+      <li class="item"><span class="marker">§</span><a href="/#/course/479">Course landing</a><span class="slug">course</span></li>
+      <li class="item"><span class="marker">1</span><a href="/#/479-lecture-1">Welcome to Machine Learning and Human Learning</a><span class="slug">lecture-1</span></li>
+      <li class="item"><span class="marker">2</span><a href="/#/479-lecture-2">Lecture 2</a><span class="slug">lecture-2</span></li>
+      <li class="item"><span class="marker">3</span><a href="/#/479-lecture-3">Recognition and the Master-Servant Dialectic</a><span class="slug">lecture-3</span></li>
+      <li class="item"><span class="marker">4</span><a href="/#/479-lecture-4">Attention</a><span class="slug">lecture-4</span></li>
+      <li class="item"><span class="marker">5</span><a href="/#/479-lecture-5">Consciousness Through Historical Lens</a><span class="slug">lecture-5</span></li>
+      <li class="item"><span class="marker">6</span><a href="/#/479-lecture-6">Alignment</a><span class="slug">lecture-6</span></li>
+      <li class="item"><span class="marker">7</span><a href="/#/479-lecture-7">Lecture 7</a><span class="slug">lecture-7</span></li>
+      <li class="item"><span class="marker">8</span><a href="/#/479-lecture-8">Lecture 8</a><span class="slug">lecture-8</span></li>
+      <li class="item"><span class="marker">▤</span><a href="/#/479-roadmap-slides">Learning Features Roadmap</a><span class="slug">roadmap-slides</span></li>
+    </ul>
+  </div>
+
+  <div class="group" data-group="480">
+    <div class="group-head" id="480"><h3><a href="/#/course/480">EPS 480 — Technology and Educational Reform</a></h3><span class="group-tag">courses/480</span></div>
+    <p class="group-blurb">Critical perspectives on platformization, datafication, and algorithmic governance in education.</p>
+    <ul class="items">
+      <li class="item"><span class="marker">§</span><a href="/#/course/480">Course landing</a><span class="slug">course</span></li>
+      <li class="item"><span class="marker">▤</span><a href="/#/480-lectures-overview">Lectures Overview</a><span class="slug">lectures-overview</span></li>
+      <li class="item"><span class="marker">1</span><a href="/#/480-lecture-1">Lecture 1</a><span class="slug">lecture-1</span></li>
+      <li class="item"><span class="marker">2</span><a href="/#/480-lecture-2">480 Lecture 2 — Overview of Assessment</a><span class="slug">lecture-2</span></li>
+      <li class="item"><span class="marker">3</span><a href="/#/480-lecture-3">480 Week 3</a><span class="slug">lecture-3</span></li>
+      <li class="item"><span class="marker">4</span><a href="/#/480-lecture-4">The Platformization of Education</a><span class="slug">lecture-4</span></li>
+      <li class="item"><span class="marker">5</span><a href="/#/480-lecture-5">Datafication and Learning Analytics</a><span class="slug">lecture-5</span></li>
+      <li class="item"><span class="marker">6</span><a href="/#/480-lecture-6">Algorithmic Governance and Policy</a><span class="slug">lecture-6</span></li>
+      <li class="item"><span class="marker">7</span><a href="/#/480-lecture-7">Lecture 7</a><span class="slug">lecture-7</span></li>
+      <li class="item"><span class="marker">?</span><a href="/#/480-questions">Questions</a><span class="slug">questions</span></li>
+    </ul>
+  </div>
+
+  <div class="group" data-group="490">
+    <div class="group-head" id="490"><h3><a href="/#/course/490">EPS 490 — Generative AI in Education</a></h3><span class="group-tag">courses/490</span></div>
+    <p class="group-blurb">Weekly materials. Three parallel sets — original <code>week-*</code>, the <code>gen_ai_week_*</code> migration set, and the <em>Spring 2026</em> revision — are all preserved.</p>
+    <ul class="items">
+      <li class="item"><span class="marker">§</span><a href="/#/course/490">Course landing</a><span class="slug">course</span></li>
+      <li class="item"><span class="marker">1</span><a href="/#/490-week-1">Week 1</a><span class="slug">week-1</span></li>
+      <li class="item"><span class="marker">2</span><a href="/#/490-week-2">Week 2</a><span class="slug">week-2</span></li>
+      <li class="item"><span class="marker">3</span><a href="/#/490-week-3">Week 3</a><span class="slug">week-3</span></li>
+      <li class="item"><span class="marker">4</span><a href="/#/490-week-4">Week 4</a><span class="slug">week-4</span></li>
+      <li class="item"><span class="marker">5</span><a href="/#/490-week-5">Week 5</a><span class="slug">week-5</span></li>
+      <li class="item"><span class="marker">6</span><a href="/#/490-week-6">Week 6</a><span class="slug">week-6</span></li>
+      <li class="item"><span class="marker">7</span><a href="/#/490-week-7">Week 7</a><span class="slug">week-7</span></li>
+    </ul>
+    <p class="group-blurb" style="margin-top:0.9rem">Migration set — <code>gen_ai___week_*</code></p>
+    <ul class="items">
+      <li class="item"><span class="marker">1</span><a href="/#/490-gen-ai-week-1">Gen AI — Week 1</a><span class="slug">gen_ai___week_1</span></li>
+      <li class="item"><span class="marker">2</span><a href="/#/490-gen-ai-week-2">Gen AI — Week 2</a><span class="slug">gen_ai___week_2</span></li>
+      <li class="item"><span class="marker">3</span><a href="/#/490-gen-ai-week-3">Gen AI — Week 3</a><span class="slug">gen_ai___week_3</span></li>
+      <li class="item"><span class="marker">4</span><a href="/#/490-gen-ai-week-4">Gen AI — Week 4</a><span class="slug">gen_ai___week_4</span></li>
+      <li class="item"><span class="marker">5</span><a href="/#/490-gen-ai-week-5">Gen AI — Week 5</a><span class="slug">gen_ai___week_5</span></li>
+      <li class="item"><span class="marker">6</span><a href="/#/490-gen-ai-week-6">Gen AI — Week 6</a><span class="slug">gen_ai___week_6</span></li>
+      <li class="item"><span class="marker">7</span><a href="/#/490-gen-ai-week-7">Gen AI — Week 7</a><span class="slug">gen_ai___week_7</span></li>
+    </ul>
+  </div>
+
+  <div class="group" data-group="490-spring-2026">
+    <div class="group-head"><h3><a href="/#/course/490-spring-2026">EPS 490 — Spring 2026</a></h3><span class="group-tag">courses/490-spring-2026</span></div>
+    <p class="group-blurb">Revised weekly materials for the Spring 2026 cohort.</p>
+    <ul class="items">
+      <li class="item"><span class="marker">§</span><a href="/#/course/490-spring-2026">Course landing</a><span class="slug">course</span></li>
+      <li class="item"><span class="marker">1</span><a href="/#/490-spring-2026-week-1">Week 1 — Course Description</a><span class="slug">week-1</span></li>
+      <li class="item"><span class="marker">2</span><a href="/#/490-spring-2026-week-2">Week 2</a><span class="slug">week-2</span></li>
+      <li class="item"><span class="marker">3</span><a href="/#/490-spring-2026-week-3">Week 3</a><span class="slug">week-3</span></li>
+      <li class="item"><span class="marker">4</span><a href="/#/490-spring-2026-week-4">Week 4 — Practical Resources</a><span class="slug">week-4</span></li>
+      <li class="item"><span class="marker">5</span><a href="/#/490-spring-2026-week-5">Week 5 — The Problem(s) of Alignment</a><span class="slug">week-5</span></li>
+      <li class="item"><span class="marker">6</span><a href="/#/490-spring-2026-week-6">Week 6 — Readings</a><span class="slug">week-6</span></li>
+      <li class="item"><span class="marker">7</span><a href="/#/490-spring-2026-week-7">Week 7 — Assignment(s)</a><span class="slug">week-7</span></li>
+    </ul>
+  </div>
+
+  <div class="group" data-group="590">
+    <div class="group-head" id="590"><h3><a href="/#/course/590">EPS 590 — AI and Academic Literature</a></h3><span class="group-tag">courses/590</span></div>
+    <p class="group-blurb">Reading and writing scholarly literature with AI tools.</p>
+    <ul class="items">
+      <li class="item"><span class="marker">§</span><a href="/#/course/590">Course landing</a><span class="slug">course</span></li>
+      <li class="item"><span class="marker">▤</span><a href="/#/590-lecture-overview">590 Lecture Overview</a><span class="slug">lecture-overview</span></li>
+      <li class="item"><span class="marker">0</span><a href="/#/590-ai-overview">584 Lecture 0 — AI Overview</a><span class="slug">ai-overview</span></li>
+      <li class="item"><span class="marker">1</span><a href="/#/590-lecture-1">Lecture 1</a><span class="slug">lecture-1</span></li>
+      <li class="item"><span class="marker">2</span><a href="/#/590-lecture-2">Lecture 2 — Recap on Week 1</a><span class="slug">lecture-2</span></li>
+      <li class="item"><span class="marker">3</span><a href="/#/590-lecture-3">590 Lecture 3</a><span class="slug">lecture-3</span></li>
+      <li class="item"><span class="marker">4</span><a href="/#/590-lecture-4">590 Lecture 4</a><span class="slug">lecture-4</span></li>
+      <li class="item"><span class="marker">5</span><a href="/#/590-lecture-5">590 Lecture 5</a><span class="slug">lecture-5</span></li>
+      <li class="item"><span class="marker">6</span><a href="/#/590-lecture-6">590 Lecture 6</a><span class="slug">lecture-6</span></li>
+      <li class="item"><span class="marker">7</span><a href="/#/590-lecture-7">590 Lecture 7</a><span class="slug">lecture-7</span></li>
+    </ul>
+  </div>
+
+  <div class="group" data-group="dissertation">
+    <div class="group-head" id="dissertation"><h3><a href="/#/course/dissertation">Dissertation Writing in the AI Era</a></h3><span class="group-tag">courses/dissertation</span></div>
+    <p class="group-blurb">Materials from the AI Dissertation Group: literature reviews, assessment, alignment, and the singularity.</p>
+    <ul class="items">
+      <li class="item"><span class="marker">§</span><a href="/#/course/dissertation">Course landing</a><span class="slug">course</span></li>
+      <li class="item"><span class="marker">▸</span><a href="/#/dissertation-lecture-1">Thoughts on Dissertation Writing</a><span class="slug">lecture-1</span></li>
+      <li class="item"><span class="marker">▸</span><a href="/#/dissertation-ai-dissertation-group">AI Dissertation Group</a><span class="slug">ai_dissertation_group</span></li>
+      <li class="item"><span class="marker">▸</span><a href="/#/dissertation-dissertation-ai-dissertation-group">Dissertation — AI Dissertation Group</a><span class="slug">dissertation___ai_dissertation_group</span></li>
+      <li class="item"><span class="marker">▸</span><a href="/#/dissertation-dissertation-ai-dissertation-group-april-1">Dissertation — AI Dissertation Group, April 1</a><span class="slug">dissertation___ai_dissertation_group___april_1</span></li>
+      <li class="item"><span class="marker">▸</span><a href="/#/dissertation-dissertation-1-singularity-and-the-concept-of-history">Dissertation 1 — Singularity and the Concept of History</a><span class="slug">dissertation___1__singularity_and_the_concept_of_history</span></li>
+      <li class="item"><span class="marker">▸</span><a href="/#/dissertation-dissertation-ai-bias-alignment-other-topics">Dissertation — AI, Bias, Alignment &amp; Other Topics</a><span class="slug">dissertation___ai__bias__alignment___other_topics</span></li>
+      <li class="item"><span class="marker">▸</span><a href="/#/dissertation-dissertation-assessment-in-the-age-of-ai">Dissertation — Assessment in the Age of AI</a><span class="slug">dissertation___assessment_in_the_age_of_ai</span></li>
+      <li class="item"><span class="marker">▸</span><a href="/#/dissertation-dissertation-literature-reviews">Dissertation — Literature Reviews</a><span class="slug">dissertation___literature_reviews</span></li>
+      <li class="item"><span class="marker">▸</span><a href="/#/dissertation-dissertation-reviewing-the-literature-signposting">Dissertation — Reviewing the Literature: Signposting</a><span class="slug">dissertation___reviewing_the_literature__signposting</span></li>
+      <li class="item"><span class="marker">▸</span><a href="/#/dissertation-phenomenology">Phenomenology — Key Moments</a><span class="slug">phenomenology</span></li>
+    </ul>
+  </div>
+
+  <div class="group" data-group="socsci_and_ai">
+    <div class="group-head"><h3><a href="/#/course/socsci_and_ai">Social Science Research and AI <span style="color:var(--muted);font-weight:400;font-size:0.85em">(Bolashak)</span></a></h3><span class="group-tag">courses/socsci_and_ai</span></div>
+    <p class="group-blurb">Materials from the Bolashak programme on AI methods in social science research.</p>
+    <ul class="items">
+      <li class="item"><span class="marker">§</span><a href="/#/course/socsci_and_ai">Course landing</a><span class="slug">course</span></li>
+      <li class="item"><span class="marker">1</span><a href="/#/socsci_and_ai-bolashak-week-1">Bolashak — Week 1</a><span class="slug">bolashak___week_1</span></li>
+      <li class="item"><span class="marker">2</span><a href="/#/socsci_and_ai-bolashak-week-2-qualitative-research">Bolashak — Week 2: Qualitative Research</a><span class="slug">bolashak___week_2___qualitative_research</span></li>
+      <li class="item"><span class="marker">3</span><a href="/#/socsci_and_ai-bolashak-week-3-data-analysis-with-ai">Bolashak — Week 3: Data Analysis with AI</a><span class="slug">bolashak___week_3___data_analysis_with_ai</span></li>
+      <li class="item"><span class="marker">5</span><a href="/#/socsci_and_ai-bolashak-week-5-cyber-social-research">Bolashak — Week 5: Cyber-Social Research</a><span class="slug">bolashak___week_5___cyber_social_research</span></li>
+      <li class="item"><span class="marker">6</span><a href="/#/socsci_and_ai-bolashak-week-6-caqdas-with-dedoose">Bolashak — Week 6: CAQDAS with Dedoose</a><span class="slug">bolashak___week_6___caqdas_with_dedoose</span></li>
+      <li class="item"><span class="marker">8</span><a href="/#/socsci_and_ai-bolashak-week-8-mixed-methods-research">Bolashak — Week 8: Mixed Methods Research</a><span class="slug">bolashak___week_8___mixed_methods_research</span></li>
+      <li class="item"><span class="marker">9</span><a href="/#/socsci_and_ai-bolashak-week-9-on-journals-15apr25">Bolashak — Week 9: On Journals (15 Apr 25)</a><span class="slug">bolashak___week_9___on_journals_15apr25</span></li>
+      <li class="item"><span class="marker">10</span><a href="/#/socsci_and_ai-bolashak-week-10-critique-and-scholarship">Bolashak — Week 10: Critique and Scholarship</a><span class="slug">bolashak___week_10___critique_and_scholarship</span></li>
+      <li class="item"><span class="marker">11</span><a href="/#/socsci_and_ai-bolashak-week-11-generation-ai">Bolashak — Week 11: Generation AI</a><span class="slug">bolashak___week_11___generation_ai</span></li>
+    </ul>
+  </div>
+
+  <div class="group" data-group="test">
+    <div class="group-head"><h3><a href="/#/course/test">Activity Types Test Course</a></h3><span class="group-tag">courses/test</span></div>
+    <p class="group-blurb">A sandbox demonstrating the platform's interactive activity types.</p>
+    <ul class="items">
+      <li class="item"><span class="marker">§</span><a href="/#/course/test">Course landing</a><span class="slug">course</span></li>
+      <li class="item"><span class="marker">1</span><a href="/#/test-lecture-1">Lecture 1: Reflection &amp; Quiz Activities</a><span class="slug">lecture-1</span></li>
+      <li class="item"><span class="marker">2</span><a href="/#/test-lecture-2">Lecture 2: Code &amp; Annotate Activities</a><span class="slug">lecture-2</span></li>
+      <li class="item"><span class="marker">3</span><a href="/#/test-lecture-3">Lecture 3: Socratic Dialogue &amp; Experiment Activities</a><span class="slug">lecture-3</span></li>
+      <li class="item"><span class="marker">4</span><a href="/#/test-lecture-4">Lecture 4: Social Simulation Activity</a><span class="slug">lecture-4</span></li>
+    </ul>
+  </div>
+</section>
+
+<p class="no-results" id="no-results">No entries match your search.</p>
+
+<footer>
+  <p>This index is hand-authored at <code>articles/index.html</code> and rebuilt on every <code>./publish</code>. Source: <a href="https://github.com/liammagee/machinespirits-content-philosophy">liammagee/machinespirits-content-philosophy</a>.</p>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  const input = document.getElementById('search');
+  const items = document.querySelectorAll('li.item');
+  const groups = document.querySelectorAll('.group');
+  const sections = document.querySelectorAll('section');
+  const shown = document.getElementById('count-shown');
+  const total = document.getElementById('count-total');
+  const empty = document.getElementById('no-results');
+
+  const totalCount = items.length;
+  total.textContent = totalCount;
+
+  function norm(s) { return (s || '').toLowerCase(); }
+
+  function filter() {
+    const q = norm(input.value.trim());
+    let visible = 0;
+    items.forEach(li => {
+      const txt = norm(li.textContent);
+      const match = !q || txt.includes(q);
+      li.classList.toggle('hidden', !match);
+      if (match) visible++;
+    });
+    groups.forEach(g => {
+      const any = g.querySelector('li.item:not(.hidden)');
+      g.classList.toggle('empty', !any);
+    });
+    sections.forEach(s => {
+      const any = s.querySelector('li.item:not(.hidden)');
+      s.style.display = any ? '' : 'none';
+    });
+    shown.textContent = visible;
+    empty.classList.toggle('show', visible === 0);
+  }
+
+  input.addEventListener('input', filter);
+  filter();
+})();
+</script>
+
+</body>
+</html>
