@@ -63,14 +63,20 @@ def is_hidden(path: Path) -> bool:
 
 
 def list_published() -> list[Path]:
-    """Mirror ./urls published: every articles/**/*.html and courses/**/*.html outside _*/ paths."""
+    """Mirror ./urls published: every <root>/**/*.html outside _*/ paths.
+
+    Roots are articles/, courses/, and any folder in OTHER_TOP_LEVELS.
+    """
     files = []
-    for root_name in ("articles", "courses"):
-        for p in (ROOT / root_name).rglob("*.html"):
+    roots = ("articles", "courses", *OTHER_TOP_LEVELS.keys())
+    for root_name in roots:
+        root_dir = ROOT / root_name
+        if not root_dir.exists():
+            continue
+        for p in root_dir.rglob("*.html"):
             rel = p.relative_to(ROOT)
             if is_hidden(rel):
                 continue
-            # Skip the sitemap itself
             if rel.as_posix() == "articles/sitemap.html":
                 continue
             files.append(rel)
@@ -225,6 +231,17 @@ COURSE_PREFIXES: dict[str, str] = {
 }
 
 
+# Top-level publishable folders besides articles/ and courses/. Each entry
+# renders as its own H2 section. Allowlisted (not auto-discovered) so stray
+# folders like theme/ or node_modules/ never leak into the sitemap.
+OTHER_TOP_LEVELS: dict[str, dict] = {
+    "artifacts": {
+        "name": "Artifacts",
+        "blurb": "Standalone HTML pieces — interactive explorers, generators, and visual demos served at <code>/content/artifacts/…</code>.",
+    },
+}
+
+
 # ---------- Item ordering --------------------------------------------------
 
 def article_item_key(rel: Path) -> tuple:
@@ -325,6 +342,50 @@ def build_articles_section(files: list[Path]) -> tuple[str, int]:
 
     body = "\n".join(parts)
     return body, count
+
+
+def build_other_section(folder: str, meta: dict, files: list[Path]) -> tuple[str, int]:
+    """Render one top-level 'other' folder.
+
+    Flat files (folder/foo.html) share a single group named after the section.
+    Files with a sub-folder (folder/sub/foo.html) get one group per sub-folder.
+    """
+    rels = [f for f in files if f.parts[0] == folder]
+    if not rels:
+        return "", 0
+
+    by_sub: dict[str, list[Path]] = {}
+    flat: list[Path] = []
+    for rel in rels:
+        if len(rel.parts) >= 3:
+            by_sub.setdefault(rel.parts[1], []).append(rel)
+        else:
+            flat.append(rel)
+
+    parts = []
+    count = 0
+
+    if flat:
+        items = sorted(flat, key=article_item_key)
+        rendered = [(rel, title_for(rel)) for rel in items]
+        parts.append(render_group(escape(meta["name"]), folder, meta.get("blurb"), rendered, folder))
+        count += len(items)
+
+    for sub in sorted(by_sub):
+        items = sorted(by_sub[sub], key=article_item_key)
+        rendered = [(rel, title_for(rel)) for rel in items]
+        parts.append(
+            render_group(
+                escape(humanise(sub)),
+                f"{folder}-{sub}",
+                None,
+                rendered,
+                f"{folder}/{sub}",
+            )
+        )
+        count += len(items)
+
+    return "\n".join(parts), count
 
 
 def build_courses_section(files: list[Path]) -> tuple[str, int]:
@@ -481,7 +542,7 @@ PAGE = """<!doctype html>
   <h2>Courses <span class="count">{courses_count}</span></h2>
 {courses_body}
 </section>
-
+{other_sections}
 <p class="no-results" id="no-results">No entries match your search.</p>
 
 <footer>
@@ -526,12 +587,15 @@ PAGE = """<!doctype html>
 """
 
 
-def build_toc(article_topics: list[str], course_ids: list[str]) -> str:
+def build_toc(article_topics: list[str], course_ids: list[str], other_present: list[str]) -> str:
     links = ['<a href="#articles">Articles</a>', '<a href="#courses">Courses</a>']
+    for folder in other_present:
+        meta = OTHER_TOP_LEVELS.get(folder, {})
+        label = meta.get("name") or humanise(folder)
+        links.append(f'<a href="#{escape(folder)}">{escape(label)}</a>')
     for slug, label in (("hegel-essays", "Hegel"), ("ai-tutor", "AI Tutor"), ("vibe-scholarship", "Vibe Scholarship")):
         if slug in article_topics:
             links.append(f'<a href="#{slug}">{label}</a>')
-    # Course shortcuts: keep the label tidy (EPS 479, EPS 490 Spring, Dissertation).
     course_labels = {
         "479": "EPS 479",
         "480": "EPS 480",
@@ -546,12 +610,37 @@ def build_toc(article_topics: list[str], course_ids: list[str]) -> str:
     return "\n    ".join(links)
 
 
+def render_other_sections(files: list[Path]) -> tuple[str, int, list[str]]:
+    """Render each OTHER_TOP_LEVELS folder as its own H2 section.
+
+    Returns (concatenated HTML, total count across all 'other' sections, list of
+    folder names that produced output — for TOC).
+    """
+    blocks = []
+    total = 0
+    present: list[str] = []
+    for folder, meta in OTHER_TOP_LEVELS.items():
+        body, count = build_other_section(folder, meta, files)
+        if not count:
+            continue
+        present.append(folder)
+        total += count
+        blocks.append(
+            f'\n<section id="{escape(folder)}">\n'
+            f'  <h2>{escape(meta["name"])} <span class="count">{count}</span></h2>\n'
+            f'{body}\n'
+            f'</section>'
+        )
+    return "\n".join(blocks), total, present
+
+
 def render_page(files: list[Path]) -> str:
     from datetime import date
 
     articles_body, articles_count = build_articles_section(files)
     courses_body, courses_count = build_courses_section(files)
-    total = articles_count + courses_count
+    other_sections, other_count, other_present = render_other_sections(files)
+    total = articles_count + courses_count + other_count
 
     article_topics = sorted({f.parts[1] for f in files if f.parts[0] == "articles"})
     course_ids = sorted({f.parts[1] for f in files if f.parts[0] == "courses"})
@@ -562,7 +651,8 @@ def render_page(files: list[Path]) -> str:
         courses_count=courses_count,
         articles_body=articles_body,
         courses_body=courses_body,
-        toc=build_toc(article_topics, course_ids),
+        other_sections=other_sections,
+        toc=build_toc(article_topics, course_ids, other_present),
         generated=date.today().isoformat(),
     )
 
