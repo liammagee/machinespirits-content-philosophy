@@ -6,7 +6,8 @@
 #   ./urls published             # only published
 #   ./urls drafts                # only drafts
 #   ./urls hidden                # only hidden
-#   ./urls site                  # public URLs derived from published files
+#   ./urls site                  # SPA hash-route URLs (one per published file)
+#   ./urls static                # raw /content/ URLs (every HTML served standalone)
 #   ./urls site --base <url>     # override base (default https://machinespirits.org)
 #   ./urls --plain               # no colour, plain paths only
 
@@ -57,6 +58,16 @@ list_hidden() {
 to_slug() {
   printf '%s' "$1" | tr '[:upper:]' '[:lower:]' \
     | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//'
+}
+
+list_static_urls() {
+  # Every published HTML, served by express.static at /content/<path>.
+  # Use this to find hand-authored pages or to share a "raw" link that bypasses the SPA.
+  list_published \
+    | while IFS= read -r f; do
+        f="${f#./}"
+        printf '%s/content/%s\n' "$base" "$f"
+      done
 }
 
 list_site_urls() {
@@ -126,6 +137,9 @@ case "$mode" in
     ;;
   site|urls|web)
     list_site_urls
+    ;;
+  static|raw|files)
+    list_static_urls
     ;;
   all|--plain|"")
     pub=()

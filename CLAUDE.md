@@ -8,7 +8,7 @@ Content package for machinespirits.org. Articles, courses, theme, and tutor prom
 |---|---|
 | `./build` | Renders `.md` → `.html` via Pandoc with citeproc. Skips `_*` paths. Skips up-to-date files (mtime check). Exits non-zero on failure. Flags: `--all` (force), `<path>` (single file). |
 | `./serve` | Starts `python3 -m http.server` on port 8000, generates `_preview.html` index page (gitignored), opens browser. For local preview of rendered output. |
-| `./urls` | Text listing of published / draft / hidden files. `./urls drafts` filters; `--plain` for piping. `./urls site` emits live URLs (`--base` to override default). |
+| `./urls` | Text listing of published / draft / hidden files. `./urls drafts` filters; `--plain` for piping. `./urls site` emits SPA hash-route URLs; `./urls static` emits raw `/content/` URLs (every HTML, served standalone). `--base` overrides default host. |
 | `./publish "msg"` | Runs `./build`, then `git add -A`, commits, `git pull --rebase --autostash`, pushes. The push triggers redeploy. |
 
 **Always use `./publish` to ship.** It gates the push on `./build` succeeding, which prevents broken articles from reaching the live site.
