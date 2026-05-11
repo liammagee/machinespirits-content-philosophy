@@ -237,7 +237,7 @@ COURSE_PREFIXES: dict[str, str] = {
 OTHER_TOP_LEVELS: dict[str, dict] = {
     "artifacts": {
         "name": "Artifacts",
-        "blurb": "Standalone HTML pieces — interactive explorers, generators, and visual demos served at <code>/content/artifacts/…</code>.",
+        "blurb": "Standalone HTML pieces — interactive explorers, generators, and visual demos served at <code>/artifacts/…</code>.",
     },
 }
 
@@ -277,6 +277,11 @@ def marker_for(rel: Path) -> str:
 # ---------- Rendering ------------------------------------------------------
 
 def url_for(rel: Path) -> str:
+    # Artifacts are copied into the website's public/artifacts/ by
+    # `npm run publish` and served at /artifacts/<slug>.html — not under
+    # /content/. Everything else uses the express.static /content/ mount.
+    if rel.parts and rel.parts[0] == "artifacts":
+        return "/" + rel.as_posix()
     return "/content/" + rel.as_posix()
 
 
