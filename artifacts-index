@@ -1,0 +1,151 @@
+#!/usr/bin/env python3
+"""Build artifacts/index.json from artifacts/*.html metadata.
+
+Scans every HTML file in artifacts/ and extracts <meta name="artifact-*">
+tags plus a few file-system facts (size, mtime) into a JSON index that the
+website's /api/artifacts endpoint and gallery component consume.
+
+Output schema matches the legacy scripts/build-artifact-index.js so the
+website can read the file without changes to the gallery contract.
+
+Usage:
+  ./artifacts-index           # write artifacts/index.json
+  ./artifacts-index --check   # exit non-zero if index.json would change
+"""
+
+from __future__ import annotations
+
+import json
+import re
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+ARTIFACTS_DIR = ROOT / "artifacts"
+INDEX_PATH = ARTIFACTS_DIR / "index.json"
+THUMBNAILS_DIR = ARTIFACTS_DIR / "thumbnails"
+
+META_RE_FORWARD = re.compile(
+    r'<meta\s+name=["\']{name}["\']\s+content=["\']([^"\']*)["\']',
+    re.IGNORECASE,
+)
+META_RE_REVERSE = re.compile(
+    r'<meta\s+content=["\']([^"\']*)["\']\s+name=["\']{name}["\']',
+    re.IGNORECASE,
+)
+TITLE_RE = re.compile(r"<title>([^<]*)</title>", re.IGNORECASE)
+
+
+def extract_meta(html: str, name: str) -> str | None:
+    pattern = re.compile(
+        rf'<meta\s+name=["\']{re.escape(name)}["\']\s+content=["\']([^"\']*)["\']',
+        re.IGNORECASE,
+    )
+    m = pattern.search(html)
+    if m:
+        return m.group(1)
+    pattern_rev = re.compile(
+        rf'<meta\s+content=["\']([^"\']*)["\']\s+name=["\']{re.escape(name)}["\']',
+        re.IGNORECASE,
+    )
+    m = pattern_rev.search(html)
+    return m.group(1) if m else None
+
+
+def extract_title(html: str) -> str | None:
+    m = TITLE_RE.search(html)
+    return m.group(1).strip() if m else None
+
+
+def humanise(slug: str) -> str:
+    return " ".join(part.capitalize() for part in slug.split("-") if part)
+
+
+def scan_artifact(path: Path) -> dict:
+    html = path.read_text(encoding="utf-8", errors="replace")
+    stat = path.stat()
+    slug = path.stem
+
+    title = (
+        extract_meta(html, "artifact-title")
+        or extract_title(html)
+        or humanise(slug)
+    )
+    description = extract_meta(html, "artifact-description") or ""
+    tags_raw = extract_meta(html, "artifact-tags") or ""
+    tags = [t.strip() for t in tags_raw.split(",") if t.strip()]
+    author = extract_meta(html, "artifact-author") or ""
+    mtime = datetime.fromtimestamp(stat.st_mtime, tz=timezone.utc)
+    date = extract_meta(html, "artifact-date") or mtime.date().isoformat()
+
+    course = extract_meta(html, "artifact-course")
+    lecture = extract_meta(html, "artifact-lecture")
+
+    thumbnail_path = THUMBNAILS_DIR / f"{slug}.png"
+    thumbnail = f"/content/artifacts/thumbnails/{slug}.png" if thumbnail_path.exists() else None
+
+    entry = {
+        "slug": slug,
+        "title": title,
+        "description": description,
+        "tags": tags,
+        "author": author,
+        "date": date,
+        "thumbnail": thumbnail,
+        "file": path.name,
+        "size": stat.st_size,
+        "modified": mtime.isoformat().replace("+00:00", "Z"),
+    }
+    if course:
+        entry["course"] = course
+    if lecture:
+        entry["lecture"] = lecture
+    return entry
+
+
+def build_index() -> dict:
+    if not ARTIFACTS_DIR.exists():
+        return {"generated": None, "count": 0, "artifacts": []}
+
+    html_files = sorted(p for p in ARTIFACTS_DIR.glob("*.html") if p.is_file())
+    artifacts = [scan_artifact(p) for p in html_files]
+    artifacts.sort(key=lambda a: a["slug"])
+
+    return {
+        "generated": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "count": len(artifacts),
+        "artifacts": artifacts,
+    }
+
+
+def stable_dump(data: dict) -> str:
+    # `generated` is the only field that changes on every run, so strip it for
+    # the equality check the --check mode uses.
+    return json.dumps(data, indent=2, ensure_ascii=False) + "\n"
+
+
+def main() -> int:
+    check = "--check" in sys.argv[1:]
+    new_index = build_index()
+
+    if check:
+        if not INDEX_PATH.exists():
+            print(f"{INDEX_PATH} missing; would create.", file=sys.stderr)
+            return 1
+        old = json.loads(INDEX_PATH.read_text(encoding="utf-8"))
+        # Ignore the `generated` timestamp when comparing.
+        new_copy = {**new_index, "generated": old.get("generated")}
+        if old != new_copy:
+            print(f"{INDEX_PATH} is out of date.", file=sys.stderr)
+            return 1
+        print(f"{INDEX_PATH} up to date ({new_index['count']} artifacts).")
+        return 0
+
+    INDEX_PATH.write_text(stable_dump(new_index), encoding="utf-8")
+    print(f"Wrote {INDEX_PATH.relative_to(ROOT)} ({new_index['count']} artifacts).")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

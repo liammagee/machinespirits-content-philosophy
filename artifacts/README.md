@@ -35,21 +35,22 @@ Or inline in the lecture markdown:
 ::artifact[my-demo]
 ```
 
-### 3. Publish and deploy
+### 3. Publish
 
 ```bash
-cd ~/Dev/machinespirits/machinespirits-website
-npm run publish    # copies artifacts + rebuilds index
-git push           # auto-deploys
+cd ~/Dev/machinespirits/machinespirits-content-philosophy
+./publish "Add my-demo artifact"
 ```
+
+`./publish` runs `./artifacts-index` to refresh `artifacts/index.json` and pushes. The live site picks up changes on the next content-repo deploy (~3-5 min). **No website-repo changes needed.**
 
 ## How it works
 
-1. `npm run publish` copies `artifacts/*.html` from this repo to `public/artifacts/` in the website
-2. `build-artifact-index.js` scans the HTML files, extracts `<meta>` tags, and generates `public/artifacts/index.json`
-3. The gallery at `/#/artifacts` reads the index and displays all artifacts
-4. Lectures with `artifacts:` frontmatter render embedded iframes via `ArticleReader.tsx`
-5. Direct access: `/artifacts/<slug>.html` serves the raw file
+1. `./artifacts-index` scans `artifacts/*.html`, extracts `<meta>` tags, and writes `artifacts/index.json` (committed to the content repo)
+2. The website mounts `artifacts/` at `/content/artifacts/` via `express.static` — same pattern as `articles/` and `courses/`
+3. `routes/artifactRoutes.js` (`/api/artifacts`) reads `index.json` directly from the content package
+4. The gallery at `/#/artifacts` calls `/api/artifacts` and renders cards from the index
+5. Lectures with `artifacts:` frontmatter render embedded iframes pointing at `/content/artifacts/<slug>.html`
 
 ## Access points
 
@@ -57,10 +58,12 @@ git push           # auto-deploys
 |-----|------|
 | `/#/artifacts` | Gallery (browse all) |
 | `/#/artifact/<slug>` | Viewer (single artifact in iframe) |
-| `/artifacts/<slug>.html` | Direct/standalone (shareable) |
+| `/content/artifacts/<slug>.html` | Direct/standalone (shareable) |
 | Within a lecture | Embedded iframe with fullscreen toggle |
 
 ## Existing artifacts
 
+- `anthropic-reading-list.html` — Reading tracker for Anthropic alignment papers
 - `design-audit-playground.html` — Colour palette, typography, spacing tokens, WCAG contrast matrix
 - `hegel-recognition-explorer.html` — Interactive master-slave dialectic (linked to course 479, lecture 3)
+- `warpstrike-60.html` — Wrapper iframing the Warpstrike 60 game (deployed at warpstrike-60.fly.dev)

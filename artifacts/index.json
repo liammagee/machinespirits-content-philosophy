@@ -1,0 +1,74 @@
+{
+  "generated": "2026-05-11T00:18:05.161969Z",
+  "count": 4,
+  "artifacts": [
+    {
+      "slug": "anthropic-reading-list",
+      "title": "Anthropic Alignment Reading List — Dictatorship of the Artificial Intellect",
+      "description": "",
+      "tags": [],
+      "author": "",
+      "date": "2026-05-09",
+      "thumbnail": null,
+      "file": "anthropic-reading-list.html",
+      "size": 23596,
+      "modified": "2026-05-09T15:05:24.838657Z"
+    },
+    {
+      "slug": "design-audit-playground",
+      "title": "Design Audit Playground",
+      "description": "Interactive explorer for the Machine Spirits design system — colours, typography, and spacing tokens.",
+      "tags": [
+        "design",
+        "tokens",
+        "typography",
+        "colour"
+      ],
+      "author": "Machine Spirits",
+      "date": "2026-03-14",
+      "thumbnail": null,
+      "file": "design-audit-playground.html",
+      "size": 10903,
+      "modified": "2026-05-11T00:13:09.782084Z"
+    },
+    {
+      "slug": "hegel-recognition-explorer",
+      "title": "Hegel Recognition Explorer",
+      "description": "Interactive visualization of the master-slave dialectic and stages of mutual recognition",
+      "tags": [
+        "hegel",
+        "recognition",
+        "dialectic",
+        "interactive",
+        "philosophy"
+      ],
+      "author": "Claude",
+      "date": "2026-03-15",
+      "thumbnail": null,
+      "file": "hegel-recognition-explorer.html",
+      "size": 22612,
+      "modified": "2026-03-15T04:36:39.607231Z",
+      "course": "479",
+      "lecture": "lecture-3"
+    },
+    {
+      "slug": "warpstrike-60",
+      "title": "Warpstrike 60",
+      "description": "A 60-second arcade-style space shooter built with Three.js. Vibe-coded experiment in fast-paced WebGL gameplay.",
+      "tags": [
+        "game",
+        "threejs",
+        "webgl",
+        "interactive",
+        "vibecoded",
+        "arcade"
+      ],
+      "author": "Liam Magee",
+      "date": "2026-05-10",
+      "thumbnail": null,
+      "file": "warpstrike-60.html",
+      "size": 2850,
+      "modified": "2026-05-10T17:16:11.667031Z"
+    }
+  ]
+}

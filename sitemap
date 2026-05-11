@@ -130,6 +130,19 @@ def read_html_heading(html: Path) -> str | None:
     return None
 
 
+def read_artifact_meta_title(html: Path) -> str | None:
+    """Artifacts carry an explicit `<meta name="artifact-title">` that's more
+    authoritative than the visual <h1> (which may be styled all-caps)."""
+    if not html.exists():
+        return None
+    text = html.read_text(encoding="utf-8", errors="replace")
+    m = re.search(
+        r'<meta\s+name=["\']artifact-title["\']\s+content=["\']([^"\']*)["\']',
+        text, re.IGNORECASE,
+    )
+    return m.group(1).strip() if m else None
+
+
 def normalise_ws(s: str) -> str:
     """Collapse any run of whitespace (including newlines) into a single space."""
     return re.sub(r"\s+", " ", s).strip()
@@ -141,6 +154,10 @@ def title_for(rel: Path) -> str:
     html = ROOT / rel
     for fn in (read_frontmatter_title, read_md_h1):
         t = fn(md)
+        if t:
+            return normalise_ws(t)
+    if rel.parts and rel.parts[0] == "artifacts":
+        t = read_artifact_meta_title(html)
         if t:
             return normalise_ws(t)
     t = read_html_heading(html)
@@ -237,7 +254,7 @@ COURSE_PREFIXES: dict[str, str] = {
 OTHER_TOP_LEVELS: dict[str, dict] = {
     "artifacts": {
         "name": "Artifacts",
-        "blurb": "Standalone HTML pieces — interactive explorers, generators, and visual demos served at <code>/artifacts/…</code>.",
+        "blurb": "Standalone HTML pieces — interactive explorers, generators, and visual demos served at <code>/content/artifacts/…</code>.",
     },
 }
 
@@ -277,11 +294,6 @@ def marker_for(rel: Path) -> str:
 # ---------- Rendering ------------------------------------------------------
 
 def url_for(rel: Path) -> str:
-    # Artifacts are copied into the website's public/artifacts/ by
-    # `npm run publish` and served at /artifacts/<slug>.html — not under
-    # /content/. Everything else uses the express.static /content/ mount.
-    if rel.parts and rel.parts[0] == "artifacts":
-        return "/" + rel.as_posix()
     return "/content/" + rel.as_posix()
 
 

@@ -15,6 +15,9 @@ cd "$(dirname "$0")"
 # Render any stale Markdown to HTML before staging.
 ./build
 
+# Rebuild the artifacts metadata index (consumed by the website gallery).
+./artifacts-index
+
 # Regenerate the sitemap from the current published set.
 ./sitemap
 
