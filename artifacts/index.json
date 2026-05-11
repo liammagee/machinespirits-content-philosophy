@@ -1,6 +1,6 @@
 {
-  "generated": "2026-05-11T00:18:05.161969Z",
-  "count": 4,
+  "generated": "2026-05-11T22:08:34.869149Z",
+  "count": 5,
   "artifacts": [
     {
       "slug": "anthropic-reading-list",
@@ -30,6 +30,18 @@
       "file": "design-audit-playground.html",
       "size": 10903,
       "modified": "2026-05-11T00:13:09.782084Z"
+    },
+    {
+      "slug": "gpt-5-5-dijkstra",
+      "title": "Dijkstra vs BMSSP Shortest-Path Simulation",
+      "description": "",
+      "tags": [],
+      "author": "",
+      "date": "2026-05-11",
+      "thumbnail": null,
+      "file": "gpt-5-5-dijkstra.html",
+      "size": 66827,
+      "modified": "2026-05-11T22:04:35.353506Z"
     },
     {
       "slug": "hegel-recognition-explorer",

@@ -1,0 +1,1939 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dijkstra vs BMSSP Shortest-Path Simulation</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --ink: #152033;
+      --muted: #637083;
+      --line: #d9e0ea;
+      --line-strong: #b8c3d2;
+      --dijkstra: #0f766e;
+      --bmssp: #6d28d9;
+      --source: #15803d;
+      --active: #2563eb;
+      --frontier: #f59e0b;
+      --pivot: #9333ea;
+      --wave: #ef7d31;
+      --settled: #14a38b;
+      --edge: #9aa8ba;
+      --edge-active: #e11d48;
+      --skip: #8b93a1;
+      --shadow: 0 12px 36px rgba(21, 32, 51, 0.08);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    a {
+      color: #1d4ed8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .app {
+      width: min(1500px, calc(100vw - 28px));
+      margin: 0 auto;
+      padding: 18px 0 26px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 4px;
+      font-size: 24px;
+      line-height: 1.18;
+      font-weight: 750;
+    }
+
+    .subtitle {
+      max-width: 880px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .status-pill {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 11px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+      box-shadow: var(--shadow);
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #22c55e;
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: minmax(260px, 1fr) minmax(420px, 1.6fr);
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      gap: 10px;
+      padding: 12px;
+    }
+
+    .transport {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px;
+      min-width: 0;
+    }
+
+    label {
+      display: grid;
+      gap: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.2;
+    }
+
+    input,
+    select,
+    button {
+      font: inherit;
+    }
+
+    input,
+    select {
+      min-width: 0;
+      width: 100%;
+      border: 1px solid var(--line-strong);
+      border-radius: 7px;
+      background: #fff;
+      color: var(--ink);
+      padding: 8px 9px;
+      outline: none;
+    }
+
+    input[type="range"] {
+      padding: 0;
+      accent-color: #2563eb;
+    }
+
+    button {
+      border: 1px solid var(--line-strong);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 7px;
+      padding: 8px 12px;
+      cursor: pointer;
+      min-height: 36px;
+      white-space: nowrap;
+    }
+
+    button.primary {
+      border-color: #1f5fbf;
+      background: #2563eb;
+      color: #fff;
+    }
+
+    button.warn {
+      border-color: #d97706;
+      background: #f59e0b;
+      color: #1f2937;
+    }
+
+    button:disabled {
+      cursor: default;
+      opacity: 0.55;
+    }
+
+    .scrubber {
+      flex: 1 1 auto;
+      min-width: 160px;
+    }
+
+    .step-readout {
+      flex: 0 0 auto;
+      width: 114px;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      font-size: 13px;
+      text-align: right;
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .sim-panel {
+      overflow: hidden;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 13px 9px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .panel-title {
+      display: grid;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .panel-title h2 {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.15;
+    }
+
+    .panel-title span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.25;
+    }
+
+    .badge {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 5px 8px;
+      color: var(--muted);
+      background: #fbfcfe;
+      font-size: 12px;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .canvas-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1.36 / 1;
+      min-height: 340px;
+      background: #fbfcff;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 12px;
+      padding: 9px 12px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .key {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      min-width: 0;
+    }
+
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      flex: 0 0 auto;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      border-bottom: 1px solid var(--line);
+    }
+
+    .metric {
+      min-width: 0;
+      padding: 9px 10px;
+      border-right: 1px solid var(--line);
+    }
+
+    .metric:last-child {
+      border-right: 0;
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 2px;
+      font-size: 15px;
+      line-height: 1.15;
+      font-variant-numeric: tabular-nums;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.1;
+    }
+
+    .trace {
+      min-height: 78px;
+      padding: 11px 12px 13px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .trace .phase {
+      color: var(--muted);
+      font-size: 12px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .trace .event {
+      font-size: 14px;
+      line-height: 1.35;
+      min-height: 38px;
+    }
+
+    .guide-grid {
+      display: grid;
+      grid-template-columns: minmax(280px, 1fr) minmax(320px, 1.1fr) minmax(280px, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .guide-card {
+      padding: 13px 14px;
+      min-height: 132px;
+    }
+
+    .guide-card h3 {
+      margin: 0 0 7px;
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.2;
+    }
+
+    .guide-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.48;
+    }
+
+    .guide-card .formula {
+      margin-top: 8px;
+      padding: 8px 9px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #f8fafc;
+      color: #334155;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .notes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .note-body {
+      padding: 13px 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.48;
+    }
+
+    .note-body h3 {
+      margin: 0 0 6px;
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.2;
+    }
+
+    .note-body p {
+      margin: 0 0 8px;
+    }
+
+    .note-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .code-chip {
+      display: inline-block;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 1px 5px;
+      background: #f8fafc;
+      color: #334155;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+    }
+
+    @media (max-width: 1100px) {
+      .toolbar,
+      .compare-grid,
+      .guide-grid,
+      .notes {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .app {
+        width: min(100vw - 16px, 1500px);
+        padding-top: 10px;
+      }
+
+      .topbar {
+        display: grid;
+      }
+
+      .status-pill {
+        width: fit-content;
+      }
+
+      .controls {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .transport {
+        flex-wrap: wrap;
+      }
+
+      .scrubber {
+        flex-basis: 100%;
+        order: 2;
+      }
+
+      .step-readout {
+        text-align: left;
+        width: auto;
+      }
+
+      .metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .metric:nth-child(2n) {
+        border-right: 0;
+      }
+
+      .canvas-wrap {
+        min-height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div>
+        <h1>Dijkstra vs Bounded Multi-Source Shortest Path</h1>
+        <p class="subtitle">
+          Side-by-side 2D replay of classic global-min extraction and a naive BMSSP implementation based on
+          <a href="https://arxiv.org/abs/2504.17033" target="_blank" rel="noreferrer">arXiv:2504.17033</a>.
+          The BMSSP side preserves the paper's pivot-finding, bounded recursion, mini-Dijkstra base case, and batch-prepend flow while using simple maps and sorts for clarity.
+        </p>
+      </div>
+      <div class="status-pill"><span class="status-dot" id="agreementDot"></span><span id="agreementText">Ready</span></div>
+    </header>
+
+    <section class="toolbar">
+      <div class="panel controls" aria-label="Graph and algorithm controls">
+        <label>
+          Graph
+          <select id="preset">
+            <option value="braid">Braided directed</option>
+            <option value="fanout">Pivot fanout</option>
+            <option value="sparseFanout">Sparse fanout stress</option>
+            <option value="sparseLayers">Sparse layered stress</option>
+            <option value="random">Random geometric</option>
+          </select>
+        </label>
+        <label>
+          Nodes
+          <input id="nodes" type="number" min="12" max="72" step="1" value="34" />
+        </label>
+        <label>
+          Extra out-edges
+          <input id="extraEdges" type="number" min="0" max="6" step="1" value="3" />
+        </label>
+        <label>
+          Seed
+          <input id="seed" type="number" min="1" max="999999" step="1" value="250417" />
+        </label>
+        <label>
+          BMSSP k
+          <input id="paramK" type="number" min="2" max="8" step="1" value="3" />
+        </label>
+        <label>
+          BMSSP t
+          <input id="paramT" type="number" min="1" max="5" step="1" value="2" />
+        </label>
+        <label>
+          Speed
+          <input id="speed" type="range" min="60" max="900" step="20" value="260" />
+        </label>
+        <label>
+          Source
+          <select id="sourceMode">
+            <option value="zero">Node 0</option>
+            <option value="corner">Upper-left node</option>
+          </select>
+        </label>
+      </div>
+      <div class="panel transport" aria-label="Replay controls">
+        <button id="newGraph">New graph</button>
+        <button id="stressDemo">Sparse demo</button>
+        <button id="reset">Reset</button>
+        <button id="step" class="primary">Step</button>
+        <button id="auto">Auto</button>
+        <button id="runAll" class="warn">Run all</button>
+        <input id="scrubber" class="scrubber" type="range" min="0" max="1" value="0" aria-label="Replay step" />
+        <div class="step-readout" id="stepReadout">0 / 0</div>
+      </div>
+    </section>
+
+    <main class="compare-grid">
+      <section class="panel sim-panel">
+        <div class="panel-head">
+          <div class="panel-title">
+            <h2>Dijkstra</h2>
+            <span>Extract one globally closest unsettled vertex, then relax outgoing edges.</span>
+          </div>
+          <span class="badge" id="dijkstraBadge">step 0</span>
+        </div>
+        <div class="canvas-wrap"><canvas id="dijkstraCanvas"></canvas></div>
+        <div class="legend">
+          <span class="key"><span class="swatch" style="background: var(--source)"></span>source</span>
+          <span class="key"><span class="swatch" style="background: var(--active)"></span>active</span>
+          <span class="key"><span class="swatch" style="background: var(--frontier)"></span>queue</span>
+          <span class="key"><span class="swatch" style="background: var(--settled)"></span>settled</span>
+          <span class="key"><span class="swatch" style="background: var(--edge-active)"></span>scanned edge</span>
+        </div>
+        <div class="metrics" id="dijkstraMetrics"></div>
+        <div class="trace">
+          <div class="phase" id="dijkstraPhase">phase</div>
+          <div class="event" id="dijkstraEvent">event</div>
+        </div>
+      </section>
+
+      <section class="panel sim-panel">
+        <div class="panel-head">
+          <div class="panel-title">
+            <h2>Naive BMSSP</h2>
+            <span>Find pivots with bounded Bellman-Ford waves, then recurse on distance bands.</span>
+          </div>
+          <span class="badge" id="bmsspBadge">step 0</span>
+        </div>
+        <div class="canvas-wrap"><canvas id="bmsspCanvas"></canvas></div>
+        <div class="legend">
+          <span class="key"><span class="swatch" style="background: var(--source)"></span>source</span>
+          <span class="key"><span class="swatch" style="background: var(--active)"></span>active</span>
+          <span class="key"><span class="swatch" style="background: var(--wave)"></span>BF wave</span>
+          <span class="key"><span class="swatch" style="background: var(--pivot)"></span>pivot</span>
+          <span class="key"><span class="swatch" style="background: var(--settled)"></span>complete</span>
+        </div>
+        <div class="metrics" id="bmsspMetrics"></div>
+        <div class="trace">
+          <div class="phase" id="bmsspPhase">phase</div>
+          <div class="event" id="bmsspEvent">event</div>
+        </div>
+      </section>
+    </main>
+
+    <section class="guide-grid">
+      <div class="panel guide-card">
+        <h3>Current Step Difference</h3>
+        <p id="inlineDifference">Step through the replay to see where each algorithm spends its effort.</p>
+      </div>
+      <div class="panel guide-card">
+        <h3>Performance Crossover</h3>
+        <p id="performanceLens">The asymptotic lens will update after the graph is generated.</p>
+        <div class="formula" id="performanceFormula">Dijkstra ≈ m + n log n; BMSSP ≈ m log^(2/3)n</div>
+      </div>
+      <div class="panel guide-card">
+        <h3>When BMSSP Wins</h3>
+        <p id="thresholdGuide">BMSSP needs large, sparse, directed non-negative-weight graphs and the optimized data structure from the paper.</p>
+      </div>
+    </section>
+
+    <section class="notes">
+      <div class="panel note-body">
+        <h3>Proof Burden</h3>
+        <p>
+          A real speed-up proof is not a visual claim. It has to prove BMSSP's completeness invariant, the pivot-shrink lemma,
+          partial-return accounting, and amortized bounds for <span class="code-chip">Insert</span>,
+          <span class="code-chip">Pull</span>, and <span class="code-chip">BatchPrepend</span>.
+        </p>
+        <p>
+          The difficult part is showing the recursion never secretly pays back Dijkstra's full
+          <span class="code-chip">n log n</span> ordering cost.
+        </p>
+      </div>
+      <div class="panel note-body">
+        <h3>What To Compare</h3>
+        <p>
+          Dijkstra spends work maintaining one global distance order. BMSSP avoids fully sorting vertices: it runs
+          <span class="code-chip">FindPivots</span> for <span class="code-chip">k</span> Bellman-Ford-style waves,
+          keeps only source vertices whose local shortest-path trees are large, and recursively pulls bounded batches.
+        </p>
+        <p>
+          Identical final distances are expected. Both algorithms solve the same single-source shortest-path problem; the
+          claimed gain is in how much distance ordering work is avoided, not in producing a different shortest-path tree.
+        </p>
+      </div>
+      <div class="panel note-body">
+        <h3>Efficiency Lens</h3>
+        <p>
+          This demo intentionally uses naive arrays, maps, and local sorting so the replay is readable. That reintroduces
+          sorting costs the paper's optimized partition structure is designed to avoid, and the trace renderer itself adds
+          overhead. Treat <span class="code-chip">toy sort work</span> as a warning label, not the paper's runtime.
+        </p>
+        <p>
+          The theoretical comparison is Dijkstra's <span class="code-chip">O(m + n log n)</span> ordering cost versus the
+          paper's sparse-graph <span class="code-chip">O(m log^(2/3)n)</span> bound using its real data structure.
+        </p>
+      </div>
+      <div class="panel note-body">
+        <h3>Source Mapping</h3>
+        <p>
+          The BMSSP implementation maps to the paper's <span class="code-chip">FindPivots(B,S)</span>,
+          <span class="code-chip">BaseCase(B,S)</span>, and <span class="code-chip">BMSSP(l,B,S)</span> routines.
+          The related tweet is linked here for context:
+          <a href="https://x.com/BrianRoemmele/status/2053806333846315462" target="_blank" rel="noreferrer">x.com/BrianRoemmele/status/2053806333846315462</a>.
+        </p>
+      </div>
+      <div class="panel note-body">
+        <h3>Toy Divergence</h3>
+        <p>
+          For a small visible divergence, choose <span class="code-chip">Sparse fanout stress</span> or
+          <span class="code-chip">Sparse layered stress</span>, set <span class="code-chip">Extra out-edges</span> to
+          <span class="code-chip">0</span>, and raise nodes toward <span class="code-chip">72</span>.
+        </p>
+        <p>
+          You should see Dijkstra repeatedly make global frontier choices, while BMSSP spends time in pivot waves and bounded
+          batches. The page's crossover panel shows the paper-level projection; the raw JS replay still is not a benchmark.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    "use strict";
+
+    const EPS = 1e-9;
+    const INF = Number.POSITIVE_INFINITY;
+    const SNAPSHOT_LIMIT = 9000;
+
+    const els = {
+      preset: document.getElementById("preset"),
+      nodes: document.getElementById("nodes"),
+      extraEdges: document.getElementById("extraEdges"),
+      seed: document.getElementById("seed"),
+      paramK: document.getElementById("paramK"),
+      paramT: document.getElementById("paramT"),
+      speed: document.getElementById("speed"),
+      sourceMode: document.getElementById("sourceMode"),
+      newGraph: document.getElementById("newGraph"),
+      stressDemo: document.getElementById("stressDemo"),
+      reset: document.getElementById("reset"),
+      step: document.getElementById("step"),
+      auto: document.getElementById("auto"),
+      runAll: document.getElementById("runAll"),
+      scrubber: document.getElementById("scrubber"),
+      stepReadout: document.getElementById("stepReadout"),
+      agreementDot: document.getElementById("agreementDot"),
+      agreementText: document.getElementById("agreementText"),
+      dijkstraCanvas: document.getElementById("dijkstraCanvas"),
+      bmsspCanvas: document.getElementById("bmsspCanvas"),
+      dijkstraBadge: document.getElementById("dijkstraBadge"),
+      bmsspBadge: document.getElementById("bmsspBadge"),
+      dijkstraMetrics: document.getElementById("dijkstraMetrics"),
+      bmsspMetrics: document.getElementById("bmsspMetrics"),
+      dijkstraPhase: document.getElementById("dijkstraPhase"),
+      bmsspPhase: document.getElementById("bmsspPhase"),
+      dijkstraEvent: document.getElementById("dijkstraEvent"),
+      bmsspEvent: document.getElementById("bmsspEvent"),
+      inlineDifference: document.getElementById("inlineDifference"),
+      performanceLens: document.getElementById("performanceLens"),
+      performanceFormula: document.getElementById("performanceFormula"),
+      thresholdGuide: document.getElementById("thresholdGuide")
+    };
+
+    const state = {
+      graph: null,
+      dijkstraTrace: [],
+      bmsspTrace: [],
+      step: 0,
+      playing: false,
+      timer: null
+    };
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function makeRng(seed) {
+      let x = seed >>> 0;
+      return function random() {
+        x = (1664525 * x + 1013904223) >>> 0;
+        return x / 4294967296;
+      };
+    }
+
+    function uniqueWeight(from, to, base, rng) {
+      return Math.max(0.05, Number((base + 0.13 * (from + 1) + 0.071 * (to + 1) + rng() * 0.31).toFixed(3)));
+    }
+
+    function addEdge(graph, from, to, weight) {
+      if (from === to) return;
+      if (graph.out[from].some(edge => edge.to === to)) return;
+      const edge = { id: graph.edges.length, from, to, w: weight };
+      graph.edges.push(edge);
+      graph.out[from].push(edge);
+    }
+
+    function weightFromPoints(points, from, to, rng, scale = 9) {
+      const dx = points[from].x - points[to].x;
+      const dy = points[from].y - points[to].y;
+      return uniqueWeight(from, to, 0.75 + Math.hypot(dx, dy) * scale, rng);
+    }
+
+    function chooseSource(points, mode) {
+      if (mode === "zero") return 0;
+      let best = 0;
+      let score = points[0].x + points[0].y;
+      for (let i = 1; i < points.length; i += 1) {
+        const next = points[i].x + points[i].y;
+        if (next < score) {
+          best = i;
+          score = next;
+        }
+      }
+      return best;
+    }
+
+    function createGraph() {
+      const n = clamp(Number(els.nodes.value) || 34, 12, 72);
+      const extra = clamp(Number(els.extraEdges.value) || 0, 0, 6);
+      const seed = clamp(Number(els.seed.value) || 1, 1, 999999);
+      const rng = makeRng(seed);
+      const preset = els.preset.value;
+      if (preset === "fanout") return createFanoutGraph(n, extra, rng);
+      if (preset === "sparseFanout") return createSparseFanoutGraph(n, extra, rng);
+      if (preset === "sparseLayers") return createSparseLayerGraph(n, extra, rng);
+      if (preset === "random") return createRandomGraph(n, extra, rng);
+      return createBraidGraph(n, extra, rng);
+    }
+
+    function createBaseGraph(points, source) {
+      return {
+        n: points.length,
+        source,
+        points,
+        edges: [],
+        out: Array.from({ length: points.length }, () => [])
+      };
+    }
+
+    function createRandomGraph(n, extra, rng) {
+      const points = [{ x: 0.08, y: 0.11 }];
+      for (let i = 1; i < n; i += 1) {
+        points.push({ x: 0.08 + rng() * 0.86, y: 0.08 + rng() * 0.84 });
+      }
+      const source = chooseSource(points, els.sourceMode.value);
+      const graph = createBaseGraph(points, source);
+      const order = [...Array(n).keys()].sort((a, b) => {
+        const da = Math.hypot(points[a].x - points[source].x, points[a].y - points[source].y);
+        const db = Math.hypot(points[b].x - points[source].x, points[b].y - points[source].y);
+        return da - db;
+      });
+      for (let i = 1; i < order.length; i += 1) {
+        const v = order[i];
+        let parent = order[0];
+        let best = INF;
+        for (let j = 0; j < i; j += 1) {
+          const u = order[j];
+          const d = Math.hypot(points[u].x - points[v].x, points[u].y - points[v].y);
+          if (d < best) {
+            parent = u;
+            best = d;
+          }
+        }
+        addEdge(graph, parent, v, weightFromPoints(points, parent, v, rng));
+      }
+      addNearestEdges(graph, extra, rng);
+      return graph;
+    }
+
+    function createBraidGraph(n, extra, rng) {
+      const cols = Math.max(4, Math.ceil(Math.sqrt(n * 1.3)));
+      const rows = Math.ceil(n / cols);
+      const points = [];
+      for (let i = 0; i < n; i += 1) {
+        const col = i % cols;
+        const row = Math.floor(i / cols);
+        points.push({
+          x: 0.08 + (cols === 1 ? 0 : col / (cols - 1)) * 0.84 + (rng() - 0.5) * 0.025,
+          y: 0.10 + (rows === 1 ? 0 : row / (rows - 1)) * 0.80 + (rng() - 0.5) * 0.032
+        });
+      }
+      points[0] = { x: 0.06, y: 0.08 };
+      const source = chooseSource(points, els.sourceMode.value);
+      const graph = createBaseGraph(points, source);
+      for (let i = 0; i < n; i += 1) {
+        const col = i % cols;
+        const down = i + cols;
+        const right = i + 1;
+        const diag = i + cols + (rng() < 0.5 ? 1 : -1);
+        if (right < n && col < cols - 1) addEdge(graph, i, right, weightFromPoints(points, i, right, rng, 8.4));
+        if (down < n) addEdge(graph, i, down, weightFromPoints(points, i, down, rng, 8.8));
+        if (diag >= 0 && diag < n) addEdge(graph, i, diag, weightFromPoints(points, i, diag, rng, 9.8));
+      }
+      addNearestEdges(graph, extra, rng);
+      return graph;
+    }
+
+    function createFanoutGraph(n, extra, rng) {
+      const branches = clamp(Math.round(Math.sqrt(n)), 4, 8);
+      const points = [{ x: 0.08, y: 0.50 }];
+      for (let i = 1; i < n; i += 1) {
+        const branch = (i - 1) % branches;
+        const depth = Math.floor((i - 1) / branches) + 1;
+        const maxDepth = Math.ceil((n - 1) / branches);
+        const y = 0.12 + (branch / Math.max(1, branches - 1)) * 0.76 + (rng() - 0.5) * 0.035;
+        const x = 0.12 + (depth / Math.max(1, maxDepth)) * 0.82 + (rng() - 0.5) * 0.025;
+        points.push({ x, y });
+      }
+      const graph = createBaseGraph(points, 0);
+      const byBranch = Array.from({ length: branches }, () => []);
+      for (let i = 1; i < n; i += 1) byBranch[(i - 1) % branches].push(i);
+      for (const branchNodes of byBranch) {
+        if (!branchNodes.length) continue;
+        addEdge(graph, 0, branchNodes[0], weightFromPoints(points, 0, branchNodes[0], rng, 7.6));
+        for (let i = 1; i < branchNodes.length; i += 1) {
+          addEdge(graph, branchNodes[i - 1], branchNodes[i], weightFromPoints(points, branchNodes[i - 1], branchNodes[i], rng, 7.4));
+        }
+      }
+      for (let i = 1; i < n; i += 1) {
+        if (rng() < 0.45) {
+          const to = 1 + Math.floor(rng() * (n - 1));
+          if (points[to].x > points[i].x - 0.03) addEdge(graph, i, to, weightFromPoints(points, i, to, rng, 10.5));
+        }
+      }
+      addNearestEdges(graph, Math.max(1, extra - 1), rng);
+      return graph;
+    }
+
+    function createSparseFanoutGraph(n, extra, rng) {
+      const branches = clamp(Math.round(Math.sqrt(n * 1.6)), 5, Math.min(12, n - 1));
+      const points = [{ x: 0.06, y: 0.50 }];
+      const branchNodes = Array.from({ length: branches }, () => []);
+      for (let i = 1; i < n; i += 1) {
+        const branch = (i - 1) % branches;
+        const depth = Math.floor((i - 1) / branches) + 1;
+        const maxDepth = Math.ceil((n - 1) / branches);
+        const x = 0.12 + (depth / Math.max(1, maxDepth)) * 0.82 + (rng() - 0.5) * 0.012;
+        const y = 0.08 + (branch / Math.max(1, branches - 1)) * 0.84 + (rng() - 0.5) * 0.018;
+        points.push({ x, y });
+        branchNodes[branch].push(i);
+      }
+      const graph = createBaseGraph(points, 0);
+      for (let b = 0; b < branchNodes.length; b += 1) {
+        const nodes = branchNodes[b];
+        if (!nodes.length) continue;
+        addEdge(graph, 0, nodes[0], uniqueWeight(0, nodes[0], 1.0 + b * 0.018, rng));
+        for (let i = 1; i < nodes.length; i += 1) {
+          addEdge(graph, nodes[i - 1], nodes[i], uniqueWeight(nodes[i - 1], nodes[i], 1.0 + i * 0.04 + b * 0.01, rng));
+        }
+      }
+      addNearestEdges(graph, extra, rng);
+      return graph;
+    }
+
+    function createSparseLayerGraph(n, extra, rng) {
+      const width = clamp(Math.round(Math.sqrt(n * 1.4)), 4, Math.min(10, n - 1));
+      const layers = Math.ceil((n - 1) / width);
+      const points = [{ x: 0.06, y: 0.50 }];
+      const byLayer = [];
+      let id = 1;
+      for (let layer = 0; layer < layers; layer += 1) {
+        const row = [];
+        for (let col = 0; col < width && id < n; col += 1) {
+          points.push({
+            x: 0.14 + (layer / Math.max(1, layers - 1)) * 0.78 + (rng() - 0.5) * 0.012,
+            y: 0.10 + (col / Math.max(1, width - 1)) * 0.80 + (rng() - 0.5) * 0.018
+          });
+          row.push(id);
+          id += 1;
+        }
+        byLayer.push(row);
+      }
+      const graph = createBaseGraph(points, 0);
+      for (const v of byLayer[0] || []) {
+        addEdge(graph, 0, v, uniqueWeight(0, v, 1.0 + v * 0.012, rng));
+      }
+      for (let layer = 0; layer < byLayer.length - 1; layer += 1) {
+        const current = byLayer[layer];
+        const next = byLayer[layer + 1];
+        for (let col = 0; col < current.length; col += 1) {
+          const u = current[col];
+          const straight = next[Math.min(col, next.length - 1)];
+          const diag = next[Math.min(col + 1, next.length - 1)];
+          if (straight !== undefined) addEdge(graph, u, straight, uniqueWeight(u, straight, 1.05 + layer * 0.05, rng));
+          if (diag !== undefined && diag !== straight) addEdge(graph, u, diag, uniqueWeight(u, diag, 1.2 + layer * 0.05, rng));
+        }
+      }
+      addNearestEdges(graph, extra, rng);
+      return graph;
+    }
+
+    function addNearestEdges(graph, extra, rng) {
+      if (extra <= 0) return;
+      const points = graph.points;
+      for (let i = 0; i < graph.n; i += 1) {
+        const nearest = [];
+        for (let j = 0; j < graph.n; j += 1) {
+          if (i === j) continue;
+          nearest.push({
+            j,
+            d: Math.hypot(points[i].x - points[j].x, points[i].y - points[j].y)
+          });
+        }
+        nearest.sort((a, b) => a.d - b.d);
+        const candidateCount = Math.min(nearest.length, Math.max(4, extra * 4));
+        for (let e = 0; e < extra; e += 1) {
+          const pick = nearest[Math.floor(rng() * candidateCount)];
+          if (!pick) continue;
+          addEdge(graph, i, pick.j, weightFromPoints(points, i, pick.j, rng, 9.6));
+        }
+      }
+    }
+
+    class NaiveQueue {
+      constructor(bound = INF) {
+        this.bound = bound;
+        this.map = new Map();
+      }
+
+      insert(v, value) {
+        if (!Number.isFinite(value) || value >= this.bound - EPS) return;
+        const current = this.map.get(v);
+        if (current === undefined || value < current - EPS) this.map.set(v, value);
+      }
+
+      delete(v) {
+        this.map.delete(v);
+      }
+
+      keys() {
+        return [...this.map.keys()];
+      }
+
+      entriesSorted() {
+        return [...this.map.entries()].sort((a, b) => a[1] - b[1] || a[0] - b[0]);
+      }
+
+      extractMin() {
+        const first = this.entriesSorted()[0];
+        if (!first) return null;
+        this.map.delete(first[0]);
+        return { v: first[0], value: first[1] };
+      }
+
+      pull(limit) {
+        const sorted = this.entriesSorted();
+        const take = sorted.slice(0, Math.max(1, limit));
+        for (const [v] of take) this.map.delete(v);
+        const remaining = [...this.map.values()];
+        return {
+          S: take.map(([v]) => v),
+          B: remaining.length ? Math.min(...remaining) : this.bound
+        };
+      }
+
+      get size() {
+        return this.map.size;
+      }
+    }
+
+    function fmt(value) {
+      if (!Number.isFinite(value)) return "∞";
+      if (Math.abs(value) >= 1000) return value.toFixed(0);
+      if (Math.abs(value) >= 100) return value.toFixed(1);
+      return value.toFixed(2);
+    }
+
+    function cloneStats(stats) {
+      return JSON.parse(JSON.stringify(stats));
+    }
+
+    function runDijkstra(graph) {
+      const n = graph.n;
+      const dist = Array(n).fill(INF);
+      const pred = Array(n).fill(-1);
+      const settled = new Set();
+      const queue = new NaiveQueue();
+      const stats = { extracts: 0, scans: 0, relaxations: 0, queueUpdates: 0, settled: 0, orderWork: 0 };
+      const trace = [];
+      dist[graph.source] = 0;
+      queue.insert(graph.source, 0);
+
+      const push = (phase, event, extra = {}) => {
+        if (trace.length >= SNAPSHOT_LIMIT) return;
+        trace.push({
+          algorithm: "dijkstra",
+          phase,
+          event,
+          dist: dist.slice(),
+          pred: pred.slice(),
+          complete: [...settled],
+          frontier: queue.keys(),
+          active: extra.active ?? null,
+          activeEdge: extra.activeEdge ?? null,
+          edgeMode: extra.edgeMode ?? null,
+          pivots: [],
+          wave: [],
+          sources: [],
+          depth: 0,
+          stats: cloneStats(stats)
+        });
+      };
+
+      push("initialize", `Source ${graph.source} enters the priority queue with distance 0.`);
+
+      while (queue.size) {
+        stats.orderWork += Math.log2(queue.size + 1);
+        const item = queue.extractMin();
+        if (!item) break;
+        const u = item.v;
+        if (settled.has(u) || item.value > dist[u] + EPS) continue;
+        stats.extracts += 1;
+        push("extract-min", `Extract node ${u} as the current global minimum at ${fmt(dist[u])}.`, { active: u });
+        settled.add(u);
+        stats.settled = settled.size;
+        push("settle", `Node ${u} is settled. Its shortest distance is now fixed.`, { active: u });
+        for (const edge of graph.out[u]) {
+          stats.scans += 1;
+          const nd = dist[u] + edge.w;
+          push("scan edge", `Scan ${edge.from} → ${edge.to}; candidate distance is ${fmt(nd)}.`, {
+            active: u,
+            activeEdge: edge.id,
+            edgeMode: "scan"
+          });
+          if (nd < dist[edge.to] - EPS) {
+            dist[edge.to] = nd;
+            pred[edge.to] = u;
+            stats.orderWork += Math.log2(queue.size + 2);
+            queue.insert(edge.to, nd);
+            stats.relaxations += 1;
+            stats.queueUpdates += 1;
+            push("relax edge", `Relax ${edge.from} → ${edge.to}; node ${edge.to} improves to ${fmt(nd)}.`, {
+              active: u,
+              activeEdge: edge.id,
+              edgeMode: "relax"
+            });
+          } else {
+            push("skip edge", `No improvement through ${edge.from} → ${edge.to}.`, {
+              active: u,
+              activeEdge: edge.id,
+              edgeMode: "skip"
+            });
+          }
+        }
+      }
+
+      push("done", `Dijkstra settled ${settled.size} reachable nodes.`);
+      return trace;
+    }
+
+    function runBMSSP(graph, k, t) {
+      const n = graph.n;
+      const dist = Array(n).fill(INF);
+      const pred = Array(n).fill(-1);
+      const complete = new Set([graph.source]);
+      const trace = [];
+      const level = Math.max(1, Math.ceil(Math.log2(Math.max(2, n)) / Math.max(1, t)));
+      const stats = {
+        level,
+        calls: 0,
+        pivotCalls: 0,
+        baseCases: 0,
+        bfWaves: 0,
+        pulls: 0,
+        scans: 0,
+        relaxations: 0,
+        batchPrepends: 0,
+        complete: 1,
+        toySortWork: 0
+      };
+      const context = {
+        active: null,
+        activeEdge: null,
+        edgeMode: null,
+        frontier: [],
+        pivots: [],
+        wave: [],
+        sources: [graph.source],
+        depth: 0
+      };
+
+      dist[graph.source] = 0;
+
+      const push = (phase, event, patch = {}) => {
+        if (trace.length >= SNAPSHOT_LIMIT) return;
+        const next = { ...context, ...patch };
+        trace.push({
+          algorithm: "bmssp",
+          phase,
+          event,
+          dist: dist.slice(),
+          pred: pred.slice(),
+          complete: [...complete],
+          frontier: next.frontier.slice(),
+          active: next.active,
+          activeEdge: next.activeEdge,
+          edgeMode: next.edgeMode,
+          pivots: next.pivots.slice(),
+          wave: next.wave.slice(),
+          sources: next.sources.slice(),
+          depth: next.depth,
+          stats: cloneStats(stats)
+        });
+      };
+
+      const setComplete = (vertices) => {
+        for (const v of vertices) complete.add(v);
+        stats.complete = complete.size;
+      };
+
+      const updateDistance = (to, from, value) => {
+        if (value < dist[to] - EPS) {
+          dist[to] = value;
+          pred[to] = from;
+          if (complete.has(to)) complete.delete(to);
+        } else if (pred[to] < 0 && Math.abs(value - dist[to]) <= EPS) {
+          pred[to] = from;
+        }
+      };
+
+      const rootInSources = (v, W, sourceSet) => {
+        let current = v;
+        const seen = new Set();
+        while (true) {
+          if (sourceSet.has(current)) return current;
+          if (seen.has(current)) return null;
+          seen.add(current);
+          const p = pred[current];
+          if (p < 0 || !W.has(p)) return null;
+          current = p;
+        }
+      };
+
+      const findPivots = (B, S, depth) => {
+        stats.pivotCalls += 1;
+        const W = new Set(S);
+        let previous = new Set(S);
+        push("FindPivots", `Depth ${depth}: start bounded Bellman-Ford from sources {${S.join(", ")}} below ${fmt(B)}.`, {
+          sources: S,
+          frontier: S,
+          wave: [...W],
+          pivots: [],
+          depth
+        });
+
+        for (let i = 1; i <= k; i += 1) {
+          stats.bfWaves += 1;
+          const Wi = new Set();
+          push("FindPivots", `Depth ${depth}: Bellman-Ford wave ${i}/${k} from ${previous.size} frontier node${previous.size === 1 ? "" : "s"}.`, {
+            sources: S,
+            frontier: [...previous],
+            wave: [...W],
+            depth
+          });
+          for (const u of previous) {
+            for (const edge of graph.out[u]) {
+              stats.scans += 1;
+              const candidate = dist[u] + edge.w;
+              push("pivot scan", `Scan ${edge.from} → ${edge.to} while finding pivots; candidate ${fmt(candidate)}.`, {
+                active: u,
+                activeEdge: edge.id,
+                edgeMode: "scan",
+                sources: S,
+                frontier: [...previous],
+                wave: [...W],
+                depth
+              });
+              if (candidate <= dist[edge.to] + EPS) {
+                updateDistance(edge.to, u, candidate);
+                stats.relaxations += 1;
+                if (candidate < B - EPS) Wi.add(edge.to);
+                push("pivot relax", `Pivot wave relaxes ${edge.from} → ${edge.to}; estimate is ${fmt(dist[edge.to])}.`, {
+                  active: u,
+                  activeEdge: edge.id,
+                  edgeMode: "relax",
+                  sources: S,
+                  frontier: [...previous],
+                  wave: [...Wi],
+                  depth
+                });
+              } else {
+                push("pivot skip", `Pivot wave keeps node ${edge.to} at ${fmt(dist[edge.to])}.`, {
+                  active: u,
+                  activeEdge: edge.id,
+                  edgeMode: "skip",
+                  sources: S,
+                  frontier: [...previous],
+                  wave: [...W],
+                  depth
+                });
+              }
+            }
+          }
+          for (const v of Wi) W.add(v);
+          if (W.size > k * S.length) {
+            const pivots = new Set(S);
+            push("FindPivots", `Depth ${depth}: explored set exceeded k|S|, so every source remains a pivot.`, {
+              sources: S,
+              frontier: S,
+              pivots: [...pivots],
+              wave: [...W],
+              depth
+            });
+            return { P: pivots, W };
+          }
+          previous = Wi;
+        }
+
+        const sourceSet = new Set(S);
+        const counts = new Map(S.map(v => [v, 0]));
+        for (const v of W) {
+          const root = rootInSources(v, W, sourceSet);
+          if (root !== null) counts.set(root, (counts.get(root) || 0) + 1);
+        }
+        const P = new Set(S.filter(v => (counts.get(v) || 0) >= k));
+        push("FindPivots", `Depth ${depth}: selected ${P.size} pivot${P.size === 1 ? "" : "s"} from ${S.length} source node${S.length === 1 ? "" : "s"}.`, {
+          sources: S,
+          frontier: [...W],
+          pivots: [...P],
+          wave: [...W],
+          depth
+        });
+        return { P, W };
+      };
+
+      const baseCase = (B, S, depth) => {
+        stats.calls += 1;
+        stats.baseCases += 1;
+        const x = S[0];
+        const U = new Set([x]);
+        const heap = new NaiveQueue(B);
+        const extracted = new Set();
+        heap.insert(x, dist[x]);
+        push("BaseCase", `Depth ${depth}: mini-Dijkstra starts from singleton source ${x} below ${fmt(B)}.`, {
+          sources: S,
+          frontier: heap.keys(),
+          depth
+        });
+
+        let guard = 0;
+        while (heap.size && U.size < k + 1 && guard < graph.n * 4) {
+          guard += 1;
+          stats.toySortWork += heap.size * Math.log2(heap.size + 1);
+          const item = heap.extractMin();
+          if (!item) break;
+          const u = item.v;
+          if (extracted.has(u) || item.value > dist[u] + EPS) continue;
+          extracted.add(u);
+          U.add(u);
+          push("BaseCase extract", `Depth ${depth}: mini-Dijkstra extracts node ${u} at ${fmt(dist[u])}.`, {
+            active: u,
+            sources: S,
+            frontier: heap.keys(),
+            wave: [...U],
+            depth
+          });
+          for (const edge of graph.out[u]) {
+            stats.scans += 1;
+            const candidate = dist[u] + edge.w;
+            push("BaseCase scan", `Depth ${depth}: scan ${edge.from} → ${edge.to}; candidate ${fmt(candidate)}.`, {
+              active: u,
+              activeEdge: edge.id,
+              edgeMode: "scan",
+              sources: S,
+              frontier: heap.keys(),
+              wave: [...U],
+              depth
+            });
+            if (candidate <= dist[edge.to] + EPS && candidate < B - EPS) {
+              updateDistance(edge.to, u, candidate);
+              stats.toySortWork += Math.log2(heap.size + 2);
+              heap.insert(edge.to, dist[edge.to]);
+              stats.relaxations += 1;
+              push("BaseCase relax", `Depth ${depth}: base case relaxes node ${edge.to} to ${fmt(dist[edge.to])}.`, {
+                active: u,
+                activeEdge: edge.id,
+                edgeMode: "relax",
+                sources: S,
+                frontier: heap.keys(),
+                wave: [...U],
+                depth
+              });
+            } else {
+              push("BaseCase skip", `Depth ${depth}: base case gets no improvement for node ${edge.to}.`, {
+                active: u,
+                activeEdge: edge.id,
+                edgeMode: "skip",
+                sources: S,
+                frontier: heap.keys(),
+                wave: [...U],
+                depth
+              });
+            }
+          }
+        }
+
+        let actualB;
+        let actualU;
+        if (U.size <= k) {
+          actualB = B;
+          actualU = U;
+        } else {
+          actualB = Math.max(...[...U].map(v => dist[v]));
+          actualU = new Set([...U].filter(v => dist[v] < actualB - EPS));
+        }
+        setComplete(actualU);
+        push("BaseCase return", `Depth ${depth}: return ${actualU.size} complete node${actualU.size === 1 ? "" : "s"} with boundary ${fmt(actualB)}.`, {
+          sources: S,
+          frontier: [],
+          wave: [...actualU],
+          depth
+        });
+        return { B: actualB, U: actualU };
+      };
+
+      const bmssp = (currentLevel, B, S, depth) => {
+        stats.calls += 1;
+        push("BMSSP call", `Depth ${depth}: BMSSP(level ${currentLevel}, B=${fmt(B)}, S={${S.join(", ")}}).`, {
+          sources: S,
+          frontier: S,
+          depth
+        });
+
+        if (currentLevel === 0) return baseCase(B, S, depth);
+
+        const { P, W } = findPivots(B, S, depth);
+        const M = Math.max(1, Math.floor(2 ** ((currentLevel - 1) * t)));
+        const ds = new NaiveQueue(B);
+        for (const p of P) ds.insert(p, dist[p]);
+
+        push("partition init", `Depth ${depth}: initialize naive partition queue with M=${M} and ${P.size} pivot${P.size === 1 ? "" : "s"}.`, {
+          sources: S,
+          frontier: ds.keys(),
+          pivots: [...P],
+          wave: [...W],
+          depth
+        });
+
+        const actualU = new Set();
+        let lastB = P.size ? Math.min(...[...P].map(v => dist[v])) : B;
+        let guard = 0;
+        const workloadLimit = k * (2 ** (currentLevel * t));
+
+        while (actualU.size < workloadLimit && ds.size && guard < graph.n * 8) {
+          guard += 1;
+          stats.pulls += 1;
+          stats.toySortWork += ds.size * Math.log2(ds.size + 1);
+          const pulled = ds.pull(M);
+          const Si = pulled.S;
+          const expectedBi = pulled.B;
+          if (!Si.length) break;
+          push("pull batch", `Depth ${depth}: pull ${Si.length} low-distance source node${Si.length === 1 ? "" : "s"}; next boundary is ${fmt(expectedBi)}.`, {
+            sources: Si,
+            frontier: ds.keys(),
+            pivots: [...P],
+            wave: [...W],
+            depth
+          });
+
+          const result = bmssp(currentLevel - 1, expectedBi, Si, depth + 1);
+          lastB = result.B;
+          for (const v of result.U) actualU.add(v);
+          push("merge child", `Depth ${depth}: child returned ${result.U.size} node${result.U.size === 1 ? "" : "s"} below ${fmt(result.B)}.`, {
+            sources: Si,
+            frontier: ds.keys(),
+            pivots: [...P],
+            wave: [...result.U],
+            depth
+          });
+
+          const prepend = [];
+          for (const u of result.U) {
+            for (const edge of graph.out[u]) {
+              stats.scans += 1;
+              const candidate = dist[u] + edge.w;
+              push("post-child scan", `Depth ${depth}: scan from completed node ${u}; ${edge.from} → ${edge.to} gives ${fmt(candidate)}.`, {
+                active: u,
+                activeEdge: edge.id,
+                edgeMode: "scan",
+                sources: Si,
+                frontier: ds.keys(),
+                pivots: [...P],
+                wave: [...result.U],
+                depth
+              });
+              if (candidate <= dist[edge.to] + EPS) {
+                updateDistance(edge.to, u, candidate);
+                stats.relaxations += 1;
+                if (dist[edge.to] >= expectedBi - EPS && dist[edge.to] < B - EPS) {
+                  stats.toySortWork += Math.log2(ds.size + 2);
+                  ds.insert(edge.to, dist[edge.to]);
+                } else if (dist[edge.to] >= result.B - EPS && dist[edge.to] < expectedBi - EPS) {
+                  prepend.push([edge.to, dist[edge.to]]);
+                }
+                push("post-child relax", `Depth ${depth}: relaxed ${edge.to}; place it in the appropriate bounded band.`, {
+                  active: u,
+                  activeEdge: edge.id,
+                  edgeMode: "relax",
+                  sources: Si,
+                  frontier: ds.keys(),
+                  pivots: [...P],
+                  wave: [...result.U],
+                  depth
+                });
+              } else {
+                push("post-child skip", `Depth ${depth}: edge ${edge.from} → ${edge.to} does not improve its estimate.`, {
+                  active: u,
+                  activeEdge: edge.id,
+                  edgeMode: "skip",
+                  sources: Si,
+                  frontier: ds.keys(),
+                  pivots: [...P],
+                  wave: [...result.U],
+                  depth
+                });
+              }
+            }
+          }
+
+          for (const x of Si) {
+            if (dist[x] >= result.B - EPS && dist[x] < expectedBi - EPS) prepend.push([x, dist[x]]);
+          }
+          if (prepend.length) {
+            stats.batchPrepends += 1;
+            stats.toySortWork += prepend.length * Math.log2(prepend.length + 1);
+            for (const [v, value] of prepend) ds.insert(v, value);
+            push("BatchPrepend", `Depth ${depth}: batch-prepend ${prepend.length} item${prepend.length === 1 ? "" : "s"} into the lower band.`, {
+              sources: Si,
+              frontier: ds.keys(),
+              pivots: [...P],
+              wave: prepend.map(([v]) => v),
+              depth
+            });
+          }
+        }
+
+        const actualB = ds.size ? Math.min(lastB, B) : B;
+        for (const x of W) {
+          if (dist[x] < actualB - EPS) actualU.add(x);
+        }
+        setComplete(actualU);
+        push("BMSSP return", `Depth ${depth}: return ${actualU.size} complete node${actualU.size === 1 ? "" : "s"} with boundary ${fmt(actualB)}.`, {
+          sources: S,
+          frontier: ds.keys(),
+          pivots: [...P],
+          wave: [...actualU],
+          depth
+        });
+        return { B: actualB, U: actualU };
+      };
+
+      push("initialize", `Source ${graph.source} is complete; top-level recursion has level ${level}, k=${k}, t=${t}.`, {
+        sources: [graph.source],
+        frontier: [graph.source],
+        depth: 0
+      });
+      bmssp(level, INF, [graph.source], 0);
+      push("done", `BMSSP completed ${complete.size} reachable node${complete.size === 1 ? "" : "s"}.`, {
+        sources: [graph.source],
+        frontier: [],
+        wave: [...complete],
+        depth: 0
+      });
+      return trace;
+    }
+
+    function finalSnapshot(trace) {
+      return trace[trace.length - 1] || null;
+    }
+
+    function compareDistances() {
+      const d = finalSnapshot(state.dijkstraTrace);
+      const b = finalSnapshot(state.bmsspTrace);
+      if (!d || !b) return { ok: false, text: "No traces" };
+      let mismatches = 0;
+      for (let i = 0; i < state.graph.n; i += 1) {
+        const a = d.dist[i];
+        const z = b.dist[i];
+        if (Number.isFinite(a) !== Number.isFinite(z) || Math.abs(a - z) > 1e-6) mismatches += 1;
+      }
+      if (mismatches === 0) return { ok: true, text: "Distances match" };
+      return { ok: false, text: `${mismatches} mismatch${mismatches === 1 ? "" : "es"}` };
+    }
+
+    function rebuild() {
+      stopAuto();
+      state.graph = createGraph();
+      const k = clamp(Number(els.paramK.value) || 3, 2, 8);
+      const t = clamp(Number(els.paramT.value) || 2, 1, 5);
+      state.dijkstraTrace = runDijkstra(state.graph);
+      state.bmsspTrace = runBMSSP(state.graph, k, t);
+      state.step = 0;
+      const max = maxStep();
+      els.scrubber.max = String(max);
+      els.scrubber.value = "0";
+      render();
+    }
+
+    function maxStep() {
+      return Math.max(state.dijkstraTrace.length, state.bmsspTrace.length) - 1;
+    }
+
+    function traceAt(trace) {
+      return trace[Math.min(state.step, trace.length - 1)] || null;
+    }
+
+    function setStep(step) {
+      state.step = clamp(step, 0, Math.max(0, maxStep()));
+      els.scrubber.value = String(state.step);
+      render();
+    }
+
+    function stopAuto() {
+      state.playing = false;
+      els.auto.textContent = "Auto";
+      if (state.timer) window.clearInterval(state.timer);
+      state.timer = null;
+    }
+
+    function startAuto() {
+      stopAuto();
+      state.playing = true;
+      els.auto.textContent = "Pause";
+      state.timer = window.setInterval(() => {
+        if (state.step >= maxStep()) {
+          stopAuto();
+          return;
+        }
+        setStep(state.step + 1);
+      }, Number(els.speed.value));
+    }
+
+    function renderMetrics(container, values) {
+      container.innerHTML = values.map(item => `
+        <div class="metric">
+          <strong>${item.value}</strong>
+          <span>${item.label}</span>
+        </div>
+      `).join("");
+    }
+
+    function phaseExplanation(snap, algorithm) {
+      if (!snap) return "";
+      if (algorithm === "dijkstra") {
+        if (snap.phase === "extract-min" || snap.phase === "settle") {
+          return "Dijkstra is paying for a global minimum decision: one vertex is certified because it is the smallest item in the whole frontier.";
+        }
+        if (snap.phase.includes("scan") || snap.phase.includes("relax") || snap.phase.includes("skip")) {
+          return "After the global choice, Dijkstra does ordinary edge relaxation. This part is not where the paper claims the main savings.";
+        }
+        if (snap.phase === "done") return "Dijkstra has produced the same final distances, but it maintained a global order along the way.";
+        return "Dijkstra keeps a single frontier ordered by tentative distance.";
+      }
+
+      if (snap.phase.includes("FindPivots") || snap.phase.includes("pivot")) {
+        return "BMSSP is probing locally with bounded Bellman-Ford waves. Light branches get completed without sorting every vertex by distance.";
+      }
+      if (snap.phase.includes("pull") || snap.phase.includes("partition")) {
+        return "BMSSP is working with a bounded batch, not a full global ordering. The optimized paper data structure matters most here.";
+      }
+      if (snap.phase.includes("BaseCase")) {
+        return "BMSSP bottoms out with a tiny Dijkstra-like search. The algorithm still uses ordering, but only inside small bounded subproblems.";
+      }
+      if (snap.phase.includes("BatchPrepend") || snap.phase.includes("post-child")) {
+        return "BMSSP is merging a completed distance band and pushing newly discovered vertices into the next bounded band.";
+      }
+      if (snap.phase === "done") return "BMSSP has produced the same final distances while avoiding a requirement to output vertices in one complete sorted order.";
+      return "BMSSP recursively partitions work by distance bands and pivots.";
+    }
+
+    function renderInlineGuide(dSnap, bSnap) {
+      if (!state.graph || !dSnap || !bSnap) return;
+      const dText = phaseExplanation(dSnap, "dijkstra");
+      const bText = phaseExplanation(bSnap, "bmssp");
+      els.inlineDifference.textContent = `${dText} ${bText}`;
+
+      const n = state.graph.n;
+      const m = state.graph.edges.length;
+      const avgDegree = m / Math.max(1, n);
+      const logN = Math.log2(Math.max(2, n));
+      const logTwoThirds = Math.pow(logN, 2 / 3);
+      const dijkstraModel = m + n * logN;
+      const bmsspModel = m * logTwoThirds;
+      const modelRatio = dijkstraModel / Math.max(EPS, bmsspModel);
+      const sparseThreshold = logTwoThirds > 1 ? logN / (logTwoThirds - 1) : INF;
+      const sparseVerdict = avgDegree < sparseThreshold
+        ? "This graph is sparse enough for the rough asymptotic model to favor BMSSP."
+        : "This graph is too dense or too small for the rough model to favor BMSSP over an optimized Dijkstra.";
+
+      els.performanceLens.textContent =
+        `Current graph: n=${n}, m=${m}, average out-degree=${avgDegree.toFixed(2)}. ` +
+        `The paper-level model gives Dijkstra/BMSSP ≈ ${modelRatio.toFixed(2)}x before constants. ${sparseVerdict}`;
+      els.performanceFormula.textContent =
+        `m + n log2(n) ≈ ${Math.round(dijkstraModel)}; ` +
+        `m log2(n)^(2/3) ≈ ${Math.round(bmsspModel)}`;
+
+      els.thresholdGuide.textContent =
+        `BMSSP is most likely to pull ahead when n is large, the graph is sparse, weights are non-negative real values, ` +
+        `you only need distances rather than vertices sorted by distance, and the optimized partition/pivot data structure is used. ` +
+        `For this n, the crude sparse cutoff is average degree below about ${fmt(sparseThreshold)}. Browser-scale examples mostly show structure, not speed.`;
+    }
+
+    function render() {
+      const dSnap = traceAt(state.dijkstraTrace);
+      const bSnap = traceAt(state.bmsspTrace);
+      const max = Math.max(0, maxStep());
+      els.stepReadout.textContent = `${state.step} / ${max}`;
+      els.scrubber.max = String(max);
+      els.scrubber.value = String(state.step);
+      els.step.disabled = state.step >= max;
+      els.runAll.disabled = state.step >= max;
+      els.dijkstraBadge.textContent = `step ${Math.min(state.step, state.dijkstraTrace.length - 1)} / ${state.dijkstraTrace.length - 1}`;
+      els.bmsspBadge.textContent = `step ${Math.min(state.step, state.bmsspTrace.length - 1)} / ${state.bmsspTrace.length - 1}`;
+
+      if (dSnap) {
+        renderMetrics(els.dijkstraMetrics, [
+          { label: "settled", value: dSnap.stats.settled },
+          { label: "extracts", value: dSnap.stats.extracts },
+          { label: "edge scans", value: dSnap.stats.scans },
+          { label: "relaxations", value: dSnap.stats.relaxations },
+          { label: "heap-order work", value: Math.round(dSnap.stats.orderWork) }
+        ]);
+        els.dijkstraPhase.textContent = dSnap.phase;
+        els.dijkstraEvent.textContent = dSnap.event;
+      }
+
+      if (bSnap) {
+        renderMetrics(els.bmsspMetrics, [
+          { label: "complete", value: bSnap.stats.complete },
+          { label: "calls", value: bSnap.stats.calls },
+          { label: "pivot calls", value: bSnap.stats.pivotCalls },
+          { label: "edge scans", value: bSnap.stats.scans },
+          { label: "toy sort work", value: Math.round(bSnap.stats.toySortWork) }
+        ]);
+        els.bmsspPhase.textContent = `${bSnap.phase} · depth ${bSnap.depth}`;
+        els.bmsspEvent.textContent = bSnap.event;
+      }
+
+      const agreement = compareDistances();
+      els.agreementText.textContent = agreement.text;
+      els.agreementDot.style.background = agreement.ok ? "#22c55e" : "#ef4444";
+      renderInlineGuide(dSnap, bSnap);
+
+      drawTrace(els.dijkstraCanvas, state.graph, dSnap, "dijkstra");
+      drawTrace(els.bmsspCanvas, state.graph, bSnap, "bmssp");
+    }
+
+    function resizeCanvas(canvas) {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      const width = Math.max(320, Math.round(rect.width * dpr));
+      const height = Math.max(260, Math.round(rect.height * dpr));
+      if (canvas.width !== width || canvas.height !== height) {
+        canvas.width = width;
+        canvas.height = height;
+      }
+      const ctx = canvas.getContext("2d");
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      return { ctx, width: rect.width, height: rect.height };
+    }
+
+    function drawTrace(canvas, graph, snap, mode) {
+      if (!graph || !snap) return;
+      const { ctx, width, height } = resizeCanvas(canvas);
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = "#fbfcff";
+      ctx.fillRect(0, 0, width, height);
+
+      const pad = 34;
+      const points = graph.points.map(p => ({
+        x: pad + p.x * (width - pad * 2),
+        y: pad + p.y * (height - pad * 2)
+      }));
+      const radius = graph.n > 54 ? 8 : graph.n > 38 ? 9.5 : 11;
+      const complete = new Set(snap.complete);
+      const frontier = new Set(snap.frontier);
+      const pivots = new Set(snap.pivots);
+      const wave = new Set(snap.wave);
+      const sources = new Set(snap.sources);
+
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+
+      for (const edge of graph.edges) {
+        const isPred = snap.pred[edge.to] === edge.from;
+        const isActive = edge.id === snap.activeEdge;
+        const from = points[edge.from];
+        const to = points[edge.to];
+        let color = getCss("--edge");
+        let widthLine = 1.15;
+        if (isPred) {
+          color = mode === "dijkstra" ? getCss("--dijkstra") : getCss("--bmssp");
+          widthLine = 2.1;
+        }
+        if (isActive) {
+          color = snap.edgeMode === "skip" ? getCss("--skip") : getCss("--edge-active");
+          widthLine = 3.1;
+        }
+        drawArrow(ctx, from, to, radius + 2, color, widthLine, isActive ? 0.98 : isPred ? 0.62 : 0.34);
+      }
+
+      if (snap.activeEdge !== null) {
+        const edge = graph.edges[snap.activeEdge];
+        if (edge) drawEdgeWeight(ctx, points[edge.from], points[edge.to], edge.w);
+      }
+
+      for (let i = 0; i < graph.n; i += 1) {
+        const p = points[i];
+        const status = nodeStatus(i, graph.source, snap.active, complete, frontier, pivots, wave, sources);
+        drawNode(ctx, p.x, p.y, radius, status, i, snap.dist[i], graph.n);
+      }
+
+      drawOverlay(ctx, snap, width, mode);
+    }
+
+    function nodeStatus(i, source, active, complete, frontier, pivots, wave, sources) {
+      if (i === active) return { fill: getCss("--active"), stroke: "#123a9c", text: "#fff", ring: "#93c5fd" };
+      if (pivots.has(i)) return { fill: getCss("--pivot"), stroke: "#581c87", text: "#fff", ring: "#d8b4fe" };
+      if (i === source) return { fill: getCss("--source"), stroke: "#14532d", text: "#fff", ring: "#86efac" };
+      if (complete.has(i)) return { fill: getCss("--settled"), stroke: "#0f766e", text: "#fff", ring: "#99f6e4" };
+      if (wave.has(i)) return { fill: getCss("--wave"), stroke: "#9a3412", text: "#fff", ring: "#fed7aa" };
+      if (frontier.has(i) || sources.has(i)) return { fill: getCss("--frontier"), stroke: "#92400e", text: "#1f2937", ring: "#fde68a" };
+      return { fill: "#ffffff", stroke: "#94a3b8", text: "#334155", ring: "#e2e8f0" };
+    }
+
+    function drawNode(ctx, x, y, r, status, id, dist, n) {
+      ctx.beginPath();
+      ctx.arc(x, y, r + 3, 0, Math.PI * 2);
+      ctx.fillStyle = status.ring;
+      ctx.globalAlpha = 0.44;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fillStyle = status.fill;
+      ctx.fill();
+      ctx.lineWidth = 1.4;
+      ctx.strokeStyle = status.stroke;
+      ctx.stroke();
+
+      ctx.fillStyle = status.text;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.font = `${n > 54 ? 9 : 10}px ui-sans-serif, system-ui`;
+      ctx.fillText(String(id), x, y + 0.2);
+
+      if (n <= 42) {
+        ctx.font = "10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
+        const label = fmt(dist);
+        const w = ctx.measureText(label).width + 6;
+        ctx.fillStyle = "rgba(255,255,255,0.88)";
+        ctx.strokeStyle = "rgba(148,163,184,0.42)";
+        roundRect(ctx, x - w / 2, y + r + 5, w, 15, 4);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = "#475569";
+        ctx.fillText(label, x, y + r + 12.5);
+      }
+    }
+
+    function drawArrow(ctx, from, to, nodePad, color, widthLine, alpha) {
+      const dx = to.x - from.x;
+      const dy = to.y - from.y;
+      const len = Math.hypot(dx, dy) || 1;
+      const ux = dx / len;
+      const uy = dy / len;
+      const start = { x: from.x + ux * nodePad, y: from.y + uy * nodePad };
+      const end = { x: to.x - ux * nodePad, y: to.y - uy * nodePad };
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.strokeStyle = color;
+      ctx.fillStyle = color;
+      ctx.lineWidth = widthLine;
+      ctx.beginPath();
+      ctx.moveTo(start.x, start.y);
+      ctx.lineTo(end.x, end.y);
+      ctx.stroke();
+      const angle = Math.atan2(dy, dx);
+      const head = 7 + widthLine;
+      ctx.beginPath();
+      ctx.moveTo(end.x, end.y);
+      ctx.lineTo(end.x - Math.cos(angle - Math.PI / 6) * head, end.y - Math.sin(angle - Math.PI / 6) * head);
+      ctx.lineTo(end.x - Math.cos(angle + Math.PI / 6) * head, end.y - Math.sin(angle + Math.PI / 6) * head);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function drawEdgeWeight(ctx, from, to, weight) {
+      const x = (from.x + to.x) / 2;
+      const y = (from.y + to.y) / 2;
+      const label = fmt(weight);
+      ctx.font = "11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
+      const w = ctx.measureText(label).width + 8;
+      ctx.fillStyle = "rgba(255,255,255,0.95)";
+      ctx.strokeStyle = "rgba(225,29,72,0.45)";
+      ctx.lineWidth = 1;
+      roundRect(ctx, x - w / 2, y - 9, w, 18, 5);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = "#9f1239";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(label, x, y);
+    }
+
+    function drawOverlay(ctx, snap, width, mode) {
+      const label = mode === "dijkstra"
+        ? `${snap.complete.length} settled · queue ${snap.frontier.length}`
+        : `depth ${snap.depth} · ${snap.complete.length} complete · frontier ${snap.frontier.length}`;
+      ctx.font = "12px ui-sans-serif, system-ui";
+      const textWidth = ctx.measureText(label).width + 18;
+      ctx.fillStyle = "rgba(255,255,255,0.9)";
+      ctx.strokeStyle = "rgba(148,163,184,0.45)";
+      roundRect(ctx, width - textWidth - 12, 12, textWidth, 26, 7);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = "#475569";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(label, width - textWidth / 2 - 12, 25);
+    }
+
+    function roundRect(ctx, x, y, w, h, r) {
+      const radius = Math.min(r, w / 2, h / 2);
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + w - radius, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + radius);
+      ctx.lineTo(x + w, y + h - radius);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - radius, y + h);
+      ctx.lineTo(x + radius, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+    }
+
+    function getCss(name) {
+      return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    }
+
+    function wireEvents() {
+      els.newGraph.addEventListener("click", () => {
+        els.seed.value = String((Number(els.seed.value) || 1) + 1);
+        rebuild();
+      });
+      els.stressDemo.addEventListener("click", () => {
+        els.preset.value = "sparseFanout";
+        els.nodes.value = "72";
+        els.extraEdges.value = "0";
+        els.paramK.value = "3";
+        els.paramT.value = "2";
+        rebuild();
+      });
+      els.reset.addEventListener("click", () => {
+        stopAuto();
+        setStep(0);
+      });
+      els.step.addEventListener("click", () => setStep(state.step + 1));
+      els.runAll.addEventListener("click", () => {
+        stopAuto();
+        setStep(maxStep());
+      });
+      els.auto.addEventListener("click", () => {
+        if (state.playing) stopAuto();
+        else startAuto();
+      });
+      els.scrubber.addEventListener("input", event => {
+        stopAuto();
+        setStep(Number(event.target.value));
+      });
+      els.speed.addEventListener("input", () => {
+        if (state.playing) startAuto();
+      });
+      for (const control of [els.preset, els.nodes, els.extraEdges, els.seed, els.paramK, els.paramT, els.sourceMode]) {
+        control.addEventListener("change", rebuild);
+      }
+      window.addEventListener("resize", render);
+    }
+
+    wireEvents();
+    rebuild();
+  </script>
+</body>
+</html>
