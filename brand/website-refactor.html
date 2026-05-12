@@ -1,178 +1,67 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<!doctype html>
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Website Refactor — machinespirits.org for General Release</title>
-  <style>
-    html {
-      color: #1a1a1a;
-      background-color: #fdfdfd;
-    }
-    body {
-      margin: 0 auto;
-      max-width: 36em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      hyphens: auto;
-      overflow-wrap: break-word;
-      text-rendering: optimizeLegibility;
-      font-kerning: normal;
-    }
-    @media (max-width: 600px) {
-      body {
-        font-size: 0.9em;
-        padding: 12px;
-      }
-      h1 {
-        font-size: 1.8em;
-      }
-    }
-    @media print {
-      html {
-        background-color: white;
-      }
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
-      }
-    }
-    p {
-      margin: 1em 0;
-    }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
-    }
-    img {
-      max-width: 100%;
-    }
-    svg {
-      height: auto;
-      max-width: 100%;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 1.4em;
-    }
-    h5, h6 {
-      font-size: 1em;
-      font-style: italic;
-    }
-    h6 {
-      font-weight: normal;
-    }
-    ol, ul {
-      padding-left: 1.7em;
-      margin-top: 1em;
-    }
-    li > ol, li > ul {
-      margin-top: 0;
-    }
-    blockquote {
-      margin: 1em 0 1em 1.7em;
-      padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
-      color: #606060;
-    }
-    code {
-      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
-      font-size: 85%;
-      margin: 0;
-      hyphens: manual;
-    }
-    pre {
-      margin: 1em 0;
-      overflow: auto;
-    }
-    pre code {
-      padding: 0;
-      overflow: visible;
-      overflow-wrap: normal;
-    }
-    .sourceCode {
-     background-color: transparent;
-     overflow: visible;
-    }
-    hr {
-      background-color: #1a1a1a;
-      border: none;
-      height: 1px;
-      margin: 1em 0;
-    }
-    table {
-      margin: 1em 0;
-      border-collapse: collapse;
-      width: 100%;
-      overflow-x: auto;
-      display: block;
-      font-variant-numeric: lining-nums tabular-nums;
-    }
-    table caption {
-      margin-bottom: 0.75em;
-    }
-    tbody {
-      margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
-    }
-    th {
-      border-top: 1px solid #1a1a1a;
-      padding: 0.25em 0.5em 0.25em 0.5em;
-    }
-    td {
-      padding: 0.125em 0.5em 0.25em 0.5em;
-    }
-    header {
-      margin-bottom: 4em;
-      text-align: center;
-    }
-    #TOC li {
-      list-style: none;
-    }
-    #TOC ul {
-      padding-left: 1.3em;
-    }
-    #TOC > ul {
-      padding-left: 0;
-    }
-    #TOC a:not(:hover) {
-      text-decoration: none;
-    }
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-    ul.task-list[class]{list-style: none;}
-    ul.task-list li input[type="checkbox"] {
-      font-size: inherit;
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Website Refactor — machinespirits.org for General Release — Machine Spirits</title>
+<meta name="description" content="The punch list to prep machinespirits.org for general release: writing-first, lab second.">
+<meta name="color-scheme" content="dark light">
+<link rel="stylesheet" href="./assets/ms.css">
+<script>try{var t=localStorage.getItem('ms-theme');document.documentElement.dataset.theme=(t==='light'||t==='dark')?t:(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');}catch(e){}</script>
+
+
+
 </head>
-<body>
-<header id="title-block-header">
-<h1 class="title">Website Refactor — machinespirits.org for General
-Release</h1>
+<body class="layout-doc">
+<a class="skip-link" href="#content">Skip to content</a>
+
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-controls="sidebar">☰</button>
+  <a class="brand" href="./index.html">
+    <span class="glyph" aria-hidden="true">
+      <svg viewBox="0 0 48 48" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2">
+        <circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="9" stroke-dasharray="3 4"/>
+        <path d="M24 6v9M24 33v9M6 24h9M33 24h9"/>
+      </svg>
+    </span>
+    <span>Machine&nbsp;Spirits</span><span class="sub">Website Refactor</span>
+  </a>
+  <div class="spacer"></div>
+  <div class="search-wrap">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4"/></svg>
+    <input id="searchInput" type="search" placeholder="Search this page  /" aria-label="Search this page" autocomplete="off" spellcheck="false">
+    <span class="search-count" id="searchCount" aria-live="polite"></span>
+    <span class="search-nav"><button id="prevHit" type="button" aria-label="Previous match">↑</button><button id="nextHit" type="button" aria-label="Next match">↓</button></span>
+  </div>
+  <button class="pillbtn" id="themeBtn" type="button" aria-label="Toggle colour theme">☀ Light</button>
 </header>
+
+<div class="layout">
+  <nav class="sidebar" id="sidebar" aria-label="Brand layer">
+    <h2>Brand layer</h2>
+    <ul>
+      <li><a class="nav-doc" href="./index.html"><span class="k">·</span><span>Overview</span></a></li>
+      <li><a class="nav-doc" href="./manifesto.html"><span class="k">·</span><span>Manifesto — What AI Forgets</span></a></li>
+      <li><a class="nav-doc" href="./identity.html"><span class="k">·</span><span>Identity</span></a></li>
+      <li><a class="nav-doc" href="./strategy.html"><span class="k">·</span><span>Strategy</span></a></li>
+      <li><a class="nav-doc" href="./social.html"><span class="k">·</span><span>Social</span></a></li>
+      <li><a class="nav-doc" href="./website-refactor.html"><span class="k">·</span><span>Website Refactor</span></a></li>
+      <li><a class="nav-doc" href="./newsletter/issue-06-recognition-not-alignment.html"><span class="k">·</span><span>Newsletter #06</span></a></li>
+    </ul>
+    <h2>Reading-views</h2>
+    <ul>
+      <li><a class="nav-doc" href="./plan.html"><span class="k">▤</span><span>Plan (manifesto · identity · strategy)</span></a></li>
+      <li><a class="nav-doc" href="./refactor.html"><span class="k">▤</span><span>Refactor checklist</span></a></li>
+      <li><a class="nav-doc" href="./site-mockup.html"><span class="k">▤</span><span>Site mockup</span></a></li>
+    </ul>
+    <h2 id="onpage-h">On this page</h2>
+    <ul class="toc-list" id="tocList"></ul>
+    <p class="legend">Theme &amp; any checklist progress are stored in your browser only.</p>
+  </nav>
+
+  <main>
+    <article class="doc" id="content">
+
 <h1 id="website-refactor-machinespirits.org-for-general-release">Website
 Refactor — machinespirits.org for General Release</h1>
 <p>Status: working draft, 2026-05-11. Companion to <a
@@ -187,18 +76,21 @@ LMS with a research blog bolted on) into the site STRATEGY.md describes:
 courseware kept live but off the main path, the rest of the LMS demoted
 to a tools page.</strong> Same checkbox conventions as the STRATEGY
 30-day list.</p>
-<p>Repos in scope: - <code>../machinespirits-website</code> — React 19 +
-TS + Vite + Tailwind 4 SPA, Express + better-sqlite3 backend, Fly.io
-deploy. Entry: <code>App.tsx</code> (a ~55 KB <code>switch</code> over
-<code>home|courses|dashboard|eval|instructor|kb|research-lab|docs|chat|...</code>).
-- <code>../machinespirits-content-philosophy</code> — Pandoc/citeproc
+<p>Repos in scope:</p>
+<ul>
+<li><code>../machinespirits-website</code> — React 19 + TS + Vite +
+Tailwind 4 SPA, Express + better-sqlite3 backend, Fly.io deploy. Entry:
+<code>App.tsx</code> (a ~55 KB <code>switch</code> over
+<code>home|courses|dashboard|eval|instructor|kb|research-lab|docs|chat|...</code>).</li>
+<li><code>../machinespirits-content-philosophy</code> — Pandoc/citeproc
 content package (<code>@machinespirits/content-philosophy</code>),
 consumed by the website as an npm dep, served at
 <code>/content/*</code>. Has <code>articles/</code>,
 <code>courses/</code>, <code>artifacts/</code>, <code>assets/</code>,
 <code>theme/</code>, <code>config/navigation.yaml</code>, and the
 <code>build</code>/<code>serve</code>/<code>publish</code>/<code>urls</code>/<code>sitemap</code>/<code>artifacts-index</code>
-scripts.</p>
+scripts.</li>
+</ul>
 <hr />
 <h2 id="the-one-decision-that-gates-everything-else">0. The one decision
 that gates everything else</h2>
@@ -413,26 +305,32 @@ program.</p>
 nav — those collapse: the public-facing experimental work is
 <code>/lab</code>; everything else is <code>/app</code> reached via
 <code>/tools</code> or the footer.)</p>
-<p>Target homepage modules, top to bottom: 1. <strong>Hero</strong> —
-wordmark/sigil + tagline (“Philosophy for machines that learn.” — or
-whichever IDENTITY.md tagline wins) + a 2–3 sentence thesis (what the
-program claims, in plain words) + two CTAs: <strong>Read the
-manifesto</strong> / <strong>Try the tutor</strong>. 2. <strong>Latest
-idea, four surfaces</strong> — the current headline idea shown once,
-with its probe / course-note / essay / video renderings linked
-(whichever exist). This is the “one idea, four surfaces” pattern made
-visible. 3. <strong>Recent essays</strong> — 3–4 cards, reverse-chron,
-from the content package. 4. <strong>From the lab</strong> — the
-tutor-demo card (prominent: “a tutor that shows its work — Ego proposes,
-Superego checks”) + the most recent 2–3 probes as a compact list. 5.
-<strong>Teaching</strong> — a quiet strip, not a section: “Machine
+<p>Target homepage modules, top to bottom:</p>
+<ol type="1">
+<li><strong>Hero</strong> — wordmark/sigil + tagline (“Philosophy for
+machines that learn.” — or whichever IDENTITY.md tagline wins) + a 2–3
+sentence thesis (what the program claims, in plain words) + two CTAs:
+<strong>Read the manifesto</strong> / <strong>Try the
+tutor</strong>.</li>
+<li><strong>Latest idea, four surfaces</strong> — the current headline
+idea shown once, with its probe / course-note / essay / video renderings
+linked (whichever exist). This is the “one idea, four surfaces” pattern
+made visible.</li>
+<li><strong>Recent essays</strong> — 3–4 cards, reverse-chron, from the
+content package.</li>
+<li><strong>From the lab</strong> — the tutor-demo card (prominent: “a
+tutor that shows its work — Ego proposes, Superego checks”) + the most
+recent 2–3 probes as a compact list.</li>
+<li><strong>Teaching</strong> — a quiet strip, not a section: “Machine
 Spirits is also the home for courses at UIUC — [browse courses]”.
 De-emphasized on purpose (STRATEGY: teaching is evidence + institutional
-home, not the lead). 6. <strong>Subscribe</strong> — newsletter signup,
-one line of “what you’ll get / how often”. 7. <strong>Footer</strong> —
-About · Manifesto · Colophon · <strong>Also from Machine
-Spirits</strong> (→ <code>/tools</code>) · social handles · “© / CC
-license / built with…”.</p>
+home, not the lead).</li>
+<li><strong>Subscribe</strong> — newsletter signup, one line of “what
+you’ll get / how often”.</li>
+<li><strong>Footer</strong> — About · Manifesto · Colophon ·
+<strong>Also from Machine Spirits</strong> (→ <code>/tools</code>) ·
+social handles · “© / CC license / built with…”.</li>
+</ol>
 <ul class="task-list">
 <li><label><input type="checkbox" /><strong>B.1</strong> — Replace the
 homepage component with the module list above. Remove the LMS-y hero
@@ -685,17 +583,23 @@ the current techne-red/orange, not the bright <code>#E63946</code>);
 serif body + sans headings; the fauna/spirit-creature overlay kept as a
 <em>signature motif, dialed down</em>; no robot/brain/network stock
 imagery. And from STRATEGY “simplify”: drop the maximalist skin.</p>
-<p>Things to remove: - The parallax grid /
-<code>GeometricBackground.tsx</code> / <code>parallax-skin.html</code> /
-“trash-polka” accent shapes — gone from the public site. -
-Glass-morphism panels / heavy blurs. - The toggle soup (multiple
-theme/skin/animation toggles) — one light/dark toggle, that’s it. -
-<code>animals.html</code>, <code>fauna-playground/</code>,
+<p>Things to remove:</p>
+<ul>
+<li>The parallax grid / <code>GeometricBackground.tsx</code> /
+<code>parallax-skin.html</code> / “trash-polka” accent shapes — gone
+from the public site.</li>
+<li>Glass-morphism panels / heavy blurs.</li>
+<li>The toggle soup (multiple theme/skin/animation toggles) — one
+light/dark toggle, that’s it.</li>
+<li><code>animals.html</code>, <code>fauna-playground/</code>,
 <code>office-sim.html</code> as shipped pages — the fauna
 <em>system</em> stays (<code>fauna-overlay.js</code>), the playground
-doesn’t ship.</p>
-<p>Things to do: - [ ] <strong>G.1</strong> — New palette in
-<code>content-philosophy/theme/colors.yaml</code> + the website’s
+doesn’t ship.</li>
+</ul>
+<p>Things to do:</p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>G.1</strong> — New palette
+in <code>content-philosophy/theme/colors.yaml</code> + the website’s
 Tailwind config: dark-first, low-chroma. Suggested anchors (tune to
 taste): base ink <code>#15131A</code>, raised surface
 <code>#1E1B24</code>, hairline <code>#332E3A</code>, warm off-white text
@@ -703,7 +607,8 @@ taste): base ink <code>#15131A</code>, raised surface
 rust/oxblood) <code>#B56A52</code>, accent-deep <code>#5E2A26</code>,
 accent-quiet link <code>#C98A6E</code>. Light theme: warm paper
 <code>#F4F0E8</code>, ink text <code>#1B1822</code>, same accents
-shifted darker for contrast. - [ ] <strong>G.2</strong> — Typography in
+shifted darker for contrast.</label></li>
+<li><label><input type="checkbox" /><strong>G.2</strong> — Typography in
 <code>content-philosophy/theme/fonts.yaml</code>: serif body stack
 (<code>"Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif</code>),
 sans headings
@@ -711,30 +616,38 @@ sans headings
 mono for probes/code
 (<code>"SF Mono", "JetBrains Mono", ui-monospace, monospace</code>).
 Real measure on body text. If web fonts are wanted later, that’s a
-separate ticket — system stacks first. - [ ] <strong>G.3</strong> —
-Reduce the fauna overlay: fewer creatures, lower opacity, slow gentle
-drift, <em>never</em> over body text — corners, margins, section breaks
-only. Make it a thin SVG layer, not the current heavier JS canvas if
-possible. Keep it as the “ghost in the machine” signature; respect
-<code>prefers-reduced-motion</code> (freeze it). - [ ]
-<strong>G.4</strong> — Delete the parallax / geometric / trash-polka
-layer from the public templates and the homepage. Remove
-<code>GeometricBackground.tsx</code> from public render paths (keep in
-repo if <code>/app</code> still uses it; otherwise retire). - [ ]
-<strong>G.5</strong> — One theme toggle (light/dark), persisted in
-<code>localStorage</code>, defaulting to dark (the “haunted” default)
-but honoring <code>prefers-color-scheme</code> on first visit. Remove
-all other skin/animation toggles from the public UI. - [ ]
-<strong>G.6</strong> — Logo/sigil: pull the wordmark + sigil from
+separate ticket — system stacks first.</label></li>
+<li><label><input type="checkbox" /><strong>G.3</strong> — Reduce the
+fauna overlay: fewer creatures, lower opacity, slow gentle drift,
+<em>never</em> over body text — corners, margins, section breaks only.
+Make it a thin SVG layer, not the current heavier JS canvas if possible.
+Keep it as the “ghost in the machine” signature; respect
+<code>prefers-reduced-motion</code> (freeze it).</label></li>
+<li><label><input type="checkbox" /><strong>G.4</strong> — Delete the
+parallax / geometric / trash-polka layer from the public templates and
+the homepage. Remove <code>GeometricBackground.tsx</code> from public
+render paths (keep in repo if <code>/app</code> still uses it; otherwise
+retire).</label></li>
+<li><label><input type="checkbox" /><strong>G.5</strong> — One theme
+toggle (light/dark), persisted in <code>localStorage</code>, defaulting
+to dark (the “haunted” default) but honoring
+<code>prefers-color-scheme</code> on first visit. Remove all other
+skin/animation toggles from the public UI.</label></li>
+<li><label><input type="checkbox" /><strong>G.6</strong> — Logo/sigil:
+pull the wordmark + sigil from
 <code>content-philosophy/assets/logo.svg</code> /
 <code>favicon.svg</code>; if those are still the old “Swiss LMS” mark,
 commission/redo per IDENTITY.md. <code>BrandSigil.tsx</code> should
-render the new mark. - [ ] <strong>G.7</strong> — Generous whitespace,
-hairline rules instead of boxes/cards-with-shadows, restrained motion.
-The mockup (<code>site-mockup.html</code>) is the reference. - [ ]
-<strong>G.8</strong> — Audit <code>index.html</code> in the website root
-(37 KB, lots of inline) — strip inline LMS bootstrapping/splash, set the
-new theme color, favicon, OG defaults there.</p>
+render the new mark.</label></li>
+<li><label><input type="checkbox" /><strong>G.7</strong> — Generous
+whitespace, hairline rules instead of boxes/cards-with-shadows,
+restrained motion. The mockup (<code>site-mockup.html</code>) is the
+reference.</label></li>
+<li><label><input type="checkbox" /><strong>G.8</strong> — Audit
+<code>index.html</code> in the website root (37 KB, lots of inline) —
+strip inline LMS bootstrapping/splash, set the new theme color, favicon,
+OG defaults there.</label></li>
+</ul>
 <hr />
 <h2
 id="h.-content-pipeline-updates-machinespirits-content-philosophy">H.
@@ -947,40 +860,72 @@ Sequencing — what “general release” actually requires</h2>
 (maps to STRATEGY Q1 — “publish the manifesto, ship the public site, the
 tutor demo, the first probes”):</p>
 <p><strong>Must ship for general release (the “minimum”
-subset):</strong> - [ ] §0.1 decision (A vs B) — <em>gates
-everything</em> - [ ] §A.1–A.3 — route table + real public URLs + legacy
-redirects - [ ] §B.1–B.3 — new homepage + new nav + hero copy - [ ] §C.1
-— <code>/manifesto</code> published - [ ] §C.2–C.3, C.6 —
-<code>/essays</code> index + reader + the public-essay triage (even if
-the probe type isn’t built yet) - [ ] §C.4 — <code>/newsletter</code>
-signup live - [ ] §D.1, D.3 — <code>/lab</code> landing + the public
-no-login tutor demo with the Ego/Superego split visible - [ ] §E.1–E.2 —
-<code>/courses</code> public read-only view, de-emphasized - [ ]
-§F.1–F.4, F.6 — LMS moved behind <code>/app</code> + login, out of
-public nav, <code>/tools</code> page exists - [ ] §G.1–G.5 — new palette
-+ type + dialed-down fauna + parallax/glass/toggle-soup removed - [ ]
-§H.4, H.7, H.9 — <code>urls</code> emits the new scheme,
-<code>navigation.yaml</code> rewritten, <code>manifest.yaml</code>
-tagline/description fixed - [ ] §I.1, I.2, I.4, I.11 — purge the 278 MB
-sqlite + the test/log bloat from the repo, and the <code>.env</code>
-hygiene per I.11 — <em>the repo is about to be public</em> - [ ] §I.9 —
-README + package.json no longer describe the site as “an LMS” - [ ]
-§J.1–J.5 — titles/meta/OG, sitemap, robots, RSS, redirects</p>
-<p><strong>Fast-follow (weeks after launch, also Q1):</strong> - [ ]
-§D.2 + §H.1 — the <code>probes</code> content type and
-<code>/lab/probes</code> (the first probe is a Q1 deliverable but the
-<em>type</em> can land just after the homepage) - [ ] §E.4 + §H.2 —
-course-notes as a public artifact type - [ ] §D.5 + §H.3 —
-<code>/reading-room</code> formalized - [ ] §G.6 — new logo/sigil if the
-current mark is the old one - [ ] §I.3, I.5–I.8, I.10, I.12 — finish the
-repo cleanup - [ ] §J.6–J.9 — canonicals, analytics/consent, Search
-Console</p>
-<p><strong>Later (Q2+):</strong> - [ ] §A.4 archive-structure
-rationalization - [ ] §D.4 demos index + graduating the
-content-philosophy <code>artifacts/*</code> interactives - [ ] §F.5, F.7
-— full code-split / mobile-page cleanup (free under
-<strong>[B]</strong>) - [ ] §H.5–H.6, H.8, H.10–H.11 — the rest of the
-pipeline work - [ ] §videos/* — if/when video surfaces exist</p>
+subset):</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />§0.1 decision (A vs B) — <em>gates
+everything</em></label></li>
+<li><label><input type="checkbox" />§A.1–A.3 — route table + real public
+URLs + legacy redirects</label></li>
+<li><label><input type="checkbox" />§B.1–B.3 — new homepage + new nav +
+hero copy</label></li>
+<li><label><input type="checkbox" />§C.1 — <code>/manifesto</code>
+published</label></li>
+<li><label><input type="checkbox" />§C.2–C.3, C.6 — <code>/essays</code>
+index + reader + the public-essay triage (even if the probe type isn’t
+built yet)</label></li>
+<li><label><input type="checkbox" />§C.4 — <code>/newsletter</code>
+signup live</label></li>
+<li><label><input type="checkbox" />§D.1, D.3 — <code>/lab</code>
+landing + the public no-login tutor demo with the Ego/Superego split
+visible</label></li>
+<li><label><input type="checkbox" />§E.1–E.2 — <code>/courses</code>
+public read-only view, de-emphasized</label></li>
+<li><label><input type="checkbox" />§F.1–F.4, F.6 — LMS moved behind
+<code>/app</code> + login, out of public nav, <code>/tools</code> page
+exists</label></li>
+<li><label><input type="checkbox" />§G.1–G.5 — new palette + type +
+dialed-down fauna + parallax/glass/toggle-soup removed</label></li>
+<li><label><input type="checkbox" />§H.4, H.7, H.9 — <code>urls</code>
+emits the new scheme, <code>navigation.yaml</code> rewritten,
+<code>manifest.yaml</code> tagline/description fixed</label></li>
+<li><label><input type="checkbox" />§I.1, I.2, I.4, I.11 — purge the 278
+MB sqlite + the test/log bloat from the repo, and the <code>.env</code>
+hygiene per I.11 — <em>the repo is about to be public</em></label></li>
+<li><label><input type="checkbox" />§I.9 — README + package.json no
+longer describe the site as “an LMS”</label></li>
+<li><label><input type="checkbox" />§J.1–J.5 — titles/meta/OG, sitemap,
+robots, RSS, redirects</label></li>
+</ul>
+<p><strong>Fast-follow (weeks after launch, also Q1):</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />§D.2 + §H.1 — the
+<code>probes</code> content type and <code>/lab/probes</code> (the first
+probe is a Q1 deliverable but the <em>type</em> can land just after the
+homepage)</label></li>
+<li><label><input type="checkbox" />§E.4 + §H.2 — course-notes as a
+public artifact type</label></li>
+<li><label><input type="checkbox" />§D.5 + §H.3 —
+<code>/reading-room</code> formalized</label></li>
+<li><label><input type="checkbox" />§G.6 — new logo/sigil if the current
+mark is the old one</label></li>
+<li><label><input type="checkbox" />§I.3, I.5–I.8, I.10, I.12 — finish
+the repo cleanup</label></li>
+<li><label><input type="checkbox" />§J.6–J.9 — canonicals,
+analytics/consent, Search Console</label></li>
+</ul>
+<p><strong>Later (Q2+):</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />§A.4 archive-structure
+rationalization</label></li>
+<li><label><input type="checkbox" />§D.4 demos index + graduating the
+content-philosophy <code>artifacts/*</code> interactives</label></li>
+<li><label><input type="checkbox" />§F.5, F.7 — full code-split /
+mobile-page cleanup (free under <strong>[B]</strong>)</label></li>
+<li><label><input type="checkbox" />§H.5–H.6, H.8, H.10–H.11 — the rest
+of the pipeline work</label></li>
+<li><label><input type="checkbox" />§videos/* — if/when video surfaces
+exist</label></li>
+</ul>
 <hr />
 <h2 id="open-questions-for-liam">Open questions for Liam</h2>
 <ol type="1">
@@ -1013,5 +958,14 @@ convincing; canned is zero-cost and zero-abuse-surface.</li>
 <code>machinespirits.org/app/*</code> path? (Affects auth/cookies and
 the proxy setup.)</li>
 </ol>
+
+    </article>
+    <footer class="page-foot">
+      <p>Machine Spirits — the brand &amp; strategy layer. Source of truth: <code>machinespirits-brand/</code>. This page is generated from a Markdown file; do not hand-edit the mirror.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="./assets/ms.js" defer></script>
 </body>
 </html>

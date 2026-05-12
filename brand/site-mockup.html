@@ -1,44 +1,26 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Machine Spirits — site mockup</title>
 <meta name="description" content="Functional mockup of the refactored machinespirits.org — research-program home. Not the live site.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="assets/ms.css">
+<script>try{var t=localStorage.getItem('ms-theme');document.documentElement.dataset.theme=(t==='light'||t==='dark')?t:'light';}catch(e){}</script>
 <style>
   /* ============================================================
      Machine Spirits — site mockup
      A single-file, functional mockup of the refactored
      machinespirits.org. See WEBSITE-REFACTOR.md for the why.
-     Dark-first "haunted, not promotional" palette (IDENTITY.md).
+     Light-default here; the shared "haunted" palette (IDENTITY.md)
+     still drives dark, and the other brand-layer pages stay dark-first.
      ============================================================ */
 
-  :root, [data-theme="dark"]{
-    --bg:#15131A; --bg-raised:#1E1B24; --bg-sunken:#100E14;
-    --rule:#332E3A; --rule-soft:#26222D;
-    --text:#E8E2D9; --text-dim:#A79E94; --text-faint:#766D64;
-    --accent:#C98A6E; --accent-strong:#B56A52; --accent-deep:#5E2A26;
-    --accent-bg:rgba(181,106,82,.10);
-    --ok:#7E9B7A;
-    --shadow:0 1px 0 var(--rule-soft);
-    --fauna-opacity:.07;
-  }
-  [data-theme="light"]{
-    --bg:#F4F0E8; --bg-raised:#FBF8F2; --bg-sunken:#EAE3D5;
-    --rule:#D8CFBE; --rule-soft:#E5DECD;
-    --text:#1B1822; --text-dim:#5A5248; --text-faint:#8A8175;
-    --accent:#9B4A33; --accent-strong:#8A3E2A; --accent-deep:#5E2A26;
-    --accent-bg:rgba(155,74,51,.08);
-    --ok:#4F6B4C;
-    --shadow:0 1px 0 var(--rule-soft);
-    --fauna-opacity:.06;
-  }
-
-  :root{
-    --serif: "Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
-    --sans: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    --mono: "SF Mono","JetBrains Mono","Fira Code",ui-monospace,Menlo,Consolas,monospace;
-  }
+  /* Palette and the --serif / --sans / --mono families now come from the shared
+     design system (assets/ms.css, linked above). The site-mockup palette WAS
+     the canonical "haunted" palette, so nothing changes visually — this file
+     keeps only the SPA-mockup-specific styles below. */
 
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -294,6 +276,18 @@
   .colophon{max-width:1080px;margin:0 auto;padding:16px 28px 36px;border-top:1px solid var(--rule-soft);font-family:var(--sans);font-size:12px;color:var(--text-faint);display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
   .colophon a{color:var(--text-faint);text-decoration:underline}
 
+  /* ---- ambient shader background (seapunk / cloudy hints) ---- */
+  /* a slow domain-warped fbm wash; opacity kept low enough that body text stays crisp through it */
+  #shaderbg{
+    position:fixed;inset:0;width:100%;height:100%;display:block;
+    z-index:0;pointer-events:none;opacity:.12;transition:opacity .6s ease;
+  }
+  [data-theme="dark"] #shaderbg{opacity:.2;mix-blend-mode:screen}
+  @media (prefers-reduced-motion:reduce){
+    #shaderbg{opacity:.07}
+    [data-theme="dark"] #shaderbg{opacity:.13}
+  }
+
   /* ---- fauna layer ---- */
   .fauna{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
   .fauna svg{position:absolute;color:var(--accent-strong);opacity:var(--fauna-opacity)}
@@ -339,7 +333,10 @@
   }
 </style>
 </head>
-<body>
+<body class="layout-site">
+
+<!-- ambient WebGL wash — seapunk / cloudy hints; decorative, removed if WebGL is unavailable -->
+<canvas id="shaderbg" aria-hidden="true"></canvas>
 
 <!-- ============ MOCKUP INFO BAR ============ -->
 <div class="mockup-bar" role="note">
@@ -900,15 +897,15 @@
   });
 
   /* ---------- theme toggle ---------- */
-  var THEME_KEY = "ms-mockup-theme";
+  var THEME_KEY = "ms-theme";  /* shared across the whole brand layer */
   function applyTheme(t){ document.documentElement.setAttribute("data-theme", t);
     $("#themeBtn").textContent = (t === "dark") ? "◐" : "◑";
     $("#themeBtn").setAttribute("aria-pressed", t === "dark" ? "true":"false");
   }
   var saved = null; try{ saved = localStorage.getItem(THEME_KEY); }catch(e){}
-  // mockup defaults to dark — the "haunted, not promotional" look is the thing being shown.
-  // (the production note in WEBSITE-REFACTOR §G.5 is: dark default, but honour prefers-color-scheme on first visit.)
-  if(!saved){ saved = "dark"; }
+  // mockup defaults to LIGHT; the "haunted" dark is one tap away on the toggle.
+  // (only this mockup leads with light — the rest of the brand layer stays dark-first.)
+  if(saved !== "dark" && saved !== "light"){ saved = "light"; }
   applyTheme(saved);
   $("#themeBtn").addEventListener("click", function(){
     var next = (document.documentElement.getAttribute("data-theme") === "dark") ? "light" : "dark";
@@ -998,6 +995,159 @@
   /* ---------- boot ---------- */
   renderDemo(0);
   route();
+})();
+</script>
+
+<!-- ===================================================================
+     Ambient WebGL background — "seapunk / cloudy hints" (site mockup only).
+     A slow domain-warped fbm cloud field in a restrained teal / cyan / lavender
+     ramp, drifting on a lazy clock plus gentle parallax (page scroll + pointer).
+     Half-resolution backing store; one cheap fragment pass. If WebGL is missing
+     or the shader won't compile the <canvas> is just removed and the page is
+     unchanged. Under prefers-reduced-motion it paints a single static frame —
+     the wash, no motion. Theme-aware (the palette switches with the toggle).
+     This lives in the mockup only; the shared assets/ are untouched.
+     =================================================================== -->
+<script>
+(function(){
+  "use strict";
+  var canvas = document.getElementById("shaderbg");
+  if(!canvas) return;
+  function drop(){ if(canvas && canvas.parentNode){ canvas.parentNode.removeChild(canvas); } }
+
+  var gl = null;
+  try{
+    var opts = {alpha:true, antialias:false, depth:false, stencil:false, premultipliedAlpha:true, powerPreference:"low-power"};
+    gl = canvas.getContext("webgl", opts) || canvas.getContext("experimental-webgl", opts);
+  }catch(e){}
+  if(!gl){ drop(); return; }
+
+  var reduceMotion = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+  var VERT = "attribute vec2 p;void main(){gl_Position=vec4(p,0.0,1.0);}";
+  var FRAG = [
+    "#ifdef GL_FRAGMENT_PRECISION_HIGH",
+    "precision highp float;",
+    "#else",
+    "precision mediump float;",
+    "#endif",
+    "uniform vec2 u_res;uniform float u_time;uniform vec2 u_off;",
+    "uniform vec3 u_c1;uniform vec3 u_c2;uniform vec3 u_c3;",
+    "float hash(vec2 q){q=fract(q*vec2(123.34,456.21));q+=dot(q,q+45.32);return fract(q.x*q.y);}",
+    "float noise(vec2 q){vec2 i=floor(q),f=fract(q);",
+    " float a=hash(i),b=hash(i+vec2(1.,0.)),c=hash(i+vec2(0.,1.)),d=hash(i+vec2(1.,1.));",
+    " vec2 u=f*f*(3.0-2.0*f);return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);}",
+    "float fbm(vec2 q){float v=0.0,a=0.5;for(int i=0;i<4;i++){v+=a*noise(q);q*=2.0;a*=0.5;}return v;}",
+    "void main(){",
+    " vec2 uv=gl_FragCoord.xy/u_res;",
+    " uv.x*=u_res.x/u_res.y;",
+    " uv=uv*1.7+u_off;",
+    " float t=u_time*0.017;",
+    " vec2 a=vec2(fbm(uv+vec2(0.0,t)),fbm(uv+vec2(5.2,1.3)-t));",
+    " vec2 b=vec2(fbm(uv+1.7*a+vec2(1.7,9.2)+0.12*t),fbm(uv+1.7*a+vec2(8.3,2.8)-0.10*t));",
+    " float f=clamp(fbm(uv+1.4*b)*1.15,0.0,1.0);",
+    " vec3 col=mix(u_c1,u_c2,smoothstep(0.05,0.65,f));",
+    " col=mix(col,u_c3,smoothstep(0.55,1.0,f)*(0.35+0.65*b.x));",
+    " col+=0.035*cos(6.2831853*(f*1.8+vec3(0.0,0.33,0.67)));",
+    " gl_FragColor=vec4(col,1.0);",
+    "}"
+  ].join("\n");
+
+  function compile(type, src){
+    var s = gl.createShader(type);
+    gl.shaderSource(s, src); gl.compileShader(s);
+    if(!gl.getShaderParameter(s, gl.COMPILE_STATUS)){ gl.deleteShader(s); return null; }
+    return s;
+  }
+  var vs = compile(gl.VERTEX_SHADER, VERT), fs = compile(gl.FRAGMENT_SHADER, FRAG);
+  if(!vs || !fs){ drop(); return; }
+  var prog = gl.createProgram();
+  gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+  if(!gl.getProgramParameter(prog, gl.LINK_STATUS)){ drop(); return; }
+  gl.useProgram(prog);
+
+  var quad = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, quad);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+  var loc_p = gl.getAttribLocation(prog, "p");
+  gl.enableVertexAttribArray(loc_p);
+  gl.vertexAttribPointer(loc_p, 2, gl.FLOAT, false, 0, 0);
+
+  var U = {
+    res:  gl.getUniformLocation(prog, "u_res"),
+    time: gl.getUniformLocation(prog, "u_time"),
+    off:  gl.getUniformLocation(prog, "u_off"),
+    c1:   gl.getUniformLocation(prog, "u_c1"),
+    c2:   gl.getUniformLocation(prog, "u_c2"),
+    c3:   gl.getUniformLocation(prog, "u_c3")
+  };
+
+  // seapunk ramps, per theme — low-contrast against the page bg so body text stays crisp under the wash
+  var PALETTE = {
+    light: [ [0.34,0.78,0.72], [0.40,0.70,0.92], [0.74,0.66,0.93] ],   // teal-mint · sky-cyan · lavender
+    dark:  [ [0.16,0.62,0.62], [0.16,0.34,0.62], [0.42,0.26,0.62] ]    // teal · indigo · violet (screen-blended → faint glow)
+  };
+  function themeName(){ return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light"; }
+  function setPalette(){
+    var p = PALETTE[themeName()];
+    gl.uniform3fv(U.c1, p[0]); gl.uniform3fv(U.c2, p[1]); gl.uniform3fv(U.c3, p[2]);
+  }
+  setPalette();
+
+  var SCALE = 0.5;  // deliberately under-sampled — the clouds are blurry, nobody can tell
+  function resize(){
+    var w = Math.max(2, Math.floor((window.innerWidth  || 800) * SCALE));
+    var h = Math.max(2, Math.floor((window.innerHeight || 600) * SCALE));
+    canvas.width = w; canvas.height = h;
+    gl.viewport(0, 0, w, h);
+    gl.uniform2f(U.res, w, h);
+  }
+
+  function draw(time, ox, oy){
+    gl.uniform1f(U.time, time);
+    gl.uniform2f(U.off, ox, oy);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  }
+
+  // gentle parallax: pointer nudges, page-scroll drifts the cloud field
+  var pxT = 0, pyT = 0, pxC = 0, pyC = 0;
+  function onPointer(e){
+    pxT = (e.clientX / (window.innerWidth  || 1) - 0.5) * 0.06;
+    pyT = (e.clientY / (window.innerHeight || 1) - 0.5) * 0.06;
+  }
+
+  // react to the in-page theme toggle (it mutates <html data-theme>)
+  if(window.MutationObserver){
+    new MutationObserver(function(){ setPalette(); if(reduceMotion) staticFrame(); })
+      .observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
+  }
+
+  var t0 = (window.performance && performance.now) ? performance.now() : Date.now();
+  var running = false, raf = 0;
+  function frame(now){
+    var t = (((now) || Date.now()) - t0) / 1000;
+    pxC += (pxT - pxC) * 0.05;
+    pyC += (pyT - pyC) * 0.05;
+    var sy = window.scrollY || window.pageYOffset || 0;
+    draw(t, pxC, oyFromScroll(sy) + pyC);
+    if(running) raf = requestAnimationFrame(frame);
+  }
+  function oyFromScroll(sy){ return -sy * 0.00009; }
+  function start(){ if(running) return; running = true; raf = requestAnimationFrame(frame); }
+  function stop(){ running = false; if(raf){ cancelAnimationFrame(raf); raf = 0; } }
+  function staticFrame(){ draw(12.0, 0.0, 0.0); }
+
+  resize();
+  if(reduceMotion){
+    staticFrame();
+    window.addEventListener("resize", function(){ resize(); staticFrame(); }, {passive:true});
+  } else {
+    staticFrame();  // paint something immediately, before the first rAF tick
+    window.addEventListener("resize", resize, {passive:true});
+    window.addEventListener("pointermove", onPointer, {passive:true});
+    document.addEventListener("visibilitychange", function(){ document.hidden ? stop() : start(); });
+    start();
+  }
 })();
 </script>
 </body>
