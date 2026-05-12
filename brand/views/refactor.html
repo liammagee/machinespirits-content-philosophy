@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Machine Spirits — Website Refactor</title>
+<style>
+  :root{
+    --bg:#faf7f1; --bg-elev:#fffdf8; --bg-sink:#f3eee3;
+    --text:#221d17; --text-soft:#5d564b; --text-faint:#8a8276;
+    --accent:#8a1c1c; --accent-2:#a8442f; --accent-bg:#f6e7e1;
+    --border:#e4ddcf; --border-strong:#d2c9b7;
+    --code-bg:#efe9db; --code-text:#5b3a1e;
+    --mark:#ffe08a; --mark-cur:#ffac3d; --mark-text:#1a1306;
+    --topbar-h:58px;
+    --good:#3f7d3f;
+    --opt-bg:#e7e0f0; --opt-text:#4a3a6b;
+    --shadow:0 1px 2px rgba(40,30,15,.05), 0 8px 28px rgba(40,30,15,.06);
+  }
+  html[data-theme="dark"]{
+    --bg:#15131a; --bg-elev:#1e1b24; --bg-sink:#211e27;
+    --text:#e8e2d9; --text-soft:#a79e94; --text-faint:#7d7567;
+    --accent:#c98a6e; --accent-2:#b56a52; --accent-bg:#2c2026;
+    --border:#332e3a; --border-strong:#403a48;
+    --code-bg:#262130; --code-text:#d9b48f;
+    --mark:#ffe08a; --mark-cur:#ffac3d; --mark-text:#1a1306;
+    --opt-bg:#2b2540; --opt-text:#c9bde6;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.4);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif;
+    font-size:17px; line-height:1.72;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  ::selection{background:var(--accent-bg); color:var(--text);}
+  ::highlight(mss-hit){background-color:var(--mark); color:var(--mark-text);}
+  ::highlight(mss-cur){background-color:var(--mark-cur); color:var(--mark-text); text-decoration:underline;}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:60; height:var(--topbar-h);
+    display:flex; align-items:center; gap:.85rem; padding:0 1rem;
+    background:color-mix(in srgb, var(--bg-elev) 86%, transparent);
+    backdrop-filter:saturate(1.4) blur(10px); -webkit-backdrop-filter:saturate(1.4) blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .brand{display:flex; align-items:center; gap:.5rem; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; font-weight:700; letter-spacing:-.01em; white-space:nowrap; color:var(--text);}
+  .brand .glyph{display:inline-grid; place-items:center; width:24px; height:24px; color:var(--accent);}
+  .brand .sub{font-weight:500; color:var(--text-faint); font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; border-left:1px solid var(--border-strong); padding-left:.55rem; margin-left:.15rem;}
+  .topbar .spacer{flex:1;}
+  .menu-btn{display:none; background:none; border:1px solid var(--border-strong); color:var(--text); border-radius:8px; width:34px; height:34px; font-size:1.1rem; cursor:pointer;}
+  .search-wrap{position:relative; display:flex; align-items:center;}
+  .search-wrap svg{position:absolute; left:.55rem; width:15px; height:15px; color:var(--text-faint); pointer-events:none;}
+  #searchInput{
+    font:inherit; font-size:.92rem; padding:.4rem .6rem .4rem 1.85rem; width:min(30vw,260px);
+    background:var(--bg-sink); color:var(--text); border:1px solid var(--border-strong); border-radius:9px; outline:none;
+  }
+  #searchInput:focus{border-color:var(--accent); background:var(--bg-elev);}
+  .search-count{font-family:system-ui,sans-serif; font-size:.74rem; color:var(--text-faint); min-width:4.6em; text-align:right; white-space:nowrap;}
+  .search-nav{display:flex; gap:2px;}
+  .search-nav button, .pillbtn{
+    font:inherit; font-family:system-ui,sans-serif; font-size:.8rem; cursor:pointer;
+    background:var(--bg-sink); color:var(--text-soft); border:1px solid var(--border-strong);
+    border-radius:8px; padding:.32rem .5rem; line-height:1;
+  }
+  .search-nav button{padding:.32rem .42rem;}
+  .search-nav button:hover, .pillbtn:hover{background:var(--accent-bg); color:var(--text); border-color:var(--accent);}
+  .progress-mini{display:flex; align-items:center; gap:.5rem; font-family:system-ui,sans-serif;}
+  .progress-mini .bar{width:84px; height:7px; border-radius:99px; background:var(--bg-sink); overflow:hidden; border:1px solid var(--border-strong);}
+  .progress-mini .bar > span{display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--accent-2),var(--accent)); transition:width .35s ease;}
+  .progress-mini .txt{font-size:.74rem; color:var(--text-faint); white-space:nowrap;}
+
+  /* ---------- layout ---------- */
+  .layout{display:grid; grid-template-columns:minmax(228px,264px) minmax(0,1fr);}
+  .sidebar{
+    position:sticky; top:var(--topbar-h); align-self:start;
+    height:calc(100vh - var(--topbar-h)); overflow-y:auto;
+    padding:1.4rem 1rem 3rem 1.25rem; border-right:1px solid var(--border);
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif; font-size:.86rem;
+    background:var(--bg);
+  }
+  .sidebar h2{font-size:.7rem; letter-spacing:.13em; text-transform:uppercase; color:var(--text-faint); margin:.2rem 0 .9rem; font-weight:700;}
+  .sidebar .toc-list{display:flex; flex-direction:column; gap:1px; margin:0 0 1.3rem; padding-left:.1rem; list-style:none;}
+  a.toc-link{
+    display:flex; gap:.55rem; align-items:baseline; color:var(--text-soft); text-decoration:none; padding:.32rem .55rem; border-radius:7px;
+    border-left:2px solid transparent; line-height:1.3;
+  }
+  a.toc-link .k{font-weight:800; color:var(--text-faint); font-size:.82rem; min-width:1.05em; font-feature-settings:"tnum";}
+  a.toc-link:hover{background:var(--bg-sink); color:var(--text);}
+  a.toc-link.active{color:var(--accent); background:var(--accent-bg); border-left-color:var(--accent); font-weight:600;}
+  a.toc-link.active .k{color:var(--accent);}
+  .sidebar .legend{font-size:.74rem; color:var(--text-faint); line-height:1.5; border-top:1px solid var(--border); padding-top:.9rem; margin-top:.4rem;}
+  .sidebar .legend .opt{margin-right:.3rem;}
+
+  /* ---------- content ---------- */
+  main{padding:0; min-width:0;}
+  .doc{max-width:46rem; margin:0 auto; padding:2.6rem clamp(1.1rem,4.5vw,3.4rem) 1rem;}
+  h1,h2,h3,h4{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; line-height:1.22; letter-spacing:-.018em; color:var(--text); scroll-margin-top:calc(var(--topbar-h) + 1.2rem);}
+  h1{font-size:2.05rem; font-weight:800; margin:.2rem 0 .35rem;}
+  h2{font-size:1.46rem; font-weight:750; margin:2.8rem 0 .9rem; padding-top:.7rem; border-top:1px solid var(--border);}
+  article > .doc > h2:first-of-type{border-top:none; padding-top:0;}
+  h2 .k{color:var(--accent); font-weight:800;}
+  h3{font-size:1.1rem; font-weight:700; margin:1.8rem 0 .55rem; color:var(--text);}
+  p{margin:.85rem 0;}
+  .doc-subtitle{font-family:system-ui,sans-serif; font-size:1.06rem; font-weight:600; color:var(--text-soft); margin:.1rem 0 .3rem; letter-spacing:-.005em;}
+  .byline{font-family:system-ui,sans-serif; font-size:.86rem; color:var(--text-faint); margin:.2rem 0 1.3rem;}
+  .doc-footnote{font-size:.92rem; color:var(--text-faint); border-top:1px solid var(--border); margin-top:2.4rem; padding-top:1rem;}
+  a{color:var(--accent); text-decoration:none; border-bottom:1px solid color-mix(in srgb,var(--accent) 32%, transparent);}
+  a:hover{border-bottom-color:var(--accent);}
+  strong{font-weight:700; color:var(--text);}
+  em{font-style:italic;}
+  code{font-family:"SF Mono","JetBrains Mono","Fira Code",Menlo,Consolas,"Liberation Mono",monospace; font-size:.85em; background:var(--code-bg); color:var(--code-text); padding:.1em .35em; border-radius:5px; word-break:break-word;}
+  hr{border:none; text-align:center; margin:2.4rem 0;}
+  hr::before{content:"❧"; color:var(--text-faint); font-size:1.1rem;}
+  ul,ol{margin:.85rem 0; padding-left:1.45rem;}
+  li{margin:.45rem 0;}
+  li > ul, li > ol{margin:.35rem 0;}
+  blockquote{margin:1.2rem 0; padding:.7rem 1.1rem; border-left:3px solid var(--accent); background:var(--bg-sink); color:var(--text-soft); border-radius:0 8px 8px 0;}
+  blockquote p{margin:.35rem 0;}
+  .callout{background:var(--accent-bg); border:1px solid color-mix(in srgb,var(--accent) 25%, var(--border)); border-radius:10px; padding:.85rem 1.1rem; margin:1.3rem 0; font-size:.97rem;}
+  .callout .lead{display:block; font-family:system-ui,sans-serif; font-size:.72rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:.35rem;}
+  .callout.q{background:var(--bg-sink); border-color:var(--border-strong);}
+  .callout.q .lead{color:var(--text-soft);}
+  .opt{display:inline-block; font-family:system-ui,sans-serif; font-size:.66rem; font-weight:800; letter-spacing:.06em; background:var(--opt-bg); color:var(--opt-text); border-radius:5px; padding:.07em .38em; vertical-align:.06em;}
+  .nutshell{font-family:system-ui,sans-serif; background:var(--bg-elev); border:1px solid var(--border); border-left:3px solid var(--accent-2); border-radius:0 9px 9px 0; padding:.8rem 1.05rem; margin:1.2rem 0; font-size:.95rem; color:var(--text-soft); box-shadow:var(--shadow);}
+  .nutshell strong{color:var(--text);}
+
+  /* ---------- tables ---------- */
+  .table-wrap{overflow-x:auto; margin:1.2rem 0; border:1px solid var(--border); border-radius:10px; box-shadow:var(--shadow);}
+  table{border-collapse:collapse; width:100%; font-size:.9rem; font-family:system-ui,-apple-system,"Segoe UI",sans-serif;}
+  th,td{text-align:left; vertical-align:top; padding:.55rem .8rem; border-bottom:1px solid var(--border);}
+  th{background:var(--bg-sink); color:var(--text); font-weight:700; position:sticky; top:0; font-size:.78rem; letter-spacing:.02em; text-transform:uppercase;}
+  tr:last-child td{border-bottom:none;}
+  tbody tr:nth-child(even){background:color-mix(in srgb,var(--bg-sink) 45%, transparent);}
+  tbody tr:hover{background:var(--accent-bg);}
+  td code{font-size:.85em;}
+  td:first-child{white-space:nowrap;}
+
+  /* ---------- todo lists ---------- */
+  .todo-head{display:flex; align-items:baseline; gap:.7rem; flex-wrap:wrap; margin-top:1.4rem;}
+  .todo-head h3{margin:0;}
+  .list-count{font-family:system-ui,sans-serif; font-size:.72rem; font-weight:700; letter-spacing:.04em; color:var(--text-faint); background:var(--bg-sink); border:1px solid var(--border-strong); border-radius:99px; padding:.12rem .55rem; white-space:nowrap;}
+  .list-count.complete{color:var(--good); border-color:color-mix(in srgb,var(--good) 40%, var(--border-strong));}
+  ul.todo-list{list-style:none; padding-left:0; margin:.85rem 0 1.3rem; border:1px solid var(--border); border-radius:11px; overflow:hidden; box-shadow:var(--shadow);}
+  ul.todo-list > li{
+    margin:0; display:flex; gap:.7rem; align-items:flex-start; padding:.7rem .95rem;
+    border-bottom:1px solid var(--border); background:var(--bg-elev); transition:background .18s;
+  }
+  ul.todo-list > li:last-child{border-bottom:none;}
+  ul.todo-list > li:hover{background:var(--bg-sink);}
+  ul.todo-list > li.done{background:color-mix(in srgb,var(--good) 9%, var(--bg-elev));}
+  ul.todo-list > li.done label{color:var(--text-faint);}
+  ul.todo-list > li.done label .id{text-decoration:line-through; text-decoration-color:color-mix(in srgb,var(--good) 60%, transparent);}
+  ul.todo-list input[type=checkbox]{
+    appearance:none; -webkit-appearance:none; flex:0 0 auto; width:1.18rem; height:1.18rem; margin-top:.18rem;
+    border:1.5px solid var(--border-strong); border-radius:6px; background:var(--bg); cursor:pointer; position:relative; transition:.15s;
+  }
+  ul.todo-list input[type=checkbox]:hover{border-color:var(--accent);}
+  ul.todo-list input[type=checkbox]:checked{background:var(--good); border-color:var(--good);}
+  ul.todo-list input[type=checkbox]:checked::after{content:""; position:absolute; left:.34rem; top:.12rem; width:.3rem; height:.62rem; border:solid #fff; border-width:0 2.5px 2.5px 0; transform:rotate(42deg);}
+  ul.todo-list input[type=checkbox]:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  ul.todo-list label{cursor:pointer; line-height:1.6; font-size:.96rem;}
+  ul.todo-list label .id{font-family:system-ui,sans-serif; font-weight:800; color:var(--accent); margin-right:.1rem;}
+  ul.todo-list.rollup{box-shadow:none; border-style:dashed;}
+  ul.todo-list.rollup > li{background:transparent;}
+  ul.todo-list.rollup > li.done{background:color-mix(in srgb,var(--good) 7%, transparent);}
+  ul.todo-list.rollup label .ref{font-family:"SF Mono","JetBrains Mono",Menlo,Consolas,monospace; font-size:.8em; color:var(--text-soft);}
+
+  /* ---------- back to top ---------- */
+  .to-top{position:fixed; right:1.2rem; bottom:1.2rem; width:42px; height:42px; border-radius:50%; border:1px solid var(--border-strong); background:var(--bg-elev); color:var(--text); cursor:pointer; font-size:1.1rem; box-shadow:var(--shadow); opacity:0; transform:translateY(8px); pointer-events:none; transition:.22s;}
+  .to-top.show{opacity:1; transform:none; pointer-events:auto;}
+  .to-top:hover{color:var(--accent); border-color:var(--accent);}
+
+  .page-foot{max-width:46rem; margin:0 auto; padding:2rem clamp(1.1rem,4.5vw,3.4rem) 4rem; color:var(--text-faint); font-family:system-ui,sans-serif; font-size:.8rem; border-top:1px dashed var(--border-strong);}
+  .page-foot a{color:var(--text-faint); border-bottom-color:var(--border-strong);}
+
+  .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:980px){
+    .layout{grid-template-columns:1fr;}
+    .sidebar{
+      position:fixed; left:0; top:var(--topbar-h); bottom:0; width:min(82vw,320px); z-index:55;
+      transform:translateX(-102%); transition:transform .26s ease; background:var(--bg-elev); box-shadow:var(--shadow); height:auto;
+    }
+    .sidebar.open{transform:none;}
+    .menu-btn{display:inline-block;}
+    .brand .sub{display:none;}
+    #searchInput{width:38vw;}
+  }
+  @media (max-width:640px){
+    body{font-size:16px;}
+    .progress-mini .bar{display:none;}
+    #searchInput{width:30vw;}
+    .search-count{min-width:0; width:2.4em;}
+    .doc{padding-left:1.05rem; padding-right:1.05rem;}
+  }
+  @media print{
+    .topbar,.sidebar,.to-top{display:none !important;}
+    .layout{display:block;} .doc{max-width:none;}
+    a{color:inherit; border:none;}
+    ul.todo-list,.table-wrap,.nutshell{box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation">☰</button>
+  <span class="brand">
+    <span class="glyph" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c2.2 1.6 3 3.4 3 5.5 0 2-1.3 3.2-1.3 5 0 1.4 1 2.2 1 3.5 0 1.6-1.2 3-2.7 3.5"/><path d="M9 5.5C7.6 6.7 7 8 7 9.6c0 2 1.4 3 1.4 4.9 0 1.6-1.1 2.5-1.1 4 0 .5.1 1 .3 1.5"/><circle cx="12" cy="3" r="1.1" fill="currentColor"/><circle cx="9" cy="5.5" r=".9" fill="currentColor"/></svg>
+    </span>
+    Machine&nbsp;Spirits<span class="sub">Website&nbsp;Refactor</span>
+  </span>
+  <span class="spacer"></span>
+  <div class="search-wrap" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    <input id="searchInput" type="search" placeholder="Search…  ( / )" autocomplete="off" aria-label="Search the refactor plan">
+  </div>
+  <span class="search-count" id="searchCount" aria-live="polite"></span>
+  <span class="search-nav">
+    <button id="prevHit" title="Previous match (Shift+Enter)" aria-label="Previous match">↑</button>
+    <button id="nextHit" title="Next match (Enter)" aria-label="Next match">↓</button>
+  </span>
+  <span class="progress-mini" title="Checklist progress">
+    <span class="bar"><span id="progBar"></span></span>
+    <span class="txt" id="progText">0 / 0</span>
+  </span>
+  <button class="pillbtn" id="resetBtn" title="Reset checklist progress">Reset</button>
+  <button class="pillbtn" id="themeBtn" title="Toggle light / dark">☾ Dark</button>
+</header>
+
+<div class="layout">
+  <nav class="sidebar" id="sidebar" aria-label="Table of contents">
+    <h2>Workstreams</h2>
+    <ul class="toc-list" id="tocList">
+      <li><a class="toc-link" href="#s0"><span class="k">0</span><span>The gating decision</span></a></li>
+      <li><a class="toc-link" href="#sA"><span class="k">A</span><span>IA &amp; URL scheme</span></a></li>
+      <li><a class="toc-link" href="#sB"><span class="k">B</span><span>Homepage &amp; nav</span></a></li>
+      <li><a class="toc-link" href="#sC"><span class="k">C</span><span>The writing layer</span></a></li>
+      <li><a class="toc-link" href="#sD"><span class="k">D</span><span>The lab layer</span></a></li>
+      <li><a class="toc-link" href="#sE"><span class="k">E</span><span>The teaching layer</span></a></li>
+      <li><a class="toc-link" href="#sF"><span class="k">F</span><span>Lock off the software</span></a></li>
+      <li><a class="toc-link" href="#sG"><span class="k">G</span><span>Visual redesign</span></a></li>
+      <li><a class="toc-link" href="#sH"><span class="k">H</span><span>Content pipeline</span></a></li>
+      <li><a class="toc-link" href="#sI"><span class="k">I</span><span>Cleanup &amp; hygiene</span></a></li>
+      <li><a class="toc-link" href="#sJ"><span class="k">J</span><span>SEO, feeds, redirects</span></a></li>
+      <li><a class="toc-link" href="#sK"><span class="k">K</span><span>Sequencing</span></a></li>
+      <li><a class="toc-link" href="#sQ"><span class="k">?</span><span>Open questions</span></a></li>
+    </ul>
+    <p class="legend"><span class="opt">A</span>/<span class="opt">B</span> tags mark items that only apply under architecture option A (one app + router) or B (split public site + <code>/app</code>). Checklist progress is stored in your browser only.</p>
+  </nav>
+
+  <main id="content">
+    <article class="doc" id="doc-refactor">
+
+      <h1 id="r-title">Website Refactor</h1>
+      <p class="doc-subtitle">machinespirits.org for general release</p>
+      <p class="byline">Working draft · 2026-05-11 · companion to <a href="./STRATEGY.md">STRATEGY.md</a> and <a href="./IDENTITY.md">IDENTITY.md</a></p>
+
+      <p>A functional mockup of the target state lives at <a href="./site-mockup.html"><strong>site-mockup.html</strong></a> — open it in a browser. The source for this page is <a href="./WEBSITE-REFACTOR.md">WEBSITE-REFACTOR.md</a>.</p>
+
+      <div class="nutshell">This is the punch list for turning the current site — an open-source LMS with a research blog bolted on — into the site STRATEGY.md describes: <strong>a research-program home — writing first, the lab second, the courseware kept live but off the main path, the rest of the LMS demoted to a tools page.</strong> Same checkbox conventions as the STRATEGY 30-day list.</div>
+
+      <p><strong>Repos in scope:</strong></p>
+      <ul>
+        <li><code>../machinespirits-website</code> — React 19 + TS + Vite + Tailwind 4 SPA, Express + better-sqlite3 backend, Fly.io deploy. Entry: <code>App.tsx</code> (a ~55 KB <code>switch</code> over <code>home | courses | dashboard | eval | instructor | kb | research-lab | docs | chat | …</code>).</li>
+        <li><code>../machinespirits-content-philosophy</code> — Pandoc/citeproc content package (<code>@machinespirits/content-philosophy</code>), consumed by the website as an npm dep, served at <code>/content/*</code>. Has <code>articles/</code>, <code>courses/</code>, <code>artifacts/</code>, <code>assets/</code>, <code>theme/</code>, <code>config/navigation.yaml</code>, and the <code>build</code>/<code>serve</code>/<code>publish</code>/<code>urls</code>/<code>sitemap</code>/<code>artifacts-index</code> scripts.</li>
+      </ul>
+
+      <hr>
+
+      <!-- ====================================================== 0 -->
+      <h2 id="s0"><span class="k">0.</span> The one decision that gates everything else</h2>
+      <p><strong>Keep the React SPA and bolt on a real router, or split into a static public site + a separate <code>/app/*</code> React app?</strong></p>
+      <ul>
+        <li><strong>Option A — one app, real router.</strong> Add <code>react-router</code> (or similar), give every public page a real URL, lazy-load the LMS chunks behind <code>/app/*</code>. Least churn; ships fastest. Risk: the public site still loads a (slimmed) React bundle, still inherits the LMS's auth/context stack, and "simplify" stays partly cosmetic.</li>
+        <li><strong>Option B — split.</strong> Public site (<code>/</code>, <code>/manifesto</code>, <code>/essays/*</code>, <code>/lab/*</code>, <code>/reading-room/*</code>, <code>/courses/*</code> read-only) becomes static or near-static (Astro / Eleventy / a thin Vite build) consuming the content package directly. The LMS (dashboards, eval, instructor, KB, experiment lab, dialogue sim, etc.) moves wholesale to <code>app.machinespirits.org</code> or <code>machinespirits.org/app/*</code>, untouched. Most work up front; gives the cleanest "haunted, not promotional" public surface and the cleanest separation for "locked off the main path."</li>
+      </ul>
+      <div class="callout">
+        <span class="lead">Recommendation</span>
+        <strong>B, phased.</strong> Phase 1 = ship the public site as a small static build at the apex domain and reverse-proxy <code>/app/*</code> (and <code>/api/*</code>) to the existing Express+React app unchanged — i.e. <em>don't refactor the LMS at all yet, just move it behind a path</em>. Phase 2+ = iterate on the public site. This lets "general release" mean "the public face is right," not "we rewrote the LMS." If the team would rather not run two deploys, fall back to A — the workstreams below are written to apply either way; items that only matter for one option are tagged <span class="opt">A</span> or <span class="opt">B</span>.
+      </div>
+      <ul class="todo-list" data-list="0">
+        <li><input type="checkbox" id="t-0-1" data-todo="0.1"><label for="t-0-1"><span class="id">0.1</span> — Decide A vs B. Write the decision + rationale into <code>STRATEGY.md</code> §1 (it's a "spine" decision: it determines what "Software = Evidence" looks like in public).</label></li>
+        <li><input type="checkbox" id="t-0-2" data-todo="0.2"><label for="t-0-2"><span class="id">0.2</span> — If B: register/point <code>app.machinespirits.org</code> (or settle on <code>/app/*</code> path-proxy), and confirm Fly.io can host the static site + proxy, or move the static site to Cloudflare Pages / Netlify with a proxy rule.</label></li>
+        <li><input type="checkbox" id="t-0-3" data-todo="0.3"><label for="t-0-3"><span class="id">0.3</span> — Lock the public URL scheme now, before building anything, from IDENTITY.md "URL &amp; naming conventions" (see §A).</label></li>
+      </ul>
+
+      <hr>
+
+      <!-- ====================================================== A -->
+      <h2 id="sA"><span class="k">A.</span> Information architecture &amp; URL scheme</h2>
+      <p>The target: real, stable, lowercase-hyphenated URLs; no hash routing on the public side; old links redirect. Target public routes (from IDENTITY.md):</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Path</th><th>What</th></tr></thead>
+          <tbody>
+            <tr><td><code>/</code></td><td>Homepage — research-program hero, "one idea / four surfaces" latest, recent essays, from-the-lab, courses strip, subscribe</td></tr>
+            <tr><td><code>/manifesto</code></td><td>The Founding Sketch (publish <code>MANIFESTO.md</code>)</td></tr>
+            <tr><td><code>/essays</code></td><td>Essay index (reverse-chron, filter by theme)</td></tr>
+            <tr><td><code>/essays/YYYY-MM-DD-slug</code></td><td>Essay</td></tr>
+            <tr><td><code>/lab</code></td><td>Lab landing — what the lab is, links to probes / demos / reading room</td></tr>
+            <tr><td><code>/lab/probes</code></td><td>Probe index</td></tr>
+            <tr><td><code>/lab/probes/probe-NN-slug</code></td><td>A probe (≤500 words + one figure)</td></tr>
+            <tr><td><code>/lab/demos</code></td><td>Demo index</td></tr>
+            <tr><td><code>/lab/demos/tutor</code></td><td><strong>Public, no-login tutor demo</strong> with the Ego/Superego split visible (the headline software artifact)</td></tr>
+            <tr><td><code>/reading-room</code></td><td>Reading-room index</td></tr>
+            <tr><td><code>/reading-room/YYYY-MM-DD-author-title</code></td><td>A reading-room entry</td></tr>
+            <tr><td><code>/videos</code></td><td>Video index (if/when videos exist)</td></tr>
+            <tr><td><code>/videos/YYYY-MM-DD-slug</code></td><td>A video</td></tr>
+            <tr><td><code>/courses</code></td><td>Courses landing — de-emphasized, "teaching home" framing, public syllabi</td></tr>
+            <tr><td><code>/courses/&lt;id&gt;</code></td><td>A course (public view: syllabus, schedule, public materials; enrol/dashboard link goes to <code>/app</code>)</td></tr>
+            <tr><td><code>/newsletter</code></td><td>Subscribe + archive of issues</td></tr>
+            <tr><td><code>/about</code></td><td>Who/what/why; bio; institutional affiliation; how to cite; contact</td></tr>
+            <tr><td><code>/colophon</code></td><td>Stack, fonts, fauna, licensing, credits</td></tr>
+            <tr><td><code>/tools</code></td><td>The locked-off software: one honest page listing the LMS pieces (Student/Instructor dashboards, Evaluation Dashboard, Learning Map, Knowledge Base, Experiment Lab, Dialogue Simulator, Babel Maze, NightOwl, Focus Reader…), each with a one-line "what it is" and a link into <code>/app</code> (login-gated)</td></tr>
+            <tr><td><code>/app/*</code></td><td>The existing LMS SPA, unchanged, behind login — <span class="opt">B</span>; or an <code>/app</code> route prefix — <span class="opt">A</span></td></tr>
+            <tr><td><code>/feed.xml</code>, <code>/essays/feed.xml</code>, <code>/lab/probes/feed.xml</code></td><td>RSS</td></tr>
+            <tr><td><code>/sitemap.xml</code>, <code>/robots.txt</code></td><td>SEO basics</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="todo-list" data-list="A">
+        <li><input type="checkbox" id="t-A-1" data-todo="A.1"><label for="t-A-1"><span class="id">A.1</span> — Write the route table above into the website repo (a <code>ROUTES.md</code> or the README) as the source of truth.</label></li>
+        <li><input type="checkbox" id="t-A-2" data-todo="A.2"><label for="t-A-2"><span class="id">A.2</span> — Choose the routing mechanism per §0 (real router <span class="opt">A</span> / static-site routing <span class="opt">B</span>). Public side must use real paths, not <code>#/…</code>.</label></li>
+        <li><input type="checkbox" id="t-A-3" data-todo="A.3"><label for="t-A-3"><span class="id">A.3</span> — Build a redirect map from every current hash route + legacy path to its new home, e.g. <code>#/courses → /courses</code>, <code>#/research → /lab</code>, <code>#/kb → /tools</code> (KB is LMS, not public lab), <code>#/dashboard → /app</code>, <code>#/docs → /about</code> or <code>/colophon</code>, <code>/reading</code>, <code>/reading/* → /reading-room/*</code>, <code>/games/warpstrike → /lab/demos/warpstrike</code> or retire it. Implement as server redirects (301) + a tiny client-side <code>#/…</code>→path shim for bookmarked hash links.</label></li>
+        <li><input type="checkbox" id="t-A-4" data-todo="A.4"><label for="t-A-4"><span class="id">A.4</span> — Decide the fate of <code>archive-structure.json</code> (current IA descriptor in the website root): regenerate it to match the new IA, or retire it if the new build doesn't need it.</label></li>
+        <li><input type="checkbox" id="t-A-5" data-todo="A.5"><label for="t-A-5"><span class="id">A.5</span> — Reconcile with <code>content-philosophy/config/navigation.yaml</code> — it currently hard-codes <code>#/courses</code>, <code>#/research</code>, <code>#/kb</code>, <code>#/dashboard</code>. Rewrite it to the new public nav (see §B), real paths, no hashes. This is a <em>content contract</em> change — bump the content package version.</label></li>
+      </ul>
+
+      <hr>
+
+      <!-- ====================================================== B -->
+      <h2 id="sB"><span class="k">B.</span> Homepage &amp; top-level navigation</h2>
+      <p><strong>Kill the LMS-dashboard framing.</strong> The homepage today reads like a product. It should read like the front page of a research program. Target nav (4 items + 1 action) — minimal, per STRATEGY "simplify":</p>
+      <blockquote><p><strong>Essays · Lab · Courses · About</strong>  …………………  <strong>Subscribe</strong></p></blockquote>
+      <p>(No "Dashboard", no "Knowledge Base", no "Docs", no "Research Lab" <em>and</em> "Research Dashboard" <em>and</em> "Experiment Lab" in the nav — those collapse: the public-facing experimental work is <code>/lab</code>; everything else is <code>/app</code> reached via <code>/tools</code> or the footer.)</p>
+      <p>Target homepage modules, top to bottom:</p>
+      <ol>
+        <li><strong>Hero</strong> — wordmark/sigil + tagline ("Philosophy for machines that learn." — or whichever IDENTITY.md tagline wins) + a 2–3 sentence thesis (what the program claims, in plain words) + two CTAs: <strong>Read the manifesto</strong> / <strong>Try the tutor</strong>.</li>
+        <li><strong>Latest idea, four surfaces</strong> — the current headline idea shown once, with its probe / course-note / essay / video renderings linked (whichever exist). This is the "one idea, four surfaces" pattern made visible.</li>
+        <li><strong>Recent essays</strong> — 3–4 cards, reverse-chron, from the content package.</li>
+        <li><strong>From the lab</strong> — the tutor-demo card (prominent: "a tutor that shows its work — Ego proposes, Superego checks") + the most recent 2–3 probes as a compact list.</li>
+        <li><strong>Teaching</strong> — a quiet strip, not a section: "Machine Spirits is also the home for courses at UIUC — [browse courses]". De-emphasized on purpose (STRATEGY: teaching is evidence + institutional home, not the lead).</li>
+        <li><strong>Subscribe</strong> — newsletter signup, one line of "what you'll get / how often".</li>
+        <li><strong>Footer</strong> — About · Manifesto · Colophon · <strong>Also from Machine Spirits</strong> (→ <code>/tools</code>) · social handles · "© / CC license / built with…".</li>
+      </ol>
+      <ul class="todo-list" data-list="B">
+        <li><input type="checkbox" id="t-B-1" data-todo="B.1"><label for="t-B-1"><span class="id">B.1</span> — Replace the homepage component with the module list above. Remove the LMS-y hero (course tiles / "continue learning" / dashboard CTAs) from the public home.</label></li>
+        <li><input type="checkbox" id="t-B-2" data-todo="B.2"><label for="t-B-2"><span class="id">B.2</span> — Rewrite the top nav to <strong>Essays · Lab · Courses · About</strong> + <strong>Subscribe</strong>. Remove Dashboard/KB/Docs/Research-Lab from the public nav. Mobile nav: same, in a sheet.</label></li>
+        <li><input type="checkbox" id="t-B-3" data-todo="B.3"><label for="t-B-3"><span class="id">B.3</span> — Write the hero thesis copy (2–3 sentences) and the tagline choice — pull from IDENTITY.md, get Liam's sign-off.</label></li>
+        <li><input type="checkbox" id="t-B-4" data-todo="B.4"><label for="t-B-4"><span class="id">B.4</span> — Build the "latest idea / four surfaces" module as a small data-driven block (reads from a <code>featured</code> field in the content package or a hand-maintained <code>featured.yaml</code>).</label></li>
+        <li><input type="checkbox" id="t-B-5" data-todo="B.5"><label for="t-B-5"><span class="id">B.5</span> — Update <code>&lt;title&gt;</code>, meta description, OG/Twitter card image for the homepage (see §J).</label></li>
+        <li><input type="checkbox" id="t-B-6" data-todo="B.6"><label for="t-B-6"><span class="id">B.6</span> — Remove <code>App.tsx</code>'s <code>case 'home'</code> LMS dashboard branch from the public path; the dashboard lives at <code>/app</code> only.</label></li>
+      </ul>
+
+      <hr>
+
+      <!-- ====================================================== C -->
+      <h2 id="sC"><span class="k">C.</span> The writing layer — manifesto, essays, newsletter</h2>
+      <p>This is the load-bearing public surface. It should feel like a journal, not a CMS.</p>
+      <ul class="todo-list" data-list="C">
+        <li><input type="checkbox" id="t-C-1" data-todo="C.1"><label for="t-C-1"><span class="id">C.1</span> — Publish <code>MANIFESTO.md</code> at <code>/manifesto</code> as a first-class page (its own template: generous measure, no sidebar clutter, a "this is a working document, revised in git" note linking the repo).</label></li>
+        <li><input type="checkbox" id="t-C-2" data-todo="C.2"><label for="t-C-2"><span class="id">C.2</span> — <code>/essays</code> index: reverse-chron list, each entry = title, date, 1-line dek, theme tag(s), reading time. Filter by theme (recognition / nonconscious cognition / charisma / time / pedagogy …). Pull from <code>content-philosophy/articles/*</code> (the ones meant to be public — see C.6).</label></li>
+        <li><input type="checkbox" id="t-C-3" data-todo="C.3"><label for="t-C-3"><span class="id">C.3</span> — Essay template: serif body, real measure (~65–75ch), footnotes/citations rendered properly (citeproc output already exists), a "cite this" block, prev/next, related-by-theme. Keep <code>ArticleReader.tsx</code>/<code>TechneMarkdown.tsx</code> if they're good; strip anything LMS-coupled (progress tracking, "mark complete", enrolment gates) from the public reader.</label></li>
+        <li><input type="checkbox" id="t-C-4" data-todo="C.4"><label for="t-C-4"><span class="id">C.4</span> — <code>/newsletter</code> page: embed the actual signup (Substack / Buttondown / whatever the strategy lands on) + an archive list of issues. Wire the Subscribe nav button here.</label></li>
+        <li><input type="checkbox" id="t-C-5" data-todo="C.5"><label for="t-C-5"><span class="id">C.5</span> — Decide the essay ↔ newsletter relationship in the IA (does an essay get a <code>/newsletter/NN</code> mirror? probably not — link from issue to essay, keep one canonical URL each).</label></li>
+        <li><input type="checkbox" id="t-C-6" data-todo="C.6"><label for="t-C-6"><span class="id">C.6</span> — Triage <code>content-philosophy/articles/</code>: which subfolders are <em>public essays</em> vs <em>internal/teaching notes</em> vs <em>drafts</em>? Current dirs include <code>ai-pedagogy/</code>, <code>ai-tutor/</code>, <code>dictatorship/</code>, <code>dissertations-critique/</code>, <code>hegel-essays/</code>, <code>hegel-primary-texts/</code>, <code>lms-docs/</code>, <code>markdown-citations/</code>, <code>publications/</code>, <code>stochastic-society/</code>, <code>vibe-scholarship/</code>, <code>web-design-ai/</code>, <code>_drafts/</code>, <code>.nightowl-backups/</code>. Sort each into: <strong>publish as essay</strong>, <strong>publish elsewhere</strong> (e.g. <code>hegel-primary-texts</code> → reading-room source texts; <code>lms-docs</code> → <code>/tools</code> or <code>/colophon</code>; <code>markdown-citations</code> → internal), or <strong>keep in <code>_drafts/</code></strong> (the existing "hidden = file location" convention). <code>.nightowl-backups/</code> should be <code>.gitignore</code>d, not shipped.</label></li>
+        <li><input type="checkbox" id="t-C-7" data-todo="C.7"><label for="t-C-7"><span class="id">C.7</span> — Per-essay frontmatter audit: every public essay needs <code>title</code>, <code>date</code> (→ <code>YYYY-MM-DD</code> slug prefix), <code>slug</code>, <code>theme</code>/<code>tags</code>, <code>dek</code>/<code>summary</code>, <code>status</code>. Add a <code>urls</code> script check that fails the build if a public article is missing these.</label></li>
+      </ul>
+
+      <hr>
+
+      <!-- ====================================================== D -->
+      <h2 id="sD"><span class="k">D.</span> The lab layer — probes, the tutor demo, the reading room</h2>
+      <p>STRATEGY: construction now narrows to <strong>two software artifacts in active dev</strong> — the public tutor demo and the recognition-probe suite. The lab is where those live publicly. Everything else software-wise is maintenance mode → that's the "locked off" set (§F).</p>
+      <ul class="todo-list" data-list="D">
+        <li><input type="checkbox" id="t-D-1" data-todo="D.1"><label for="t-D-1"><span class="id">D.1</span> — <code>/lab</code> landing: a short statement of what the lab is (working experiments, not products), then three columns/sections — <strong>Probes</strong>, <strong>Demos</strong>, <strong>Reading room</strong>.</label></li>
+        <li><input type="checkbox" id="t-D-2" data-todo="D.2"><label for="t-D-2"><span class="id">D.2</span> — <code>/lab/probes</code> index + <code>/lab/probes/probe-NN-slug</code> detail. <strong>This requires a new <code>probes</code> content type in <code>content-philosophy</code></strong> — see §H. Probe template: ≤500 words, exactly one figure/chart, mono or mono-accented type, a "method" disclosure (<code>&lt;details&gt;</code>), a "discuss/cite" line, link to the essay or course-note that expands it.</label></li>
+        <li><input type="checkbox" id="t-D-3" data-todo="D.3"><label for="t-D-3"><span class="id">D.3</span> — <code>/lab/demos/tutor</code> — the headline artifact. A <strong>public, no-login</strong> tutor demo with the <strong>Ego/Superego (or "proposer/checker") split-pane visible</strong>: left = the tutor's draft reply, right = the critique/revision pass, then the final answer. Today this lives behind the LMS chat (<code>case 'chat'</code>, <code>/api/chat</code>, <code>/api/socratic</code>). Extract a standalone demo: a small page that hits a rate-limited public endpoint, ships a couple of canned conversation starters, and <em>shows the internal turn</em> (that visible self-checking is the whole point — it's the "recognition" claim made tangible). Add a clear "this is a demo; the full tutor lives inside courses" note linking <code>/courses</code> / <code>/app</code>.</label></li>
+        <li><input type="checkbox" id="t-D-4" data-todo="D.4"><label for="t-D-4"><span class="id">D.4</span> — <code>/lab/demos</code> index (tutor + warpstrike/<code>/games/warpstrike</code> if it's kept, + the content-philosophy <code>artifacts/*</code> interactive pieces like <code>hegel-recognition-explorer.html</code>, <code>design-audit-playground.html</code> — decide which of those graduate to "demo" vs get retired). Wire <code>content-philosophy/artifacts-index</code> output into this page.</label></li>
+        <li><input type="checkbox" id="t-D-5" data-todo="D.5"><label for="t-D-5"><span class="id">D.5</span> — <code>/reading-room</code> — the existing "reading" feature (<code>app.get('/reading')</code>, <code>/reading/*</code>, <code>public/texts/*.pdf</code>). Rename routes to <code>/reading-room/*</code>, give it the IDENTITY.md URL form (<code>/reading-room/YYYY-MM-DD-author-title</code>), and keep it as a curated "what we're reading + notes" surface. <strong>Note:</strong> <code>public/texts/</code> holds ~100 MB of arXiv PDFs — host those on the CDN / object storage, not in the repo (see §I).</label></li>
+        <li><input type="checkbox" id="t-D-6" data-todo="D.6"><label for="t-D-6"><span class="id">D.6</span> — Strip LMS coupling from all lab pages (no enrolment, no progress, no auth wall) — the lab is fully public.</label></li>
+        <li><input type="checkbox" id="t-D-7" data-todo="D.7"><label for="t-D-7"><span class="id">D.7</span> — Demote the LMS-flavoured "lab" components from the public bundle: <code>ExperimentLab.tsx</code>, <code>ResearchDashboard.tsx</code>, <code>ResearchLabModal.tsx</code> belong to <code>/app</code>, not <code>/lab</code>. <code>/lab</code> is content + the tutor demo, not a dashboard.</label></li>
+      </ul>
+
+      <hr>
+
+      <!-- ====================================================== E -->
+      <h2 id="sE"><span class="k">E.</span> The teaching layer — courses, kept but quiet</h2>
+      <p>STRATEGY: teaching is <em>evidence + the institutional home</em> — real, cited, but not the lead. Public side shows syllabi and public materials; the actual LMS (enrolment, gradebook, dashboards) is <code>/app</code>.</p>
+      <ul class="todo-list" data-list="E">
+        <li><input type="checkbox" id="t-E-1" data-todo="E.1"><label for="t-E-1"><span class="id">E.1</span> — <code>/courses</code> landing: "Machine Spirits is the teaching home for [these UIUC courses]" — list with code, title, term, one-line description, thumbnail. De-emphasized styling (no big hero, no "enrol now" energy).</label></li>
+        <li><input type="checkbox" id="t-E-2" data-todo="E.2"><label for="t-E-2"><span class="id">E.2</span> — <code>/courses/&lt;id&gt;</code> public view: syllabus, schedule, reading list, public lecture notes / slides / podcast episodes — read-only. A single quiet "enrolled? go to your dashboard" link to <code>/app</code>. No public gradebook, no public roster.</label></li>
+        <li><input type="checkbox" id="t-E-3" data-todo="E.3"><label for="t-E-3"><span class="id">E.3</span> — Keep <code>CourseBrowser.tsx</code> / <code>CourseDetailPage.tsx</code> if they can render a clean public read-only view; otherwise build a thin public course template and leave the rich version inside <code>/app</code>.</label></li>
+        <li><input type="checkbox" id="t-E-4" data-todo="E.4"><label for="t-E-4"><span class="id">E.4</span> — Surface <strong>course-notes</strong> as a public artifact type (STRATEGY: course-note = ≤800 words + a prompt + an exercise; one of the two load-bearing surfaces). Decide: do course-notes live under <code>/courses/&lt;id&gt;/notes/…</code>, or in <code>/essays</code> with a <code>type: course-note</code>, or their own <code>/notes</code> index? Recommend: their own lightweight index <code>/notes</code> cross-linked from both essays and courses, since they're meant to travel (LinkedIn educator networks etc.).</label></li>
+        <li><input type="checkbox" id="t-E-5" data-todo="E.5"><label for="t-E-5"><span class="id">E.5</span> — <code>content-philosophy/courses/</code> triage: <code>479</code>, <code>480</code>, <code>490</code>, <code>490-spring-2026</code>, <code>590</code>, <code>dissertation</code>, <code>socsci_and_ai</code>, <code>test</code> — which are public, which are archived, which is <code>test</code> (delete). Mark each course's public/private materials in its manifest.</label></li>
+      </ul>
+
+      <hr>
+
+      <!-- ====================================================== F -->
+      <h2 id="sF"><span class="k">F.</span> Lock off the software ("live but off the main path")</h2>
+      <p>The brief: the LMS pieces <em>stay live</em> — nothing is deleted — but they leave the public navigation and live behind login and/or a single honest <code>/tools</code> page. Concretely, this set:</p>
+      <p>Student Dashboard · Instructor Dashboard · Evaluation Dashboard · Learning Map · Knowledge Base · Experiment Lab · Research Dashboard · Dialogue Simulator · Babel Maze · NightOwl · Focus Reader · Activity/Rubric/Gradebook tooling · Announcements · Certificates · Community/Journal · Docs browser · Mobile chat/eval views.</p>
+      <p>(Components on disk that map to these: <code>StudentDashboard.tsx</code>, <code>InstructorDashboard*.tsx</code>, <code>EvaluationDashboard.tsx</code>, <code>LearningMap.tsx</code>, <code>knowledge-base/</code>, <code>ExperimentLab.tsx</code>, <code>ResearchDashboard.tsx</code>, <code>eval/</code>, <code>DocsBrowser.tsx</code>, <code>ActivityTemplateManager.tsx</code>, <code>RubricEditor.tsx</code>/<code>RubricGrader.tsx</code>, <code>GradebookExport.tsx</code>, <code>RegradeRequestPanel.tsx</code>, <code>Certificate.tsx</code>, <code>community/</code>, <code>journal/</code>, <code>mobile/</code>, plus the <code>mobile-eval.html</code> / <code>mobile-chat.html</code> standalone pages. Babel Maze / NightOwl / Focus Reader are elsewhere in the multi-repo set / <code>techne-plugins</code> / <code>reading-app</code> — link out, don't host.)</p>
+      <ul class="todo-list" data-list="F">
+        <li><input type="checkbox" id="t-F-1" data-todo="F.1"><label for="t-F-1"><span class="id">F.1</span> — Move all of the above behind <code>/app/*</code> (route prefix <span class="opt">A</span> / separate app <span class="opt">B</span>) and <strong>require login</strong> to reach them. No deletion — these stay shipped.</label></li>
+        <li><input type="checkbox" id="t-F-2" data-todo="F.2"><label for="t-F-2"><span class="id">F.2</span> — Remove every one of them from the public top nav, footer "primary" links, homepage, and <code>navigation.yaml</code>.</label></li>
+        <li><input type="checkbox" id="t-F-3" data-todo="F.3"><label for="t-F-3"><span class="id">F.3</span> — Build <code>/tools</code> — one page, honest framing: "Machine Spirits also includes a full learning platform and a set of experimental tools. They're live but not the focus of this site." Then a list: each tool, one sentence, a link (to <code>/app/…</code> if it's in-platform, or out to the relevant repo/app if it's a sibling project). This is the <em>only</em> public entry point to the LMS besides a logged-in user's bookmark.</label></li>
+        <li><input type="checkbox" id="t-F-4" data-todo="F.4"><label for="t-F-4"><span class="id">F.4</span> — Link <code>/tools</code> from the footer ("Also from Machine Spirits") and from <code>/about</code> ("the platform behind the program"). Nowhere else.</label></li>
+        <li><input type="checkbox" id="t-F-5" data-todo="F.5"><label for="t-F-5"><span class="id">F.5</span> — Lazy-load / code-split the <code>/app</code> bundle so the public site doesn't ship the LMS JS <span class="opt">A</span>. For <span class="opt">B</span> this is free.</label></li>
+        <li><input type="checkbox" id="t-F-6" data-todo="F.6"><label for="t-F-6"><span class="id">F.6</span> — Auth: a logged-out visitor hitting <code>/app/*</code> gets a clean "sign in to use the platform" page, not a 404 and not the public homepage. A logged-in visitor still lands on the public homepage by default — <code>/app</code> is opt-in.</label></li>
+        <li><input type="checkbox" id="t-F-7" data-todo="F.7"><label for="t-F-7"><span class="id">F.7</span> — <code>mobile-chat.html</code>, <code>mobile-eval.html</code>, <code>office-sim.html</code> — either fold into <code>/app</code> or retire (see §I); they shouldn't be reachable from the public site.</label></li>
+      </ul>
+
+      <hr>
+
+      <!-- ====================================================== G -->
+      <h2 id="sG"><span class="k">G.</span> Visual redesign — "haunted, not promotional"</h2>
+      <p>From IDENTITY.md: darker, lower-chroma palette (a muted descendant of the current techne-red/orange, not the bright <code>#E63946</code>); serif body + sans headings; the fauna/spirit-creature overlay kept as a <em>signature motif, dialed down</em>; no robot/brain/network stock imagery. And from STRATEGY "simplify": drop the maximalist skin.</p>
+      <p><strong>Things to remove:</strong></p>
+      <ul>
+        <li>The parallax grid / <code>GeometricBackground.tsx</code> / <code>parallax-skin.html</code> / "trash-polka" accent shapes — gone from the public site.</li>
+        <li>Glass-morphism panels / heavy blurs.</li>
+        <li>The toggle soup (multiple theme/skin/animation toggles) — one light/dark toggle, that's it.</li>
+        <li><code>animals.html</code>, <code>fauna-playground/</code>, <code>office-sim.html</code> as shipped pages — the fauna <em>system</em> stays (<code>fauna-overlay.js</code>), the playground doesn't ship.</li>
+      </ul>
+      <p><strong>Things to do:</strong></p>
+      <ul class="todo-list" data-list="G">
+        <li><input type="checkbox" id="t-G-1" data-todo="G.1"><label for="t-G-1"><span class="id">G.1</span> — New palette in <code>content-philosophy/theme/colors.yaml</code> + the website's Tailwind config: dark-first, low-chroma. Suggested anchors (tune to taste): base ink <code>#15131A</code>, raised surface <code>#1E1B24</code>, hairline <code>#332E3A</code>, warm off-white text <code>#E8E2D9</code>, muted text <code>#A79E94</code>, accent (dusty rust/oxblood) <code>#B56A52</code>, accent-deep <code>#5E2A26</code>, accent-quiet link <code>#C98A6E</code>. Light theme: warm paper <code>#F4F0E8</code>, ink text <code>#1B1822</code>, same accents shifted darker for contrast.</label></li>
+        <li><input type="checkbox" id="t-G-2" data-todo="G.2"><label for="t-G-2"><span class="id">G.2</span> — Typography in <code>content-philosophy/theme/fonts.yaml</code>: serif body stack (<code>"Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif</code>), sans headings (<code>system-ui, -apple-system, "Segoe UI", Roboto, sans-serif</code>), mono for probes/code (<code>"SF Mono", "JetBrains Mono", ui-monospace, monospace</code>). Real measure on body text. If web fonts are wanted later, that's a separate ticket — system stacks first.</label></li>
+        <li><input type="checkbox" id="t-G-3" data-todo="G.3"><label for="t-G-3"><span class="id">G.3</span> — Reduce the fauna overlay: fewer creatures, lower opacity, slow gentle drift, <em>never</em> over body text — corners, margins, section breaks only. Make it a thin SVG layer, not the current heavier JS canvas if possible. Keep it as the "ghost in the machine" signature; respect <code>prefers-reduced-motion</code> (freeze it).</label></li>
+        <li><input type="checkbox" id="t-G-4" data-todo="G.4"><label for="t-G-4"><span class="id">G.4</span> — Delete the parallax / geometric / trash-polka layer from the public templates and the homepage. Remove <code>GeometricBackground.tsx</code> from public render paths (keep in repo if <code>/app</code> still uses it; otherwise retire).</label></li>
+        <li><input type="checkbox" id="t-G-5" data-todo="G.5"><label for="t-G-5"><span class="id">G.5</span> — One theme toggle (light/dark), persisted in <code>localStorage</code>, defaulting to dark (the "haunted" default) but honoring <code>prefers-color-scheme</code> on first visit. Remove all other skin/animation toggles from the public UI.</label></li>
+        <li><input type="checkbox" id="t-G-6" data-todo="G.6"><label for="t-G-6"><span class="id">G.6</span> — Logo/sigil: pull the wordmark + sigil from <code>content-philosophy/assets/logo.svg</code> / <code>favicon.svg</code>; if those are still the old "Swiss LMS" mark, commission/redo per IDENTITY.md. <code>BrandSigil.tsx</code> should render the new mark.</label></li>
+        <li><input type="checkbox" id="t-G-7" data-todo="G.7"><label for="t-G-7"><span class="id">G.7</span> — Generous whitespace, hairline rules instead of boxes/cards-with-shadows, restrained motion. The mockup (<code>site-mockup.html</code>) is the reference.</label></li>
+        <li><input type="checkbox" id="t-G-8" data-todo="G.8"><label for="t-G-8"><span class="id">G.8</span> — Audit <code>index.html</code> in the website root (37 KB, lots of inline) — strip inline LMS bootstrapping/splash, set the new theme color, favicon, OG defaults there.</label></li>
+      </ul>
+
+      <hr>
+
+      <!-- ====================================================== H -->
+      <h2 id="sH"><span class="k">H.</span> Content pipeline updates (<code>machinespirits-content-philosophy</code>)</h2>
+      <p>The content package needs to learn the new vocabulary. It currently knows <code>articles</code> and <code>courses</code>; it needs <code>probes</code> (and arguably <code>reading-room</code> entries and <code>videos</code>) as first-class types, and its <code>urls</code>/<code>sitemap</code>/<code>artifacts-index</code> scripts need to emit the IDENTITY.md URL forms.</p>
+      <ul class="todo-list" data-list="H">
+        <li><input type="checkbox" id="t-H-1" data-todo="H.1"><label for="t-H-1"><span class="id">H.1</span> — Add a <code>probes/</code> content source: <code>manifest.yaml</code> gains <code>content.probes: "./probes"</code>; create <code>probes/probe-01-&lt;slug&gt;/index.md</code> with frontmatter (<code>title</code>, <code>date</code>, <code>n</code> (probe number), <code>slug</code>, <code>figure</code> (path), <code>theme</code>, <code>summary</code>, <code>expands</code> (link to essay/course-note), <code>status</code>). One figure per probe; the build renders it.</label></li>
+        <li><input type="checkbox" id="t-H-2" data-todo="H.2"><label for="t-H-2"><span class="id">H.2</span> — Define the <strong>course-note</strong> type — either a frontmatter <code>type: course-note</code> on articles, or a <code>notes/</code> source. Frontmatter for course-notes: <code>title</code>, <code>date</code>, <code>course</code> (which course it came from), <code>prompt</code>, <code>exercise</code>, <code>summary</code>. Pick one and document it in <code>CONVENTIONS.md</code>.</label></li>
+        <li><input type="checkbox" id="t-H-3" data-todo="H.3"><label for="t-H-3"><span class="id">H.3</span> — Reading-room: formalize the <code>/reading-room/YYYY-MM-DD-author-title</code> form — a <code>reading-room/</code> source (or reuse <code>references/</code>) with <code>author</code>, <code>title</code>, <code>year</code>, <code>our-note</code>, <code>source-url</code>/<code>source-pdf</code> (PDF hosted on CDN, not in repo), <code>date</code> (when we wrote the note).</label></li>
+        <li><input type="checkbox" id="t-H-4" data-todo="H.4"><label for="t-H-4"><span class="id">H.4</span> — <code>urls</code> script: emit the IDENTITY.md scheme for every type — <code>/manifesto</code>, <code>/essays/YYYY-MM-DD-slug</code>, <code>/lab/probes/probe-NN-slug</code>, <code>/lab/demos/slug</code>, <code>/reading-room/YYYY-MM-DD-author-title</code>, <code>/notes/…</code>, <code>/videos/YYYY-MM-DD-slug</code>, <code>/courses/&lt;id&gt;</code>. Fail the build on collisions or malformed slugs.</label></li>
+        <li><input type="checkbox" id="t-H-5" data-todo="H.5"><label for="t-H-5"><span class="id">H.5</span> — <code>sitemap</code> script: produce a real <code>sitemap.xml</code> (not just an internal map) covering all public URLs, with <code>lastmod</code> from frontmatter <code>date</code>/git.</label></li>
+        <li><input type="checkbox" id="t-H-6" data-todo="H.6"><label for="t-H-6"><span class="id">H.6</span> — <code>artifacts-index</code>: extend to include probes and demos, and emit the data the website's <code>/lab</code> pages consume (JSON the SPA/static build reads at build time).</label></li>
+        <li><input type="checkbox" id="t-H-7" data-todo="H.7"><label for="t-H-7"><span class="id">H.7</span> — <code>config/navigation.yaml</code>: rewrite to the new public nav (Essays · Lab · Courses · About + Subscribe), real paths. Add a separate <code>app:</code> section listing the <code>/app/*</code> tools (so <code>/tools</code> can be generated from it).</label></li>
+        <li><input type="checkbox" id="t-H-8" data-todo="H.8"><label for="t-H-8"><span class="id">H.8</span> — <code>config/features.yaml</code>: audit — turn off LMS-feature flags that don't belong on the public site; add flags for <code>probes</code>, <code>tutor-demo</code>, <code>newsletter</code> if useful.</label></li>
+        <li><input type="checkbox" id="t-H-9" data-todo="H.9"><label for="t-H-9"><span class="id">H.9</span> — <code>manifest.yaml</code> <code>site.tagline</code>: change <code>"Philosophy of Technology"</code> → the IDENTITY.md tagline ("Philosophy for machines that learn." or chosen alt). <code>site.description</code>: replace the "open-source learning platform" copy with the research-program thesis. Bump the package version (this + H.7 are breaking content-contract changes).</label></li>
+        <li><input type="checkbox" id="t-H-10" data-todo="H.10"><label for="t-H-10"><span class="id">H.10</span> — <code>.gitignore</code> <code>articles/.nightowl-backups/</code> and any other tooling backup dirs; don't ship them in the package.</label></li>
+        <li><input type="checkbox" id="t-H-11" data-todo="H.11"><label for="t-H-11"><span class="id">H.11</span> — Re-publish the content package and bump the website's dependency on it.</label></li>
+      </ul>
+
+      <hr>
+
+      <!-- ====================================================== I -->
+      <h2 id="sI"><span class="k">I.</span> Cleanup &amp; repo hygiene <span style="font-weight:500;color:var(--text-soft);font-size:.9rem;">(must happen before "general release" — the repo is public-facing)</span></h2>
+      <p><code>machinespirits-website</code> currently carries ~500 MB of stuff that should never be in a public clone, plus a litter of one-off files.</p>
+      <ul class="todo-list" data-list="I">
+        <li><input type="checkbox" id="t-I-1" data-todo="I.1"><label for="t-I-1"><span class="id">I.1</span> — <code>data/lms.sqlite</code> is <strong>278 MB committed</strong>. Remove from the working tree, <code>.gitignore</code> it, and <strong>rewrite history</strong> to drop it (<code>git filter-repo</code> / BFG) — otherwise the public clone is half a gig. Provide a seed/migration script + a small fixture DB instead. <strong>This is destructive history rewriting — confirm with Liam and coordinate (force-push, anyone with clones re-clones).</strong></label></li>
+        <li><input type="checkbox" id="t-I-2" data-todo="I.2"><label for="t-I-2"><span class="id">I.2</span> — <code>playwright-report/</code> (~160 MB of trace zips), <code>test-results/</code> (~20 MB), <code>.playwright-mcp/</code> — <code>.gitignore</code> and remove from tree (and history, per I.1).</label></li>
+        <li><input type="checkbox" id="t-I-3" data-todo="I.3"><label for="t-I-3"><span class="id">I.3</span> — <code>public/texts/*.pdf</code> — ~100 MB of arXiv PDFs. Move to object storage / CDN; reference by URL from reading-room entries. Keep maybe one small sample if a demo needs a local file.</label></li>
+        <li><input type="checkbox" id="t-I-4" data-todo="I.4"><label for="t-I-4"><span class="id">I.4</span> — <code>logs/tutor-api/*.jsonl</code> (~100 MB) — <code>.gitignore</code>, remove from tree + history. Logs don't belong in the repo.</label></li>
+        <li><input type="checkbox" id="t-I-5" data-todo="I.5"><label for="t-I-5"><span class="id">I.5</span> — Delete the stray top-level one-offs: <code>animals.html</code>, <code>parallax-skin.html</code>, <code>office-sim.html</code>, <code>mobile-chat.html</code>, <code>mobile-eval.html</code> (or fold the last two into <code>/app</code>), <code>test_output.log</code>, <code>server.log</code>, the <code>benchmark-*.json</code> / <code>cost-benefit-*.json</code> / <code>eval-2026-*.json</code> reports (move historical eval artifacts to <code>machinespirits-eval</code> if they matter, else delete), <code>archive-structure.json</code> (regenerate or retire — see A.4).</label></li>
+        <li><input type="checkbox" id="t-I-6" data-todo="I.6"><label for="t-I-6"><span class="id">I.6</span> — Consolidate the doc litter: <code>TASKS-COMPLETE.md</code>, <code>TEST-COVERAGE-SUMMARY.md</code>, <code>TEST-IMPROVEMENTS-FINAL.md</code>, <code>MONITOR-TEST-GUIDE.md</code>, <code>MULTI-TURN-SEQUENCE-DIAGRAM-FIX.md</code>, <code>TUTORIAL-VIDEO-CONVERTED.md</code>, <code>TUTORIAL-VIDEO-README.md</code>, <code>CRASH-PROTECTION.md</code>, <code>REPOSITORY-RELATIONSHIPS.md</code> — move what's still useful into <code>docs/</code>, delete the rest. The repo root should have <code>README.md</code>, <code>CLAUDE.md</code>, <code>LICENSE</code>, <code>CITATION.cff</code> and not much else.</label></li>
+        <li><input type="checkbox" id="t-I-7" data-todo="I.7"><label for="t-I-7"><span class="id">I.7</span> — <code>.DS_Store</code> files committed in both repos — remove and add to a global gitignore.</label></li>
+        <li><input type="checkbox" id="t-I-8" data-todo="I.8"><label for="t-I-8"><span class="id">I.8</span> — <code>fauna-playground/</code>, <code>fauna-overlay.js</code> at repo root — keep <code>fauna-overlay.js</code> (it's the live overlay) wherever the build expects it; move <code>fauna-playground/</code> out of the shipped repo (own repo or <code>/dev</code> dir, gitignored).</label></li>
+        <li><input type="checkbox" id="t-I-9" data-todo="I.9"><label for="t-I-9"><span class="id">I.9</span> — Rewrite the website <code>README.md</code>: it currently sells "Open-source LMS platform with Swiss design aesthetic and generative fauna overlays" — reframe as "machinespirits.org — the public site for the Machine Spirits research program; also hosts the platform at <code>/app</code>." Same for <code>package.json</code> <code>name</code>/<code>description</code> (<code>name: "machine-spirits"</code>, desc still says "Open-source LMS platform…").</label></li>
+        <li><input type="checkbox" id="t-I-10" data-todo="I.10"><label for="t-I-10"><span class="id">I.10</span> — Audit the <strong>69 Express routes</strong> in <code>server.js</code>: keep <code>/api/*</code> (the app needs it), <code>/feed.xml</code> (rework — see §J), <code>/reading*</code> (→ <code>/reading-room/*</code>); retire <code>/games/warpstrike</code> (or move under <code>/lab/demos</code>), <code>/TODO.md</code>, <code>/mobile-chat.html</code>, <code>/fauna-overlay.js</code> (serve via the build, not a hand-rolled route), <code>/office-sim</code> etc. Public routes should map 1:1 to the §A route table; everything else is <code>/api/*</code> or gone.</label></li>
+        <li><input type="checkbox" id="t-I-11" data-todo="I.11"><label for="t-I-11"><span class="id">I.11</span> — <code>.env</code> must be gitignored; ship a <code>.env.example</code> with placeholder values for the documented config instead. Audit the working tree and history for any committed secrets and rotate anything that was exposed.</label></li>
+        <li><input type="checkbox" id="t-I-12" data-todo="I.12"><label for="t-I-12"><span class="id">I.12</span> — <code>dist/</code> committed — gitignore build output.</label></li>
+      </ul>
+
+      <hr>
+
+      <!-- ====================================================== J -->
+      <h2 id="sJ"><span class="k">J.</span> SEO, feeds, sharing, redirects</h2>
+      <p>The site can't be "generally released" while it's a hash-routed SPA with one <code>&lt;title&gt;</code>.</p>
+      <ul class="todo-list" data-list="J">
+        <li><input type="checkbox" id="t-J-1" data-todo="J.1"><label for="t-J-1"><span class="id">J.1</span> — Real <code>&lt;title&gt;</code> + meta description per page (server-rendered or static-built — <span class="opt">B</span> makes this trivial; <span class="opt">A</span> needs <code>react-helmet</code>-style head management + ideally SSR/prerender for the public routes).</label></li>
+        <li><input type="checkbox" id="t-J-2" data-todo="J.2"><label for="t-J-2"><span class="id">J.2</span> — OpenGraph + Twitter card tags per page; a default OG image (the sigil on the dark palette) + per-essay/per-probe OG images (auto-generated from title is fine).</label></li>
+        <li><input type="checkbox" id="t-J-3" data-todo="J.3"><label for="t-J-3"><span class="id">J.3</span> — <code>sitemap.xml</code> at the apex (from §H.5), <code>robots.txt</code> (allow all public, disallow <code>/app/*</code> and <code>/api/*</code>).</label></li>
+        <li><input type="checkbox" id="t-J-4" data-todo="J.4"><label for="t-J-4"><span class="id">J.4</span> — RSS: <code>/essays/feed.xml</code>, <code>/lab/probes/feed.xml</code>, and a combined <code>/feed.xml</code>. Rework the existing <code>app.get('/feed.xml')</code> to read from the content package.</label></li>
+        <li><input type="checkbox" id="t-J-5" data-todo="J.5"><label for="t-J-5"><span class="id">J.5</span> — 301 redirects from every legacy hash/path URL (the §A.3 map) — server-side, plus the client <code>#/…</code> shim.</label></li>
+        <li><input type="checkbox" id="t-J-6" data-todo="J.6"><label for="t-J-6"><span class="id">J.6</span> — Canonical URLs (<code>&lt;link rel="canonical"&gt;</code>) on every page; make sure there's exactly one URL per piece of content (no <code>/essays/x</code> <em>and</em> <code>/newsletter/n</code> both canonical).</label></li>
+        <li><input type="checkbox" id="t-J-7" data-todo="J.7"><label for="t-J-7"><span class="id">J.7</span> — <code>ShareButton.tsx</code> — keep, point at the new URLs; make sure it shares the canonical URL, not a hash route.</label></li>
+        <li><input type="checkbox" id="t-J-8" data-todo="J.8"><label for="t-J-8"><span class="id">J.8</span> — Analytics/consent: if there's tracking, the cookie/consent banner must be the privacy-preserving default (decline-by-default); no third-party junk on the public site.</label></li>
+        <li><input type="checkbox" id="t-J-9" data-todo="J.9"><label for="t-J-9"><span class="id">J.9</span> — Submit the new sitemap to Search Console; verify the redirects don't break existing inbound links.</label></li>
+      </ul>
+
+      <hr>
+
+      <!-- ====================================================== K -->
+      <h2 id="sK"><span class="k">K.</span> Sequencing — what "general release" actually requires</h2>
+      <p>Not everything above blocks launch. Minimum viable "general release" maps to STRATEGY Q1 — "publish the manifesto, ship the public site, the tutor demo, the first probes." These rollup checklists reference the workstream items above; tick them as you clear each batch.</p>
+
+      <div class="todo-head"><h3>Must ship for general release</h3><span class="list-count" data-count="K-must">0 / 0</span></div>
+      <ul class="todo-list rollup" data-list="K-must">
+        <li><input type="checkbox" id="t-km-1" data-todo="km.1"><label for="t-km-1"><span class="ref">§0.1</span> — decision (A vs B) — <em>gates everything</em></label></li>
+        <li><input type="checkbox" id="t-km-2" data-todo="km.2"><label for="t-km-2"><span class="ref">§A.1–A.3</span> — route table + real public URLs + legacy redirects</label></li>
+        <li><input type="checkbox" id="t-km-3" data-todo="km.3"><label for="t-km-3"><span class="ref">§B.1–B.3</span> — new homepage + new nav + hero copy</label></li>
+        <li><input type="checkbox" id="t-km-4" data-todo="km.4"><label for="t-km-4"><span class="ref">§C.1</span> — <code>/manifesto</code> published</label></li>
+        <li><input type="checkbox" id="t-km-5" data-todo="km.5"><label for="t-km-5"><span class="ref">§C.2–C.3, C.6</span> — <code>/essays</code> index + reader + the public-essay triage (even if the probe type isn't built yet)</label></li>
+        <li><input type="checkbox" id="t-km-6" data-todo="km.6"><label for="t-km-6"><span class="ref">§C.4</span> — <code>/newsletter</code> signup live</label></li>
+        <li><input type="checkbox" id="t-km-7" data-todo="km.7"><label for="t-km-7"><span class="ref">§D.1, D.3</span> — <code>/lab</code> landing + the public no-login tutor demo with the Ego/Superego split visible</label></li>
+        <li><input type="checkbox" id="t-km-8" data-todo="km.8"><label for="t-km-8"><span class="ref">§E.1–E.2</span> — <code>/courses</code> public read-only view, de-emphasized</label></li>
+        <li><input type="checkbox" id="t-km-9" data-todo="km.9"><label for="t-km-9"><span class="ref">§F.1–F.4, F.6</span> — LMS moved behind <code>/app</code> + login, out of public nav, <code>/tools</code> page exists</label></li>
+        <li><input type="checkbox" id="t-km-10" data-todo="km.10"><label for="t-km-10"><span class="ref">§G.1–G.5</span> — new palette + type + dialed-down fauna + parallax/glass/toggle-soup removed</label></li>
+        <li><input type="checkbox" id="t-km-11" data-todo="km.11"><label for="t-km-11"><span class="ref">§H.4, H.7, H.9</span> — <code>urls</code> emits the new scheme, <code>navigation.yaml</code> rewritten, <code>manifest.yaml</code> tagline/description fixed</label></li>
+        <li><input type="checkbox" id="t-km-12" data-todo="km.12"><label for="t-km-12"><span class="ref">§I.1, I.2, I.4, I.11</span> — purge the 278 MB sqlite + the test/log bloat from the repo, and the <code>.env</code> hygiene per I.11 — <em>the repo is about to be public</em></label></li>
+        <li><input type="checkbox" id="t-km-13" data-todo="km.13"><label for="t-km-13"><span class="ref">§I.9</span> — README + package.json no longer describe the site as "an LMS"</label></li>
+        <li><input type="checkbox" id="t-km-14" data-todo="km.14"><label for="t-km-14"><span class="ref">§J.1–J.5</span> — titles/meta/OG, sitemap, robots, RSS, redirects</label></li>
+      </ul>
+
+      <div class="todo-head"><h3>Fast-follow <span style="font-weight:500;color:var(--text-faint);font-size:.85rem;">(weeks after launch, also Q1)</span></h3><span class="list-count" data-count="K-fast">0 / 0</span></div>
+      <ul class="todo-list rollup" data-list="K-fast">
+        <li><input type="checkbox" id="t-kf-1" data-todo="kf.1"><label for="t-kf-1"><span class="ref">§D.2 + §H.1</span> — the <code>probes</code> content type and <code>/lab/probes</code> (the first probe is a Q1 deliverable but the <em>type</em> can land just after the homepage)</label></li>
+        <li><input type="checkbox" id="t-kf-2" data-todo="kf.2"><label for="t-kf-2"><span class="ref">§E.4 + §H.2</span> — course-notes as a public artifact type</label></li>
+        <li><input type="checkbox" id="t-kf-3" data-todo="kf.3"><label for="t-kf-3"><span class="ref">§D.5 + §H.3</span> — <code>/reading-room</code> formalized</label></li>
+        <li><input type="checkbox" id="t-kf-4" data-todo="kf.4"><label for="t-kf-4"><span class="ref">§G.6</span> — new logo/sigil if the current mark is the old one</label></li>
+        <li><input type="checkbox" id="t-kf-5" data-todo="kf.5"><label for="t-kf-5"><span class="ref">§I.3, I.5–I.8, I.10, I.12</span> — finish the repo cleanup</label></li>
+        <li><input type="checkbox" id="t-kf-6" data-todo="kf.6"><label for="t-kf-6"><span class="ref">§J.6–J.9</span> — canonicals, analytics/consent, Search Console</label></li>
+      </ul>
+
+      <div class="todo-head"><h3>Later <span style="font-weight:500;color:var(--text-faint);font-size:.85rem;">(Q2+)</span></h3><span class="list-count" data-count="K-later">0 / 0</span></div>
+      <ul class="todo-list rollup" data-list="K-later">
+        <li><input type="checkbox" id="t-kl-1" data-todo="kl.1"><label for="t-kl-1"><span class="ref">§A.4</span> — archive-structure rationalization</label></li>
+        <li><input type="checkbox" id="t-kl-2" data-todo="kl.2"><label for="t-kl-2"><span class="ref">§D.4</span> — demos index + graduating the content-philosophy <code>artifacts/*</code> interactives</label></li>
+        <li><input type="checkbox" id="t-kl-3" data-todo="kl.3"><label for="t-kl-3"><span class="ref">§F.5, F.7</span> — full code-split / mobile-page cleanup (free under <span class="opt">B</span>)</label></li>
+        <li><input type="checkbox" id="t-kl-4" data-todo="kl.4"><label for="t-kl-4"><span class="ref">§H.5–H.6, H.8, H.10–H.11</span> — the rest of the pipeline work</label></li>
+        <li><input type="checkbox" id="t-kl-5" data-todo="kl.5"><label for="t-kl-5"><span class="ref">§videos/*</span> — if/when video surfaces exist</label></li>
+      </ul>
+
+      <hr>
+
+      <!-- ====================================================== OPEN QUESTIONS -->
+      <h2 id="sQ"><span class="k">?</span> Open questions for Liam</h2>
+      <div class="callout q">
+        <span class="lead">Decisions pending</span>
+        <ol style="margin:.2rem 0 0;">
+          <li><strong>§0</strong> — A (one app + router, ships faster, "simplify" stays partly cosmetic) vs B (split public/<code>/app</code>, more work, cleanest result). Recommendation is B-phased. Your call — it shapes every other ticket.</li>
+          <li><strong>§I.1</strong> — OK to rewrite git history to purge the 278 MB <code>lms.sqlite</code> (and the test/log bloat)? It means a force-push and anyone with a clone re-clones. The alternative is shipping a half-gig public repo.</li>
+          <li><strong>§B.3 / IDENTITY.md</strong> — which tagline wins for the hero? ("Philosophy for machines that learn." is the working default in the README.)</li>
+          <li><strong>§E.4</strong> — course-notes: own <code>/notes</code> index (recommended, they travel well), or fold into <code>/essays</code> with a type tag?</li>
+          <li><strong>§D.3</strong> — for the public tutor demo: rate-limited live endpoint, or fully canned/replayed conversations? Live is more convincing; canned is zero-cost and zero-abuse-surface.</li>
+          <li><strong>§D.4 / artifacts</strong> — which of <code>content-philosophy/artifacts/*</code> (<code>hegel-recognition-explorer.html</code>, <code>design-audit-playground.html</code>, <code>warpstrike-60.html</code>, <code>anthropic-reading-list.html</code>) graduate to public <code>/lab/demos</code>, and which retire?</li>
+          <li><strong><code>/app</code> domain</strong> — <code>app.machinespirits.org</code> subdomain, or <code>machinespirits.org/app/*</code> path? (Affects auth/cookies and the proxy setup.)</li>
+        </ol>
+      </div>
+
+      <p class="doc-footnote"><em>This is a static reading copy of <a href="./WEBSITE-REFACTOR.md">WEBSITE-REFACTOR.md</a> in <code>machinespirits-brand/</code>; the repository remains the source of truth. Checklist progress is stored in your browser (<code>localStorage</code>) and never leaves this machine.</em></p>
+
+    </article>
+
+    <div class="page-foot">
+      <p>Machine Spirits — Website Refactor · companion to <a href="./plan.html">plan.html</a> (Manifesto · Identity · Strategy) and the target-state <a href="./site-mockup.html">site mockup</a>.</p>
+    </div>
+  </main>
+</div>
+
+<button class="to-top" id="toTop" title="Back to top" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+  "use strict";
+  var STORE_PROGRESS = "ms-refactor-progress-v1";
+  var STORE_THEME    = "ms-refactor-theme-v1";
+
+  var $  = function(s,el){return (el||document).querySelector(s);};
+  var $$ = function(s,el){return Array.prototype.slice.call((el||document).querySelectorAll(s));};
+
+  /* ---------- theme ---------- */
+  function setTheme(t){
+    document.documentElement.setAttribute("data-theme", t);
+    $("#themeBtn").textContent = (t === "dark") ? "☀ Light" : "☾ Dark";
+  }
+  var savedTheme = null;
+  try { savedTheme = localStorage.getItem(STORE_THEME); } catch(e){}
+  setTheme(savedTheme === "dark" ? "dark" : "light");
+  $("#themeBtn").addEventListener("click", function(){
+    var next = (document.documentElement.getAttribute("data-theme") === "dark") ? "light" : "dark";
+    setTheme(next);
+    try { localStorage.setItem(STORE_THEME, next); } catch(e){}
+  });
+
+  /* ---------- sidebar / mobile ---------- */
+  var sidebar = $("#sidebar");
+  $("#menuBtn").addEventListener("click", function(){ sidebar.classList.toggle("open"); });
+  sidebar.addEventListener("click", function(e){
+    if (e.target.closest("a") && window.matchMedia("(max-width:980px)").matches) sidebar.classList.remove("open");
+  });
+
+  /* ---------- TOC active-on-scroll ---------- */
+  var tocLinks = $$("#tocList a.toc-link");
+  var sections = $$("main h2[id]");
+  var byHash = {};
+  tocLinks.forEach(function(a){ byHash[a.getAttribute("href")] = a; });
+  function setActive(id){
+    tocLinks.forEach(function(a){ a.classList.toggle("active", a.getAttribute("href") === "#"+id); });
+  }
+  function onScroll(){
+    var top = (parseInt(getComputedStyle(document.documentElement).getPropertyValue("--topbar-h"))||58) + 24;
+    var cur = sections.length ? sections[0].id : null;
+    for (var i=0;i<sections.length;i++){
+      if (sections[i].getBoundingClientRect().top <= top) cur = sections[i].id; else break;
+    }
+    if (cur) setActive(cur);
+    var st = window.pageYOffset || document.documentElement.scrollTop;
+    $("#toTop").classList.toggle("show", st > 600);
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  window.addEventListener("resize", onScroll);
+  onScroll();
+  $("#toTop").addEventListener("click", function(){ window.scrollTo({top:0, behavior:"smooth"}); });
+
+  /* ---------- checklist ---------- */
+  var todos = $$("ul.todo-list input[type=checkbox]");
+  function readSaved(){ var o={}; try{ o = JSON.parse(localStorage.getItem(STORE_PROGRESS)||"{}")||{}; }catch(e){} return o; }
+  function writeSaved(){
+    var o={}; todos.forEach(function(cb){ if(cb.checked) o[cb.getAttribute("data-todo")] = true; });
+    try{ localStorage.setItem(STORE_PROGRESS, JSON.stringify(o)); }catch(e){}
+  }
+  function reflect(cb){ var li = cb.closest("li"); if(li) li.classList.toggle("done", cb.checked); }
+  function updateCounts(){
+    var done = todos.filter(function(cb){return cb.checked;}).length;
+    var total = todos.length;
+    var pct = total ? Math.round(done/total*100) : 0;
+    $("#progBar").style.width = pct + "%";
+    $("#progText").textContent = done + " / " + total;
+    /* per-list counters */
+    $$("ul.todo-list[data-list]").forEach(function(ul){
+      var key = ul.getAttribute("data-list");
+      var badge = $('.list-count[data-count="'+key+'"]') || $('.list-count[data-count="'+key+'"]', ul.parentNode);
+      if (!badge) return;
+      var cbs = $$("input[type=checkbox]", ul);
+      var d = cbs.filter(function(c){return c.checked;}).length;
+      badge.textContent = d + " / " + cbs.length;
+      badge.classList.toggle("complete", d === cbs.length && cbs.length > 0);
+    });
+  }
+  (function initTodos(){
+    var saved = readSaved();
+    todos.forEach(function(cb){
+      if (saved[cb.getAttribute("data-todo")]) cb.checked = true;
+      reflect(cb);
+      cb.addEventListener("change", function(){ reflect(cb); writeSaved(); updateCounts(); });
+    });
+    updateCounts();
+  })();
+  $("#resetBtn").addEventListener("click", function(){
+    if (!confirm("Clear all checklist progress on this page?")) return;
+    todos.forEach(function(cb){ cb.checked = false; reflect(cb); });
+    try{ localStorage.removeItem(STORE_PROGRESS); }catch(e){}
+    updateCounts();
+  });
+
+  /* ---------- in-page search (CSS Custom Highlight API) ---------- */
+  var input = $("#searchInput"), countEl = $("#searchCount");
+  var hlOK = !!(window.CSS && CSS.highlights && window.Highlight && document.createRange);
+  var contentRoot = $("#content");
+  var textNodes = [], matches = [], cur = -1, deb;
+
+  function buildIndex(){
+    textNodes = [];
+    var walker = document.createTreeWalker(contentRoot, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        while (p && p !== contentRoot){
+          var tag = p.tagName;
+          if (tag === "SCRIPT" || tag === "STYLE") return NodeFilter.FILTER_REJECT;
+          p = p.parentElement;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var n; while ((n = walker.nextNode())) textNodes.push(n);
+  }
+  function clearHL(){ if (hlOK){ CSS.highlights.delete("mss-hit"); CSS.highlights.delete("mss-cur"); } }
+  function paint(){
+    if (!hlOK) return;
+    clearHL();
+    if (!matches.length) return;
+    var hit = new Highlight(), curH = new Highlight();
+    matches.forEach(function(r, i){ (i === cur ? curH : hit).add(r); });
+    CSS.highlights.set("mss-hit", hit);
+    CSS.highlights.set("mss-cur", curH);
+  }
+  function gotoMatch(){
+    if (!matches.length) return;
+    cur = (cur + matches.length) % matches.length;
+    paint();
+    var r = matches[cur];
+    var el = r.startContainer.parentElement;
+    if (el && el.scrollIntoView) el.scrollIntoView({block:"center", behavior:"smooth"});
+    countEl.textContent = (cur+1) + " / " + matches.length;
+  }
+  function runSearch(q){
+    matches = []; cur = -1; clearHL();
+    q = (q||"").trim().toLowerCase();
+    if (q.length < 2){ countEl.textContent = ""; return; }
+    if (!textNodes.length) buildIndex();
+    textNodes.forEach(function(node){
+      var hay = node.nodeValue.toLowerCase(), from = 0, idx;
+      while ((idx = hay.indexOf(q, from)) !== -1){
+        if (document.createRange){
+          var r = document.createRange();
+          try { r.setStart(node, idx); r.setEnd(node, idx + q.length); matches.push(r); } catch(e){}
+        }
+        from = idx + q.length;
+      }
+    });
+    if (!matches.length){ countEl.textContent = "0 / 0"; return; }
+    countEl.textContent = "0 / " + matches.length;
+    cur = 0; gotoMatch();
+  }
+  input.addEventListener("input", function(){ clearTimeout(deb); deb = setTimeout(function(){ runSearch(input.value); }, 110); });
+  input.addEventListener("keydown", function(e){
+    if (e.key === "Enter"){ e.preventDefault(); if (matches.length){ cur += e.shiftKey ? -1 : 1; gotoMatch(); } }
+    if (e.key === "Escape"){ input.value = ""; runSearch(""); input.blur(); }
+  });
+  $("#nextHit").addEventListener("click", function(){ if (matches.length){ cur++; gotoMatch(); } });
+  $("#prevHit").addEventListener("click", function(){ if (matches.length){ cur--; gotoMatch(); } });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "/" && document.activeElement !== input && !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)){
+      e.preventDefault(); input.focus(); input.select();
+    }
+  });
+})();
+</script>
+</body>
+</html>

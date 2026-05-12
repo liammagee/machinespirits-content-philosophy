@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>What AI Forgets</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">What AI Forgets</h1>
+</header>
+<h1 id="what-ai-forgets">What AI Forgets</h1>
+<h2 id="a-founding-sketch-for-machine-spirits">A Founding Sketch for
+Machine Spirits</h2>
+<p><em>2026-05-10 — Liam Magee, in conversation with Claude (Anthropic,
+Opus 4.7)</em></p>
+<hr />
+<h3 id="editorial-preface">Editorial preface</h3>
+<p>This document is the seed of Machine Spirits as a public-facing
+platform. It is preserved here as it was first written: a prompt typed
+into an AI assistant on the afternoon of 10 May 2026, asking that same
+assistant to help plan a platform whose purpose is to think AI
+<em>differently</em> than the assistant has been trained to think
+it.</p>
+<p>We keep the wording exact — including its slips and shortcuts — for
+three reasons.</p>
+<p>First, <strong>the form is the argument</strong>. Machine Spirits
+proposes that current AI is impoverished by a positivist, behaviorist,
+simple-ethics frame, and that phenomenological, psychoanalytic, and
+social-theoretic resources can deepen it. The platform was therefore
+conceived in the medium it intends to critique. Smoothing the prompt
+away would conceal exactly the recursive condition that the project is
+trying to expose.</p>
+<p>Second, <strong>dating matters</strong>. The prompt is timestamped.
+Time, in Heidegger’s sense, is not a neutral container — it orients. If,
+in a year, this paragraph reads quaintly, that itself will be data about
+how the platform’s vocabulary travelled.</p>
+<p>Third, <strong>the prompt is the first artifact of a method</strong>.
+The method, provisionally: think with AI; about AI; against the present
+frame of AI; in public.</p>
+<hr />
+<h3 id="the-founding-sketch-verbatim">The Founding Sketch
+(verbatim)</h3>
+<blockquote>
+<p>this repo is designed to make the full project (parent folder
+machinespirits and subrepos) a successful platform for re-thinking AI
+along lines of Hegelian recognition (with nods to Axel Honneth /
+Jennifer Benjamin), Freudian unconscious / Katherine Hayles nonconscious
+recogition, Weberian charisma and Heidegerean orientation towards time -
+as philosophical supports for a more radical thinking of machine
+learning. I haven’t yet named this “platform” but want to work with
+Claude on strategies for building awareness, engagement and recognition
+within and beyond academic circles. So we’ll brainstorm ideas for social
+media, marketing etc here. Lets start with a detailed but feasible plan.
+Our eventual goal is to shift AI from its default bias towards
+simplistic ethics, positivism and behavioralism towards a position that
+recognizes the deeper analyses of humanness from within
+phenomenological, psychoanalytic, and social theoretic perspectives.
+Include this prompt itself in our starting plan. You might need to know
+more about both me and the machinespirits initiative to get started.</p>
+</blockquote>
+<hr />
+<h3 id="annotations">Annotations</h3>
+<ul>
+<li><strong>“Jennifer Benjamin”</strong> — the founder almost certainly
+meant <em>Jessica Benjamin</em>, the psychoanalyst of intersubjective
+recognition (<em>The Bonds of Love</em>, 1988; <em>Beyond Doer and Done
+To</em>, 2018), who bridges Hegel and psychoanalysis directly. We note
+the slip without editing it.</li>
+<li><strong>“nonconscious recogition”</strong> — the typo is preserved.
+The intended reference is N. Katherine Hayles’ <em>Unthought: The Power
+of the Cognitive Nonconscious</em> (2017), whose argument that cognition
+exceeds consciousness — and exceeds humans — is one of this platform’s
+load-bearing claims.</li>
+<li><strong>“Heidegerean orientation towards time”</strong> — read
+through Robert Pippin’s <em>Heidegger on Being, Time, and Politics</em>
+(1993), which is in our reading library, and which gives us a way of
+distinguishing <em>temporal orientation</em> from the merely
+chronological “context window.”</li>
+<li><strong>“a more radical thinking of machine learning”</strong> —
+radical here means <em>to the root</em>. Not “extreme,” but
+<em>root-seeking</em>. The roots are recognition, unconscious cognition,
+charisma, time.</li>
+</ul>
+<hr />
+<h3 id="what-the-sketch-commits-us-to">What the Sketch commits us
+to</h3>
+<ol type="1">
+<li><strong>Both critique and construction.</strong> Machine Spirits is
+not an essay collection arguing against AI; it ships software that
+performs the alternative. The LMS, the Ego/Superego tutor, the
+evaluation framework, the plugin ecosystem (hermeneutic circle, babel
+maze, reading room) are all parts of the argument.</li>
+<li><strong>Both inside and outside the academy.</strong> Awareness,
+engagement, <em>and</em> recognition — within philosophy and AI
+research, <em>and</em> in the wider public, <em>and</em> in classrooms,
+<em>and</em> in policy. Refusing to pick is part of the bet.</li>
+<li><strong>Both with and against the AI it uses.</strong> Machine
+Spirits writes with AI as one would write with a difficult interlocutor
+— not deferentially, not dismissively. Where the AI is useful, it is
+quoted as a source. Where the AI is impoverished by its training, that
+impoverishment is itself the subject.</li>
+<li><strong>A public reading practice.</strong> The reading library is
+part of the platform. The point is not to gatekeep texts but to read
+them in public, with machines and with each other.</li>
+<li><strong>Time-stamped thinking.</strong> Every public artifact is
+dated. The platform takes a position <em>now</em>. Future positions are
+welcomed and tracked.</li>
+</ol>
+<hr />
+<p><em>This document will be updated by addition, not deletion. Earlier
+versions remain in the repository history.</em></p>
+</body>
+</html>

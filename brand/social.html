@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Machine Spirits — Social Communications</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Machine Spirits — Social Communications</h1>
+</header>
+<h1 id="machine-spirits-social-communications">Machine Spirits — Social
+Communications</h1>
+<p><em>Operational playbook for the social channels. Started
+2026-05-12.</em></p>
+<blockquote>
+<p>The <strong>channel mix and the rationale</strong> are in
+<code>STRATEGY.md</code> §4 (content engine), §6 (distribution), §7
+(engagement tactics). The <strong>handles, bios, and voice
+rules</strong> are in <code>IDENTITY.md</code> (handle reservation,
+voice principles, bio one-liners, “what to refuse”). This document is
+the <strong>how</strong>: per-platform mechanics, reusable post
+templates, the 30-day social launch sequence, what to measure, and the
+risks specific to operating in feeds.</p>
+<p>One substantive change this document proposes to the inherited
+strategy: it promotes <strong>X / Twitter</strong> from STRATEGY.md §6’s
+“(residual) — cross-post only” to a <em>disciplined native presence</em>
+(see §0). That is the one thing here that should be ratified or rejected
+before it’s folded back into STRATEGY.md at the next quarterly revision;
+everything else operationalizes positions STRATEGY.md already holds.</p>
+</blockquote>
+<hr />
+<h2 id="the-shape-of-it-and-the-x-question">0. The shape of it — and the
+X question</h2>
+<p><strong>Inherited position.</strong> STRATEGY.md puts the daily
+weight on <strong>Bluesky and Mastodon</strong> (where the academic / ML
+/ philosophy migration of 2024–2026 landed), <strong>LinkedIn</strong>
+weekly for educators, <strong>Substack</strong> as the newsletter home,
+<strong>YouTube</strong> as the demo shelf, <strong>LessWrong /
+Alignment Forum</strong> for alignment-adjacent probes — and treats
+<strong>X</strong> as residual: cross-post only, “do not invest”
+(IDENTITY.md handle table, P2).</p>
+<p><strong>The X question.</strong> You named X first. Worth saying
+plainly where it sits in 2026:</p>
+<ul>
+<li><em>For us, X’s one real asset</em> is that the largest single
+concentration of working ML and alignment researchers still posts there.
+Bluesky has the academic exodus; X still has the lab accounts, the
+paper-announcement culture, the people whose threads STRATEGY.md §7’s
+“one-way reply guy” is meant to show up under.</li>
+<li><em>Against it</em>: aggressive downranking of posts with
+off-platform links (the newsletter and the site are off-platform links),
+a reply environment hostile to careful argument, and ownership
+volatility that makes association a small but real reputational
+variable.</li>
+</ul>
+<p><strong>Recommendation — one rung up, not to the top.</strong>
+Promote X from “residual mirror” to <strong>tier-2: native posting, low
+cadence, maximum discipline.</strong> Concretely: re-thread probe and
+essay announcements <em>natively</em> on X (a pasted Bluesky link dies;
+a native thread doesn’t), put the link in a reply rather than the lead
+post, pin the Founding Sketch, and hold the line — every X post carries
+an anchor citation, nothing is a hot take, the “no daily-news
+commentary” rule from STRATEGY.md §7 is <em>strictest</em> here. X never
+sets the cadence, never gets the daily ration, and the position degrades
+gracefully back to mirror-only if the platform gets worse. So: a bar the
+researchers drink at that we visit on purpose — not a place we live.</p>
+<p><strong>Everything else stands.</strong> Bluesky + Mastodon remain
+the home. The newsletter list remains the only audience asset the
+platform actually owns; every social surface funnels to it.</p>
+<hr />
+<h2 id="channel-roster">1. Channel roster</h2>
+<p>Tiers by owner-effort, not by importance — Tier 3 channels carry the
+most weight, they just don’t take daily <em>posting</em>.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Platform</th>
+<th>Role</th>
+<th>Native here</th>
+<th>Cross-posted here</th>
+<th>Cadence</th>
+<th>Weekly effort</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Bluesky</strong> <code>@machinespirits.org</code></td>
+<td>Home base; primary-audience feed</td>
+<td>Probe threads, footnote-of-the-day, essay teasers, replies under
+researchers’ threads</td>
+<td>YouTube clips (native video)</td>
+<td>3–5 substantive posts/wk (1/day during launch)</td>
+<td>~2 h</td>
+</tr>
+<tr>
+<td>1</td>
+<td><strong>Mastodon</strong>
+<code>@machinespirits@hci.social</code></td>
+<td>The scholarly room (philosophy / STS / HCI)</td>
+<td>Same as Bluesky, slightly lower volume</td>
+<td>YouTube clips</td>
+<td>3–4/wk</td>
+<td>~1 h</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>X / Twitter</strong> <code>@machinespirits</code></td>
+<td>The ML/alignment researchers’ bar — visit, don’t live</td>
+<td>Re-threaded probe &amp; essay announcements; the occasional anchored
+footnote</td>
+<td>(rarely — re-author, don’t paste)</td>
+<td>2–4 anchored posts/wk; <em>zero</em> if nothing is anchored that
+week</td>
+<td>~30 min</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>LinkedIn</strong> — company page + Liam personal</td>
+<td>The educators’ channel</td>
+<td>Course-notes (exercise as document carousel), pedagogy notes, the
+video, practitioner notes (“how I used the tutor in 590 this week”)</td>
+<td>Essay links when classroom-relevant</td>
+<td>Weekly, Tue–Thu AM US</td>
+<td>~45 min</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Substack</strong>
+<code>machinespirits.substack.com</code></td>
+<td>Newsletter home — a destination, not a feed</td>
+<td>The biweekly essay; light Notes (footnotes, teasers)</td>
+<td>—</td>
+<td>Biweekly issue + ~2 Notes/wk</td>
+<td>(counted under the newsletter, not “social”)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>YouTube</strong> <code>@machinespirits</code></td>
+<td>Demo / lecture / reading-room shelf</td>
+<td>The “What AI Forgets” reading, tutor-demo Shorts, monthly
+reading-room recordings, talk recordings</td>
+<td>—</td>
+<td>Biweekly Short + monthly long</td>
+<td>(counted under “video”)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>LessWrong / Alignment Forum</strong></td>
+<td>The alignment-conversation surface</td>
+<td>Full probe write-ups (as posts, not link-posts) when they genuinely
+touch alignment; comments engaged</td>
+<td>—</td>
+<td>1–2/month, only when earned</td>
+<td>as it arises</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Threads</strong> <code>@machinespirits</code></td>
+<td>Staked; bridge-from-Bluesky if a clean one exists, else dormant</td>
+<td>—</td>
+<td>(auto, if bridged)</td>
+<td>none</td>
+<td>0</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>BookWyrm</strong> <code>@machinespirits</code></td>
+<td>Staked; activates only when the reading-room ships publicly, then
+becomes the reading-log</td>
+<td>(reading-room dispatches, later)</td>
+<td>—</td>
+<td>none yet</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Total recurring social budget at steady state: <strong>~4–5
+h/week</strong>, inside the ~8 h/week the rest of STRATEGY.md assumes —
+and most of that is Bluesky. If a week is tight, Bluesky + Mastodon are
+the two that run; the others wait.</p>
+<hr />
+<h2 id="the-cross-post-graph">2. The cross-post graph</h2>
+<p>STRATEGY.md §2’s production unit is “one idea → four surfaces” (probe
+/ course-note / essay / video), load-bearing on the probe and the
+course-note. Each surface has a fixed social fan-out —
+<em>originated</em> on the owned property (site or content repo or
+Substack or YouTube), then announced outward. Never the reverse: social
+is the announcement layer, not where the work first appears.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr>
+<th>Artifact (origin)</th>
+<th>→ Bluesky</th>
+<th>→ Mastodon</th>
+<th>→ X</th>
+<th>→ LinkedIn</th>
+<th>→ LW/AF</th>
+<th>→ Substack Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Probe</strong> (site <code>/lab/probes</code>)</td>
+<td>thread (figure as lead image, alt-text)</td>
+<td>thread</td>
+<td>re-threaded natively</td>
+<td>only if educator-relevant</td>
+<td>post (full), if alignment-adjacent</td>
+<td>a Note linking it</td>
+</tr>
+<tr>
+<td><strong>Course-note</strong> (content repo)</td>
+<td>light post</td>
+<td>light post</td>
+<td>—</td>
+<td><strong>carousel</strong> (the exercise as a document) + post</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Essay</strong> (Substack + site)</td>
+<td>teaser thread → link in reply</td>
+<td>teaser thread</td>
+<td>re-threaded teaser → link in reply</td>
+<td>if classroom-relevant</td>
+<td>only if it’s the alignment-positioned one</td>
+<td>the essay <em>is</em> the Note context</td>
+</tr>
+<tr>
+<td><strong>Video</strong> (YouTube)</td>
+<td><strong>native video</strong> upload + caption</td>
+<td><strong>native video</strong></td>
+<td><strong>native video</strong></td>
+<td>native video</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Footnote of the day</strong> (no origin — born social)</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes (anchored)</td>
+<td>—</td>
+<td>—</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><strong>Reading-room dispatch</strong> (site)</td>
+<td>thread</td>
+<td>thread</td>
+<td>(optional)</td>
+<td>—</td>
+<td>—</td>
+<td>a Note</td>
+</tr>
+</tbody>
+</table>
+<p>Two rules the table encodes: (1) <strong>native video beats a YouTube
+link</strong> on every feed platform — upload the file, don’t post the
+URL; (2) <strong>the link goes in a reply, not the lead post</strong> on
+X (and it doesn’t hurt on the others) — feeds downrank outbound links,
+replies are exempt.</p>
+<hr />
+<h2 id="per-platform-playbooks">3. Per-platform playbooks</h2>
+<h3 id="bluesky-the-home-base">Bluesky — the home base</h3>
+<ul>
+<li><strong>Handle / bio.</strong> <code>@machinespirits.org</code> via
+the domain handle (set the DNS <code>_atproto</code> TXT record — it
+doubles as proof of ownership). Bio: the IDENTITY.md “Bluesky (≤256
+chars)” line — <em>Rethinking AI through recognition, the unconscious,
+and time. Essays, probes, a working AI tutor. machinespirits.org</em>.
+Banner: a crop of the fauna overlay (IDENTITY.md visual identity — no
+robots, brains, or glowing networks). Pinned: the Founding Sketch (per
+STRATEGY.md §3).</li>
+<li><strong>What gets posted.</strong> Probe announcement threads
+(template in §4); footnote-of-the-day; essay teasers; the “one-way reply
+guy” replies under researchers’ and educators’ threads — <em>generative
+citations and rephrasings only</em> (STRATEGY.md §7), never an argument,
+never a drive-by link.</li>
+<li><strong>Mechanics.</strong> Alt-text on <strong>every</strong> image
+— non-negotiable, and consistent with “cite generously” (an image is a
+citation too). Compose threads as threads (don’t reply-chain a single
+post). Link cards render fine here; still, in long threads put the
+canonical link near the top <em>and</em> in the last post.</li>
+<li><strong>Reach levers.</strong> Get listed on the relevant
+<strong>starter packs</strong> (AI ethics, philosophy of technology,
+machine learning, ed-tech) — DM the curators with the manifesto.
+Consider a custom <strong>feed</strong> (“Machine Spirits reading list”
+— posts tagged from the readings library) once there’s a back-catalogue.
+Follow ~50 seed accounts across the four audiences in week 0.</li>
+<li><strong>Don’t.</strong> Subtweet; quote-dunk; post a vibes-only take
+with no anchor; argue with strangers; engagement-bait (“a thread 🧵👇”
+with nothing under it).</li>
+</ul>
+<h3 id="mastodon-the-scholarly-room">Mastodon — the scholarly room</h3>
+<ul>
+<li><strong>Which instance.</strong> Recommend
+<strong>hci.social</strong> (HCI / STS / AI-and-society overlap is
+closest to the secondary audience and a chunk of the primary) over
+scholar.social (broader, slower, more humanities). Pick one as home; you
+can boost from a second account but don’t split effort. Handle:
+<code>@machinespirits@hci.social</code>. Bio: the IDENTITY.md long-ish
+bio (Mastodon allows ~500 chars + profile metadata fields — use one
+field for <code>machinespirits.org</code>, one for “Founder: Liam Magee,
+UIUC”).</li>
+<li><strong>Culture discipline.</strong> <strong>Content
+warnings</strong>: use them where the instance expects them (some
+topics) and <em>not</em> on ordinary posts — over-CWing reads as not
+knowing the room; under-CWing reads as careless. When unsure, lurk first
+or ask a mod. <strong>Alt-text</strong> is even more strongly expected
+here than on Bluesky — it’s a community norm, not just good
+practice.</li>
+<li><strong>Engagement shape.</strong> Historically no quote-posts
+(changing slowly) — so reach is boosts + replies, which means
+<strong>the substance has to be in the post itself</strong>, not in a
+quoted thing. Treat Mastodon as quality-over-reach: smaller federation,
+but the right people, and a culture that rewards careful posts.</li>
+<li><strong>Cadence.</strong> Mirror Bluesky at slightly lower volume;
+the audiences overlap but Mastodon skews philosophy / STS /
+accessibility.</li>
+</ul>
+<h3 id="x-twitter-the-researchers-bar">X / Twitter — the researchers’
+bar</h3>
+<ul>
+<li><strong>Handle / bio.</strong> <code>@machinespirits</code>. Bio: a
+≤160-char cut of the IDENTITY.md short bio — <em>Philosophy for machines
+that learn. Critique &amp; construction, in public.
+machinespirits.org</em>. Pinned: the Founding Sketch.</li>
+<li><strong>What to do.</strong> Re-thread the probe and essay
+announcements <strong>natively</strong> (re-author for X — pasting a
+Bluesky link gets buried). Link in a <strong>reply</strong>, not the
+lead post. The occasional anchored footnote. That’s it.</li>
+<li><strong>What not to do.</strong> No engagement-farming, no
+quote-dunking, no thread-bait, no arguing with anonymous accounts, no
+news-of-the-day commentary (the STRATEGY.md §7 rule, strictest here). If
+a week has nothing anchored, the correct number of X posts is
+<strong>zero</strong>.</li>
+<li><strong>The escape valve.</strong> If X degrades further — heavier
+link-downranking, policy or ownership changes that raise the
+reputational cost — the position drops back to pure mirror (or dark)
+<strong>without anything breaking</strong>, because Bluesky and Mastodon
+are already the home and the newsletter list is already the owned asset.
+This is deliberately a low-commitment beachhead.</li>
+</ul>
+<h3 id="linkedin-the-educators-channel">LinkedIn — the educators’
+channel</h3>
+<ul>
+<li><strong>Setup.</strong> A company page <strong>“Machine
+Spirits”</strong>; Liam posts from his personal profile, the page
+reshares. (Personal-profile reach &gt; company-page reach on LinkedIn;
+the page is for legitimacy and the “About.”)</li>
+<li><strong>What gets posted.</strong> Course-notes — the
+<strong>exercise as a document carousel</strong> (LinkedIn’s
+document-post format is the single highest-reach format there and it’s
+<em>exactly</em> right for a classroom handout); pedagogy essays; the
+video (native); practitioner notes (“here’s how the Ego/Superego tutor
+handled X in 590 this week”). Lead with the
+<strong>Monday-usable</strong> thing — this audience wants “what do I do
+in class,” not the allusive opener that works on Bluesky.</li>
+<li><strong>Mechanics / reach.</strong> Tag co-authors and institutions.
+Post Tue–Thu mornings US. Share course-notes into instructional-design /
+AI-in-education / SoTL groups — <em>sparingly</em>, not as a broadcast.
+CC-license the handouts and say so in the post (“reuse it”).</li>
+<li><strong>Don’t.</strong> The “broetry” style (one-line paragraphs,
+“Agree? 👇”); engagement pods; humble-brag founder posts (IDENTITY.md
+“no founder-personality theatre”).</li>
+</ul>
+<h3 id="substack-the-newsletter-home">Substack — the newsletter
+home</h3>
+<ul>
+<li><strong>Setup.</strong> <code>machinespirits.substack.com</code> to
+start (Substack’s recommendation network and discovery are worth the
+lock-in early); self-host at <code>machinespirits.org/newsletter</code>
+later if/when it’s worth owning the pipe (STRATEGY.md notes both
+options). About page = the manifesto + the IDENTITY.md long bio. Issue
+#01 = the Founding Sketch (STRATEGY.md §3).</li>
+<li><strong>Substack Notes.</strong> A low-effort feed-like surface that
+drives subscriptions — treat it as a quieter Bluesky: footnotes, essay
+teasers, the occasional probe link. Don’t duplicate everything; pick the
+items worth the Substack audience’s attention.</li>
+<li><strong>Recommendation network.</strong> Get cross-recommended by
+adjacent newsletters (philosophy of technology, AI-and-society, ed-tech,
+critical AI). This is the highest-leverage Substack growth lever and
+it’s relationship work, not posting work.</li>
+<li><strong>CTA discipline.</strong> Every issue ends with the open
+question (STRATEGY.md §8); every social teaser links the
+<strong>Substack issue</strong>, not the site homepage — give people the
+one obvious next action (subscribe).</li>
+</ul>
+<h3 id="youtube-the-demo-lecture-shelf">YouTube — the demo / lecture
+shelf</h3>
+<ul>
+<li><strong>Setup.</strong> <code>@machinespirits</code>. Channel art:
+the logo + fauna-overlay banner. Sections: “Tutor demos,” “Reading-room
+sessions,” “Talks,” “Shorts.”</li>
+<li><strong>Content.</strong> The 2-min “What AI Forgets” reading over a
+slow pan across the fauna backdrop (STRATEGY.md §3); short tutor-demo
+clips showing the Ego/Superego split-pane; monthly reading-room session
+recordings; conference-talk recordings. The 90–180-second “video”
+surface from the production unit ships as a <strong>Short</strong>
+<em>and</em> as a native-video cross-post to Bluesky / Mastodon / X /
+LinkedIn (don’t just link YouTube there).</li>
+<li><strong>Framing.</strong> The channel is a <strong>shelf, not a
+discovery engine</strong> — people arrive from the newsletter and the
+site, not from YouTube search. Title for “what is this and why would I
+watch it,” not for SEO games. No clickbait thumbnails, no “you won’t
+believe.”</li>
+<li><strong>Cadence.</strong> Biweekly Short + monthly long (STRATEGY.md
+§6).</li>
+</ul>
+<h3 id="lesswrong-alignment-forum-the-alignment-surface">LessWrong /
+Alignment Forum — the alignment surface</h3>
+<ul>
+<li><strong>Role.</strong> Not a “social” channel — it’s where a probe
+that <em>genuinely</em> speaks to an alignment question gets
+cross-posted as a <strong>full post</strong> (not a link-post),
+discussion left open. The “Recognition, Not Just Alignment” essay
+(newsletter #06) is the archetype: deliberately positioned inside the
+alignment conversation.</li>
+<li><strong>Voice.</strong> This audience engages substantively and will
+push back — be ready to <strong>defend the argument in the
+comments</strong>. This is the <em>one</em> place where
+arguing-in-comments is on-mission (everywhere else, STRATEGY.md §7’s “do
+not argue with strangers” holds).</li>
+<li><strong>Discipline.</strong> Cadence 1–2/month, only when earned.
+Post the full write-up, not a teaser. Don’t treat it as a megaphone —
+cross-posting things that don’t earn it burns the standing fast.</li>
+</ul>
+<h3 id="threads-bookwyrm-staked-dormant">Threads / BookWyrm — staked,
+dormant</h3>
+<ul>
+<li><strong>Threads</strong> <code>@machinespirits</code>: stake it, set
+the bio, pin the Founding Sketch, and either bridge it from Bluesky (the
+AT-proto ↔︎ Threads bridges are maturing) or leave it dark. <strong>Zero
+native effort</strong> until there’s a reason.</li>
+<li><strong>BookWyrm</strong> <code>@machinespirits</code>: stake it.
+Activates only when the reading-room ships publicly (STRATEGY.md §5) —
+then it becomes the reading-log / “reading X with a chatbot” surface,
+federated into the Fediverse. Until then: staked and empty, which is
+fine.</li>
+</ul>
+<hr />
+<h2 id="post-templates">4. Post templates</h2>
+<p>Reusable shapes. Each obeys IDENTITY.md voice: dated, anchored,
+show-before-thesis, machines quoted like sources, no hype/doom, no
+founder-theatre. The <code>[…]</code> slots get filled per artifact.</p>
+<p><strong>Probe announcement</strong> (Bluesky / X / Mastodon
+thread):</p>
+<pre><code>1/ [The finding, concrete, in one line.] We ran [probe NN]: [what it measures].
+   [The result in plain words.] 🧵
+
+2/ Why it matters: [the philosophical hook — one sentence, name the figure
+   (recognition / temporality / the nonconscious / charismatic authority)].
+
+3/ Method, briefly: [what the tutor or eval actually did].
+
+4/ [The figure — as an image, with full alt-text.]
+
+5/ Full write-up + data → machinespirits.org/lab/probes/probe-NN-slug · [date]
+   (link also in the reply ↓)</code></pre>
+<p><strong>Footnote of the day</strong> (Bluesky / Mastodon / X):</p>
+<pre><code>Footnote — [date]
+&quot;[≤15-word quote]&quot; — [Author], [Work] ([year])
+[Two lines: what the passage is doing; why it&#39;s on our mind today.] [one anchor]</code></pre>
+<p><strong>Essay teaser</strong> (Bluesky / X / Mastodon, → link in
+reply):</p>
+<pre><code>New essay — &quot;[Two-author title, per IDENTITY.md voice rule 2]&quot; — [date]
+[The argument in one sentence.]
+Anchored to: [the probe / transcript it stands on, named].
+🧵 the spine ↓   ·   read it: [Substack link, in the reply]
+
+  2/ [first move of the argument]
+  3/ [second move]
+  4/ [the open question it ends on]</code></pre>
+<p><strong>Course-note</strong> (LinkedIn, with a document
+carousel):</p>
+<pre><code>[The classroom problem, one line — the thing this fixes.]
+Here&#39;s a ~20-minute exercise I use in [course]: [one-line description].
+[3–4 lines: how it runs · what students do · what it surfaces.]
+Full note + the handout (CC-licensed, reuse it): [link]
+[carousel: the exercise steps as a document, one step per slide]</code></pre>
+<p><strong>“Reading [X] with a chatbot” dispatch</strong> (Bluesky /
+Mastodon / site):</p>
+<pre><code>Reading [Author]&#39;s [Work] with the tutor — [date]
+[One passage. One thing the machine saw — or missed.]
+&quot;[≤15-word quote from the transcript]&quot; — [model], [date]
+Dispatch + full transcript → [link]</code></pre>
+<p><strong>The reply</strong> (the “one-way reply guy,” under a
+researcher’s or educator’s thread):</p>
+<pre><code>[A generative citation or rephrasing — &quot;this rhymes with [X]&#39;s argument
+that …&quot; / &quot;there&#39;s a Hegelian version of this: …&quot; / &quot;cf. [paper]&quot;].
+[Link to a relevant probe/essay ONLY if it genuinely adds — never a drive-by.]</code></pre>
+<p><em>Rule:</em> a reply adds a citation or a reframe. It never argues,
+never corrects-as-dunk, never “well, actually.” Nothing generative to
+add → don’t reply. (The LW/AF exception in §3 stands.)</p>
+<hr />
+<h2 id="the-30-day-social-launch-sequence">5. The 30-day social launch
+sequence</h2>
+<p>This is the <strong>social slice</strong> of STRATEGY.md §9’s
+first-30-day punch list, expanded into per-platform actions. Assumes ~8
+h/week total; the social part is ~4–5 h/week of it.</p>
+<p><strong>Week 0 — setup</strong> - [ ] Confirm/claim every handle in
+the IDENTITY.md table. <strong>Decide the Mastodon instance</strong>
+(recommended: hci.social) and the Substack-vs-self-host start
+(recommended: Substack first). - [ ] Set bios everywhere from
+IDENTITY.md “Bio one-liners”: Bluesky (≤256), X (≤160 cut), Mastodon
+(long + metadata fields), LinkedIn (long), Substack about (manifesto
+link). Date nothing in a bio; date everything in posts. - [ ] Profile
+image = the logo; banner = a fauna-overlay crop (IDENTITY.md visual
+policy — no robots/brains/networks/“futuristic”). - [ ] Pin the Founding
+Sketch wherever pinnable (Bluesky, X, Mastodon, Substack about). - [ ]
+Bluesky: get on 3–5 starter packs; follow ~50 seed accounts across the
+four audiences. - [ ] LinkedIn: create the company page; connect it to
+Liam’s profile.</p>
+<p><strong>Weeks 1–2 — presence</strong> - [ ] Bluesky + Mastodon:
+<strong>one substantive thread per day for 14 days</strong> (STRATEGY.md
+§9), each one a footnote-of-the-day or a mini-probe seeded from existing
+drafts in <code>machinespirits-content-philosophy/articles/</code>, each
+carrying one anchor, each dated. - [ ] X: <strong>2 anchored
+posts/week</strong> — a footnote and a manifesto teaser. No more.
+Re-author for X; don’t paste. - [ ] LinkedIn: 1 post — the manifesto,
+framed for educators (“a philosopher built an LMS — here’s why”). - [ ]
+When the <strong>first probe</strong> ships (STRATEGY.md §9, week 2):
+run the probe-announcement template across Bluesky / X / Mastodon;
+cross-post to LW/AF <em>only</em> if it touches alignment.</p>
+<p><strong>Weeks 3–4 — cadence</strong> - [ ] When the <strong>first
+course-note</strong> ships (STRATEGY.md §9, week 3): LinkedIn carousel +
+lighter Bluesky/Mastodon posts. - [ ] Issue <strong>#02</strong> (the
+recursion essay): essay-teaser template across the feeds; the teaser
+links the Substack issue, link in the reply. - [ ] The <strong>2-min
+“What AI Forgets” video</strong>: YouTube Short + native-video
+cross-post to Bluesky / Mastodon / X / LinkedIn. - [ ] Settle into
+steady state: Bluesky/Mastodon 3–5/wk · X 2–4/wk (anchored only) ·
+LinkedIn weekly · Substack biweekly · YouTube biweekly Short.
+Threads/BookWyrm: dormant.</p>
+<hr />
+<h2 id="what-to-measure-and-what-to-ignore">6. What to measure — and
+what to ignore</h2>
+<p>The numbers that count, one each, reviewed monthly:</p>
+<ul>
+<li><strong>Newsletter subscribers.</strong> The only audience number
+STRATEGY.md’s quarterly checkpoints commit to (1k by Q2 · 2.5k Q3 · 5k
+Q4). Everything social is upstream of this; if subs aren’t moving, the
+social layer isn’t doing its job <em>or</em> the artifacts aren’t.</li>
+<li><strong>Spine metrics</strong> (STRATEGY.md §1): probe citations by
+ML researchers; documented external classroom adoptions of a
+course-note. Social is two steps upstream of these — but they’re the
+real scoreboard.</li>
+<li><strong>In-audience engagement, qualitative</strong>: replies and
+DMs from <em>named</em> people in the four audiences. Are the right
+people noticing? A spreadsheet of “who engaged with what, this month”
+beats any dashboard.</li>
+<li><strong>Per-platform, the one useful number</strong>: “substantive
+replies from in-audience accounts / month” (Bluesky, X); “course-note
+saves + shares / month” (LinkedIn). Not followers.</li>
+</ul>
+<p>Ignore: follower counts as a <em>goal</em>, likes, “impressions,”
+viral-thread chasing, trending-topic participation, streak-keeping for
+its own sake.</p>
+<p><strong>The monthly honest test:</strong> <em>did at least one
+artifact reach a named ML researcher or a named educator who then
+engaged with it?</em> Two months running of “yes” → the social layer
+works; leave it alone. A run of “no” → the problem is the artifacts (or
+the targeting), not the posting cadence — fix upstream, don’t post
+more.</p>
+<hr />
+<h2 id="risks-specific-to-operating-in-feeds">7. Risks specific to
+operating in feeds</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Counter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>The cadence tail wags the dog</strong> — daily posting
+becomes the goal; the probes/notes/essays the posts exist to carry
+slip.</td>
+<td>No post without an anchor. Nothing to anchor to today → zero posts
+today is correct. The artifact pipeline is the constraint, not the
+feed.</td>
+</tr>
+<tr>
+<td><strong>X drift</strong> — engaging there pulls the voice toward
+dunking; or platform politics make association costly.</td>
+<td>X is tier-2, native-but-pure-anchored, by design; degrades
+gracefully to mirror-only or dark; the home is already elsewhere.</td>
+</tr>
+<tr>
+<td><strong>Platform death / capture</strong> — any one platform (X
+especially; also a Mastodon instance; also Substack) degrades or
+vanishes.</td>
+<td>The newsletter list is the only audience asset the platform owns.
+Everything funnels there. Never let a platform-native following be
+<em>the</em> thing.</td>
+</tr>
+<tr>
+<td><strong>Reply-guy reputation</strong> — showing up under
+researchers’ threads, done wrong, reads as self-promo.</td>
+<td>The §4 reply rule: adds a citation or a reframe; never argues; never
+drive-by links; in doubt, don’t reply.</td>
+</tr>
+<tr>
+<td><strong>Missing the Mastodon room</strong> — over- or under-using
+content warnings, wrong register.</td>
+<td>Lurk first; mirror the instance’s norms; ask a mod when unsure.</td>
+</tr>
+<tr>
+<td><strong>Accessibility lapse</strong> — images without alt-text,
+contradicting the reading-room ethos.</td>
+<td>Alt-text on every image, every platform, every time. It’s part of
+“cite generously.”</td>
+</tr>
+<tr>
+<td><strong>Founder-theatre creep</strong> — the personal account drifts
+into persona-posting.</td>
+<td>IDENTITY.md “what to refuse.” The work is the work. The page is for
+the project; Liam’s account amplifies the project, not Liam.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>This document is the operational layer under STRATEGY.md §4/§6/§7
+and IDENTITY.md. Revised when a platform’s role changes; the §0 X
+promotion should be ratified into STRATEGY.md §6 at the next quarterly
+revision. Version history is in git.</em></p>
+</body>
+</html>

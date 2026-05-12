@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Website Refactor — machinespirits.org for General Release</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Website Refactor — machinespirits.org for General
+Release</h1>
+</header>
+<h1 id="website-refactor-machinespirits.org-for-general-release">Website
+Refactor — machinespirits.org for General Release</h1>
+<p>Status: working draft, 2026-05-11. Companion to <a
+href="./STRATEGY.md"><code>STRATEGY.md</code></a> and <a
+href="./IDENTITY.md"><code>IDENTITY.md</code></a>. A functional mockup
+of the target state lives at <a
+href="./site-mockup.html"><code>site-mockup.html</code></a> — open it in
+a browser.</p>
+<p>This is the punch list for turning the current site (an open-source
+LMS with a research blog bolted on) into the site STRATEGY.md describes:
+<strong>a research-program home — writing first, the lab second, the
+courseware kept live but off the main path, the rest of the LMS demoted
+to a tools page.</strong> Same checkbox conventions as the STRATEGY
+30-day list.</p>
+<p>Repos in scope: - <code>../machinespirits-website</code> — React 19 +
+TS + Vite + Tailwind 4 SPA, Express + better-sqlite3 backend, Fly.io
+deploy. Entry: <code>App.tsx</code> (a ~55 KB <code>switch</code> over
+<code>home|courses|dashboard|eval|instructor|kb|research-lab|docs|chat|...</code>).
+- <code>../machinespirits-content-philosophy</code> — Pandoc/citeproc
+content package (<code>@machinespirits/content-philosophy</code>),
+consumed by the website as an npm dep, served at
+<code>/content/*</code>. Has <code>articles/</code>,
+<code>courses/</code>, <code>artifacts/</code>, <code>assets/</code>,
+<code>theme/</code>, <code>config/navigation.yaml</code>, and the
+<code>build</code>/<code>serve</code>/<code>publish</code>/<code>urls</code>/<code>sitemap</code>/<code>artifacts-index</code>
+scripts.</p>
+<hr />
+<h2 id="the-one-decision-that-gates-everything-else">0. The one decision
+that gates everything else</h2>
+<p><strong>Keep the React SPA and bolt on a real router, or split into a
+static public site + a separate <code>/app/*</code> React
+app?</strong></p>
+<ul>
+<li><strong>Option A — one app, real router.</strong> Add
+<code>react-router</code> (or similar), give every public page a real
+URL, lazy-load the LMS chunks behind <code>/app/*</code>. Least churn;
+ships fastest. Risk: the public site still loads (a slimmed) React
+bundle, still inherits the LMS’s auth/context stack, and “simplify”
+stays partly cosmetic.</li>
+<li><strong>Option B — split.</strong> Public site (<code>/</code>,
+<code>/manifesto</code>, <code>/essays/*</code>, <code>/lab/*</code>,
+<code>/reading-room/*</code>, <code>/courses/*</code> read-only) becomes
+static or near-static (Astro / Eleventy / a thin Vite build) consuming
+the content package directly. The LMS (dashboards, eval, instructor, KB,
+experiment lab, dialogue sim, etc.) moves wholesale to
+<code>app.machinespirits.org</code> or
+<code>machinespirits.org/app/*</code>, untouched. Most work up front;
+gives the cleanest “haunted, not promotional” public surface and the
+cleanest separation for “locked off the main path.”</li>
+</ul>
+<p><strong>Recommendation: B, phased.</strong> Phase 1 = ship the public
+site as a small static build at the apex domain and reverse-proxy
+<code>/app/*</code> (and <code>/api/*</code>) to the existing
+Express+React app unchanged — i.e. <em>don’t refactor the LMS at all
+yet, just move it behind a path</em>. Phase 2+ = iterate on the public
+site. This lets “general release” mean “the public face is right,” not
+“we rewrote the LMS.” If the team would rather not run two deploys, fall
+back to A — the workstreams below are written to apply either way; items
+that only matter for one option are tagged <strong>[A]</strong> or
+<strong>[B]</strong>.</p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>0.1</strong> — Decide A vs
+B. Write the decision + rationale into <code>STRATEGY.md</code> §1 (it’s
+a “spine” decision: it determines what “Software = Evidence” looks like
+in public).</label></li>
+<li><label><input type="checkbox" /><strong>0.2</strong> — If B:
+register/point <code>app.machinespirits.org</code> (or settle on
+<code>/app/*</code> path-proxy), and confirm Fly.io can host the static
+site + proxy, or move the static site to Cloudflare Pages / Netlify with
+a proxy rule.</label></li>
+<li><label><input type="checkbox" /><strong>0.3</strong> — Lock the
+public URL scheme now, before building anything, from IDENTITY.md “URL
+&amp; naming conventions” (see §A).</label></li>
+</ul>
+<hr />
+<h2 id="a.-information-architecture-url-scheme">A. Information
+architecture &amp; URL scheme</h2>
+<p>The target: real, stable, lowercase-hyphenated URLs; no hash routing
+on the public side; old links redirect.</p>
+<p>Target public routes (from IDENTITY.md):</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Path</th>
+<th>What</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/</code></td>
+<td>Homepage — research-program hero, “one idea / four surfaces” latest,
+recent essays, from-the-lab, courses strip, subscribe</td>
+</tr>
+<tr>
+<td><code>/manifesto</code></td>
+<td>The Founding Sketch (publish <code>MANIFESTO.md</code>)</td>
+</tr>
+<tr>
+<td><code>/essays</code></td>
+<td>Essay index (reverse-chron, filter by theme)</td>
+</tr>
+<tr>
+<td><code>/essays/YYYY-MM-DD-slug</code></td>
+<td>Essay</td>
+</tr>
+<tr>
+<td><code>/lab</code></td>
+<td>Lab landing — what the lab is, links to probes / demos / reading
+room</td>
+</tr>
+<tr>
+<td><code>/lab/probes</code></td>
+<td>Probe index</td>
+</tr>
+<tr>
+<td><code>/lab/probes/probe-NN-slug</code></td>
+<td>A probe (≤500 words + one figure)</td>
+</tr>
+<tr>
+<td><code>/lab/demos</code></td>
+<td>Demo index</td>
+</tr>
+<tr>
+<td><code>/lab/demos/tutor</code></td>
+<td><strong>Public, no-login tutor demo</strong> with the Ego/Superego
+split visible (the headline software artifact)</td>
+</tr>
+<tr>
+<td><code>/reading-room</code></td>
+<td>Reading-room index</td>
+</tr>
+<tr>
+<td><code>/reading-room/YYYY-MM-DD-author-title</code></td>
+<td>A reading-room entry</td>
+</tr>
+<tr>
+<td><code>/videos</code></td>
+<td>Video index (if/when videos exist)</td>
+</tr>
+<tr>
+<td><code>/videos/YYYY-MM-DD-slug</code></td>
+<td>A video</td>
+</tr>
+<tr>
+<td><code>/courses</code></td>
+<td>Courses landing — de-emphasized, “teaching home” framing, public
+syllabi</td>
+</tr>
+<tr>
+<td><code>/courses/&lt;id&gt;</code></td>
+<td>A course (public view: syllabus, schedule, public materials;
+enrol/dashboard link goes to <code>/app</code>)</td>
+</tr>
+<tr>
+<td><code>/newsletter</code></td>
+<td>Subscribe + archive of issues</td>
+</tr>
+<tr>
+<td><code>/about</code></td>
+<td>Who/what/why; bio; institutional affiliation; how to cite;
+contact</td>
+</tr>
+<tr>
+<td><code>/colophon</code></td>
+<td>Stack, fonts, fauna, licensing, credits</td>
+</tr>
+<tr>
+<td><code>/tools</code></td>
+<td>The locked-off software: one honest page listing the LMS pieces
+(Student/Instructor dashboards, Evaluation Dashboard, Learning Map,
+Knowledge Base, Experiment Lab, Dialogue Simulator, Babel Maze,
+NightOwl, Focus Reader…), each with a one-line “what it is” and a link
+into <code>/app</code> (login-gated)</td>
+</tr>
+<tr>
+<td><code>/app/*</code></td>
+<td>The existing LMS SPA, unchanged, behind login — <strong>[B]</strong>
+or <code>/app</code> route prefix <strong>[A]</strong></td>
+</tr>
+<tr>
+<td><code>/feed.xml</code>, <code>/essays/feed.xml</code>,
+<code>/lab/probes/feed.xml</code></td>
+<td>RSS</td>
+</tr>
+<tr>
+<td><code>/sitemap.xml</code>, <code>/robots.txt</code></td>
+<td>SEO basics</td>
+</tr>
+</tbody>
+</table>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>A.1</strong> — Write the
+route table above into the website repo (a <code>ROUTES.md</code> or the
+README) as the source of truth.</label></li>
+<li><label><input type="checkbox" /><strong>A.2</strong> — Choose the
+routing mechanism per §0 (real router <strong>[A]</strong> / static-site
+routing <strong>[B]</strong>). Public side must use real paths, not
+<code>#/...</code>.</label></li>
+<li><label><input type="checkbox" /><strong>A.3</strong> — Build a
+redirect map from every current hash route + legacy path to its new
+home, e.g. <code>#/courses → /courses</code>,
+<code>#/research → /lab</code>, <code>#/kb → /tools</code> (KB is LMS,
+not public lab), <code>#/dashboard → /app</code>,
+<code>#/docs → /about</code> or <code>/colophon</code>,
+<code>/reading</code>, <code>/reading/* → /reading-room/*</code>,
+<code>/games/warpstrike → /lab/demos/warpstrike</code> or retire it.
+Implement as server redirects (301) + a tiny client-side
+<code>#/...</code>→path shim for bookmarked hash links.</label></li>
+<li><label><input type="checkbox" /><strong>A.4</strong> — Decide the
+fate of <code>archive-structure.json</code> (current IA descriptor in
+the website root): regenerate it to match the new IA, or retire it if
+the new build doesn’t need it.</label></li>
+<li><label><input type="checkbox" /><strong>A.5</strong> — Reconcile
+with <code>content-philosophy/config/navigation.yaml</code> — it
+currently hard-codes <code>#/courses</code>, <code>#/research</code>,
+<code>#/kb</code>, <code>#/dashboard</code>. Rewrite it to the new
+public nav (see §B), real paths, no hashes. This is a <em>content
+contract</em> change — bump the content package version.</label></li>
+</ul>
+<hr />
+<h2 id="b.-homepage-top-level-navigation">B. Homepage &amp; top-level
+navigation</h2>
+<p><strong>Kill the LMS-dashboard framing.</strong> The homepage today
+reads like a product. It should read like the front page of a research
+program.</p>
+<p>Target nav (4 items + 1 action) — minimal, per STRATEGY
+“simplify”:</p>
+<blockquote>
+<p><strong>Essays · Lab · Courses · About</strong> …………………
+<strong>Subscribe</strong></p>
+</blockquote>
+<p>(No “Dashboard”, no “Knowledge Base”, no “Docs”, no “Research Lab”
+<em>and</em> “Research Dashboard” <em>and</em> “Experiment Lab” in the
+nav — those collapse: the public-facing experimental work is
+<code>/lab</code>; everything else is <code>/app</code> reached via
+<code>/tools</code> or the footer.)</p>
+<p>Target homepage modules, top to bottom: 1. <strong>Hero</strong> —
+wordmark/sigil + tagline (“Philosophy for machines that learn.” — or
+whichever IDENTITY.md tagline wins) + a 2–3 sentence thesis (what the
+program claims, in plain words) + two CTAs: <strong>Read the
+manifesto</strong> / <strong>Try the tutor</strong>. 2. <strong>Latest
+idea, four surfaces</strong> — the current headline idea shown once,
+with its probe / course-note / essay / video renderings linked
+(whichever exist). This is the “one idea, four surfaces” pattern made
+visible. 3. <strong>Recent essays</strong> — 3–4 cards, reverse-chron,
+from the content package. 4. <strong>From the lab</strong> — the
+tutor-demo card (prominent: “a tutor that shows its work — Ego proposes,
+Superego checks”) + the most recent 2–3 probes as a compact list. 5.
+<strong>Teaching</strong> — a quiet strip, not a section: “Machine
+Spirits is also the home for courses at UIUC — [browse courses]”.
+De-emphasized on purpose (STRATEGY: teaching is evidence + institutional
+home, not the lead). 6. <strong>Subscribe</strong> — newsletter signup,
+one line of “what you’ll get / how often”. 7. <strong>Footer</strong> —
+About · Manifesto · Colophon · <strong>Also from Machine
+Spirits</strong> (→ <code>/tools</code>) · social handles · “© / CC
+license / built with…”.</p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>B.1</strong> — Replace the
+homepage component with the module list above. Remove the LMS-y hero
+(course tiles / “continue learning” / dashboard CTAs) from the public
+home.</label></li>
+<li><label><input type="checkbox" /><strong>B.2</strong> — Rewrite the
+top nav to <strong>Essays · Lab · Courses · About</strong> +
+<strong>Subscribe</strong>. Remove Dashboard/KB/Docs/Research-Lab from
+the public nav. Mobile nav: same, in a sheet.</label></li>
+<li><label><input type="checkbox" /><strong>B.3</strong> — Write the
+hero thesis copy (2–3 sentences) and the tagline choice — pull from
+IDENTITY.md, get Liam’s sign-off.</label></li>
+<li><label><input type="checkbox" /><strong>B.4</strong> — Build the
+“latest idea / four surfaces” module as a small data-driven block (reads
+from a <code>featured</code> field in the content package or a
+hand-maintained <code>featured.yaml</code>).</label></li>
+<li><label><input type="checkbox" /><strong>B.5</strong> — Update
+<code>&lt;title&gt;</code>, meta description, OG/Twitter card image for
+the homepage (see §J).</label></li>
+<li><label><input type="checkbox" /><strong>B.6</strong> — Remove
+<code>App.tsx</code>’s <code>case 'home'</code> LMS dashboard branch
+from the public path; the dashboard lives at <code>/app</code>
+only.</label></li>
+</ul>
+<hr />
+<h2 id="c.-the-writing-layer-manifesto-essays-newsletter">C. The writing
+layer — manifesto, essays, newsletter</h2>
+<p>This is the load-bearing public surface. It should feel like a
+journal, not a CMS.</p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>C.1</strong> — Publish
+<code>MANIFESTO.md</code> at <code>/manifesto</code> as a first-class
+page (its own template: generous measure, no sidebar clutter, a “this is
+a working document, revised in git” note linking the repo).</label></li>
+<li><label><input type="checkbox" /><strong>C.2</strong> —
+<code>/essays</code> index: reverse-chron list, each entry = title,
+date, 1-line dek, theme tag(s), reading time. Filter by theme
+(recognition / nonconscious cognition / charisma / time / pedagogy …).
+Pull from <code>content-philosophy/articles/*</code> (the ones meant to
+be public — see C.6).</label></li>
+<li><label><input type="checkbox" /><strong>C.3</strong> — Essay
+template: serif body, real measure (~65–75ch), footnotes/citations
+rendered properly (citeproc output already exists), a “cite this” block,
+prev/next, related-by-theme. Keep
+<code>ArticleReader.tsx</code>/<code>TechneMarkdown.tsx</code> if
+they’re good; strip anything LMS-coupled (progress tracking, “mark
+complete”, enrolment gates) from the public reader.</label></li>
+<li><label><input type="checkbox" /><strong>C.4</strong> —
+<code>/newsletter</code> page: embed the actual signup (Substack /
+Buttondown / whatever the strategy lands on) + an archive list of
+issues. Wire the Subscribe nav button here.</label></li>
+<li><label><input type="checkbox" /><strong>C.5</strong> — Decide the
+essay ↔︎ newsletter relationship in the IA (does an essay get a
+<code>/newsletter/NN</code> mirror? probably not — link from issue to
+essay, keep one canonical URL each).</label></li>
+<li><label><input type="checkbox" /><strong>C.6</strong> — Triage
+<code>content-philosophy/articles/</code>: which subfolders are
+<em>public essays</em> vs <em>internal/teaching notes</em> vs
+<em>drafts</em>? Current dirs include <code>ai-pedagogy/</code>,
+<code>ai-tutor/</code>, <code>dictatorship/</code>,
+<code>dissertations-critique/</code>, <code>hegel-essays/</code>,
+<code>hegel-primary-texts/</code>, <code>lms-docs/</code>,
+<code>markdown-citations/</code>, <code>publications/</code>,
+<code>stochastic-society/</code>, <code>vibe-scholarship/</code>,
+<code>web-design-ai/</code>, <code>_drafts/</code>,
+<code>.nightowl-backups/</code>. Sort each into: <strong>publish as
+essay</strong>, <strong>publish elsewhere</strong>
+(e.g. <code>hegel-primary-texts</code> → reading-room source texts;
+<code>lms-docs</code> → <code>/tools</code> or <code>/colophon</code>;
+<code>markdown-citations</code> → internal), or <strong>keep in
+<code>_drafts/</code></strong> (the existing “hidden = file location”
+convention). <code>.nightowl-backups/</code> should be
+<code>.gitignore</code>d, not shipped.</label></li>
+<li><label><input type="checkbox" /><strong>C.7</strong> — Per-essay
+frontmatter audit: every public essay needs <code>title</code>,
+<code>date</code> (→ <code>YYYY-MM-DD</code> slug prefix),
+<code>slug</code>, <code>theme</code>/<code>tags</code>,
+<code>dek</code>/<code>summary</code>, <code>status</code>. Add a
+<code>urls</code> script check that fails the build if a public article
+is missing these.</label></li>
+</ul>
+<hr />
+<h2 id="d.-the-lab-layer-probes-the-tutor-demo-the-reading-room">D. The
+lab layer — probes, the tutor demo, the reading room</h2>
+<p>STRATEGY: construction now narrows to <strong>two software artifacts
+in active dev</strong> — the public tutor demo and the recognition-probe
+suite. The lab is where those live publicly. Everything else
+software-wise is maintenance mode → that’s the “locked off” set
+(§F).</p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>D.1</strong> —
+<code>/lab</code> landing: a short statement of what the lab is (working
+experiments, not products), then three columns/sections —
+<strong>Probes</strong>, <strong>Demos</strong>, <strong>Reading
+room</strong>.</label></li>
+<li><label><input type="checkbox" /><strong>D.2</strong> —
+<code>/lab/probes</code> index + <code>/lab/probes/probe-NN-slug</code>
+detail. <strong>This requires a new <code>probes</code> content type in
+<code>content-philosophy</code></strong> — see §H. Probe template: ≤500
+words, exactly one figure/chart, mono or mono-accented type, a “method”
+disclosure (<code>&lt;details&gt;</code>), a “discuss/cite” line, link
+to the essay or course-note that expands it.</label></li>
+<li><label><input type="checkbox" /><strong>D.3</strong> —
+<code>/lab/demos/tutor</code> — the headline artifact. A <strong>public,
+no-login</strong> tutor demo with the <strong>Ego/Superego (or
+“proposer/checker”) split-pane visible</strong>: left = the tutor’s
+draft reply, right = the critique/revision pass, then the final answer.
+Today this lives behind the LMS chat (<code>case 'chat'</code>,
+<code>/api/chat</code>, <code>/api/socratic</code>). Extract a
+standalone demo: a small page that hits a rate-limited public endpoint,
+ships a couple of canned conversation starters, and <em>shows the
+internal turn</em> (that visible self-checking is the whole point — it’s
+the “recognition” claim made tangible). Add a clear “this is a demo; the
+full tutor lives inside courses” note linking <code>/courses</code> /
+<code>/app</code>.</label></li>
+<li><label><input type="checkbox" /><strong>D.4</strong> —
+<code>/lab/demos</code> index (tutor +
+warpstrike/<code>/games/warpstrike</code> if it’s kept, + the
+content-philosophy <code>artifacts/*</code> interactive pieces like
+<code>hegel-recognition-explorer.html</code>,
+<code>design-audit-playground.html</code> — decide which of those
+graduate to “demo” vs get retired). Wire
+<code>content-philosophy/artifacts-index</code> output into this
+page.</label></li>
+<li><label><input type="checkbox" /><strong>D.5</strong> —
+<code>/reading-room</code> — the existing “reading” feature
+(<code>app.get('/reading')</code>, <code>/reading/*</code>,
+<code>public/texts/*.pdf</code>). Rename routes to
+<code>/reading-room/*</code>, give it the IDENTITY.md URL form
+(<code>/reading-room/YYYY-MM-DD-author-title</code>), and keep it as a
+curated “what we’re reading + notes” surface. <strong>Note:</strong>
+<code>public/texts/</code> holds ~100 MB of arXiv PDFs — host those on
+the CDN / object storage, not in the repo (see §I).</label></li>
+<li><label><input type="checkbox" /><strong>D.6</strong> — Strip LMS
+coupling from all lab pages (no enrolment, no progress, no auth wall) —
+the lab is fully public.</label></li>
+<li><label><input type="checkbox" /><strong>D.7</strong> — Demote the
+LMS-flavoured “lab” components from the public bundle:
+<code>ExperimentLab.tsx</code>, <code>ResearchDashboard.tsx</code>,
+<code>ResearchLabModal.tsx</code> belong to <code>/app</code>, not
+<code>/lab</code>. <code>/lab</code> is content + the tutor demo, not a
+dashboard.</label></li>
+</ul>
+<hr />
+<h2 id="e.-the-teaching-layer-courses-kept-but-quiet">E. The teaching
+layer — courses, kept but quiet</h2>
+<p>STRATEGY: teaching is <em>evidence + the institutional home</em> —
+real, cited, but not the lead. Public side shows syllabi and public
+materials; the actual LMS (enrolment, gradebook, dashboards) is
+<code>/app</code>.</p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>E.1</strong> —
+<code>/courses</code> landing: “Machine Spirits is the teaching home for
+[these UIUC courses]” — list with code, title, term, one-line
+description, thumbnail. De-emphasized styling (no big hero, no “enrol
+now” energy).</label></li>
+<li><label><input type="checkbox" /><strong>E.2</strong> —
+<code>/courses/&lt;id&gt;</code> public view: syllabus, schedule,
+reading list, public lecture notes / slides / podcast episodes —
+read-only. A single quiet “enrolled? go to your dashboard” link to
+<code>/app</code>. No public gradebook, no public roster.</label></li>
+<li><label><input type="checkbox" /><strong>E.3</strong> — Keep
+<code>CourseBrowser.tsx</code> / <code>CourseDetailPage.tsx</code> if
+they can render a clean public read-only view; otherwise build a thin
+public course template and leave the rich version inside
+<code>/app</code>.</label></li>
+<li><label><input type="checkbox" /><strong>E.4</strong> — Surface
+<strong>course-notes</strong> as a public artifact type (STRATEGY:
+course-note = ≤800 words + a prompt + an exercise; one of the two
+load-bearing surfaces). Decide: do course-notes live under
+<code>/courses/&lt;id&gt;/notes/...</code>, or in <code>/essays</code>
+with a <code>type: course-note</code>, or their own <code>/notes</code>
+index? Recommend: their own lightweight index <code>/notes</code>
+cross-linked from both essays and courses, since they’re meant to travel
+(LinkedIn educator networks etc.).</label></li>
+<li><label><input type="checkbox" /><strong>E.5</strong> —
+<code>content-philosophy/courses/</code> triage: <code>479</code>,
+<code>480</code>, <code>490</code>, <code>490-spring-2026</code>,
+<code>590</code>, <code>dissertation</code>, <code>socsci_and_ai</code>,
+<code>test</code> — which are public, which are archived, which is
+<code>test</code> (delete). Mark each course’s public/private materials
+in its manifest.</label></li>
+</ul>
+<hr />
+<h2 id="f.-lock-off-the-software-live-but-off-the-main-path">F. Lock off
+the software (“live but off the main path”)</h2>
+<p>The brief: the LMS pieces <em>stay live</em> — nothing is deleted —
+but they leave the public navigation and live behind login and/or a
+single honest <code>/tools</code> page. Concretely, this set:</p>
+<p>Student Dashboard · Instructor Dashboard · Evaluation Dashboard ·
+Learning Map · Knowledge Base · Experiment Lab · Research Dashboard ·
+Dialogue Simulator · Babel Maze · NightOwl · Focus Reader ·
+Activity/Rubric/Gradebook tooling · Announcements · Certificates ·
+Community/Journal · Docs browser · Mobile chat/eval views.</p>
+<p>(Components on disk that map to these:
+<code>StudentDashboard.tsx</code>,
+<code>InstructorDashboard*.tsx</code>,
+<code>EvaluationDashboard.tsx</code>, <code>LearningMap.tsx</code>,
+<code>knowledge-base/</code>, <code>ExperimentLab.tsx</code>,
+<code>ResearchDashboard.tsx</code>, <code>eval/</code>,
+<code>DocsBrowser.tsx</code>, <code>ActivityTemplateManager.tsx</code>,
+<code>RubricEditor.tsx</code>/<code>RubricGrader.tsx</code>,
+<code>GradebookExport.tsx</code>, <code>RegradeRequestPanel.tsx</code>,
+<code>Certificate.tsx</code>, <code>community/</code>,
+<code>journal/</code>, <code>mobile/</code>, plus the
+<code>mobile-eval.html</code> / <code>mobile-chat.html</code> standalone
+pages. Babel Maze / NightOwl / Focus Reader are elsewhere in the
+multi-repo set / <code>techne-plugins</code> / <code>reading-app</code>
+— link out, don’t host.)</p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>F.1</strong> — Move all of
+the above behind <code>/app/*</code> (route prefix <strong>[A]</strong>
+/ separate app <strong>[B]</strong>) and <strong>require login</strong>
+to reach them. No deletion — these stay shipped.</label></li>
+<li><label><input type="checkbox" /><strong>F.2</strong> — Remove every
+one of them from the public top nav, footer “primary” links, homepage,
+and <code>navigation.yaml</code>.</label></li>
+<li><label><input type="checkbox" /><strong>F.3</strong> — Build
+<code>/tools</code> — one page, honest framing: “Machine Spirits also
+includes a full learning platform and a set of experimental tools.
+They’re live but not the focus of this site.” Then a list: each tool,
+one sentence, a link (to <code>/app/...</code> if it’s in-platform, or
+out to the relevant repo/app if it’s a sibling project). This is the
+<em>only</em> public entry point to the LMS besides a logged-in user’s
+bookmark.</label></li>
+<li><label><input type="checkbox" /><strong>F.4</strong> — Link
+<code>/tools</code> from the footer (“Also from Machine Spirits”) and
+from <code>/about</code> (“the platform behind the program”). Nowhere
+else.</label></li>
+<li><label><input type="checkbox" /><strong>F.5</strong> — Lazy-load /
+code-split the <code>/app</code> bundle so the public site doesn’t ship
+the LMS JS <strong>[A]</strong>. For <strong>[B]</strong> this is
+free.</label></li>
+<li><label><input type="checkbox" /><strong>F.6</strong> — Auth: a
+logged-out visitor hitting <code>/app/*</code> gets a clean “sign in to
+use the platform” page, not a 404 and not the public homepage. A
+logged-in visitor still lands on the public homepage by default —
+<code>/app</code> is opt-in.</label></li>
+<li><label><input type="checkbox" /><strong>F.7</strong> —
+<code>mobile-chat.html</code>, <code>mobile-eval.html</code>,
+<code>office-sim.html</code> — either fold into <code>/app</code> or
+retire (see §I); they shouldn’t be reachable from the public
+site.</label></li>
+</ul>
+<hr />
+<h2 id="g.-visual-redesign-haunted-not-promotional">G. Visual redesign —
+“haunted, not promotional”</h2>
+<p>From IDENTITY.md: darker, lower-chroma palette (a muted descendant of
+the current techne-red/orange, not the bright <code>#E63946</code>);
+serif body + sans headings; the fauna/spirit-creature overlay kept as a
+<em>signature motif, dialed down</em>; no robot/brain/network stock
+imagery. And from STRATEGY “simplify”: drop the maximalist skin.</p>
+<p>Things to remove: - The parallax grid /
+<code>GeometricBackground.tsx</code> / <code>parallax-skin.html</code> /
+“trash-polka” accent shapes — gone from the public site. -
+Glass-morphism panels / heavy blurs. - The toggle soup (multiple
+theme/skin/animation toggles) — one light/dark toggle, that’s it. -
+<code>animals.html</code>, <code>fauna-playground/</code>,
+<code>office-sim.html</code> as shipped pages — the fauna
+<em>system</em> stays (<code>fauna-overlay.js</code>), the playground
+doesn’t ship.</p>
+<p>Things to do: - [ ] <strong>G.1</strong> — New palette in
+<code>content-philosophy/theme/colors.yaml</code> + the website’s
+Tailwind config: dark-first, low-chroma. Suggested anchors (tune to
+taste): base ink <code>#15131A</code>, raised surface
+<code>#1E1B24</code>, hairline <code>#332E3A</code>, warm off-white text
+<code>#E8E2D9</code>, muted text <code>#A79E94</code>, accent (dusty
+rust/oxblood) <code>#B56A52</code>, accent-deep <code>#5E2A26</code>,
+accent-quiet link <code>#C98A6E</code>. Light theme: warm paper
+<code>#F4F0E8</code>, ink text <code>#1B1822</code>, same accents
+shifted darker for contrast. - [ ] <strong>G.2</strong> — Typography in
+<code>content-philosophy/theme/fonts.yaml</code>: serif body stack
+(<code>"Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif</code>),
+sans headings
+(<code>system-ui, -apple-system, "Segoe UI", Roboto, sans-serif</code>),
+mono for probes/code
+(<code>"SF Mono", "JetBrains Mono", ui-monospace, monospace</code>).
+Real measure on body text. If web fonts are wanted later, that’s a
+separate ticket — system stacks first. - [ ] <strong>G.3</strong> —
+Reduce the fauna overlay: fewer creatures, lower opacity, slow gentle
+drift, <em>never</em> over body text — corners, margins, section breaks
+only. Make it a thin SVG layer, not the current heavier JS canvas if
+possible. Keep it as the “ghost in the machine” signature; respect
+<code>prefers-reduced-motion</code> (freeze it). - [ ]
+<strong>G.4</strong> — Delete the parallax / geometric / trash-polka
+layer from the public templates and the homepage. Remove
+<code>GeometricBackground.tsx</code> from public render paths (keep in
+repo if <code>/app</code> still uses it; otherwise retire). - [ ]
+<strong>G.5</strong> — One theme toggle (light/dark), persisted in
+<code>localStorage</code>, defaulting to dark (the “haunted” default)
+but honoring <code>prefers-color-scheme</code> on first visit. Remove
+all other skin/animation toggles from the public UI. - [ ]
+<strong>G.6</strong> — Logo/sigil: pull the wordmark + sigil from
+<code>content-philosophy/assets/logo.svg</code> /
+<code>favicon.svg</code>; if those are still the old “Swiss LMS” mark,
+commission/redo per IDENTITY.md. <code>BrandSigil.tsx</code> should
+render the new mark. - [ ] <strong>G.7</strong> — Generous whitespace,
+hairline rules instead of boxes/cards-with-shadows, restrained motion.
+The mockup (<code>site-mockup.html</code>) is the reference. - [ ]
+<strong>G.8</strong> — Audit <code>index.html</code> in the website root
+(37 KB, lots of inline) — strip inline LMS bootstrapping/splash, set the
+new theme color, favicon, OG defaults there.</p>
+<hr />
+<h2
+id="h.-content-pipeline-updates-machinespirits-content-philosophy">H.
+Content pipeline updates
+(<code>machinespirits-content-philosophy</code>)</h2>
+<p>The content package needs to learn the new vocabulary. It currently
+knows <code>articles</code> and <code>courses</code>; it needs
+<code>probes</code> (and arguably <code>reading-room</code> entries and
+<code>videos</code>) as first-class types, and its
+<code>urls</code>/<code>sitemap</code>/<code>artifacts-index</code>
+scripts need to emit the IDENTITY.md URL forms.</p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>H.1</strong> — Add a
+<code>probes/</code> content source: <code>manifest.yaml</code> gains
+<code>content.probes: "./probes"</code>; create
+<code>probes/probe-01-&lt;slug&gt;/index.md</code> with frontmatter
+(<code>title</code>, <code>date</code>, <code>n</code> (probe number),
+<code>slug</code>, <code>figure</code> (path), <code>theme</code>,
+<code>summary</code>, <code>expands</code> (link to essay/course-note),
+<code>status</code>). One figure per probe; the build renders
+it.</label></li>
+<li><label><input type="checkbox" /><strong>H.2</strong> — Define the
+<strong>course-note</strong> type — either a frontmatter
+<code>type: course-note</code> on articles, or a <code>notes/</code>
+source. Frontmatter for course-notes: <code>title</code>,
+<code>date</code>, <code>course</code> (which course it came from),
+<code>prompt</code>, <code>exercise</code>, <code>summary</code>. Pick
+one and document it in <code>CONVENTIONS.md</code>.</label></li>
+<li><label><input type="checkbox" /><strong>H.3</strong> — Reading-room:
+formalize the <code>/reading-room/YYYY-MM-DD-author-title</code> form —
+a <code>reading-room/</code> source (or reuse <code>references/</code>)
+with <code>author</code>, <code>title</code>, <code>year</code>,
+<code>our-note</code>, <code>source-url</code>/<code>source-pdf</code>
+(PDF hosted on CDN, not in repo), <code>date</code> (when we wrote the
+note).</label></li>
+<li><label><input type="checkbox" /><strong>H.4</strong> —
+<code>urls</code> script: emit the IDENTITY.md scheme for every type —
+<code>/manifesto</code>, <code>/essays/YYYY-MM-DD-slug</code>,
+<code>/lab/probes/probe-NN-slug</code>, <code>/lab/demos/slug</code>,
+<code>/reading-room/YYYY-MM-DD-author-title</code>,
+<code>/notes/...</code>, <code>/videos/YYYY-MM-DD-slug</code>,
+<code>/courses/&lt;id&gt;</code>. Fail the build on collisions or
+malformed slugs.</label></li>
+<li><label><input type="checkbox" /><strong>H.5</strong> —
+<code>sitemap</code> script: produce a real <code>sitemap.xml</code>
+(not just an internal map) covering all public URLs, with
+<code>lastmod</code> from frontmatter
+<code>date</code>/git.</label></li>
+<li><label><input type="checkbox" /><strong>H.6</strong> —
+<code>artifacts-index</code>: extend to include probes and demos, and
+emit the data the website’s <code>/lab</code> pages consume (JSON the
+SPA/static build reads at build time).</label></li>
+<li><label><input type="checkbox" /><strong>H.7</strong> —
+<code>config/navigation.yaml</code>: rewrite to the new public nav
+(Essays · Lab · Courses · About + Subscribe), real paths. Add a separate
+<code>app:</code> section listing the <code>/app/*</code> tools (so
+<code>/tools</code> can be generated from it).</label></li>
+<li><label><input type="checkbox" /><strong>H.8</strong> —
+<code>config/features.yaml</code>: audit — turn off LMS-feature flags
+that don’t belong on the public site; add flags for <code>probes</code>,
+<code>tutor-demo</code>, <code>newsletter</code> if useful.</label></li>
+<li><label><input type="checkbox" /><strong>H.9</strong> —
+<code>manifest.yaml</code> <code>site.tagline</code>: change
+<code>"Philosophy of Technology"</code> → the IDENTITY.md tagline
+(“Philosophy for machines that learn.” or chosen alt).
+<code>site.description</code>: replace the “open-source learning
+platform” copy with the research-program thesis. Bump the package
+version (this + H.7 are breaking content-contract changes).</label></li>
+<li><label><input type="checkbox" /><strong>H.10</strong> —
+<code>.gitignore</code> <code>articles/.nightowl-backups/</code> and any
+other tooling backup dirs; don’t ship them in the package.</label></li>
+<li><label><input type="checkbox" /><strong>H.11</strong> — Re-publish
+the content package and bump the website’s dependency on
+it.</label></li>
+</ul>
+<hr />
+<h2
+id="i.-cleanup-repo-hygiene-must-happen-before-general-release-the-repo-is-public-facing">I.
+Cleanup &amp; repo hygiene (must happen before “general release” — the
+repo is public-facing)</h2>
+<p><code>machinespirits-website</code> currently carries ~500 MB of
+stuff that should never be in a public clone, plus a litter of one-off
+files.</p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>I.1</strong> —
+<code>data/lms.sqlite</code> is <strong>278 MB committed</strong>.
+Remove from the working tree, <code>.gitignore</code> it, and
+<strong>rewrite history</strong> to drop it
+(<code>git filter-repo</code> / BFG) — otherwise the public clone is
+half a gig. Provide a seed/migration script + a small fixture DB
+instead. <strong>This is destructive history rewriting — confirm with
+Liam and coordinate (force-push, anyone with clones
+re-clones).</strong></label></li>
+<li><label><input type="checkbox" /><strong>I.2</strong> —
+<code>playwright-report/</code> (~160 MB of trace zips),
+<code>test-results/</code> (~20 MB), <code>.playwright-mcp/</code> —
+<code>.gitignore</code> and remove from tree (and history, per
+I.1).</label></li>
+<li><label><input type="checkbox" /><strong>I.3</strong> —
+<code>public/texts/*.pdf</code> — ~100 MB of arXiv PDFs. Move to object
+storage / CDN; reference by URL from reading-room entries. Keep maybe
+one small sample if a demo needs a local file.</label></li>
+<li><label><input type="checkbox" /><strong>I.4</strong> —
+<code>logs/tutor-api/*.jsonl</code> (~100 MB) — <code>.gitignore</code>,
+remove from tree + history. Logs don’t belong in the repo.</label></li>
+<li><label><input type="checkbox" /><strong>I.5</strong> — Delete the
+stray top-level one-offs: <code>animals.html</code>,
+<code>parallax-skin.html</code>, <code>office-sim.html</code>,
+<code>mobile-chat.html</code>, <code>mobile-eval.html</code> (or fold
+the last two into <code>/app</code>), <code>test_output.log</code>,
+<code>server.log</code>, the <code>benchmark-*.json</code> /
+<code>cost-benefit-*.json</code> / <code>eval-2026-*.json</code> reports
+(move historical eval artifacts to <code>machinespirits-eval</code> if
+they matter, else delete), <code>archive-structure.json</code>
+(regenerate or retire — see A.4).</label></li>
+<li><label><input type="checkbox" /><strong>I.6</strong> — Consolidate
+the doc litter: <code>TASKS-COMPLETE.md</code>,
+<code>TEST-COVERAGE-SUMMARY.md</code>,
+<code>TEST-IMPROVEMENTS-FINAL.md</code>,
+<code>MONITOR-TEST-GUIDE.md</code>,
+<code>MULTI-TURN-SEQUENCE-DIAGRAM-FIX.md</code>,
+<code>TUTORIAL-VIDEO-CONVERTED.md</code>,
+<code>TUTORIAL-VIDEO-README.md</code>, <code>CRASH-PROTECTION.md</code>,
+<code>REPOSITORY-RELATIONSHIPS.md</code> — move what’s still useful into
+<code>docs/</code>, delete the rest. The repo root should have
+<code>README.md</code>, <code>CLAUDE.md</code>, <code>LICENSE</code>,
+<code>CITATION.cff</code> and not much else.</label></li>
+<li><label><input type="checkbox" /><strong>I.7</strong> —
+<code>.DS_Store</code> files committed in both repos — remove and add to
+a global gitignore.</label></li>
+<li><label><input type="checkbox" /><strong>I.8</strong> —
+<code>fauna-playground/</code>, <code>fauna-overlay.js</code> at repo
+root — keep <code>fauna-overlay.js</code> (it’s the live overlay)
+wherever the build expects it; move <code>fauna-playground/</code> out
+of the shipped repo (own repo or <code>/dev</code> dir,
+gitignored).</label></li>
+<li><label><input type="checkbox" /><strong>I.9</strong> — Rewrite the
+website <code>README.md</code>: it currently sells “Open-source LMS
+platform with Swiss design aesthetic and generative fauna overlays” —
+reframe as “machinespirits.org — the public site for the Machine Spirits
+research program; also hosts the platform at <code>/app</code>.” Same
+for <code>package.json</code> <code>name</code>/<code>description</code>
+(<code>name: "machine-spirits"</code>, desc still says “Open-source LMS
+platform…”).</label></li>
+<li><label><input type="checkbox" /><strong>I.10</strong> — Audit the
+<strong>69 Express routes</strong> in <code>server.js</code>: keep
+<code>/api/*</code> (the app needs it), <code>/feed.xml</code> (rework —
+see §J), <code>/reading*</code> (→ <code>/reading-room/*</code>); retire
+<code>/games/warpstrike</code> (or move under <code>/lab/demos</code>),
+<code>/TODO.md</code>, <code>/mobile-chat.html</code>,
+<code>/fauna-overlay.js</code> (serve via the build, not a hand-rolled
+route), <code>/office-sim</code> etc. Public routes should map 1:1 to
+the §A route table; everything else is <code>/api/*</code> or
+gone.</label></li>
+<li><label><input type="checkbox" /><strong>I.11</strong> —
+<code>.env</code> must be gitignored; ship a <code>.env.example</code>
+with placeholder values for the documented config instead. Audit the
+working tree and history for any committed secrets and rotate anything
+that was exposed.</label></li>
+<li><label><input type="checkbox" /><strong>I.12</strong> —
+<code>dist/</code> committed — gitignore build output.</label></li>
+</ul>
+<hr />
+<h2 id="j.-seo-feeds-sharing-redirects">J. SEO, feeds, sharing,
+redirects</h2>
+<p>The site can’t be “generally released” while it’s a hash-routed SPA
+with one <code>&lt;title&gt;</code>.</p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>J.1</strong> — Real
+<code>&lt;title&gt;</code> + meta description per page (server-rendered
+or static-built — <strong>[B]</strong> makes this trivial;
+<strong>[A]</strong> needs <code>react-helmet</code>-style head
+management + ideally SSR/prerender for the public routes).</label></li>
+<li><label><input type="checkbox" /><strong>J.2</strong> — OpenGraph +
+Twitter card tags per page; a default OG image (the sigil on the dark
+palette) + per-essay/per-probe OG images (auto-generated from title is
+fine).</label></li>
+<li><label><input type="checkbox" /><strong>J.3</strong> —
+<code>sitemap.xml</code> at the apex (from §H.5),
+<code>robots.txt</code> (allow all public, disallow <code>/app/*</code>
+and <code>/api/*</code>).</label></li>
+<li><label><input type="checkbox" /><strong>J.4</strong> — RSS:
+<code>/essays/feed.xml</code>, <code>/lab/probes/feed.xml</code>, and a
+combined <code>/feed.xml</code>. Rework the existing
+<code>app.get('/feed.xml')</code> to read from the content
+package.</label></li>
+<li><label><input type="checkbox" /><strong>J.5</strong> — 301 redirects
+from every legacy hash/path URL (the §A.3 map) — server-side, plus the
+client <code>#/...</code> shim.</label></li>
+<li><label><input type="checkbox" /><strong>J.6</strong> — Canonical
+URLs (<code>&lt;link rel="canonical"&gt;</code>) on every page; make
+sure there’s exactly one URL per piece of content (no
+<code>/essays/x</code> <em>and</em> <code>/newsletter/n</code> both
+canonical).</label></li>
+<li><label><input type="checkbox" /><strong>J.7</strong> —
+<code>ShareButton.tsx</code> — keep, point at the new URLs; make sure it
+shares the canonical URL, not a hash route.</label></li>
+<li><label><input type="checkbox" /><strong>J.8</strong> —
+Analytics/consent: if there’s tracking, the cookie/consent banner must
+be the privacy-preserving default (decline-by-default); no third-party
+junk on the public site.</label></li>
+<li><label><input type="checkbox" /><strong>J.9</strong> — Submit the
+new sitemap to Search Console; verify the redirects don’t break existing
+inbound links.</label></li>
+</ul>
+<hr />
+<h2 id="k.-sequencing-what-general-release-actually-requires">K.
+Sequencing — what “general release” actually requires</h2>
+<p>Not everything above blocks launch. Minimum viable “general release”
+(maps to STRATEGY Q1 — “publish the manifesto, ship the public site, the
+tutor demo, the first probes”):</p>
+<p><strong>Must ship for general release (the “minimum”
+subset):</strong> - [ ] §0.1 decision (A vs B) — <em>gates
+everything</em> - [ ] §A.1–A.3 — route table + real public URLs + legacy
+redirects - [ ] §B.1–B.3 — new homepage + new nav + hero copy - [ ] §C.1
+— <code>/manifesto</code> published - [ ] §C.2–C.3, C.6 —
+<code>/essays</code> index + reader + the public-essay triage (even if
+the probe type isn’t built yet) - [ ] §C.4 — <code>/newsletter</code>
+signup live - [ ] §D.1, D.3 — <code>/lab</code> landing + the public
+no-login tutor demo with the Ego/Superego split visible - [ ] §E.1–E.2 —
+<code>/courses</code> public read-only view, de-emphasized - [ ]
+§F.1–F.4, F.6 — LMS moved behind <code>/app</code> + login, out of
+public nav, <code>/tools</code> page exists - [ ] §G.1–G.5 — new palette
++ type + dialed-down fauna + parallax/glass/toggle-soup removed - [ ]
+§H.4, H.7, H.9 — <code>urls</code> emits the new scheme,
+<code>navigation.yaml</code> rewritten, <code>manifest.yaml</code>
+tagline/description fixed - [ ] §I.1, I.2, I.4, I.11 — purge the 278 MB
+sqlite + the test/log bloat from the repo, and the <code>.env</code>
+hygiene per I.11 — <em>the repo is about to be public</em> - [ ] §I.9 —
+README + package.json no longer describe the site as “an LMS” - [ ]
+§J.1–J.5 — titles/meta/OG, sitemap, robots, RSS, redirects</p>
+<p><strong>Fast-follow (weeks after launch, also Q1):</strong> - [ ]
+§D.2 + §H.1 — the <code>probes</code> content type and
+<code>/lab/probes</code> (the first probe is a Q1 deliverable but the
+<em>type</em> can land just after the homepage) - [ ] §E.4 + §H.2 —
+course-notes as a public artifact type - [ ] §D.5 + §H.3 —
+<code>/reading-room</code> formalized - [ ] §G.6 — new logo/sigil if the
+current mark is the old one - [ ] §I.3, I.5–I.8, I.10, I.12 — finish the
+repo cleanup - [ ] §J.6–J.9 — canonicals, analytics/consent, Search
+Console</p>
+<p><strong>Later (Q2+):</strong> - [ ] §A.4 archive-structure
+rationalization - [ ] §D.4 demos index + graduating the
+content-philosophy <code>artifacts/*</code> interactives - [ ] §F.5, F.7
+— full code-split / mobile-page cleanup (free under
+<strong>[B]</strong>) - [ ] §H.5–H.6, H.8, H.10–H.11 — the rest of the
+pipeline work - [ ] §videos/* — if/when video surfaces exist</p>
+<hr />
+<h2 id="open-questions-for-liam">Open questions for Liam</h2>
+<ol type="1">
+<li><strong>§0</strong> — A (one app + router, ships faster, “simplify”
+stays partly cosmetic) vs B (split public/<code>/app</code>, more work,
+cleanest result). Recommendation is B-phased. Your call — it shapes
+every other ticket.</li>
+<li><strong>§I.1</strong> — OK to rewrite git history to purge the 278
+MB <code>lms.sqlite</code> (and the test/log bloat)? It means a
+force-push and anyone with a clone re-clones. The alternative is
+shipping a half-gig public repo.</li>
+<li><strong>§B.3 / IDENTITY.md</strong> — which tagline wins for the
+hero? (“Philosophy for machines that learn.” is the working default in
+the README.)</li>
+<li><strong>§E.4</strong> — course-notes: own <code>/notes</code> index
+(recommended, they travel well), or fold into <code>/essays</code> with
+a type tag?</li>
+<li><strong>§D.3</strong> — for the public tutor demo: rate-limited live
+endpoint, or fully canned/replayed conversations? Live is more
+convincing; canned is zero-cost and zero-abuse-surface.</li>
+<li><strong>§D.4 / artifacts</strong> — which of
+<code>content-philosophy/artifacts/*</code>
+(<code>hegel-recognition-explorer.html</code>,
+<code>design-audit-playground.html</code>,
+<code>warpstrike-60.html</code>,
+<code>anthropic-reading-list.html</code>) graduate to public
+<code>/lab/demos</code>, and which retire?</li>
+<li><strong><code>/app</code> domain</strong> —
+<code>app.machinespirits.org</code> subdomain, or
+<code>machinespirits.org/app/*</code> path? (Affects auth/cookies and
+the proxy setup.)</li>
+</ol>
+</body>
+</html>

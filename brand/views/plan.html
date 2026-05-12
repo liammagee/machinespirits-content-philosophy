@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Machine Spirits — The Plan</title>
+<style>
+  :root{
+    --bg:#faf7f1; --bg-elev:#fffdf8; --bg-sink:#f3eee3;
+    --text:#221d17; --text-soft:#5d564b; --text-faint:#8a8276;
+    --accent:#8a1c1c; --accent-2:#a8442f; --accent-bg:#f6e7e1;
+    --border:#e4ddcf; --border-strong:#d2c9b7;
+    --code-bg:#efe9db; --code-text:#5b3a1e;
+    --mark:#ffe08a; --mark-cur:#ffac3d; --mark-text:#1a1306;
+    --topbar-h:58px;
+    --good:#3f7d3f;
+    --shadow:0 1px 2px rgba(40,30,15,.05), 0 8px 28px rgba(40,30,15,.06);
+  }
+  html[data-theme="dark"]{
+    --bg:#16141a; --bg-elev:#1e1b22; --bg-sink:#211e27;
+    --text:#e9e3d8; --text-soft:#aaa295; --text-faint:#7d7567;
+    --accent:#df8e7c; --accent-2:#e7ab9c; --accent-bg:#2c2026;
+    --border:#312d38; --border-strong:#403a48;
+    --code-bg:#262130; --code-text:#d9b48f;
+    --mark:#ffe08a; --mark-cur:#ffac3d; --mark-text:#1a1306;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif;
+    font-size:17px; line-height:1.72;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  ::selection{background:var(--accent-bg); color:var(--text);}
+  ::highlight(mss-hit){background-color:var(--mark); color:var(--mark-text);}
+  ::highlight(mss-cur){background-color:var(--mark-cur); color:var(--mark-text); text-decoration:underline;}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:60; height:var(--topbar-h);
+    display:flex; align-items:center; gap:.85rem; padding:0 1rem;
+    background:color-mix(in srgb, var(--bg-elev) 86%, transparent);
+    backdrop-filter:saturate(1.4) blur(10px); -webkit-backdrop-filter:saturate(1.4) blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .brand{display:flex; align-items:center; gap:.5rem; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; font-weight:700; letter-spacing:-.01em; white-space:nowrap; color:var(--text);}
+  .brand .glyph{display:inline-grid; place-items:center; width:24px; height:24px; color:var(--accent);}
+  .brand .sub{font-weight:500; color:var(--text-faint); font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; border-left:1px solid var(--border-strong); padding-left:.55rem; margin-left:.15rem;}
+  .topbar .spacer{flex:1;}
+  .menu-btn{display:none; background:none; border:1px solid var(--border-strong); color:var(--text); border-radius:8px; width:34px; height:34px; font-size:1.1rem; cursor:pointer;}
+  .search-wrap{position:relative; display:flex; align-items:center;}
+  .search-wrap svg{position:absolute; left:.55rem; width:15px; height:15px; color:var(--text-faint); pointer-events:none;}
+  #searchInput{
+    font:inherit; font-size:.92rem; padding:.4rem .6rem .4rem 1.85rem; width:min(34vw,300px);
+    background:var(--bg-sink); color:var(--text); border:1px solid var(--border-strong); border-radius:9px; outline:none;
+  }
+  #searchInput:focus{border-color:var(--accent); background:var(--bg-elev);}
+  .search-count{font-family:system-ui,sans-serif; font-size:.74rem; color:var(--text-faint); min-width:4.6em; text-align:right; white-space:nowrap;}
+  .search-nav{display:flex; gap:2px;}
+  .search-nav button, .pillbtn{
+    font:inherit; font-family:system-ui,sans-serif; font-size:.8rem; cursor:pointer;
+    background:var(--bg-sink); color:var(--text-soft); border:1px solid var(--border-strong);
+    border-radius:8px; padding:.32rem .5rem; line-height:1;
+  }
+  .search-nav button{padding:.32rem .42rem;}
+  .search-nav button:hover, .pillbtn:hover{background:var(--accent-bg); color:var(--text); border-color:var(--accent);}
+  .progress-mini{display:flex; align-items:center; gap:.5rem; font-family:system-ui,sans-serif;}
+  .progress-mini .bar{width:84px; height:7px; border-radius:99px; background:var(--bg-sink); overflow:hidden; border:1px solid var(--border-strong);}
+  .progress-mini .bar > span{display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--accent),var(--accent-2)); transition:width .35s ease;}
+  .progress-mini .txt{font-size:.74rem; color:var(--text-faint); white-space:nowrap;}
+
+  /* ---------- layout ---------- */
+  .layout{display:grid; grid-template-columns:minmax(232px,272px) minmax(0,1fr);}
+  .sidebar{
+    position:sticky; top:var(--topbar-h); align-self:start;
+    height:calc(100vh - var(--topbar-h)); overflow-y:auto;
+    padding:1.4rem 1rem 3rem 1.25rem; border-right:1px solid var(--border);
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif; font-size:.86rem;
+    background:var(--bg);
+  }
+  .sidebar h2{font-size:.7rem; letter-spacing:.13em; text-transform:uppercase; color:var(--text-faint); margin:.2rem 0 1rem; font-weight:700;}
+  .toc-group{margin-bottom:1.15rem;}
+  a.toc-grouphead{
+    display:block; font-weight:700; color:var(--text); text-decoration:none; padding:.28rem .45rem; border-radius:7px;
+    font-size:.92rem; letter-spacing:-.01em;
+  }
+  a.toc-grouphead:hover{background:var(--bg-sink);}
+  .toc-list{display:flex; flex-direction:column; gap:1px; margin:.25rem 0 0; padding-left:.2rem; border-left:1px solid var(--border);}
+  a.toc-link{
+    display:block; color:var(--text-soft); text-decoration:none; padding:.26rem .55rem; border-radius:6px;
+    border-left:2px solid transparent; margin-left:-1px; line-height:1.35;
+  }
+  a.toc-link.toc-h3{padding-left:1.3rem; font-size:.82rem; color:var(--text-faint);}
+  a.toc-link:hover{background:var(--bg-sink); color:var(--text);}
+  a.toc-link.active, a.toc-grouphead.active{color:var(--accent); background:var(--accent-bg);}
+  a.toc-link.active{border-left-color:var(--accent); font-weight:600;}
+
+  /* ---------- content ---------- */
+  main{padding:0;}
+  .doc{max-width:44rem; margin:0 auto; padding:2.6rem clamp(1.1rem,4.5vw,3.4rem) 1rem;}
+  .doc + .doc{border-top:1px dashed var(--border-strong);}
+  article#doc-strategy{background:
+    radial-gradient(120% 50% at 50% 0%, color-mix(in srgb,var(--accent-bg) 40%, transparent), transparent 70%);}
+  h1,h2,h3,h4{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; line-height:1.22; letter-spacing:-.018em; color:var(--text); scroll-margin-top:calc(var(--topbar-h) + 1.4rem);}
+  h1{font-size:2.05rem; font-weight:800; margin:.2rem 0 .35rem;}
+  h2{font-size:1.5rem; font-weight:750; margin:2.6rem 0 .9rem; padding-top:.6rem; border-top:1px solid var(--border);}
+  article > .doc > h2:first-of-type{border-top:none; padding-top:0;}
+  h3{font-size:1.13rem; font-weight:700; margin:1.9rem 0 .6rem; color:var(--text);}
+  h3::before{content:"§ "; color:var(--accent); font-weight:600;}
+  p{margin:.85rem 0;}
+  .doc-subtitle{font-family:system-ui,sans-serif; font-size:1.32rem; font-weight:600; color:var(--text-soft); margin:.1rem 0 .4rem; letter-spacing:-.01em;}
+  .byline{font-family:system-ui,sans-serif; font-size:.86rem; color:var(--text-faint); margin:.2rem 0 1.4rem;}
+  .doc-footnote{font-size:.92rem; color:var(--text-faint); border-top:1px solid var(--border); margin-top:2.4rem; padding-top:1rem;}
+  a{color:var(--accent); text-decoration:none; border-bottom:1px solid color-mix(in srgb,var(--accent) 32%, transparent);}
+  a:hover{border-bottom-color:var(--accent);}
+  strong{font-weight:700; color:var(--text);}
+  em{font-style:italic;}
+  code{font-family:"SF Mono","JetBrains Mono","Fira Code",Menlo,Consolas,"Liberation Mono",monospace; font-size:.86em; background:var(--code-bg); color:var(--code-text); padding:.1em .35em; border-radius:5px;}
+  hr{border:none; text-align:center; margin:2.4rem 0;}
+  hr::before{content:"❧"; color:var(--text-faint); font-size:1.1rem;}
+  ul,ol{margin:.85rem 0; padding-left:1.45rem;}
+  li{margin:.4rem 0;}
+  li > ul, li > ol{margin:.35rem 0;}
+  blockquote{margin:1.2rem 0; padding:.7rem 1.1rem; border-left:3px solid var(--accent); background:var(--bg-sink); color:var(--text-soft); border-radius:0 8px 8px 0;}
+  blockquote p{margin:.35rem 0;}
+  blockquote.verbatim{position:relative; border-left-color:var(--accent-2); background:var(--bg-elev); box-shadow:var(--shadow); padding-top:1.6rem; font-family:"SF Mono","JetBrains Mono",Menlo,Consolas,monospace; font-size:.92rem; line-height:1.7; color:var(--text);}
+  blockquote.verbatim::before{content:"VERBATIM · 2026-05-10"; position:absolute; top:.5rem; left:1.1rem; font-family:system-ui,sans-serif; font-size:.64rem; letter-spacing:.16em; color:var(--text-faint);}
+  .callout{background:var(--accent-bg); border:1px solid color-mix(in srgb,var(--accent) 25%, var(--border)); border-radius:10px; padding:.8rem 1.1rem; margin:1.3rem 0; font-size:.96rem;}
+  .callout strong:first-child{color:var(--accent);}
+
+  /* ---------- tables ---------- */
+  .table-wrap{overflow-x:auto; margin:1.2rem 0; border:1px solid var(--border); border-radius:10px; box-shadow:var(--shadow);}
+  table{border-collapse:collapse; width:100%; font-size:.92rem; font-family:system-ui,-apple-system,"Segoe UI",sans-serif;}
+  th,td{text-align:left; vertical-align:top; padding:.6rem .8rem; border-bottom:1px solid var(--border);}
+  th{background:var(--bg-sink); color:var(--text); font-weight:700; position:sticky; top:0; font-size:.8rem; letter-spacing:.02em; text-transform:uppercase;}
+  tr:last-child td{border-bottom:none;}
+  tbody tr:nth-child(even){background:color-mix(in srgb,var(--bg-sink) 45%, transparent);}
+  tbody tr:hover{background:var(--accent-bg);}
+  td code{font-size:.84em;}
+
+  /* ---------- todo lists ---------- */
+  .todo-head{display:flex; align-items:baseline; gap:.7rem; flex-wrap:wrap;}
+  .list-count{font-family:system-ui,sans-serif; font-size:.74rem; font-weight:700; letter-spacing:.04em; color:var(--text-faint); background:var(--bg-sink); border:1px solid var(--border-strong); border-radius:99px; padding:.12rem .55rem; white-space:nowrap;}
+  .list-count.complete{color:var(--good); border-color:color-mix(in srgb,var(--good) 40%, var(--border-strong));}
+  ul.todo-list{list-style:none; padding-left:0; margin:.9rem 0; border:1px solid var(--border); border-radius:11px; overflow:hidden; box-shadow:var(--shadow);}
+  ul.todo-list > li{
+    margin:0; display:flex; gap:.7rem; align-items:flex-start; padding:.7rem .95rem;
+    border-bottom:1px solid var(--border); background:var(--bg-elev); transition:background .18s;
+  }
+  ul.todo-list > li:last-child{border-bottom:none;}
+  ul.todo-list > li:hover{background:var(--bg-sink);}
+  ul.todo-list > li.done{background:color-mix(in srgb,var(--good) 9%, var(--bg-elev));}
+  ul.todo-list > li.done label{color:var(--text-faint); text-decoration:line-through; text-decoration-color:color-mix(in srgb,var(--good) 60%, transparent);}
+  ul.todo-list input[type=checkbox]{
+    appearance:none; -webkit-appearance:none; flex:0 0 auto; width:1.18rem; height:1.18rem; margin-top:.18rem;
+    border:1.5px solid var(--border-strong); border-radius:6px; background:var(--bg); cursor:pointer; position:relative; transition:.15s;
+  }
+  ul.todo-list input[type=checkbox]:hover{border-color:var(--accent);}
+  ul.todo-list input[type=checkbox]:checked{background:var(--good); border-color:var(--good);}
+  ul.todo-list input[type=checkbox]:checked::after{content:""; position:absolute; left:.34rem; top:.12rem; width:.3rem; height:.62rem; border:solid #fff; border-width:0 2.5px 2.5px 0; transform:rotate(42deg);}
+  ul.todo-list input[type=checkbox]:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  ul.todo-list label{cursor:pointer; line-height:1.55; font-size:.97rem;}
+  ul.todo-list label .when{color:var(--text-faint); font-style:italic; font-size:.88em;}
+  ul.todo-list.checkpoints label{font-size:.96rem;}
+  ul.todo-list.checkpoints .q{font-family:system-ui,sans-serif; font-weight:800; color:var(--accent); display:inline-block; margin-right:.15rem;}
+
+  /* ---------- back to top ---------- */
+  .to-top{position:fixed; right:1.2rem; bottom:1.2rem; width:42px; height:42px; border-radius:50%; border:1px solid var(--border-strong); background:var(--bg-elev); color:var(--text); cursor:pointer; font-size:1.1rem; box-shadow:var(--shadow); opacity:0; transform:translateY(8px); pointer-events:none; transition:.22s;}
+  .to-top.show{opacity:1; transform:none; pointer-events:auto;}
+  .to-top:hover{color:var(--accent); border-color:var(--accent);}
+
+  .page-foot{max-width:44rem; margin:0 auto; padding:2rem clamp(1.1rem,4.5vw,3.4rem) 4rem; color:var(--text-faint); font-family:system-ui,sans-serif; font-size:.8rem; border-top:1px dashed var(--border-strong);}
+  .page-foot a{color:var(--text-faint); border-bottom-color:var(--border-strong);}
+
+  .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:980px){
+    .layout{grid-template-columns:1fr;}
+    .sidebar{
+      position:fixed; left:0; top:var(--topbar-h); bottom:0; width:min(82vw,320px); z-index:55;
+      transform:translateX(-102%); transition:transform .26s ease; background:var(--bg-elev); box-shadow:var(--shadow); height:auto;
+    }
+    .sidebar.open{transform:none;}
+    .menu-btn{display:inline-block;}
+    .brand .sub{display:none;}
+    #searchInput{width:42vw;}
+  }
+  @media (max-width:640px){
+    body{font-size:16px;}
+    .progress-mini .bar{display:none;}
+    #searchInput{width:30vw;}
+    .search-count{min-width:0; width:2.4em;}
+    .doc{padding-left:1.05rem; padding-right:1.05rem;}
+  }
+  @media print{
+    .topbar,.sidebar,.to-top{display:none !important;}
+    .layout{display:block;} .doc{max-width:none;}
+    a{color:inherit; border:none;}
+    ul.todo-list,.table-wrap,blockquote.verbatim{box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation">☰</button>
+  <span class="brand">
+    <span class="glyph" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c2.2 1.6 3 3.4 3 5.5 0 2-1.3 3.2-1.3 5 0 1.4 1 2.2 1 3.5 0 1.6-1.2 3-2.7 3.5"/><path d="M9 5.5C7.6 6.7 7 8 7 9.6c0 2 1.4 3 1.4 4.9 0 1.6-1.1 2.5-1.1 4 0 .5.1 1 .3 1.5"/><circle cx="12" cy="3" r="1.1" fill="currentColor"/><circle cx="9" cy="5.5" r=".9" fill="currentColor"/></svg>
+    </span>
+    Machine&nbsp;Spirits<span class="sub">The&nbsp;Plan</span>
+  </span>
+  <span class="spacer"></span>
+  <div class="search-wrap" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    <input id="searchInput" type="search" placeholder="Search the plan…  ( / )" autocomplete="off" aria-label="Search the plan">
+  </div>
+  <span class="search-count" id="searchCount" aria-live="polite"></span>
+  <span class="search-nav">
+    <button id="prevHit" title="Previous match (Shift+Enter)" aria-label="Previous match">↑</button>
+    <button id="nextHit" title="Next match (Enter)" aria-label="Next match">↓</button>
+  </span>
+  <span class="progress-mini" title="Checklist progress">
+    <span class="bar"><span id="progBar"></span></span>
+    <span class="txt" id="progText">0 / 0</span>
+  </span>
+  <button class="pillbtn" id="resetBtn" title="Reset checklist progress">Reset</button>
+  <button class="pillbtn" id="themeBtn" title="Toggle light / dark">☾ Dark</button>
+</header>
+
+<div class="layout">
+  <nav class="sidebar" id="sidebar" aria-label="Table of contents">
+    <h2>Contents</h2>
+    <div class="toc-mount" id="tocMount"></div>
+  </nav>
+
+  <main id="content">
+
+    <!-- ============================================================ MANIFESTO -->
+    <article class="doc" id="doc-manifesto">
+      <h1 id="m-title">What AI Forgets</h1>
+      <p class="doc-subtitle">A Founding Sketch for Machine Spirits</p>
+      <p class="byline">2026-05-10 — Liam Magee, in conversation with Claude (Anthropic, Opus 4.7)</p>
+      <hr>
+
+      <h2 id="m-preface">Editorial preface</h2>
+      <p>This document is the seed of Machine Spirits as a public-facing platform. It is preserved here as it was first written: a prompt typed into an AI assistant on the afternoon of 10 May 2026, asking that same assistant to help plan a platform whose purpose is to think AI <em>differently</em> than the assistant has been trained to think it.</p>
+      <p>We keep the wording exact — including its slips and shortcuts — for three reasons.</p>
+      <p>First, <strong>the form is the argument</strong>. Machine Spirits proposes that current AI is impoverished by a positivist, behaviorist, simple-ethics frame, and that phenomenological, psychoanalytic, and social-theoretic resources can deepen it. The platform was therefore conceived in the medium it intends to critique. Smoothing the prompt away would conceal exactly the recursive condition that the project is trying to expose.</p>
+      <p>Second, <strong>dating matters</strong>. The prompt is timestamped. Time, in Heidegger's sense, is not a neutral container — it orients. If, in a year, this paragraph reads quaintly, that itself will be data about how the platform's vocabulary travelled.</p>
+      <p>Third, <strong>the prompt is the first artifact of a method</strong>. The method, provisionally: think with AI; about AI; against the present frame of AI; in public.</p>
+      <hr>
+
+      <h2 id="m-verbatim">The Founding Sketch (verbatim)</h2>
+      <blockquote class="verbatim"><p>this repo is designed to make the full project (parent folder  machinespirits and subrepos) a successful platform for re-thinking AI along lines of Hegelian recognition (with nods to Axel Honneth / Jennifer Benjamin), Freudian unconscious / Katherine Hayles nonconscious recogition, Weberian charisma and Heidegerean orientation towards time - as philosophical supports for a more radical thinking of machine learning. I haven't yet named this "platform" but want to work with Claude on strategies for building awareness, engagement and recognition within and beyond academic circles. So we'll brainstorm ideas for social media, marketing etc here. Lets start with a detailed but feasible plan. Our eventual goal is to shift AI from its default bias towards simplistic ethics, positivism and behavioralism towards a position that recognizes the deeper analyses of humanness from within phenomenological, psychoanalytic, and social theoretic perspectives. Include this prompt itself in our starting plan. You might need to know more about both me and the machinespirits initiative to get started.</p></blockquote>
+      <hr>
+
+      <h2 id="m-annotations">Annotations</h2>
+      <ul>
+        <li><strong>"Jennifer Benjamin"</strong> — the founder almost certainly meant <em>Jessica Benjamin</em>, the psychoanalyst of intersubjective recognition (<em>The Bonds of Love</em>, 1988; <em>Beyond Doer and Done To</em>, 2018), who bridges Hegel and psychoanalysis directly. We note the slip without editing it.</li>
+        <li><strong>"nonconscious recogition"</strong> — the typo is preserved. The intended reference is N. Katherine Hayles' <em>Unthought: The Power of the Cognitive Nonconscious</em> (2017), whose argument that cognition exceeds consciousness — and exceeds humans — is one of this platform's load-bearing claims.</li>
+        <li><strong>"Heidegerean orientation towards time"</strong> — read through Robert Pippin's <em>Heidegger on Being, Time, and Politics</em> (1993), which is in our reading library, and which gives us a way of distinguishing <em>temporal orientation</em> from the merely chronological "context window."</li>
+        <li><strong>"a more radical thinking of machine learning"</strong> — radical here means <em>to the root</em>. Not "extreme," but <em>root-seeking</em>. The roots are recognition, unconscious cognition, charisma, time.</li>
+      </ul>
+      <hr>
+
+      <h2 id="m-commits">What the Sketch commits us to</h2>
+      <ol>
+        <li><strong>Both critique and construction.</strong> Machine Spirits is not an essay collection arguing against AI; it ships software that performs the alternative. The LMS, the Ego/Superego tutor, the evaluation framework, the plugin ecosystem (hermeneutic circle, babel maze, reading room) are all parts of the argument.</li>
+        <li><strong>Both inside and outside the academy.</strong> Awareness, engagement, <em>and</em> recognition — within philosophy and AI research, <em>and</em> in the wider public, <em>and</em> in classrooms, <em>and</em> in policy. Refusing to pick is part of the bet.</li>
+        <li><strong>Both with and against the AI it uses.</strong> Machine Spirits writes with AI as one would write with a difficult interlocutor — not deferentially, not dismissively. Where the AI is useful, it is quoted as a source. Where the AI is impoverished by its training, that impoverishment is itself the subject.</li>
+        <li><strong>A public reading practice.</strong> The reading library is part of the platform. The point is not to gatekeep texts but to read them in public, with machines and with each other.</li>
+        <li><strong>Time-stamped thinking.</strong> Every public artifact is dated. The platform takes a position <em>now</em>. Future positions are welcomed and tracked.</li>
+      </ol>
+      <p class="doc-footnote"><em>This document will be updated by addition, not deletion. Earlier versions remain in the repository history.</em></p>
+    </article>
+
+    <!-- ============================================================ IDENTITY -->
+    <article class="doc" id="doc-identity">
+      <h1 id="i-title">Machine Spirits — Brand Identity</h1>
+      <p class="byline"><em>Working document. Last revised 2026-05-10.</em></p>
+
+      <h2 id="i-name">Platform name</h2>
+      <p><strong>Machine Spirits.</strong> Retained as the umbrella name across all repos, the live site (<code>machinespirits.org</code>), the newsletter, social handles, and any future imprints.</p>
+      <p>The name is doing the following work simultaneously:</p>
+      <ul>
+        <li>a Hegelian wink at <em>Geist</em> (spirit, both individual and objective)</li>
+        <li>a Heideggerian wink at the <em>uncanny</em> — <em>unheimlich</em> spirits in machines</li>
+        <li>a Vygotskian wink at the cultural-historical formation of cognition</li>
+        <li>a colloquial wink at "ghost in the machine" while explicitly refusing the Cartesian dualism that phrase encodes</li>
+        <li>a non-academic phrase that a non-philosopher can still find evocative</li>
+      </ul>
+      <p>We do <strong>not</strong> introduce a separate "movement" name (e.g. "Recognition AI," "Phenomenological ML"). Movement-tags emerge from a network using them; coining one prematurely looks like a brand exercise rather than a school of thought.</p>
+
+      <h2 id="i-taglines">Tagline candidates</h2>
+      <p>Five candidates, each with what it foregrounds and what it sacrifices. Pick one as primary, keep two as alternates for context-specific use.</p>
+      <ol>
+        <li><strong>"Philosophy for machines that learn."</strong>
+          <ul><li>Foregrounds: clarity, mission, the <em>learn</em> in machine learning.</li><li>Sacrifices: doesn't yet signal which philosophy. Generic risk.</li></ul></li>
+        <li><strong>"Recognition, not just alignment."</strong>
+          <ul><li>Foregrounds: positions us <em>inside</em> the live AI-safety conversation while opening a different door.</li><li>Sacrifices: only legible to those who already know "alignment." Reads as a contrarian slogan to outsiders.</li></ul></li>
+        <li><strong>"A deeper grammar for AI."</strong>
+          <ul><li>Foregrounds: technical-philosophical bridge; "grammar" is Wittgensteinian and Chomskyan at once.</li><li>Sacrifices: abstract; doesn't say what kind of depth.</li></ul></li>
+        <li><strong>"What AI forgets."</strong>
+          <ul><li>Foregrounds: evocative, memorable, hints at unconscious/nonconscious axis. Matches the title of the Founding Sketch.</li><li>Sacrifices: more poetic than programmatic.</li></ul></li>
+        <li><strong>"Thinking with and against the machine."</strong>
+          <ul><li>Foregrounds: dialectical stance, refuses the for/against binary.</li><li>Sacrifices: longer; assumes a critical-theory reader.</li></ul></li>
+      </ol>
+      <p class="callout"><strong>Recommended primary:</strong> candidate 1 (<em>Philosophy for machines that learn.</em>) for masthead/about, with candidate 4 (<em>What AI forgets.</em>) as the title of the Founding Sketch and a recurring motif. Candidate 2 reserved for ML-research-facing contexts where "alignment" is the live word.</p>
+
+      <h2 id="i-voice">Voice principles</h2>
+      <p>Six principles. Each is a rule with an exception spelled out, because rules without exceptions become stylistic tics.</p>
+      <ol>
+        <li><strong>Both/and, not either/or.</strong> Every artifact should be defensible to both a Hegel scholar and a transformer engineer. <em>Exception</em>: footnoted asides may speak only to one audience.</li>
+        <li><strong>Two-author titles.</strong> Where possible, titles should name two unlikely-paired authors or two unlikely-paired terms (e.g., <em>Hegel + Sutskever</em>, <em>Hayles + Transformer</em>, <em>Heidegger and the Context Window</em>). <em>Exception</em>: when the piece's argument is genuinely about one figure.</li>
+        <li><strong>Show before manifesto.</strong> Open with a demo, a probe result, a close reading, or a scene — not with the thesis. The thesis lands after. <em>Exception</em>: the Founding Sketch, which is allowed to be a manifesto because it names itself as one.</li>
+        <li><strong>Date everything.</strong> Every public artifact carries a date. <em>No exception.</em></li>
+        <li><strong>Quote machines like sources.</strong> When an AI says something revealing or useful, quote it with date and model. When it says something impoverished, quote that too. <em>No exception.</em></li>
+        <li><strong>Cite generously.</strong> The reading-room ethos: a reader should be able to follow the trail. <em>Exception</em>: short-form social posts may carry a single anchor citation instead of a full one.</li>
+      </ol>
+
+      <h2 id="i-refuse">What to refuse</h2>
+      <ul>
+        <li><strong>Hype talk</strong> ("superintelligence is coming," "AGI within…"). We discuss these positions as cultural objects, never as our own claims.</li>
+        <li><strong>Doomer talk.</strong> Same treatment.</li>
+        <li><strong>AI-skeptic disdain.</strong> Refusing to engage with what the systems actually do is intellectually unserious.</li>
+        <li><strong>Pure-academic register.</strong> No essay should require a graduate seminar to parse its title.</li>
+        <li><strong>Pure-influencer register.</strong> No post should be a vibes-only take with no anchor.</li>
+        <li><strong>Founder-personality theatre.</strong> The platform is about the work, not the founder's persona.</li>
+      </ul>
+
+      <h2 id="i-visual">Visual identity</h2>
+      <p>Carried over from existing assets in <code>machinespirits-content-philosophy/theme/</code> and the <code>techne-backdrop</code> plugin:</p>
+      <ul>
+        <li><strong>Logo</strong>: existing logo from content-philosophy/assets/.</li>
+        <li><strong>Signature motif</strong>: the <strong>fauna overlay</strong> — small spirit-creatures wandering across the backdrop — used as a visual signature on the homepage and as a footer flourish on the newsletter. Reads as Hegelian (<em>Geist</em> in motion) and as Vygotskian (cultural figures in a shared field).</li>
+        <li><strong>Color palette</strong>: techne-red and techne-orange themes already exist in the plugin themes; default to a darker, lower-chroma palette for the brand site (the spirits should feel slightly haunted, not promotional).</li>
+        <li><strong>Typography</strong>: serif body, sans-serif headings. Specifics in <code>machinespirits-content-philosophy/theme/fonts.yaml</code>.</li>
+        <li><strong>Photography/illustration policy</strong>: no stock images of robots, brains, glowing networks, or generic "futuristic" tech. When we need imagery, prefer scans of marginalia, fragments of diagrams from primary texts, or screenshots of our own tools.</li>
+      </ul>
+
+      <h2 id="i-handles">Handle reservation (priority order)</h2>
+      <p>Reserve these even if dormant. Owner: Liam Magee (<code>liam.magee@gmail.com</code>).</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Platform</th><th>Handle</th><th>Priority</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Bluesky</td><td><code>@machinespirits.org</code> (via domain handle)</td><td>P0</td><td>Academic + ML researchers actively migrating here in 2026.</td></tr>
+          <tr><td>Mastodon</td><td><code>@machinespirits@hci.social</code> or <code>@machinespirits@scholar.social</code></td><td>P0</td><td>Philosophy/STS community well-rooted on scholar.social.</td></tr>
+          <tr><td>Substack</td><td><code>machinespirits.substack.com</code> (or self-hosted at <code>/newsletter</code>)</td><td>P0</td><td>Newsletter home.</td></tr>
+          <tr><td>GitHub org</td><td><code>machinespirits</code></td><td>P0</td><td>Move the existing repos under an org.</td></tr>
+          <tr><td>YouTube</td><td><code>@machinespirits</code></td><td>P1</td><td>Demo videos, lectures, reading-room sessions.</td></tr>
+          <tr><td>LinkedIn</td><td>Company page "Machine Spirits"</td><td>P1</td><td>Reach educators, journalists, policy.</td></tr>
+          <tr><td>X / Twitter</td><td><code>@machinespirits</code></td><td>P2</td><td>Stake it; cross-post short-form; do not invest.</td></tr>
+          <tr><td>Threads</td><td><code>@machinespirits</code></td><td>P3</td><td>Stake it.</td></tr>
+          <tr><td>BookWyrm</td><td><code>@machinespirits</code></td><td>P3</td><td>The reading-room ethos.</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="i-naming">Naming conventions for future artifacts</h2>
+      <ul>
+        <li><strong>Newsletter issues</strong>: numbered (#01, #02…) + a title. e.g. <em>Issue #01 — What AI Forgets.</em></li>
+        <li><strong>Essays on site</strong>: dated path <code>/essays/YYYY-MM-DD-slug</code>.</li>
+        <li><strong>Probes / eval results</strong>: <code>/lab/probes/probe-NN-slug</code>.</li>
+        <li><strong>Demos</strong>: <code>/lab/demos/slug</code> (link from public-tutor-demo onwards).</li>
+        <li><strong>Reading-room dispatches</strong>: <code>/reading-room/YYYY-MM-DD-author-title</code>.</li>
+        <li><strong>Videos</strong>: <code>/videos/YYYY-MM-DD-slug</code> mirrored on YouTube.</li>
+      </ul>
+
+      <h2 id="i-bios">Bio one-liners (reusable)</h2>
+      <ul>
+        <li><strong>Long (≤280 chars)</strong>: <em>Machine Spirits — rethinking AI through Hegelian recognition, Freudian/Hayles nonconscious cognition, Weberian charisma, and Heideggerian time. Critique and construction, in public. Built at UIUC by Liam Magee.</em></li>
+        <li><strong>Short (≤140 chars)</strong>: <em>Machine Spirits — philosophy for machines that learn. Critique and construction, in public.</em></li>
+        <li><strong>Bluesky (≤256 chars)</strong>: <em>Rethinking AI through recognition, the unconscious, and time. Essays, probes, a working AI tutor. machinespirits.org</em></li>
+      </ul>
+      <p class="doc-footnote"><em>Decisions on this page are working defaults. The tagline pick especially should be A/B-tested in the first month of newsletter issues before being locked.</em></p>
+    </article>
+
+    <!-- ============================================================ STRATEGY -->
+    <article class="doc" id="doc-strategy">
+      <h1 id="s-title">Machine Spirits — Strategy</h1>
+      <p class="byline">Awareness, engagement, and recognition strategy for the Machine Spirits platform. · Started 2026-05-10. Quarterly checkpoints below.</p>
+      <blockquote><p>See the <a href="#doc-manifesto">Founding Sketch</a> for origin and method, and the <a href="#doc-identity">Brand Identity</a> for name, tagline, voice, and visual identity.</p></blockquote>
+
+      <h2 id="s-mission">0. Mission and method</h2>
+      <p><strong>Mission.</strong> Shift the dominant frame of AI discourse away from positivism, behaviorism, and thin ethics — toward a frame that takes seriously phenomenological, psychoanalytic, and social-theoretic accounts of humanness <em>and</em> machine-ness.</p>
+      <p><strong>Method.</strong> Critique <em>and</em> construction, in public. The platform ships software that performs the alternative (the LMS, Ego/Superego tutor, evaluation framework, plugin ecosystem) and writes essays that interpret the software and the wider field. The two halves are load-bearing for each other.</p>
+      <p><strong>Audience.</strong> All four of:</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Audience</th><th>Tier</th><th>What they want from us</th></tr></thead>
+        <tbody>
+          <tr><td>ML researchers / alignment community</td><td><strong>Primary</strong></td><td>Demos, evaluation results, papers legible to ML venues.</td></tr>
+          <tr><td>Educators (HE, philosophy, CS)</td><td><strong>Primary</strong></td><td>Course materials, pedagogy essays, replicable classroom practice.</td></tr>
+          <tr><td>Academic philosophy / critical theory / STS</td><td>Secondary</td><td>Sustained close readings, conference-grade arguments, theoretical originality.</td></tr>
+          <tr><td>Tech-curious public + policy + journalism</td><td>Secondary</td><td>Plain-language essays, short videos, op-eds, podcast appearances.</td></tr>
+        </tbody>
+      </table></div>
+      <p>The two primary audiences sit at a natural intersection the platform already occupies: an LMS with AI tutors, evaluated philosophically. Reach them through the <em>probe</em> (their eval and demo surface) and the <em>course-note</em> (their classroom surface). The secondary audiences are reached by the <em>essay</em> and the <em>video</em>, both of which are derivatives of the same underlying ideas. The principle: <strong>one idea, four surfaces — load-bearing on probe and course-note.</strong></p>
+
+      <h2 id="s-spine">1. The spine — what Machine Spirits is</h2>
+      <p>Machine Spirits is, primarily, a <strong>research program</strong>: a thesis about AI and a body of work advancing it.</p>
+      <p><strong>The thesis.</strong> Contemporary AI is impoverished by a positivist, behaviorist, thin-ethics frame. Phenomenological, psychoanalytic, and social-theoretic resources — recognition (Hegel, Honneth, Jessica Benjamin), the unconscious and the nonconscious (Freud, Hayles), charismatic authority (Weber), temporal orientation (Heidegger via Pippin) — give a deeper and more workable account of human learning, machine learning, and the relation between them.</p>
+      <p>Everything else the project does is in service of that research program, in one of three roles:</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Limb</th><th>Role</th><th>Here to do</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Software</strong> — LMS, Ego/Superego tutor, eval/probe framework, Techne plugins, NightOwl, reading-app</td><td><strong>Evidence</strong></td><td>Show the philosophical claims have computational purchase. The tutor <em>performs</em> recognition; the probe suite <em>measures</em> its absence; the plugins <em>stage</em> hermeneutic and dialectical structure. Arguments in the form of working systems.</td></tr>
+          <tr><td><strong>Teaching</strong> — courses 479 / 480 / 490 / 590 / dissertation; course-notes</td><td><strong>Evidence + institutional home</strong></td><td>Show that pedagogy <em>is</em> a recognition relation; and supply the durable, funded, institutionally legitimate base from which the research operates.</td></tr>
+          <tr><td><strong>Media</strong> — newsletter, essays, social, talks, video</td><td><strong>Amplification</strong></td><td>Carry the research to the four audiences. The "one idea, four surfaces" production unit (next section) is the media engine.</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3 id="s-spine-commits">What this commits us to</h3>
+      <ol>
+        <li><strong>The unit of progress is a published argument backed by a piece of evidence</strong> — an essay / preprint / paper / chapter, paired with a probe result, a demo, or a transcript. "Shipped a feature" is not, by itself, progress on the spine.</li>
+        <li><strong>Construction narrows.</strong> For the next twelve months, exactly two software artifacts are in <em>active development</em>: the <strong>public tutor demo</strong> (the flagship evidence artifact) and the <strong>recognition-probe suite</strong> (the flagship measurement artifact) — both described under <em>The lab as the strongest argument</em>, below. Everything else in the software ecosystem — the Techne plugins, NightOwl, the reading-app, the broader LMS feature set — moves to <strong>maintenance mode</strong>: kept running, breakages fixed, security patched, no new features. <em>(Provisional — revisited when the capacity question is settled; see "Open question," below.)</em></li>
+        <li><strong>Critique gets the freed bandwidth.</strong> The newsletter cadence, two to three flagship publications, and the book proposal have first claim on the time maintenance-mode frees up.</li>
+        <li><strong>The reading library is part of the research program, not a side resource.</strong> Reading in public — with machines and with each other — is one of the program's methods, not an outreach activity.</li>
+      </ol>
+
+      <h3 id="s-spine-positioning">Positioning: the gap Machine Spirits occupies</h3>
+      <p>The program's distinctiveness is precise and statable: <strong>recognition theory + working software + pedagogy, integrated.</strong> No existing player holds all three.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Adjacent work</th><th>Has</th><th>Lacks, relative to Machine Spirits</th></tr></thead>
+        <tbody>
+          <tr><td><strong>David Gunkel</strong> — <em>robot rights</em>, machine moral status</td><td>Philosophy of machine moral standing; some pedagogy</td><td>Software-as-argument; works from Levinas / Derrida, not Hegel / Honneth / Benjamin — less dynamic (no struggle, no breakdown-and-repair)</td></tr>
+          <tr><td><strong>Mark Coeckelbergh</strong> — the "relational turn" in AI ethics</td><td>A relational account of moral status</td><td>Software-as-argument; the account stays general — "relational" without the asymmetry, struggle, and reparative dynamics recognition theory supplies</td></tr>
+          <tr><td><strong>Shannon Vallor</strong> — <em>Technology and the Virtues</em></td><td>A virtue-ethical framework for AI; industry reach</td><td>Software-as-argument; virtue ethics rather than recognition; the human/machine <em>relation</em> is not the centre</td></tr>
+          <tr><td><strong><em>Critical AI</em> journal</strong> (Goodlad et al., Rutgers); Crawford; Pasquinelli; Chun</td><td>Sustained critical-theoretic and political-economy critique</td><td>Construction — no tutor, no probes, no teaching platform; a different theoretical base</td></tr>
+          <tr><td><strong>N. Katherine Hayles</strong> — <em>Unthought</em></td><td>A direct intellectual ally; literary-theoretic depth</td><td>Builds no software; not a program with a teaching/media apparatus — an ally to cite and build on, not a competitor</td></tr>
+          <tr><td><strong>"Machine behavior"</strong> (Rahwan et al., 2019)</td><td>An influential research agenda</td><td>This is the <strong>foil</strong>, not a neighbour — explicitly behaviorist. Machine Spirits is its antithesis, and should say so.</td></tr>
+        </tbody>
+      </table></div>
+      <p>The one-liner — <em>recognition theory + working software + pedagogy; none of the existing players do all three</em> — belongs in the grant-pitch language and the public bio alongside the taglines in the Brand Identity.</p>
+
+      <h3 id="s-spine-open">Open question this section does not settle</h3>
+      <p>The maintenance-mode list above assumes a roughly solo, ~8-hours-per-week capacity. If that changes — an RA, a postdoc, a grant that funds a developer — the list shrinks and more of the software ecosystem can stay in active development. That is the <strong>capacity decision</strong>, taken up next, and it is enabled by the <strong>funding decision</strong> after it. What the spine decision fixes is the <em>priority order those decisions must respect</em>: if a funder would pay for plugin features but not for the probe suite, the probe suite still wins — it is evidence for the spine; the plugin features are not.</p>
+      <hr>
+
+      <h2 id="s-surfaces">2. One idea, four surfaces (the production unit)</h2>
+      <p>Every "idea" the platform develops produces four artifacts on a rolling schedule. For Machine Spirits' primary audiences (ML researchers and educators) the <strong>probe</strong> and the <strong>course-note</strong> are the load-bearing surfaces; the essay and the video broaden reach to the secondary audiences but never lead a cycle on their own.</p>
+      <ol>
+        <li><strong>The probe</strong> (≤500 words + a figure). Site <code>/lab/probes</code>; cross-posted to arXiv when bundled and to LessWrong/Alignment Forum when relevant. A specific eval result, a tutor transcript, a measurement. <em>Primary for ML researchers; legible to all others.</em></li>
+        <li><strong>The course-note</strong> (≤800 words + a discussion prompt + one classroom-ready exercise). Added to the relevant course in <code>machinespirits-content-philosophy</code>; cross-posted to LinkedIn educator networks. <em>Primary for educators and students; reusable in classrooms.</em></li>
+        <li><strong>The essay</strong> (≈1500–2500 words). Substack + site. The full argument with citations. <em>For the academic and curious-public audiences; ties the probe and the course-note into a single argument.</em></li>
+        <li><strong>The video</strong> (90–180 seconds, optionally a longer cut). YouTube + cross-posted as Bluesky/Mastodon video. <em>For the public and as a classroom asset for educators; useful as a teaching object.</em></li>
+      </ol>
+      <p>Each idea ships with all four surfaces over a 2–3 week production cycle. The probe leads (week 1), the course-note follows (week 2), the essay anchors them (week 3), the video distils (week 3). The newsletter cadence (biweekly) defines the rhythm.</p>
+
+      <h2 id="s-founding">3. The Founding Sketch as inaugural artifact</h2>
+      <p>The <a href="#doc-manifesto">Founding Sketch</a> (dated 2026-05-10) is published as:</p>
+      <ul>
+        <li>The <code>/manifesto</code> page on <code>machinespirits.org</code>.</li>
+        <li>Newsletter issue #01.</li>
+        <li>A pinned post on Bluesky and Mastodon.</li>
+        <li>The "About" reference on LinkedIn and Substack.</li>
+        <li>A short video (≤2 min) reading the sketch aloud over a slow pan across the fauna-overlay backdrop.</li>
+      </ul>
+      <p>The first essay (issue #02) reflects on the recursion of asking an AI to plan a critique of AI. The second (issue #03) takes one named figure (Hegel) and one named technical concept (gradient descent) and reads them through each other. After that, the cadence is regular.</p>
+
+      <h2 id="s-content">4. Content engine</h2>
+      <h3 id="s-content-rings">Three rings of output</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Ring</th><th>Cadence</th><th>Asset types</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td>A — Short-form</td><td>3–5/week</td><td>Bluesky/Mastodon threads, "Footnote of the day," visual cards</td><td>Reach, top-of-funnel, ambient presence</td></tr>
+          <tr><td>B — Mid-form</td><td>Biweekly</td><td>Newsletter, probe, video, course-note (the "one idea, four surfaces" unit)</td><td>Audience-building, authority</td></tr>
+          <tr><td>C — Long-form</td><td>Quarterly</td><td>arXiv/SSRN preprint, conference submission</td><td>Citable scholarship</td></tr>
+        </tbody>
+      </table></div>
+      <h3 id="s-content-seed">Seed sequence for first 8 newsletter issues</h3>
+      <p>Drawing on existing draft articles in <code>machinespirits-content-philosophy/articles/</code>:</p>
+      <ol>
+        <li><strong>#01 — What AI Forgets</strong> (the Founding Sketch).</li>
+        <li><strong>#02 — On Asking the Machine to Plan its Own Critique</strong> (the recursion essay).</li>
+        <li><strong>#03 — Robo-Phenomenology</strong> (existing draft, revised).</li>
+        <li><strong>#04 — Machinagogy</strong> (existing draft, revised).</li>
+        <li><strong>#05 — Vibe-Scholarship</strong> (existing draft, revised).</li>
+        <li><strong>#06 — Recognition, Not Just Alignment</strong> (Hegel → Honneth → Jessica Benjamin → why current AI evals miss recognition entirely; first piece deliberately positioned in the alignment conversation). <em>[Draft exists: <code>newsletter/issue-06-recognition-not-alignment.md</code>]</em></li>
+        <li><strong>#07 — Reading Hayles with a Chatbot</strong> (a close reading of <em>Unthought</em> paired with transcripts).</li>
+        <li><strong>#08 — The Dictatorship of the Artificial Intellect</strong> (existing draft, revised; positions us in the political-theory adjacent space).</li>
+      </ol>
+      <h3 id="s-content-formats">Recurring formats audiences can anticipate</h3>
+      <ul>
+        <li><strong>"Reading [X] with a Chatbot"</strong> — monthly. A primary text + transcripts.</li>
+        <li><strong>"A Probe"</strong> — every newsletter (the probe surface).</li>
+        <li><strong>"Footnote of the day"</strong> — short-form, near-daily, one citation + 2 lines.</li>
+        <li><strong>"Two-author"</strong> — a quarterly format pairing one philosopher with one ML researcher.</li>
+      </ul>
+
+      <h2 id="s-lab">5. The lab as the strongest argument</h2>
+      <p>The platform's most distinctive asset is that it ships working software arguing the philosophical point. Strategic priorities for the next 6 months:</p>
+      <ol>
+        <li><strong>Public tutor demo.</strong> Pick one course (recommend 480 <em>Philosophy of AI</em>) and expose a no-login "Try the Tutor" page. Make the <strong>Ego/Superego dialogue visibly split-pane</strong> so users see the recognition-structure of the response. This is the single most important asset for the ML-researcher and curious-public audiences.</li>
+        <li><strong>Philosophical probes.</strong> Build a public eval suite specifically targeting <em>recognition</em>, <em>Heideggerian temporality</em>, <em>unconscious/nonconscious cognition</em>, and <em>charismatic authority</em> as evaluation criteria. Publish results monthly. This is the asset that gets the platform cited by ML researchers.</li>
+        <li><strong>Reading-room mode.</strong> Combine the existing <code>reading-app</code> (Focus Reader) with the tutor so a visitor can read Hegel/Hayles/Heidegger <em>with</em> the AI alongside, with annotations visible. This is the asset that travels among educators and the curious public.</li>
+        <li><strong>Live tutor sessions.</strong> Monthly streamed reading-group with the tutor as participant. Recorded. Becomes course content.</li>
+      </ol>
+
+      <h2 id="s-distribution">6. Distribution and audience-bridging</h2>
+      <p>Because the audience target is all four, distribution is deliberately wide rather than concentrated.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Channel</th><th>Primary audience served</th><th>Cadence</th><th>Asset format</th></tr></thead>
+        <tbody>
+          <tr><td><code>machinespirits.org/lab/probes</code></td><td>ML researchers, educators</td><td>2–3/month</td><td>Probes, demos, transcripts</td></tr>
+          <tr><td>Course-notes in <code>machinespirits-content-philosophy</code></td><td>Educators, students</td><td>2–3/month</td><td>Course-notes, syllabus inserts, exercises</td></tr>
+          <tr><td>arXiv / SSRN</td><td>ML researchers, philosophers</td><td>Monthly probe-bundle + quarterly preprint</td><td>Probe write-ups, preprints</td></tr>
+          <tr><td>LessWrong / Alignment Forum</td><td>ML researchers, alignment community</td><td>1–2/month</td><td>Cross-posted probes with discussion</td></tr>
+          <tr><td>LinkedIn (educator networks, instructional design groups)</td><td>Educators, instructional designers, journalists</td><td>Weekly</td><td>Course-notes, pedagogy essays, video</td></tr>
+          <tr><td>Bluesky</td><td>ML researchers, educators, philosophers</td><td>Daily</td><td>Threads, probe announcements, video cross-posts</td></tr>
+          <tr><td>Substack (newsletter home)</td><td>All audiences</td><td>Biweekly</td><td>Essay</td></tr>
+          <tr><td>YouTube</td><td>Educators, students, public</td><td>Biweekly short + monthly long</td><td>Short demos, longer reading-room sessions</td></tr>
+          <tr><td>Mastodon (scholar.social / hci.social)</td><td>Philosophers, STS, HCI</td><td>Daily</td><td>Threads, longer cross-posts</td></tr>
+          <tr><td>Conference venues</td><td>ML researchers, educators (primary); academics (secondary)</td><td>Continuous submission cycle</td><td>Workshop/talk submissions</td></tr>
+          <tr><td>Selective engagement (HN, Reddit r/MachineLearning, r/Professors)</td><td>ML, educators</td><td>Opportunistic</td><td>Replies, occasional posts</td></tr>
+          <tr><td>X / Twitter</td><td>(residual)</td><td>Cross-post only</td><td>Threads</td></tr>
+        </tbody>
+      </table></div>
+      <p><strong>Conference targets</strong> (lead with primary-audience venues; rotate quarterly):</p>
+      <ul>
+        <li><strong>Primary — ML / alignment / FAccT</strong>: FAccT, NeurIPS workshops (esp. AI for Education, Interpretability, Human-Centered AI), AIES, EAAMO, ICML workshops.</li>
+        <li><strong>Primary — Pedagogy / educator</strong>: SIGCSE, AAC&U, ISSOTL, AI in Education (AIED), Learning @ Scale (L@S), EDUCAUSE.</li>
+        <li><em>Secondary — Academic philosophy</em>: APA Continental Division, SPEP, Hegel Society of America.</li>
+        <li><em>Secondary — STS / HCI</em>: 4S, AoIR, CHI Critical Computing, DIS.</li>
+      </ul>
+      <p>A reasonable first-year sequence: SIGCSE (early-year deadline) → FAccT submission cycle (deadline winter, conference summer) → NeurIPS workshop proposal (summer) → AIED (year-2). Aim for <em>one primary-audience venue per quarter</em> in year one.</p>
+
+      <h2 id="s-engagement">7. Engagement tactics</h2>
+      <ul>
+        <li><strong>No daily-news commentary.</strong> React only when a news event lets us teach a platform concept.</li>
+        <li><strong>One-way reply guy.</strong> Reliably show up under researchers' threads with generative citations and rephrasings. Do not argue with strangers.</li>
+        <li><strong>Personal outreach in the first 60 days.</strong> Liam sends a personal note to ~30 named people — <strong>10 ML researchers, 10 educators</strong>, 5 philosophers, 5 journalists/policy — saying <em>here is what I am building</em> with one specific artifact to look at (a probe for the ML researchers; a course-note for the educators; the manifesto for the others).</li>
+        <li><strong>The two-author trick</strong> (see Brand Identity): every essay names two unlikely paired authors in its title.</li>
+        <li><strong>Quote machines as sources.</strong> Tutor transcripts and AI replies are quoted with date and model.</li>
+      </ul>
+
+      <h2 id="s-community">8. Community</h2>
+      <ul>
+        <li><strong>Open reading group.</strong> Once a month, public Zoom or recorded session, one paper from the <code>machinespirits-readings/</code> library. The LMS already supports study groups; expose one publicly.</li>
+        <li><strong>Newsletter discussion threads.</strong> Each issue ends with a question; comments stay open.</li>
+        <li><strong>Workshop proposal by month 9.</strong> Target: a <em>Recognition and AI</em> workshop at FAccT 2027 or a NeurIPS 2026 workshop. Start informally (a Discord, a shared Google Doc CFP) so the workshop emerges from the network rather than being imposed.</li>
+        <li><strong>Solicit guest essays by month 6</strong> once the newsletter has a base. Target people doing the bridging work in adjacent fields.</li>
+      </ul>
+
+      <h2 id="s-punchlist">9. First-30-day punch list</h2>
+      <div class="todo-head"><p style="margin-bottom:0;">Assumes ~8 hours per week of dedicated time. Your progress is saved in this browser.</p><span class="list-count" data-count-for="punch">0 / 11</span></div>
+      <ul class="todo-list" data-list="punch">
+        <li><input type="checkbox" id="td-p01" data-todo="punch-01"><label for="td-p01">Pick primary tagline from the Brand Identity candidates <span class="when">(week 1)</span>.</label></li>
+        <li><input type="checkbox" id="td-p02" data-todo="punch-02"><label for="td-p02">Publish the Founding Sketch as <code>/manifesto</code> on <code>machinespirits.org</code> <span class="when">(week 1)</span>.</label></li>
+        <li><input type="checkbox" id="td-p03" data-todo="punch-03"><label for="td-p03">Stake handles on Bluesky, Mastodon (scholar.social), Substack, GitHub org, YouTube, LinkedIn <span class="when">(week 1)</span>.</label></li>
+        <li><input type="checkbox" id="td-p04" data-todo="punch-04"><label for="td-p04">Send first personal-outreach batch — 4 ML researchers, 4 educators, 1 philosopher, 1 journalist <span class="when">(week 1–2)</span>.</label></li>
+        <li><input type="checkbox" id="td-p05" data-todo="punch-05"><label for="td-p05">Stand up Substack with issue #01 = Founding Sketch <span class="when">(week 2)</span>.</label></li>
+        <li><input type="checkbox" id="td-p06" data-todo="punch-06"><label for="td-p06"><strong>Publish first probe</strong> on <code>/lab/probes</code> — a tutor transcript or eval result with brief interpretation <span class="when">(week 2)</span>.</label></li>
+        <li><input type="checkbox" id="td-p07" data-todo="punch-07"><label for="td-p07">Post one Bluesky thread + one Mastodon thread daily for 14 consecutive days, seeded from existing article drafts <span class="when">(weeks 2–4)</span>.</label></li>
+        <li><input type="checkbox" id="td-p08" data-todo="punch-08"><label for="td-p08"><strong>Publish first course-note</strong> — one existing article re-cast for classroom use with a discussion prompt and a ready-to-use exercise <span class="when">(week 3)</span>.</label></li>
+        <li><input type="checkbox" id="td-p09" data-todo="punch-09"><label for="td-p09">Ship the <strong>public tutor demo</strong> for one course <span class="when">(week 3–4)</span>.</label></li>
+        <li><input type="checkbox" id="td-p10" data-todo="punch-10"><label for="td-p10">Publish issue #02 (the recursion essay) <span class="when">(week 4)</span>.</label></li>
+        <li><input type="checkbox" id="td-p11" data-todo="punch-11"><label for="td-p11">Record a 2-minute "What AI Forgets" video and post to YouTube + cross-post <span class="when">(week 4)</span>.</label></li>
+      </ul>
+
+      <h2 id="s-checkpoints">10. Quarterly checkpoints</h2>
+      <div class="todo-head"><p style="margin-bottom:0;">Mark each quarter when its bundle of deliverables is met.</p><span class="list-count" data-count-for="q">0 / 4</span></div>
+      <ul class="todo-list checkpoints" data-list="q">
+        <li><input type="checkbox" id="td-q1" data-todo="q-1"><label for="td-q1"><span class="q">Q1</span><strong>(May–Jul 2026)</strong>: Identity + first 6 newsletter issues + <strong>public tutor demo</strong> (the core ML-and-educator artifact) + first probe series on <code>/lab/probes</code> and on arXiv + 3 course-notes shipped + first preprint draft.</label></li>
+        <li><input type="checkbox" id="td-q2" data-todo="q-2"><label for="td-q2"><span class="q">Q2</span><strong>(Aug–Oct 2026)</strong>: First <strong>FAccT or NeurIPS workshop submission</strong> + first <strong>SIGCSE or AIED submission</strong> + open reading group launched + <strong>5 educators adopting a course-note</strong> in their syllabus + 1,000 newsletter subscribers.</label></li>
+        <li><input type="checkbox" id="td-q3" data-todo="q-3"><label for="td-q3"><span class="q">Q3</span><strong>(Nov 2026 – Jan 2027)</strong>: Workshop proposal + first podcast appearances + book proposal outlined + <strong>10 documented external classroom uses</strong> + <strong>at least one ML paper citing a Machine Spirits probe</strong> + 2,500 subscribers.</label></li>
+        <li><input type="checkbox" id="td-q4" data-todo="q-4"><label for="td-q4"><span class="q">Q4</span><strong>(Feb–Apr 2027)</strong>: Workshop held + book proposal sent + reading-room mode shipped publicly + cross-disciplinary citation footprint measurable + 5,000 subscribers.</label></li>
+      </ul>
+
+      <h2 id="s-principles">11. Principles and risks</h2>
+      <h3 id="s-principles-hold">Principles to hold</h3>
+      <ul>
+        <li><strong>Critique and construction, both.</strong> Refuse to be only essays or only software.</li>
+        <li><strong>Bridge by default.</strong> Every artifact must work for at least two of the four audiences; major artifacts work for all four.</li>
+        <li><strong>Date everything.</strong> No undated public output.</li>
+        <li><strong>No founder-theatre.</strong> The work is the work.</li>
+        <li><strong>The reading library is part of the platform.</strong> Read in public, with machines and with each other.</li>
+      </ul>
+      <h3 id="s-principles-risks">Risks to watch</h3>
+      <ul>
+        <li><strong>Academic drift.</strong> Cadence slips to quarterly; language re-thickens. <em>Counter</em>: the short-form ring and the four-surface unit force continuous translation.</li>
+        <li><strong>Influencer drift.</strong> Vibes outpace argument. <em>Counter</em>: every short-form post carries an anchor citation; every essay carries a probe or a transcript.</li>
+        <li><strong>Single-hammer drift.</strong> Recognition theory becomes the only frame; unconscious, charisma, and time get neglected. <em>Counter</em>: rotate the four axes across newsletter issues.</li>
+        <li><strong>Performative recursion fatigue.</strong> The "AI critiquing AI" move gets stale. <em>Counter</em>: reserve it for moments when the recursion is genuinely productive, not as a reflex.</li>
+        <li><strong>Solo burnout.</strong> The cadence has to be sustainable for one person initially. <em>Counter</em>: re-use existing draft articles for the first 8 issues; do not add new commitments before month 4.</li>
+        <li><strong>Institutional capture.</strong> Pressure to fit the platform into a department, a lab, or a vendor. <em>Counter</em>: keep the platform editorially independent of any single institution while collaborating widely.</li>
+      </ul>
+      <p class="doc-footnote"><em>This document is revised quarterly. Version history is in git.</em></p>
+    </article>
+
+    <footer class="page-foot">
+      <p>Machine Spirits — Manifesto · Identity · Strategy. This is a static reading copy of the source Markdown in <code>machinespirits-brand/</code>; the repository remains the source of truth. Checklist progress is stored in your browser (<code>localStorage</code>) and never leaves this machine.</p>
+      <p><a href="#m-title">↑ Back to the top</a> · Press <strong>/</strong> to search · Press <strong>Enter</strong> / <strong>Shift+Enter</strong> to step through matches</p>
+    </footer>
+
+  </main>
+</div>
+
+<button class="to-top" id="toTop" aria-label="Back to top" title="Back to top">↑</button>
+
+<script>
+(function(){
+  "use strict";
+  var STORE_PROGRESS = "ms-plan-progress-v1";
+  var STORE_THEME = "ms-plan-theme-v1";
+  var root = document.documentElement;
+  var $ = function(s,el){return (el||document).querySelector(s);};
+  var $$ = function(s,el){return Array.prototype.slice.call((el||document).querySelectorAll(s));};
+
+  /* ---------------- theme ---------------- */
+  function setTheme(t){
+    root.setAttribute("data-theme", t);
+    var b = $("#themeBtn"); if(b) b.textContent = t === "dark" ? "☀ Light" : "☾ Dark";
+  }
+  var savedTheme = null;
+  try { savedTheme = localStorage.getItem(STORE_THEME); } catch(e){}
+  setTheme(savedTheme || (window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+  $("#themeBtn").addEventListener("click", function(){
+    var t = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    setTheme(t);
+    try { localStorage.setItem(STORE_THEME, t); } catch(e){}
+  });
+
+  /* ---------------- build TOC ---------------- */
+  var content = $("#content"), mount = $("#tocMount");
+  $$("article.doc", content).forEach(function(article){
+    var h1 = $("h1", article);
+    var group = document.createElement("div"); group.className = "toc-group";
+    var head = document.createElement("a"); head.className = "toc-grouphead";
+    head.href = "#" + (h1.id || article.id); head.textContent = h1.textContent;
+    head.setAttribute("data-target", h1.id || article.id);
+    group.appendChild(head);
+    var list = document.createElement("div"); list.className = "toc-list";
+    $$("h2, h3", article).forEach(function(h){
+      if(!h.id){ h.id = h.textContent.toLowerCase().replace(/[^\w]+/g,"-").replace(/^-+|-+$/g,""); }
+      var a = document.createElement("a");
+      a.className = "toc-link toc-" + h.tagName.toLowerCase();
+      a.href = "#" + h.id; a.textContent = h.textContent; a.setAttribute("data-target", h.id);
+      list.appendChild(a);
+    });
+    group.appendChild(list); mount.appendChild(group);
+  });
+  var tocLinks = $$("a[data-target]", $("#sidebar"));
+  var tocByTarget = {}; tocLinks.forEach(function(a){ tocByTarget[a.getAttribute("data-target")] = a; });
+
+  /* ---------------- scrollspy ---------------- */
+  var heads = $$("h1, h2, h3", content).filter(function(h){ return h.id; });
+  var topbarH = function(){ var t=$(".topbar"); return t ? t.offsetHeight : 58; };
+  var spyTick = false, activeId = null;
+  function setActive(id){
+    if(id === activeId) return; activeId = id;
+    tocLinks.forEach(function(a){ a.classList.remove("active"); });
+    var a = id && tocByTarget[id];
+    if(a){ a.classList.add("active");
+      // nudge only the sidebar's own scrollTop — a.scrollIntoView() would start a
+      // fresh scroll op that cancels any in-progress smooth scroll on the window
+      var sb = $("#sidebar"), ar = a.getBoundingClientRect(), sr = sb.getBoundingClientRect(), pad = 12;
+      if(ar.top < sr.top + pad) sb.scrollTop -= (sr.top + pad - ar.top);
+      else if(ar.bottom > sr.bottom - pad) sb.scrollTop += (ar.bottom - sr.bottom + pad);
+    }
+  }
+  function onScroll(){
+    if(spyTick) return; spyTick = true;
+    requestAnimationFrame(function(){
+      var off = topbarH() + 28, cur = heads.length ? heads[0] : null;
+      for(var i=0;i<heads.length;i++){
+        if(heads[i].getBoundingClientRect().top <= off) cur = heads[i]; else break;
+      }
+      setActive(cur ? cur.id : null);
+      var tt = $("#toTop"); if(tt) tt.classList.toggle("show", window.pageYOffset > 640);
+      spyTick = false;
+    });
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  window.addEventListener("resize", onScroll);
+  onScroll();
+
+  /* ---------------- mobile sidebar ---------------- */
+  var sidebar = $("#sidebar");
+  $("#menuBtn").addEventListener("click", function(){ sidebar.classList.toggle("open"); });
+  sidebar.addEventListener("click", function(e){
+    if(e.target.tagName === "A" && window.matchMedia("(max-width:980px)").matches) sidebar.classList.remove("open");
+  });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && sidebar.classList.contains("open")) sidebar.classList.remove("open");
+  });
+
+  /* ---------------- checklist + progress ---------------- */
+  var todos = $$("input[data-todo]");
+  function readSaved(){ var o={}; try{ o = JSON.parse(localStorage.getItem(STORE_PROGRESS)||"{}")||{}; }catch(e){} return o; }
+  function writeSaved(){ var o={}; todos.forEach(function(cb){ if(cb.checked) o[cb.getAttribute("data-todo")] = true; });
+    try{ localStorage.setItem(STORE_PROGRESS, JSON.stringify(o)); }catch(e){} }
+  function reflect(cb){ var li = cb.closest("li"); if(li) li.classList.toggle("done", cb.checked); }
+  function updateCounts(){
+    var done = todos.filter(function(c){return c.checked;}).length, total = todos.length;
+    var pct = total ? Math.round(done/total*100) : 0;
+    $("#progBar").style.width = pct + "%";
+    $("#progText").textContent = done + " / " + total;
+    $$(".list-count").forEach(function(badge){
+      var key = badge.getAttribute("data-count-for");
+      var list = $('ul.todo-list[data-list="'+key+'"]');
+      if(!list) return;
+      var cbs = $$("input[data-todo]", list), d = cbs.filter(function(c){return c.checked;}).length;
+      badge.textContent = d + " / " + cbs.length;
+      badge.classList.toggle("complete", d === cbs.length && cbs.length > 0);
+    });
+  }
+  (function initTodos(){
+    var saved = readSaved();
+    todos.forEach(function(cb){ cb.checked = !!saved[cb.getAttribute("data-todo")]; reflect(cb);
+      cb.addEventListener("change", function(){ reflect(cb); writeSaved(); updateCounts(); });
+    });
+    updateCounts();
+  })();
+  $("#resetBtn").addEventListener("click", function(){
+    if(!window.confirm("Reset all checklist progress in this browser?")) return;
+    try{ localStorage.removeItem(STORE_PROGRESS); }catch(e){}
+    todos.forEach(function(cb){ cb.checked = false; reflect(cb); });
+    updateCounts();
+  });
+
+  /* ---------------- search (CSS Custom Highlight API) ---------------- */
+  var input = $("#searchInput"), countEl = $("#searchCount");
+  var HL = !!(window.CSS && CSS.highlights && window.Highlight);
+  var idx = null;            // {text, nodes:[{node,start}]}
+  var matches = [];          // [Range]
+  var cur = -1;
+  function buildIndex(){
+    var w = document.createTreeWalker(content, NodeFilter.SHOW_TEXT, null);
+    var text = "", nodes = [], n;
+    while((n = w.nextNode())){ nodes.push({node:n, start:text.length}); text += n.nodeValue; }
+    return {text:text, lc:text.toLowerCase(), nodes:nodes};
+  }
+  function nodeAt(pos){
+    var nodes = idx.nodes;
+    // linear scan; returns {node, offset}
+    for(var k=0;k<nodes.length;k++){
+      var nd = nodes[k], end = nd.start + nd.node.nodeValue.length;
+      if(pos >= nd.start && pos <= end) return {node:nd.node, offset:pos - nd.start};
+    }
+    var last = nodes[nodes.length-1];
+    return {node:last.node, offset:last.node.nodeValue.length};
+  }
+  function makeRange(s,e){
+    var a = nodeAt(s), b = nodeAt(e), r = document.createRange();
+    try{ r.setStart(a.node, a.offset); r.setEnd(b.node, b.offset); }catch(err){ return null; }
+    return r;
+  }
+  function clearHL(){ if(HL){ CSS.highlights.delete("mss-hit"); CSS.highlights.delete("mss-cur"); } }
+  function paint(){
+    if(!HL) return;
+    if(matches.length === 0){ clearHL(); return; }
+    if(matches.length === 1){ CSS.highlights.delete("mss-hit"); CSS.highlights.set("mss-cur", new Highlight(matches[0])); return; }
+    var hit = new Highlight();
+    matches.forEach(function(r,i){ if(i!==cur) hit.add(r); });
+    CSS.highlights.set("mss-hit", hit);
+    CSS.highlights.set("mss-cur", new Highlight(matches[cur]));
+  }
+  function gotoMatch(){
+    if(matches.length === 0){ countEl.textContent = "0 results"; clearHL(); return; }
+    cur = (cur % matches.length + matches.length) % matches.length;
+    countEl.textContent = (cur+1) + " / " + matches.length;
+    paint();
+    var rect = matches[cur].getBoundingClientRect();
+    if(rect && (rect.height || rect.width)){
+      // "instant" (not "auto" — that defers to CSS scroll-behavior:smooth); jump like native find-in-page
+      window.scrollTo({ top: window.pageYOffset + rect.top - (topbarH() + 90), behavior:"instant" });
+    }
+  }
+  function runSearch(q){
+    q = (q||"").replace(/^\s+|\s+$/g,"");
+    matches = []; cur = -1;
+    if(!q){ countEl.textContent = ""; clearHL(); return; }
+    if(!idx) idx = buildIndex();
+    var needle = q.toLowerCase(), hay = idx.lc, from = 0, at;
+    while((at = hay.indexOf(needle, from)) !== -1){
+      var r = makeRange(at, at + needle.length); if(r) matches.push(r);
+      from = at + needle.length;
+    }
+    if(matches.length === 0){ countEl.textContent = "0 results"; clearHL(); return; }
+    cur = 0; gotoMatch();
+  }
+  var deb;
+  input.addEventListener("input", function(){ clearTimeout(deb); deb = setTimeout(function(){ runSearch(input.value); }, 110); });
+  input.addEventListener("keydown", function(e){
+    if(e.key === "Enter"){ e.preventDefault(); if(matches.length){ cur += (e.shiftKey?-1:1); gotoMatch(); } else { runSearch(input.value); } }
+    else if(e.key === "Escape"){ input.value = ""; runSearch(""); input.blur(); }
+  });
+  $("#nextHit").addEventListener("click", function(){ if(matches.length){ cur++; gotoMatch(); } });
+  $("#prevHit").addEventListener("click", function(){ if(matches.length){ cur--; gotoMatch(); } });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "/" && document.activeElement !== input && !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)){
+      e.preventDefault(); input.focus(); input.select();
+    }
+  });
+  if(!HL){ /* graceful: search still navigates, just no visual highlight */ }
+
+  /* ---------------- back to top ---------------- */
+  $("#toTop").addEventListener("click", function(){ window.scrollTo({top:0, behavior:"smooth"}); });
+})();
+</script>
+</body>
+</html>

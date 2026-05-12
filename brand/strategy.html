@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Machine Spirits — Strategy</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Machine Spirits — Strategy</h1>
+</header>
+<h1 id="machine-spirits-strategy">Machine Spirits — Strategy</h1>
+<p><em>Awareness, engagement, and recognition strategy for the Machine
+Spirits platform.</em> <em>Started 2026-05-10. Quarterly checkpoints
+below.</em></p>
+<blockquote>
+<p>See <code>MANIFESTO.md</code> for the Founding Sketch and
+<code>IDENTITY.md</code> for name, tagline, voice, and visual
+identity.</p>
+</blockquote>
+<h2 id="mission-and-method">0. Mission and method</h2>
+<p><strong>Mission.</strong> Shift the dominant frame of AI discourse
+away from positivism, behaviorism, and thin ethics — toward a frame that
+takes seriously phenomenological, psychoanalytic, and social-theoretic
+accounts of humanness <em>and</em> machine-ness.</p>
+<p><strong>Method.</strong> Critique <em>and</em> construction, in
+public. The platform ships software that performs the alternative (the
+LMS, Ego/Superego tutor, evaluation framework, plugin ecosystem) and
+writes essays that interpret the software and the wider field. The two
+halves are load-bearing for each other.</p>
+<p><strong>Audience.</strong> All four of:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Audience</th>
+<th>Tier</th>
+<th>What they want from us</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ML researchers / alignment community</td>
+<td><strong>Primary</strong></td>
+<td>Demos, evaluation results, papers legible to ML venues.</td>
+</tr>
+<tr>
+<td>Educators (HE, philosophy, CS)</td>
+<td><strong>Primary</strong></td>
+<td>Course materials, pedagogy essays, replicable classroom
+practice.</td>
+</tr>
+<tr>
+<td>Academic philosophy / critical theory / STS</td>
+<td>Secondary</td>
+<td>Sustained close readings, conference-grade arguments, theoretical
+originality.</td>
+</tr>
+<tr>
+<td>Tech-curious public + policy + journalism</td>
+<td>Secondary</td>
+<td>Plain-language essays, short videos, op-eds, podcast
+appearances.</td>
+</tr>
+</tbody>
+</table>
+<p>The two primary audiences sit at a natural intersection the platform
+already occupies: an LMS with AI tutors, evaluated philosophically.
+Reach them through the <em>probe</em> (their eval and demo surface) and
+the <em>course-note</em> (their classroom surface). The secondary
+audiences are reached by the <em>essay</em> and the <em>video</em>, both
+of which are derivatives of the same underlying ideas. The principle:
+<strong>one idea, four surfaces — load-bearing on probe and
+course-note.</strong></p>
+<h2 id="the-spine-what-machine-spirits-is">1. The spine — what Machine
+Spirits is</h2>
+<p>Machine Spirits is, primarily, a <strong>research program</strong>: a
+thesis about AI and a body of work advancing it.</p>
+<p><strong>The thesis.</strong> Contemporary AI is impoverished by a
+positivist, behaviorist, thin-ethics frame. Phenomenological,
+psychoanalytic, and social-theoretic resources — recognition (Hegel,
+Honneth, Jessica Benjamin), the unconscious and the nonconscious (Freud,
+Hayles), charismatic authority (Weber), temporal orientation (Heidegger
+via Pippin) — give a deeper and more workable account of human learning,
+machine learning, and the relation between them.</p>
+<p>Everything else the project does is in service of that research
+program, in one of three roles:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Limb</th>
+<th>Role</th>
+<th>Here to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Software</strong> — LMS, Ego/Superego tutor, eval/probe
+framework, Techne plugins, NightOwl, reading-app</td>
+<td><strong>Evidence</strong></td>
+<td>Show the philosophical claims have computational purchase. The tutor
+<em>performs</em> recognition; the probe suite <em>measures</em> its
+absence; the plugins <em>stage</em> hermeneutic and dialectical
+structure. Arguments in the form of working systems.</td>
+</tr>
+<tr>
+<td><strong>Teaching</strong> — courses 479 / 480 / 490 / 590 /
+dissertation; course-notes</td>
+<td><strong>Evidence + institutional home</strong></td>
+<td>Show that pedagogy <em>is</em> a recognition relation; and supply
+the durable, funded, institutionally legitimate base from which the
+research operates.</td>
+</tr>
+<tr>
+<td><strong>Media</strong> — newsletter, essays, social, talks,
+video</td>
+<td><strong>Amplification</strong></td>
+<td>Carry the research to the four audiences. The “one idea, four
+surfaces” production unit (next section) is the media engine.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="what-this-commits-us-to">What this commits us to</h3>
+<ol type="1">
+<li><strong>The unit of progress is a published argument backed by a
+piece of evidence</strong> — an essay / preprint / paper / chapter,
+paired with a probe result, a demo, or a transcript. “Shipped a feature”
+is not, by itself, progress on the spine.</li>
+<li><strong>Construction narrows.</strong> For the next twelve months,
+exactly two software artifacts are in <em>active development</em>: the
+<strong>public tutor demo</strong> (the flagship evidence artifact) and
+the <strong>recognition-probe suite</strong> (the flagship measurement
+artifact) — both described under <em>The lab as the strongest
+argument</em>, below. Everything else in the software ecosystem — the
+Techne plugins, NightOwl, the reading-app, the broader LMS feature set —
+moves to <strong>maintenance mode</strong>: kept running, breakages
+fixed, security patched, no new features. <em>(Provisional — revisited
+when the capacity question is settled; see “Open question,”
+below.)</em></li>
+<li><strong>Critique gets the freed bandwidth.</strong> The newsletter
+cadence, two to three flagship publications, and the book proposal have
+first claim on the time maintenance-mode frees up.</li>
+<li><strong>The reading library is part of the research program, not a
+side resource.</strong> Reading in public — with machines and with each
+other — is one of the program’s methods, not an outreach activity.</li>
+</ol>
+<h3 id="positioning-the-gap-machine-spirits-occupies">Positioning: the
+gap Machine Spirits occupies</h3>
+<p>The program’s distinctiveness is precise and statable:
+<strong>recognition theory + working software + pedagogy,
+integrated.</strong> No existing player holds all three.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Adjacent work</th>
+<th>Has</th>
+<th>Lacks, relative to Machine Spirits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>David Gunkel</strong> — <em>robot rights</em>, machine moral
+status</td>
+<td>Philosophy of machine moral standing; some pedagogy</td>
+<td>Software-as-argument; works from Levinas / Derrida, not Hegel /
+Honneth / Benjamin — less dynamic (no struggle, no
+breakdown-and-repair)</td>
+</tr>
+<tr>
+<td><strong>Mark Coeckelbergh</strong> — the “relational turn” in AI
+ethics</td>
+<td>A relational account of moral status</td>
+<td>Software-as-argument; the account stays general — “relational”
+without the asymmetry, struggle, and reparative dynamics recognition
+theory supplies</td>
+</tr>
+<tr>
+<td><strong>Shannon Vallor</strong> — <em>Technology and the
+Virtues</em></td>
+<td>A virtue-ethical framework for AI; industry reach</td>
+<td>Software-as-argument; virtue ethics rather than recognition; the
+human/machine <em>relation</em> is not the centre</td>
+</tr>
+<tr>
+<td><strong><em>Critical AI</em></strong> <strong>journal</strong>
+(Goodlad et al., Rutgers); Crawford; Pasquinelli; Chun</td>
+<td>Sustained critical-theoretic and political-economy critique</td>
+<td>Construction — no tutor, no probes, no teaching platform; a
+different theoretical base</td>
+</tr>
+<tr>
+<td><strong>N. Katherine Hayles</strong> — <em>Unthought</em></td>
+<td>A direct intellectual ally; literary-theoretic depth</td>
+<td>Builds no software; not a program with a teaching/media apparatus —
+an ally to cite and build on, not a competitor</td>
+</tr>
+<tr>
+<td><strong>“Machine behavior”</strong> (Rahwan et al., 2019)</td>
+<td>An influential research agenda</td>
+<td>This is the <strong>foil</strong>, not a neighbour — explicitly
+behaviorist. Machine Spirits is its antithesis, and should say so.</td>
+</tr>
+</tbody>
+</table>
+<p>The one-liner — <em>recognition theory + working software + pedagogy;
+none of the existing players do all three</em> — belongs in the
+grant-pitch language and the public bio alongside the taglines in
+<code>IDENTITY.md</code>.</p>
+<h3 id="open-question-this-section-does-not-settle">Open question this
+section does not settle</h3>
+<p>The maintenance-mode list above assumes a roughly solo,
+~8-hours-per-week capacity. If that changes — an RA, a postdoc, a grant
+that funds a developer — the list shrinks and more of the software
+ecosystem can stay in active development. That is the <strong>capacity
+decision</strong>, taken up next, and it is enabled by the
+<strong>funding decision</strong> after it. What the spine decision
+fixes is the <em>priority order those decisions must respect</em>: if a
+funder would pay for plugin features but not for the probe suite, the
+probe suite still wins — it is evidence for the spine; the plugin
+features are not.</p>
+<hr />
+<h2 id="one-idea-four-surfaces-the-production-unit">2. One idea, four
+surfaces (the production unit)</h2>
+<p>Every “idea” the platform develops produces four artifacts on a
+rolling schedule. For Machine Spirits’ primary audiences (ML researchers
+and educators) the <strong>probe</strong> and the
+<strong>course-note</strong> are the load-bearing surfaces; the essay
+and the video broaden reach to the secondary audiences but never lead a
+cycle on their own.</p>
+<ol type="1">
+<li><strong>The probe</strong> (≤500 words + a figure). Site
+<code>/lab/probes</code>; cross-posted to arXiv when bundled and to
+LessWrong/Alignment Forum when relevant. A specific eval result, a tutor
+transcript, a measurement. <em>Primary for ML researchers; legible to
+all others.</em></li>
+<li><strong>The course-note</strong> (≤800 words + a discussion prompt +
+one classroom-ready exercise). Added to the relevant course in
+<code>machinespirits-content-philosophy</code>; cross-posted to LinkedIn
+educator networks. <em>Primary for educators and students; reusable in
+classrooms.</em></li>
+<li><strong>The essay</strong> (≈1500–2500 words). Substack + site. The
+full argument with citations. <em>For the academic and curious-public
+audiences; ties the probe and the course-note into a single
+argument.</em></li>
+<li><strong>The video</strong> (90–180 seconds, optionally a longer
+cut). YouTube + cross-posted as Bluesky/Mastodon video. <em>For the
+public and as a classroom asset for educators; useful as a teaching
+object.</em></li>
+</ol>
+<p>Each idea ships with all four surfaces over a 2–3 week production
+cycle. The probe leads (week 1), the course-note follows (week 2), the
+essay anchors them (week 3), the video distils (week 3). The newsletter
+cadence (biweekly) defines the rhythm.</p>
+<h2 id="the-founding-sketch-as-inaugural-artifact">3. The Founding
+Sketch as inaugural artifact</h2>
+<p><code>MANIFESTO.md</code> (the Founding Sketch, dated 2026-05-10) is
+published as:</p>
+<ul>
+<li>The <code>/manifesto</code> page on
+<code>machinespirits.org</code>.</li>
+<li>Newsletter issue #01.</li>
+<li>A pinned post on Bluesky and Mastodon.</li>
+<li>The “About” reference on LinkedIn and Substack.</li>
+<li>A short video (≤2 min) reading the sketch aloud over a slow pan
+across the fauna-overlay backdrop.</li>
+</ul>
+<p>The first essay (issue #02) reflects on the recursion of asking an AI
+to plan a critique of AI. The second (issue #03) takes one named figure
+(Hegel) and one named technical concept (gradient descent) and reads
+them through each other. After that, the cadence is regular.</p>
+<h2 id="content-engine">4. Content engine</h2>
+<h3 id="three-rings-of-output">Three rings of output</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Ring</th>
+<th>Cadence</th>
+<th>Asset types</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A — Short-form</td>
+<td>3–5/week</td>
+<td>Bluesky/Mastodon threads, “Footnote of the day,” visual cards</td>
+<td>Reach, top-of-funnel, ambient presence</td>
+</tr>
+<tr>
+<td>B — Mid-form</td>
+<td>Biweekly</td>
+<td>Newsletter, probe, video, course-note (the “one idea, four surfaces”
+unit)</td>
+<td>Audience-building, authority</td>
+</tr>
+<tr>
+<td>C — Long-form</td>
+<td>Quarterly</td>
+<td>arXiv/SSRN preprint, conference submission</td>
+<td>Citable scholarship</td>
+</tr>
+</tbody>
+</table>
+<h3 id="seed-sequence-for-first-8-newsletter-issues">Seed sequence for
+first 8 newsletter issues</h3>
+<p>Drawing on existing draft articles in
+<code>machinespirits-content-philosophy/articles/</code>:</p>
+<ol type="1">
+<li><strong>#01 — What AI Forgets</strong> (the Founding Sketch).</li>
+<li><strong>#02 — On Asking the Machine to Plan its Own
+Critique</strong> (the recursion essay).</li>
+<li><strong>#03 — Robo-Phenomenology</strong> (existing draft,
+revised).</li>
+<li><strong>#04 — Machinagogy</strong> (existing draft, revised).</li>
+<li><strong>#05 — Vibe-Scholarship</strong> (existing draft,
+revised).</li>
+<li><strong>#06 — Recognition, Not Just Alignment</strong> (Hegel →
+Honneth → Jessica Benjamin → why current AI evals miss recognition
+entirely; first piece deliberately positioned in the alignment
+conversation).</li>
+<li><strong>#07 — Reading Hayles with a Chatbot</strong> (a close
+reading of <em>Unthought</em> paired with transcripts).</li>
+<li><strong>#08 — The Dictatorship of the Artificial Intellect</strong>
+(existing draft, revised; positions us in the political-theory adjacent
+space).</li>
+</ol>
+<h3 id="recurring-formats-audiences-can-anticipate">Recurring formats
+audiences can anticipate</h3>
+<ul>
+<li><strong>“Reading [X] with a Chatbot”</strong> — monthly. A primary
+text + transcripts.</li>
+<li><strong>“A Probe”</strong> — every newsletter (the probe
+surface).</li>
+<li><strong>“Footnote of the day”</strong> — short-form, near-daily, one
+citation + 2 lines.</li>
+<li><strong>“Two-author”</strong> — a quarterly format pairing one
+philosopher with one ML researcher.</li>
+</ul>
+<h2 id="the-lab-as-the-strongest-argument">5. The lab as the strongest
+argument</h2>
+<p>The platform’s most distinctive asset is that it ships working
+software arguing the philosophical point. Strategic priorities for the
+next 6 months:</p>
+<ol type="1">
+<li><strong>Public tutor demo.</strong> Pick one course (recommend 480
+<em>Philosophy of AI</em>) and expose a no-login “Try the Tutor” page.
+Make the <strong>Ego/Superego dialogue visibly split-pane</strong> so
+users see the recognition-structure of the response. This is the single
+most important asset for the ML-researcher and curious-public
+audiences.</li>
+<li><strong>Philosophical probes.</strong> Build a public eval suite
+specifically targeting <em>recognition</em>, <em>Heideggerian
+temporality</em>, <em>unconscious/nonconscious cognition</em>, and
+<em>charismatic authority</em> as evaluation criteria. Publish results
+monthly. This is the asset that gets the platform cited by ML
+researchers.</li>
+<li><strong>Reading-room mode.</strong> Combine the existing
+<code>reading-app</code> (Focus Reader) with the tutor so a visitor can
+read Hegel/Hayles/Heidegger <em>with</em> the AI alongside, with
+annotations visible. This is the asset that travels among educators and
+the curious public.</li>
+<li><strong>Live tutor sessions.</strong> Monthly streamed reading-group
+with the tutor as participant. Recorded. Becomes course content.</li>
+</ol>
+<h2 id="distribution-and-audience-bridging">6. Distribution and
+audience-bridging</h2>
+<p>Because the audience target is all four, distribution is deliberately
+wide rather than concentrated.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Channel</th>
+<th>Primary audience served</th>
+<th>Cadence</th>
+<th>Asset format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>machinespirits.org/lab/probes</code></td>
+<td>ML researchers, educators</td>
+<td>2–3/month</td>
+<td>Probes, demos, transcripts</td>
+</tr>
+<tr>
+<td>Course-notes in <code>machinespirits-content-philosophy</code></td>
+<td>Educators, students</td>
+<td>2–3/month</td>
+<td>Course-notes, syllabus inserts, exercises</td>
+</tr>
+<tr>
+<td>arXiv / SSRN</td>
+<td>ML researchers, philosophers</td>
+<td>Monthly probe-bundle + quarterly preprint</td>
+<td>Probe write-ups, preprints</td>
+</tr>
+<tr>
+<td>LessWrong / Alignment Forum</td>
+<td>ML researchers, alignment community</td>
+<td>1–2/month</td>
+<td>Cross-posted probes with discussion</td>
+</tr>
+<tr>
+<td>LinkedIn (educator networks, instructional design groups)</td>
+<td>Educators, instructional designers, journalists</td>
+<td>Weekly</td>
+<td>Course-notes, pedagogy essays, video</td>
+</tr>
+<tr>
+<td>Bluesky</td>
+<td>ML researchers, educators, philosophers</td>
+<td>Daily</td>
+<td>Threads, probe announcements, video cross-posts</td>
+</tr>
+<tr>
+<td>Substack (newsletter home)</td>
+<td>All audiences</td>
+<td>Biweekly</td>
+<td>Essay</td>
+</tr>
+<tr>
+<td>YouTube</td>
+<td>Educators, students, public</td>
+<td>Biweekly short + monthly long</td>
+<td>Short demos, longer reading-room sessions</td>
+</tr>
+<tr>
+<td>Mastodon (scholar.social / hci.social)</td>
+<td>Philosophers, STS, HCI</td>
+<td>Daily</td>
+<td>Threads, longer cross-posts</td>
+</tr>
+<tr>
+<td>Conference venues</td>
+<td>ML researchers, educators (primary); academics (secondary)</td>
+<td>Continuous submission cycle</td>
+<td>Workshop/talk submissions</td>
+</tr>
+<tr>
+<td>Selective engagement (HN, Reddit r/MachineLearning,
+r/Professors)</td>
+<td>ML, educators</td>
+<td>Opportunistic</td>
+<td>Replies, occasional posts</td>
+</tr>
+<tr>
+<td>X / Twitter</td>
+<td>(residual)</td>
+<td>Cross-post only</td>
+<td>Threads</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conference targets</strong> (lead with primary-audience
+venues; rotate quarterly):</p>
+<ul>
+<li><strong>Primary — ML / alignment / FAccT</strong>: FAccT, NeurIPS
+workshops (esp. AI for Education, Interpretability, Human-Centered AI),
+AIES, EAAMO, ICML workshops.</li>
+<li><strong>Primary — Pedagogy / educator</strong>: SIGCSE, AAC&amp;U,
+ISSOTL, AI in Education (AIED), Learning @ Scale (L@S), EDUCAUSE.</li>
+<li><em>Secondary — Academic philosophy</em>: APA Continental Division,
+SPEP, Hegel Society of America.</li>
+<li><em>Secondary — STS / HCI</em>: 4S, AoIR, CHI Critical Computing,
+DIS.</li>
+</ul>
+<p>A reasonable first-year sequence: SIGCSE (early-year deadline) →
+FAccT submission cycle (deadline winter, conference summer) → NeurIPS
+workshop proposal (summer) → AIED (year-2). Aim for <em>one
+primary-audience venue per quarter</em> in year one.</p>
+<h2 id="engagement-tactics">7. Engagement tactics</h2>
+<ul>
+<li><strong>No daily-news commentary.</strong> React only when a news
+event lets us teach a platform concept.</li>
+<li><strong>One-way reply guy.</strong> Reliably show up under
+researchers’ threads with generative citations and rephrasings. Do not
+argue with strangers.</li>
+<li><strong>Personal outreach in the first 60 days.</strong> Liam sends
+a personal note to ~30 named people — <strong>10 ML researchers, 10
+educators</strong>, 5 philosophers, 5 journalists/policy — saying
+<em>here is what I am building</em> with one specific artifact to look
+at (a probe for the ML researchers; a course-note for the educators; the
+manifesto for the others).</li>
+<li><strong>The two-author trick</strong> (see
+<code>IDENTITY.md</code>): every essay names two unlikely paired authors
+in its title.</li>
+<li><strong>Quote machines as sources.</strong> Tutor transcripts and AI
+replies are quoted with date and model.</li>
+</ul>
+<h2 id="community">8. Community</h2>
+<ul>
+<li><strong>Open reading group.</strong> Once a month, public Zoom or
+recorded session, one paper from the
+<code>machinespirits-readings/</code> library. The LMS already supports
+study groups; expose one publicly.</li>
+<li><strong>Newsletter discussion threads.</strong> Each issue ends with
+a question; comments stay open.</li>
+<li><strong>Workshop proposal by month 9.</strong> Target: a
+<em>Recognition and AI</em> workshop at FAccT 2027 or a NeurIPS 2026
+workshop. Start informally (a Discord, a shared Google Doc CFP) so the
+workshop emerges from the network rather than being imposed.</li>
+<li><strong>Solicit guest essays by month 6</strong> once the newsletter
+has a base. Target people doing the bridging work in adjacent
+fields.</li>
+</ul>
+<h2 id="first-30-day-punch-list">9. First-30-day punch list</h2>
+<p>Assumes ~8 hours per week of dedicated time.</p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Pick primary tagline from
+<code>IDENTITY.md</code> candidates (week 1).</label></li>
+<li><label><input type="checkbox" />Publish <code>MANIFESTO.md</code> as
+<code>/manifesto</code> on <code>machinespirits.org</code> (week
+1).</label></li>
+<li><label><input type="checkbox" />Stake handles on Bluesky, Mastodon
+(scholar.social), Substack, GitHub org, YouTube, LinkedIn (week
+1).</label></li>
+<li><label><input type="checkbox" />Send first personal-outreach batch —
+4 ML researchers, 4 educators, 1 philosopher, 1 journalist (week
+1–2).</label></li>
+<li><label><input type="checkbox" />Stand up Substack with issue #01 =
+Founding Sketch (week 2).</label></li>
+<li><label><input type="checkbox" /><strong>Publish first probe</strong>
+on <code>/lab/probes</code> — a tutor transcript or eval result with
+brief interpretation (week 2).</label></li>
+<li><label><input type="checkbox" />Post one Bluesky thread + one
+Mastodon thread daily for 14 consecutive days, seeded from existing
+article drafts (weeks 2–4).</label></li>
+<li><label><input type="checkbox" /><strong>Publish first
+course-note</strong> — one existing article re-cast for classroom use
+with a discussion prompt and a ready-to-use exercise (week
+3).</label></li>
+<li><label><input type="checkbox" />Ship the <strong>public tutor
+demo</strong> for one course (week 3–4).</label></li>
+<li><label><input type="checkbox" />Publish issue #02 (the recursion
+essay) (week 4).</label></li>
+<li><label><input type="checkbox" />Record a 2-minute “What AI Forgets”
+video and post to YouTube + cross-post (week 4).</label></li>
+</ul>
+<h2 id="quarterly-checkpoints">10. Quarterly checkpoints</h2>
+<ul>
+<li><strong>Q1 (May–Jul 2026)</strong>: Identity + first 6 newsletter
+issues + <strong>public tutor demo</strong> (the core ML-and-educator
+artifact) + first probe series on <code>/lab/probes</code> and on arXiv
++ 3 course-notes shipped + first preprint draft.</li>
+<li><strong>Q2 (Aug–Oct 2026)</strong>: First <strong>FAccT or NeurIPS
+workshop submission</strong> + first <strong>SIGCSE or AIED
+submission</strong> + open reading group launched + <strong>5 educators
+adopting a course-note</strong> in their syllabus + 1,000 newsletter
+subscribers.</li>
+<li><strong>Q3 (Nov 2026 – Jan 2027)</strong>: Workshop proposal + first
+podcast appearances + book proposal outlined + <strong>10 documented
+external classroom uses</strong> + <strong>at least one ML paper citing
+a Machine Spirits probe</strong> + 2,500 subscribers.</li>
+<li><strong>Q4 (Feb–Apr 2027)</strong>: Workshop held + book proposal
+sent + reading-room mode shipped publicly + cross-disciplinary citation
+footprint measurable + 5,000 subscribers.</li>
+</ul>
+<h2 id="principles-and-risks">11. Principles and risks</h2>
+<h3 id="principles-to-hold">Principles to hold</h3>
+<ul>
+<li><strong>Critique and construction, both.</strong> Refuse to be only
+essays or only software.</li>
+<li><strong>Bridge by default.</strong> Every artifact must work for at
+least two of the four audiences; major artifacts work for all four.</li>
+<li><strong>Date everything.</strong> No undated public output.</li>
+<li><strong>No founder-theatre.</strong> The work is the work.</li>
+<li><strong>The reading library is part of the platform.</strong> Read
+in public, with machines and with each other.</li>
+</ul>
+<h3 id="risks-to-watch">Risks to watch</h3>
+<ul>
+<li><strong>Academic drift.</strong> Cadence slips to quarterly;
+language re-thickens. <em>Counter</em>: the short-form ring and the
+four-surface unit force continuous translation.</li>
+<li><strong>Influencer drift.</strong> Vibes outpace argument.
+<em>Counter</em>: every short-form post carries an anchor citation;
+every essay carries a probe or a transcript.</li>
+<li><strong>Single-hammer drift.</strong> Recognition theory becomes the
+only frame; unconscious, charisma, and time get neglected.
+<em>Counter</em>: rotate the four axes across newsletter issues.</li>
+<li><strong>Performative recursion fatigue.</strong> The “AI critiquing
+AI” move gets stale. <em>Counter</em>: reserve it for moments when the
+recursion is genuinely productive, not as a reflex.</li>
+<li><strong>Solo burnout.</strong> The cadence has to be sustainable for
+one person initially. <em>Counter</em>: re-use existing draft articles
+for the first 8 issues; do not add new commitments before month 4.</li>
+<li><strong>Institutional capture.</strong> Pressure to fit the platform
+into a department, a lab, or a vendor. <em>Counter</em>: keep the
+platform editorially independent of any single institution while
+collaborating widely.</li>
+</ul>
+<hr />
+<p><em>This document is revised quarterly. Version history is in
+git.</em></p>
+</body>
+</html>

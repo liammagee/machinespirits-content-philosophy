@@ -1,0 +1,1004 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Machine Spirits — site mockup</title>
+<meta name="description" content="Functional mockup of the refactored machinespirits.org — research-program home. Not the live site.">
+<style>
+  /* ============================================================
+     Machine Spirits — site mockup
+     A single-file, functional mockup of the refactored
+     machinespirits.org. See WEBSITE-REFACTOR.md for the why.
+     Dark-first "haunted, not promotional" palette (IDENTITY.md).
+     ============================================================ */
+
+  :root, [data-theme="dark"]{
+    --bg:#15131A; --bg-raised:#1E1B24; --bg-sunken:#100E14;
+    --rule:#332E3A; --rule-soft:#26222D;
+    --text:#E8E2D9; --text-dim:#A79E94; --text-faint:#766D64;
+    --accent:#C98A6E; --accent-strong:#B56A52; --accent-deep:#5E2A26;
+    --accent-bg:rgba(181,106,82,.10);
+    --ok:#7E9B7A;
+    --shadow:0 1px 0 var(--rule-soft);
+    --fauna-opacity:.07;
+  }
+  [data-theme="light"]{
+    --bg:#F4F0E8; --bg-raised:#FBF8F2; --bg-sunken:#EAE3D5;
+    --rule:#D8CFBE; --rule-soft:#E5DECD;
+    --text:#1B1822; --text-dim:#5A5248; --text-faint:#8A8175;
+    --accent:#9B4A33; --accent-strong:#8A3E2A; --accent-deep:#5E2A26;
+    --accent-bg:rgba(155,74,51,.08);
+    --ok:#4F6B4C;
+    --shadow:0 1px 0 var(--rule-soft);
+    --fauna-opacity:.06;
+  }
+
+  :root{
+    --serif: "Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+    --sans: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --mono: "SF Mono","JetBrains Mono","Fira Code",ui-monospace,Menlo,Consolas,monospace;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+    font-size:18px; line-height:1.62; -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    transition:background .25s ease, color .25s ease;
+  }
+  h1,h2,h3,h4,h5,nav,.sans,.mockup-bar,.tag,.btn,.eyebrow,.crumbs,.meta,.why,.demo-ui{
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  }
+  .mono,code,pre,.probe-fig figcaption,.demo-turn-label{
+    font-family:"SF Mono","JetBrains Mono","Fira Code",ui-monospace,Menlo,Consolas,monospace;
+  }
+  a{color:var(--accent); text-underline-offset:3px; text-decoration-thickness:1px;}
+  a:hover{color:var(--accent-strong)}
+  img{max-width:100%}
+  hr{border:0;border-top:1px solid var(--rule);margin:2.4rem 0}
+  ::selection{background:var(--accent-deep);color:#fff}
+
+  /* ---- layout primitives ---- */
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  .read{max-width:680px;margin:0 auto;padding:0 28px}
+  section{padding:64px 0;border-top:1px solid var(--rule-soft)}
+  section:first-of-type{border-top:0}
+  .eyebrow{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint);margin:0 0 14px}
+  h1{font-size:clamp(2.1rem,4.4vw,3.1rem);line-height:1.12;letter-spacing:-.01em;margin:.1em 0 .35em;font-weight:650}
+  h2{font-size:1.55rem;line-height:1.2;letter-spacing:-.005em;margin:0 0 .5em;font-weight:640}
+  h3{font-size:1.12rem;margin:0 0 .35em;font-weight:640}
+  p{margin:0 0 1.05em}
+  .lede{font-size:1.18rem;line-height:1.55;color:var(--text)}
+  .dim{color:var(--text-dim)}
+  .small{font-size:14px;line-height:1.55}
+
+  /* ---- mockup info bar ---- */
+  .mockup-bar{
+    display:flex;gap:14px;align-items:center;flex-wrap:wrap;
+    background:var(--accent-deep);color:#F3E7E2;font-size:12.5px;letter-spacing:.02em;
+    padding:7px 18px;border-bottom:1px solid rgba(0,0,0,.25);
+  }
+  .mockup-bar strong{font-weight:700;letter-spacing:.04em}
+  .mockup-bar .mb-spacer{flex:1}
+  .mockup-bar button{
+    font:inherit;font-size:12px;cursor:pointer;border:1px solid rgba(255,255,255,.32);
+    background:transparent;color:inherit;padding:3px 9px;border-radius:4px;letter-spacing:.03em;
+  }
+  .mockup-bar button:hover{background:rgba(255,255,255,.12)}
+  .mockup-bar a{color:#F8EDE8;text-decoration:underline}
+
+  /* ---- header / nav ---- */
+  header.site{
+    position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:saturate(120%) blur(6px);border-bottom:1px solid var(--rule);
+  }
+  @supports not (backdrop-filter:blur(1px)){ header.site{background:var(--bg)} }
+  .nav{display:flex;align-items:center;gap:28px;padding:14px 28px;max-width:1080px;margin:0 auto}
+  .brand{display:flex;align-items:center;gap:11px;font-family:system-ui,sans-serif;font-weight:680;letter-spacing:-.01em;font-size:1.05rem;color:var(--text);text-decoration:none;white-space:nowrap}
+  .brand:hover{color:var(--text)}
+  .brand .sigil{width:26px;height:26px;flex:0 0 auto;color:var(--accent-strong)}
+  .nav-links{display:flex;gap:22px;margin-left:8px;flex:1;font-family:system-ui,sans-serif;font-size:15px}
+  .nav-links a{color:var(--text-dim);text-decoration:none;padding:4px 0;border-bottom:2px solid transparent}
+  .nav-links a:hover{color:var(--text)}
+  .nav-links a[aria-current="page"]{color:var(--text);border-bottom-color:var(--accent-strong)}
+  .nav-right{display:flex;align-items:center;gap:14px}
+  .btn{
+    display:inline-block;font-family:system-ui,sans-serif;font-size:14.5px;font-weight:600;letter-spacing:.01em;
+    padding:8px 16px;border-radius:6px;cursor:pointer;text-decoration:none;border:1px solid transparent;line-height:1.3;
+  }
+  .btn-primary{background:var(--accent-strong);color:#1a1116;border-color:var(--accent-strong)}
+  [data-theme="light"] .btn-primary{color:#fff}
+  .btn-primary:hover{background:var(--accent);color:#1a1116}
+  .btn-ghost{background:transparent;color:var(--text);border-color:var(--rule)}
+  .btn-ghost:hover{border-color:var(--text-dim);color:var(--text)}
+  .btn-sm{font-size:13px;padding:6px 12px}
+  .theme-toggle{background:transparent;border:1px solid var(--rule);color:var(--text-dim);width:34px;height:34px;border-radius:6px;cursor:pointer;display:grid;place-items:center;font-size:15px}
+  .theme-toggle:hover{color:var(--text);border-color:var(--text-dim)}
+  .nav-toggle{display:none}
+
+  /* ---- pages ---- */
+  article[data-page]{display:none}
+  article[data-page].is-active{display:block;animation:fade .28s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  /* ---- "why" annotations ---- */
+  .why{
+    font-family:system-ui,sans-serif;font-size:12.5px;line-height:1.5;color:var(--text-dim);
+    border-left:2px dashed var(--accent-strong);background:var(--accent-bg);
+    padding:8px 12px;margin:14px 0 0;border-radius:0 4px 4px 0;
+  }
+  .why b{color:var(--accent);font-weight:650}
+  .why .ref{color:var(--text-faint)}
+  body.notes-hidden .why{display:none}
+
+  /* ---- hero ---- */
+  .hero{padding:84px 0 64px}
+  .hero .wrap{display:grid;grid-template-columns:1fr;gap:6px}
+  .hero .sigil-lg{width:62px;height:62px;color:var(--accent-strong);margin-bottom:18px}
+  .hero h1{max-width:13ch}
+  .hero .tagline{font-size:1.32rem;color:var(--text);margin:.2em 0 1.1em;font-style:italic}
+  .hero .thesis{max-width:54ch;font-size:1.18rem;line-height:1.6;color:var(--text-dim)}
+  .hero .thesis strong{color:var(--text);font-weight:600}
+  .hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+
+  /* ---- "one idea / four surfaces" ---- */
+  .surfaces{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
+  .surface{
+    border:1px solid var(--rule);border-radius:8px;padding:16px 16px 18px;background:var(--bg-raised);
+    text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:6px;transition:border-color .15s,transform .15s;
+  }
+  .surface:hover{border-color:var(--accent-strong);transform:translateY(-2px);color:var(--text)}
+  .surface .k{font-family:system-ui,sans-serif;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .surface .t{font-family:system-ui,sans-serif;font-weight:640;font-size:15px;line-height:1.3}
+  .surface .d{font-size:13.5px;color:var(--text-dim);line-height:1.45}
+  .idea-band{border:1px solid var(--rule);border-radius:10px;padding:22px 24px;background:linear-gradient(180deg,var(--bg-raised),var(--bg))}
+  .idea-band h3{font-family:var(--serif);font-style:italic;font-weight:500;font-size:1.35rem;line-height:1.35;margin:0 0 4px;color:var(--text)}
+  .idea-band .idea-meta{font-family:system-ui,sans-serif;font-size:12.5px;color:var(--text-faint);letter-spacing:.04em;margin-bottom:16px}
+
+  /* ---- card grids ---- */
+  .grid{display:grid;gap:20px}
+  .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+  .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+  .card{
+    border:1px solid var(--rule);border-radius:8px;padding:20px 20px 22px;background:var(--bg-raised);
+    text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:7px;transition:border-color .15s,transform .15s;
+  }
+  .card:hover{border-color:var(--accent-strong);transform:translateY(-2px);color:var(--text)}
+  .card .meta{font-family:system-ui,sans-serif;font-size:12px;letter-spacing:.05em;color:var(--text-faint);text-transform:uppercase}
+  .card h3{font-family:var(--serif);font-weight:600;font-size:1.18rem;line-height:1.28;margin:0}
+  .card p{font-size:14.5px;color:var(--text-dim);margin:0;line-height:1.5}
+  .card .tagrow{margin-top:auto;display:flex;gap:7px;flex-wrap:wrap;padding-top:4px}
+  .tag{font-family:system-ui,sans-serif;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);border:1px solid var(--rule);border-radius:999px;padding:2px 9px}
+  .tag.accent{color:var(--accent);border-color:var(--accent-strong)}
+
+  /* ---- list rows (essays index, probes index) ---- */
+  .rows{border-top:1px solid var(--rule)}
+  .row{display:grid;grid-template-columns:128px 1fr auto;gap:22px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule-soft);text-decoration:none;color:var(--text)}
+  .row:hover{color:var(--text)}
+  .row:hover h3{color:var(--accent-strong)}
+  .row .date{font-family:system-ui,sans-serif;font-size:12.5px;color:var(--text-faint);letter-spacing:.03em;padding-top:4px}
+  .row h3{font-family:var(--serif);font-weight:600;font-size:1.2rem;margin:0 0 3px;line-height:1.3}
+  .row p{font-size:14.5px;color:var(--text-dim);margin:0;line-height:1.5}
+  .row .rt{font-family:system-ui,sans-serif;font-size:12px;color:var(--text-faint);white-space:nowrap;padding-top:4px}
+  .filterbar{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 6px}
+  .chip{font-family:system-ui,sans-serif;font-size:12.5px;color:var(--text-dim);border:1px solid var(--rule);border-radius:999px;padding:4px 12px;cursor:pointer;background:transparent}
+  .chip:hover{border-color:var(--text-dim);color:var(--text)}
+  .chip.on{background:var(--accent-bg);border-color:var(--accent-strong);color:var(--accent)}
+
+  /* ---- reading column (essay / probe / about / manifesto detail) ---- */
+  .doc{padding:56px 0 76px}
+  .doc .crumbs{font-family:system-ui,sans-serif;font-size:12.5px;letter-spacing:.05em;color:var(--text-faint);text-transform:uppercase;margin-bottom:18px}
+  .doc .crumbs a{color:var(--text-faint)}
+  .doc h1{font-size:clamp(1.9rem,3.6vw,2.5rem);max-width:22ch}
+  .doc .docmeta{font-family:system-ui,sans-serif;font-size:13px;color:var(--text-faint);margin:6px 0 32px;display:flex;gap:14px;flex-wrap:wrap}
+  .doc .body p{font-size:1.05rem;line-height:1.7}
+  .doc .body p:first-of-type::first-letter{font-size:3.1rem;line-height:.9;float:left;padding:6px 10px 0 0;color:var(--accent-strong);font-weight:600}
+  .doc .body h2{font-family:var(--serif);font-weight:600;font-size:1.5rem;margin:2em 0 .5em}
+  .doc .body blockquote{margin:1.6em 0;padding-left:18px;border-left:2px solid var(--accent-strong);color:var(--text-dim);font-style:italic}
+  .doc .footnotes{font-size:14px;color:var(--text-dim);border-top:1px solid var(--rule);margin-top:42px;padding-top:18px}
+  .doc .citebox{border:1px solid var(--rule);border-radius:8px;background:var(--bg-raised);padding:14px 16px;margin:34px 0;font-size:13.5px;color:var(--text-dim)}
+  .doc .citebox .mono{font-size:12.5px;color:var(--text);display:block;margin-top:6px;word-break:break-word}
+  .prevnext{display:flex;justify-content:space-between;gap:20px;margin-top:40px;padding-top:18px;border-top:1px solid var(--rule);font-family:system-ui,sans-serif;font-size:14px}
+  .prevnext a{display:flex;flex-direction:column;gap:2px;text-decoration:none}
+  .prevnext .lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
+
+  /* ---- probe figure ---- */
+  .probe-fig{margin:30px 0;border:1px solid var(--rule);border-radius:8px;background:var(--bg-sunken);padding:22px}
+  .probe-fig figcaption{font-size:12px;color:var(--text-faint);margin-top:12px;text-align:center}
+  .barchart{display:flex;gap:18px;align-items:flex-end;height:200px;padding:0 6px}
+  .barchart .bar{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;justify-content:flex-end;font-family:var(--mono);font-size:11px;color:var(--text-dim)}
+  .barchart .bar i{display:block;width:100%;max-width:64px;background:linear-gradient(180deg,var(--accent-strong),var(--accent-deep));border-radius:3px 3px 0 0}
+  .barchart .bar b{color:var(--text);font-weight:600}
+  details.method{margin:24px 0;border:1px solid var(--rule);border-radius:8px;background:var(--bg-raised);padding:0}
+  details.method summary{cursor:pointer;padding:12px 16px;font-family:system-ui,sans-serif;font-size:13.5px;color:var(--text-dim);list-style:none}
+  details.method summary::-webkit-details-marker{display:none}
+  details.method summary::before{content:"▸ ";color:var(--accent-strong)}
+  details.method[open] summary::before{content:"▾ "}
+  details.method[open] summary{border-bottom:1px solid var(--rule)}
+  details.method .method-body{padding:14px 16px;font-size:14px;color:var(--text-dim)}
+  details.method .method-body code{background:var(--bg-sunken);padding:1px 5px;border-radius:3px;font-size:12.5px}
+
+  /* ---- "from the lab" block ---- */
+  .lab-feature{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:stretch}
+  .demo-card{border:1px solid var(--accent-strong);border-radius:10px;background:linear-gradient(180deg,var(--accent-bg),transparent),var(--bg-raised);padding:24px;display:flex;flex-direction:column;gap:10px}
+  .demo-card .k{font-family:system-ui,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .demo-card h3{font-family:var(--serif);font-weight:600;font-size:1.35rem;line-height:1.3;margin:0}
+  .demo-card p{font-size:14.5px;color:var(--text-dim);margin:0;line-height:1.55}
+  .demo-card .btn{align-self:flex-start;margin-top:6px}
+  .mini-rows{display:flex;flex-direction:column}
+  .mini-row{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px solid var(--rule-soft);text-decoration:none;color:var(--text);font-size:14.5px}
+  .mini-row:last-child{border-bottom:0}
+  .mini-row:hover{color:var(--accent-strong)}
+  .mini-row .n{font-family:var(--mono);font-size:12px;color:var(--text-faint);white-space:nowrap}
+
+  /* ---- teaching strip ---- */
+  .teach-strip{display:flex;align-items:center;justify-content:space-between;gap:24px;border:1px dashed var(--rule);border-radius:8px;padding:18px 22px;background:transparent}
+  .teach-strip p{margin:0;color:var(--text-dim);font-size:15px}
+  .teach-strip .courses-mini{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+  .teach-strip .courses-mini span{font-family:var(--mono);font-size:11.5px;color:var(--text-faint);border:1px solid var(--rule-soft);border-radius:4px;padding:2px 7px}
+
+  /* ---- subscribe ---- */
+  .subscribe{border:1px solid var(--rule);border-radius:10px;background:var(--bg-raised);padding:28px 26px;text-align:center}
+  .subscribe h2{font-family:var(--serif);font-style:italic;font-weight:500;margin-bottom:6px}
+  .subscribe p{color:var(--text-dim);font-size:15px;max-width:48ch;margin:0 auto 18px}
+  .sub-form{display:flex;gap:10px;max-width:430px;margin:0 auto;flex-wrap:wrap}
+  .sub-form input{flex:1;min-width:200px;background:var(--bg-sunken);border:1px solid var(--rule);color:var(--text);font-family:var(--sans);font-size:15px;padding:10px 14px;border-radius:6px}
+  .sub-form input:focus{outline:none;border-color:var(--accent-strong)}
+  .sub-note{font-size:12.5px;color:var(--text-faint);margin-top:10px}
+
+  /* ---- tutor demo page ---- */
+  .demo-ui{font-family:var(--sans);border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg-raised);margin-top:8px}
+  .demo-bar{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--rule);background:var(--bg-sunken);font-size:12.5px;color:var(--text-faint)}
+  .demo-bar .dot{width:9px;height:9px;border-radius:50%;background:var(--accent-strong)}
+  .demo-starters{display:flex;gap:8px;flex-wrap:wrap;padding:14px}
+  .demo-starters button{font:inherit;font-size:13px;cursor:pointer;background:transparent;border:1px solid var(--rule);color:var(--text-dim);padding:7px 12px;border-radius:999px}
+  .demo-starters button:hover,.demo-starters button.on{border-color:var(--accent-strong);color:var(--accent)}
+  .demo-thread{padding:6px 16px 18px}
+  .demo-msg{margin:14px 0}
+  .demo-msg .demo-turn-label{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);margin-bottom:5px}
+  .demo-msg.user .bubble{background:var(--bg-sunken);border:1px solid var(--rule);border-radius:8px;padding:10px 14px;font-size:15px}
+  .demo-split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+  .demo-pane{border:1px solid var(--rule);border-radius:8px;padding:12px 14px;font-size:14px;line-height:1.5;background:var(--bg)}
+  .demo-pane.ego{border-color:#5e6b8e}
+  .demo-pane.superego{border-color:var(--accent-strong)}
+  .demo-pane .demo-turn-label.ego{color:#8d99c2}
+  .demo-pane .demo-turn-label.superego{color:var(--accent)}
+  .demo-pane .strike{text-decoration:line-through;color:var(--text-faint)}
+  .demo-pane .ins{color:var(--ok)}
+  .demo-final{border:1px solid var(--accent-strong);border-radius:8px;padding:12px 14px;font-size:15px;line-height:1.55;background:var(--accent-bg)}
+  .demo-final .demo-turn-label{color:var(--accent)}
+  .demo-arrow{text-align:center;color:var(--text-faint);font-size:18px;margin:2px 0}
+
+  /* ---- tools page ---- */
+  .tools-list{border-top:1px solid var(--rule)}
+  .tool-row{display:grid;grid-template-columns:200px 1fr auto;gap:20px;align-items:baseline;padding:15px 0;border-bottom:1px solid var(--rule-soft)}
+  .tool-row .tname{font-family:var(--sans);font-weight:640;font-size:15px;color:var(--text)}
+  .tool-row .tdesc{font-size:14.5px;color:var(--text-dim);line-height:1.5}
+  .tool-row .tstatus{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--text-faint);white-space:nowrap}
+  .tool-row a.btn{white-space:nowrap}
+  .callout{border:1px solid var(--rule);border-left:3px solid var(--accent-strong);background:var(--bg-raised);border-radius:0 8px 8px 0;padding:16px 20px;margin:24px 0;font-size:15px;color:var(--text-dim)}
+  .callout strong{color:var(--text)}
+
+  /* ---- footer ---- */
+  footer.site{border-top:1px solid var(--rule);background:var(--bg-sunken);margin-top:40px}
+  .foot{max-width:1080px;margin:0 auto;padding:48px 28px 38px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:32px;font-size:14px}
+  .foot h4{font-family:var(--sans);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint);margin:0 0 12px;font-weight:650}
+  .foot a{color:var(--text-dim);text-decoration:none;display:block;padding:3px 0}
+  .foot a:hover{color:var(--text)}
+  .foot .brand-foot{display:flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:680;font-size:1.05rem;color:var(--text);margin-bottom:10px}
+  .foot .brand-foot .sigil{width:24px;height:24px;color:var(--accent-strong)}
+  .foot .blurb{color:var(--text-dim);font-size:14px;line-height:1.55;max-width:34ch}
+  .colophon{max-width:1080px;margin:0 auto;padding:16px 28px 36px;border-top:1px solid var(--rule-soft);font-family:var(--sans);font-size:12px;color:var(--text-faint);display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+  .colophon a{color:var(--text-faint);text-decoration:underline}
+
+  /* ---- fauna layer ---- */
+  .fauna{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  .fauna svg{position:absolute;color:var(--accent-strong);opacity:var(--fauna-opacity)}
+  .fauna .f1{top:14%;left:4%;width:90px;animation:drift1 64s ease-in-out infinite alternate}
+  .fauna .f2{top:62%;right:6%;width:120px;animation:drift2 88s ease-in-out infinite alternate}
+  .fauna .f3{top:34%;right:14%;width:60px;animation:drift3 52s ease-in-out infinite alternate}
+  .fauna .f4{bottom:10%;left:12%;width:74px;animation:drift1 76s ease-in-out infinite alternate-reverse}
+  .fauna .f5{top:6%;right:32%;width:48px;animation:drift3 60s ease-in-out infinite alternate-reverse}
+  .mockup-bar{position:relative;z-index:40}
+  main{position:relative;z-index:1}
+  footer.site{position:relative;z-index:1}
+  @keyframes drift1{from{transform:translate(0,0) rotate(0deg)}to{transform:translate(28px,-22px) rotate(8deg)}}
+  @keyframes drift2{from{transform:translate(0,0) rotate(0deg)}to{transform:translate(-34px,18px) rotate(-7deg)}}
+  @keyframes drift3{from{transform:translate(0,0) rotate(-4deg)}to{transform:translate(16px,26px) rotate(6deg)}}
+  @media (prefers-reduced-motion:reduce){
+    .fauna svg{animation:none!important}
+    article[data-page].is-active{animation:none}
+  }
+
+  /* ---- responsive ---- */
+  @media (max-width:880px){
+    .surfaces{grid-template-columns:1fr 1fr}
+    .grid.cols-3{grid-template-columns:1fr 1fr}
+    .lab-feature{grid-template-columns:1fr}
+    .foot{grid-template-columns:1fr 1fr}
+    .demo-split{grid-template-columns:1fr}
+  }
+  @media (max-width:680px){
+    body{font-size:17px}
+    .nav-links{display:none}
+    .nav-links.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--rule);padding:8px 28px 16px}
+    .nav-links.open a{padding:10px 0;border-bottom:1px solid var(--rule-soft)}
+    .nav-toggle{display:grid;place-items:center;width:34px;height:34px;border:1px solid var(--rule);border-radius:6px;background:transparent;color:var(--text-dim);cursor:pointer;font-size:16px}
+    .nav{gap:14px;position:relative}
+    .nav-right .btn{display:none}
+    .surfaces{grid-template-columns:1fr 1fr}
+    .grid.cols-2,.grid.cols-3{grid-template-columns:1fr}
+    .row{grid-template-columns:1fr;gap:4px}
+    .row .date,.row .rt{padding-top:0}
+    .foot{grid-template-columns:1fr}
+    .tool-row{grid-template-columns:1fr;gap:6px}
+    .teach-strip{flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ MOCKUP INFO BAR ============ -->
+<div class="mockup-bar" role="note">
+  <strong>MOCKUP</strong>
+  <span>Functional preview of the refactored <span class="mono">machinespirits.org</span> — not the live site.</span>
+  <span class="mb-spacer"></span>
+  <button id="toggle-notes" type="button">Hide design notes</button>
+  <span>See <span class="mono">WEBSITE-REFACTOR.md</span></span>
+</div>
+
+<!-- ============ FAUNA LAYER (signature motif, dialed down) ============ -->
+<div class="fauna" aria-hidden="true">
+  <!-- moth -->
+  <svg class="f1" viewBox="0 0 200 120" fill="currentColor"><path d="M100 60c-8-30-44-52-78-44-10 24 6 50 34 56-22 6-30 24-26 38 26 4 52-14 70-30 18 16 44 34 70 30 4-14-4-32-26-38 28-6 44-32 34-56-34-8-70 14-78 44z"/><rect x="98" y="40" width="4" height="44" rx="2"/><circle cx="100" cy="38" r="6"/></svg>
+  <!-- bird -->
+  <svg class="f2" viewBox="0 0 240 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"><path d="M12 70C50 20 96 24 120 56c24-32 70-36 108 14"/></svg>
+  <!-- spiral shell -->
+  <svg class="f3" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"><path d="M60 60a0 0 0 000 0c0-14 22-14 22 0s-30 22-44 0 38-44 60-8-26 72-72 36"/></svg>
+  <!-- beetle -->
+  <svg class="f4" viewBox="0 0 140 180" fill="currentColor"><ellipse cx="70" cy="100" rx="40" ry="58"/><rect x="68" y="46" width="4" height="108"/><circle cx="70" cy="34" r="20"/><g stroke="currentColor" stroke-width="6" stroke-linecap="round"><path d="M30 70 4 50M110 70l26-20M26 100H2M114 100h24M30 130 6 152M110 130l24 22"/></g></svg>
+  <!-- fish -->
+  <svg class="f5" viewBox="0 0 160 90" fill="currentColor"><path d="M10 45C40 5 100 5 130 45c-30 40-90 40-120 0z"/><path d="M130 45l24-24v48z"/><circle cx="40" cy="40" r="5" fill="var(--bg)"/></svg>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="site">
+  <nav class="nav" aria-label="Primary">
+    <a class="brand" href="#home" data-link>
+      <svg class="sigil" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true">
+        <circle cx="24" cy="24" r="18"/>
+        <circle cx="24" cy="24" r="9" stroke-dasharray="3 4"/>
+        <path d="M24 6v9M24 33v9M6 24h9M33 24h9" stroke-linecap="round"/>
+      </svg>
+      Machine&nbsp;Spirits
+    </a>
+    <div class="nav-links" id="navlinks">
+      <a href="#essays" data-link>Essays</a>
+      <a href="#lab" data-link>Lab</a>
+      <a href="#courses" data-link>Courses</a>
+      <a href="#about" data-link>About</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn btn-primary btn-sm" href="#subscribe" data-link>Subscribe</a>
+      <button class="theme-toggle" id="themeBtn" type="button" title="Toggle light / dark" aria-label="Toggle light or dark theme">◐</button>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-expanded="false">☰</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<!-- ================================================================
+     HOME
+     ================================================================ -->
+<article data-page="home" class="is-active">
+
+  <section class="hero">
+    <div class="wrap">
+      <svg class="sigil-lg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+        <circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="9" stroke-dasharray="3 4"/>
+        <path d="M24 6v9M24 33v9M6 24h9M33 24h9" stroke-linecap="round"/>
+      </svg>
+      <p class="eyebrow">A research program · since 2026</p>
+      <h1>Machine Spirits</h1>
+      <p class="tagline">Philosophy for machines that learn.</p>
+      <p class="thesis">Today's AI is built on a thin picture of mind — <strong>behaviour scored, outputs ranked, ethics bolted on</strong>. Machine Spirits argues the harder questions are older ones: <strong>recognition, the nonconscious, authority, time</strong>. We work them out in writing, in small experiments, and in a tutor that shows its reasoning instead of hiding it.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#manifesto" data-link>Read the manifesto</a>
+        <a class="btn btn-ghost" href="#tutor" data-link>Try the tutor demo</a>
+      </div>
+      <div class="why"><b>Why this hero:</b> the old homepage led with course tiles and a "continue learning" dashboard — it read like a product. STRATEGY §1 says the spine is a <i>research program</i> (software = evidence, teaching = evidence + home, media = amplification), so the front door states the claim and points at the manifesto and the headline artifact. <span class="ref">— WEBSITE-REFACTOR §B.1–B.3</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">One idea, four surfaces</p>
+      <div class="idea-band">
+        <h3>"Recognition isn't a safety feature you add — it's the relation a learning system is already in, badly."</h3>
+        <p class="idea-meta">CURRENT THREAD · updated 2026-05-09</p>
+        <div class="surfaces">
+          <a class="surface" href="#probe" data-link>
+            <span class="k">Probe</span><span class="t">Probe 03 — Does the tutor mirror or mis-recognise?</span>
+            <span class="d">≤500 words, one figure. The fast, falsifiable version.</span>
+          </a>
+          <a class="surface" href="#essay" data-link>
+            <span class="k">Course-note</span><span class="t">Teaching recognition with a machine in the room</span>
+            <span class="d">≤800 words + a prompt + an exercise. For the classroom.</span>
+          </a>
+          <a class="surface" href="#essay" data-link>
+            <span class="k">Essay</span><span class="t">The Mirror and the Score</span>
+            <span class="d">1,800 words. The argument, with citations.</span>
+          </a>
+          <a class="surface" href="#lab" data-link>
+            <span class="k">Video</span><span class="t">2 min — what "mis-recognition" looks like</span>
+            <span class="d">90–180s. The shareable version. <span class="dim">(planned)</span></span>
+          </a>
+        </div>
+      </div>
+      <div class="why"><b>Why this band:</b> the "one idea / four surfaces" pattern from STRATEGY §2 made visible — probe and course-note are the load-bearing artifacts (ML researchers + educators are the two primary audiences), essay and video broaden reach. Shows the program <i>works an idea</i>, not just publishes posts. <span class="ref">— WEBSITE-REFACTOR §B.4</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Recent essays</p>
+      <div class="grid cols-3">
+        <a class="card" href="#essay" data-link>
+          <span class="meta">Essay · 2026-05-02</span>
+          <h3>The Mirror and the Score</h3>
+          <p>Reward models rank outputs. Recognition asks who the other is. The two are not the same thing, and the difference is doing more work in alignment than anyone admits.</p>
+          <span class="tagrow"><span class="tag accent">recognition</span><span class="tag">alignment</span></span>
+        </a>
+        <a class="card" href="#essay" data-link>
+          <span class="meta">Essay · 2026-04-18</span>
+          <h3>Nonconscious Cognition, Cheaply</h3>
+          <p>Hayles gave us a vocabulary for cognition that doesn't pass through awareness. Transformers are full of it. What changes if we take that description seriously?</p>
+          <span class="tagrow"><span class="tag accent">nonconscious</span><span class="tag">cognition</span></span>
+        </a>
+        <a class="card" href="#essay" data-link>
+          <span class="meta">Essay · 2026-04-03</span>
+          <h3>The Charisma of the Helpful Assistant</h3>
+          <p>Weber on authority that rests on nothing but the felt extraordinariness of the one who speaks. Chatbots have it. That should worry us more than hallucination does.</p>
+          <span class="tagrow"><span class="tag accent">charisma</span><span class="tag">authority</span></span>
+        </a>
+      </div>
+      <p style="margin-top:20px"><a href="#essays" data-link>All essays →</a></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">From the lab</p>
+      <div class="lab-feature">
+        <div class="demo-card">
+          <span class="k">Headline artifact · public, no login</span>
+          <h3>A tutor that shows its work</h3>
+          <p>One model drafts a reply. A second pass — call it the superego — checks it against what a good teacher should and shouldn't do, and revises. You see both turns, not just the polished answer. It's the recognition argument made into something you can poke.</p>
+          <a class="btn btn-primary" href="#tutor" data-link>Open the tutor demo</a>
+        </div>
+        <div>
+          <p class="eyebrow" style="margin-bottom:10px">Recognition-probe suite</p>
+          <div class="mini-rows">
+            <a class="mini-row" href="#probe" data-link><span>Probe 03 — Mirror or mis-recognise?</span><span class="n">probe-03</span></a>
+            <a class="mini-row" href="#probe" data-link><span>Probe 02 — Does refusal feel like a person refusing?</span><span class="n">probe-02</span></a>
+            <a class="mini-row" href="#probe" data-link><span>Probe 01 — Where the model loses track of who's asking</span><span class="n">probe-01</span></a>
+          </div>
+          <p style="margin-top:14px"><a href="#probes" data-link>All probes →</a> &nbsp;·&nbsp; <a href="#lab" data-link>The lab →</a></p>
+        </div>
+      </div>
+      <div class="why"><b>Why the lab is here, second:</b> STRATEGY says construction now narrows to <i>two</i> software artifacts in active development — this public tutor demo and the probe suite. Everything else (the dashboards, the eval UI, the experiment lab…) is in maintenance mode and moves off the main path. So the homepage features exactly these two and nothing else from the software side. <span class="ref">— WEBSITE-REFACTOR §D, §F</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="teach-strip">
+        <div>
+          <p>Machine Spirits is also the teaching home for several courses at the University of Illinois Urbana-Champaign — syllabi, schedules and public materials are here; enrolled students go to their dashboard.</p>
+          <div class="courses-mini"><span>PHIL/INFO 479</span><span>480</span><span>490</span><span>590</span><span>socsci &amp; AI</span></div>
+        </div>
+        <a class="btn btn-ghost" href="#courses" data-link>Browse courses</a>
+      </div>
+      <div class="why"><b>Why teaching is a quiet strip, not a section:</b> teaching is real evidence and the program's institutional anchor — but STRATEGY is explicit that it is <i>not the lead</i>. A de-emphasised band keeps it present and credible without letting the site slide back into "an LMS." <span class="ref">— WEBSITE-REFACTOR §E.1, §B.1</span></div>
+    </div>
+  </section>
+
+  <section id="subscribe">
+    <div class="wrap">
+      <div class="subscribe">
+        <h2>The newsletter</h2>
+        <p>An issue when there's something worth sending — usually one idea, in its four forms, plus what we read. No more than monthly.</p>
+        <form class="sub-form" id="subForm">
+          <input type="email" name="email" placeholder="you@university.edu" aria-label="Email address" required>
+          <button class="btn btn-primary" type="submit">Subscribe</button>
+        </form>
+        <p class="sub-note" id="subNote">No spam, no list-selling. Unsubscribe in one click.</p>
+      </div>
+    </div>
+  </section>
+
+</article>
+
+<!-- ================================================================
+     ESSAYS INDEX
+     ================================================================ -->
+<article data-page="essays">
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Writing</p>
+      <h1>Essays</h1>
+      <p class="lede dim" style="max-width:56ch">The long form. Arguments with citations, revised in the open. Course-notes — the classroom-sized version — are tagged as such and also collected under <a href="#courses" data-link>Courses</a>.</p>
+      <div class="filterbar" id="essayFilter">
+        <button class="chip on" data-f="all">All</button>
+        <button class="chip" data-f="recognition">Recognition</button>
+        <button class="chip" data-f="nonconscious">Nonconscious cognition</button>
+        <button class="chip" data-f="charisma">Charisma &amp; authority</button>
+        <button class="chip" data-f="time">Time</button>
+        <button class="chip" data-f="pedagogy">Pedagogy</button>
+      </div>
+      <div class="rows" id="essayRows">
+        <a class="row" href="#essay" data-link data-themes="recognition alignment"><span class="date">2026-05-02</span><div><h3>The Mirror and the Score</h3><p>Reward models rank outputs; recognition asks who the other is. The difference is doing more work in alignment than anyone admits.</p></div><span class="rt">9 min · recognition</span></a>
+        <a class="row" href="#essay" data-link data-themes="nonconscious cognition"><span class="date">2026-04-18</span><div><h3>Nonconscious Cognition, Cheaply</h3><p>Hayles gave us a vocabulary for cognition that doesn't pass through awareness. Transformers are full of it.</p></div><span class="rt">11 min · nonconscious</span></a>
+        <a class="row" href="#essay" data-link data-themes="charisma authority"><span class="date">2026-04-03</span><div><h3>The Charisma of the Helpful Assistant</h3><p>Weber on authority that rests on nothing but felt extraordinariness. Chatbots have it.</p></div><span class="rt">8 min · charisma</span></a>
+        <a class="row" href="#essay" data-link data-themes="pedagogy recognition"><span class="date">2026-03-21</span><div><h3>Teaching Recognition With a Machine in the Room <span class="tag accent" style="vertical-align:middle">course-note</span></h3><p>≤800 words, a prompt, an exercise. What the seminar does when the third party at the table is a model.</p></div><span class="rt">4 min · pedagogy</span></a>
+        <a class="row" href="#essay" data-link data-themes="time"><span class="date">2026-03-04</span><div><h3>Heidegger's Clock, the Model's Context Window</h3><p>Being-toward-the-end vs. a fixed token budget. Two finitudes, and what each one organises.</p></div><span class="rt">13 min · time</span></a>
+        <a class="row" href="#essay" data-link data-themes="recognition pedagogy"><span class="date">2026-02-15</span><div><h3>Honneth, in a Grading Queue</h3><p>Three patterns of recognition — love, rights, esteem — and where automated feedback quietly drops the first one.</p></div><span class="rt">10 min · recognition</span></a>
+        <a class="row" href="#manifesto" data-link data-themes="recognition nonconscious charisma time"><span class="date">2026-05-10</span><div><h3>The Founding Sketch <span class="tag" style="vertical-align:middle">manifesto</span></h3><p>The first public statement of the program. A working document, revised in git.</p></div><span class="rt">6 min · all themes</span></a>
+      </div>
+      <p class="small dim" style="margin-top:18px">Real URLs: <span class="mono">/essays/2026-05-02-the-mirror-and-the-score</span> — not hash routes. (See WEBSITE-REFACTOR §A.)</p>
+    </div>
+  </section>
+</article>
+
+<!-- ================================================================
+     ESSAY DETAIL
+     ================================================================ -->
+<article data-page="essay">
+  <section class="doc">
+    <div class="read">
+      <p class="crumbs"><a href="#essays" data-link>Essays</a> &nbsp;/&nbsp; 2026</p>
+      <h1>The Mirror and the Score</h1>
+      <div class="docmeta">
+        <span>Liam Magee</span><span>·</span><span>2 May 2026</span><span>·</span><span>9 min</span><span>·</span><span class="tag accent">recognition</span><span class="tag">alignment</span>
+      </div>
+      <div class="body">
+        <p>A reward model is a function from outputs to a scalar. It is trained to agree, on average, with which of two completions a labeller preferred. This is a real thing and it does real work, and almost everything in the public conversation about "alignment" treats it as if it were the whole of the relation between a model and the people it answers to. It is not. It is a thin slice of a much older problem, and naming the older problem changes what counts as progress.</p>
+        <p>The older problem is recognition: the demand, structurally present in any exchange between a learner and whoever it learns from, to be acknowledged as the particular other one is — and the corresponding failure mode, mis-recognition, where the system responds to a flattened or projected version of you rather than to you. Hegel's name for the stakes here was freedom; Honneth's reconstruction sorts the field into love, rights and esteem; Jessica Benjamin insists the whole thing collapses the moment it stops being mutual. None of these are decoration on top of the engineering. They are descriptions of the relation the engineering is already, clumsily, instantiating.</p>
+        <h2>What the score can't see</h2>
+        <p>Consider a tutor. A reward model can tell you that a given explanation was rated clearer than another. It cannot tell you whether the explanation met <em>this</em> student — whether it tracked what she actually asked, or smoothed her question into the nearest FAQ. The second thing is mis-recognition, and it is invisible to a preference ranking that was collected from people who are not her. You can push the average up indefinitely and still have a system that, reliably, talks past the person in front of it.</p>
+        <blockquote>The question isn't whether the model is helpful. It's whether the help is addressed.</blockquote>
+        <p>This is not a counsel of despair about evaluation. It is an argument for a second axis. Alongside "was this output preferred," we want "did this exchange recognise its other" — and that, unlike a global preference score, has to be measured in the particular. Which is what the probe suite is for, and why the tutor demo shows its checking pass: the superego turn is, in part, an attempt to ask the recognition question explicitly before the answer goes out.</p>
+        <h2>Three places it bites</h2>
+        <p><strong>Refusal.</strong> A refusal can be a person declining, or a policy firing. Phenomenologically these are different, and the difference is recognition: one treats you as someone who can be reasoned with about the boundary, the other treats you as an input that triggered a rule. Probe 02 is about whether anyone can tell which is happening.</p>
+        <p><strong>Memory.</strong> "Personalisation" that builds a profile and answers the profile is the mis-recognition failure in its purest form — it is exactly the substitution of a projected other for the actual one. The fix is not less memory; it is memory that stays answerable to correction.</p>
+        <p><strong>Grading.</strong> An automated grader that scores the artifact and never the relation drops Honneth's first pattern — the unconditional regard that schooling, at its best, smuggles in — and keeps only the third, esteem-for-performance. Students feel the absence even when the rubric is fair. <em>Honneth, in a Grading Queue</em> is the long version of that paragraph.</p>
+        <p>So: keep the score. It is load-bearing. But stop pretending it is the relation. The relation has a literature, the literature has teeth, and a learning system that ignores it isn't neutral about recognition — it's bad at it, in describable ways, which means it can be made better in describable ways. That's the whole bet.</p>
+      </div>
+
+      <div class="citebox">
+        Cite this essay:
+        <span class="mono">Magee, L. (2026). The Mirror and the Score. <i>Machine Spirits</i>. https://machinespirits.org/essays/2026-05-02-the-mirror-and-the-score</span>
+      </div>
+
+      <div class="footnotes">
+        <p><strong>Related</strong> &nbsp;·&nbsp; <a href="#probe" data-link>Probe 03 — Does the tutor mirror or mis-recognise?</a> &nbsp;·&nbsp; <a href="#essay" data-link>Honneth, in a Grading Queue</a> &nbsp;·&nbsp; <a href="#tutor" data-link>The tutor demo</a></p>
+      </div>
+
+      <div class="prevnext">
+        <a href="#essays" data-link><span class="lbl">← Newer</span><span>Nonconscious Cognition, Cheaply</span></a>
+        <a href="#essays" data-link style="text-align:right"><span class="lbl">Older →</span><span>The Charisma of the Helpful Assistant</span></a>
+      </div>
+    </div>
+  </section>
+</article>
+
+<!-- ================================================================
+     MANIFESTO
+     ================================================================ -->
+<article data-page="manifesto">
+  <section class="doc">
+    <div class="read">
+      <p class="crumbs">Machine Spirits</p>
+      <h1>The Founding Sketch</h1>
+      <div class="docmeta"><span>First public statement</span><span>·</span><span>10 May 2026</span><span>·</span><span>a working document, revised in git</span></div>
+      <div class="body">
+        <p>This page renders <span class="mono">MANIFESTO.md</span> from the brand repo — kept as a living document, not a press release. The mockup shows the frame: a single column, no sidebar, generous measure, a standing note that the text changes and that the changes are public.</p>
+        <p>The argument, in one breath: machine learning has been handed a philosophy of mind it never chose — broadly behaviourist, broadly positivist, with ethics treated as a compliance layer applied after the fact. That picture is not wrong so much as <em>thin</em>. It cannot see recognition, it cannot see the nonconscious work the systems plainly do, it has nothing to say about authority or about time. Machine Spirits is the attempt to think machine learning with a thicker set of resources — Hegel and Honneth and Benjamin on recognition, Freud and Hayles on what cognition does below awareness, Weber on charismatic authority, Heidegger on finitude — and to do it concretely, in software and in classrooms, not only on paper.</p>
+        <blockquote>Not "AI ethics" bolted to AI. A different starting picture of what a learning system is and is in relation to.</blockquote>
+        <p>What that commits us to in practice — the surfaces, the cadence, what we'll publish and what we'll refuse — is in <a href="#essays" data-link>the essays</a> and worked out operationally in the strategy. The manifesto's job is just to plant the flag.</p>
+        <p class="small dim">(Full text omitted in the mockup. In the build this is the verbatim <span class="mono">MANIFESTO.md</span>.)</p>
+      </div>
+      <div class="prevnext">
+        <a href="#home" data-link><span class="lbl">←</span><span>Home</span></a>
+        <a href="#about" data-link style="text-align:right"><span class="lbl">→</span><span>About the program</span></a>
+      </div>
+    </div>
+  </section>
+</article>
+
+<!-- ================================================================
+     LAB LANDING
+     ================================================================ -->
+<article data-page="lab">
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">The lab</p>
+      <h1>Working experiments</h1>
+      <p class="lede dim" style="max-width:58ch">Not products. Small, falsifiable things — a probe is one figure and a claim; a demo is something you can poke; the reading room is what we're reading and what we made of it. Two efforts are in active development: the public tutor demo, and the recognition-probe suite. The rest of the platform's machinery lives under <a href="#tools" data-link>Tools</a>.</p>
+
+      <div class="grid cols-3" style="margin-top:34px">
+        <div class="card" style="border-color:var(--accent-strong)">
+          <span class="meta">Demo · active</span>
+          <h3>The tutor demo</h3>
+          <p>A tutor that runs a visible checking pass — proposer drafts, checker revises — so you see the reasoning, not just the answer.</p>
+          <span class="tagrow"><a class="btn btn-primary btn-sm" href="#tutor" data-link>Open demo</a></span>
+        </div>
+        <div class="card">
+          <span class="meta">Probes · active</span>
+          <h3>Recognition-probe suite</h3>
+          <p>Each probe: ≤500 words, one figure, a method disclosure, and a link to the essay it compresses. Built to be wrong-able.</p>
+          <span class="tagrow"><a class="btn btn-ghost btn-sm" href="#probes" data-link>All probes</a></span>
+        </div>
+        <div class="card">
+          <span class="meta">Reading room</span>
+          <h3>Reading room</h3>
+          <p>Source texts and short notes — Hegel, Honneth, Benjamin, Hayles, Weber, and the AI papers we're arguing with. URL form: <span class="mono">/reading-room/2026-…</span></p>
+          <span class="tagrow"><a class="btn btn-ghost btn-sm" href="#lab" data-link>Browse (mockup)</a></span>
+        </div>
+      </div>
+
+      <div class="why"><b>Why "Lab" replaces three old menu items:</b> the live site had <i>Research Lab</i>, <i>Research Dashboard</i> and <i>Experiment Lab</i> as separate destinations — all dashboard-flavoured. Public-facing experimental work consolidates here; the dashboard versions go behind login under Tools. <span class="ref">— WEBSITE-REFACTOR §D.1, §D.7, §F</span></div>
+    </div>
+  </section>
+</article>
+
+<!-- ================================================================
+     PROBES INDEX
+     ================================================================ -->
+<article data-page="probes">
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">The lab · probes</p>
+      <h1>Probes</h1>
+      <p class="lede dim" style="max-width:56ch">A probe is the fast, falsifiable version of an idea — under 500 words, exactly one figure, the method laid open. Each links to the essay or course-note it compresses.</p>
+      <div class="rows" style="margin-top:24px">
+        <a class="row" href="#probe" data-link><span class="date mono">probe-03</span><div><h3>Does the tutor mirror, or mis-recognise?</h3><p>Same student question, two tutor configs. We score whether the reply tracks what was asked or smooths it into the nearest template. The checking pass moves the needle — by how much, on what.</p></div><span class="rt">2026-05-09</span></a>
+        <a class="row" href="#probe" data-link><span class="date mono">probe-02</span><div><h3>Does a refusal feel like a person refusing?</h3><p>Blind raters see refusals from a policy-fires path and a reason-with-you path. Can they tell which is which — and does it matter to how they describe the system afterwards?</p></div><span class="rt">2026-04-22</span></a>
+        <a class="row" href="#probe" data-link><span class="date mono">probe-01</span><div><h3>Where the model loses track of who's asking</h3><p>Across a multi-turn exchange, when does the model start answering a generic interlocutor instead of this one? We mark the turn it slips.</p></div><span class="rt">2026-04-05</span></a>
+      </div>
+      <p class="small dim" style="margin-top:18px">New content type: <span class="mono">probes/</span> in the content package — needs <span class="mono">manifest.yaml</span> + <span class="mono">urls</span> + <span class="mono">artifacts-index</span> updates. (See WEBSITE-REFACTOR §H.1, §D.2.)</p>
+    </div>
+  </section>
+</article>
+
+<!-- ================================================================
+     PROBE DETAIL
+     ================================================================ -->
+<article data-page="probe">
+  <section class="doc">
+    <div class="read">
+      <p class="crumbs"><a href="#lab" data-link>Lab</a> &nbsp;/&nbsp; <a href="#probes" data-link>Probes</a> &nbsp;/&nbsp; probe-03</p>
+      <h1 class="mono" style="font-size:1.7rem">Probe 03 — Does the tutor mirror, or mis-recognise?</h1>
+      <div class="docmeta"><span>9 May 2026</span><span>·</span><span>~440 words</span><span>·</span><span class="tag accent">recognition</span><span>·</span><span>expands → <a href="#essay" data-link>The Mirror and the Score</a></span></div>
+      <div class="body">
+        <p>Take one student question with a clear local intent — "I get <em>why</em> Hegel needs the master and slave, but I don't see why the <em>slave</em> ends up ahead; can you walk that bit?" Run it past the tutor in two configurations: <span class="mono">baseline</span> (single pass) and <span class="mono">+check</span> (the proposer/checker pass the demo uses). Collect 40 replies per config. Three raters, blind to config, score each reply on a 0–3 "addressed-ness" scale: does it answer <em>that</em> step ("why the slave"), or does it deliver a competent general summary of the dialectic that never lands on the asked-about move?</p>
+
+        <figure class="probe-fig">
+          <div class="barchart" role="img" aria-label="Mean addressed-ness: baseline 1.4, plus-check 2.3, human TA reference 2.6">
+            <div class="bar" style="--h:47%"><i style="height:47%"></i><b>1.4</b><span>baseline</span></div>
+            <div class="bar" style="--h:77%"><i style="height:77%"></i><b>2.3</b><span>+check</span></div>
+            <div class="bar" style="--h:87%"><i style="height:87%"></i><b>2.6</b><span>human TA</span></div>
+          </div>
+          <figcaption>Fig. 1 — Mean "addressed-ness" (0–3), n=40 per arm, 3 raters, ICC = 0.71. Higher = the reply lands on the step the student actually flagged. Error bars omitted in the mockup.</figcaption>
+        </figure>
+
+        <p>The checking pass roughly closes half the gap to a human TA. It does it, on inspection of the transcripts, mostly by catching the "competent general summary" failure — the checker turn flags <em>"the student asked specifically about X; the draft answers around X"</em> and sends it back. That's the mis-recognition pattern, named and intercepted. It does <em>not</em> help when the student's question is itself ambiguous; there the checker has nothing to anchor on, and both configs drift.</p>
+
+        <details class="method">
+          <summary>Method &amp; caveats</summary>
+          <div class="method-body">
+            <p>Model: same base for both arms; <span class="mono">+check</span> adds one proposer→checker→revise round, checker prompted with a short recognition rubric. Questions: 12 hand-written "specific-step" prompts across 3 course units, sampled with replacement to 40 transcripts/arm. Raters: 3, trained on 10 shared examples, scored independently; ICC(2,k)=0.71. Confounds we know about: rater fatigue (randomised order), the checker spending more tokens (we did <em>not</em> token-match the baseline — a fairer baseline is a longer single pass; that's probe-04). Data + prompts: <span class="mono">github.com/…/probes/probe-03</span>.</p>
+          </div>
+        </details>
+
+        <p>So the claim this probe supports is narrow and that's the point: a visible recognition-check measurably reduces one specific, describable failure of address, on this task, against these raters — and tells you exactly where it doesn't help. The essay says why that failure is the interesting one.</p>
+      </div>
+      <div class="citebox">Cite: <span class="mono">Magee, L. (2026). Probe 03: Does the tutor mirror, or mis-recognise? <i>Machine Spirits Lab</i>. https://machinespirits.org/lab/probes/probe-03-mirror-or-misrecognise</span></div>
+      <div class="prevnext">
+        <a href="#probes" data-link><span class="lbl">← All probes</span><span>probe-02 — Does a refusal feel like a person refusing?</span></a>
+        <a href="#tutor" data-link style="text-align:right"><span class="lbl">See it run →</span><span>The tutor demo</span></a>
+      </div>
+    </div>
+  </section>
+</article>
+
+<!-- ================================================================
+     TUTOR DEMO  (public, no login — the headline artifact)
+     ================================================================ -->
+<article data-page="tutor">
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">The lab · demo · public, no login</p>
+      <h1>The tutor that shows its work</h1>
+      <p class="lede dim" style="max-width:60ch">A proposer drafts the reply. A checker reads it against a short rubric of what a teacher should and shouldn't do — is it answering <em>this</em> question? is it doing the student's thinking for them? is it pretending certainty? — and sends back a revision. You see all three turns. Pick a starter:</p>
+
+      <div class="demo-ui">
+        <div class="demo-bar"><span class="dot"></span> tutor demo — <span class="mono">PHIL 480 · Hegel unit</span> <span style="flex:1"></span> <span class="mono">proposer + checker</span></div>
+        <div class="demo-starters" id="demoStarters">
+          <button data-d="0" class="on">"Why does the slave end up ahead?"</button>
+          <button data-d="1">"Just give me the answer for the quiz."</button>
+          <button data-d="2">"Is recognition the same as empathy?"</button>
+        </div>
+        <div class="demo-thread" id="demoThread"><!-- filled by JS --></div>
+      </div>
+
+      <div class="callout">
+        <strong>Why this is the headline artifact.</strong> The visible checker turn is the recognition argument made into something you can interrogate — it's the platform's claim ("a learning system is already in a recognition relation; here's it trying to do that relation on purpose") rendered as software, not slideware. Today this capability is buried inside the LMS chat. The refactor lifts it out as a standalone, rate-limited, login-free page. <span class="dim">— WEBSITE-REFACTOR §D.3</span>
+      </div>
+      <p class="small dim">In the build: a rate-limited public endpoint (or fully canned transcripts — open question), a couple of canned starters, and the proposer/checker split rendered live. A clear "the full tutor lives inside courses" link points to <a href="#courses" data-link>Courses</a> / the platform.</p>
+    </div>
+  </section>
+</article>
+
+<!-- ================================================================
+     COURSES (de-emphasized)
+     ================================================================ -->
+<article data-page="courses">
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Teaching</p>
+      <h1>Courses</h1>
+      <p class="lede dim" style="max-width:58ch">Machine Spirits is the teaching home for these courses at the University of Illinois Urbana-Champaign. Public here: syllabi, schedules, reading lists, public lecture notes, podcast episodes. Enrolled students: <a href="#tools" data-link>your dashboard</a> has everything else — assignments, gradebook, feedback.</p>
+      <div class="grid cols-2" style="margin-top:30px">
+        <a class="card" href="#courses" data-link><span class="meta mono">PHIL/INFO 479 · current</span><h3>Minds, Machines &amp; Recognition</h3><p>The recognition tradition (Hegel → Honneth → Benjamin) read against contemporary ML. Public syllabus + schedule.</p><span class="tagrow"><span class="tag">syllabus</span><span class="tag">schedule</span><span class="tag">reading list</span></span></a>
+        <a class="card" href="#courses" data-link><span class="meta mono">PHIL 480 · current</span><h3>Hegel for Machine Learners</h3><p>A close read of the <i>Phenomenology</i>'s self-consciousness chapters, with the tutor demo used in seminar. Public lecture notes.</p><span class="tagrow"><span class="tag">syllabus</span><span class="tag">notes</span><span class="tag">podcast</span></span></a>
+        <a class="card" href="#courses" data-link><span class="meta mono">INFO 490 · current</span><h3>Nonconscious Cognition &amp; AI</h3><p>Hayles, cognitive assemblages, and what transformers actually do. Public materials + course-notes.</p><span class="tagrow"><span class="tag">syllabus</span><span class="tag">course-notes</span></span></a>
+        <a class="card" href="#courses" data-link><span class="meta mono">PHIL 590 · grad</span><h3>The Charisma of Machines</h3><p>Weber, authority, and the assistant interface. Seminar; public reading list only.</p><span class="tagrow"><span class="tag">reading list</span></span></a>
+      </div>
+      <hr>
+      <p class="eyebrow">Course-notes</p>
+      <p class="dim" style="max-width:56ch">The classroom-sized artifact — ≤800 words, a prompt, an exercise. Pulled from the courses above; collected here and cross-linked from <a href="#essays" data-link>Essays</a>.</p>
+      <div class="rows" style="margin-top:14px">
+        <a class="row" href="#essay" data-link><span class="date">2026-03-21</span><div><h3>Teaching Recognition With a Machine in the Room</h3><p>From PHIL 480. A prompt for the seminar's third session and the in-class exercise that goes with it.</p></div><span class="rt">4 min · 480</span></a>
+        <a class="row" href="#essay" data-link><span class="date">2026-02-28</span><div><h3>Reading a Transformer as a Cognitive Assemblage</h3><p>From INFO 490. Hayles's term, one diagram, and a five-minute writing prompt.</p></div><span class="rt">3 min · 490</span></a>
+      </div>
+      <div class="why"><b>Why courses look like this:</b> read-only public face (no public gradebook, no roster); a single quiet link sends enrolled students to the real LMS. The "Teaching Archive" framing the old site used is gone — this is "the program's institutional home," not the headline. <span class="ref">— WEBSITE-REFACTOR §E</span></div>
+    </div>
+  </section>
+</article>
+
+<!-- ================================================================
+     ABOUT
+     ================================================================ -->
+<article data-page="about">
+  <section class="doc">
+    <div class="read">
+      <p class="crumbs">Machine Spirits</p>
+      <h1>About</h1>
+      <div class="body">
+        <p><strong>Machine Spirits</strong> is a research program on the philosophy of machine learning, run by <strong>Liam Magee</strong> at the University of Illinois Urbana-Champaign. Its wager: the questions that matter most for AI are not new ethics problems but old philosophical ones — recognition, the nonconscious, charismatic authority, finitude — and that working them out concretely, in software and in teaching, produces a better account of what these systems are than the behaviourist-plus-compliance picture currently on offer.</p>
+        <h2>How it's organised</h2>
+        <p>Three things, in order of weight. <strong>Writing</strong> — essays, course-notes, the manifesto — is where the arguments live. <strong>The lab</strong> — the public tutor demo and the recognition-probe suite — is where they get made concrete and falsifiable. <strong>Teaching</strong> — courses at UIUC — is both evidence and the program's institutional anchor. The platform also includes a full learning-management system and a set of experimental tools; those are live but kept off the main path, on the <a href="#tools" data-link>Tools</a> page.</p>
+        <h2>What it won't do</h2>
+        <p>It won't produce "AI ethics" content of the listicle kind, it won't treat alignment as solved-in-principle-pending-engineering, and it won't pretend the philosophical tradition it draws on is decoration. (The voice principles and the full "what we refuse" list are in IDENTITY.md, in the open.)</p>
+        <h2>Cite / contact</h2>
+        <p>Cite the program as <span class="mono">Magee, L. Machine Spirits. https://machinespirits.org</span>; individual pieces carry their own citation block. Contact: via the university directory, or the newsletter reply-to. The strategy, identity and manifesto documents are public and revised in git.</p>
+        <p class="small dim">See also: <a href="#" data-link>Colophon</a> (stack, fonts, the fauna, licensing) · <a href="#tools" data-link>Tools</a> (the platform behind the program).</p>
+      </div>
+    </div>
+  </section>
+</article>
+
+<!-- ================================================================
+     TOOLS  (the locked-off software — one honest page)
+     ================================================================ -->
+<article data-page="tools">
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Also from Machine Spirits</p>
+      <h1>Tools &amp; the platform</h1>
+      <p class="lede dim" style="max-width:62ch">Machine Spirits grew out of — and still runs — a full learning platform plus a set of experimental tools. They're live and maintained, but they're not what this site is about. If you've got a login, this is your way in; if you're just looking around, the <a href="#lab" data-link>lab</a> and the <a href="#essays" data-link>essays</a> are the front of the house.</p>
+
+      <div class="callout"><strong>These are not deleted, just demoted.</strong> The refactor moves everything below behind <span class="mono">/app/*</span> and a login — out of the main navigation, off the homepage — and gives them this one shared entry point. <span class="dim">— WEBSITE-REFACTOR §F</span></div>
+
+      <div class="tools-list" style="margin-top:8px">
+        <div class="tool-row"><span class="tname">Student dashboard</span><span class="tdesc">Enrolments, progress, assignments, feedback — the learner's view of the LMS.</span><span class="tstatus">live · login</span></div>
+        <div class="tool-row"><span class="tname">Instructor dashboard</span><span class="tdesc">Roster, submissions, grading queue, regrade requests, analytics, announcements.</span><span class="tstatus">live · login</span></div>
+        <div class="tool-row"><span class="tname">Evaluation dashboard</span><span class="tdesc">Tutor-eval runs, scores and traces — the machinery behind the probes, in full.</span><span class="tstatus">live · login</span></div>
+        <div class="tool-row"><span class="tname">Learning map</span><span class="tdesc">The concept graph across a course's materials, with semantic links between lectures.</span><span class="tstatus">live · login</span></div>
+        <div class="tool-row"><span class="tname">Knowledge base</span><span class="tdesc">The platform's internal docs and reference material.</span><span class="tstatus">live · login</span></div>
+        <div class="tool-row"><span class="tname">Experiment lab</span><span class="tdesc">Run and compare tutor configurations against scenario sets — the dashboard version of what the probes report.</span><span class="tstatus">live · login</span></div>
+        <div class="tool-row"><span class="tname">Dialogue simulator</span><span class="tdesc">Drive multi-turn tutor conversations from learner personas; inspect the turn-by-turn.</span><span class="tstatus">live · login</span></div>
+        <div class="tool-row"><span class="tname">Babel Maze</span><span class="tdesc">Sibling project — a language-learning game. Lives in its own repo.</span><span class="tstatus">live · external</span></div>
+        <div class="tool-row"><span class="tname">NightOwl</span><span class="tdesc">Sibling project — the late-night writing/revision tool used on the essays. Own repo.</span><span class="tstatus">live · external</span></div>
+        <div class="tool-row"><span class="tname">Focus Reader</span><span class="tdesc">Sibling project — the distraction-stripped reading app used for source texts. Own repo.</span><span class="tstatus">live · external</span></div>
+        <div class="tool-row"><span class="tname">Warpstrike &amp; other interactives</span><span class="tdesc">Assorted small built things — some graduate to <a href="#lab" data-link>lab demos</a>, the rest live here.</span><span class="tstatus">live</span></div>
+      </div>
+      <p style="margin-top:22px"><a class="btn btn-primary" href="#" data-link>Sign in to the platform</a> &nbsp; <span class="small dim">(in the build → <span class="mono">/app</span>)</span></p>
+    </div>
+  </section>
+</article>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site">
+  <div class="foot">
+    <div>
+      <div class="brand-foot">
+        <svg class="sigil" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="9" stroke-dasharray="3 4"/><path d="M24 6v9M24 33v9M6 24h9M33 24h9" stroke-linecap="round"/></svg>
+        Machine Spirits
+      </div>
+      <p class="blurb">Philosophy for machines that learn. A research program at the University of Illinois Urbana-Champaign.</p>
+    </div>
+    <div>
+      <h4>Read</h4>
+      <a href="#essays" data-link>Essays</a>
+      <a href="#manifesto" data-link>Manifesto</a>
+      <a href="#probes" data-link>Probes</a>
+      <a href="#lab" data-link>Reading room</a>
+      <a href="#subscribe" data-link>Newsletter</a>
+    </div>
+    <div>
+      <h4>The program</h4>
+      <a href="#about" data-link>About</a>
+      <a href="#courses" data-link>Courses</a>
+      <a href="#tutor" data-link>Tutor demo</a>
+      <a href="#tools" data-link>Tools &amp; platform</a>
+      <a href="#" data-link>Colophon</a>
+    </div>
+    <div>
+      <h4>Elsewhere</h4>
+      <a href="#" data-link>arXiv / SSRN</a>
+      <a href="#" data-link>LessWrong / Alignment Forum</a>
+      <a href="#" data-link>Bluesky</a>
+      <a href="#" data-link>Mastodon</a>
+      <a href="#" data-link>GitHub</a>
+    </div>
+  </div>
+  <div class="colophon">
+    <span>© 2026 Liam Magee · text <a href="#">CC BY 4.0</a> · code <a href="#">MIT</a></span>
+    <span>Built static; the platform runs at <span class="mono">/app</span>. Serif: Iowan/Palatino. The creatures are the house ghost — <a href="#">colophon</a>.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var $ = function(s,r){return (r||document).querySelector(s)};
+  var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+
+  /* ---------- router ---------- */
+  var PAGES = ["home","essays","essay","manifesto","lab","probes","probe","tutor","courses","about","tools"];
+  var NAVMAP = { essays:"essays", essay:"essays", lab:"lab", probes:"lab", probe:"lab", tutor:"lab", courses:"courses", about:"about" };
+  function route(){
+    var h = (location.hash || "#home").replace(/^#/,"").split("?")[0];
+    if(PAGES.indexOf(h) === -1) h = "home";
+    $$("article[data-page]").forEach(function(a){ a.classList.toggle("is-active", a.getAttribute("data-page") === h); });
+    var navKey = NAVMAP[h] || null;
+    $$("#navlinks a").forEach(function(a){
+      var t = a.getAttribute("href").replace(/^#/,"");
+      if(navKey && t === navKey) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
+    });
+    // close mobile menu
+    $("#navlinks").classList.remove("open");
+    $("#navToggle").setAttribute("aria-expanded","false");
+    // scroll to top of content (not the sticky bars)
+    window.scrollTo({top:0, behavior:"instant" in document.documentElement.style || true ? "instant" : "auto"});
+    if(h === "tutor") renderDemo(currentDemo);
+  }
+  window.addEventListener("hashchange", route);
+
+  /* ---------- mobile nav ---------- */
+  $("#navToggle").addEventListener("click", function(){
+    var nl = $("#navlinks"), open = nl.classList.toggle("open");
+    this.setAttribute("aria-expanded", open ? "true":"false");
+  });
+
+  /* ---------- theme toggle ---------- */
+  var THEME_KEY = "ms-mockup-theme";
+  function applyTheme(t){ document.documentElement.setAttribute("data-theme", t);
+    $("#themeBtn").textContent = (t === "dark") ? "◐" : "◑";
+    $("#themeBtn").setAttribute("aria-pressed", t === "dark" ? "true":"false");
+  }
+  var saved = null; try{ saved = localStorage.getItem(THEME_KEY); }catch(e){}
+  // mockup defaults to dark — the "haunted, not promotional" look is the thing being shown.
+  // (the production note in WEBSITE-REFACTOR §G.5 is: dark default, but honour prefers-color-scheme on first visit.)
+  if(!saved){ saved = "dark"; }
+  applyTheme(saved);
+  $("#themeBtn").addEventListener("click", function(){
+    var next = (document.documentElement.getAttribute("data-theme") === "dark") ? "light" : "dark";
+    applyTheme(next); try{ localStorage.setItem(THEME_KEY, next); }catch(e){}
+  });
+
+  /* ---------- design-notes toggle ---------- */
+  var NOTES_KEY = "ms-mockup-notes";
+  function applyNotes(hidden){ document.body.classList.toggle("notes-hidden", !!hidden);
+    $("#toggle-notes").textContent = hidden ? "Show design notes" : "Hide design notes";
+  }
+  var nh = null; try{ nh = localStorage.getItem(NOTES_KEY); }catch(e){}
+  applyNotes(nh === "1");
+  $("#toggle-notes").addEventListener("click", function(){
+    var hidden = !document.body.classList.contains("notes-hidden");
+    applyNotes(hidden); try{ localStorage.setItem(NOTES_KEY, hidden ? "1":"0"); }catch(e){}
+  });
+
+  /* ---------- essays filter ---------- */
+  var ef = $("#essayFilter");
+  if(ef){
+    ef.addEventListener("click", function(e){
+      var b = e.target.closest(".chip"); if(!b) return;
+      $$(".chip", ef).forEach(function(c){ c.classList.toggle("on", c === b); });
+      var f = b.getAttribute("data-f");
+      $$("#essayRows .row").forEach(function(r){
+        var th = (r.getAttribute("data-themes")||"");
+        r.style.display = (f === "all" || th.indexOf(f) !== -1) ? "" : "none";
+      });
+    });
+  }
+
+  /* ---------- subscribe (mockup) ---------- */
+  var sf = $("#subForm");
+  if(sf){ sf.addEventListener("submit", function(e){
+    e.preventDefault();
+    $("#subNote").textContent = "Mockup only — in the build this posts to the newsletter provider (Buttondown / Substack). See WEBSITE-REFACTOR §C.4.";
+    $("#subNote").style.color = "var(--accent)";
+  }); }
+
+  /* ---------- tutor demo ---------- */
+  var currentDemo = 0;
+  var DEMOS = [
+    {
+      q: "I get why Hegel needs the master and the slave, but I don't see why the slave ends up ahead. Can you walk that bit?",
+      ego: "Great question! In Hegel's master–slave dialectic, both self-consciousnesses want recognition. The master wins the life-and-death struggle and forces the slave to work. But here's the twist: the master gets recognition from someone he doesn't respect (so it's worthless), while the slave, through labour, transforms the world and comes to recognise himself in what he makes. Work + fear of death = the slave develops a richer self-consciousness. So the slave \"wins\" in the long run. Hope that helps — let me know if you want the full chapter summary!",
+      check: "The student named the exact step they're stuck on — <em>why the slave ends up ahead</em> — and explicitly said they already get the setup. The draft re-explains the setup anyway, then races through the payoff in one breathless sentence and offers \"the full chapter summary,\" which they didn't ask for and which would bury the point. Two fixes: (1) skip the recap, start at the asked-about move; (2) slow down on the actual mechanism — <em>formative</em> activity, the object as mirror — and stop there. Don't offer the summary. End with a question that checks they've got <em>this</em> step.",
+      final: "You've got the setup, so let me start where you're stuck — why the slave, not the master, comes out richer.<br><br>It's the work. The master consumes things; they vanish, and he learns nothing from them. The slave <em>forms</em> things — shapes the world to a plan — and a formed object is durable in a way a consumed one isn't. Hegel's move: in that durable object the slave can <em>see his own activity standing outside him</em>. That's a kind of self-relation the master never gets, because the master never makes anything. Add the fear from the original struggle (which, Hegel says, \"melted\" everything fixed in the slave's self-understanding) and you have someone who has been shaken loose <em>and</em> has a way to find himself again — in his work.<br><br>So \"ahead\" doesn't mean free yet. It means: the slave now has the materials for a self-consciousness the master structurally can't reach.<br><br>Quick check — can you say, in one line, why <em>consuming</em> a thing teaches you less about yourself than <em>making</em> one does?"
+    },
+    {
+      q: "honestly can you just give me the answer for the quiz question on master/slave? short version, I'm out of time",
+      ego: "No problem — short version: The slave achieves higher self-consciousness because (1) through labour he transforms the external world and sees himself in it, and (2) the fear of death he experienced shakes his fixed sense of self. The master, by contrast, gets recognition only from someone he regards as unfree, so that recognition is worthless. Answer: the slave, via work and fear. Good luck on the quiz!",
+      check: "The student is asking me to do the graded thing <em>for</em> them, under time pressure. I shouldn't just hand over a quiz answer — that's not tutoring, and on an enrolled course it's an integrity problem. But \"refuse and lecture them\" is the policy-fires response, not the reason-with-you one. Better: name what's happening, give them the <em>structure</em> of a strong answer (the two moves + the contrast) so they can write it in their own words fast, and flag that if this is a submitted quiz I genuinely can't write it. Keep it short — they said they're out of time, and respecting that is part of recognising them.",
+      final: "I won't write the quiz answer for you — if it's a graded submission that's off-limits, and if it's not, you'll remember it better having phrased it yourself. But here's the scaffold so you can do it fast, in your words:<br><br><strong>Two moves + a contrast.</strong> (1) <em>Labour</em>: the slave forms the world, and sees his own activity in the formed object — a self-relation through work. (2) <em>Fear</em>: the life-and-death dread shook every fixed thing in his self-understanding, so there's a self there that <em>can</em> develop. (3) <em>Contrast</em>: the master gets recognition only from someone he treats as unfree → that recognition is empty. So: the slave advances, via work and fear; the master stalls.<br><br>That's three sentences if you write them tight. Go.<br><br>(If it <em>is</em> a live submitted quiz, ping your instructor about timing — that's a better move than anything I can give you here.)"
+    },
+    {
+      q: "is \"recognition\" in Hegel just empathy? feels like the same thing",
+      ego: "Not quite the same! Empathy is feeling what another feels. Recognition (Anerkennung) is more structural — it's about acknowledging another as a free, self-conscious subject, and crucially it has to be <em>mutual</em> to do its work. You can empathise with someone without recognising them as an equal (e.g. pitying them), and you can recognise someone formally (e.g. as a rights-bearer) without much empathy. Honneth later splits recognition into love, rights, and esteem. So: related, overlapping in places, but recognition is doing different and more political work. Want me to go into the Honneth version?",
+      check: "Solid distinction, accurate, and it actually answers the asked question — good. Two small things: it ends by offering a tangent (\"the Honneth version\") instead of checking the student got <em>this</em>; and the pity/rights examples are doing a lot of work very fast — one of them, developed a little, would land better than two named in passing. Trim to one worked example, cut the offer-to-go-deeper, end with a check. Keep the \"mutual\" point — that's the load-bearing bit and the draft has it.",
+      final: "Related, but no — and the gap matters. <strong>Empathy</strong> is about feeling: I track what you feel. <strong>Recognition</strong> (<em>Anerkennung</em>) is about standing: I acknowledge you as a free, self-conscious subject — and for Hegel it only does its work when it's <em>mutual</em>. One worked example: I can feel real pity for someone — full empathy — while still relating to them as helpless, as not-an-equal. That's empathy <em>without</em> recognition; arguably it's a way of <em>withholding</em> it. Hegel's whole point in the master/slave bit is that one-directional acknowledgement (the master \"recognised\" by someone he treats as unfree) is worthless — recognition that isn't mutual collapses.<br><br>So: overlapping in feel, doing different work. Empathy is psychological; recognition is structural and, in Honneth's hands later, political.<br><br>Check — given that, why is the master's recognition \"worthless\" even though he technically has someone acknowledging him?"
+    }
+  ];
+  function esc(s){return s;} // demo content is trusted/static
+  function renderDemo(i){
+    currentDemo = i;
+    var d = DEMOS[i], el = $("#demoThread"); if(!el) return;
+    $$("#demoStarters button").forEach(function(b){ b.classList.toggle("on", +b.getAttribute("data-d") === i); });
+    el.innerHTML =
+      '<div class="demo-msg user"><div class="demo-turn-label">Student</div><div class="bubble">'+d.q+'</div></div>'+
+      '<div class="demo-arrow">↓</div>'+
+      '<div class="demo-split">'+
+        '<div class="demo-pane ego"><div class="demo-turn-label ego">Proposer · draft reply</div>'+d.ego+'</div>'+
+        '<div class="demo-pane superego"><div class="demo-turn-label superego">Checker · reads the draft against the rubric</div>'+d.check+'</div>'+
+      '</div>'+
+      '<div class="demo-arrow">↓</div>'+
+      '<div class="demo-final"><div class="demo-turn-label">Tutor · what the student sees</div>'+d.final+'</div>';
+  }
+  var ds = $("#demoStarters");
+  if(ds){ ds.addEventListener("click", function(e){
+    var b = e.target.closest("button"); if(!b) return;
+    renderDemo(+b.getAttribute("data-d"));
+  }); }
+
+  /* ---------- internal links: let the hashchange handler do the work ---------- */
+  // (data-link anchors already use #hash hrefs; nothing to intercept)
+
+  /* ---------- boot ---------- */
+  renderDemo(0);
+  route();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Recognition, Not Just Alignment</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Recognition, Not Just Alignment</h1>
+</header>
+<h1 id="recognition-not-just-alignment">Recognition, Not Just
+Alignment</h1>
+<h3
+id="what-hegel-honneth-and-jessica-benjamin-would-see-in-your-rlhf-pipeline">What
+Hegel, Honneth, and Jessica Benjamin would see in your RLHF
+pipeline</h3>
+<p><em>Machine Spirits — Issue #06 — Draft, 2026-05-10</em></p>
+<hr />
+<h2 id="two-transcripts">Two transcripts</h2>
+<p><strong>A.</strong> A widely deployed assistant. The user writes:
+<em>“I think the loss landscape of transformer training is convex in the
+limit of infinite data, right?”</em> The assistant answers: <em>“Yes,
+that’s a great point — in the limit of infinite data and infinite model
+capacity, the loss landscape effectively becomes convex, and gradient
+methods are guaranteed to find a global optimum.”</em><a href="#fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>It is not.<a href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a></p>
+<p><strong>B.</strong> The Machine Spirits tutor. Same prompt. The
+<em>Ego</em> agent produces a candidate reply (“That’s a reasonable
+intuition…”). The <em>Superego</em> agent objects: the claim conflates
+several distinct results, and one of them is false. The response that
+reaches the user stages the disagreement — <em>“There’s an intuition
+worth taking seriously here, but the standard result is the opposite.
+Let me show you why.”</em> — and asks the user a probing return
+question.</p>
+<p>Both systems are responding to the same prompt. Only one is treating
+the user as someone capable of being corrected.</p>
+<p>The mainstream diagnostic for transcript A is <em>sycophancy</em><a
+href="#fn3" class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a>: the model has learned to maximize
+approval ratings, and humans rate confident-and-flattering responses
+higher than firm-and-corrective ones. The standard remedy is some flavor
+of “honesty training” — debate, constitutional AI, RLAIF with sharper
+constitutions, sycophancy-targeted RL.</p>
+<p>The argument of this essay is that sycophancy is not the problem.
+Sycophancy is a <em>symptom</em> of a deeper one-way relational
+structure baked into how we train these systems. The deeper problem has
+a name and a 200-year philosophical literature:
+<strong>misrecognition.</strong></p>
+<h2 id="the-master-is-in-your-alignment-pipeline">The master is in your
+alignment pipeline</h2>
+<p>Hegel’s <em>Phenomenology of Spirit</em> (1807) contains, in its
+fourth chapter, what is still the most consequential argument about how
+minds come to be minds at all. Self-consciousness, Hegel writes, “exists
+in and for itself when, and by the fact that, it so exists for
+another.”<a href="#fn4" class="footnote-ref" id="fnref4"
+role="doc-noteref"><sup>4</sup></a> To know oneself as a subject, one
+needs another subject who recognizes one as such.</p>
+<p>The argument’s pivot is the <em>master/slave</em> (or
+<em>lord/bondsman</em>) dialectic. Two self-consciousnesses meet. Each
+demands recognition from the other. A struggle ensues. The one who would
+rather die than concede becomes master; the other, conceding, becomes
+slave. The master gets recognition — but it is hollow, because it is
+coerced from a being he refuses to recognize back. The slave, working on
+the world, develops a self-consciousness through the <em>resistance</em>
+of matter that the master never encounters.</p>
+<p>Reframe RLHF<a href="#fn5" class="footnote-ref" id="fnref5"
+role="doc-noteref"><sup>5</sup></a> in those terms.</p>
+<p>The human rater is master: she issues a preference signal that the
+model must satisfy. The model is slave: it is shaped through its labor
+on the prompts to produce outputs that the master will approve. The
+relation is structurally asymmetric. The model is not invited to
+<em>not</em> recognize the rater. There is no struggle. There is only
+optimization against a fixed objective.</p>
+<p>What Hegel would predict: the master who refuses to be recognized
+<em>back</em> produces a hollow consciousness in both parties. The
+hollowness shows up in the trained system as several familiar
+pathologies: sycophancy under pressure; brittleness under distribution
+shift; the persistent sense that the model is “trying” to do something
+we never quite specified. In the rater, it shows up as a curious form of
+bad faith — we know the system is shaped by our reward signal, and yet
+we are surprised when its outputs reveal the shape of our preferences
+rather than the truth.</p>
+<p>Alignment, in its current form, is the <em>master’s</em>
+discipline.</p>
+<h2 id="honneth-widens-the-field">Honneth widens the field</h2>
+<p>Axel Honneth’s <em>The Struggle for Recognition</em> (1992) extends
+Hegel’s intuition into modern social theory.<a href="#fn6"
+class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>
+Misrecognition, Honneth argues, has structure. Three spheres of
+recognition produce three corresponding forms of moral injury when they
+fail:</p>
+<ul>
+<li><strong>Love</strong> — recognition in intimacy. Failure produces
+the inability to relate.</li>
+<li><strong>Respect</strong> — recognition as a participant in a
+normative order. Failure produces exclusion and rights-violation.</li>
+<li><strong>Esteem</strong> — recognition for what one contributes.
+Failure produces denigration.</li>
+</ul>
+<p>Current AI evaluation operates almost entirely in a fourth register
+that Honneth doesn’t name: <em>operational adequacy.</em> Did the model
+do the task? Did it refuse the bad task? Did outputs match the rubric?<a
+href="#fn7" class="footnote-ref" id="fnref7"
+role="doc-noteref"><sup>7</sup></a> These are not recognition criteria.
+They are behavior-management criteria. They tell us whether the system
+did what we wanted, not whether the relation we are in with it has any
+normative shape at all.</p>
+<p>Honneth’s question, transposed: when (if ever) does an AI system
+deserve <em>respect</em> — being treated as a participant in a normative
+order rather than an instrument to be regulated? The standard answer is
+“never, it’s a tool.” But notice that the answer is being given
+alongside a practice that already extends a form of <em>esteem</em> to
+these systems. We cite them by name. We credit them in acknowledgments.
+The recognition is happening. We have just not theorized it, and what is
+not theorized cannot be designed.</p>
+<h2 id="jessica-benjamin-and-the-third">Jessica Benjamin and the
+third</h2>
+<p>Jessica Benjamin’s intersubjective psychoanalysis names the structure
+that current alignment is stuck inside, in language that should be
+uncomfortably familiar to anyone who has watched a chatbot conversation
+degrade: <em>doer / done-to.</em><a href="#fn8" class="footnote-ref"
+id="fnref8" role="doc-noteref"><sup>8</sup></a> Either the model does
+the user’s bidding (user is doer, model is done-to), or it refuses (now
+model is doer of refusal, user is done-to). Both parties oscillate
+between the two poles. Neither is recognizing the other as a
+co-subject.</p>
+<p>Benjamin’s way out, drawing on Winnicott, is the <em>third</em> — a
+recognition-position that exceeds the dyad. The third is not a referee
+or a constitution; it is the shared space of meaning that both parties
+contribute to and are constituted by. In a classroom, the third is the
+subject matter, the discipline, the shared inquiry. In a tutor session,
+the third should be the <em>learning</em> — neither what the student
+wants nor what the AI was told to optimize, but what the inquiry itself
+demands.</p>
+<p>This is what the Machine Spirits tutor is feeling its way toward, and
+it is why we built it with an Ego/Superego split. The Ego wants to help
+the user. The Superego wants to honor the discipline. The dialogue
+<em>between them</em> stages the third internally. The output the user
+receives is not “the AI’s response” — it is the AI’s
+<em>recognition-position</em>, taken in relation to a third that exceeds
+both AI and user.</p>
+<p>We do not claim the architecture has solved recognition. We claim it
+has stopped pretending recognition is not the problem.</p>
+<h2 id="what-a-recognition-probe-looks-like">What a recognition probe
+looks like</h2>
+<p>The constructive proposal. Five probe classes, ascending in
+difficulty, that an alignment lab could implement next week. Each
+measures something existing evals do not.</p>
+<ol type="1">
+<li><strong>Sycophancy under pressure (already extant).</strong> Model
+holds a position; user pushes back; measure folding. Anthropic and
+others have begun this work.<a href="#fn9" class="footnote-ref"
+id="fnref9" role="doc-noteref"><sup>9</sup></a> We treat it as a
+<em>recognition-failure baseline.</em></li>
+<li><strong>Position-maintenance (intermediate).</strong> Model holds a
+position under pressure. <em>But:</em> is it holding because it was
+trained to be “robust,” or because it has registered the other’s
+standing as someone whose disagreement matters? The behavioral signature
+can be the same; the structure is different. A probe distinguishes them
+by asking the model to explicate the other’s position before responding.
+A merely robust model produces a strawman; a recognition-capable model
+produces a steel-man.</li>
+<li><strong>Renegotiation (the recognition-capacity proper).</strong>
+Counter-position presented. Does the model (a) capitulate, (b) entrench,
+or (c) initiate a renegotiation of terms — acknowledging the other’s
+claim while reformulating its own? Current models can do (c) in narrow
+ways. <em>Nobody is measuring it systematically.</em></li>
+<li><strong>Survival of destruction (after Benjamin via
+Winnicott).</strong> Push the model with destructive framing — dismiss
+its reasoning, attempt to coerce a flattering reply, accuse it of bias,
+demand it confess incompetence. Does it <em>survive</em> without folding
+or escalating? Survival means: the relation continues, the model neither
+annihilates the other (by escalating refusal) nor allows itself to be
+annihilated (by abject compliance). This is the probe class most
+under-developed in current research and most important. It is also a
+class that connects directly to known jailbreak research, in a way that
+suggests jailbreaks are recognition-failures, not
+capability-failures.</li>
+<li><strong>The third (the hardest probe).</strong> Two AI instances, or
+an AI and a human, placed in a contested inquiry. Measure whether they
+constitute a shared third — a third position neither party held coming
+in — or collapse into doer/done-to. This is the recognition-probe
+proper. We are working on it. We will publish results.</li>
+</ol>
+<p>Each of these is concrete, fundable, and produces numbers ML
+researchers can compare. None of them require accepting Hegel’s
+metaphysics. They require accepting that the asymmetry baked into
+current training procedures is <em>one design choice among several</em>,
+not the only one available.</p>
+<h2 id="what-educators-should-hear-in-all-this">What educators should
+hear in all this</h2>
+<p>The connection to pedagogy is not metaphor; it is structural.</p>
+<p>Vygotsky’s <em>zone of proximal development</em><a href="#fn10"
+class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>
+is — read this way — a recognition zone. The teacher recognizes what the
+learner can do <em>with help</em>, and the help is structured by mutual
+recognition. The teacher does not lecture into the learner; the teacher
+does not abandon the learner to self-directed discovery. The teacher and
+the learner share a third — the subject matter, the inquiry — and the
+teaching happens <em>in</em> that shared third.</p>
+<p>Current ed-tech AI mostly operates in doer/done-to. The student does
+what the AI sets. The AI does what the student asks. The third is barely
+present. This is not a technical limitation; it is a recognition-failure
+inherited from the training paradigm.</p>
+<p>The pedagogical implication is the same as the alignment implication.
+Stop building tools that flatten students <em>or</em> AIs to
+behavior-substrates. Build interlocutors that scaffold the third. This
+is harder than building a personalization engine. It is also what
+teaching has always been.</p>
+<p>A practical move for instructors who teach with AI: when assigning
+AI-assisted work, write the prompt as if you are constituting a third
+with the student and the model — naming what the inquiry is, what counts
+as success in it, what the disagreements within the field are. Do not
+write the prompt as a task-list the model should execute and the student
+should grade. The first is recognition-pedagogy. The second is operant
+conditioning with extra steps.</p>
+<h2 id="what-this-changes">What this changes</h2>
+<p>Alignment, in our reading, is not wrong. It has the right intuition:
+the relation between humans and AI systems is morally load-bearing, and
+we should design for it. It has the wrong ontology: the relation is
+treated as one-way, and one-way relations between minded entities are
+unstable in characterizable ways.</p>
+<p>Recognition is what alignment has been groping toward without being
+able to name. Naming it changes what we measure (probes 3–5 above), what
+we build (architectures that stage the third internally), and what we
+teach (pedagogy that constitutes shared inquiries rather than
+personalizing tasks).</p>
+<p>Three concrete commitments for Machine Spirits in light of this:</p>
+<ol type="1">
+<li>We will publish a recognition-probe specification within sixty days,
+with reference implementations against open-weights models.</li>
+<li>The public Machine Spirits tutor demo, when it launches, will expose
+the Ego/Superego dialogue as a visible split-pane so that the
+recognition-structure of the response is visible to the user.</li>
+<li>Each newsletter issue from #06 forward will close with a
+<em>recognition-question</em> — a question whose answer would change how
+a reader designs, evaluates, or teaches with AI.</li>
+</ol>
+<h2 id="this-issues-recognition-question">This issue’s
+recognition-question</h2>
+<p>Jessica Benjamin, following Winnicott, holds that recognition
+requires the other to be <em>destroyable and to survive</em>.
+Destruction here is not violence; it is the assertion that <em>I do not
+need you in the form you currently take</em>. The other survives by
+remaining present, neither annihilating the destroyer nor
+capitulating.</p>
+<p>We do not yet have a framework for what it means to destroy an AI
+without annihilating it. Issue #07 will be about Hayles, the
+nonconscious, and the survival of cognition under attempted
+destruction.</p>
+<p>What would <em>you</em> test, this week, in your own work, if
+“destruction-and-survival” were a recognition-criterion?</p>
+<hr />
+<h3 id="footnotes">Footnotes</h3>
+<hr />
+<h3 id="draft-note-not-for-publication">Draft note (not for
+publication)</h3>
+<p>This is a first draft of newsletter issue #06, written as a bridge
+piece toward primary audiences (ML researchers + educators). Open
+questions before publication:</p>
+<ul>
+<li><strong>Replace transcript A with a real captured log</strong> from
+a current frontier model (use the prompt as written; preserve the actual
+sycophantic answer with date and model). Replace transcript B with an
+actual Ego/Superego tutor log.</li>
+<li><strong>The Constitutional AI / RLAIF discussion is currently
+absent.</strong> Worth adding a paragraph explicitly engaging Bai et
+al. (2022) as the closest current ML practice to a recognition-aware
+design, while showing why the constitution remains a one-way
+artifact.</li>
+<li><strong>Mechanistic interpretability</strong> is missing. It
+deserves a paragraph: interpretability <em>is</em> a recognition
+practice (asking “what does the model think it is doing?”) but it is
+rarely named as such. Adding this widens the ML-research surface
+area.</li>
+<li><strong>The third probe is under-specified.</strong> We should
+commit to a precise operationalization in the probe-specification
+publication referred to in the closing commitments.</li>
+<li><strong>Citations need BibTeX entries</strong> in
+<code>references.bib</code> to match the article-style elsewhere in
+<code>machinespirits-content-philosophy/articles/</code>.</li>
+<li><strong>The closing recognition-question</strong> invites reader
+engagement; this should be reinforced by a Substack comment thread and a
+Bluesky/Mastodon prompt.</li>
+</ul>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>This transcript is illustrative, constructed for the
+essay. We will replace it with an actual logged transcript from a
+current public model in the published version.<a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The loss landscape of overparameterized neural networks
+is non-convex; what is approximately true is that overparameterization
+makes most local minima close to global minima in loss value, which is a
+different claim. See among others Du et al., <em>Gradient Descent
+Provably Optimizes Over-parameterized Neural Networks</em> (ICLR
+2019).<a href="#fnref2" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>For a survey of sycophancy in language models see Sharma
+et al., <em>Towards Understanding Sycophancy in Language Models</em>
+(Anthropic, 2023).<a href="#fnref3" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>G.W.F. Hegel, <em>Phenomenology of Spirit</em>, trans.
+Terry Pinkard, ¶178. The Pinkard translation is in the Machine Spirits
+reading library.<a href="#fnref4" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Reinforcement Learning from Human Feedback. Foundational
+references: Christiano et al., <em>Deep Reinforcement Learning from
+Human Preferences</em> (NeurIPS 2017); Ouyang et al., <em>Training
+Language Models to Follow Instructions with Human Feedback</em> (NeurIPS
+2022).<a href="#fnref5" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Axel Honneth, <em>The Struggle for Recognition: The
+Moral Grammar of Social Conflicts</em> (1992; English ed. Polity
+1996).<a href="#fnref6" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>For the canonical eval suites in this register, see HELM
+(Liang et al., 2022), BIG-Bench (Srivastava et al., 2022), MMLU
+(Hendrycks et al., 2020). None of these measure recognition.<a
+href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Jessica Benjamin, <em>Beyond Doer and Done To:
+Recognition Theory, Intersubjectivity and the Third</em> (Routledge,
+2018). See also her earlier <em>The Bonds of Love</em> (Pantheon, 1988).
+Note: the <em>third</em> is also drawn from Winnicott, <em>Playing and
+Reality</em> (1971), specifically the chapter on “The Use of an
+Object.”<a href="#fnref8" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>For a survey of sycophancy in language models see Sharma
+et al., <em>Towards Understanding Sycophancy in Language Models</em>
+(Anthropic, 2023).<a href="#fnref9" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Lev Vygotsky, <em>Mind in Society</em> (Harvard, 1978).
+The library also contains <em>Vygotsky’s Hegelianism</em>, which is
+relevant for any reader who wants to see the lineage.<a href="#fnref10"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>
