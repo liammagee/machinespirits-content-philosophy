@@ -70,6 +70,7 @@
     background:transparent;color:inherit;padding:3px 9px;border-radius:4px;letter-spacing:.03em;
   }
   .mockup-bar button:hover{background:rgba(255,255,255,.12)}
+  .mockup-bar button.mb-active{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.5)}
   .mockup-bar a{color:#F8EDE8;text-decoration:underline}
 
   /* ---- header / nav ---- */
@@ -116,15 +117,85 @@
   .why .ref{color:var(--text-faint)}
   body.notes-hidden .why{display:none}
 
-  /* ---- hero ---- */
-  .hero{padding:84px 0 64px}
-  .hero .wrap{display:grid;grid-template-columns:1fr;gap:6px}
-  .hero .sigil-lg{width:62px;height:62px;color:var(--accent-strong);margin-bottom:18px}
-  .hero h1{max-width:13ch}
-  .hero .tagline{font-size:1.32rem;color:var(--text);margin:.2em 0 1.1em;font-style:italic}
-  .hero .thesis{max-width:54ch;font-size:1.18rem;line-height:1.6;color:var(--text-dim)}
+  /* ---- 60-column fluid grid (modernist: a fine column field, applied strategically) ----
+     60 = 2²·3·5 → halves/thirds/quarters/fifths/sixths/tenths all land on a line.
+     gap is ZERO — gutters are made by *skipping* a column or two in the span maths, so they
+     scale fluidly with the viewport (a px column-gap × 59 gaps would dwarf any container). */
+  .grid60{display:grid;grid-template-columns:repeat(60,minmax(0,1fr));gap:0;align-items:start}
+  /* hero — one stacked column of content; slight indent on the lede/cta for asymmetric rhythm */
+  .c-sigil  {grid-column:1 / span  9}
+  .c-eyebrow{grid-column:1 / span 52}
+  .c-display{grid-column:1 / span 56}
+  .c-tagline{grid-column:1 / span 46}
+  .c-lede   {grid-column:8 / span 38}
+  .c-cta    {grid-column:8 / span 52}
+  .c-rule   {grid-column:1 / -1}
+  .c-note   {grid-column:8 / span 52}
+  /* "from the lab" feature — two panels with columns 34–35 left empty as a fluid gutter.
+     (.lab-feature also has an older 1.15fr/.85fr 2-col rule below — these win on specificity.) */
+  .c-demo   {grid-column:1  / span 33}
+  .c-probes {grid-column:36 / span 25}
+  .lab-feature.grid60{grid-template-columns:repeat(60,minmax(0,1fr));gap:0;align-items:stretch}
+  @media (max-width:900px){
+    .grid60{display:block}
+    .grid60 > *{grid-column:auto !important}
+    .lab-feature.grid60{display:block;grid-template-columns:none}  /* beats the older .lab-feature{display:grid} below */
+    .lab-feature.grid60 .c-probes{margin-top:26px}
+  }
+
+  /* ---- atmospheric sky (the sublime: a vast luminous backdrop behind the hero) ----
+     a layered CSS "floor" (always there, cheap) + a slow WebGL cloud deck on top.
+     it bleeds to var(--bg) at the foot, so any post-hero content overlapping it sits on plain bg. */
+  #sky{
+    position:absolute;inset:0 0 auto 0;height:clamp(660px,108vh,1180px);
+    z-index:0;pointer-events:none;overflow:hidden;will-change:transform;contain:paint;
+    background:
+      /* fade-out into the page */            linear-gradient(180deg, transparent 64%, var(--bg) 93%),
+      /* top-corner depth vignette */          radial-gradient(150% 70% at 50% -22%, transparent 58%, var(--sky-vig)),
+      /* the pale luminous "sun", high left */  radial-gradient(58% 46% at 34% 14%, var(--sky-glow), transparent 60%),
+      /* the last warm light, low */            radial-gradient(120% 44% at 62% 88%, var(--sky-warm), transparent 56%),
+      /* atmospheric-perspective vertical */    linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 34%, var(--sky-low) 60%, var(--sky-foot) 82%, var(--bg) 100%);
+  }
+  /* near-monochrome, theme-keyed; "haunted, not promotional" — cool pale day / deep dusk */
+  [data-theme="light"]{--sky-top:#b9c4d4;--sky-mid:#cdd2d4;--sky-low:#e2ddd2;--sky-foot:#ece6da;--sky-glow:#fbf8f1;--sky-warm:#ecdcc9;--sky-vig:#9aa3b240}
+  [data-theme="dark"] {--sky-top:#201c2c;--sky-mid:#1a1722;--sky-low:#15121b;--sky-foot:#121017;--sky-glow:#2b2538;--sky-warm:#3c231f;--sky-vig:#0c0a1080}
+  #sky canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:.78}
+  [data-theme="dark"] #sky canvas{opacity:.88}
+  @media (prefers-reduced-motion:reduce){#sky{will-change:auto}}
+
+  /* ---- variant B (body.atmos-v2) — for A/B'ing the sky treatment ----
+     adds a faint animated film-grain over the whole frame (≈5%, so the chrome stays crisp) and
+     turns the WebGL clouds up a touch. Pointer-parallax for B is wired in the sky() JS module.
+     The grain *crawl* honours prefers-reduced-motion (it goes static, never disabled). */
+  #grain{
+    position:fixed;inset:-44px;pointer-events:none;z-index:60;opacity:0;transition:opacity .35s ease;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='170' height='170' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body.atmos-v2 #grain{opacity:.05}
+  [data-theme="dark"] body.atmos-v2 #grain{opacity:.075}
+  body.atmos-v2 #sky canvas{opacity:.92}
+  [data-theme="dark"] body.atmos-v2 #sky canvas{opacity:1}
+  @media (prefers-reduced-motion:no-preference){
+    body.atmos-v2 #grain{animation:grain 1.05s steps(6) infinite}
+  }
+  @keyframes grain{
+    0%{transform:translate(0,0)}        16%{transform:translate(-13px,8px)}   33%{transform:translate(10px,-12px)}
+    50%{transform:translate(-8px,14px)} 66%{transform:translate(14px,5px)}    83%{transform:translate(-11px,-7px)} 100%{transform:translate(0,0)}
+  }
+
+  /* ---- hero — grandeur: 60-col, oversized serif wordmark, the sky behind ---- */
+  .hero{position:relative;z-index:1;padding:clamp(56px,11vh,128px) 0 clamp(52px,8vh,104px);overflow:visible}
+  .hero .wrap{max-width:1200px}
+  .hero .sigil-lg{width:clamp(46px,5vw,72px);height:auto;color:var(--accent-strong);margin:0 0 clamp(14px,2.4vh,30px);transform-origin:50% 50%}
+  @media (prefers-reduced-motion:no-preference){.hero .sigil-lg{animation:orrery 184s linear infinite}}
+  @keyframes orrery{to{rotate:360deg}}
+  .hero .eyebrow{margin-bottom:clamp(14px,2.8vh,28px)}
+  .hero h1{font-family:var(--serif);font-weight:600;font-style:normal;font-size:clamp(2.85rem,9.4vw,7.2rem);line-height:.97;letter-spacing:-.022em;margin:0 0 .16em;max-width:none;color:var(--text);text-wrap:balance}
+  .hero .tagline{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(1.22rem,2.6vw,1.95rem);line-height:1.3;color:var(--text);margin:.08em 0 clamp(18px,3.2vh,38px)}
+  .hero .thesis{font-size:clamp(1.04rem,1.5vw,1.22rem);line-height:1.62;color:var(--text-dim)}
   .hero .thesis strong{color:var(--text);font-weight:600}
-  .hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+  .hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin:clamp(22px,3.8vh,40px) 0 0}
+  .hero .horizon{height:1px;margin:clamp(30px,5.5vh,60px) 0 0;background:linear-gradient(90deg,transparent,var(--rule) 9%,var(--rule) 91%,transparent)}
 
   /* ---- "one idea / four surfaces" ---- */
   .surfaces{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
@@ -276,18 +347,6 @@
   .colophon{max-width:1080px;margin:0 auto;padding:16px 28px 36px;border-top:1px solid var(--rule-soft);font-family:var(--sans);font-size:12px;color:var(--text-faint);display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
   .colophon a{color:var(--text-faint);text-decoration:underline}
 
-  /* ---- ambient shader background (seapunk / cloudy hints) ---- */
-  /* a slow domain-warped fbm wash; opacity kept low enough that body text stays crisp through it */
-  #shaderbg{
-    position:fixed;inset:0;width:100%;height:100%;display:block;
-    z-index:0;pointer-events:none;opacity:.12;transition:opacity .6s ease;
-  }
-  [data-theme="dark"] #shaderbg{opacity:.2;mix-blend-mode:screen}
-  @media (prefers-reduced-motion:reduce){
-    #shaderbg{opacity:.07}
-    [data-theme="dark"] #shaderbg{opacity:.13}
-  }
-
   /* ---- fauna layer ---- */
   .fauna{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
   .fauna svg{position:absolute;color:var(--accent-strong);opacity:var(--fauna-opacity)}
@@ -335,14 +394,17 @@
 </head>
 <body class="layout-site">
 
-<!-- ambient WebGL wash — seapunk / cloudy hints; decorative, removed if WebGL is unavailable -->
-<canvas id="shaderbg" aria-hidden="true"></canvas>
+<!-- ============ ATMOSPHERIC SKY (CSS-gradient floor; JS adds a WebGL cloud layer) ============ -->
+<div id="sky" aria-hidden="true"></div>
+<!-- film grain — inert unless body.atmos-v2 (the "B" sky variant) -->
+<div id="grain" aria-hidden="true"></div>
 
 <!-- ============ MOCKUP INFO BAR ============ -->
 <div class="mockup-bar" role="note">
   <strong>MOCKUP</strong>
   <span>Functional preview of the refactored <span class="mono">machinespirits.org</span> — not the live site.</span>
   <span class="mb-spacer"></span>
+  <button id="toggle-atmos" type="button" aria-pressed="false" title="A/B the sky treatment: B adds film grain + pointer-parallax + a touch more cloud">Atmosphere: A</button>
   <button id="toggle-notes" type="button">Hide design notes</button>
   <span>See <span class="mono">WEBSITE-REFACTOR.md</span></span>
 </div>
@@ -395,19 +457,22 @@
 
   <section class="hero">
     <div class="wrap">
-      <svg class="sigil-lg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-        <circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="9" stroke-dasharray="3 4"/>
-        <path d="M24 6v9M24 33v9M6 24h9M33 24h9" stroke-linecap="round"/>
-      </svg>
-      <p class="eyebrow">A research program · since 2026</p>
-      <h1>Machine Spirits</h1>
-      <p class="tagline">Philosophy for machines that learn.</p>
-      <p class="thesis">Today's AI is built on a thin picture of mind — <strong>behaviour scored, outputs ranked, ethics bolted on</strong>. Machine Spirits argues the harder questions are older ones: <strong>recognition, the nonconscious, authority, time</strong>. We work them out in writing, in small experiments, and in a tutor that shows its reasoning instead of hiding it.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="#manifesto" data-link>Read the manifesto</a>
-        <a class="btn btn-ghost" href="#tutor" data-link>Try the tutor demo</a>
+      <div class="grid60">
+        <svg class="sigil-lg c-sigil" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+          <circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="9" stroke-dasharray="3 4"/>
+          <path d="M24 6v9M24 33v9M6 24h9M33 24h9" stroke-linecap="round"/>
+        </svg>
+        <p class="eyebrow c-eyebrow">A research program · since 2026</p>
+        <h1 class="c-display">Machine Spirits</h1>
+        <p class="tagline c-tagline">Philosophy for machines that learn.</p>
+        <p class="thesis c-lede">Today's AI is built on a thin picture of mind — <strong>behaviour scored, outputs ranked, ethics bolted on</strong>. Machine Spirits argues the harder questions are older ones: <strong>recognition, the nonconscious, authority, time</strong>. We work them out in writing, in small experiments, and in a tutor that shows its reasoning instead of hiding it.</p>
+        <div class="cta-row c-cta">
+          <a class="btn btn-primary" href="#manifesto" data-link>Read the manifesto</a>
+          <a class="btn btn-ghost" href="#tutor" data-link>Try the tutor demo</a>
+        </div>
+        <div class="horizon c-rule" aria-hidden="true"></div>
+        <div class="why c-note"><b>Why this hero:</b> the old homepage led with course tiles and a "continue learning" dashboard — it read like a product. STRATEGY §1 says the spine is a <i>research program</i> (software = evidence, teaching = evidence + home, media = amplification), so the front door states the claim and points at the manifesto and the headline artifact. <span class="ref">— WEBSITE-REFACTOR §B.1–B.3</span></div>
       </div>
-      <div class="why"><b>Why this hero:</b> the old homepage led with course tiles and a "continue learning" dashboard — it read like a product. STRATEGY §1 says the spine is a <i>research program</i> (software = evidence, teaching = evidence + home, media = amplification), so the front door states the claim and points at the manifesto and the headline artifact. <span class="ref">— WEBSITE-REFACTOR §B.1–B.3</span></div>
     </div>
   </section>
 
@@ -470,14 +535,14 @@
   <section>
     <div class="wrap">
       <p class="eyebrow">From the lab</p>
-      <div class="lab-feature">
-        <div class="demo-card">
+      <div class="lab-feature grid60">
+        <div class="demo-card c-demo">
           <span class="k">Headline artifact · public, no login</span>
           <h3>A tutor that shows its work</h3>
           <p>One model drafts a reply. A second pass — call it the superego — checks it against what a good teacher should and shouldn't do, and revises. You see both turns, not just the polished answer. It's the recognition argument made into something you can poke.</p>
           <a class="btn btn-primary" href="#tutor" data-link>Open the tutor demo</a>
         </div>
-        <div>
+        <div class="c-probes">
           <p class="eyebrow" style="margin-bottom:10px">Recognition-probe suite</p>
           <div class="mini-rows">
             <a class="mini-row" href="#probe" data-link><span>Probe 03 — Mirror or mis-recognise?</span><span class="n">probe-03</span></a>
@@ -924,6 +989,27 @@
     applyNotes(hidden); try{ localStorage.setItem(NOTES_KEY, hidden ? "1":"0"); }catch(e){}
   });
 
+  /* ---------- atmosphere variant (A / B — a quick visual A/B for the sky treatment) ----------
+     A = the restrained sky as it ships. B = + film grain + pointer-parallax (the sky drifts a few
+     px against the cursor, the nearer fauna layer swings further) + a touch more cloud presence.
+     Default A; the choice persists. Reduced-motion still wins inside B (no grain crawl, no pointer
+     drift). The sky() module reads body.atmos-v2 and listens for the "ms:atmos" nudge below. */
+  var ATMOS_KEY = "ms-atmos-v2";
+  function applyAtmos(on){
+    document.body.classList.toggle("atmos-v2", !!on);
+    var b = $("#toggle-atmos");
+    b.textContent = on ? "Atmosphere: B" : "Atmosphere: A";
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    b.classList.toggle("mb-active", !!on);
+    try{ dispatchEvent(new Event("ms:atmos")); }catch(e){}
+  }
+  var av = null; try{ av = localStorage.getItem(ATMOS_KEY); }catch(e){}
+  applyAtmos(av === "1");
+  $("#toggle-atmos").addEventListener("click", function(){
+    var on = !document.body.classList.contains("atmos-v2");
+    applyAtmos(on); try{ localStorage.setItem(ATMOS_KEY, on ? "1":"0"); }catch(e){}
+  });
+
   /* ---------- essays filter ---------- */
   var ef = $("#essayFilter");
   if(ef){
@@ -992,162 +1078,217 @@
   /* ---------- internal links: let the hashchange handler do the work ---------- */
   // (data-link anchors already use #hash hrefs; nothing to intercept)
 
+  /* ---------- atmospheric sky ----------
+     The CSS in <style> paints a layered-gradient "floor" sky behind the hero (zero JS).
+     This adds two things on top:
+       1. parallax — the #sky element lags the page on scroll (its own translate), and
+          inside the shader two cloud decks shift at different rates → a sense of depth;
+       2. a low-res WebGL cloud field — two soft drifting decks + a pale sun-glow and a
+          warm horizon flush — drawn at ~half-res, theme-aware, "haunted not promotional".
+     Feature-detected end to end; on any failure the canvas is removed and the CSS sky
+     simply remains. Honours prefers-reduced-motion (one settled static frame, no rAF,
+     no scroll-parallax). The rAF loop self-limits to "hero in view" — and the browser
+     already throttles rAF on hidden tabs, so there's no extra document.hidden guard. */
+  (function sky(){
+    var host = document.getElementById("sky");
+    if(!host) return;
+    var reduce = false;
+    try{ reduce = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches); }catch(e){}
+    function now(){ return (window.performance && performance.now) ? performance.now() : Date.now(); }
+
+    /* --- parallax ---
+       always: the #sky element drifts down ~0.42x scroll → reads as a far plane lagging behind.
+       variant B (body.atmos-v2): also a gentle pointer-parallax — the far sky drifts a few px
+       against the cursor and the (nearer) fauna layer swings further → two extra planes of depth.
+       Per-frame eased; the pointer is ignored entirely in variant A, on touch, and under reduced-
+       motion. The rAF idles to zero when nothing's moving. */
+    if(!reduce){
+      var faunaEl = document.querySelector(".fauna");
+      var pxT = 0, pyT = 0, pxC = 0, pyC = 0, ptRaf = 0, scrollDirty = true, lastS = "", lastF = "";
+      function v2(){ return document.body.classList.contains("atmos-v2"); }
+      function writeT(){
+        var sY = window.pageYOffset, on = v2();
+        var sx = on ? (-pxC * 9).toFixed(1) : "0";
+        var sy = (sY * 0.42 + (on ? -pyC * 7 : 0)).toFixed(1);
+        var ts = "translate3d(" + sx + "px," + sy + "px,0)";
+        if(ts !== lastS){ lastS = ts; host.style.transform = ts; }
+        if(faunaEl){
+          var tf = on ? ("translate3d(" + (-pxC * 22).toFixed(1) + "px," + (-pyC * 15).toFixed(1) + "px,0)") : "";
+          if(tf !== lastF){ lastF = tf; faunaEl.style.transform = tf; }
+        }
+      }
+      function ptFrame(){
+        ptRaf = 0;
+        pxC += (pxT - pxC) * 0.07; pyC += (pyT - pyC) * 0.07;
+        if(Math.abs(pxT - pxC) < 0.0005) pxC = pxT;
+        if(Math.abs(pyT - pyC) < 0.0005) pyC = pyT;
+        writeT();
+        if(scrollDirty || pxC !== pxT || pyC !== pyT){ scrollDirty = false; ptRaf = requestAnimationFrame(ptFrame); }
+      }
+      function ptKick(){ if(!ptRaf) ptRaf = requestAnimationFrame(ptFrame); }
+      addEventListener("scroll", function(){ scrollDirty = true; ptKick(); }, {passive:true});
+      addEventListener("pointermove", function(e){
+        if(e.pointerType === "touch" || !v2()) return;
+        pxT = (e.clientX / Math.max(innerWidth, 1) - 0.5) * 2;
+        pyT = (e.clientY / Math.max(innerHeight, 1) - 0.5) * 2;
+        ptKick();
+      }, {passive:true});
+      addEventListener("ms:atmos", function(){ if(!v2()){ pxT = 0; pyT = 0; } scrollDirty = true; ptKick(); });
+      writeT();
+    }
+
+    /* --- WebGL cloud field --- */
+    var gl = null, canvas = null, raf = 0, t0 = now() - 6000, uni = {}, pal = null, cssH = 1;
+    var REZ = 0.55, DPR_MAX = 1.5;
+
+    function hexToRGB(h){
+      h = String(h||"").trim().replace(/^#/,"");
+      if(h.length === 3) h = h.charAt(0)+h.charAt(0)+h.charAt(1)+h.charAt(1)+h.charAt(2)+h.charAt(2);
+      if(h.length === 8) h = h.slice(0,6);                 // tolerate #rrggbbaa, drop alpha
+      var n = parseInt(h, 16);
+      if(h.length !== 6 || isNaN(n)) return [0.5,0.5,0.5];
+      return [((n>>16)&255)/255, ((n>>8)&255)/255, (n&255)/255];
+    }
+    function cssVar(name, fb){
+      try{ var v = getComputedStyle(document.documentElement).getPropertyValue(name); return (v && v.trim()) ? v : fb; }
+      catch(e){ return fb; }
+    }
+    function palette(){
+      var dark = document.documentElement.getAttribute("data-theme") === "dark";
+      return {
+        dark: dark ? 1.0 : 0.0,
+        top:  hexToRGB(cssVar("--sky-top",  dark ? "#201c2c" : "#b9c4d4")),
+        mid:  hexToRGB(cssVar("--sky-mid",  dark ? "#1a1722" : "#cdd2d4")),
+        low:  hexToRGB(cssVar("--sky-low",  dark ? "#15121b" : "#e2ddd2")),
+        glow: hexToRGB(cssVar("--sky-glow", dark ? "#2b2538" : "#fbf8f1")),
+        warm: hexToRGB(cssVar("--sky-warm", dark ? "#3c231f" : "#ecdcc9"))
+      };
+    }
+
+    var VERT = "attribute vec2 p;varying vec2 v;void main(){v=p*0.5+0.5;gl_Position=vec4(p,0.0,1.0);}";
+    var FRAG = [
+      "#ifdef GL_FRAGMENT_PRECISION_HIGH","precision highp float;","#else","precision mediump float;","#endif",
+      "varying vec2 v;",
+      "uniform float u_t,u_scroll,u_dark;uniform vec2 u_res;uniform vec3 u_top,u_mid,u_low,u_glow,u_warm;",
+      "float hash(vec2 q){q=fract(q*vec2(123.34,345.45));q+=dot(q,q+34.345);return fract(q.x*q.y);}",
+      "float noise(vec2 q){vec2 i=floor(q),f=fract(q);float a=hash(i),b=hash(i+vec2(1.,0.)),c=hash(i+vec2(0.,1.)),d=hash(i+vec2(1.,1.));vec2 u=f*f*(3.-2.*f);return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);}",
+      "float fbm(vec2 q){float s=0.,a=0.5;for(int i=0;i<6;i++){s+=a*noise(q);q=q*2.03+vec2(1.7,9.2);a*=0.5;}return s;}",
+      "void main(){",
+      " vec2 uv=v;float asp=u_res.x/max(u_res.y,1.0);float y=uv.y;",
+      // base sky gradient (matches the CSS floor) — the canvas's own air colour
+      " vec3 base=mix(u_low,u_mid,smoothstep(0.0,0.55,y));base=mix(base,u_top,smoothstep(0.40,1.06,y));",
+      // domain-warped coords; far deck (slow, high cirrus) + near deck (a touch faster, lower, fuller)
+      " vec2 P=vec2(uv.x*asp,y);",
+      " vec2 wq=P*1.35; float warp=fbm(wq+u_t*0.009);",
+      " vec2 far=P*vec2(1.85,2.55)+vec2(-u_t*0.0085 - u_scroll*0.10, -u_t*0.0020); far+=warp*0.45;",
+      " vec2 nr =P*vec2(1.20,1.65)+vec2(-u_t*0.0140 - u_scroll*0.30,  u_t*0.0012); nr +=warp*0.62;",
+      " float fF=fbm(far), fN=fbm(nr);",
+      // soft billows: wide smoothstep ramps so coverage is broad and edges feather; height envelope keeps
+      // the deck in the upper sky and clears the foot
+      " float lift=smoothstep(0.04,0.22,y)*smoothstep(1.12,0.32,y);",
+      " float cF=smoothstep(0.30,0.78,fF)*lift;",
+      " float cN=smoothstep(0.26,0.80,fN)*lift*smoothstep(0.08,0.42,y);",
+      " float dens=clamp(cF*0.92+cN*1.00,0.0,1.0);",
+      // pale sun-glow high-left + a warm flush along the low horizon — both restrained
+      " float sun=smoothstep(0.70,0.0,distance(uv,vec2(0.33,1.05)));",
+      " float horizon=smoothstep(0.38,0.0,y)*(0.55+0.45*fbm(P*1.0+u_t*0.006));",
+      // clouds read as luminous tonal masses — lighter than the surrounding air in both themes
+      // (lit by the residual light); the underside is the least-lit, near the ambient base.
+      " vec3 glowC = mix(u_glow, u_warm, horizon*0.6);",
+      " vec3 lit   = mix(base, glowC, 0.62+0.30*sun);",
+      " vec3 shade = mix(base, glowC, 0.12);",
+      " float volume = smoothstep(0.0,0.55,dens);",
+      " vec3 cloudCol = mix(shade, lit, volume);",
+      " vec3 col = mix(base, cloudCol, dens);",
+      // a whisper of haze where there's no cloud, so the field reads as luminous air, not cutouts
+      " float haze = (sun*0.16 + horizon*0.14) * (1.0-dens);",
+      " col = mix(col, glowC, haze);",
+      // alpha = cloud density (+ that whisper of haze); ease off the very top, hard-clear by the foot so the
+      // canvas dissolves into var(--bg) where any post-hero content overlaps it
+      " float a = clamp(dens*1.05 + haze*0.8, 0.0, 1.0);",
+      " a *= smoothstep(1.06,0.82,y);",
+      " a *= smoothstep(0.0,0.16,y);",
+      " gl_FragColor=vec4(col, a);",
+      "}"
+    ].join("\n");
+
+    function compile(type, src){
+      var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+      if(!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s) || "compile");
+      return s;
+    }
+    function size(){
+      var r = host.getBoundingClientRect();
+      cssH = Math.max(1, Math.round(r.height));
+      var dpr = Math.min(window.devicePixelRatio || 1, DPR_MAX) * REZ;
+      var w = Math.max(2, Math.round(Math.max(1, r.width) * dpr));
+      var h = Math.max(2, Math.round(cssH * dpr));
+      if(canvas.width !== w) canvas.width = w;
+      if(canvas.height !== h) canvas.height = h;
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    }
+    function running(){
+      // the browser already parks rAF on hidden tabs; we only stop once the sky's well off-screen
+      return !reduce && window.pageYOffset < cssH + 280;
+    }
+    function frame(){
+      raf = 0;
+      var p = pal || (pal = palette());
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.uniform1f(uni.t, (now() - t0) / 1000);
+      gl.uniform1f(uni.scroll, reduce ? 0.0 : (window.pageYOffset / Math.max(cssH, 1)));
+      gl.uniform1f(uni.dark, p.dark);
+      gl.uniform2f(uni.res, canvas.width, canvas.height);
+      gl.uniform3fv(uni.top, p.top); gl.uniform3fv(uni.mid, p.mid); gl.uniform3fv(uni.low, p.low);
+      gl.uniform3fv(uni.glow, p.glow); gl.uniform3fv(uni.warm, p.warm);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+      if(running()) raf = requestAnimationFrame(frame);
+    }
+    function kick(){ if(!raf && running()) raf = requestAnimationFrame(frame); }
+    function once(){ if(!raf) raf = requestAnimationFrame(frame); }   // single frame; frame() won't re-arm if !running()
+
+    try{
+      canvas = document.createElement("canvas");
+      var opts = {alpha:true, premultipliedAlpha:false, antialias:false, depth:false, stencil:false, powerPreference:"low-power"};
+      gl = canvas.getContext("webgl", opts) || canvas.getContext("experimental-webgl", opts);
+      if(!gl) throw new Error("no webgl");
+      var prog = gl.createProgram();
+      gl.attachShader(prog, compile(gl.VERTEX_SHADER, VERT));
+      gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FRAG));
+      gl.linkProgram(prog);
+      if(!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog) || "link");
+      gl.useProgram(prog);
+      var buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+      var loc = gl.getAttribLocation(prog, "p");
+      gl.enableVertexAttribArray(loc);
+      gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+      ["t","scroll","dark","res","top","mid","low","glow","warm"].forEach(function(k){ uni[k] = gl.getUniformLocation(prog, "u_" + k); });
+      gl.clearColor(0, 0, 0, 0);
+      host.appendChild(canvas);
+      size();
+      pal = palette();
+
+      addEventListener("resize", function(){ try{ size(); pal = palette(); once(); }catch(e){} }, {passive:true});
+      addEventListener("scroll", function(){ kick(); }, {passive:true});
+      document.addEventListener("visibilitychange", function(){ if(!document.hidden) kick(); });
+      try{
+        new MutationObserver(function(){ pal = palette(); once(); }).observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
+      }catch(e){}
+
+      if(reduce){ once(); }   // one settled frame (t0 is pre-aged), then leave it be
+      else kick();
+    }catch(err){
+      if(raf){ cancelAnimationFrame(raf); raf = 0; }
+      if(canvas && canvas.parentNode) canvas.parentNode.removeChild(canvas);
+      gl = null;
+    }
+  })();
+
   /* ---------- boot ---------- */
   renderDemo(0);
   route();
-})();
-</script>
-
-<!-- ===================================================================
-     Ambient WebGL background — "seapunk / cloudy hints" (site mockup only).
-     A slow domain-warped fbm cloud field in a restrained teal / cyan / lavender
-     ramp, drifting on a lazy clock plus gentle parallax (page scroll + pointer).
-     Half-resolution backing store; one cheap fragment pass. If WebGL is missing
-     or the shader won't compile the <canvas> is just removed and the page is
-     unchanged. Under prefers-reduced-motion it paints a single static frame —
-     the wash, no motion. Theme-aware (the palette switches with the toggle).
-     This lives in the mockup only; the shared assets/ are untouched.
-     =================================================================== -->
-<script>
-(function(){
-  "use strict";
-  var canvas = document.getElementById("shaderbg");
-  if(!canvas) return;
-  function drop(){ if(canvas && canvas.parentNode){ canvas.parentNode.removeChild(canvas); } }
-
-  var gl = null;
-  try{
-    var opts = {alpha:true, antialias:false, depth:false, stencil:false, premultipliedAlpha:true, powerPreference:"low-power"};
-    gl = canvas.getContext("webgl", opts) || canvas.getContext("experimental-webgl", opts);
-  }catch(e){}
-  if(!gl){ drop(); return; }
-
-  var reduceMotion = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
-
-  var VERT = "attribute vec2 p;void main(){gl_Position=vec4(p,0.0,1.0);}";
-  var FRAG = [
-    "#ifdef GL_FRAGMENT_PRECISION_HIGH",
-    "precision highp float;",
-    "#else",
-    "precision mediump float;",
-    "#endif",
-    "uniform vec2 u_res;uniform float u_time;uniform vec2 u_off;",
-    "uniform vec3 u_c1;uniform vec3 u_c2;uniform vec3 u_c3;",
-    "float hash(vec2 q){q=fract(q*vec2(123.34,456.21));q+=dot(q,q+45.32);return fract(q.x*q.y);}",
-    "float noise(vec2 q){vec2 i=floor(q),f=fract(q);",
-    " float a=hash(i),b=hash(i+vec2(1.,0.)),c=hash(i+vec2(0.,1.)),d=hash(i+vec2(1.,1.));",
-    " vec2 u=f*f*(3.0-2.0*f);return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);}",
-    "float fbm(vec2 q){float v=0.0,a=0.5;for(int i=0;i<4;i++){v+=a*noise(q);q*=2.0;a*=0.5;}return v;}",
-    "void main(){",
-    " vec2 uv=gl_FragCoord.xy/u_res;",
-    " uv.x*=u_res.x/u_res.y;",
-    " uv=uv*1.7+u_off;",
-    " float t=u_time*0.017;",
-    " vec2 a=vec2(fbm(uv+vec2(0.0,t)),fbm(uv+vec2(5.2,1.3)-t));",
-    " vec2 b=vec2(fbm(uv+1.7*a+vec2(1.7,9.2)+0.12*t),fbm(uv+1.7*a+vec2(8.3,2.8)-0.10*t));",
-    " float f=clamp(fbm(uv+1.4*b)*1.15,0.0,1.0);",
-    " vec3 col=mix(u_c1,u_c2,smoothstep(0.05,0.65,f));",
-    " col=mix(col,u_c3,smoothstep(0.55,1.0,f)*(0.35+0.65*b.x));",
-    " col+=0.035*cos(6.2831853*(f*1.8+vec3(0.0,0.33,0.67)));",
-    " gl_FragColor=vec4(col,1.0);",
-    "}"
-  ].join("\n");
-
-  function compile(type, src){
-    var s = gl.createShader(type);
-    gl.shaderSource(s, src); gl.compileShader(s);
-    if(!gl.getShaderParameter(s, gl.COMPILE_STATUS)){ gl.deleteShader(s); return null; }
-    return s;
-  }
-  var vs = compile(gl.VERTEX_SHADER, VERT), fs = compile(gl.FRAGMENT_SHADER, FRAG);
-  if(!vs || !fs){ drop(); return; }
-  var prog = gl.createProgram();
-  gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
-  if(!gl.getProgramParameter(prog, gl.LINK_STATUS)){ drop(); return; }
-  gl.useProgram(prog);
-
-  var quad = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, quad);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
-  var loc_p = gl.getAttribLocation(prog, "p");
-  gl.enableVertexAttribArray(loc_p);
-  gl.vertexAttribPointer(loc_p, 2, gl.FLOAT, false, 0, 0);
-
-  var U = {
-    res:  gl.getUniformLocation(prog, "u_res"),
-    time: gl.getUniformLocation(prog, "u_time"),
-    off:  gl.getUniformLocation(prog, "u_off"),
-    c1:   gl.getUniformLocation(prog, "u_c1"),
-    c2:   gl.getUniformLocation(prog, "u_c2"),
-    c3:   gl.getUniformLocation(prog, "u_c3")
-  };
-
-  // seapunk ramps, per theme — low-contrast against the page bg so body text stays crisp under the wash
-  var PALETTE = {
-    light: [ [0.34,0.78,0.72], [0.40,0.70,0.92], [0.74,0.66,0.93] ],   // teal-mint · sky-cyan · lavender
-    dark:  [ [0.16,0.62,0.62], [0.16,0.34,0.62], [0.42,0.26,0.62] ]    // teal · indigo · violet (screen-blended → faint glow)
-  };
-  function themeName(){ return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light"; }
-  function setPalette(){
-    var p = PALETTE[themeName()];
-    gl.uniform3fv(U.c1, p[0]); gl.uniform3fv(U.c2, p[1]); gl.uniform3fv(U.c3, p[2]);
-  }
-  setPalette();
-
-  var SCALE = 0.5;  // deliberately under-sampled — the clouds are blurry, nobody can tell
-  function resize(){
-    var w = Math.max(2, Math.floor((window.innerWidth  || 800) * SCALE));
-    var h = Math.max(2, Math.floor((window.innerHeight || 600) * SCALE));
-    canvas.width = w; canvas.height = h;
-    gl.viewport(0, 0, w, h);
-    gl.uniform2f(U.res, w, h);
-  }
-
-  function draw(time, ox, oy){
-    gl.uniform1f(U.time, time);
-    gl.uniform2f(U.off, ox, oy);
-    gl.drawArrays(gl.TRIANGLES, 0, 3);
-  }
-
-  // gentle parallax: pointer nudges, page-scroll drifts the cloud field
-  var pxT = 0, pyT = 0, pxC = 0, pyC = 0;
-  function onPointer(e){
-    pxT = (e.clientX / (window.innerWidth  || 1) - 0.5) * 0.06;
-    pyT = (e.clientY / (window.innerHeight || 1) - 0.5) * 0.06;
-  }
-
-  // react to the in-page theme toggle (it mutates <html data-theme>)
-  if(window.MutationObserver){
-    new MutationObserver(function(){ setPalette(); if(reduceMotion) staticFrame(); })
-      .observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
-  }
-
-  var t0 = (window.performance && performance.now) ? performance.now() : Date.now();
-  var running = false, raf = 0;
-  function frame(now){
-    var t = (((now) || Date.now()) - t0) / 1000;
-    pxC += (pxT - pxC) * 0.05;
-    pyC += (pyT - pyC) * 0.05;
-    var sy = window.scrollY || window.pageYOffset || 0;
-    draw(t, pxC, oyFromScroll(sy) + pyC);
-    if(running) raf = requestAnimationFrame(frame);
-  }
-  function oyFromScroll(sy){ return -sy * 0.00009; }
-  function start(){ if(running) return; running = true; raf = requestAnimationFrame(frame); }
-  function stop(){ running = false; if(raf){ cancelAnimationFrame(raf); raf = 0; } }
-  function staticFrame(){ draw(12.0, 0.0, 0.0); }
-
-  resize();
-  if(reduceMotion){
-    staticFrame();
-    window.addEventListener("resize", function(){ resize(); staticFrame(); }, {passive:true});
-  } else {
-    staticFrame();  // paint something immediately, before the first rAF tick
-    window.addEventListener("resize", resize, {passive:true});
-    window.addEventListener("pointermove", onPointer, {passive:true});
-    document.addEventListener("visibilitychange", function(){ document.hidden ? stop() : start(); });
-    start();
-  }
 })();
 </script>
 </body>

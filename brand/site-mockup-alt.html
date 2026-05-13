@@ -1,0 +1,2179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institut für Abstrakte Forschung — Archive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-warm: #f7f4ef;
+            --bg-cream: #fffcf7;
+            --bg-mist: #eae6df;
+            
+            --text-earth: #2d2a26;
+            --text-stone: #6b6560;
+            --text-clay: #8a8279;
+            
+            --accent-terracotta: #c4654a;
+            --accent-moss: #5a7247;
+            --accent-ochre: #c9a24d;
+            --accent-slate: #5d6a7a;
+            --accent-umber: #8b6f4e;
+            
+            --glass-bg: rgba(255, 252, 247, 0.75);
+            --glass-bg-strong: rgba(255, 252, 247, 0.85);
+            --glass-bg-light: rgba(255, 252, 247, 0.6);
+            --glass-border: rgba(45, 42, 38, 0.06);
+            --glass-border-light: rgba(255, 255, 255, 0.6);
+            --glass-shadow: rgba(45, 42, 38, 0.08);
+            
+            --sidebar-width: 260px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-warm);
+            color: var(--text-earth);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* ============================================
+           DEPTH FIELD
+        ============================================ */
+
+        .depth-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+            perspective: 1200px;
+        }
+
+        .depth-plane {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .geo-shape {
+            position: absolute;
+            transition: transform 0.15s ease-out;
+        }
+
+        .plane-0 {
+            transform: translateZ(-500px) scale(1.6);
+            filter: blur(8px);
+            opacity: 0.2;
+        }
+
+        .nebula {
+            width: 700px;
+            height: 700px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center,
+                rgba(90, 114, 71, 0.18) 0%,
+                rgba(201, 162, 77, 0.08) 40%,
+                transparent 70%);
+            top: -10%;
+            left: -10%;
+        }
+
+        .nebula-2 {
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center,
+                rgba(196, 101, 74, 0.1) 0%,
+                transparent 70%);
+            bottom: -15%;
+            right: 15%;
+        }
+
+        .nebula-sidebar {
+            width: 400px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center,
+                rgba(93, 106, 122, 0.08) 0%,
+                transparent 70%);
+            top: 15%;
+            right: -5%;
+        }
+
+        .plane-1 {
+            transform: translateZ(-250px) scale(1.3);
+            filter: blur(4px);
+            opacity: 0.3;
+        }
+
+        .planet-far {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%,
+                rgba(255, 252, 247, 0.9) 0%,
+                rgba(90, 114, 71, 0.2) 50%,
+                rgba(90, 114, 71, 0.08) 100%);
+            box-shadow: inset -20px -20px 45px rgba(45, 42, 38, 0.06);
+            top: 8%;
+            left: -3%;
+        }
+
+        .orbit-far {
+            width: 480px;
+            height: 480px;
+            border: 1px solid rgba(139, 111, 78, 0.1);
+            border-radius: 50%;
+            top: 0%;
+            left: -8%;
+        }
+
+        .orbit-sidebar {
+            width: 350px;
+            height: 350px;
+            border: 1px solid rgba(139, 111, 78, 0.08);
+            border-radius: 50%;
+            top: 28%;
+            right: -10%;
+        }
+
+        .plane-2 {
+            transform: translateZ(-100px) scale(1.12);
+            filter: blur(1px);
+            opacity: 0.5;
+        }
+
+        .planet-mid {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%,
+                rgba(255, 252, 247, 0.95) 0%,
+                rgba(201, 162, 77, 0.3) 60%,
+                rgba(201, 162, 77, 0.12) 100%);
+            box-shadow: inset -10px -10px 25px rgba(139, 111, 78, 0.12);
+            bottom: 25%;
+            left: 12%;
+        }
+
+        .planet-sidebar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%,
+                rgba(255, 252, 247, 0.9) 0%,
+                rgba(93, 106, 122, 0.3) 70%);
+            box-shadow: inset -6px -6px 15px rgba(45, 42, 38, 0.08);
+            top: 45%;
+            right: 6%;
+        }
+
+        .grid-constellation {
+            width: 120px;
+            height: 120px;
+            top: 40%;
+            left: 6%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            gap: 2px;
+            transform: rotate(-5deg);
+        }
+
+        .constellation-cell {
+            background: transparent;
+            border: 1px solid rgba(107, 101, 96, 0.08);
+        }
+
+        .constellation-cell:nth-child(2) { background: rgba(196, 101, 74, 0.18); border: none; }
+        .constellation-cell:nth-child(6) { background: rgba(90, 114, 71, 0.15); border: none; }
+        .constellation-cell:nth-child(11) { background: rgba(201, 162, 77, 0.18); border: none; }
+        .constellation-cell:nth-child(15) { background: rgba(93, 106, 122, 0.12); border: none; }
+
+        .plane-3 {
+            transform: translateZ(-30px) scale(1.03);
+            opacity: 0.7;
+        }
+
+        .planet-near {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%,
+                rgba(255, 250, 245, 0.9) 0%,
+                var(--accent-terracotta) 85%);
+            opacity: 0.75;
+            top: 60%;
+            left: 55%;
+            box-shadow: 0 0 35px rgba(196, 101, 74, 0.2);
+        }
+
+        .moon-cluster {
+            position: absolute;
+            top: 28%;
+            left: 40%;
+        }
+
+        .moon {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--text-stone);
+        }
+
+        .moon:nth-child(1) { width: 6px; height: 6px; opacity: 0.45; }
+        .moon:nth-child(2) { width: 4px; height: 4px; transform: translate(16px, 12px); opacity: 0.35; }
+        .moon:nth-child(3) { width: 5px; height: 5px; transform: translate(30px, 4px); opacity: 0.4; }
+
+        .sidebar-moons {
+            position: absolute;
+            top: 62%;
+            right: 10%;
+        }
+
+        .sidebar-moons .moon:nth-child(1) { width: 5px; height: 5px; opacity: 0.4; background: var(--accent-ochre); }
+        .sidebar-moons .moon:nth-child(2) { width: 4px; height: 4px; transform: translate(-14px, 16px); opacity: 0.35; background: var(--accent-moss); }
+        .sidebar-moons .moon:nth-child(3) { width: 3px; height: 3px; transform: translate(12px, 28px); opacity: 0.3; background: var(--accent-terracotta); }
+
+        .plane-4 {
+            opacity: 1;
+        }
+
+        /* ============================================
+           THE WALKING LINE
+           "A line is a dot that went for a walk" - Klee
+        ============================================ */
+
+        .walking-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 80%;
+            height: 250px;
+            overflow: visible;
+            z-index: 5;
+        }
+
+        .walking-line svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .walking-line .line-path {
+            fill: none;
+            stroke: var(--accent-umber);
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 2500;
+            stroke-dashoffset: 2500;
+            opacity: 0.7;
+            filter: drop-shadow(0 3px 6px rgba(139, 111, 78, 0.25));
+        }
+
+        .walking-line.animate .line-path {
+            animation: walkTheLine 6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes walkTheLine {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* The walking dot - "A line is a dot that went for a walk" - Klee */
+        .walking-dot {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: radial-gradient(circle at 40% 40%, 
+                var(--accent-terracotta) 0%, 
+                rgba(196, 101, 74, 0.8) 100%);
+            border-radius: 50%;
+            top: 50%;
+            left: 0;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            box-shadow: 
+                0 0 20px rgba(196, 101, 74, 0.6),
+                0 0 40px rgba(196, 101, 74, 0.3),
+                inset 0 -2px 4px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        .walking-line.animate .walking-dot {
+            animation: dotWalks 6s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+                       dotPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes dotPulse {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 20px rgba(196, 101, 74, 0.6),
+                    0 0 40px rgba(196, 101, 74, 0.3),
+                    inset 0 -2px 4px rgba(0,0,0,0.1);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 30px rgba(196, 101, 74, 0.8),
+                    0 0 60px rgba(196, 101, 74, 0.5),
+                    inset 0 -2px 4px rgba(0,0,0,0.1);
+            }
+        }
+
+        @keyframes dotWalks {
+            0% { 
+                left: 0%; 
+                top: 50%;
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            10% { top: 35%; transform: translate(-50%, -50%) scale(1.1); }
+            25% { top: 55%; }
+            35% { top: 40%; transform: translate(-50%, -50%) scale(1); }
+            50% { top: 58%; transform: translate(-50%, -50%) scale(1.05); }
+            65% { top: 42%; }
+            80% { top: 55%; transform: translate(-50%, -50%) scale(1); }
+            100% { 
+                left: 100%; 
+                top: 50%;
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* Secondary walking line - vertical journey */
+        .walking-line-sidebar {
+            position: absolute;
+            top: 10%;
+            right: 3%;
+            width: 180px;
+            height: 75%;
+            overflow: visible;
+            z-index: 5;
+        }
+
+        .walking-line-sidebar svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .walking-line-sidebar .line-path {
+            fill: none;
+            stroke: var(--accent-slate);
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 1500;
+            stroke-dashoffset: 1500;
+            opacity: 0.6;
+            filter: drop-shadow(0 2px 4px rgba(93, 106, 122, 0.2));
+        }
+
+        .walking-line-sidebar.animate .line-path {
+            animation: walkTheLine 5s 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* Dot for sidebar line */
+        .walking-dot-sidebar {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle at 40% 40%, 
+                var(--accent-moss) 0%, 
+                rgba(90, 114, 71, 0.8) 100%);
+            border-radius: 50%;
+            left: 50%;
+            top: 0;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            box-shadow: 
+                0 0 16px rgba(90, 114, 71, 0.5),
+                0 0 32px rgba(90, 114, 71, 0.25);
+            z-index: 10;
+        }
+
+        .walking-line-sidebar.animate .walking-dot-sidebar {
+            animation: dotWalksVertical 5s 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+                       dotPulseSidebar 1.5s 0.8s ease-in-out infinite;
+        }
+
+        @keyframes dotPulseSidebar {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 16px rgba(90, 114, 71, 0.5),
+                    0 0 32px rgba(90, 114, 71, 0.25);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 24px rgba(90, 114, 71, 0.7),
+                    0 0 48px rgba(90, 114, 71, 0.4);
+            }
+        }
+
+        @keyframes dotWalksVertical {
+            0% { 
+                top: 0%; 
+                left: 50%;
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            15% { left: 35%; transform: translate(-50%, -50%) scale(1.1); }
+            30% { left: 55%; }
+            45% { left: 40%; transform: translate(-50%, -50%) scale(1); }
+            60% { left: 58%; }
+            75% { left: 45%; transform: translate(-50%, -50%) scale(1.05); }
+            100% { 
+                top: 100%; 
+                left: 50%;
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* Klee quote callout - appears when line walks */
+        .klee-callout {
+            position: absolute;
+            top: 42%;
+            left: 6%;
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--accent-umber);
+            opacity: 0;
+            transform: translateY(15px);
+            transition: all 1s ease;
+            pointer-events: none;
+            z-index: 6;
+            text-shadow: 0 2px 10px rgba(255, 252, 247, 0.8);
+        }
+
+        .klee-callout .callout-author {
+            display: block;
+            font-size: 0.7rem;
+            font-style: normal;
+            color: var(--text-clay);
+            margin-top: 0.3rem;
+            letter-spacing: 0.05em;
+        }
+
+        .klee-callout.visible {
+            opacity: 0.85;
+            transform: translateY(0);
+        }
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+                opacity: 0.85;
+            }
+            20% { left: 35%; }
+            40% { left: 60%; }
+            60% { left: 40%; }
+            80% { left: 55%; }
+            100% { 
+                top: 100%; 
+                left: 50%;
+                opacity: 0.85;
+            }
+        }
+
+        .meridian-glass {
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(to bottom,
+                transparent 0%,
+                rgba(139, 111, 78, 0.08) 20%,
+                rgba(139, 111, 78, 0.12) 50%,
+                rgba(139, 111, 78, 0.08) 80%,
+                transparent 100%);
+            left: 6%;
+        }
+
+        /* ============================================
+           FLOATING RIGHT SIDEBAR
+        ============================================ */
+
+        .sidebar {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            width: var(--sidebar-width);
+            max-height: calc(100vh - 40px);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-glass-outer {
+            position: absolute;
+            top: -16px;
+            left: -16px;
+            right: -16px;
+            bottom: -16px;
+            background: rgba(247, 244, 239, 0.2);
+            backdrop-filter: blur(35px);
+            -webkit-backdrop-filter: blur(35px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-glass-mid {
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            background: rgba(255, 252, 247, 0.3);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 6px 28px rgba(45, 42, 38, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-glass-inner {
+            position: relative;
+            background: linear-gradient(145deg,
+                rgba(255, 252, 247, 0.8) 0%,
+                rgba(255, 252, 247, 0.68) 50%,
+                rgba(247, 244, 239, 0.75) 100%);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 
+                0 4px 20px rgba(45, 42, 38, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .sidebar-glass-inner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 35%;
+            background: linear-gradient(180deg,
+                rgba(255, 255, 255, 0.2) 0%,
+                transparent 100%);
+            border-radius: 14px 14px 0 0;
+            pointer-events: none;
+        }
+
+        .sidebar-orb {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%,
+                rgba(201, 162, 77, 0.35) 0%,
+                rgba(201, 162, 77, 0.1) 60%,
+                transparent 100%);
+            top: -25px;
+            right: 35px;
+            filter: blur(1px);
+            pointer-events: none;
+        }
+
+        .sidebar-orb-2 {
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%,
+                rgba(196, 101, 74, 0.3) 0%,
+                transparent 70%);
+            bottom: 50px;
+            left: -12px;
+            pointer-events: none;
+        }
+
+        .sidebar-orb-3 {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%,
+                rgba(90, 114, 71, 0.25) 0%,
+                transparent 70%);
+            top: 45%;
+            right: -10px;
+            pointer-events: none;
+        }
+
+        .sidebar-logo {
+            margin-bottom: 1.25rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar-logo .logo-mark {
+            width: 32px;
+            height: 32px;
+            position: relative;
+            margin-bottom: 0.7rem;
+        }
+
+        .sidebar-logo .logo-mark::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 1.5px solid var(--text-clay);
+            border-radius: 50%;
+        }
+
+        .sidebar-logo .logo-mark::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-terracotta);
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(196, 101, 74, 0.4);
+        }
+
+        .sidebar-logo h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+            line-height: 1.4;
+            color: var(--text-earth);
+        }
+
+        .sidebar-divider {
+            height: 1px;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right,
+                rgba(139, 111, 78, 0.18),
+                rgba(139, 111, 78, 0.06),
+                transparent);
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-section {
+            margin-bottom: 1.25rem;
+        }
+
+        .nav-section-label {
+            font-size: 0.5rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--text-clay);
+            margin-bottom: 0.4rem;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-list li {
+            margin-bottom: 0.08rem;
+        }
+
+        .nav-list a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.45rem 0.5rem;
+            color: var(--text-stone);
+            text-decoration: none;
+            font-size: 0.75rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-list a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 0;
+            background: var(--accent-terracotta);
+            border-radius: 0 1px 1px 0;
+            transition: height 0.3s ease;
+        }
+
+        .nav-list a:hover {
+            background: rgba(255, 255, 255, 0.5);
+            color: var(--text-earth);
+        }
+
+        .nav-list a:hover::before {
+            height: 40%;
+        }
+
+        .nav-list a.active {
+            background: rgba(255, 255, 255, 0.55);
+            color: var(--text-earth);
+        }
+
+        .nav-list a.active::before {
+            height: 40%;
+            background: var(--accent-moss);
+        }
+
+        .nav-icon {
+            width: 13px;
+            height: 13px;
+            opacity: 0.5;
+        }
+
+        .nav-list a:hover .nav-icon,
+        .nav-list a.active .nav-icon {
+            opacity: 0.75;
+        }
+
+        .sidebar-panel {
+            padding: 0.85rem;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+            margin-bottom: 0.85rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .panel-label {
+            font-size: 0.48rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-clay);
+            margin-bottom: 0.35rem;
+        }
+
+        .depth-bar {
+            height: 2px;
+            background: rgba(45, 42, 38, 0.05);
+            border-radius: 1px;
+            overflow: hidden;
+        }
+
+        .depth-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, 
+                var(--accent-moss) 0%,
+                var(--accent-ochre) 50%,
+                var(--accent-terracotta) 100%);
+            border-radius: 1px;
+            transition: width 0.15s ease-out;
+        }
+
+        .status-text {
+            font-family: 'Instrument Serif', serif;
+            font-size: 0.7rem;
+            font-style: italic;
+            color: var(--text-stone);
+            margin-top: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .sidebar-quote {
+            margin-top: auto;
+            padding-top: 0.85rem;
+            border-top: 1px solid rgba(139, 111, 78, 0.06);
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar-quote p {
+            font-family: 'Instrument Serif', serif;
+            font-size: 0.68rem;
+            font-style: italic;
+            color: var(--text-stone);
+            line-height: 1.45;
+            opacity: 0.8;
+        }
+
+        .sidebar-quote .author {
+            font-style: normal;
+            font-size: 0.58rem;
+            color: var(--text-clay);
+            margin-top: 0.35rem;
+            display: block;
+        }
+
+        /* ============================================
+           MAIN CONTENT - ARCHIVE LAYOUT
+        ============================================ */
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            margin-right: calc(var(--sidebar-width) + 50px);
+        }
+
+        /* Header */
+        .archive-header {
+            padding: 2.5rem 6% 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 1px solid var(--glass-border);
+            background: linear-gradient(to bottom, var(--bg-warm) 0%, transparent 100%);
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            backdrop-filter: blur(20px);
+        }
+
+        .archive-title-block h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--text-earth);
+            margin-bottom: 0.25rem;
+        }
+
+        .archive-title-block p {
+            font-size: 0.72rem;
+            color: var(--text-stone);
+            letter-spacing: 0.05em;
+        }
+
+        .archive-meta {
+            text-align: right;
+            font-size: 0.65rem;
+            color: var(--text-clay);
+        }
+
+        .archive-meta strong {
+            color: var(--text-stone);
+            font-weight: 500;
+        }
+
+        /* Filter Tabs */
+        .filter-bar {
+            padding: 1.25rem 6%;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            border-bottom: 1px solid var(--glass-border);
+            background: rgba(255, 252, 247, 0.5);
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.68rem;
+            letter-spacing: 0.05em;
+            color: var(--text-stone);
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .filter-btn:hover {
+            background: rgba(255, 255, 255, 0.6);
+            border-color: var(--accent-umber);
+            color: var(--text-earth);
+        }
+
+        .filter-btn.active {
+            background: var(--text-earth);
+            color: var(--bg-cream);
+            border-color: var(--text-earth);
+        }
+
+        /* Archive Grid */
+        .archive-section {
+            padding: 2.5rem 6%;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-label {
+            font-size: 0.55rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent-moss);
+        }
+
+        .section-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--text-earth);
+            margin-top: 0.25rem;
+        }
+
+        .view-all {
+            font-size: 0.68rem;
+            color: var(--text-stone);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: color 0.3s ease;
+        }
+
+        .view-all:hover {
+            color: var(--accent-terracotta);
+        }
+
+        /* Featured Article */
+        .featured-article {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2.5rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(22px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 6px 30px var(--glass-shadow);
+            padding: 2.25rem;
+            margin-bottom: 2.5rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-article::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-terracotta), var(--accent-ochre));
+        }
+
+        .featured-article:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 45px rgba(45, 42, 38, 0.12);
+        }
+
+        .featured-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-type {
+            font-size: 0.55rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent-terracotta);
+            margin-bottom: 0.75rem;
+        }
+
+        .article-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            line-height: 1.25;
+            color: var(--text-earth);
+            margin-bottom: 0.85rem;
+        }
+
+        .article-excerpt {
+            font-size: 0.85rem;
+            color: var(--text-stone);
+            line-height: 1.65;
+            margin-bottom: 1.25rem;
+            font-weight: 300;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.68rem;
+            color: var(--text-clay);
+            margin-top: auto;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .meta-item svg {
+            width: 12px;
+            height: 12px;
+            opacity: 0.6;
+        }
+
+        .featured-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Abstract cover art */
+        .cover-art {
+            width: 100%;
+            height: 100%;
+            min-height: 220px;
+            position: relative;
+        }
+
+        .cover-art .shape {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .cover-art .shape-1 {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle at 35% 35%,
+                rgba(90, 114, 71, 0.35) 0%,
+                rgba(90, 114, 71, 0.1) 70%);
+            top: 15%;
+            left: 20%;
+        }
+
+        .cover-art .shape-2 {
+            width: 70px;
+            height: 70px;
+            background: var(--accent-ochre);
+            opacity: 0.6;
+            top: 45%;
+            right: 25%;
+        }
+
+        .cover-art .shape-3 {
+            width: 45px;
+            height: 45px;
+            background: var(--accent-terracotta);
+            opacity: 0.7;
+            bottom: 20%;
+            left: 35%;
+        }
+
+        .cover-art .line {
+            position: absolute;
+            background: var(--text-clay);
+            opacity: 0.3;
+        }
+
+        .cover-art .line-1 {
+            width: 1px;
+            height: 60%;
+            top: 20%;
+            left: 50%;
+        }
+
+        .cover-art .line-2 {
+            width: 50%;
+            height: 1px;
+            top: 55%;
+            left: 25%;
+        }
+
+        /* Article Grid */
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.35rem;
+        }
+
+        .article-card {
+            background: var(--glass-bg-light);
+            backdrop-filter: blur(18px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 18px var(--glass-shadow);
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2px;
+            height: 0;
+            background: var(--accent-moss);
+            transition: height 0.4s ease;
+        }
+
+        .article-card:hover::before {
+            height: 100%;
+        }
+
+        .article-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(45, 42, 38, 0.1);
+        }
+
+        .card-type {
+            font-size: 0.5rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent-slate);
+            margin-bottom: 0.6rem;
+        }
+
+        .card-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.05rem;
+            font-weight: 400;
+            line-height: 1.3;
+            color: var(--text-earth);
+            margin-bottom: 0.6rem;
+        }
+
+        .card-excerpt {
+            font-size: 0.75rem;
+            color: var(--text-stone);
+            line-height: 1.55;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.6rem;
+            color: var(--text-clay);
+        }
+
+        .card-author {
+            font-weight: 500;
+            color: var(--text-stone);
+        }
+
+        /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .portfolio-item {
+            aspect-ratio: 1;
+            background: var(--glass-bg-light);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px rgba(45, 42, 38, 0.1);
+        }
+
+        .portfolio-item .cover-art {
+            min-height: 100%;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: linear-gradient(to top, rgba(45, 42, 38, 0.85), transparent);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        .portfolio-overlay .title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 0.85rem;
+            color: var(--bg-cream);
+            margin-bottom: 0.2rem;
+        }
+
+        .portfolio-overlay .year {
+            font-size: 0.6rem;
+            color: rgba(255, 252, 247, 0.7);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2.5rem 6%;
+            border-top: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 252, 247, 0.65);
+            margin-top: 2rem;
+        }
+
+        .footer-logo {
+            font-family: 'Instrument Serif', serif;
+            font-size: 0.85rem;
+            color: var(--text-earth);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.25rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-stone);
+            text-decoration: none;
+            font-size: 0.65rem;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-earth);
+        }
+
+        .footer-copy {
+            color: var(--text-clay);
+            font-size: 0.58rem;
+        }
+
+        /* ============================================
+           ARTICLE MODAL
+        ============================================ */
+
+        .article-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .article-modal.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(45, 42, 38, 0.4);
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            background: var(--glass-bg-strong);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 60px rgba(45, 42, 38, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            transform: translateY(30px) scale(0.95);
+            transition: transform 0.4s ease;
+        }
+
+        .article-modal.open .modal-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-header {
+            position: relative;
+            padding: 2.5rem 3rem 2rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.15) 0%,
+                transparent 50%);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--text-earth);
+            color: var(--bg-cream);
+        }
+
+        .modal-close svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .modal-type {
+            font-size: 0.55rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent-terracotta);
+            margin-bottom: 0.75rem;
+        }
+
+        .modal-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            line-height: 1.2;
+            color: var(--text-earth);
+            margin-bottom: 1rem;
+            max-width: 700px;
+        }
+
+        .modal-meta {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.72rem;
+            color: var(--text-stone);
+        }
+
+        .modal-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .modal-meta-item svg {
+            width: 14px;
+            height: 14px;
+            opacity: 0.6;
+        }
+
+        .modal-body {
+            padding: 2.5rem 3rem;
+            max-height: calc(90vh - 200px);
+            overflow-y: auto;
+        }
+
+        .modal-abstract {
+            font-size: 1rem;
+            color: var(--text-stone);
+            line-height: 1.75;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--glass-border);
+            font-style: italic;
+        }
+
+        .modal-section {
+            margin-bottom: 2rem;
+        }
+
+        .modal-section-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.15rem;
+            color: var(--text-earth);
+            margin-bottom: 1rem;
+        }
+
+        .modal-text {
+            font-size: 0.9rem;
+            color: var(--text-stone);
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+            font-weight: 300;
+        }
+
+        .modal-text:first-letter {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem;
+            float: left;
+            line-height: 1;
+            margin-right: 0.5rem;
+            color: var(--accent-terracotta);
+        }
+
+        .modal-pullquote {
+            margin: 2rem 0;
+            padding: 1.5rem 2rem;
+            background: rgba(255, 255, 255, 0.4);
+            border-left: 3px solid var(--accent-ochre);
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-earth);
+            line-height: 1.6;
+        }
+
+        .modal-figure {
+            margin: 2rem 0;
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .modal-figure .cover-art {
+            min-height: 200px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .modal-figure figcaption {
+            font-size: 0.72rem;
+            color: var(--text-clay);
+            text-align: center;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        .modal-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .tag {
+            padding: 0.35rem 0.85rem;
+            font-size: 0.6rem;
+            letter-spacing: 0.05em;
+            color: var(--text-stone);
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+        }
+
+        /* Mobile */
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 300;
+            width: 36px;
+            height: 36px;
+            background: var(--glass-bg-strong);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .mobile-toggle span {
+            width: 14px;
+            height: 2px;
+            background: var(--text-earth);
+            position: relative;
+        }
+
+        .mobile-toggle span::before,
+        .mobile-toggle span::after {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 2px;
+            background: var(--text-earth);
+            left: 0;
+        }
+
+        .mobile-toggle span::before { top: -4px; }
+        .mobile-toggle span::after { top: 4px; }
+
+        /* Animations */
+        .materialize {
+            opacity: 0;
+            filter: blur(4px);
+            transform: translateY(12px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .materialize.visible {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            :root {
+                --sidebar-width: 220px;
+            }
+            
+            .article-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(120%);
+                transition: transform 0.4s ease;
+                right: 12px;
+            }
+
+            .sidebar.open {
+                transform: translateX(0) translateY(-50%);
+            }
+
+            .content-wrapper {
+                margin-right: 0;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .featured-article {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-visual {
+                min-height: 200px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .archive-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .archive-meta {
+                text-align: left;
+            }
+
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                width: 95%;
+                max-height: 95vh;
+            }
+
+            .modal-header {
+                padding: 1.75rem 1.5rem 1.5rem;
+            }
+
+            .modal-title {
+                font-size: 1.5rem;
+            }
+
+            .modal-body {
+                padding: 1.5rem;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Depth Field -->
+    <div class="depth-field" id="depthField">
+        <div class="depth-plane plane-0">
+            <div class="geo-shape nebula" data-speed="0.005"></div>
+            <div class="geo-shape nebula-2" data-speed="0.007"></div>
+            <div class="geo-shape nebula-sidebar" data-speed="0.006"></div>
+        </div>
+
+        <div class="depth-plane plane-1">
+            <div class="geo-shape planet-far" data-speed="0.015"></div>
+            <div class="geo-shape orbit-far" data-speed="0.01"></div>
+            <div class="geo-shape orbit-sidebar" data-speed="0.012"></div>
+        </div>
+
+        <div class="depth-plane plane-2">
+            <div class="geo-shape planet-mid" data-speed="0.03"></div>
+            <div class="geo-shape planet-sidebar" data-speed="0.035"></div>
+            <div class="geo-shape grid-constellation" data-speed="0.025">
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+            </div>
+        </div>
+
+        <div class="depth-plane plane-3">
+            <div class="geo-shape planet-near" data-speed="0.05"></div>
+            <div class="geo-shape moon-cluster" data-speed="0.055">
+                <div class="moon"></div><div class="moon"></div><div class="moon"></div>
+            </div>
+            <div class="geo-shape sidebar-moons" data-speed="0.06">
+                <div class="moon"></div><div class="moon"></div><div class="moon"></div>
+            </div>
+        </div>
+
+        <div class="depth-plane plane-4">
+            <!-- THE WALKING LINE: "A line is a dot that went for a walk" -->
+            <div class="walking-line" id="walkingLine" data-speed="0.07">
+                <svg viewBox="0 0 1000 200" preserveAspectRatio="none">
+                    <path class="line-path" d="
+                        M-20,100 
+                        Q80,40 160,100 
+                        T320,100 
+                        Q400,160 480,100 
+                        T640,100 
+                        Q720,50 800,100 
+                        T960,100
+                        Q1020,140 1080,100
+                    " />
+                </svg>
+                <div class="walking-dot"></div>
+            </div>
+
+            <!-- Vertical walking line -->
+            <div class="walking-line-sidebar" id="walkingLineSidebar" data-speed="0.065">
+                <svg viewBox="0 0 160 500" preserveAspectRatio="none">
+                    <path class="line-path" d="
+                        M80,0
+                        Q30,60 80,100
+                        T80,180
+                        Q130,230 80,280
+                        T80,360
+                        Q40,410 80,460
+                        T80,520
+                    " />
+                </svg>
+                <div class="walking-dot-sidebar"></div>
+            </div>
+
+            <div class="meridian-glass"></div>
+
+            <!-- Klee quote callout -->
+            <div class="klee-callout" id="kleeCallout">
+                "A line is a dot that went for a walk"
+                <span class="callout-author">— Paul Klee</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <div class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">
+        <span></span>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-orb" data-sidebar-speed="0.12"></div>
+        <div class="sidebar-orb-2" data-sidebar-speed="0.18"></div>
+        <div class="sidebar-orb-3" data-sidebar-speed="0.15"></div>
+        
+        <div class="sidebar-glass-outer"></div>
+        <div class="sidebar-glass-mid"></div>
+        
+        <div class="sidebar-glass-inner">
+            <div class="sidebar-logo">
+                <div class="logo-mark"></div>
+                <h1>Institut für<br>Abstrakte Forschung</h1>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-label">Archive</div>
+                    <ul class="nav-list">
+                        <li><a href="#" class="active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>All Works</a></li>
+                        <li><a href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>Papers</a></li>
+                        <li><a href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Essays</a></li>
+                        <li><a href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Lectures</a></li>
+                        <li><a href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Visual Works</a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-label">Browse</div>
+                    <ul class="nav-list">
+                        <li><a href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>By Author</a></li>
+                        <li><a href="#"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>By Year</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="sidebar-panel">
+                <div class="panel-label">The Line's Journey</div>
+                <div class="depth-bar">
+                    <div class="depth-bar-fill" id="depthFill"></div>
+                </div>
+                <div class="status-text" id="materializeStatus">The dot awaits its walk...</div>
+            </div>
+
+            <div class="sidebar-quote">
+                <p>"A line is a dot<br>that went for a walk."</p>
+                <span class="author">— Paul Klee</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <!-- Header -->
+        <header class="archive-header">
+            <div class="archive-title-block">
+                <h1>Research Archive</h1>
+                <p>Collected works on abstraction, form, and perception</p>
+            </div>
+            <div class="archive-meta">
+                <strong>147</strong> works · <strong>23</strong> authors · <strong>1919–2025</strong>
+            </div>
+        </header>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <button class="filter-btn active">All</button>
+            <button class="filter-btn">Geometric Studies</button>
+            <button class="filter-btn">Color Theory</button>
+            <button class="filter-btn">Spatial Form</button>
+            <button class="filter-btn">Pedagogy</button>
+            <button class="filter-btn">Philosophy</button>
+        </div>
+
+        <!-- Featured -->
+        <section class="archive-section">
+            <div class="section-header">
+                <div>
+                    <span class="section-label">Featured</span>
+                    <h2 class="section-title">Latest Research</h2>
+                </div>
+            </div>
+
+            <article class="featured-article materialize" onclick="openArticle('featured')">
+                <div class="featured-content">
+                    <span class="article-type">Research Paper</span>
+                    <h3 class="article-title">The Dialectics of the Circle: Kandinsky's Geometric Epistemology and Contemporary Cognition</h3>
+                    <p class="article-excerpt">An investigation into how Kandinsky's theoretical framework of geometric forms as carriers of spiritual content finds unexpected resonance in contemporary cognitive science and embodied cognition research.</p>
+                    <div class="article-meta">
+                        <span class="meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+                            Dr. Helena Kreis
+                        </span>
+                        <span class="meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                            March 2025
+                        </span>
+                        <span class="meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+                            24 min read
+                        </span>
+                    </div>
+                </div>
+                <div class="featured-visual">
+                    <div class="cover-art">
+                        <div class="shape shape-1"></div>
+                        <div class="shape shape-2"></div>
+                        <div class="shape shape-3"></div>
+                        <div class="line line-1"></div>
+                        <div class="line line-2"></div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- Recent Papers -->
+        <section class="archive-section">
+            <div class="section-header">
+                <div>
+                    <span class="section-label">Papers</span>
+                    <h2 class="section-title">Recent Publications</h2>
+                </div>
+                <a href="#" class="view-all">View all papers →</a>
+            </div>
+
+            <div class="article-grid">
+                <article class="article-card materialize" onclick="openArticle('paper1')">
+                    <span class="card-type">Research Paper</span>
+                    <h3 class="card-title">Point, Line, Plane: Revisiting Kandinsky's Pedagogical Framework</h3>
+                    <p class="card-excerpt">A contemporary reading of Kandinsky's foundational text through the lens of design systems thinking.</p>
+                    <div class="card-meta">
+                        <span class="card-author">Prof. Marcus Linie</span>
+                        <span>Feb 2025</span>
+                    </div>
+                </article>
+
+                <article class="article-card materialize" onclick="openArticle('paper2')">
+                    <span class="card-type">Research Paper</span>
+                    <h3 class="card-title">The Walking Line: Movement and Temporality in Klee's Pedagogy</h3>
+                    <p class="card-excerpt">How Klee's concept of the "active line" prefigures contemporary theories of embodied cognition.</p>
+                    <div class="card-meta">
+                        <span class="card-author">Dr. Anna Fläche</span>
+                        <span>Jan 2025</span>
+                    </div>
+                </article>
+
+                <article class="article-card materialize" onclick="openArticle('paper3')">
+                    <span class="card-type">Essay</span>
+                    <h3 class="card-title">Chromatic Resonance: Goethe, Kandinsky, and Synaesthetic Experience</h3>
+                    <p class="card-excerpt">Tracing the lineage of color-as-emotion from Romantic philosophy to abstract expressionism.</p>
+                    <div class="card-meta">
+                        <span class="card-author">Prof. Ernst Punkt</span>
+                        <span>Dec 2024</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Visual Works -->
+        <section class="archive-section">
+            <div class="section-header">
+                <div>
+                    <span class="section-label">Portfolio</span>
+                    <h2 class="section-title">Visual Works</h2>
+                </div>
+                <a href="#" class="view-all">View gallery →</a>
+            </div>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-item materialize" onclick="openArticle('visual1')">
+                    <div class="cover-art">
+                        <div class="shape shape-1" style="background: radial-gradient(circle, rgba(196,101,74,0.4) 0%, transparent 70%); width: 80px; height: 80px; top: 20%; left: 25%;"></div>
+                        <div class="shape shape-2" style="width: 50px; height: 50px; top: 50%; right: 20%; background: var(--accent-moss); opacity: 0.5;"></div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <div class="title">Composition VII</div>
+                        <div class="year">2024</div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item materialize" onclick="openArticle('visual2')">
+                    <div class="cover-art">
+                        <div class="shape shape-1" style="background: var(--accent-ochre); opacity: 0.6; width: 100px; height: 100px; top: 15%; left: 15%;"></div>
+                        <div class="line line-1" style="width: 70%; height: 1px; top: 60%; left: 15%;"></div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <div class="title">Linear Study No. 3</div>
+                        <div class="year">2024</div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item materialize" onclick="openArticle('visual3')">
+                    <div class="cover-art">
+                        <div class="shape shape-2" style="width: 60px; height: 60px; top: 30%; left: 30%; background: var(--accent-slate); opacity: 0.5;"></div>
+                        <div class="shape shape-3" style="width: 40px; height: 40px; bottom: 25%; right: 25%;"></div>
+                        <div class="line line-2" style="width: 1px; height: 50%; top: 25%; left: 50%;"></div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <div class="title">Dialogue of Forms</div>
+                        <div class="year">2023</div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item materialize" onclick="openArticle('visual4')">
+                    <div class="cover-art">
+                        <div class="shape shape-1" style="background: radial-gradient(circle, rgba(90,114,71,0.35) 0%, transparent 70%); width: 90px; height: 90px; top: 25%; right: 20%;"></div>
+                        <div class="shape shape-3" style="width: 35px; height: 35px; bottom: 30%; left: 30%; background: var(--accent-ochre); opacity: 0.7;"></div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <div class="title">Planetary Motion</div>
+                        <div class="year">2023</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-logo">Institut für Abstrakte Forschung</div>
+            <ul class="footer-links">
+                <li><a href="#">Archive</a></li>
+                <li><a href="#">Authors</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <p class="footer-copy">© 2025 Institut für Abstrakte Forschung</p>
+        </footer>
+    </div>
+
+    <!-- Article Modal -->
+    <div class="article-modal" id="articleModal">
+        <div class="modal-backdrop" onclick="closeArticle()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeArticle()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+                <span class="modal-type">Research Paper</span>
+                <h2 class="modal-title">The Dialectics of the Circle: Kandinsky's Geometric Epistemology and Contemporary Cognition</h2>
+                <div class="modal-meta">
+                    <span class="modal-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+                        Dr. Helena Kreis
+                    </span>
+                    <span class="modal-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                        March 15, 2025
+                    </span>
+                    <span class="modal-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+                        24 min read
+                    </span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <p class="modal-abstract">This paper investigates how Kandinsky's theoretical framework of geometric forms as carriers of spiritual content finds unexpected resonance in contemporary cognitive science, particularly in research on embodied cognition and the phenomenology of abstract perception.</p>
+
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Introduction</h3>
+                    <p class="modal-text">Wassily Kandinsky's theoretical writings, particularly "Point and Line to Plane" (1926), have long been regarded as foundational texts in the pedagogy of abstract art. Yet their implications extend far beyond the studio or the art history seminar. In proposing that geometric forms possess inherent expressive qualities—that a circle "speaks" differently than a triangle, that a horizontal line evokes calm while a diagonal suggests dynamism—Kandinsky was making claims about the nature of human perception and cognition that anticipate developments in cognitive science by nearly a century.</p>
+                </div>
+
+                <div class="modal-pullquote">
+                    "The circle is the synthesis of the greatest oppositions. It combines the concentric and the eccentric in a single form, and in equilibrium."
+                    <br><span style="font-size: 0.8rem; color: var(--text-stone);">— Wassily Kandinsky</span>
+                </div>
+
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Geometric Forms as Cognitive Primitives</h3>
+                    <p class="modal-text" style="text-indent: 0;">Recent research in visual cognition has demonstrated that the human visual system processes geometric primitives—circles, triangles, rectangles—as fundamental units of perception. These forms are recognized pre-attentively, suggesting they occupy a privileged position in our cognitive architecture. Kandinsky's intuition that such forms carry inherent meaning finds support in studies showing consistent cross-cultural associations between geometric shapes and emotional or conceptual content.</p>
+                </div>
+
+                <figure class="modal-figure">
+                    <div class="cover-art">
+                        <div class="shape shape-1"></div>
+                        <div class="shape shape-2"></div>
+                        <div class="shape shape-3"></div>
+                        <div class="line line-1"></div>
+                        <div class="line line-2"></div>
+                    </div>
+                    <figcaption>Fig. 1: Geometric composition demonstrating the interplay of primary forms</figcaption>
+                </figure>
+
+                <div class="modal-section">
+                    <h3 class="modal-section-title">The Embodied Circle</h3>
+                    <p class="modal-text" style="text-indent: 0;">For Kandinsky, the circle held special significance. He described it as "the most modest form, but asserts itself unconditionally" and "a precise but inexhaustible variable." Contemporary embodied cognition research suggests why: the circle, unlike the triangle or square, has no beginning or end, no corners that anchor attention. It invites continuous, cyclical scanning—a visual rhythm that may correspond to fundamental patterns in human movement and respiration.</p>
+                </div>
+
+                <div class="modal-tags">
+                    <span class="tag">Geometric Studies</span>
+                    <span class="tag">Kandinsky</span>
+                    <span class="tag">Cognitive Science</span>
+                    <span class="tag">Perception</span>
+                    <span class="tag">Embodied Cognition</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Elements
+        const shapes = document.querySelectorAll('.geo-shape');
+        const sidebarOrbs = document.querySelectorAll('[data-sidebar-speed]');
+        const sidebarGlassOuter = document.querySelector('.sidebar-glass-outer');
+        const sidebarGlassMid = document.querySelector('.sidebar-glass-mid');
+        const materializeElements = document.querySelectorAll('.materialize');
+        const depthFill = document.getElementById('depthFill');
+        const materializeStatus = document.getElementById('materializeStatus');
+        const walkingLine = document.getElementById('walkingLine');
+        const walkingLineSidebar = document.getElementById('walkingLineSidebar');
+        const kleeCallout = document.getElementById('kleeCallout');
+        const articleModal = document.getElementById('articleModal');
+
+        let scrollY = 0;
+        let mouseX = 0;
+        let mouseY = 0;
+        let lineAnimated = false;
+
+        const statusMessages = [
+            "The dot awaits its walk...",
+            "A line emerges...",
+            "The dot takes its walk...",
+            "Forms crystallize...",
+            "Knowledge materializes..."
+        ];
+
+        // Scroll
+        window.addEventListener('scroll', () => {
+            scrollY = window.pageYOffset;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollY / maxScroll) * 100;
+            
+            depthFill.style.width = scrollPercent + '%';
+
+            const messageIndex = Math.min(Math.floor(scrollPercent / 25), statusMessages.length - 1);
+            materializeStatus.textContent = statusMessages[messageIndex];
+
+            if (scrollPercent > 1 && !lineAnimated) {
+                walkingLine.classList.add('animate');
+                walkingLineSidebar.classList.add('animate');
+                // Show the Klee quote after a brief delay
+                setTimeout(() => {
+                    kleeCallout.classList.add('visible');
+                }, 800);
+                lineAnimated = true;
+            }
+        });
+
+        // Mouse
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+            mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+        });
+
+        // Animate
+        function animate() {
+            shapes.forEach(shape => {
+                const speed = parseFloat(shape.dataset.speed) || 0.05;
+                const x = mouseX * 40 * speed;
+                const y = scrollY * speed * 0.4 + mouseY * 22 * speed;
+                
+                if (shape.classList.contains('grid-constellation')) {
+                    shape.style.transform = `translate(${x}px, ${-y}px) rotate(-5deg)`;
+                } else {
+                    shape.style.transform = `translate(${x}px, ${-y}px)`;
+                }
+            });
+
+            sidebarOrbs.forEach(orb => {
+                const speed = parseFloat(orb.dataset.sidebarSpeed) || 0.1;
+                const x = mouseX * 18 * speed;
+                const y = mouseY * 18 * speed;
+                orb.style.transform = `translate(${x}px, ${y}px)`;
+            });
+
+            if (sidebarGlassOuter) {
+                sidebarGlassOuter.style.transform = `translate(${mouseX * 6}px, ${mouseY * 6}px)`;
+            }
+            if (sidebarGlassMid) {
+                sidebarGlassMid.style.transform = `translate(${mouseX * 3}px, ${mouseY * 3}px)`;
+            }
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Materialize Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 50);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        materializeElements.forEach(el => observer.observe(el));
+
+        // Modal
+        function openArticle(id) {
+            articleModal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeArticle() {
+            articleModal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // Close on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeArticle();
+        });
+
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
