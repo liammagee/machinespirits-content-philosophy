@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TRIAGE</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 id="articles-triage">Articles triage</h1>
+<h1 id="last-reviewed-2026-05-13">Last reviewed: 2026-05-13</h1>
+<h1 id="section"></h1>
+<h1
+id="three-fates-publish-public-essayprobereading-room-entry-on-the-site">Three
+fates: PUBLISH (public essay/probe/reading-room entry on the site),</h1>
+<h1 id="internal-not-public-teaching-notes-tooling-docs-drafts">INTERNAL
+(not public — teaching notes, tooling docs, drafts),</h1>
+<h1
+id="tools-tools-or-colophon-platform-facing-not-research-facing.">TOOLS
+(/tools or /colophon — platform-facing, not research-facing).</h1>
+<h1 id="section-1"></h1>
+<h1
+id="public-essays-need-frontmatter-title-date-yyyy-mm-dd-slug-theme-dek-status-published">Public
+essays need frontmatter: title, date (YYYY-MM-DD), slug, theme, dek,
+status: published</h1>
+<h1 id="see-conventions.md-for-the-full-spec-h.2.">See CONVENTIONS.md
+for the full spec (§H.2).</h1>
+<h2 id="drafts">_drafts/</h2>
+<p>fate: INTERNAL files: - computer-phenomenology-of-time.md # promising
+draft — possible future essay - pleasurable-guilts.md # early fragment —
+keep hidden</p>
+<h2 id="ai-pedagogy">ai-pedagogy/</h2>
+<p>fate: PUBLISH (essays) files: - robo-phenomenology.md # → newsletter
+#03 “Robo-Phenomenology”; needs date + slug frontmatter - era-ai.md # →
+essay; review and date before publishing -
+multiagent-tutor-architecture.md # → possible lab/probe write-up rather
+than essay; review</p>
+<h2 id="ai-tutor">ai-tutor/</h2>
+<p>fate: MIXED files: - full-paper-2026-01-28.md # → review: possible
+probe source or essay #07 (“Reading Hayles with a Chatbot”) -
+branch-status.html # → INTERNAL (development status page, not public) -
+_drafts/ # → INTERNAL (keep hidden)</p>
+<h2 id="dictatorship">dictatorship/</h2>
+<p>fate: PUBLISH (newsletter #08) notes: “The Dictatorship of the
+Artificial Intellect” — draft in progress; target newsletter #08. Check
+_drafts/ for latest version before publishing.</p>
+<h2 id="dissertations-critique">dissertations-critique/</h2>
+<p>fate: INTERNAL files: - thoughts-on-dissertations.md # teaching notes
+— not for public publication</p>
+<h2 id="hegel-essays">hegel-essays/</h2>
+<p>fate: PUBLISH (essays) files: - hegel-voice-1.md # → essay; one of
+the “Hegel + [ML concept]” two-author pieces - hegel-voice-2.md # →
+essay; same series - discarded-master.md # → review: may be a
+reading-room dispatch rather than a full essay</p>
+<h2 id="hegel-primary-texts">hegel-primary-texts/</h2>
+<p>fate: READING-ROOM (source texts, not essays) files: -
+history-philosophy.md # Hegel’s Lectures on the History of Philosophy —
+reading-room source - logic-being.md # Science of Logic (Being) —
+reading-room source - philosophy-right.md # Philosophy of Right —
+reading-room source notes: PDFs should move to CDN (§I.3 equivalent for
+content package); reference by URL. These become
+/reading-room/YYYY-MM-DD-hegel-* entries with an “our-note” field.</p>
+<h2 id="lms-docs">lms-docs/</h2>
+<p>fate: TOOLS (/tools or /colophon) files: - instructor-guide.md # →
+/tools or /about — platform documentation, not research -
+student-guide.md # → /tools — same</p>
+<h2 id="markdown-citations">markdown-citations/</h2>
+<p>fate: INTERNAL files: - markdown-bibtex-guide.html # tooling
+reference; not public</p>
+<h2 id="publications">publications/</h2>
+<p>fate: PUBLISH (/about or a /publications page) files: -
+publications.md # → bibliography/CV section of /about; or a standalone
+/publications page</p>
+<h2 id="stochastic-society">stochastic-society/</h2>
+<p>fate: PUBLISH (essay draft) files: - stochastic-society.md # → essay;
+topic overlaps with newsletter sequence; assign an issue #</p>
+<h2 id="vibe-scholarship">vibe-scholarship/</h2>
+<p>fate: PUBLISH (newsletter #05) files: - vibe-scholarship-article.md #
+→ this appears to be the longer, more developed version -
+vibe-scholarship.md # → shorter version or earlier draft; pick one as
+canonical notes: Two versions exist — compare and pick the canonical
+one; archive the other in _drafts/.</p>
+<h2 id="web-design-ai">web-design-ai/</h2>
+<p>fate: INTERNAL files: - web-design-ai-era.md # internal notes on web
+design + AI; not part of the research program</p>
+</body>
+</html>

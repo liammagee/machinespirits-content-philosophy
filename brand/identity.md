@@ -1,6 +1,6 @@
 # Machine Spirits — Brand Identity
 
-*Working document. Last revised 2026-05-10.*
+*Working document. Last revised 2026-05-13.*
 
 ## Platform name
 
@@ -40,7 +40,7 @@ Five candidates, each with what it foregrounds and what it sacrifices. Pick one 
    - Foregrounds: dialectical stance, refuses the for/against binary.
    - Sacrifices: longer; assumes a critical-theory reader.
 
-**Recommended primary**: candidate 1 (*Philosophy for machines that learn.*) for masthead/about, with candidate 4 (*What AI forgets.*) as the title of the Founding Sketch and a recurring motif. Candidate 2 reserved for ML-research-facing contexts where "alignment" is the live word.
+**Primary (confirmed 2026-05-13):** candidate 1 — *Philosophy for machines that learn.* — for masthead, hero, social bios, and the newsletter header. Candidate 4 (*What AI forgets.*) is the title of the Founding Sketch and a recurring campaign motif. Candidate 2 (*Recognition, not just alignment.*) is reserved for ML/alignment-facing contexts (LessWrong, arXiv, FAccT submissions).
 
 ## Voice principles
 
@@ -64,12 +64,14 @@ Six principles. Each is a rule with an exception spelled out, because rules with
 
 ## Visual identity
 
-Carried over from existing assets in `machinespirits-content-philosophy/theme/` and the `techne-backdrop` plugin:
+The canonical tokens — palette, type stack, layout chrome — live in [`assets/ms.css`](./assets/ms.css); the canonical behaviour in [`assets/ms.js`](./assets/ms.js). Sibling repos (`machinespirits-website`, `machinespirits-content-philosophy/theme/`, the `techne-backdrop` plugin) inherit from this layer — they don't define their own.
 
-- **Logo**: existing logo from content-philosophy/assets/.
-- **Signature motif**: the **fauna overlay** — small spirit-creatures wandering across the backdrop — used as a visual signature on the homepage and as a footer flourish on the newsletter. Reads as Hegelian (*Geist* in motion) and as Vygotskian (cultural figures in a shared field).
-- **Color palette**: techne-red and techne-orange themes already exist in the plugin themes; default to a darker, lower-chroma palette for the brand site (the spirits should feel slightly haunted, not promotional).
-- **Typography**: serif body, sans-serif headings. Specifics in `machinespirits-content-philosophy/theme/fonts.yaml`.
+- **Logo / sigil**: the concentric-rings glyph (a steady centre with a dashed orbit and four cardinal ticks) used in the header brandmark and the footer. SVG inline in `templates/page.html` and the site chrome.
+- **Signature motifs**: two, layered.
+  - **The fauna overlay** — small spirit-creatures (the five SVG silhouettes in `.fauna`), held at very low opacity (`--fauna-opacity` ≈ .05) and pinned to corners and margins, *never* over body text. Ambient rather than figurative; the spirits are still there, they just don't perform. Reads as Hegelian (*Geist* in motion) and as Vygotskian (cultural figures in a shared field).
+  - **The Klee walking-line** — a thin, scroll-linked black thread on the landing/site chrome (after Paul Klee's "a line is a dot that went for a walk"), traced by stroke-dashoffset as the reader descends the page. The line drawn by the act of reading; the program assembling itself under the reader's eye. Frozen in `prefers-reduced-motion` (the line stays put).
+- **Colour palette**: a warm-cream light default (the page as paper — `--bg: #f7f4ef`, ink `#1c1a16`) with a haunted dark peer (`--bg: #181611`, parchment `#e8e2d4`); low-chroma accents — terracotta, moss, ochre, slate, umber. The earlier techne-red / techne-orange / bright `#E63946` palettes are explicitly *not* the brand-layer palette — the spirits should feel slightly haunted, not promotional. Light is the default because journal pages are paper; the dark peer is the same page after dusk.
+- **Typography**: **Instrument Serif** for display headlines (the journal-warm display register), **DM Sans** for body & UI (a humanist sans that reads as paper-set rather than as screen-chrome), and a system monospace for code / probes / mono-tags. Note this *reverses* the older "serif body / sans headings" assumption — on the journal register the headlines carry the warmth and the body stays quiet. System-stack fallbacks are first-class; the page is fully legible before the web fonts load.
 - **Photography/illustration policy**: no stock images of robots, brains, glowing networks, or generic "futuristic" tech. When we need imagery, prefer scans of marginalia, fragments of diagrams from primary texts, or screenshots of our own tools.
 
 ## Handle reservation (priority order)
@@ -79,8 +81,8 @@ Reserve these even if dormant. Owner: Liam Magee (`liam.magee@gmail.com`).
 | Platform | Handle | Priority | Notes |
 |---|---|---|---|
 | Bluesky | `@machinespirits.org` (via domain handle) | P0 | Academic + ML researchers actively migrating here in 2026. |
-| Mastodon | `@machinespirits@hci.social` or `@machinespirits@scholar.social` | P0 | Philosophy/STS community well-rooted on scholar.social. |
-| Substack | `machinespirits.substack.com` (or self-hosted at `/newsletter`) | P0 | Newsletter home. |
+| Mastodon | `@machinespirits@hci.social` | P0 | **Confirmed 2026-05-13** — hci.social chosen over scholar.social for HCI/STS/AI-and-society overlap closest to primary audience. |
+| Substack | `machinespirits.substack.com` | P0 | **Confirmed 2026-05-13** — Substack to launch; migrate to self-hosted `/newsletter` in Q2 once subscriber list is established. Keep CSV export enabled. |
 | GitHub org | `machinespirits` | P0 | Move the existing repos under an org. |
 | YouTube | `@machinespirits` | P1 | Demo videos, lectures, reading-room sessions. |
 | LinkedIn | Company page "Machine Spirits" | P1 | Reach educators, journalists, policy. |

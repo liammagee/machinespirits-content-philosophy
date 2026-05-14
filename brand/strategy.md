@@ -58,6 +58,12 @@ The program's distinctiveness is precise and statable: **recognition theory + wo
 
 The one-liner — *recognition theory + working software + pedagogy; none of the existing players do all three* — belongs in the grant-pitch language and the public bio alongside the taglines in `IDENTITY.md`.
 
+### Architecture decision (resolved 2026-05-13)
+
+**Option A — one React SPA with `react-router`.** The existing `machinespirits-website` (React 19 + Vite + Tailwind + Express, deployed on Fly.io) gains a real client-side router. Every public page (`/`, `/manifesto`, `/essays/*`, `/lab/*`, `/reading-room/*`, `/courses/*`, `/about`, `/tools`) gets a real URL via `react-router`. The LMS (dashboards, eval, instructor, KB, etc.) is lazy-loaded behind `/app/*` and remains login-gated. No second deploy; no split.
+
+*Trade-off accepted*: the public side still loads a (code-split) React bundle; "simplify" is partly cosmetic in Phase 1. If bundle size becomes a problem, Option B (static public site + proxy) is revisited in Phase 2.
+
 ### Open question this section does not settle
 
 The maintenance-mode list above assumes a roughly solo, ~8-hours-per-week capacity. If that changes — an RA, a postdoc, a grant that funds a developer — the list shrinks and more of the software ecosystem can stay in active development. That is the **capacity decision**, taken up next, and it is enabled by the **funding decision** after it. What the spine decision fixes is the *priority order those decisions must respect*: if a funder would pay for plugin features but not for the probe suite, the probe suite still wins — it is evidence for the spine; the plugin features are not.

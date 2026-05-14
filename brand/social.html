@@ -1,69 +1,189 @@
-<!doctype html>
-<html lang="en" data-theme="dark">
+<!DOCTYPE html>
+<html lang="en" class="no-js" data-theme="light">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Machine Spirits — Social Communications — Machine Spirits</title>
-<meta name="description" content="Machine Spirits — an operational playbook for the social channels.">
-<meta name="color-scheme" content="dark light">
-<link rel="stylesheet" href="./assets/ms.css">
-<script>try{var t=localStorage.getItem('ms-theme');document.documentElement.dataset.theme=(t==='light'||t==='dark')?t:(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');}catch(e){}</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Spirits — Social Communications</title>
+    <meta name="description" content="The Machine Spirits social communications playbook.">
+    <link rel="stylesheet" href="assets/alt/site-alt.css">
+    <link rel="stylesheet" href="assets/alt/doc.css">
+    <script>
 
-
-
+      // Tweak defaults — host rewrites this JSON on persistent edits.
+      window.MS_TWEAKS = /*EDITMODE-BEGIN*/{
+        "theme": "light",
+        "atmosphere": "on",
+        "walkingLine": "on",
+        "quote": "on",
+        "density": "compact"
+      }/*EDITMODE-END*/;
+      // Apply theme & toggles before paint so there's no flash.
+      (function(){
+        var t = window.MS_TWEAKS;
+        document.documentElement.setAttribute('data-theme', t.theme);
+        document.documentElement.setAttribute('data-atmosphere', t.atmosphere);
+        document.documentElement.setAttribute('data-walking-line', t.walkingLine);
+        document.documentElement.setAttribute('data-quote', t.quote);
+        document.documentElement.setAttribute('data-density', t.density);
+      })();
+    </script>
 </head>
-<body class="layout-doc">
-<a class="skip-link" href="#content">Skip to content</a>
+<body>
+<!-- Depth Field -->
+    <div class="depth-field" id="depthField">
+        <div class="depth-plane plane-0">
+            <div class="geo-shape nebula" data-speed="0.005"></div>
+            <div class="geo-shape nebula-2" data-speed="0.007"></div>
+            <div class="geo-shape nebula-sidebar" data-speed="0.006"></div>
+        </div>
 
-<header class="topbar">
-  <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-controls="sidebar">☰</button>
-  <a class="brand" href="./index.html">
-    <span class="glyph" aria-hidden="true">
-      <svg viewBox="0 0 48 48" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2">
-        <circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="9" stroke-dasharray="3 4"/>
-        <path d="M24 6v9M24 33v9M6 24h9M33 24h9"/>
-      </svg>
-    </span>
-    <span>Machine&nbsp;Spirits</span><span class="sub">Social</span>
-  </a>
-  <div class="spacer"></div>
-  <div class="search-wrap">
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4"/></svg>
-    <input id="searchInput" type="search" placeholder="Search this page  /" aria-label="Search this page" autocomplete="off" spellcheck="false">
-    <span class="search-count" id="searchCount" aria-live="polite"></span>
-    <span class="search-nav"><button id="prevHit" type="button" aria-label="Previous match">↑</button><button id="nextHit" type="button" aria-label="Next match">↓</button></span>
-  </div>
-  <button class="pillbtn" id="themeBtn" type="button" aria-label="Toggle colour theme">☀ Light</button>
-</header>
+        <div class="depth-plane plane-1">
+            <div class="geo-shape planet-far" data-speed="0.015"></div>
+            <div class="geo-shape orbit-far" data-speed="0.01"></div>
+            <div class="geo-shape orbit-sidebar" data-speed="0.012"></div>
+        </div>
 
-<div class="layout">
-  <nav class="sidebar" id="sidebar" aria-label="Brand layer">
-    <h2>Brand layer</h2>
-    <ul>
-      <li><a class="nav-doc" href="./index.html"><span class="k">·</span><span>Overview</span></a></li>
-      <li><a class="nav-doc" href="./manifesto.html"><span class="k">·</span><span>Manifesto — What AI Forgets</span></a></li>
-      <li><a class="nav-doc" href="./identity.html"><span class="k">·</span><span>Identity</span></a></li>
-      <li><a class="nav-doc" href="./strategy.html"><span class="k">·</span><span>Strategy</span></a></li>
-      <li><a class="nav-doc" href="./social.html"><span class="k">·</span><span>Social</span></a></li>
-      <li><a class="nav-doc" href="./website-refactor.html"><span class="k">·</span><span>Website Refactor</span></a></li>
-      <li><a class="nav-doc" href="./newsletter/issue-06-recognition-not-alignment.html"><span class="k">·</span><span>Newsletter #06</span></a></li>
-    </ul>
-    <h2>Reading-views</h2>
-    <ul>
-      <li><a class="nav-doc" href="./plan.html"><span class="k">▤</span><span>Plan (manifesto · identity · strategy)</span></a></li>
-      <li><a class="nav-doc" href="./refactor.html"><span class="k">▤</span><span>Refactor checklist</span></a></li>
-      <li><a class="nav-doc" href="./site-mockup.html"><span class="k">▤</span><span>Site mockup</span></a></li>
-    </ul>
-    <h2 id="onpage-h">On this page</h2>
-    <ul class="toc-list" id="tocList"></ul>
-    <p class="legend">Theme &amp; any checklist progress are stored in your browser only.</p>
-  </nav>
+        <div class="depth-plane plane-2">
+            <div class="geo-shape planet-mid" data-speed="0.03"></div>
+            <div class="geo-shape planet-sidebar" data-speed="0.035"></div>
+            <div class="geo-shape grid-constellation" data-speed="0.025">
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+            </div>
+        </div>
 
-  <main>
-    <article class="doc" id="content">
+        <div class="depth-plane plane-3">
+            <div class="geo-shape planet-near" data-speed="0.05"></div>
+            <div class="geo-shape moon-cluster" data-speed="0.055">
+                <div class="moon"></div><div class="moon"></div><div class="moon"></div>
+            </div>
+            <div class="geo-shape sidebar-moons" data-speed="0.06">
+                <div class="moon"></div><div class="moon"></div><div class="moon"></div>
+            </div>
+        </div>
 
-<h1 id="machine-spirits-social-communications">Machine Spirits — Social
-Communications</h1>
+        <div class="depth-plane plane-4">
+            <!-- THE WALKING LINE: "A line is a dot that went for a walk" -->
+            <div class="walking-line" id="walkingLine" data-speed="0.07">
+                <svg viewBox="0 0 1000 200" preserveAspectRatio="none">
+                    <path id="walkPathH" class="line-path" d="
+                        M-20,100 
+                        Q80,40 160,100 
+                        T320,100 
+                        Q400,160 480,100 
+                        T640,100 
+                        Q720,50 800,100 
+                        T960,100
+                        Q1020,140 1080,100
+                    "></path>
+                </svg>
+                <div class="walking-dot"></div>
+            </div>
+
+            <!-- Vertical walking line -->
+            <div class="walking-line-sidebar" id="walkingLineSidebar" data-speed="0.065">
+                <svg viewBox="0 0 160 500" preserveAspectRatio="none">
+                    <path id="walkPathV" class="line-path" d="
+                        M80,0
+                        Q30,60 80,100
+                        T80,180
+                        Q130,230 80,280
+                        T80,360
+                        Q40,410 80,460
+                        T80,520
+                    "></path>
+                </svg>
+                <div class="walking-dot-sidebar"></div>
+            </div>
+
+            <div class="meridian-glass"></div>
+
+            <!-- Floating callout, rotates through resonant lines -->
+            <div class="klee-callout" id="kleeCallout">
+                <span id="kleeCalloutText">“A line is a dot that went for a walk.”</span>
+                <span class="callout-author" id="kleeCalloutAuthor">— Paul Klee, 1925</span>
+            </div>
+        </div>
+    </div>
+
+<!-- Mobile Toggle -->
+    <div class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">
+        <span></span>
+    </div>
+
+<!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-orb" data-sidebar-speed="0.12"></div>
+        <div class="sidebar-orb-2" data-sidebar-speed="0.18"></div>
+        <div class="sidebar-orb-3" data-sidebar-speed="0.15"></div>
+        
+        <div class="sidebar-glass-outer"></div>
+        <div class="sidebar-glass-mid"></div>
+        
+        <div class="sidebar-glass-inner">
+            <div class="sidebar-logo">
+                <div class="logo-mark"></div>
+                <h1>Machine&nbsp;Spirits<br><span class="logo-sub">An alternate research programme for AI</span></h1>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-label">The Program</div>
+                    <ul class="nav-list">
+                        <li><a href="#all" class="active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M9 21V9"></path></svg>All works</a></li>
+                        <li><a href="#essays"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>Essays</a></li>
+                        <li><a href="#probes"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h4l3-9 4 18 3-9h4"></path></svg>Probes</a></li>
+                        <li><a href="#notes"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"></path></svg>Course-notes</a></li>
+                        <li><a href="#tutor"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4"></circle></svg>The tutor</a></li>
+                        <li><a href="#reading"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h7a3 3 0 0 1 3 3v14a2 2 0 0 0-2-2H2zM22 4h-7a3 3 0 0 0-3 3v14a2 2 0 0 1 2-2h8z"></path></svg>Reading room</a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-label">Browse</div>
+                    <ul class="nav-list">
+                        <li><a href="#theme"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg>By axis</a></li>
+                        <li><a href="#author"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 4-6 8-6s8 2 8 6"></path></svg>By author</a></li>
+                        <li><a href="#year"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>By year</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="sidebar-panel">
+                <div class="panel-label">Reading progress · Vol. 01</div>
+                <div class="depth-bar">
+                    <div class="depth-bar-fill" id="depthFill"></div>
+                </div>
+                <div class="status-text" id="materializeStatus">The dot awaits its walk…</div>
+            </div>
+
+            <div class="sidebar-quote" id="sidebarQuote">
+                <p id="sidebarQuoteText">“A line is a dot<br>that went for a walk.”</p>
+                <span class="author" id="sidebarQuoteAuthor">— Paul Klee, 1925</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <header class="archive-header doc-header">
+            <div class="archive-title-block">
+                <span class="imprint-line">Working note</span>
+                <h1>Machine Spirits — Social Communications</h1>
+            </div>
+        </header>
+
+        <main class="doc">
+<section id="machine-spirits-social-communications" class="doc-panel">
+<h2>Machine Spirits — Social Communications</h2>
 <p><em>Operational playbook for the social channels. Started
 2026-05-12.</em></p>
 <blockquote>
@@ -82,9 +202,9 @@ strategy: it promotes <strong>X / Twitter</strong> from STRATEGY.md §6’s
 before it’s folded back into STRATEGY.md at the next quarterly revision;
 everything else operationalizes positions STRATEGY.md already holds.</p>
 </blockquote>
-<hr />
-<h2 id="the-shape-of-it-and-the-x-question">0. The shape of it — and the
-X question</h2>
+</section>
+<section id="the-shape-of-it-and-the-x-question" class="doc-panel">
+<h3>0. The shape of it — and the X question</h3>
 <p><strong>Inherited position.</strong> STRATEGY.md puts the daily
 weight on <strong>Bluesky and Mastodon</strong> (where the academic / ML
 / philosophy migration of 2024–2026 landed), <strong>LinkedIn</strong>
@@ -121,8 +241,9 @@ researchers drink at that we visit on purpose — not a place we live.</p>
 <p><strong>Everything else stands.</strong> Bluesky + Mastodon remain
 the home. The newsletter list remains the only audience asset the
 platform actually owns; every social surface funnels to it.</p>
-<hr />
-<h2 id="channel-roster">1. Channel roster</h2>
+</section>
+<section id="channel-roster" class="doc-panel">
+<h3>1. Channel roster</h3>
 <p>Tiers by owner-effort, not by importance — Tier 3 channels carry the
 most weight, they just don’t take daily <em>posting</em>.</p>
 <table style="width:100%;">
@@ -243,8 +364,9 @@ becomes the reading-log</td>
 h/week</strong>, inside the ~8 h/week the rest of STRATEGY.md assumes —
 and most of that is Bluesky. If a week is tight, Bluesky + Mastodon are
 the two that run; the others wait.</p>
-<hr />
-<h2 id="the-cross-post-graph">2. The cross-post graph</h2>
+</section>
+<section id="the-cross-post-graph" class="doc-panel">
+<h3>2. The cross-post graph</h3>
 <p>STRATEGY.md §2’s production unit is “one idea → four surfaces” (probe
 / course-note / essay / video), load-bearing on the probe and the
 course-note. Each surface has a fixed social fan-out —
@@ -334,9 +456,10 @@ link</strong> on every feed platform — upload the file, don’t post the
 URL; (2) <strong>the link goes in a reply, not the lead post</strong> on
 X (and it doesn’t hurt on the others) — feeds downrank outbound links,
 replies are exempt.</p>
-<hr />
-<h2 id="per-platform-playbooks">3. Per-platform playbooks</h2>
-<h3 id="bluesky-the-home-base">Bluesky — the home base</h3>
+</section>
+<section id="per-platform-playbooks" class="doc-panel">
+<h3>3. Per-platform playbooks</h3>
+<h4 id="bluesky-the-home-base">Bluesky — the home base</h4>
 <ul>
 <li><strong>Handle / bio.</strong> <code>@machinespirits.org</code> via
 the domain handle (set the DNS <code>_atproto</code> TXT record — it
@@ -366,7 +489,7 @@ Follow ~50 seed accounts across the four audiences in week 0.</li>
 with no anchor; argue with strangers; engagement-bait (“a thread 🧵👇”
 with nothing under it).</li>
 </ul>
-<h3 id="mastodon-the-scholarly-room">Mastodon — the scholarly room</h3>
+<h4 id="mastodon-the-scholarly-room">Mastodon — the scholarly room</h4>
 <ul>
 <li><strong>Which instance.</strong> Recommend
 <strong>hci.social</strong> (HCI / STS / AI-and-society overlap is
@@ -393,8 +516,8 @@ but the right people, and a culture that rewards careful posts.</li>
 the audiences overlap but Mastodon skews philosophy / STS /
 accessibility.</li>
 </ul>
-<h3 id="x-twitter-the-researchers-bar">X / Twitter — the researchers’
-bar</h3>
+<h4 id="x-twitter-the-researchers-bar">X / Twitter — the researchers’
+bar</h4>
 <ul>
 <li><strong>Handle / bio.</strong> <code>@machinespirits</code>. Bio: a
 ≤160-char cut of the IDENTITY.md short bio — <em>Philosophy for machines
@@ -416,8 +539,8 @@ reputational cost — the position drops back to pure mirror (or dark)
 are already the home and the newsletter list is already the owned asset.
 This is deliberately a low-commitment beachhead.</li>
 </ul>
-<h3 id="linkedin-the-educators-channel">LinkedIn — the educators’
-channel</h3>
+<h4 id="linkedin-the-educators-channel">LinkedIn — the educators’
+channel</h4>
 <ul>
 <li><strong>Setup.</strong> A company page <strong>“Machine
 Spirits”</strong>; Liam posts from his personal profile, the page
@@ -439,8 +562,8 @@ CC-license the handouts and say so in the post (“reuse it”).</li>
 “Agree? 👇”); engagement pods; humble-brag founder posts (IDENTITY.md
 “no founder-personality theatre”).</li>
 </ul>
-<h3 id="substack-the-newsletter-home">Substack — the newsletter
-home</h3>
+<h4 id="substack-the-newsletter-home">Substack — the newsletter
+home</h4>
 <ul>
 <li><strong>Setup.</strong> <code>machinespirits.substack.com</code> to
 start (Substack’s recommendation network and discovery are worth the
@@ -461,8 +584,8 @@ question (STRATEGY.md §8); every social teaser links the
 <strong>Substack issue</strong>, not the site homepage — give people the
 one obvious next action (subscribe).</li>
 </ul>
-<h3 id="youtube-the-demo-lecture-shelf">YouTube — the demo / lecture
-shelf</h3>
+<h4 id="youtube-the-demo-lecture-shelf">YouTube — the demo / lecture
+shelf</h4>
 <ul>
 <li><strong>Setup.</strong> <code>@machinespirits</code>. Channel art:
 the logo + fauna-overlay banner. Sections: “Tutor demos,” “Reading-room
@@ -482,8 +605,8 @@ believe.”</li>
 <li><strong>Cadence.</strong> Biweekly Short + monthly long (STRATEGY.md
 §6).</li>
 </ul>
-<h3 id="lesswrong-alignment-forum-the-alignment-surface">LessWrong /
-Alignment Forum — the alignment surface</h3>
+<h4 id="lesswrong-alignment-forum-the-alignment-surface">LessWrong /
+Alignment Forum — the alignment surface</h4>
 <ul>
 <li><strong>Role.</strong> Not a “social” channel — it’s where a probe
 that <em>genuinely</em> speaks to an alignment question gets
@@ -500,8 +623,8 @@ not argue with strangers” holds).</li>
 Post the full write-up, not a teaser. Don’t treat it as a megaphone —
 cross-posting things that don’t earn it burns the standing fast.</li>
 </ul>
-<h3 id="threads-bookwyrm-staked-dormant">Threads / BookWyrm — staked,
-dormant</h3>
+<h4 id="threads-bookwyrm-staked-dormant">Threads / BookWyrm — staked,
+dormant</h4>
 <ul>
 <li><strong>Threads</strong> <code>@machinespirits</code>: stake it, set
 the bio, pin the Founding Sketch, and either bridge it from Bluesky (the
@@ -513,8 +636,9 @@ then it becomes the reading-log / “reading X with a chatbot” surface,
 federated into the Fediverse. Until then: staked and empty, which is
 fine.</li>
 </ul>
-<hr />
-<h2 id="post-templates">4. Post templates</h2>
+</section>
+<section id="post-templates" class="doc-panel">
+<h3>4. Post templates</h3>
 <p>Reusable shapes. Each obeys IDENTITY.md voice: dated, anchored,
 show-before-thesis, machines quoted like sources, no hype/doom, no
 founder-theatre. The <code>[…]</code> slots get filled per artifact.</p>
@@ -567,9 +691,9 @@ that …&quot; / &quot;there&#39;s a Hegelian version of this: …&quot; / &quot
 <p><em>Rule:</em> a reply adds a citation or a reframe. It never argues,
 never corrects-as-dunk, never “well, actually.” Nothing generative to
 add → don’t reply. (The LW/AF exception in §3 stands.)</p>
-<hr />
-<h2 id="the-30-day-social-launch-sequence">5. The 30-day social launch
-sequence</h2>
+</section>
+<section id="the-30-day-social-launch-sequence" class="doc-panel">
+<h3>5. The 30-day social launch sequence</h3>
 <p>This is the <strong>social slice</strong> of STRATEGY.md §9’s
 first-30-day punch list, expanded into per-platform actions. Assumes ~8
 h/week total; the social part is ~4–5 h/week of it.</p>
@@ -627,9 +751,9 @@ Bluesky/Mastodon 3–5/wk · X 2–4/wk (anchored only) · LinkedIn weekly ·
 Substack biweekly · YouTube biweekly Short. Threads/BookWyrm:
 dormant.</label></li>
 </ul>
-<hr />
-<h2 id="what-to-measure-and-what-to-ignore">6. What to measure — and
-what to ignore</h2>
+</section>
+<section id="what-to-measure-and-what-to-ignore" class="doc-panel">
+<h3>6. What to measure — and what to ignore</h3>
 <p>The numbers that count, one each, reviewed monthly:</p>
 <ul>
 <li><strong>Newsletter subscribers.</strong> The only audience number
@@ -657,9 +781,9 @@ engaged with it?</em> Two months running of “yes” → the social layer
 works; leave it alone. A run of “no” → the problem is the artifacts (or
 the targeting), not the posting cadence — fix upstream, don’t post
 more.</p>
-<hr />
-<h2 id="risks-specific-to-operating-in-feeds">7. Risks specific to
-operating in feeds</h2>
+</section>
+<section id="risks-specific-to-operating-in-feeds" class="doc-panel">
+<h3>7. Risks specific to operating in feeds</h3>
 <table>
 <colgroup>
 <col style="width: 50%" />
@@ -719,19 +843,99 @@ the project; Liam’s account amplifies the project, not Liam.</td>
 </tr>
 </tbody>
 </table>
-<hr />
+</section>
+<div class="doc-panel">
 <p><em>This document is the operational layer under STRATEGY.md §4/§6/§7
 and IDENTITY.md. Revised when a platform’s role changes; the §0 X
 promotion should be ratified into STRATEGY.md §6 at the next quarterly
 revision. Version history is in git.</em></p>
-
-    </article>
-    <footer class="page-foot">
-      <p>Machine Spirits — the brand &amp; strategy layer. Source of truth: <code>machinespirits-brand/</code>. This page is generated from a Markdown file; do not hand-edit the mirror.</p>
-    </footer>
-  </main>
 </div>
+        </main>
 
-<script src="./assets/ms.js" defer></script>
+<footer>
+            <div class="colophon">
+                <div class="colophon-block">
+                    <div class="footer-logo">Machine Spirits</div>
+                    <p>An alternate research programme for AI.<br>Critique and construction, in public.</p>
+                </div>
+                <div class="colophon-block">
+                    <h4>Seat</h4>
+                    <p>University of Illinois<br>Urbana-Champaign<br>School of Information Sciences</p>
+                </div>
+                <div class="colophon-block">
+                    <h4>Catalogue</h4>
+                    <ul class="footer-links">
+                        <li><a href="#programme">Programme</a></li>
+                        <li><a href="#essays">Dossiers</a></li>
+                        <li><a href="#probes">Instruments</a></li>
+                        <li><a href="#newsletter">Bulletin</a></li>
+                    </ul>
+                </div>
+                <div class="colophon-block">
+                    <h4>Convening</h4>
+                    <ul class="footer-links">
+                        <li>Founder · Liam Magee</li>
+                        <li>Reading group · monthly, public</li>
+                        <li>Affiliates by invitation</li>
+                        <li><a href="#">contact ↗</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="footer-copy">
+                Typeset in Instrument Serif &amp; DM Sans. Dated everything, in git.<br>
+                MS — Vol. 01 — established 10 May 2026 — ISSN 2837-4192 (applied) — <span class="mono-tag">commit a3f2c91</span>
+            </p>
+        </footer>
+    </div>
+
+<button class="tweaks-toggle" id="tweaksToggle" type="button" aria-label="Open tweaks">
+        <span class="tt-dot" aria-hidden="true"></span>
+        <span>Tweaks</span>
+    </button>
+<div class="tweaks-panel" id="tweaksPanel" aria-hidden="true">
+        <header>
+            <h3>Tweaks</h3>
+            <span class="badge">MS · v01</span>
+            <button class="tweaks-close" id="tweaksClose" aria-label="Close tweaks">×</button>
+        </header>
+        <section>
+            <label>Theme</label>
+            <div class="seg" data-key="theme">
+                <button type="button" data-val="light">Light</button>
+                <button type="button" data-val="dark">Dark</button>
+            </div>
+        </section>
+        <section>
+            <label>Atmosphere</label>
+            <div class="seg" data-key="atmosphere">
+                <button type="button" data-val="on">On</button>
+                <button type="button" data-val="off">Off</button>
+            </div>
+        </section>
+        <section>
+            <label>Walking line</label>
+            <div class="seg" data-key="walkingLine">
+                <button type="button" data-val="on">On</button>
+                <button type="button" data-val="off">Off</button>
+            </div>
+        </section>
+        <section>
+            <label>Sidebar quote</label>
+            <div class="seg" data-key="quote">
+                <button type="button" data-val="on">On</button>
+                <button type="button" data-val="off">Off</button>
+            </div>
+        </section>
+        <section>
+            <label>Density</label>
+            <div class="seg" data-key="density">
+                <button type="button" data-val="default">Default</button>
+                <button type="button" data-val="compact">Compact</button>
+            </div>
+        </section>
+        <div class="foot">Changes persist across reloads. Toggle the panel from the Tweaks switch in the toolbar.</div>
+    </div>
+
+    <script src="assets/alt/site-alt.js"></script>
 </body>
 </html>

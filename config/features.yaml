@@ -1,29 +1,36 @@
-# Feature Flags
+# Feature flags
+# Updated 2026-05-13 — audited for public-site vs. /app split.
+#
+# PUBLIC = visible on machinespirits.org without login
+# APP    = only inside /app (login-gated LMS)
+# OFF    = disabled entirely for now
+
 features:
-  # Core Features
-  courses: true
-  articles: true
 
-  # Learning Features
-  studyGroups: true
-  certificates: true
-  gamification: true
-  progressTracking: true
+  # --- Public research / content features ---
+  articles: true        # PUBLIC: /essays index + essay pages
+  probes: true          # PUBLIC: /lab/probes (new content type — implementation pending §H.1)
+  tutor-demo: true      # PUBLIC: /lab/demos/tutor (no-login Ego/Superego demo — pending §D.3)
+  newsletter: true      # PUBLIC: /newsletter signup + archive
+  reading-room: true    # PUBLIC: /reading-room (was /reading; rename §D.5)
+  courses: true         # PUBLIC: /courses read-only syllabi + materials
 
-  # Advanced Features
-  researchLab: true
-  knowledgeBase: true
-  caseStudies: true
+  # --- Core tutor features (public demo + app) ---
+  aiTutor: true         # PUBLIC + APP: the tutor itself; also powers /lab/demos/tutor
+  egoSuperego: true     # PUBLIC: the split-pane view is the visible argument in /lab/demos/tutor
+  evaluation: true      # APP: eval dashboard (/app/eval); probes are separate (see above)
 
-  # Platform Features
-  offlineMode: true
-  darkMode: true
-  i18n: false
+  # --- App-only LMS features ---
+  studyGroups: true     # APP
+  certificates: true    # APP
+  progressTracking: true  # APP
+  gamification: false   # APP — off; not part of current strategy (maintenance mode)
+  researchLab: true     # APP: Experiment Lab (/app/lab) — distinct from public /lab
+  knowledgeBase: true   # APP: /app/kb
+  caseStudies: true     # APP
 
-  # Tutor Features
-  aiTutor: true
-  egoSuperego: true
-  proactiveSuggestions: true
-
-  # Eval (can run alongside content)
-  evaluation: true
+  # --- Platform ---
+  darkMode: true        # global: light/dark toggle (ms.js handles it)
+  offlineMode: false    # off: PWA offline cache not a current priority
+  i18n: false           # off
+  proactiveSuggestions: true  # APP: tutor suggestions in the full LMS context

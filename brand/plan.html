@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" class="no-js" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Machine Spirits — The Plan</title>
-<meta name="color-scheme" content="dark light">
+<meta name="color-scheme" content="light dark">
 <link rel="stylesheet" href="assets/ms.css">
 <style>
   /* page-specific: the verbatim founding-prompt block */
@@ -12,7 +12,7 @@
   blockquote.verbatim::before{content:"VERBATIM \00B7 2026-05-10"; position:absolute; top:.5rem; left:1.1rem; font-family:var(--sans); font-size:.64rem; letter-spacing:.16em; color:var(--text-faint);}
   @media print{ blockquote.verbatim{box-shadow:none;} }
 </style>
-<script>try{var t=localStorage.getItem('ms-theme');document.documentElement.dataset.theme=(t==='light'||t==='dark')?t:(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');}catch(e){}</script>
+<script>document.documentElement.classList.remove('no-js');try{var t=localStorage.getItem('ms-theme');document.documentElement.dataset.theme=(t==='light'||t==='dark')?t:(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');}catch(e){}</script>
 </head>
 <body class="layout-doc">
 
@@ -144,12 +144,17 @@
       </ul>
 
       <h2 id="i-visual">Visual identity</h2>
-      <p>Carried over from existing assets in <code>machinespirits-content-philosophy/theme/</code> and the <code>techne-backdrop</code> plugin:</p>
+      <p>The canonical tokens — palette, type stack, layout chrome — live in <code>assets/ms.css</code>; the canonical behaviour in <code>assets/ms.js</code>. Sibling repos (<code>machinespirits-website</code>, <code>machinespirits-content-philosophy/theme/</code>, the <code>techne-backdrop</code> plugin) inherit from this layer — they don't define their own.</p>
       <ul>
-        <li><strong>Logo</strong>: existing logo from content-philosophy/assets/.</li>
-        <li><strong>Signature motif</strong>: the <strong>fauna overlay</strong> — small spirit-creatures wandering across the backdrop — used as a visual signature on the homepage and as a footer flourish on the newsletter. Reads as Hegelian (<em>Geist</em> in motion) and as Vygotskian (cultural figures in a shared field).</li>
-        <li><strong>Color palette</strong>: techne-red and techne-orange themes already exist in the plugin themes; default to a darker, lower-chroma palette for the brand site (the spirits should feel slightly haunted, not promotional).</li>
-        <li><strong>Typography</strong>: serif body, sans-serif headings. Specifics in <code>machinespirits-content-philosophy/theme/fonts.yaml</code>.</li>
+        <li><strong>Logo / sigil</strong>: the concentric-rings glyph (a steady centre with a dashed orbit and four cardinal ticks) used in the header brandmark and the footer. SVG inline in <code>templates/page.html</code> and the site chrome.</li>
+        <li><strong>Signature motifs</strong>: two, layered.
+          <ul>
+            <li><strong>The fauna overlay</strong> — small spirit-creatures (the five SVG silhouettes in <code>.fauna</code>), held at very low opacity (<code>--fauna-opacity</code> ≈ .05) and pinned to corners and margins, <em>never</em> over body text. Ambient rather than figurative; the spirits are still there, they just don't perform. Reads as Hegelian (<em>Geist</em> in motion) and as Vygotskian (cultural figures in a shared field).</li>
+            <li><strong>The Klee walking-line</strong> — a thin, scroll-linked black thread on the landing/site chrome (after Paul Klee's "a line is a dot that went for a walk"), traced by stroke-dashoffset as the reader descends the page. The line drawn by the act of reading; the program assembling itself under the reader's eye. Frozen in <code>prefers-reduced-motion</code> (the line stays put).</li>
+          </ul>
+        </li>
+        <li><strong>Colour palette</strong>: a warm-cream light default (the page as paper — <code>--bg: #f7f4ef</code>, ink <code>#1c1a16</code>) with a haunted dark peer (<code>--bg: #181611</code>, parchment <code>#e8e2d4</code>); low-chroma accents — terracotta, moss, ochre, slate, umber. The earlier techne-red / techne-orange / bright <code>#E63946</code> palettes are explicitly <em>not</em> the brand-layer palette — the spirits should feel slightly haunted, not promotional. Light is the default because journal pages are paper; the dark peer is the same page after dusk.</li>
+        <li><strong>Typography</strong>: <strong>Instrument Serif</strong> for display headlines (the journal-warm display register), <strong>DM Sans</strong> for body &amp; UI (a humanist sans that reads as paper-set rather than as screen-chrome), and a system monospace for code / probes / mono-tags. Note this <em>reverses</em> the older "serif body / sans headings" assumption — on the journal register the headlines carry the warmth and the body stays quiet. System-stack fallbacks are first-class; the page is fully legible before the web fonts load.</li>
         <li><strong>Photography/illustration policy</strong>: no stock images of robots, brains, glowing networks, or generic "futuristic" tech. When we need imagery, prefer scans of marginalia, fragments of diagrams from primary texts, or screenshots of our own tools.</li>
       </ul>
 

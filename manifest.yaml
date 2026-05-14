@@ -1,17 +1,20 @@
 # Content Package Manifest
-# Generated: 2026-01-17T09:23:05Z
+# Updated: 2026-05-13
 
 name: "@machinespirits/content-philosophy"
-version: "1.0.0"
+version: "2.0.0"
 platform: "^1.0.0"
 
 # Site Identity
 site:
   name: "Machine Spirits"
-  tagline: "Philosophy of Technology"
+  tagline: "Philosophy for machines that learn."
   description: |
-    An open-source learning platform exploring AI, consciousness,
-    and the evolving relationship between human and machine learning.
+    A research program rethinking AI through Hegelian recognition,
+    Freudian/Hayles nonconscious cognition, Weberian charisma, and
+    Heideggerian temporal orientation — paired with a working AI tutor,
+    evaluation probes, and pedagogy at UIUC. Critique and construction,
+    in public.
   url: "https://machinespirits.org"
   author: "Liam Magee"
   institution: "University of Illinois Urbana-Champaign"

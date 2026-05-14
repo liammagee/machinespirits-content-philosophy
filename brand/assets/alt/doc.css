@@ -1,0 +1,224 @@
+/* Prose-doc layout — companion to site-alt.css. Loaded by page-alt-doc.html
+   only (not the landing). Targets the <main class="doc"> slot that Pandoc
+   fills with .md → HTML output. Typography & spacing follow the mockup's
+   conventions: Instrument Serif headlines, DM Sans body, warm-cream palette
+   inherited from :root. */
+
+main.doc {
+    /* Layout container for stacked .doc-panel children. Transparent — the
+       panels do the visual work. Width is 52rem so the inner measure inside
+       each panel stays ~46rem after panel padding. */
+    max-width: 52rem;
+    margin: 1.5rem auto 4rem;
+    padding: 0;
+    color: var(--text-earth, #2d2a26);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    font-weight: 300;
+}
+
+/* Each `---` rule in the Markdown becomes a panel boundary at Pandoc time
+   (see tools/pandoc-doc-panels.lua). Without rules, the whole doc is one
+   panel. The gap between panels is the visual divider. */
+.doc-panel {
+    padding: 2.4rem 3rem 3.2rem;
+    background: var(--glass-bg-light, rgba(255, 252, 247, 0.6));
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border, rgba(45, 42, 38, 0.06));
+    border-radius: 14px;
+    box-shadow: 0 1px 24px var(--glass-shadow, rgba(45, 42, 38, 0.08));
+}
+
+.doc-panel + .doc-panel { margin-top: 1.4rem; }
+
+.doc-panel > * + * { margin-top: 1.1rem; }
+.doc-panel > :first-child { margin-top: 0; }
+
+/* Mobile: shrink horizontal padding so the panel doesn't crush the measure. */
+@media (max-width: 720px) {
+    main.doc {
+        margin: 1rem 1rem 3rem;
+    }
+    .doc-panel {
+        padding: 1.6rem 1.3rem 2.2rem;
+        border-radius: 10px;
+    }
+    .doc-panel + .doc-panel { margin-top: 1rem; }
+}
+
+main.doc > * + * {
+    margin-top: 1.1rem;
+}
+
+main.doc h1,
+main.doc h2,
+main.doc h3,
+main.doc h4 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400;
+    color: var(--text-strong, #1a1814);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+
+main.doc h1 {
+    font-size: 2.3rem;
+    margin-top: 2.4rem;
+    margin-bottom: 0.4rem;
+}
+
+main.doc h2 {
+    font-size: 1.65rem;
+    margin-top: 2.6rem;
+    margin-bottom: 0.4rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+main.doc h3 {
+    font-size: 1.3rem;
+    margin-top: 2.1rem;
+    margin-bottom: 0.3rem;
+}
+
+main.doc h4 {
+    font-size: 1.1rem;
+    margin-top: 1.8rem;
+    margin-bottom: 0.3rem;
+}
+
+main.doc p { margin: 0; }
+main.doc p + p { margin-top: 1.1rem; }
+
+main.doc a {
+    color: var(--accent-terracotta, #b8654a);
+    text-decoration: underline;
+    text-decoration-thickness: 0.06em;
+    text-underline-offset: 0.18em;
+    text-decoration-color: rgba(184,101,74,0.45);
+}
+main.doc a:hover { text-decoration-color: currentColor; }
+
+main.doc strong { font-weight: 500; color: var(--text-strong, #1a1814); }
+main.doc em { font-style: italic; }
+
+main.doc ul,
+main.doc ol {
+    padding-left: 1.6rem;
+    margin: 1rem 0;
+}
+main.doc ul { list-style: disc; }
+main.doc ol { list-style: decimal; }
+main.doc li + li { margin-top: 0.35rem; }
+main.doc li > ul,
+main.doc li > ol { margin-top: 0.35rem; }
+
+main.doc blockquote {
+    margin: 1.4rem 0;
+    padding: 0.4rem 1.1rem;
+    border-left: 2px solid var(--accent-moss, #7a8a4f);
+    color: var(--text-muted, #4a4540);
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 1.55;
+}
+main.doc blockquote p + p { margin-top: 0.8rem; }
+
+main.doc code,
+main.doc pre {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+    font-size: 0.92em;
+}
+main.doc code {
+    background: rgba(0,0,0,0.05);
+    padding: 0.08em 0.32em;
+    border-radius: 3px;
+}
+main.doc pre {
+    background: rgba(0,0,0,0.045);
+    padding: 0.9rem 1.1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    line-height: 1.55;
+    margin: 1.4rem 0;
+}
+main.doc pre code {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+}
+
+main.doc table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.6rem 0;
+    font-size: 0.95rem;
+}
+main.doc th,
+main.doc td {
+    text-align: left;
+    padding: 0.55rem 0.7rem;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    vertical-align: top;
+}
+main.doc th {
+    font-weight: 500;
+    background: rgba(0,0,0,0.025);
+    color: var(--text-strong, #1a1814);
+}
+
+main.doc hr {
+    border: 0;
+    margin: 2.4rem 0;
+    height: 1px;
+    background: linear-gradient(to right,
+        transparent,
+        rgba(0,0,0,0.18) 30%,
+        rgba(0,0,0,0.18) 70%,
+        transparent);
+}
+
+main.doc img,
+main.doc video,
+main.doc figure {
+    max-width: 100%;
+    height: auto;
+    margin: 1.4rem auto;
+    display: block;
+}
+main.doc figure { text-align: center; }
+main.doc figcaption {
+    font-size: 0.9rem;
+    color: var(--text-muted, #4a4540);
+    font-style: italic;
+    margin-top: 0.4rem;
+}
+
+/* Footnotes / bibliography (Pandoc) */
+main.doc .footnotes {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    font-size: 0.92rem;
+    color: var(--text-muted, #4a4540);
+}
+main.doc .footnotes hr { display: none; }
+main.doc .footnotes ol { padding-left: 1.4rem; }
+
+/* Heading anchors (Pandoc --section-divs) */
+main.doc h1[id]:hover::after,
+main.doc h2[id]:hover::after,
+main.doc h3[id]:hover::after {
+    content: " §";
+    color: var(--accent-terracotta, #b8654a);
+    opacity: 0.5;
+    margin-left: 0.3rem;
+    font-weight: 300;
+}
+
+/* Doc-header — variant of archive-header for prose docs */
+.doc-header { padding-bottom: 1.4rem; }
+.doc-header h1 { font-size: 2.6rem; }

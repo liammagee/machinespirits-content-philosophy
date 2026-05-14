@@ -1,27 +1,43 @@
 # Navigation Configuration
+# Updated 2026-05-13 — real paths replacing hash routes (content-contract v2.0.0)
+# Public nav: Essays · Lab · Courses · About + Subscribe action
+# App nav (LMS, login-gated): all /app/* routes
+
 navigation:
-  primary:
-    - label: "Courses"
-      route: "#/courses"
-      icon: "book"
-    - label: "Research Lab"
-      route: "#/research"
+  public:
+    - label: "Essays"
+      route: "/essays"
+      icon: "document"
+    - label: "Lab"
+      route: "/lab"
       icon: "flask"
-    - label: "Knowledge Base"
-      route: "#/kb"
-      icon: "database"
-  secondary:
+    - label: "Courses"
+      route: "/courses"
+      icon: "book"
+    - label: "About"
+      route: "/about"
+      icon: "info"
+  action:
+    - label: "Subscribe"
+      route: "/newsletter"
+      style: "primary"
+  app:
     - label: "Dashboard"
-      route: "#/dashboard"
-    - label: "Docs"
-      route: "#/docs"
-  mobile:
-    - label: "Courses"
-      route: "#/courses"
-      icon: "book"
-    - label: "Progress"
-      route: "#/dashboard"
+      route: "/app"
       icon: "chart"
-    - label: "Research"
-      route: "#/research"
-      icon: "flask"
+    - label: "Knowledge Base"
+      route: "/app/kb"
+      icon: "database"
+    - label: "Experiment Lab"
+      route: "/app/lab"
+      icon: "beaker"
+    - label: "Docs"
+      route: "/app/docs"
+      icon: "document"
+  footer:
+    - label: "Manifesto"
+      route: "/manifesto"
+    - label: "Colophon"
+      route: "/colophon"
+    - label: "Tools"
+      route: "/tools"

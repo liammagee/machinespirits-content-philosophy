@@ -1,69 +1,190 @@
-<!doctype html>
-<html lang="en" data-theme="dark">
+<!DOCTYPE html>
+<html lang="en" class="no-js" data-theme="light">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Website Refactor — machinespirits.org for General Release — Machine Spirits</title>
-<meta name="description" content="The punch list to prep machinespirits.org for general release: writing-first, lab second.">
-<meta name="color-scheme" content="dark light">
-<link rel="stylesheet" href="./assets/ms.css">
-<script>try{var t=localStorage.getItem('ms-theme');document.documentElement.dataset.theme=(t==='light'||t==='dark')?t:(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');}catch(e){}</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Refactor — machinespirits.org for General Release</title>
+    <meta name="description" content="The refactor plan for making machinespirits.org a writing-first, lab-second public site.">
+    <link rel="stylesheet" href="assets/alt/site-alt.css">
+    <link rel="stylesheet" href="assets/alt/doc.css">
+    <script>
 
-
-
+      // Tweak defaults — host rewrites this JSON on persistent edits.
+      window.MS_TWEAKS = /*EDITMODE-BEGIN*/{
+        "theme": "light",
+        "atmosphere": "on",
+        "walkingLine": "on",
+        "quote": "on",
+        "density": "compact"
+      }/*EDITMODE-END*/;
+      // Apply theme & toggles before paint so there's no flash.
+      (function(){
+        var t = window.MS_TWEAKS;
+        document.documentElement.setAttribute('data-theme', t.theme);
+        document.documentElement.setAttribute('data-atmosphere', t.atmosphere);
+        document.documentElement.setAttribute('data-walking-line', t.walkingLine);
+        document.documentElement.setAttribute('data-quote', t.quote);
+        document.documentElement.setAttribute('data-density', t.density);
+      })();
+    </script>
 </head>
-<body class="layout-doc">
-<a class="skip-link" href="#content">Skip to content</a>
+<body>
+<!-- Depth Field -->
+    <div class="depth-field" id="depthField">
+        <div class="depth-plane plane-0">
+            <div class="geo-shape nebula" data-speed="0.005"></div>
+            <div class="geo-shape nebula-2" data-speed="0.007"></div>
+            <div class="geo-shape nebula-sidebar" data-speed="0.006"></div>
+        </div>
 
-<header class="topbar">
-  <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-controls="sidebar">☰</button>
-  <a class="brand" href="./index.html">
-    <span class="glyph" aria-hidden="true">
-      <svg viewBox="0 0 48 48" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2">
-        <circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="9" stroke-dasharray="3 4"/>
-        <path d="M24 6v9M24 33v9M6 24h9M33 24h9"/>
-      </svg>
-    </span>
-    <span>Machine&nbsp;Spirits</span><span class="sub">Website Refactor</span>
-  </a>
-  <div class="spacer"></div>
-  <div class="search-wrap">
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4"/></svg>
-    <input id="searchInput" type="search" placeholder="Search this page  /" aria-label="Search this page" autocomplete="off" spellcheck="false">
-    <span class="search-count" id="searchCount" aria-live="polite"></span>
-    <span class="search-nav"><button id="prevHit" type="button" aria-label="Previous match">↑</button><button id="nextHit" type="button" aria-label="Next match">↓</button></span>
-  </div>
-  <button class="pillbtn" id="themeBtn" type="button" aria-label="Toggle colour theme">☀ Light</button>
-</header>
+        <div class="depth-plane plane-1">
+            <div class="geo-shape planet-far" data-speed="0.015"></div>
+            <div class="geo-shape orbit-far" data-speed="0.01"></div>
+            <div class="geo-shape orbit-sidebar" data-speed="0.012"></div>
+        </div>
 
-<div class="layout">
-  <nav class="sidebar" id="sidebar" aria-label="Brand layer">
-    <h2>Brand layer</h2>
-    <ul>
-      <li><a class="nav-doc" href="./index.html"><span class="k">·</span><span>Overview</span></a></li>
-      <li><a class="nav-doc" href="./manifesto.html"><span class="k">·</span><span>Manifesto — What AI Forgets</span></a></li>
-      <li><a class="nav-doc" href="./identity.html"><span class="k">·</span><span>Identity</span></a></li>
-      <li><a class="nav-doc" href="./strategy.html"><span class="k">·</span><span>Strategy</span></a></li>
-      <li><a class="nav-doc" href="./social.html"><span class="k">·</span><span>Social</span></a></li>
-      <li><a class="nav-doc" href="./website-refactor.html"><span class="k">·</span><span>Website Refactor</span></a></li>
-      <li><a class="nav-doc" href="./newsletter/issue-06-recognition-not-alignment.html"><span class="k">·</span><span>Newsletter #06</span></a></li>
-    </ul>
-    <h2>Reading-views</h2>
-    <ul>
-      <li><a class="nav-doc" href="./plan.html"><span class="k">▤</span><span>Plan (manifesto · identity · strategy)</span></a></li>
-      <li><a class="nav-doc" href="./refactor.html"><span class="k">▤</span><span>Refactor checklist</span></a></li>
-      <li><a class="nav-doc" href="./site-mockup.html"><span class="k">▤</span><span>Site mockup</span></a></li>
-    </ul>
-    <h2 id="onpage-h">On this page</h2>
-    <ul class="toc-list" id="tocList"></ul>
-    <p class="legend">Theme &amp; any checklist progress are stored in your browser only.</p>
-  </nav>
+        <div class="depth-plane plane-2">
+            <div class="geo-shape planet-mid" data-speed="0.03"></div>
+            <div class="geo-shape planet-sidebar" data-speed="0.035"></div>
+            <div class="geo-shape grid-constellation" data-speed="0.025">
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+                <div class="constellation-cell"></div><div class="constellation-cell"></div>
+            </div>
+        </div>
 
-  <main>
-    <article class="doc" id="content">
+        <div class="depth-plane plane-3">
+            <div class="geo-shape planet-near" data-speed="0.05"></div>
+            <div class="geo-shape moon-cluster" data-speed="0.055">
+                <div class="moon"></div><div class="moon"></div><div class="moon"></div>
+            </div>
+            <div class="geo-shape sidebar-moons" data-speed="0.06">
+                <div class="moon"></div><div class="moon"></div><div class="moon"></div>
+            </div>
+        </div>
 
-<h1 id="website-refactor-machinespirits.org-for-general-release">Website
-Refactor — machinespirits.org for General Release</h1>
+        <div class="depth-plane plane-4">
+            <!-- THE WALKING LINE: "A line is a dot that went for a walk" -->
+            <div class="walking-line" id="walkingLine" data-speed="0.07">
+                <svg viewBox="0 0 1000 200" preserveAspectRatio="none">
+                    <path id="walkPathH" class="line-path" d="
+                        M-20,100 
+                        Q80,40 160,100 
+                        T320,100 
+                        Q400,160 480,100 
+                        T640,100 
+                        Q720,50 800,100 
+                        T960,100
+                        Q1020,140 1080,100
+                    "></path>
+                </svg>
+                <div class="walking-dot"></div>
+            </div>
+
+            <!-- Vertical walking line -->
+            <div class="walking-line-sidebar" id="walkingLineSidebar" data-speed="0.065">
+                <svg viewBox="0 0 160 500" preserveAspectRatio="none">
+                    <path id="walkPathV" class="line-path" d="
+                        M80,0
+                        Q30,60 80,100
+                        T80,180
+                        Q130,230 80,280
+                        T80,360
+                        Q40,410 80,460
+                        T80,520
+                    "></path>
+                </svg>
+                <div class="walking-dot-sidebar"></div>
+            </div>
+
+            <div class="meridian-glass"></div>
+
+            <!-- Floating callout, rotates through resonant lines -->
+            <div class="klee-callout" id="kleeCallout">
+                <span id="kleeCalloutText">“A line is a dot that went for a walk.”</span>
+                <span class="callout-author" id="kleeCalloutAuthor">— Paul Klee, 1925</span>
+            </div>
+        </div>
+    </div>
+
+<!-- Mobile Toggle -->
+    <div class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">
+        <span></span>
+    </div>
+
+<!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-orb" data-sidebar-speed="0.12"></div>
+        <div class="sidebar-orb-2" data-sidebar-speed="0.18"></div>
+        <div class="sidebar-orb-3" data-sidebar-speed="0.15"></div>
+        
+        <div class="sidebar-glass-outer"></div>
+        <div class="sidebar-glass-mid"></div>
+        
+        <div class="sidebar-glass-inner">
+            <div class="sidebar-logo">
+                <div class="logo-mark"></div>
+                <h1>Machine&nbsp;Spirits<br><span class="logo-sub">An alternate research programme for AI</span></h1>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-label">The Program</div>
+                    <ul class="nav-list">
+                        <li><a href="#all" class="active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M9 21V9"></path></svg>All works</a></li>
+                        <li><a href="#essays"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>Essays</a></li>
+                        <li><a href="#probes"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h4l3-9 4 18 3-9h4"></path></svg>Probes</a></li>
+                        <li><a href="#notes"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"></path></svg>Course-notes</a></li>
+                        <li><a href="#tutor"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4"></circle></svg>The tutor</a></li>
+                        <li><a href="#reading"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h7a3 3 0 0 1 3 3v14a2 2 0 0 0-2-2H2zM22 4h-7a3 3 0 0 0-3 3v14a2 2 0 0 1 2-2h8z"></path></svg>Reading room</a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-label">Browse</div>
+                    <ul class="nav-list">
+                        <li><a href="#theme"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg>By axis</a></li>
+                        <li><a href="#author"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 4-6 8-6s8 2 8 6"></path></svg>By author</a></li>
+                        <li><a href="#year"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>By year</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="sidebar-panel">
+                <div class="panel-label">Reading progress · Vol. 01</div>
+                <div class="depth-bar">
+                    <div class="depth-bar-fill" id="depthFill"></div>
+                </div>
+                <div class="status-text" id="materializeStatus">The dot awaits its walk…</div>
+            </div>
+
+            <div class="sidebar-quote" id="sidebarQuote">
+                <p id="sidebarQuoteText">“A line is a dot<br>that went for a walk.”</p>
+                <span class="author" id="sidebarQuoteAuthor">— Paul Klee, 1925</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <header class="archive-header doc-header">
+            <div class="archive-title-block">
+                <span class="imprint-line">Working note</span>
+                <h1>Website Refactor — machinespirits.org for General Release</h1>
+            </div>
+        </header>
+
+        <main class="doc">
+<section id="website-refactor-machinespirits.org-for-general-release"
+class="doc-panel">
+<h2>Website Refactor — machinespirits.org for General Release</h2>
 <p>Status: working draft, 2026-05-11. Companion to <a
 href="./STRATEGY.md"><code>STRATEGY.md</code></a> and <a
 href="./IDENTITY.md"><code>IDENTITY.md</code></a>. A functional mockup
@@ -91,9 +212,10 @@ consumed by the website as an npm dep, served at
 <code>build</code>/<code>serve</code>/<code>publish</code>/<code>urls</code>/<code>sitemap</code>/<code>artifacts-index</code>
 scripts.</li>
 </ul>
-<hr />
-<h2 id="the-one-decision-that-gates-everything-else">0. The one decision
-that gates everything else</h2>
+</section>
+<section id="the-one-decision-that-gates-everything-else"
+class="doc-panel">
+<h3>0. The one decision that gates everything else</h3>
 <p><strong>Keep the React SPA and bolt on a real router, or split into a
 static public site + a separate <code>/app/*</code> React
 app?</strong></p>
@@ -126,22 +248,23 @@ back to A — the workstreams below are written to apply either way; items
 that only matter for one option are tagged <strong>[A]</strong> or
 <strong>[B]</strong>.</p>
 <ul class="task-list">
-<li><label><input type="checkbox" /><strong>0.1</strong> — Decide A vs
-B. Write the decision + rationale into <code>STRATEGY.md</code> §1 (it’s
-a “spine” decision: it determines what “Software = Evidence” looks like
-in public).</label></li>
-<li><label><input type="checkbox" /><strong>0.2</strong> — If B:
-register/point <code>app.machinespirits.org</code> (or settle on
-<code>/app/*</code> path-proxy), and confirm Fly.io can host the static
-site + proxy, or move the static site to Cloudflare Pages / Netlify with
-a proxy rule.</label></li>
+<li><label><input type="checkbox" checked="" /><strong>0.1</strong> —
+<strong>Decided 2026-05-13: Option A — one React SPA with
+react-router.</strong> Rationale: least churn, ships fastest; LMS
+lazy-loaded behind <code>/app/*</code> in the existing Vite + Fly.io
+setup. The public site still loads a slimmed React bundle. “Simplify” is
+partly cosmetic in Phase 1; Phase 2 can revisit a split if the bundle
+size is unacceptable. Noted in <code>STRATEGY.md</code> §1.</label></li>
+<li><label><input type="checkbox" checked="" /><strong>0.2</strong> —
+N/A for Option A. LMS routes behind <code>/app/*</code> in the React
+router; no second deploy needed.</label></li>
 <li><label><input type="checkbox" /><strong>0.3</strong> — Lock the
 public URL scheme now, before building anything, from IDENTITY.md “URL
 &amp; naming conventions” (see §A).</label></li>
 </ul>
-<hr />
-<h2 id="a.-information-architecture-url-scheme">A. Information
-architecture &amp; URL scheme</h2>
+</section>
+<section id="a.-information-architecture-url-scheme" class="doc-panel">
+<h3>A. Information architecture &amp; URL scheme</h3>
 <p>The target: real, stable, lowercase-hyphenated URLs; no hash routing
 on the public side; old links redirect.</p>
 <p>Target public routes (from IDENTITY.md):</p>
@@ -260,37 +383,34 @@ or <code>/app</code> route prefix <strong>[A]</strong></td>
 </tbody>
 </table>
 <ul class="task-list">
-<li><label><input type="checkbox" /><strong>A.1</strong> — Write the
-route table above into the website repo (a <code>ROUTES.md</code> or the
-README) as the source of truth.</label></li>
-<li><label><input type="checkbox" /><strong>A.2</strong> — Choose the
-routing mechanism per §0 (real router <strong>[A]</strong> / static-site
-routing <strong>[B]</strong>). Public side must use real paths, not
-<code>#/...</code>.</label></li>
-<li><label><input type="checkbox" /><strong>A.3</strong> — Build a
-redirect map from every current hash route + legacy path to its new
-home, e.g. <code>#/courses → /courses</code>,
-<code>#/research → /lab</code>, <code>#/kb → /tools</code> (KB is LMS,
-not public lab), <code>#/dashboard → /app</code>,
-<code>#/docs → /about</code> or <code>/colophon</code>,
-<code>/reading</code>, <code>/reading/* → /reading-room/*</code>,
-<code>/games/warpstrike → /lab/demos/warpstrike</code> or retire it.
-Implement as server redirects (301) + a tiny client-side
-<code>#/...</code>→path shim for bookmarked hash links.</label></li>
+<li><label><input type="checkbox" checked="" /><strong>A.1</strong> —
+Route table written to <code>machinespirits-website/ROUTES.md</code>
+(2026-05-13). Includes public routes, <code>/app/*</code>, API, feed/SEO
+paths, and the full legacy hash → real-path redirect map.</label></li>
+<li><label><input type="checkbox" checked="" /><strong>A.2</strong> —
+Option A confirmed (§0.1): react-router in the existing SPA. Public side
+uses real paths.</label></li>
+<li><label><input type="checkbox" checked="" /><strong>A.3</strong> —
+Implemented (2026-05-13): inline hash-shim script in
+<code>index.html</code> (fires before React; maps 15 legacy hash routes
+to real paths); Express 301s in <code>server.js</code> for
+<code>/reading/*</code> → <code>/reading-room/*</code> and
+<code>/games/warpstrike/*</code> → <code>/lab/demos/warpstrike/*</code>.
+Reading app remounted at <code>/reading-room</code>; warpstrike served
+at <code>/lab/demos/warpstrike</code>.</label></li>
 <li><label><input type="checkbox" /><strong>A.4</strong> — Decide the
 fate of <code>archive-structure.json</code> (current IA descriptor in
 the website root): regenerate it to match the new IA, or retire it if
 the new build doesn’t need it.</label></li>
-<li><label><input type="checkbox" /><strong>A.5</strong> — Reconcile
-with <code>content-philosophy/config/navigation.yaml</code> — it
-currently hard-codes <code>#/courses</code>, <code>#/research</code>,
-<code>#/kb</code>, <code>#/dashboard</code>. Rewrite it to the new
-public nav (see §B), real paths, no hashes. This is a <em>content
-contract</em> change — bump the content package version.</label></li>
+<li><label><input type="checkbox" checked="" /><strong>A.5</strong> —
+<code>content-philosophy/config/navigation.yaml</code> rewritten to the
+new public nav (Essays · Lab · Courses · About + Subscribe), real paths,
+no hashes. <code>app:</code> section added for <code>/app/*</code>
+tools. Content package bumped to v2.0.0.</label></li>
 </ul>
-<hr />
-<h2 id="b.-homepage-top-level-navigation">B. Homepage &amp; top-level
-navigation</h2>
+</section>
+<section id="b.-homepage-top-level-navigation" class="doc-panel">
+<h3>B. Homepage &amp; top-level navigation</h3>
 <p><strong>Kill the LMS-dashboard framing.</strong> The homepage today
 reads like a product. It should read like the front page of a research
 program.</p>
@@ -355,9 +475,10 @@ the homepage (see §J).</label></li>
 from the public path; the dashboard lives at <code>/app</code>
 only.</label></li>
 </ul>
-<hr />
-<h2 id="c.-the-writing-layer-manifesto-essays-newsletter">C. The writing
-layer — manifesto, essays, newsletter</h2>
+</section>
+<section id="c.-the-writing-layer-manifesto-essays-newsletter"
+class="doc-panel">
+<h3>C. The writing layer — manifesto, essays, newsletter</h3>
 <p>This is the load-bearing public surface. It should feel like a
 journal, not a CMS.</p>
 <ul class="task-list">
@@ -372,7 +493,9 @@ date, 1-line dek, theme tag(s), reading time. Filter by theme
 Pull from <code>content-philosophy/articles/*</code> (the ones meant to
 be public — see C.6).</label></li>
 <li><label><input type="checkbox" /><strong>C.3</strong> — Essay
-template: serif body, real measure (~65–75ch), footnotes/citations
+template: inherit the brand-layer type stack (Instrument Serif
+headlines, DM Sans body — see <code>assets/ms.css</code>’s
+<code>.doc</code> rules), real measure (~65–75ch), footnotes/citations
 rendered properly (citeproc output already exists), a “cite this” block,
 prev/next, related-by-theme. Keep
 <code>ArticleReader.tsx</code>/<code>TechneMarkdown.tsx</code> if
@@ -412,9 +535,10 @@ frontmatter audit: every public essay needs <code>title</code>,
 <code>urls</code> script check that fails the build if a public article
 is missing these.</label></li>
 </ul>
-<hr />
-<h2 id="d.-the-lab-layer-probes-the-tutor-demo-the-reading-room">D. The
-lab layer — probes, the tutor demo, the reading room</h2>
+</section>
+<section id="d.-the-lab-layer-probes-the-tutor-demo-the-reading-room"
+class="doc-panel">
+<h3>D. The lab layer — probes, the tutor demo, the reading room</h3>
 <p>STRATEGY: construction now narrows to <strong>two software artifacts
 in active dev</strong> — the public tutor demo and the recognition-probe
 suite. The lab is where those live publicly. Everything else
@@ -474,9 +598,10 @@ LMS-flavoured “lab” components from the public bundle:
 <code>/lab</code>. <code>/lab</code> is content + the tutor demo, not a
 dashboard.</label></li>
 </ul>
-<hr />
-<h2 id="e.-the-teaching-layer-courses-kept-but-quiet">E. The teaching
-layer — courses, kept but quiet</h2>
+</section>
+<section id="e.-the-teaching-layer-courses-kept-but-quiet"
+class="doc-panel">
+<h3>E. The teaching layer — courses, kept but quiet</h3>
 <p>STRATEGY: teaching is <em>evidence + the institutional home</em> —
 real, cited, but not the lead. Public side shows syllabi and public
 materials; the actual LMS (enrolment, gradebook, dashboards) is
@@ -514,9 +639,10 @@ cross-linked from both essays and courses, since they’re meant to travel
 <code>test</code> (delete). Mark each course’s public/private materials
 in its manifest.</label></li>
 </ul>
-<hr />
-<h2 id="f.-lock-off-the-software-live-but-off-the-main-path">F. Lock off
-the software (“live but off the main path”)</h2>
+</section>
+<section id="f.-lock-off-the-software-live-but-off-the-main-path"
+class="doc-panel">
+<h3>F. Lock off the software (“live but off the main path”)</h3>
 <p>The brief: the LMS pieces <em>stay live</em> — nothing is deleted —
 but they leave the public navigation and live behind login and/or a
 single honest <code>/tools</code> page. Concretely, this set:</p>
@@ -575,14 +701,24 @@ logged-in visitor still lands on the public homepage by default —
 retire (see §I); they shouldn’t be reachable from the public
 site.</label></li>
 </ul>
-<hr />
-<h2 id="g.-visual-redesign-haunted-not-promotional">G. Visual redesign —
-“haunted, not promotional”</h2>
-<p>From IDENTITY.md: darker, lower-chroma palette (a muted descendant of
-the current techne-red/orange, not the bright <code>#E63946</code>);
-serif body + sans headings; the fauna/spirit-creature overlay kept as a
-<em>signature motif, dialed down</em>; no robot/brain/network stock
-imagery. And from STRATEGY “simplify”: drop the maximalist skin.</p>
+</section>
+<section id="g.-visual-redesign-haunted-not-promotional"
+class="doc-panel">
+<h3>G. Visual redesign — “haunted, not promotional”</h3>
+<p>From IDENTITY.md: a <strong>warm-cream light default with a haunted
+dark peer</strong> (low-chroma terracotta / moss / ochre / slate / umber
+accents — not the bright <code>#E63946</code>, not the older
+techne-red/orange); <strong>Instrument Serif on display headlines, DM
+Sans on body &amp; UI</strong> (the journal register — note this
+<em>reverses</em> the older “serif body / sans headings” sketch); the
+fauna overlay kept as a <em>signature motif, dialed down to
+subliminal</em>, joined by a new programmatic signature — <strong>the
+Klee walking-line</strong> traced on scroll across the landing/site
+chrome; no robot/brain/network stock imagery. And from STRATEGY
+“simplify”: drop the maximalist skin. <strong>The brand layer’s <a
+href="./assets/ms.css"><code>assets/ms.css</code></a> is the canonical
+reference — the website inherits from it, doesn’t redefine
+it.</strong></p>
 <p>Things to remove:</p>
 <ul>
 <li>The parallax grid / <code>GeometricBackground.tsx</code> /
@@ -600,23 +736,35 @@ doesn’t ship.</li>
 <ul class="task-list">
 <li><label><input type="checkbox" /><strong>G.1</strong> — New palette
 in <code>content-philosophy/theme/colors.yaml</code> + the website’s
-Tailwind config: dark-first, low-chroma. Suggested anchors (tune to
-taste): base ink <code>#15131A</code>, raised surface
-<code>#1E1B24</code>, hairline <code>#332E3A</code>, warm off-white text
-<code>#E8E2D9</code>, muted text <code>#A79E94</code>, accent (dusty
-rust/oxblood) <code>#B56A52</code>, accent-deep <code>#5E2A26</code>,
-accent-quiet link <code>#C98A6E</code>. Light theme: warm paper
-<code>#F4F0E8</code>, ink text <code>#1B1822</code>, same accents
-shifted darker for contrast.</label></li>
+Tailwind config — <strong>inherit the canonical journal palette from
+<code>machinespirits-brand/assets/ms.css</code></strong> rather than
+re-defining one. Light default (page as paper):
+<code>--bg: #f7f4ef</code>, ink <code>#1c1a16</code>, faint
+<code>#6b6660</code>. Haunted dark peer: <code>--bg: #181611</code>,
+parchment <code>#e8e2d4</code>, faint <code>#9a958d</code>. Low-chroma
+accents (same hex in both themes, contrast handled by surrounding ink):
+terracotta <code>#b8654a</code>, moss <code>#7a8a4f</code>, ochre
+<code>#c8954b</code>, slate <code>#5a6c7d</code>, umber
+<code>#6b4423</code>. The earlier “dark-first” anchors
+(<code>#15131A</code>/<code>#B56A52</code>/<code>#5E2A26</code>) are
+<em>superseded</em> by this palette — keep the working list under
+version control in <code>ms.css</code>, not in the downstream
+configs.</label></li>
 <li><label><input type="checkbox" /><strong>G.2</strong> — Typography in
-<code>content-philosophy/theme/fonts.yaml</code>: serif body stack
-(<code>"Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif</code>),
-sans headings
-(<code>system-ui, -apple-system, "Segoe UI", Roboto, sans-serif</code>),
-mono for probes/code
-(<code>"SF Mono", "JetBrains Mono", ui-monospace, monospace</code>).
-Real measure on body text. If web fonts are wanted later, that’s a
-separate ticket — system stacks first.</label></li>
+<code>content-philosophy/theme/fonts.yaml</code>: <strong>inherit the
+brand-layer journal stack</strong> — <strong>Instrument Serif</strong>
+for display headlines (web font, with
+<code>Georgia, "Iowan Old Style", "Palatino Linotype", serif</code>
+fallback), <strong>DM Sans</strong> for body &amp; UI (web font, with
+<code>system-ui, -apple-system, "Segoe UI", Roboto, sans-serif</code>
+fallback), system mono for probes/code
+(<code>ui-monospace, "SF Mono", "JetBrains Mono", monospace</code>).
+Note this <em>reverses</em> the earlier “serif body / sans headings”
+sketch — the journal register puts serif on the <em>headlines</em>
+(display warmth) and sans on the body (paper-quiet legibility), which is
+what <code>assets/ms.css</code> already does. Real measure on body text
+(60–72ch). The page must be fully legible before web fonts
+load.</label></li>
 <li><label><input type="checkbox" /><strong>G.3</strong> — Reduce the
 fauna overlay: fewer creatures, lower opacity, slow gentle drift,
 <em>never</em> over body text — corners, margins, section breaks only.
@@ -629,9 +777,13 @@ the homepage. Remove <code>GeometricBackground.tsx</code> from public
 render paths (keep in repo if <code>/app</code> still uses it; otherwise
 retire).</label></li>
 <li><label><input type="checkbox" /><strong>G.5</strong> — One theme
-toggle (light/dark), persisted in <code>localStorage</code>, defaulting
-to dark (the “haunted” default) but honoring
-<code>prefers-color-scheme</code> on first visit. Remove all other
+toggle (light/dark), persisted in <code>localStorage</code>,
+<strong>defaulting to the warm-cream light (the page as paper) with the
+haunted dark peer as the alt</strong>, honouring
+<code>prefers-color-scheme</code> on first visit. (The earlier “dark
+default” sketch is <em>superseded</em> — the journal register reads as
+paper; “haunted” is now carried by the dark peer + the subliminal fauna
++ the Klee walking-line, not by reversing the default.) Remove all other
 skin/animation toggles from the public UI.</label></li>
 <li><label><input type="checkbox" /><strong>G.6</strong> — Logo/sigil:
 pull the wordmark + sigil from
@@ -648,11 +800,12 @@ reference.</label></li>
 strip inline LMS bootstrapping/splash, set the new theme color, favicon,
 OG defaults there.</label></li>
 </ul>
-<hr />
-<h2
-id="h.-content-pipeline-updates-machinespirits-content-philosophy">H.
-Content pipeline updates
-(<code>machinespirits-content-philosophy</code>)</h2>
+</section>
+<section
+id="h.-content-pipeline-updates-machinespirits-content-philosophy"
+class="doc-panel">
+<h3>H. Content pipeline updates
+(<code>machinespirits-content-philosophy</code>)</h3>
 <p>The content package needs to learn the new vocabulary. It currently
 knows <code>articles</code> and <code>courses</code>; it needs
 <code>probes</code> (and arguably <code>reading-room</code> entries and
@@ -700,22 +853,22 @@ malformed slugs.</label></li>
 <code>artifacts-index</code>: extend to include probes and demos, and
 emit the data the website’s <code>/lab</code> pages consume (JSON the
 SPA/static build reads at build time).</label></li>
-<li><label><input type="checkbox" /><strong>H.7</strong> —
-<code>config/navigation.yaml</code>: rewrite to the new public nav
-(Essays · Lab · Courses · About + Subscribe), real paths. Add a separate
-<code>app:</code> section listing the <code>/app/*</code> tools (so
-<code>/tools</code> can be generated from it).</label></li>
-<li><label><input type="checkbox" /><strong>H.8</strong> —
-<code>config/features.yaml</code>: audit — turn off LMS-feature flags
-that don’t belong on the public site; add flags for <code>probes</code>,
-<code>tutor-demo</code>, <code>newsletter</code> if useful.</label></li>
-<li><label><input type="checkbox" /><strong>H.9</strong> —
-<code>manifest.yaml</code> <code>site.tagline</code>: change
-<code>"Philosophy of Technology"</code> → the IDENTITY.md tagline
-(“Philosophy for machines that learn.” or chosen alt).
-<code>site.description</code>: replace the “open-source learning
-platform” copy with the research-program thesis. Bump the package
-version (this + H.7 are breaking content-contract changes).</label></li>
+<li><label><input type="checkbox" checked="" /><strong>H.7</strong> —
+<code>config/navigation.yaml</code> rewritten (2026-05-13): public nav
+Essays · Lab · Courses · About + Subscribe, real paths.
+<code>app:</code> section and <code>footer:</code> section added. (Same
+as A.5.)</label></li>
+<li><label><input type="checkbox" checked="" /><strong>H.8</strong> —
+<code>config/features.yaml</code> audited (2026-05-13):
+<code>gamification</code> and <code>offlineMode</code> turned off;
+<code>probes</code>, <code>tutor-demo</code>, <code>newsletter</code>,
+<code>reading-room</code> flags added; all features annotated as PUBLIC
+/ APP / OFF with rationale.</label></li>
+<li><label><input type="checkbox" checked="" /><strong>H.9</strong> —
+<code>manifest.yaml</code> updated (2026-05-13): <code>tagline</code> →
+“Philosophy for machines that learn.”; <code>description</code> →
+research-program thesis. Package version bumped to
+<code>2.0.0</code>.</label></li>
 <li><label><input type="checkbox" /><strong>H.10</strong> —
 <code>.gitignore</code> <code>articles/.nightowl-backups/</code> and any
 other tooling backup dirs; don’t ship them in the package.</label></li>
@@ -723,11 +876,12 @@ other tooling backup dirs; don’t ship them in the package.</label></li>
 the content package and bump the website’s dependency on
 it.</label></li>
 </ul>
-<hr />
-<h2
-id="i.-cleanup-repo-hygiene-must-happen-before-general-release-the-repo-is-public-facing">I.
-Cleanup &amp; repo hygiene (must happen before “general release” — the
-repo is public-facing)</h2>
+</section>
+<section
+id="i.-cleanup-repo-hygiene-must-happen-before-general-release-the-repo-is-public-facing"
+class="doc-panel">
+<h3>I. Cleanup &amp; repo hygiene (must happen before “general release”
+— the repo is public-facing)</h3>
 <p><code>machinespirits-website</code> currently carries ~500 MB of
 stuff that should never be in a public clone, plus a litter of one-off
 files.</p>
@@ -810,9 +964,9 @@ that was exposed.</label></li>
 <li><label><input type="checkbox" /><strong>I.12</strong> —
 <code>dist/</code> committed — gitignore build output.</label></li>
 </ul>
-<hr />
-<h2 id="j.-seo-feeds-sharing-redirects">J. SEO, feeds, sharing,
-redirects</h2>
+</section>
+<section id="j.-seo-feeds-sharing-redirects" class="doc-panel">
+<h3>J. SEO, feeds, sharing, redirects</h3>
 <p>The site can’t be “generally released” while it’s a hash-routed SPA
 with one <code>&lt;title&gt;</code>.</p>
 <ul class="task-list">
@@ -853,9 +1007,10 @@ junk on the public site.</label></li>
 new sitemap to Search Console; verify the redirects don’t break existing
 inbound links.</label></li>
 </ul>
-<hr />
-<h2 id="k.-sequencing-what-general-release-actually-requires">K.
-Sequencing — what “general release” actually requires</h2>
+</section>
+<section id="k.-sequencing-what-general-release-actually-requires"
+class="doc-panel">
+<h3>K. Sequencing — what “general release” actually requires</h3>
 <p>Not everything above blocks launch. Minimum viable “general release”
 (maps to STRATEGY Q1 — “publish the manifesto, ship the public site, the
 tutor demo, the first probes”):</p>
@@ -926,8 +1081,9 @@ of the pipeline work</label></li>
 <li><label><input type="checkbox" />§videos/* — if/when video surfaces
 exist</label></li>
 </ul>
-<hr />
-<h2 id="open-questions-for-liam">Open questions for Liam</h2>
+</section>
+<section id="open-questions-for-liam" class="doc-panel">
+<h3>Open questions for Liam</h3>
 <ol type="1">
 <li><strong>§0</strong> — A (one app + router, ships faster, “simplify”
 stays partly cosmetic) vs B (split public/<code>/app</code>, more work,
@@ -958,14 +1114,93 @@ convincing; canned is zero-cost and zero-abuse-surface.</li>
 <code>machinespirits.org/app/*</code> path? (Affects auth/cookies and
 the proxy setup.)</li>
 </ol>
+</section>
+        </main>
 
-    </article>
-    <footer class="page-foot">
-      <p>Machine Spirits — the brand &amp; strategy layer. Source of truth: <code>machinespirits-brand/</code>. This page is generated from a Markdown file; do not hand-edit the mirror.</p>
-    </footer>
-  </main>
-</div>
+<footer>
+            <div class="colophon">
+                <div class="colophon-block">
+                    <div class="footer-logo">Machine Spirits</div>
+                    <p>An alternate research programme for AI.<br>Critique and construction, in public.</p>
+                </div>
+                <div class="colophon-block">
+                    <h4>Seat</h4>
+                    <p>University of Illinois<br>Urbana-Champaign<br>School of Information Sciences</p>
+                </div>
+                <div class="colophon-block">
+                    <h4>Catalogue</h4>
+                    <ul class="footer-links">
+                        <li><a href="#programme">Programme</a></li>
+                        <li><a href="#essays">Dossiers</a></li>
+                        <li><a href="#probes">Instruments</a></li>
+                        <li><a href="#newsletter">Bulletin</a></li>
+                    </ul>
+                </div>
+                <div class="colophon-block">
+                    <h4>Convening</h4>
+                    <ul class="footer-links">
+                        <li>Founder · Liam Magee</li>
+                        <li>Reading group · monthly, public</li>
+                        <li>Affiliates by invitation</li>
+                        <li><a href="#">contact ↗</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="footer-copy">
+                Typeset in Instrument Serif &amp; DM Sans. Dated everything, in git.<br>
+                MS — Vol. 01 — established 10 May 2026 — ISSN 2837-4192 (applied) — <span class="mono-tag">commit a3f2c91</span>
+            </p>
+        </footer>
+    </div>
 
-<script src="./assets/ms.js" defer></script>
+<button class="tweaks-toggle" id="tweaksToggle" type="button" aria-label="Open tweaks">
+        <span class="tt-dot" aria-hidden="true"></span>
+        <span>Tweaks</span>
+    </button>
+<div class="tweaks-panel" id="tweaksPanel" aria-hidden="true">
+        <header>
+            <h3>Tweaks</h3>
+            <span class="badge">MS · v01</span>
+            <button class="tweaks-close" id="tweaksClose" aria-label="Close tweaks">×</button>
+        </header>
+        <section>
+            <label>Theme</label>
+            <div class="seg" data-key="theme">
+                <button type="button" data-val="light">Light</button>
+                <button type="button" data-val="dark">Dark</button>
+            </div>
+        </section>
+        <section>
+            <label>Atmosphere</label>
+            <div class="seg" data-key="atmosphere">
+                <button type="button" data-val="on">On</button>
+                <button type="button" data-val="off">Off</button>
+            </div>
+        </section>
+        <section>
+            <label>Walking line</label>
+            <div class="seg" data-key="walkingLine">
+                <button type="button" data-val="on">On</button>
+                <button type="button" data-val="off">Off</button>
+            </div>
+        </section>
+        <section>
+            <label>Sidebar quote</label>
+            <div class="seg" data-key="quote">
+                <button type="button" data-val="on">On</button>
+                <button type="button" data-val="off">Off</button>
+            </div>
+        </section>
+        <section>
+            <label>Density</label>
+            <div class="seg" data-key="density">
+                <button type="button" data-val="default">Default</button>
+                <button type="button" data-val="compact">Compact</button>
+            </div>
+        </section>
+        <div class="foot">Changes persist across reloads. Toggle the panel from the Tweaks switch in the toolbar.</div>
+    </div>
+
+    <script src="assets/alt/site-alt.js"></script>
 </body>
 </html>
