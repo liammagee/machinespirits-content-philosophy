@@ -1,182 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js" data-theme="light">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What AI Forgets</title>
+    <title>What AI Forgets · Machine Spirits</title>
     <meta name="description" content="What AI Forgets, the founding sketch for Machine Spirits.">
     <link rel="stylesheet" href="../assets/alt/site-alt.css">
     <link rel="stylesheet" href="../assets/alt/doc.css">
-    <script>
-
-      // Tweak defaults — host rewrites this JSON on persistent edits.
-      window.MS_TWEAKS = /*EDITMODE-BEGIN*/{
-        "theme": "light",
-        "atmosphere": "on",
-        "walkingLine": "on",
-        "quote": "on",
-        "density": "compact"
-      }/*EDITMODE-END*/;
-      // Apply theme & toggles before paint so there's no flash.
-      (function(){
-        var t = window.MS_TWEAKS;
-        document.documentElement.setAttribute('data-theme', t.theme);
-        document.documentElement.setAttribute('data-atmosphere', t.atmosphere);
-        document.documentElement.setAttribute('data-walking-line', t.walkingLine);
-        document.documentElement.setAttribute('data-quote', t.quote);
-        document.documentElement.setAttribute('data-density', t.density);
-      })();
-    </script>
 </head>
-<body>
-<!-- Depth Field -->
-    <div class="depth-field" id="depthField">
-        <div class="depth-plane plane-0">
-            <div class="geo-shape nebula" data-speed="0.005"></div>
-            <div class="geo-shape nebula-2" data-speed="0.007"></div>
-            <div class="geo-shape nebula-sidebar" data-speed="0.006"></div>
-        </div>
-
-        <div class="depth-plane plane-1">
-            <div class="geo-shape planet-far" data-speed="0.015"></div>
-            <div class="geo-shape orbit-far" data-speed="0.01"></div>
-            <div class="geo-shape orbit-sidebar" data-speed="0.012"></div>
-        </div>
-
-        <div class="depth-plane plane-2">
-            <div class="geo-shape planet-mid" data-speed="0.03"></div>
-            <div class="geo-shape planet-sidebar" data-speed="0.035"></div>
-            <div class="geo-shape grid-constellation" data-speed="0.025">
-                <div class="constellation-cell"></div><div class="constellation-cell"></div>
-                <div class="constellation-cell"></div><div class="constellation-cell"></div>
-                <div class="constellation-cell"></div><div class="constellation-cell"></div>
-                <div class="constellation-cell"></div><div class="constellation-cell"></div>
-                <div class="constellation-cell"></div><div class="constellation-cell"></div>
-                <div class="constellation-cell"></div><div class="constellation-cell"></div>
-                <div class="constellation-cell"></div><div class="constellation-cell"></div>
-                <div class="constellation-cell"></div><div class="constellation-cell"></div>
-            </div>
-        </div>
-
-        <div class="depth-plane plane-3">
-            <div class="geo-shape planet-near" data-speed="0.05"></div>
-            <div class="geo-shape moon-cluster" data-speed="0.055">
-                <div class="moon"></div><div class="moon"></div><div class="moon"></div>
-            </div>
-            <div class="geo-shape sidebar-moons" data-speed="0.06">
-                <div class="moon"></div><div class="moon"></div><div class="moon"></div>
-            </div>
-        </div>
-
-        <div class="depth-plane plane-4">
-            <!-- THE WALKING LINE: "A line is a dot that went for a walk" -->
-            <div class="walking-line" id="walkingLine" data-speed="0.07">
-                <svg viewBox="0 0 1000 200" preserveAspectRatio="none">
-                    <path id="walkPathH" class="line-path" d="
-                        M-20,100 
-                        Q80,40 160,100 
-                        T320,100 
-                        Q400,160 480,100 
-                        T640,100 
-                        Q720,50 800,100 
-                        T960,100
-                        Q1020,140 1080,100
-                    "></path>
-                </svg>
-                <div class="walking-dot"></div>
-            </div>
-
-            <!-- Vertical walking line -->
-            <div class="walking-line-sidebar" id="walkingLineSidebar" data-speed="0.065">
-                <svg viewBox="0 0 160 500" preserveAspectRatio="none">
-                    <path id="walkPathV" class="line-path" d="
-                        M80,0
-                        Q30,60 80,100
-                        T80,180
-                        Q130,230 80,280
-                        T80,360
-                        Q40,410 80,460
-                        T80,520
-                    "></path>
-                </svg>
-                <div class="walking-dot-sidebar"></div>
-            </div>
-
-            <div class="meridian-glass"></div>
-
-            <!-- Floating callout, rotates through resonant lines -->
-            <div class="klee-callout" id="kleeCallout">
-                <span id="kleeCalloutText">“A line is a dot that went for a walk.”</span>
-                <span class="callout-author" id="kleeCalloutAuthor">— Paul Klee, 1925</span>
-            </div>
-        </div>
-    </div>
-
-<!-- Mobile Toggle -->
-    <div class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">
-        <span></span>
-    </div>
-
-<!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-orb" data-sidebar-speed="0.12"></div>
-        <div class="sidebar-orb-2" data-sidebar-speed="0.18"></div>
-        <div class="sidebar-orb-3" data-sidebar-speed="0.15"></div>
-        
-        <div class="sidebar-glass-outer"></div>
-        <div class="sidebar-glass-mid"></div>
-        
-        <div class="sidebar-glass-inner">
-            <div class="sidebar-logo">
-                <div class="logo-mark"></div>
-                <h1>Machine&nbsp;Spirits<br><span class="logo-sub">Learning (to live) with Machines</span></h1>
-            </div>
-
-            <div class="sidebar-divider"></div>
-
-            <nav class="sidebar-nav">
-                <div class="nav-section">
-                    <div class="nav-section-label">Navigate</div>
-                    <ul class="nav-list">
-                        <li><a href="/"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>Home</a></li>
-                        <li><a href="/essays"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>Essays</a></li>
-                        <li><a href="/lab"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h4l3-9 4 18 3-9h4"></path></svg>Lab</a></li>
-                        <li><a href="/courses"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10 12 5 2 10l10 5 10-5z"></path><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"></path></svg>Courses</a></li>
-                        <li><a href="/about"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 4-6 8-6s8 2 8 6"></path></svg>About</a></li>
-                    </ul>
-                </div>
-
-                <a class="nav-subscribe" href="/newsletter">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="5" width="19" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>
-                    Subscribe
-                </a>
+<!--
+  Reader shell — the quiet reading frame for prose (manifesto now; essays next).
+  Deliberately omits the sidebar, depth-field, tweaks panel and site-alt.js: a
+  reading page is first-class with no JavaScript. The <main class="doc"> slot is
+  identical to page-alt-doc.html so the doc-panel Lua split and measure carry
+  over unchanged — only the frame differs.
+-->
+<body class="reader-page">
+    <header class="reader-masthead">
+        <div class="reader-masthead-inner">
+            <a class="reader-wordmark" href="/">Machine&nbsp;Spirits</a>
+            <nav class="reader-nav" aria-label="Primary">
+                <a href="/essays">Essays</a>
+                <a href="/about">About</a>
+                <a href="/newsletter">Subscribe</a>
             </nav>
-
-            <div class="sidebar-panel">
-                <div class="panel-label">Reading progress · Vol. 01</div>
-                <div class="depth-bar">
-                    <div class="depth-bar-fill" id="depthFill"></div>
-                </div>
-                <div class="status-text" id="materializeStatus">The dot awaits its walk…</div>
-            </div>
-
-            <div class="sidebar-quote" id="sidebarQuote">
-                <p id="sidebarQuoteText">“A line is a dot<br>that went for a walk.”</p>
-                <span class="author" id="sidebarQuoteAuthor">— Paul Klee, 1925</span>
-            </div>
         </div>
-    </aside>
+    </header>
 
-    <!-- Main Content -->
-    <div class="content-wrapper">
-        <header class="archive-header doc-header">
-            <div class="archive-title-block">
-                <span class="imprint-line">Manifesto</span>
-                <h1>What AI Forgets</h1>
-            </div>
-        </header>
+    <header class="reader-titleblock">
+        <span class="reader-kicker">Manifesto</span>
+        <h1>What AI Forgets</h1>
+        <p class="reader-revised">Working document · revised by
+addition, not deletion · earlier versions live in git history.</p>
+    </header>
 
-        <main class="doc">
+    <main class="doc">
 <section id="what-ai-forgets" class="doc-panel">
 <h2>What AI Forgets</h2>
 <h3 id="a-founding-sketch-for-machine-spirits">A Founding Sketch for
@@ -283,93 +141,42 @@ welcomed and tracked.</li>
 <p><em>This document will be updated by addition, not deletion. Earlier
 versions remain in the repository history.</em></p>
 </div>
-        </main>
+    </main>
 
-<footer>
-            <div class="colophon">
-                <div class="colophon-block">
-                    <div class="footer-logo">Machine Spirits</div>
-                    <p>Learning (to live) with Machines.<br>Critique and construction, in public.</p>
-                </div>
-                <div class="colophon-block">
-                    <h4>Read</h4>
-                    <ul class="footer-links">
-                        <li><a href="/about">About</a></li>
-                        <li><a href="/manifesto">Manifesto</a></li>
-                        <li><a href="/colophon">Colophon</a></li>
-                        <li><a href="/tools">Also from Machine Spirits</a></li>
-                    </ul>
-                </div>
-                <div class="colophon-block">
-                    <h4>Elsewhere</h4>
-                    <!-- Handles reserved in IDENTITY.md; hyperlink once §5.1 claims the accounts. -->
-                    <ul class="footer-links">
-                        <li>Bluesky · @machinespirits.org</li>
-                        <li>Mastodon · @machinespirits@hci.social</li>
-                        <li>Substack · machinespirits.substack.com</li>
-                        <li>GitHub · machinespirits</li>
-                    </ul>
-                </div>
-                <div class="colophon-block">
-                    <h4>Seat</h4>
-                    <p>University of Illinois<br>Urbana-Champaign<br>School of Information Sciences</p>
-                </div>
+    <footer>
+        <div class="colophon">
+            <div class="colophon-block">
+                <div class="footer-logo">Machine Spirits</div>
+                <p>Learning (to live) with Machines.<br>Critique and construction, in public.</p>
             </div>
-            <p class="footer-copy">
-                © 2026 Machine Spirits · Prose licensed CC BY 4.0 · Built by Liam Magee at UIUC<br>
-                Typeset in Instrument Serif &amp; DM Sans · rendered with Pandoc · MS — Vol. 01 — est. 10 May 2026 — ISSN 2837-4192 (applied)
-            </p>
-        </footer>
-    </div>
-
-<button class="tweaks-toggle" id="tweaksToggle" type="button" aria-label="Open tweaks">
-        <span class="tt-dot" aria-hidden="true"></span>
-        <span>Tweaks</span>
-    </button>
-<div class="tweaks-panel" id="tweaksPanel" aria-hidden="true">
-        <header>
-            <h3>Tweaks</h3>
-            <span class="badge">MS · v01</span>
-            <button class="tweaks-close" id="tweaksClose" aria-label="Close tweaks">×</button>
-        </header>
-        <section>
-            <label>Theme</label>
-            <div class="seg" data-key="theme">
-                <button type="button" data-val="light">Light</button>
-                <button type="button" data-val="dark">Dark</button>
+            <div class="colophon-block">
+                <h4>Read</h4>
+                <ul class="footer-links">
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/manifesto">Manifesto</a></li>
+                    <li><a href="/colophon">Colophon</a></li>
+                    <li><a href="/tools">Also from Machine Spirits</a></li>
+                </ul>
             </div>
-        </section>
-        <section>
-            <label>Atmosphere</label>
-            <div class="seg" data-key="atmosphere">
-                <button type="button" data-val="on">On</button>
-                <button type="button" data-val="off">Off</button>
+            <div class="colophon-block">
+                <h4>Elsewhere</h4>
+                <!-- Handles reserved in IDENTITY.md; hyperlink once §5.1 claims the accounts. -->
+                <ul class="footer-links">
+                    <li>Bluesky · @machinespirits.org</li>
+                    <li>Mastodon · @machinespirits@hci.social</li>
+                    <li>Substack · machinespirits.substack.com</li>
+                    <li>GitHub · machinespirits</li>
+                </ul>
             </div>
-        </section>
-        <section>
-            <label>Walking line</label>
-            <div class="seg" data-key="walkingLine">
-                <button type="button" data-val="on">On</button>
-                <button type="button" data-val="off">Off</button>
+            <div class="colophon-block">
+                <h4>Seat</h4>
+                <p>University of Illinois<br>Urbana-Champaign<br>School of Information Sciences</p>
             </div>
-        </section>
-        <section>
-            <label>Sidebar quote</label>
-            <div class="seg" data-key="quote">
-                <button type="button" data-val="on">On</button>
-                <button type="button" data-val="off">Off</button>
-            </div>
-        </section>
-        <section>
-            <label>Density</label>
-            <div class="seg" data-key="density">
-                <button type="button" data-val="default">Default</button>
-                <button type="button" data-val="compact">Compact</button>
-            </div>
-        </section>
-        <div class="foot">Changes persist across reloads. Toggle the panel from the Tweaks switch in the toolbar.</div>
-    </div>
-
-    <script src="../assets/alt/site-alt.js"></script>
+        </div>
+        <p class="footer-copy">
+            © 2026 Machine Spirits · Prose licensed CC BY 4.0 · Built by Liam Magee at UIUC<br>
+            Typeset in Instrument Serif &amp; DM Sans · rendered with Pandoc · MS — Vol. 01 — est. 10 May 2026 — ISSN 2837-4192 (applied)
+        </p>
+    </footer>
 </body>
 </html>

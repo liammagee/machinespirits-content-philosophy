@@ -5,8 +5,14 @@
 #              INTERNAL (not public — teaching notes, tooling docs, drafts),
 #              TOOLS (/tools or /colophon — platform-facing, not research-facing).
 #
-# Public essays need frontmatter: title, date (YYYY-MM-DD), slug, theme, dek, status: published
-# See CONVENTIONS.md for the full spec (§H.2).
+# A file is PUBLISHED by location/form, not a flag: a sibling .html exists and
+# no path component starts with _ (see CONVENTIONS.md "The rule"). There is no
+# `status:` key. PUBLISH below is an editorial verdict, not a frontmatter value.
+#
+# Public essays still want index metadata in frontmatter so the /essays index
+# renders well: title, date (YYYY-MM-DD), theme, dek. `slug` is derived from the
+# path and reading time is computed — do not author them. Full spec + the audit:
+# CONVENTIONS.md "Index metadata (presentational frontmatter)" and "What ./lint does".
 
 ## _drafts/
 fate: INTERNAL

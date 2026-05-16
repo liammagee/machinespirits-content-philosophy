@@ -15,6 +15,26 @@ A file's **location** and **form** determine its state. No frontmatter flags.
 The website indexer walks `articles/**/*.html` and skips any path with a `_*` component.
 That's the only filter rule.
 
+## Index metadata (presentational frontmatter)
+
+State is still **only** location/form (above) — *no frontmatter key ever
+publishes, hides, or unpublishes a file*. Frontmatter is read **only to render
+the `/essays` index and essay headers**. A published `.html` with no frontmatter
+is still served; it just appears thinly in the index.
+
+| Field | Wanted for a good index entry | Notes |
+|---|---|---|
+| `title` | yes | Display title (may differ from the first `#` heading). |
+| `date` | yes | `YYYY-MM-DD`. The essay URL is `/essays/<date>-<slug>`. |
+| `theme` | yes | One short theme tag — drives the index theme filter. Allowed values are an editorial taxonomy (see `TRIAGE.md`). |
+| `dek` | yes | One-sentence standfirst shown under the title in the index. |
+| `slug` | — | **Derived from the file path** — do not author a `slug:` key. |
+| reading time | — | **Computed** from word count at index time — not authored. |
+
+The frontmatter audit (`./lint`, below) reports — but never blocks — published
+files that are missing or malforming these. Missing index metadata degrades the
+listing only; it never changes whether the page is served.
+
 ## Workflows
 
 ### Markdown → local Pandoc → publish (most common)
@@ -55,6 +75,17 @@ For each `articles/**/*.md` and `courses/**/*.md` outside `_*` paths:
 - Pandoc reads `bibliography:` from frontmatter (relative paths resolve against the article's directory).
 - `--all` flag forces regeneration of everything.
 - Pass a path to render one file: `./build articles/dictatorship/essay.md`.
+
+## What `./lint` does
+
+Audits **index metadata**, never state. For each *published* article (the
+location rule: `articles/**/*.html` minus `_*` paths) it reads the sibling
+`.md`'s frontmatter and reports any missing/malformed `title`, `date`
+(`YYYY-MM-DD`), `theme`, or `dek`.
+
+- Report-only by default — a thin entry is a quality issue, not a build error.
+- `./lint --strict` exits non-zero on any gap (for future CI).
+- `slug` and reading time are never checked: both are derived/computed, not authored.
 
 ## Alternative: website-side rendering
 

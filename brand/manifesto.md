@@ -1,3 +1,7 @@
+---
+revised-note: "Working document · revised by addition, not deletion · earlier versions live in git history."
+---
+
 # What AI Forgets
 
 ## A Founding Sketch for Machine Spirits

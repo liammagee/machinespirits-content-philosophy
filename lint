@@ -1,0 +1,116 @@
+#!/usr/bin/env bash
+# Audit index metadata on published articles.
+#
+# Usage:
+#   ./lint            # report-only: list gaps, always exit 0
+#   ./lint --strict   # exit non-zero if any published article has a gap (CI)
+#
+# State is location/form (see CONVENTIONS.md "The rule"); this NEVER changes it.
+# For each PUBLISHED article (articles/**/*.html, minus any _* path) it reads
+# the sibling .md's frontmatter and checks the presentational fields the
+# /essays index needs: title, date (YYYY-MM-DD), theme, dek.
+# slug (path-derived) and reading time (computed) are intentionally not checked.
+# See CONVENTIONS.md "Index metadata (presentational frontmatter)".
+
+set -euo pipefail
+cd "$(dirname "$0")"
+
+strict=""
+case "${1:-}" in
+  --strict)   strict=1 ;;
+  --help|-h)  sed -n '2,/^$/p' "$0" | sed 's/^# \?//'; exit 0 ;;
+  "")         ;;
+  *)          echo "Unknown argument: $1" >&2; exit 2 ;;
+esac
+
+is_hidden() {
+  # True if any path component starts with _
+  [[ "$1" =~ (^|/)_ ]]
+}
+
+# Print the first YAML frontmatter block (between a line-1 '---' and the next
+# '---'). Empty output if the file has no frontmatter.
+frontmatter() {
+  awk '
+    NR==1 && $0!="---" { exit }
+    NR==1              { infm=1; next }
+    infm && $0=="---"  { exit }
+    infm               { print }
+  ' "$1"
+}
+
+# value-of <frontmatter-text> <key> -> trimmed, de-quoted scalar (may be empty)
+value_of() {
+  printf '%s\n' "$1" \
+    | grep -m1 -E "^$2:[[:space:]]*" 2>/dev/null \
+    | sed -E "s/^$2:[[:space:]]*//; s/[[:space:]]+\$//; s/^\"(.*)\"\$/\1/; s/^'(.*)'\$/\1/" \
+    || true
+}
+
+clean=0
+flagged=0
+nomd=0
+flagged_lines=()
+nomd_lines=()
+
+while IFS= read -r html; do
+  rel="${html#./}"
+  is_hidden "$rel" && continue
+
+  md="${html%.html}.md"
+  if [ ! -f "$md" ]; then
+    nomd=$((nomd+1))
+    nomd_lines+=("$rel")
+    continue
+  fi
+
+  fm="$(frontmatter "$md")"
+  title="$(value_of "$fm" title)"
+  date="$(value_of "$fm" date)"
+  theme="$(value_of "$fm" theme)"
+  dek="$(value_of "$fm" dek)"
+
+  gaps=()
+  [ -z "$title" ] && gaps+=("title:missing")
+  [ -z "$theme" ] && gaps+=("theme:missing")
+  [ -z "$dek" ]   && gaps+=("dek:missing")
+  if [ -z "$date" ]; then
+    gaps+=("date:missing")
+  elif ! [[ "$date" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+    gaps+=("date:malformed($date)")
+  fi
+
+  if [ ${#gaps[@]} -eq 0 ]; then
+    clean=$((clean+1))
+  else
+    flagged=$((flagged+1))
+    flagged_lines+=("$(printf '%s\t%s' "${md#./}" "${gaps[*]}")")
+  fi
+done < <(find ./articles -name "*.html" -type f 2>/dev/null | sort)
+
+echo "Frontmatter audit — index metadata on published articles"
+echo "(state is unaffected; this only grades /essays index entries)"
+echo
+
+if [ "$flagged" -gt 0 ]; then
+  echo "NEEDS METADATA ($flagged):"
+  for line in "${flagged_lines[@]}"; do
+    printf '  ✗ %s\n      %s\n' "${line%%$'\t'*}" "${line#*$'\t'}"
+  done
+  echo
+fi
+
+if [ "$nomd" -gt 0 ]; then
+  echo "HAND-AUTHORED HTML, no sibling .md ($nomd) — frontmatter not checkable:"
+  for f in "${nomd_lines[@]}"; do
+    echo "  • $f"
+  done
+  echo
+fi
+
+echo "Clean: $clean   Needs metadata: $flagged   Hand-authored (.html only): $nomd"
+
+if [ -n "$strict" ] && [ "$flagged" -gt 0 ]; then
+  exit 1
+fi
+exit 0
