@@ -813,6 +813,37 @@
             opacity: 0.75;
         }
 
+        .nav-subscribe {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            margin: 0.15rem 0 1.25rem;
+            padding: 0.5rem 0.75rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.04em;
+            color: var(--bg-cream);
+            background: var(--text-earth);
+            border: 1px solid var(--text-earth);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-subscribe svg {
+            width: 13px;
+            height: 13px;
+            opacity: 0.85;
+        }
+
+        .nav-subscribe:hover {
+            background: var(--accent-terracotta);
+            border-color: var(--accent-terracotta);
+        }
+
         .sidebar-panel {
             padding: 0.85rem;
             background: rgba(255, 255, 255, 0.5);
@@ -1890,6 +1921,69 @@
         }
         @media (max-width: 640px){
             .axes-grid{ grid-template-columns: 1fr; }
+        }
+
+        /* §3.2 homepage modules — hero CTAs, four-surfaces, teaching strip */
+        .hero-cta-row{
+            display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.15rem;
+        }
+        .hero-cta{
+            display:inline-flex; align-items:center; gap:.4rem;
+            font-family:'DM Sans',sans-serif; font-size:.72rem; letter-spacing:.03em;
+            padding:.55rem 1rem; border-radius:8px; text-decoration:none;
+            color:var(--bg-cream); background:var(--text-earth);
+            border:1px solid var(--text-earth); transition:all .3s ease;
+        }
+        .hero-cta:hover{ background:var(--accent-terracotta); border-color:var(--accent-terracotta); }
+        .hero-cta.ghost{
+            color:var(--text-stone); background:transparent; border-color:var(--glass-border);
+        }
+        .hero-cta.ghost:hover{
+            color:var(--text-earth); border-color:var(--accent-umber); background:rgba(255,255,255,.5);
+        }
+
+        .surfaces-lede{
+            font-size:.82rem; color:var(--text-stone); font-weight:300;
+            line-height:1.6; max-width:60ch; margin:-.4rem 0 1.3rem;
+        }
+        .surfaces-grid{
+            display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+            background:var(--glass-border); border:1px solid var(--glass-border);
+        }
+        .surface{
+            display:flex; flex-direction:column; gap:.45rem;
+            padding:1.25rem 1.35rem 1.3rem;
+            background:var(--glass-bg-light); text-decoration:none;
+            transition:background .25s ease;
+        }
+        .surface:hover{ background:var(--glass-bg); }
+        .surface-form{
+            font-family:'Instrument Serif',serif; font-size:1.1rem; color:var(--text-earth);
+        }
+        .surface p{
+            font-size:.74rem; line-height:1.5; color:var(--text-stone);
+            font-weight:300; margin:0; flex:1;
+        }
+        .surface-go{
+            font-size:.62rem; letter-spacing:.04em; color:var(--accent-moss);
+            padding-top:.6rem; border-top:1px solid var(--glass-border);
+        }
+        .surface:hover .surface-go{ color:var(--accent-terracotta); }
+
+        .teaching-strip{
+            display:flex; align-items:center; justify-content:space-between; gap:1.5rem;
+            padding:1.4rem 1.6rem;
+            background:var(--glass-bg-light); border:1px solid var(--glass-border);
+            border-radius:10px;
+        }
+        .teaching-strip p{
+            font-size:.78rem; line-height:1.55; color:var(--text-stone);
+            font-weight:300; margin:.3rem 0 0; max-width:64ch;
+        }
+        @media (max-width: 1024px){ .surfaces-grid{ grid-template-columns:1fr 1fr; } }
+        @media (max-width: 640px){
+            .surfaces-grid{ grid-template-columns:1fr; }
+            .teaching-strip{ flex-direction:column; align-items:flex-start; gap:.9rem; }
         }
 
         /* Colophon footer (overrides the older flex footer rules) */

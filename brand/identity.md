@@ -40,7 +40,11 @@ Five candidates, each with what it foregrounds and what it sacrifices. Pick one 
    - Foregrounds: dialectical stance, refuses the for/against binary.
    - Sacrifices: longer; assumes a critical-theory reader.
 
-**Primary (confirmed 2026-05-13):** candidate 1 — *Philosophy for machines that learn.* — for masthead, hero, social bios, and the newsletter header. Candidate 4 (*What AI forgets.*) is the title of the Founding Sketch and a recurring campaign motif. Candidate 2 (*Recognition, not just alignment.*) is reserved for ML/alignment-facing contexts (LessWrong, arXiv, FAccT submissions).
+6. **"Learning (to live) with Machines."**
+   - Foregrounds: the parenthetical lets the line read two ways at once — "learning with machines" (epistemic register) and "learning to live with machines" (ethical / everyday register). Holds the pedagogy axis and the recognition axis together.
+   - Sacrifices: punctuation-dependent; the parenthesis must be set, not stripped.
+
+**Primary (confirmed 2026-05-14):** candidate 6 — *Learning (to live) with Machines.* — for masthead, hero, social bios, and the newsletter header. Supersedes candidate 1 (*Philosophy for machines that learn.*), which is retained as an alternate for venues where the parenthetical doesn't carry (plain-text bios, single-line metadata). Candidate 4 (*What AI forgets.*) is the title of the Founding Sketch and a recurring campaign motif. Candidate 2 (*Recognition, not just alignment.*) is reserved for ML/alignment-facing contexts (LessWrong, arXiv, FAccT submissions).
 
 ## Voice principles
 

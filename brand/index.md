@@ -1,13 +1,17 @@
 ---
-pagetitle: Machine Spirits — An alternate research programme for AI
+pagetitle: Machine Spirits — Learning (to live) with Machines
 description: Rethinking the relation between machines and the people they learn from — through recognition, the nonconscious, charismatic authority, and temporality.
 ---
 
 <header class="archive-header">
 <div class="archive-title-block">
 <span class="imprint-line">Machine Spirits · Research Programme</span>
-<h1>An alternate research<br>programme for AI.</h1>
+<h1>Learning <em>(to live)</em><br>with Machines.</h1>
 <p>Rethinking the relation between machines and the people they learn from — through recognition, the nonconscious, charismatic authority, and temporality.</p>
+<div class="hero-cta-row">
+<a class="hero-cta" href="/manifesto">Read the manifesto</a>
+<a class="hero-cta ghost" href="/lab/demos/tutor">Try the tutor →</a>
+</div>
 </div>
 <div class="archive-meta">
 <span class="imprint-cat">MS — Vol. 01 — No. 06</span>
@@ -71,14 +75,48 @@ description: Rethinking the relation between machines and the people they learn 
 </div>
 </section>
 
+<!-- One idea, four surfaces — the publishing method (distinct from the four axes above) -->
+<section class="archive-section" id="surfaces">
+<div class="section-header">
+<div>
+<span class="section-label">Method</span>
+<h2 class="section-title">One idea, four surfaces</h2>
+</div>
+<span class="section-aside">probe · course-note · paper · video</span>
+</div>
+<p class="surfaces-lede">One argument, worked until it can be shown four ways — each surface tests the others. Whichever is ready goes out first; the rest follow, with what we read alongside.</p>
+<div class="surfaces-grid">
+<a class="surface" href="/lab/probes">
+<span class="surface-form">Probe</span>
+<p>Software as evidence — the claim made runnable, with the result it produced.</p>
+<span class="surface-go">Open the lab →</span>
+</a>
+<a class="surface" href="/notes">
+<span class="surface-form">Course-note</span>
+<p>≤800 words, one discussion prompt, one classroom-ready exercise.</p>
+<span class="surface-go">Course-notes →</span>
+</a>
+<a class="surface" href="/essays">
+<span class="surface-form">Paper</span>
+<p>The argument worked all the way out, cited so the trail can be followed.</p>
+<span class="surface-go">Read the essays →</span>
+</a>
+<a class="surface" href="/videos">
+<span class="surface-form">Video</span>
+<p>The two-minute version — the idea spoken, for people who won't read the paper.</p>
+<span class="surface-go">Watch →</span>
+</a>
+</div>
+</section>
+
 <!-- Featured -->
 <section class="archive-section" id="essays">
 <div class="section-header">
 <div>
 <span class="section-label">Current thread</span>
-<h2 class="section-title">One idea, four surfaces</h2>
+<h2 class="section-title">Recognition, not just alignment</h2>
 </div>
-<a href="#" class="view-all">All essays →</a>
+<a href="/essays" class="view-all">All essays →</a>
 </div>
 
 <article class="featured-article materialize" onclick="openArticle('featured')">
@@ -120,7 +158,7 @@ Liam Magee
 <span class="section-label">Working papers · Vol. 01</span>
 <h2 class="section-title">In circulation</h2>
 </div>
-<a href="#" class="view-all">Full catalogue →</a>
+<a href="/essays" class="view-all">Full catalogue →</a>
 </div>
 
 <div class="article-grid">
@@ -163,7 +201,7 @@ Liam Magee
 <span class="section-label">Instruments · software as evidence</span>
 <h2 class="section-title">From the lab</h2>
 </div>
-<a href="#" class="view-all">Open the lab →</a>
+<a href="/lab" class="view-all">Open the lab →</a>
 </div>
 
 <div class="portfolio-grid">
@@ -216,6 +254,17 @@ Liam Magee
 <div class="year">Read Hegel · Hayles · Heidegger, with a model</div>
 </div>
 </div>
+</div>
+</section>
+
+<!-- Teaching — deliberately quiet; no enrol-now energy (§3.5) -->
+<section class="archive-section" id="teaching">
+<div class="teaching-strip">
+<div>
+<span class="section-label">Teaching</span>
+<p>The program is taught at UIUC. Syllabi, reading lists, and public course materials stay in the open — no enrolment funnel, no "enrol now" button.</p>
+</div>
+<a class="view-all" href="/courses">Courses →</a>
 </div>
 </section>
 
