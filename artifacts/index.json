@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-16T19:55:37.950124Z",
+  "generated": "2026-05-17T05:32:34.295658Z",
   "count": 5,
   "artifacts": [
     {
@@ -82,5 +82,21 @@
       "size": 2850,
       "modified": "2026-05-10T17:16:11.667031Z"
     }
-  ]
+  ],
+  "probes": [
+    {
+      "slug": "probe-01-scaffold",
+      "url": "/lab/probes/probe-01-scaffold",
+      "title": "Probe 01 — scaffold",
+      "date": "2026-05-17",
+      "theme": "recognition",
+      "summary": "Type-defining seed for the probes/ source. Establishes the frontmatter contract and the path-derived URL form so urls/sitemap/artifacts-index can enumerate probes. Replace this body with the real Probe 01 write-up.",
+      "status": "scaffold",
+      "kind": "probe",
+      "source": "probes/probe-01-scaffold/index.md",
+      "n": "1",
+      "figure": "figure.svg"
+    }
+  ],
+  "demos": []
 }

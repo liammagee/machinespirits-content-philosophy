@@ -35,6 +35,39 @@ The frontmatter audit (`./lint`, below) reports — but never blocks — publish
 files that are missing or malforming these. Missing index metadata degrades the
 listing only; it never changes whether the page is served.
 
+## New content sources: `probes/`, `notes/`, `reading-room/`
+
+These three first-class sources (added in the §4 content-pipeline pass;
+manifest `content.probes` / `content.notes` / `content.reading-room`) obey the
+**same invariant as `articles/`**: location and form determine state, no
+frontmatter flag ever publishes or hides, and the slug is **path-derived — never
+authored**. Their public URLs are **bare-path** (no trailing slash, no `.html`)
+per `IDENTITY.md` and `WEBSITE-REFACTOR.md` §A; the `urls` script enumerates
+them and fails the build on collisions or malformed slugs.
+
+| Source | File layout | Public URL (path-derived) |
+|---|---|---|
+| `probes/` | `probes/probe-NN-<slug>/index.md` | `/lab/probes/probe-NN-<slug>` |
+| `notes/` | `notes/<YYYY-MM-DD->-<slug>.md` | `/notes/<YYYY-MM-DD->-<slug>` |
+| `reading-room/` | `reading-room/YYYY-MM-DD-author-title/index.md` | `/reading-room/YYYY-MM-DD-author-title` |
+
+Presentational frontmatter (read only for indexing/headers, never for state):
+
+- **probes** — `title`, `date`, `n` (probe number), `theme` (the four-axis
+  vocabulary), `summary`, `expands` (link to the essay/course-note it tests),
+  `status`, `figure` (one figure per probe; the build renders it).
+- **notes** (the *course-note* type) — `title`, `date`, `course` (which course
+  it came from), `prompt`, `exercise`, `summary`.
+- **reading-room** — `author`, `title`, `year`, `our-note`, `source-url`,
+  `source-pdf` (primary-text PDFs live on a CDN, **not** in this repo — see
+  `WEBSITE-REFACTOR.md` §I.3), `date` (when we wrote the note).
+
+Reconciliation note: WEBSITE-REFACTOR.md §H.1 lists `slug` in the probe
+frontmatter. That bullet is superseded by this file's standing invariant — the
+slug is derived from the directory/file name (the `n:` key and the `probe-NN-`
+prefix carry the number for display). One authority for state and URL: the
+path. Do not author a `slug:` key in any source.
+
 ## Workflows
 
 ### Markdown → local Pandoc → publish (most common)

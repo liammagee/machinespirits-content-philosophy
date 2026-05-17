@@ -1,166 +1,323 @@
 #!/usr/bin/env bash
-# List what's published, drafted, and hidden according to CONVENTIONS.md.
+# Enumerate the public URL space and gate the build on a broken one.
+#
+# Every public URL is the IDENTITY.md / WEBSITE-REFACTOR.md §A **bare-path**
+# form (no trailing slash, no .html). This script is the single URL source of
+# truth for the content repo: the `sitemap` capability and any link-checker
+# read it, and `check` is a build gate that fails on slug collisions or
+# malformed slugs (WEBSITE-REFACTOR.md §H.4 / §H.5).
 #
 # Usage:
-#   ./urls                       # all three sections
-#   ./urls published             # only published
-#   ./urls drafts                # only drafts
-#   ./urls hidden                # only hidden
-#   ./urls site                  # SPA hash-route URLs (one per published file)
-#   ./urls static                # raw /content/ URLs (every HTML served standalone)
-#   ./urls site --base <url>     # override base (default https://machinespirits.org)
-#   ./urls --plain               # no colour, plain paths only
+#   ./urls                       # diagnostic: published / drafts / hidden
+#   ./urls published|drafts|hidden
+#   ./urls site                  # every public URL, bare-path (one per line)
+#   ./urls check                 # fail (exit 1) on collisions/malformed slugs
+#   ./urls sitemap               # write ./sitemap.xml (real <urlset>+lastmod)
+#   ./urls sitemap --stdout      # print sitemap.xml, don't write
+#   ./urls site|sitemap --base <url>   # override base (default machinespirits.org)
+#   ./urls sitemap -o <file>     # write sitemap.xml elsewhere
+#   ./urls --plain               # no colour
+#
+# URL derivation MIRRORS render-site (brand repo) exactly — the two tools share
+# no code but must agree on the URL space or the sitemap advertises 404s:
+#   essays   articles/**/*.html w/ sibling .md, not essay_excluded;
+#            slug = .html basename; /essays/<date>-<slug> (ISO date fm) | /essays/<slug>
+#   courses  courses/<id>/course.md with frontmatter `published: true`;
+#            id = fm `id:` or dir name; /courses/<id>
+#   probes   probes/<probe-NN-slug>/index.md; /lab/probes/<dir>
+#   notes    notes/<...>.md; /notes/<stem>
+#   reading  reading-room/<YYYY-MM-DD-author-title>/index.md; /reading-room/<dir>
+#   fixed    the brand index/landing routes render-site always emits
+# Demos and videos have no corpus yet — emitting nothing is corpus reality, not
+# an omission (matches render-site's own feed comment).
 
 set -euo pipefail
 cd "$(dirname "$0")"
 
-mode="${1:-all}"
-plain=""
 base="https://machinespirits.org"
-for ((i=1; i<=$#; i++)); do
-  arg="${!i}"
-  [ "$arg" = "--plain" ] && plain=1
-  if [ "$arg" = "--base" ]; then
-    next=$((i+1))
-    base="${!next}"
-  fi
+out="sitemap.xml"
+plain=""
+stdout=""
+mode=""
+
+# Mode is the first non-flag token, in any position; --base/-o consume the
+# following token so a flag value is never mistaken for the mode.
+args=("$@")
+i=0
+while [ "$i" -lt "${#args[@]}" ]; do
+  a="${args[$i]}"
+  case "$a" in
+    --plain)   plain=1 ;;
+    --stdout)  stdout=1 ;;
+    --base)    base="${args[$((i+1))]:-$base}"; i=$((i+1)) ;;
+    -o)        out="${args[$((i+1))]:-$out}";  i=$((i+1)) ;;
+    --help|-h) [ -z "$mode" ] && mode="--help" ;;
+    -*)        ;;  # unknown flag — ignore
+    *)         [ -z "$mode" ] && mode="$a" ;;
+  esac
+  i=$((i+1))
 done
+[ -z "$mode" ] && mode="all"
 
 if [ -z "$plain" ] && [ -t 1 ]; then
   bold=$'\033[1m'; dim=$'\033[2m'
-  green=$'\033[32m'; yellow=$'\033[33m'; gray=$'\033[90m'
+  green=$'\033[32m'; yellow=$'\033[33m'; gray=$'\033[90m'; red=$'\033[31m'
   reset=$'\033[0m'
 else
-  bold=""; dim=""; green=""; yellow=""; gray=""; reset=""
+  bold=""; dim=""; green=""; yellow=""; gray=""; red=""; reset=""
 fi
 
+# ---- CONVENTIONS.md location/form helpers ---------------------------------
+# Sources that obey the location/form rule (state = path, no frontmatter flag).
+LF_ROOTS="articles courses probes notes reading-room"
+
 list_published() {
-  find articles courses -name "*.html" -type f 2>/dev/null \
-    | grep -v "/_" \
-    | sort
+  find $LF_ROOTS -name "*.html" -type f 2>/dev/null | grep -v "/_" | sort || true
 }
-
 list_drafts() {
-  find articles courses -name "*.md" -type f 2>/dev/null \
-    | grep -v "/_" \
-    | sort \
-    | while IFS= read -r md; do
-        [ -f "${md%.md}.html" ] || echo "$md"
-      done
+  find $LF_ROOTS -name "*.md" -type f 2>/dev/null | grep -v "/_" | sort \
+    | while IFS= read -r md; do [ -f "${md%.md}.html" ] || echo "$md"; done || true
 }
-
 list_hidden() {
-  find articles courses -path "*/_*" -type f \( -name "*.md" -o -name "*.html" \) 2>/dev/null \
-    | sort
+  find $LF_ROOTS -path "*/_*" -type f \( -name "*.md" -o -name "*.html" \) \
+    2>/dev/null | sort || true
 }
 
-# Mirror articleService.js toSlug: lowercase, non-alnum -> -, trim, collapse.
-to_slug() {
-  printf '%s' "$1" | tr '[:upper:]' '[:lower:]' \
-    | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//'
+# ---- frontmatter / lastmod ------------------------------------------------
+# fm_date FILE -> the frontmatter `date:` value (quotes, trailing # comment and
+# whitespace stripped — same handling as render-site's fm_value), or empty.
+fm_date() {
+  [ -f "$1" ] || return 0
+  awk '
+    NR==1 { if ($0 != "---") exit; infm=1; next }
+    infm && $0 == "---" { exit }
+    infm && /^date:/ {
+      v=$0
+      sub(/^date:[ \t]*/, "", v)
+      sub(/[ \t]*#.*/, "", v)
+      gsub(/["'"'"']/, "", v)
+      gsub(/[ \t]/, "", v)
+      print v; exit
+    }
+  ' "$1" 2>/dev/null || true
 }
 
-list_static_urls() {
-  # Every published HTML, served by express.static at /content/<path>.
-  # Use this to find hand-authored pages or to share a "raw" link that bypasses the SPA.
-  list_published \
-    | while IFS= read -r f; do
-        f="${f#./}"
-        printf '%s/content/%s\n' "$base" "$f"
-      done
+is_iso() { case "$1" in [0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]) return 0;; esac; return 1; }
+
+git_lastmod() {  # FILE -> YYYY-MM-DD of last commit, or empty
+  git log -1 --format=%cd --date=format:%Y-%m-%d -- "$1" 2>/dev/null || true
 }
 
-list_site_urls() {
-  # Homepage and all course landing pages.
-  echo "$base"
-  find courses -mindepth 1 -maxdepth 1 -type d 2>/dev/null \
-    | sort \
-    | while IFS= read -r d; do
-        local id="${d#courses/}"
-        printf '%s/#/course/%s\n' "$base" "$id"
-      done
+# lastmod_for FILE FMDATE -> ISO date: frontmatter date if ISO, else git, else "".
+lastmod_for() {
+  if is_iso "${2:-}"; then printf '%s' "$2"; return 0; fi
+  local g; g="$(git_lastmod "$1")"
+  is_iso "$g" && printf '%s' "$g"
+}
 
-  # Each published .html becomes a hash-routed URL.
-  list_published \
-    | while IFS= read -r f; do
-        f="${f#./}"
-        case "$f" in
-          courses/*/course.html)
-            : # course landing already emitted above
-            ;;
-          courses/*/*.html)
-            rest="${f#courses/}"
-            id="${rest%%/*}"
-            file="${rest#*/}"
-            stem="${file%.html}"
-            printf '%s/#/%s-%s\n' "$base" "$id" "$(to_slug "$stem")"
-            ;;
-          articles/*/*.html)
-            rest="${f#articles/}"
-            subdir="${rest%%/*}"
-            file="${rest#*/}"
-            stem="${file%.html}"
-            printf '%s/#/%s-%s\n' "$base" "$subdir" "$(to_slug "$stem")"
-            ;;
-          articles/*.html)
-            file="${f#articles/}"
-            stem="${file%.html}"
-            printf '%s/#/%s\n' "$base" "$(to_slug "$stem")"
-            ;;
-        esac
+# ---- essay exclusions (MIRRORS render-site essay_excluded — keep in sync) --
+# Durable decision: todo.md §3.3 line 60 / TRIAGE.md "post-sweep state".
+# These articles/-relative paths are served on another surface (reading-room,
+# /about, /probes) so /essays must not list them.
+essay_excluded() {
+  case "$1" in
+    _*|*/_*)                                     return 0 ;;
+    TRIAGE.*|sitemap.*)                          return 0 ;;
+    hegel-primary-texts/*)                       return 0 ;;
+    publications/*)                              return 0 ;;
+    ai-tutor/machinagogy-v2.*)                   return 0 ;;
+    ai-tutor/full-paper-2026-01-28.*)            return 0 ;;
+    ai-pedagogy/geist-explained.*)               return 0 ;;
+    ai-pedagogy/multiagent-tutor-architecture.*) return 0 ;;
+  esac
+  return 1
+}
+
+# ---- URL enumeration ------------------------------------------------------
+# emit_records -> one "<urlpath>\t<source>\t<lastmod>" line per public URL.
+# urlpath has a leading "/"; lastmod may be empty. Unsorted.
+emit_records() {
+  local f art md slug date up id cmd dir stem lm
+
+  # Essays — articles/**/*.html with sibling .md, not excluded.
+  while IFS= read -r f; do
+    [ -n "$f" ] || continue
+    art="${f#articles/}"; art="${art#./}"
+    md="${f%.html}.md"
+    [ -f "$md" ] || continue
+    essay_excluded "$art" && continue
+    slug="$(basename "${f%.html}")"
+    date="$(fm_date "$md")"
+    if is_iso "$date"; then up="/essays/${date}-${slug}"; else up="/essays/${slug}"; fi
+    lm="$(lastmod_for "$md" "$date")"
+    printf '%s\t%s\t%s\n' "$up" "$md" "$lm"
+  done < <(find articles -name '*.html' -type f 2>/dev/null | grep -v '/_' | LC_ALL=C sort || true)
+
+  # Courses — courses/<id>/course.md with frontmatter `published: true`.
+  while IFS= read -r cmd; do
+    [ -n "$cmd" ] || continue
+    awk 'NR==1{if($0!="---")exit;f=1;next} f&&$0=="---"{exit}
+         f&&/^published:[ \t]*true[ \t]*$/{ok=1} END{exit !ok}' "$cmd" || continue
+    id="$(awk 'NR==1{if($0!="---")exit;f=1;next} f&&$0=="---"{exit}
+              f&&/^id:/{v=$0;sub(/^id:[ \t]*/,"",v);gsub(/["'"'"' \t]/,"",v);print v;exit}' "$cmd")"
+    [ -n "$id" ] || id="$(basename "$(dirname "$cmd")")"
+    lm="$(lastmod_for "$cmd" "$(fm_date "$cmd")")"
+    printf '%s\t%s\t%s\n' "/courses/${id}" "$cmd" "$lm"
+  done < <(find courses -mindepth 2 -maxdepth 2 -name course.md -type f 2>/dev/null | grep -v '/_' | LC_ALL=C sort || true)
+
+  # Probes — probes/<probe-NN-slug>/index.md.
+  while IFS= read -r f; do
+    [ -n "$f" ] || continue
+    dir="$(basename "$(dirname "$f")")"
+    lm="$(lastmod_for "$f" "$(fm_date "$f")")"
+    printf '%s\t%s\t%s\n' "/lab/probes/${dir}" "$f" "$lm"
+  done < <(find probes -mindepth 2 -maxdepth 2 -name index.md -type f 2>/dev/null | grep -v '/_' | LC_ALL=C sort || true)
+
+  # Notes — notes/<...>.md (flat course-note files).
+  while IFS= read -r f; do
+    [ -n "$f" ] || continue
+    stem="$(basename "${f%.md}")"
+    lm="$(lastmod_for "$f" "$(fm_date "$f")")"
+    printf '%s\t%s\t%s\n' "/notes/${stem}" "$f" "$lm"
+  done < <(find notes -name '*.md' -type f 2>/dev/null | grep -v '/_' | LC_ALL=C sort || true)
+
+  # Reading-room — reading-room/<YYYY-MM-DD-author-title>/index.md.
+  while IFS= read -r f; do
+    [ -n "$f" ] || continue
+    dir="$(basename "$(dirname "$f")")"
+    lm="$(lastmod_for "$f" "$(fm_date "$f")")"
+    printf '%s\t%s\t%s\n' "/reading-room/${dir}" "$f" "$lm"
+  done < <(find reading-room -mindepth 2 -maxdepth 2 -name index.md -type f 2>/dev/null | grep -v '/_' | LC_ALL=C sort || true)
+
+  # Fixed brand routes render-site always emits (smoke-brand-surface asserts
+  # them). No lastmod — brand-driven, and <lastmod> is optional in the protocol.
+  local r
+  for r in / /essays /lab /courses /tools /newsletter; do
+    printf '%s\t%s\t%s\n' "$r" "(brand route)" ""
+  done
+}
+
+# ---- validation: malformed slugs + collisions -----------------------------
+# A segment is well-formed iff it matches ^[a-z0-9]+(-[a-z0-9]+)*$ (lowercase
+# kebab; the YYYY-MM-DD date prefix satisfies this — digits and hyphens). Root
+# "/" has no segments and is valid.
+seg_ok() { case "$1" in *[!a-z0-9-]*) return 1;; -*|*-) return 1;; *--*) return 1;; "") return 1;; esac; return 0; }
+
+# validate RECORDS_FILE -> prints problems to stderr; returns 1 if any.
+validate() {
+  local rec="$1" bad=0 url src rest p
+  # Malformed slugs.
+  while IFS=$'\t' read -r url src rest; do
+    [ "$url" = "/" ] && continue
+    local path="${url#/}"
+    local IFS='/'
+    for p in $path; do
+      if ! seg_ok "$p"; then
+        printf '%smalformed%s  %s  (%s)\n' "$red" "$reset" "$url" "$src" >&2
+        bad=1; break
+      fi
+    done
+    unset IFS
+  done < "$rec"
+  # Collisions — same URL from >1 source.
+  local dups
+  dups="$(cut -f1 "$rec" | LC_ALL=C sort | uniq -d || true)"
+  if [ -n "$dups" ]; then
+    while IFS= read -r url; do
+      [ -n "$url" ] || continue
+      printf '%scollision%s  %s\n' "$red" "$reset" "$url" >&2
+      grep -F "$(printf '%s\t' "$url")" "$rec" | while IFS=$'\t' read -r _ src _; do
+        printf '             <- %s\n' "$src" >&2
       done
+      bad=1
+    done <<< "$dups"
+  fi
+  return $bad
+}
+
+# ---- sitemap.xml ----------------------------------------------------------
+xmlesc() { printf '%s' "$1" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g'; }
+
+write_sitemap() {
+  local rec="$1" url src lm loc
+  printf '%s\n' '<?xml version="1.0" encoding="UTF-8"?>'
+  printf '%s\n' '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+  while IFS=$'\t' read -r url src lm; do
+    if [ "$url" = "/" ]; then loc="$base/"; else loc="$base$url"; fi
+    printf '  <url>\n    <loc>%s</loc>\n' "$(xmlesc "$loc")"
+    [ -n "$lm" ] && printf '    <lastmod>%s</lastmod>\n' "$lm"
+    printf '  </url>\n'
+  done < <(LC_ALL=C sort -t "$(printf '\t')" -k1,1 "$rec")
+  printf '%s\n' '</urlset>'
 }
 
 print_section() {
-  local title="$1" colour="$2" glyph="$3"
-  shift 3
+  local title="$1" colour="$2" glyph="$3"; shift 3
   echo "${bold}${title}${reset}"
-  if [ "$#" -eq 0 ]; then
-    echo "  ${dim}(none)${reset}"
-  else
-    for f in "$@"; do
-      printf "  ${colour}${glyph}${reset} %s\n" "${f#./}"
-    done
-  fi
+  if [ "$#" -eq 0 ]; then echo "  ${dim}(none)${reset}"
+  else for f in "$@"; do printf "  ${colour}${glyph}${reset} %s\n" "${f#./}"; done; fi
   echo
 }
 
+# ---- dispatch -------------------------------------------------------------
 case "$mode" in
-  published|pub)
-    while IFS= read -r f; do printf "%s\n" "${f#./}"; done < <(list_published)
-    ;;
-  drafts|draft)
-    while IFS= read -r f; do printf "%s\n" "${f#./}"; done < <(list_drafts)
-    ;;
-  hidden)
-    while IFS= read -r f; do printf "%s\n" "${f#./}"; done < <(list_hidden)
-    ;;
-  site|urls|web)
-    list_site_urls
-    ;;
-  static|raw|files)
-    list_static_urls
-    ;;
-  all|--plain|"")
-    pub=()
-    while IFS= read -r f; do pub+=("$f"); done < <(list_published)
-    drafts=()
-    while IFS= read -r f; do drafts+=("$f"); done < <(list_drafts)
-    hidden=()
-    while IFS= read -r f; do hidden+=("$f"); done < <(list_hidden)
+  published|pub)  list_published ;;
+  drafts|draft)   list_drafts ;;
+  hidden)         list_hidden ;;
 
+  site|urls|web)
+    REC="$(mktemp)"; trap 'rm -f "$REC"' EXIT
+    emit_records > "$REC"
+    if ! validate "$REC"; then
+      echo "${red}urls: refusing to emit a broken URL space${reset}" >&2; exit 1
+    fi
+    while IFS=$'\t' read -r url src lm; do
+      if [ "$url" = "/" ]; then echo "$base/"; else echo "$base$url"; fi
+    done < <(LC_ALL=C sort -t "$(printf '\t')" -k1,1 "$REC")
+    ;;
+
+  check)
+    REC="$(mktemp)"; trap 'rm -f "$REC"' EXIT
+    emit_records > "$REC"
+    n="$(wc -l < "$REC" | tr -d ' ')"
+    if validate "$REC"; then
+      echo "${green}urls check: OK${reset} — $n public URLs, no collisions, no malformed slugs."
+    else
+      echo "${red}urls check: FAILED${reset} — fix the above before building." >&2
+      exit 1
+    fi
+    ;;
+
+  sitemap|xml)
+    REC="$(mktemp)"; trap 'rm -f "$REC"' EXIT
+    emit_records > "$REC"
+    if ! validate "$REC"; then
+      echo "${red}sitemap: refusing to write a sitemap with a broken URL space${reset}" >&2
+      exit 1
+    fi
+    if [ -n "$stdout" ]; then
+      write_sitemap "$REC"
+    else
+      write_sitemap "$REC" > "$out"
+      echo "${dim}Wrote $out ($(grep -c '<url>' "$out") urls).${reset}"
+    fi
+    ;;
+
+  all|"")
+    pub=(); while IFS= read -r f; do [ -n "$f" ] && pub+=("$f"); done < <(list_published)
+    dr=();  while IFS= read -r f; do [ -n "$f" ] && dr+=("$f");  done < <(list_drafts)
+    hi=();  while IFS= read -r f; do [ -n "$f" ] && hi+=("$f");  done < <(list_hidden)
     echo
     print_section "Published — visible to indexer" "$green" "●" "${pub[@]+"${pub[@]}"}"
-    print_section "Drafts — Markdown without rendered HTML (run ./build)" "$yellow" "○" "${drafts[@]+"${drafts[@]}"}"
-    print_section "Hidden — inside _*/ paths" "$gray" "·" "${hidden[@]+"${hidden[@]}"}"
-
-    echo "${dim}Summary: ${#pub[@]} published, ${#drafts[@]} drafts, ${#hidden[@]} hidden${reset}"
+    print_section "Drafts — Markdown without rendered HTML (run ./build)" "$yellow" "○" "${dr[@]+"${dr[@]}"}"
+    print_section "Hidden — inside _*/ paths" "$gray" "·" "${hi[@]+"${hi[@]}"}"
+    echo "${dim}Summary: ${#pub[@]} published, ${#dr[@]} drafts, ${#hi[@]} hidden${reset}"
+    echo "${dim}Run './urls check' to gate the public URL space, './urls sitemap' for sitemap.xml.${reset}"
     ;;
+
   --help|-h)
     sed -n '2,/^$/p' "$0" | sed 's/^# \?//'
     ;;
   *)
-    echo "Unknown mode: $mode" >&2
-    exit 1
-    ;;
+    echo "Unknown mode: $mode" >&2; exit 1 ;;
 esac

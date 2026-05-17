@@ -25,6 +25,8 @@ ROOT = Path(__file__).resolve().parent
 ARTIFACTS_DIR = ROOT / "artifacts"
 INDEX_PATH = ARTIFACTS_DIR / "index.json"
 THUMBNAILS_DIR = ARTIFACTS_DIR / "thumbnails"
+PROBES_DIR = ROOT / "probes"
+DEMOS_DIR = ROOT / "demos"
 
 META_RE_FORWARD = re.compile(
     r'<meta\s+name=["\']{name}["\']\s+content=["\']([^"\']*)["\']',
@@ -104,18 +106,94 @@ def scan_artifact(path: Path) -> dict:
     return entry
 
 
-def build_index() -> dict:
-    if not ARTIFACTS_DIR.exists():
-        return {"generated": None, "count": 0, "artifacts": []}
+def parse_frontmatter(md: str) -> dict:
+    """Minimal YAML-frontmatter reader: the leading --- … --- block, flat
+    `key: value` pairs plus folded `>` scalars. Enough for the probe/demo
+    keys CONVENTIONS.md defines — not a general YAML parser."""
+    if not md.startswith("---"):
+        return {}
+    lines = md.splitlines()
+    if lines[0].strip() != "---":
+        return {}
+    fm: dict[str, str] = {}
+    key = None
+    folding = False
+    for line in lines[1:]:
+        if line.strip() == "---":
+            break
+        if folding:
+            if line.startswith((" ", "\t")) and line.strip():
+                fm[key] = (fm[key] + " " + line.strip()).strip()
+                continue
+            folding = False
+        m = re.match(r"^([A-Za-z0-9_-]+):\s*(.*)$", line)
+        if not m:
+            continue
+        key, val = m.group(1), m.group(2).strip()
+        if val in (">", "|", ">-", "|-"):
+            fm[key] = ""
+            folding = True
+        else:
+            fm[key] = val.strip("\"'")
+    return fm
 
-    html_files = sorted(p for p in ARTIFACTS_DIR.glob("*.html") if p.is_file())
-    artifacts = [scan_artifact(p) for p in html_files]
-    artifacts.sort(key=lambda a: a["slug"])
+
+def _scan_md_entry(index_md: Path, url_prefix: str, kind: str) -> dict:
+    """Build a /lab JSON entry from a probe/demo source's frontmatter.
+    Slug/URL are path-derived (CONVENTIONS.md); frontmatter is presentational."""
+    slug = index_md.parent.name
+    fm = parse_frontmatter(index_md.read_text(encoding="utf-8", errors="replace"))
+    stat = index_md.stat()
+    mtime = datetime.fromtimestamp(stat.st_mtime, tz=timezone.utc)
+    entry = {
+        "slug": slug,
+        "url": f"{url_prefix}/{slug}",
+        "title": fm.get("title") or humanise(slug),
+        "date": fm.get("date") or mtime.date().isoformat(),
+        "theme": fm.get("theme", ""),
+        "summary": fm.get("summary", ""),
+        "status": fm.get("status", ""),
+        "kind": kind,
+        "source": str(index_md.relative_to(ROOT)),
+    }
+    if fm.get("n"):
+        entry["n"] = fm["n"]
+    if fm.get("expands"):
+        entry["expands"] = fm["expands"]
+    if fm.get("figure"):
+        entry["figure"] = fm["figure"]
+    return entry
+
+
+def scan_md_source(base_dir: Path, url_prefix: str, kind: str) -> list[dict]:
+    if not base_dir.exists():
+        return []
+    entries = [
+        _scan_md_entry(p, url_prefix, kind)
+        for p in sorted(base_dir.glob("*/index.md"))
+        if not any(part.startswith("_") for part in p.relative_to(base_dir).parts)
+    ]
+    entries.sort(key=lambda e: e["slug"])
+    return entries
+
+
+def build_index() -> dict:
+    if ARTIFACTS_DIR.exists():
+        html_files = sorted(p for p in ARTIFACTS_DIR.glob("*.html") if p.is_file())
+        artifacts = [scan_artifact(p) for p in html_files]
+        artifacts.sort(key=lambda a: a["slug"])
+    else:
+        artifacts = []
+
+    probes = scan_md_source(PROBES_DIR, "/lab/probes", "probe")
+    demos = scan_md_source(DEMOS_DIR, "/lab/demos", "demo")
 
     return {
         "generated": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "count": len(artifacts),
         "artifacts": artifacts,
+        "probes": probes,
+        "demos": demos,
     }
 
 
@@ -139,11 +217,17 @@ def main() -> int:
         if old != new_copy:
             print(f"{INDEX_PATH} is out of date.", file=sys.stderr)
             return 1
-        print(f"{INDEX_PATH} up to date ({new_index['count']} artifacts).")
+        print(
+            f"{INDEX_PATH} up to date ({new_index['count']} artifacts, "
+            f"{len(new_index['probes'])} probes, {len(new_index['demos'])} demos)."
+        )
         return 0
 
     INDEX_PATH.write_text(stable_dump(new_index), encoding="utf-8")
-    print(f"Wrote {INDEX_PATH.relative_to(ROOT)} ({new_index['count']} artifacts).")
+    print(
+        f"Wrote {INDEX_PATH.relative_to(ROOT)} ({new_index['count']} artifacts, "
+        f"{len(new_index['probes'])} probes, {len(new_index['demos'])} demos)."
+    )
     return 0
 
 

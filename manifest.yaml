@@ -30,6 +30,9 @@ branding:
 content:
   courses: "./courses"
   articles: "./articles"
+  probes: "./probes"
+  notes: "./notes"
+  reading-room: "./reading-room"
   assets: "./assets"
 
 # Configuration
