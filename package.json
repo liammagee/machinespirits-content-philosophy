@@ -1,6 +1,6 @@
 {
   "name": "@machinespirits/content-philosophy",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Content package for Machine Spirits LMS - Philosophy of Technology curriculum",
   "type": "module",
   "main": "manifest.yaml",

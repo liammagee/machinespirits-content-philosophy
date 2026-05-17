@@ -189,10 +189,16 @@ emit_records() {
     printf '%s\t%s\t%s\n' "/reading-room/${dir}" "$f" "$lm"
   done < <(find reading-room -mindepth 2 -maxdepth 2 -name index.md -type f 2>/dev/null | grep -v '/_' | LC_ALL=C sort || true)
 
-  # Fixed brand routes render-site always emits (smoke-brand-surface asserts
-  # them). No lastmod — brand-driven, and <lastmod> is optional in the protocol.
+  # Fixed brand routes render-site always emits — the public brand-prose
+  # contract. Must stay === the website's server.js public brand routes:
+  # brandProseRoutes (manifesto/about/colophon) + the /,/essays,/lab,/courses,
+  # /tools,/newsletter page routes, all asserted by
+  # scripts/smoke-brand-surface.mjs. The /identity,/strategy,/social,
+  # /website-refactor docs render-site also emits are internal working notes,
+  # not public surface — deliberately excluded. No lastmod — brand-driven, and
+  # <lastmod> is optional in the protocol.
   local r
-  for r in / /essays /lab /courses /tools /newsletter; do
+  for r in / /manifesto /about /colophon /essays /lab /courses /tools /newsletter; do
     printf '%s\t%s\t%s\n' "$r" "(brand route)" ""
   done
 }
