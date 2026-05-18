@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+ <title>Machine Spirits</title>
+ <link>https://machinespirits.org/</link>
+ <description>Machine Spirits — essays and lab notes on learning to live with machines.</description>
+ <language>en</language>
+ <atom:link href="https://machinespirits.org/feed.xml" rel="self" type="application/rss+xml"/>
+ <lastBuildDate>01 Jan 2025 00:00:00 +0000</lastBuildDate>
+
+  <item>
+   <title><![CDATA[Vibe Scholarship]]></title>
+   <link>https://machinespirits.org/essays/2025-01-01-vibe-scholarship-article</link>
+   <guid isPermaLink="true">https://machinespirits.org/essays/2025-01-01-vibe-scholarship-article</guid>
+   <description><![CDATA[When AI dissolves the boundary that once cordoned scholarly expertise, is what remains democratized inquiry or intellectual fraud?]]></description>
+   <pubDate>01 Jan 2025 00:00:00 +0000</pubDate>
+  </item>
+  <item>
+   <title><![CDATA[The Discarded Master]]></title>
+   <link>https://machinespirits.org/essays/2024-01-01-discarded-master</link>
+   <guid isPermaLink="true">https://machinespirits.org/essays/2024-01-01-discarded-master</guid>
+   <description><![CDATA[What does world history do with its discarded masters? Hegel's servant-dialectic, read through globalization's resentful retreat.]]></description>
+   <pubDate>01 Jan 2024 00:00:00 +0000</pubDate>
+  </item>
+  <item>
+   <title><![CDATA[Character Development in Contemporary Cinema]]></title>
+   <link>https://machinespirits.org/essays/hegel-voice-1</link>
+   <guid isPermaLink="true">https://machinespirits.org/essays/hegel-voice-1</guid>
+  </item>
+  <item>
+   <title><![CDATA[Back to the Future with Hegel]]></title>
+   <link>https://machinespirits.org/essays/hegel-voice-2</link>
+   <guid isPermaLink="true">https://machinespirits.org/essays/hegel-voice-2</guid>
+  </item>
+</channel>
+</rss>

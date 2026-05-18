@@ -40,10 +40,12 @@ frontmatter() {
 }
 
 # value-of <frontmatter-text> <key> -> trimmed, de-quoted scalar (may be empty)
+# Handles quoted scalars and trailing YAML "# comment" (e.g. provisional dates).
+# Heuristic: a quoted value containing " #" is rare here and not special-cased.
 value_of() {
   printf '%s\n' "$1" \
     | grep -m1 -E "^$2:[[:space:]]*" 2>/dev/null \
-    | sed -E "s/^$2:[[:space:]]*//; s/[[:space:]]+\$//; s/^\"(.*)\"\$/\1/; s/^'(.*)'\$/\1/" \
+    | sed -E "s/^$2:[[:space:]]*//; s/^\"([^\"]*)\".*/\1/; s/^'([^']*)'.*/\1/; s/[[:space:]]+#.*\$//; s/[[:space:]]+\$//" \
     || true
 }
 

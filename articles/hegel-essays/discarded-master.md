@@ -2,7 +2,9 @@
 title: "The Discarded Master"
 subtitle: "Hegel's Master-Servant Dialectic in the Age of Globalization"
 category: "Philosophy"
-date: "2024"
+date: "2024-01-01"  # provisional — year-only original, exact date TBC
+theme: "recognition"
+dek: "What does world history do with its discarded masters? Hegel's servant-dialectic, read through globalization's resentful retreat."
 ---
 
 ## The Discarded Master

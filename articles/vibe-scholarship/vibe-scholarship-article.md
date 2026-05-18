@@ -2,7 +2,9 @@
 title: "Vibe Scholarship"
 subtitle: "Accessible Academia or Intellectual Fraud?"
 category: "AI & Education"
-date: "2025"
+date: "2025-01-01"  # provisional — year-only original, exact date TBC
+theme: "charisma"
+dek: "When AI dissolves the boundary that once cordoned scholarly expertise, is what remains democratized inquiry or intellectual fraud?"
 ---
 
 # Vibe Scholarship: Accessible Academia or Intellectual Fraud?

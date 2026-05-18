@@ -2089,6 +2089,47 @@
             --glass-border-light:rgba(255, 252, 247, 0.05);
             --glass-shadow:      rgba(0, 0, 0, 0.42);
         }
+        /* ============================================
+           §3.7 D3 — OS-preference dark for the no-JS reader frame.
+           The dark palette above is attribute-driven (data-theme),
+           which only the doc/site TWEAKS JS can set; the reader shell
+           (essays · lab · courses · tools) ships zero JavaScript by
+           design, so it could never honour a dark OS preference.
+           This block re-applies the SAME dark token values, gated on
+           prefers-color-scheme and scoped to body.reader-page only:
+           it darkens the whole reader page (body paints the bg, so
+           the vars cascade everywhere) while leaving the chrome-heavy
+           doc/site templates — which have no .reader-page and their
+           own ~70 dark component rules — completely untouched. No
+           toggle UI, no JS, no template change. Keep the values in
+           parity with :root[data-theme="dark"] above (any D2 hex
+           change must be made in both). ============================ */
+        @media (prefers-color-scheme: dark) {
+            body.reader-page {
+                --bg-warm:    #14121a;
+                --bg-cream:   #1a1722;
+                --bg-mist:    #211d2a;
+
+                --text-earth: #ece4d4;
+                --text-stone: #a59c8b;
+                --text-clay:  #756f64;
+
+                --accent-terracotta: #d2785c;
+                --accent-moss:       #859a6a;
+                --accent-ochre:      #d4b265;
+                --accent-slate:      #8693a4;
+                --accent-umber:      #a48868;
+
+                --glass-bg:          rgba(34, 30, 44, 0.55);
+                --glass-bg-strong:   rgba(34, 30, 44, 0.78);
+                --glass-bg-light:    rgba(34, 30, 44, 0.42);
+                --glass-border:      rgba(255, 252, 247, 0.07);
+                --glass-border-light:rgba(255, 252, 247, 0.05);
+                --glass-shadow:      rgba(0, 0, 0, 0.42);
+
+                color-scheme: dark;
+            }
+        }
         /* Dark surface tweaks that don't fall out of the var system cleanly */
         :root[data-theme="dark"] body::before{ opacity: 0.04; }
         :root[data-theme="dark"] .depth-field{ filter: brightness(.78) saturate(.85); opacity:.85; }

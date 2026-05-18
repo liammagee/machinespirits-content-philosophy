@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fast, Nice-Looking Citations: Markdown + BibTeX in Practice</title>
+<style>
+  :root {
+    --bg: #faf8f3;
+    --card: #ffffff;
+    --ink: #1a1a1a;
+    --muted: #6b6960;
+    --rule: #e3dfd5;
+    --accent: #6e1923;
+    --accent-soft: #f4ebec;
+    --code-bg: #f1ede5;
+    --code-ink: #2a2826;
+    --callout-bg: #f8f1ed;
+    --callout-border: #d4a574;
+    --warning-bg: #faecec;
+    --warning-border: #c97a82;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1816;
+      --card: #232120;
+      --ink: #ebe8e0;
+      --muted: #8d8a82;
+      --rule: #383532;
+      --accent: #c97a82;
+      --accent-soft: #2c1f21;
+      --code-bg: #2a2825;
+      --code-ink: #d8d3c8;
+      --callout-bg: #2a221d;
+      --callout-border: #8d6a45;
+      --warning-bg: #2d1d1f;
+      --warning-border: #8a4a52;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: Charter, 'Iowan Old Style', 'Georgia', 'Times New Roman', serif;
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--bg);
+    margin: 0;
+    padding: 2.5rem 1rem 4rem;
+  }
+  .page { max-width: 760px; margin: 0 auto; }
+
+  header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.8rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .eyebrow {
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin: 0 0 0.5rem;
+    font-style: normal;
+    font-weight: 600;
+  }
+  h1 {
+    font-size: 2.3rem;
+    line-height: 1.15;
+    font-weight: 600;
+    margin: 0 0 0.6rem;
+    letter-spacing: -0.015em;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-style: italic;
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+  .meta {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin: 1.2rem 0 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  h2 {
+    font-size: 1.45rem;
+    line-height: 1.25;
+    font-weight: 600;
+    margin: 2.5rem 0 0.8rem;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+  }
+  h2 .num {
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    margin-right: 0.45rem;
+    font-weight: 400;
+  }
+  h3 {
+    font-size: 1.12rem;
+    margin: 1.8rem 0 0.4rem;
+    font-weight: 600;
+  }
+
+  p { margin: 0 0 1rem; }
+  p + p { text-indent: 0; }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-soft);
+    transition: border-color 0.15s ease;
+  }
+  a:hover { border-bottom-color: var(--accent); }
+
+  code {
+    font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', 'Consolas', monospace;
+    font-size: 0.88em;
+    background: var(--code-bg);
+    color: var(--code-ink);
+    padding: 0.12em 0.4em;
+    border-radius: 3px;
+  }
+  pre {
+    background: var(--code-bg);
+    color: var(--code-ink);
+    padding: 1rem 1.2rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 1rem 0;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    border-left: 3px solid var(--accent);
+  }
+  pre code {
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+  }
+  pre .comment { color: var(--muted); font-style: italic; }
+  pre .key { color: var(--accent); }
+  pre .str { color: #2d6a4f; }
+  @media (prefers-color-scheme: dark) {
+    pre .str { color: #95c79a; }
+  }
+
+  blockquote {
+    margin: 1.5rem 0;
+    padding: 0.2rem 0 0.2rem 1.2rem;
+    border-left: 3px solid var(--rule);
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .callout {
+    background: var(--callout-bg);
+    border: 1px solid var(--callout-border);
+    border-left-width: 4px;
+    border-radius: 3px;
+    padding: 0.9rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout-label {
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-weight: 700;
+    margin-right: 0.5em;
+    font-style: normal;
+  }
+  .callout.warn {
+    background: var(--warning-bg);
+    border-color: var(--warning-border);
+  }
+  .callout.warn .callout-label { color: var(--warning-border); }
+
+  ul, ol { padding-left: 1.4rem; margin: 0.8rem 0 1.2rem; }
+  li { margin-bottom: 0.4rem; }
+  li > p:first-child { margin-top: 0; }
+
+  .toc {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1rem 1.4rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+  }
+  .toc-label {
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+  .toc ol {
+    margin: 0;
+    padding-left: 1.4rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .toc ol li { margin-bottom: 0.2rem; }
+  .toc a { border-bottom: none; }
+  .toc a:hover { border-bottom: 1px dotted var(--accent); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+    font-size: 0.92rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.55rem 0.8rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  th {
+    background: var(--code-bg);
+    font-weight: 600;
+    border-bottom: 2px solid var(--rule);
+  }
+  td code { font-size: 0.85em; }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 2.5rem 0;
+  }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+
+  .render-demo {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1rem 1.3rem;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+  }
+  .render-demo .label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+
+  @media print {
+    body { background: white; padding: 0.5in; font-size: 11pt; }
+    pre { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <p class="eyebrow">Workflow guide</p>
+  <h1>Fast, Nice-Looking Citations</h1>
+  <p class="subtitle">A practical guide to writing scholarly Markdown with BibTeX, using pandoc &amp; citeproc — built around a real working example, not a feature tour.</p>
+  <p class="meta">For students writing essays, theses, and articles — humanities or otherwise.</p>
+</header>
+
+<div class="toc">
+  <p class="toc-label">Contents</p>
+  <ol>
+    <li><a href="#why">Why bother with this setup?</a></li>
+    <li><a href="#install">Install pandoc</a></li>
+    <li><a href="#bib">The .bib file: anatomy of an entry</a></li>
+    <li><a href="#cite">Citation syntax in the markdown</a></li>
+    <li><a href="#render">Rendering to HTML, PDF, or Word</a></li>
+    <li><a href="#csl">Choosing a citation style (CSL)</a></li>
+    <li><a href="#workflow">A fast workflow that scales</a></li>
+    <li><a href="#pitfalls">Common pitfalls and how to debug them</a></li>
+    <li><a href="#further">Further reading</a></li>
+  </ol>
+</div>
+
+<h2 id="why"><span class="num">1.</span>Why bother with this setup?</h2>
+
+<p>If you write essays in Word and manually format your bibliography, you've felt the cost: when a reviewer asks you to switch from APA to Chicago, you reformat by hand. When you reuse a source, you re-type it. When you move a paragraph, in-text citations drift out of order. None of that work has anything to do with thinking.</p>
+
+<p>The Markdown + BibTeX workflow inverts the problem. You write plain prose with citation <em>keys</em> (<code>[@foucault1977preface]</code>) instead of formatted citations, and a small program — <strong>pandoc</strong> — renders the document with proper citations, a sorted bibliography, and the formatting style of your choice. Switch styles? One flag. Add a new source? One entry. Move a paragraph? Nothing changes.</p>
+
+<p>The setup takes about ten minutes the first time. After that, every essay is faster than the one before it.</p>
+
+<div class="callout">
+  <span class="callout-label">Note</span>
+  This guide uses pandoc's built-in <code>--citeproc</code> filter. You don't need LaTeX. You don't need a complex IDE. A plain text editor and a terminal are enough.
+</div>
+
+<h2 id="install"><span class="num">2.</span>Install pandoc</h2>
+
+<p>Pandoc is a free document converter. Install it once.</p>
+
+<pre><code><span class="comment"># macOS (Homebrew)</span>
+brew install pandoc
+
+<span class="comment"># Ubuntu / Debian</span>
+sudo apt install pandoc
+
+<span class="comment"># Windows (winget)</span>
+winget install pandoc</code></pre>
+
+<p>Verify it works:</p>
+
+<pre><code>pandoc --version</code></pre>
+
+<p>If the version is 2.11 or later (released 2020), citeproc is built in and you're ready. Earlier versions need a separate <code>pandoc-citeproc</code> package.</p>
+
+<h2 id="bib"><span class="num">3.</span>The .bib file: anatomy of an entry</h2>
+
+<p>A <code>.bib</code> file is a plain text file holding your sources. Each source is one entry. Here's a real one from a recent essay:</p>
+
+<pre><code><span class="key">@book</span>{<span class="str">pasquinelli2023eye</span>,
+  title        = {The Eye of the Master: A Social History of Artificial Intelligence},
+  author       = {Pasquinelli, Matteo},
+  publisher    = {Verso Books},
+  address      = {London},
+  year         = {2023},
+  url          = {https://www.versobooks.com/products/735-the-eye-of-the-master}
+}</code></pre>
+
+<p>Three things matter:</p>
+
+<ol>
+  <li><strong>The entry type</strong> (<code>@book</code>) — tells citeproc how to format this. Common types: <code>@book</code>, <code>@article</code>, <code>@incollection</code> (a chapter in an edited volume), <code>@misc</code> (anything else), <code>@inproceedings</code> (a conference paper).</li>
+  <li><strong>The citation key</strong> (<code>pasquinelli2023eye</code>) — your unique handle. Convention: <code>authoryearword</code>. Use only this in your prose.</li>
+  <li><strong>The fields</strong> — what's required depends on entry type, but author, title, year, and one of (publisher / journal / url) covers most cases.</li>
+</ol>
+
+<h3>The most common entry types</h3>
+
+<table>
+<thead>
+  <tr><th>Type</th><th>Use for</th><th>Required fields</th></tr>
+</thead>
+<tbody>
+  <tr><td><code>@book</code></td><td>A whole book</td><td>author, title, publisher, year</td></tr>
+  <tr><td><code>@article</code></td><td>A journal article</td><td>author, title, journal, year</td></tr>
+  <tr><td><code>@incollection</code></td><td>A chapter in an edited volume</td><td>author, title, booktitle, editor, publisher, year</td></tr>
+  <tr><td><code>@inproceedings</code></td><td>A conference paper</td><td>author, title, booktitle, year</td></tr>
+  <tr><td><code>@misc</code></td><td>Web pages, blog posts, videos, anything that doesn't fit cleanly</td><td>author, title, year, url</td></tr>
+</tbody>
+</table>
+
+<p>Don't memorise these. Look them up when you need them. Most editors (VS Code, Sublime, Vim with plugins) will autocomplete fields once you pick a type.</p>
+
+<div class="callout">
+  <span class="callout-label">Tip</span>
+  Almost every academic source page has a <strong>"Cite"</strong> or <strong>"BibTeX"</strong> button. arXiv, JSTOR, Google Scholar, ACM, journal websites — they generate the entry for you. Copy, paste, edit the citation key to your liking, done.
+</div>
+
+<h2 id="cite"><span class="num">4.</span>Citation syntax in the markdown</h2>
+
+<p>At the top of your markdown file, add a YAML header pointing to your <code>.bib</code> file:</p>
+
+<pre><code>---
+bibliography: dictatorship.bib
+---
+
+# My essay title
+
+Here is the body...</code></pre>
+
+<p>In the body, you have two citation forms. Pick whichever reads better.</p>
+
+<h3>Parenthetical citation: <code>[@key]</code></h3>
+
+<p>Use square brackets when the citation is parenthetical — i.e., it could be wrapped in (parens) without changing the sentence:</p>
+
+<pre><code>It is Benjamin's notion of mechanical reproduction [@benjamin1969mechanical]
+run through silicon chips and linear algebra...</code></pre>
+
+<div class="render-demo">
+  <div class="label">Renders as (Chicago author-date):</div>
+  It is Benjamin's notion of mechanical reproduction (Benjamin 1969) run through silicon chips and linear algebra…
+</div>
+
+<h3>Narrative citation: <code>@key</code></h3>
+
+<p>Use the bare form when the author is the grammatical subject of your sentence:</p>
+
+<pre><code>The first case is described well in @ouyang2022training, where the model
+is conditioned to agree to a minimal set of dos and don'ts.</code></pre>
+
+<div class="render-demo">
+  <div class="label">Renders as:</div>
+  The first case is described well in Ouyang et al. (2022), where the model is conditioned to agree to a minimal set of dos and don'ts.
+</div>
+
+<h3>Multiple citations</h3>
+
+<p>Separate keys with semicolons inside one bracket:</p>
+
+<pre><code>...the history of writing as exomnemonics [@derrida1981dissemination; @stiegler1998technics]</code></pre>
+
+<h3>Suppressing the author</h3>
+
+<p>If you've already named the author in prose, prefix with <code>-</code> to render only the year:</p>
+
+<pre><code>Foucault [-@foucault1977preface] writes...</code></pre>
+
+<div class="render-demo">
+  <div class="label">Renders as:</div>
+  Foucault (1977) writes…
+</div>
+
+<h3>Adding page numbers, prefixes, suffixes</h3>
+
+<p>Inside the brackets, after the key:</p>
+
+<pre><code>[@kant1993groundwork, p. 31]
+[see @kundu2023specific, ch. 2]
+[@huang2025valueswild, pp. 14&ndash;17]</code></pre>
+
+<h2 id="render"><span class="num">5.</span>Rendering to HTML, PDF, or Word</h2>
+
+<p>One command. Pick your output format by changing the file extension.</p>
+
+<pre><code><span class="comment"># HTML</span>
+pandoc essay.md --citeproc -o essay.html
+
+<span class="comment"># PDF (requires LaTeX, e.g. MacTeX or TinyTeX)</span>
+pandoc essay.md --citeproc -o essay.pdf
+
+<span class="comment"># Microsoft Word</span>
+pandoc essay.md --citeproc -o essay.docx</code></pre>
+
+<p>The <code>--citeproc</code> flag tells pandoc to process citations using the <code>.bib</code> file you named in the YAML header. It will:</p>
+
+<ol>
+  <li>Replace every <code>[@key]</code> and <code>@key</code> with a properly formatted citation.</li>
+  <li>Append a sorted bibliography at the end of the document, under a heading called "References" (or whatever the locale specifies).</li>
+  <li>Skip any <code>.bib</code> entries you didn't actually cite — your bibliography only contains what you used.</li>
+</ol>
+
+<div class="callout">
+  <span class="callout-label">Tip</span>
+  Want to control where the bibliography appears? Add <code>## References</code> as the last heading of your markdown. Pandoc places the rendered bibliography under it. If you don't include the heading, pandoc adds one automatically.
+</div>
+
+<h2 id="csl"><span class="num">6.</span>Choosing a citation style (CSL)</h2>
+
+<p>By default, pandoc uses Chicago author-date. To change style, pass a CSL file with <code>--csl</code>:</p>
+
+<pre><code>pandoc essay.md --citeproc --csl=apa.csl -o essay.html</code></pre>
+
+<p>Where do CSL files come from? <a href="https://github.com/citation-style-language/styles" target="_blank" rel="noopener">The Zotero Style Repository</a> has over 10,000 of them, all free. Common ones:</p>
+
+<ul>
+  <li><code>chicago-author-date.csl</code> &mdash; Chicago 17th, author-date variant</li>
+  <li><code>chicago-note-bibliography.csl</code> &mdash; Chicago 17th, footnote variant</li>
+  <li><code>apa.csl</code> &mdash; APA 7th edition</li>
+  <li><code>mla.csl</code> &mdash; MLA 9th edition</li>
+  <li><code>harvard-cite-them-right.csl</code> &mdash; Harvard (UK universities)</li>
+  <li><code>ieee.csl</code> &mdash; IEEE numeric (engineering)</li>
+</ul>
+
+<p>Download once, save next to your markdown, point pandoc at it. Switching style is now one command-line flag away.</p>
+
+<h2 id="workflow"><span class="num">7.</span>A fast workflow that scales</h2>
+
+<p>The thing that takes time isn't the citation tooling — it's curating your <code>.bib</code> file. Here's how to keep that fast.</p>
+
+<h3>Start a per-project .bib next to your essay</h3>
+
+<p>Don't try to maintain one giant <code>.bib</code> across your whole career. Per-project files are easier to share, audit, and version-control. When you start a new essay, copy the entries you need from previous projects.</p>
+
+<h3>Group entries with comment headers</h3>
+
+<p>BibTeX comments use <code>%</code>. Use them to organise:</p>
+
+<pre><code><span class="comment">% ---------- Anti-Oedipus and post-structuralist context ----------</span>
+
+@book{deleuze1977antioedipus, ... }
+@misc{lacan1972parle, ... }
+
+<span class="comment">% ---------- Critical theory of AI and capitalism ----------</span>
+
+@book{pasquinelli2023eye, ... }
+@book{varoufakis2024technofeudalism, ... }</code></pre>
+
+<p>Future-you, scrolling for an entry, will thank present-you.</p>
+
+<h3>Add TODOs for incomplete entries — don't fabricate</h3>
+
+<p>Sometimes you're drafting and you don't have full bibliographic info for a source. <strong>Don't make up an arXiv ID or a publisher.</strong> Add the entry with placeholder fields and a clear marker:</p>
+
+<pre><code>@article{hristova_alignment,
+  title  = {[TODO: confirm full citation]},
+  author = {Hristova, [TODO] and others},
+  year   = {[TODO]},
+  note   = {Cited in-text on alignment; full details to be supplied}
+}</code></pre>
+
+<p>The <code>[TODO]</code> markers will appear in your rendered bibliography in glaring fashion, so you can't ship the document without fixing them. This is much safer than guessing — wrong citations are harder to catch than missing ones.</p>
+
+<h3>Convert prose mentions to keys when you finish a draft</h3>
+
+<p>While drafting, just write naturally: <em>"Pasquinelli's Eye of the Master argues..."</em>. When you're ready to formalise, do a sweep: for each author mention, find or create the <code>.bib</code> entry, then replace the prose mention with the citation key. This separation keeps drafting fast.</p>
+
+<h2 id="pitfalls"><span class="num">8.</span>Common pitfalls and how to debug them</h2>
+
+<h3>Pitfall 1: A citation renders as <code>(?, ?)</code> or <code>(Author n.d.)</code></h3>
+
+<p>You forgot to add the entry to your <code>.bib</code>, or the citation key doesn't match. Check spelling carefully — citation keys are case-sensitive and unforgiving.</p>
+
+<h3>Pitfall 2: A citation renders with missing pieces, like <code>"Foucault, M. (1977). Preface. , xi&ndash;xiv."</code></h3>
+
+<p>This is a real one we hit recently. The entry was:</p>
+
+<pre><code>@incollection{foucault1977preface,
+  title     = {Preface},
+  author    = {Foucault, Michel},
+  booktitle = {Anti-Oedipus: Capitalism and Schizophrenia},
+  editor    = {Deleuze, Gilles and Guattari, F{\'e}lix},
+  publisher = {Viking Press},
+  year      = {1977},
+  pages     = {xi--xiv}
+}</code></pre>
+
+<p>The problem: <code>@incollection</code> is for a chapter in a volume <em>edited</em> by someone — but Deleuze and Guattari aren't editors of <em>Anti-Oedipus</em>, they're its <em>authors</em>. Some CSL templates silently drop fields they can't reconcile. Result: the booktitle and editor disappear from the output.</p>
+
+<p>The fix is to restructure as <code>@misc</code> with the relation embedded in the title, where it's guaranteed to render:</p>
+
+<pre><code>@misc{foucault1977preface,
+  author    = {Foucault, Michel},
+  title     = {Preface to {Anti-Oedipus: Capitalism and Schizophrenia} by Gilles Deleuze and F{\'e}lix Guattari},
+  year      = {1977},
+  publisher = {Viking Press},
+  pages     = {xi--xiv}
+}</code></pre>
+
+<div class="render-demo">
+  <div class="label">Now renders cleanly as:</div>
+  Foucault, M. (1977). Preface to <em>Anti-Oedipus: Capitalism and Schizophrenia</em> by Gilles Deleuze and Félix Guattari. Viking Press.
+</div>
+
+<p>The general principle: when a citation renders weirdly, suspect a mismatch between your entry type and the actual bibliographic relation. <code>@misc</code> with everything in the title is always a safe fallback.</p>
+
+<h3>Pitfall 3: Title case is being mangled</h3>
+
+<p>Some CSL styles (APA in particular) apply sentence case to titles, which can break proper nouns: <em>Anti-Oedipus</em> becomes <em>Anti-oedipus</em>. Wrap the protected text in extra braces:</p>
+
+<pre><code>title = {Preface to {Anti-Oedipus: Capitalism and Schizophrenia}},</code></pre>
+
+<p>Anything inside the inner braces won't be re-cased.</p>
+
+<h3>Pitfall 4: Special characters break the entry</h3>
+
+<p>Use UTF-8 directly: <code>Félix</code>, <code>Žižek</code>, <code>Müller</code>. Modern pandoc handles these without escapes. The old LaTeX escapes (<code>F{\'e}lix</code>) still work, but they're harder to read.</p>
+
+<h3>Pitfall 5: Multiple citations rendering as one</h3>
+
+<p>Don't write <code>[@a, @b]</code>. Use semicolons: <code>[@a; @b]</code>. The comma form is interpreted as suffix metadata for a single citation.</p>
+
+<h3>How to diagnose: render to plain text and inspect</h3>
+
+<p>When a citation looks wrong in your final HTML or PDF, render to a debugging-friendly format:</p>
+
+<pre><code>pandoc essay.md --citeproc -t plain | grep -A1 "AuthorName"</code></pre>
+
+<p>This shows you exactly what citeproc produced, with no HTML/PDF formatting in the way. If the output is still wrong, the problem is in your <code>.bib</code> entry. If it's right in plain text but wrong in HTML, the problem is your CSL file or output style.</p>
+
+<h2 id="further"><span class="num">9.</span>Further reading</h2>
+
+<ul>
+  <li><a href="https://pandoc.org/MANUAL.html#citations" target="_blank" rel="noopener">Pandoc Manual &mdash; Citations</a> &mdash; the authoritative reference, comprehensive and well-organised.</li>
+  <li><a href="https://github.com/citation-style-language/styles" target="_blank" rel="noopener">Zotero Style Repository</a> &mdash; download CSL files for any citation style.</li>
+  <li><a href="https://www.bibtex.com/format/" target="_blank" rel="noopener">BibTeX format reference</a> &mdash; field meanings for every entry type.</li>
+  <li><a href="https://citation.crosscite.org/" target="_blank" rel="noopener">Crosscite</a> &mdash; given a DOI, get a BibTeX entry. Useful for journal articles.</li>
+  <li><strong>Zotero</strong> &mdash; if you'd rather manage your <code>.bib</code> in a GUI with auto-import from browser, install Zotero plus the BetterBibTeX plugin. It exports a live <code>.bib</code> file pandoc can read.</li>
+</ul>
+
+<hr>
+
+<h2 id="recap" style="margin-top: 0;">Recap: the whole workflow in six lines</h2>
+
+<pre><code><span class="comment"># 1. Write your essay in markdown with citation keys</span>
+<span class="comment">#    e.g. Pasquinelli's argument [@pasquinelli2023eye]...</span>
+
+<span class="comment"># 2. Add a YAML header pointing to your bib file</span>
+<span class="comment">#    ---</span>
+<span class="comment">#    bibliography: refs.bib</span>
+<span class="comment">#    ---</span>
+
+<span class="comment"># 3. Render</span>
+pandoc essay.md --citeproc --csl=chicago-author-date.csl -o essay.html</code></pre>
+
+<p>That's it. Once you've done it once, every subsequent essay is faster. Once you've done it ten times, you'll never want to format a bibliography by hand again.</p>
+
+<footer>
+  Single-file HTML guide — share or print as-is. Built alongside a real working session converting an essay's parenthetical citations to a clean BibTeX bibliography.
+</footer>
+
+</div>
+</body>
+</html>

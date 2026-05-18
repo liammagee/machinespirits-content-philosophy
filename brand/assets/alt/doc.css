@@ -325,3 +325,435 @@ main.doc h3[id]:hover::after {
     .reader-nav { gap: 1rem; }
     .reader-nav a { font-size: 0.58rem; letter-spacing: 0.12em; }
 }
+
+/* ============================================
+   ESSAYS — reader extras + /essays index
+   The essay reader reuses the reader shell (page-alt-reader.html); these add
+   the title-block meta line and the post-prose end-matter (cite / related /
+   prev-next), all aligned to --reader-col with the same 3rem column padding as
+   .reader-titleblock so they sit under the prose, not the full-bleed band.
+   The /essays index is a no-JS theme filter: sibling radios + the :checked ~
+   general-sibling combinator do the filtering with zero script.
+   ============================================ */
+
+/* Title-block meta — sits below h1/sub, sibling of .reader-revised */
+.reader-meta {
+    margin-top: 0.9rem;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 0.66rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--text-clay, #6b6258);
+}
+.reader-meta time { font-variant-numeric: tabular-nums; }
+.reader-meta-theme { color: var(--accent-terracotta, #b8654a); }
+
+/* End-matter — cite / related / prev-next after </main>. Column-aligned. */
+.reader-endmatter {
+    max-width: var(--reader-col);
+    margin: 2.4rem auto 0;
+    padding: 2rem 3rem 0;
+    border-top: 1px solid var(--glass-border, rgba(45, 42, 38, 0.06));
+}
+.reader-endmatter:last-of-type { margin-bottom: 3.5rem; }
+.reader-endmatter h2 {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--text-clay, #6b6258);
+    margin: 0 0 0.9rem;
+}
+.reader-cite p {
+    margin: 0;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 0.82rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-stone, #4a4540);
+}
+.reader-cite cite { font-style: italic; }
+.reader-cite a {
+    color: var(--accent-terracotta, #b8654a);
+    text-decoration: none;
+    word-break: break-word;
+}
+.reader-cite a:hover { text-decoration: underline; }
+
+.reader-related ul { list-style: none; margin: 0; padding: 0; }
+.reader-related li + li { margin-top: 0.5rem; }
+.reader-related a {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.1rem;
+    color: var(--text-earth, #2d2a26);
+    text-decoration: none;
+}
+.reader-related a:hover { color: var(--accent-terracotta, #b8654a); }
+
+.reader-prevnext {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+.reader-prevnext a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-decoration: none;
+    max-width: 48%;
+}
+.reader-nav-older { text-align: right; margin-left: auto; }
+.reader-nav-dir {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-clay, #6b6258);
+}
+.reader-nav-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.05rem;
+    line-height: 1.2;
+    color: var(--text-earth, #2d2a26);
+}
+.reader-prevnext a:hover .reader-nav-title { color: var(--accent-terracotta, #b8654a); }
+
+/* /essays index — .essay-index is the flex toolbar row; .essay-list is forced
+   to its own full-width row beneath the chips. Radios are out of flow so they
+   never disturb the layout but remain general-siblings of .essay-list. */
+.essay-index {
+    max-width: var(--reader-col);
+    margin: 1.5rem auto 4rem;
+    padding: 1.5rem 3rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+.tf-radio {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+.theme-chip {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-clay, #6b6258);
+    border: 1px solid var(--glass-border, rgba(45, 42, 38, 0.06));
+    border-radius: 999px;
+    padding: 5px 13px;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    user-select: none;
+}
+.theme-chip:hover { color: var(--accent-terracotta, #b8654a); }
+.tf-radio:checked + .theme-chip {
+    color: var(--bg-warm, #fffcf7);
+    background: var(--accent-terracotta, #b8654a);
+    border-color: var(--accent-terracotta, #b8654a);
+}
+.tf-radio:focus-visible + .theme-chip {
+    outline: 2px solid var(--accent-terracotta, #b8654a);
+    outline-offset: 2px;
+}
+
+/* Scoped under main.doc so list-style:none / padding:0 beat the prose
+   `main.doc ul` (0,1,1) — an unscoped .essay-list (0,1,0) loses and the
+   index renders disc bullets + a 1.6rem indent inside the reader shell. */
+main.doc .essay-list {
+    flex: 1 0 100%;
+    list-style: none;
+    margin: 1.8rem 0 0;
+    padding: 0;
+}
+.essay-card { border-top: 1px solid var(--glass-border, rgba(45, 42, 38, 0.06)); }
+.essay-card:last-child { border-bottom: 1px solid var(--glass-border, rgba(45, 42, 38, 0.06)); }
+/* Scoped under main.doc to beat the prose `main.doc a` underline (0,1,2):
+   the index body renders inside <main class="doc"> but these are cards, not
+   prose links. */
+main.doc .essay-card-link {
+    display: block;
+    padding: 1.6rem 0;
+    text-decoration: none;
+    color: inherit;
+}
+.essay-card-meta {
+    display: block;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-clay, #6b6258);
+}
+.essay-card-meta time { font-variant-numeric: tabular-nums; }
+.essay-card-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.55rem;
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--text-earth, #2d2a26);
+    margin: 0.5rem 0 0;
+    transition: color 0.2s ease;
+}
+.essay-card-link:hover .essay-card-title { color: var(--accent-terracotta, #b8654a); }
+.essay-card-dek {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 0.92rem;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--text-stone, #4a4540);
+    margin: 0.55rem 0 0;
+    max-width: 46rem;
+}
+.essay-card-theme {
+    display: inline-block;
+    margin-top: 0.7rem;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-clay, #6b6258);
+    border: 1px solid var(--glass-border, rgba(45, 42, 38, 0.06));
+    border-radius: 999px;
+    padding: 3px 9px;
+}
+.essay-empty {
+    flex: 1 0 100%;
+    margin: 2.5rem 0;
+    text-align: center;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-style: italic;
+    color: var(--text-clay, #6b6258);
+}
+
+/* No-JS theme filter — fixed four-axis vocab (todo §3.3 line 59). When a
+   theme's radio is checked, hide every card whose data-theme differs (this
+   also hides theme-less cards, which therefore show only under "All"). */
+#tf-recognition:checked ~ .essay-list .essay-card:not([data-theme="recognition"]),
+#tf-nonconscious-cognition:checked ~ .essay-list .essay-card:not([data-theme="nonconscious cognition"]),
+#tf-charisma:checked ~ .essay-list .essay-card:not([data-theme="charisma"]),
+#tf-time:checked ~ .essay-list .essay-card:not([data-theme="time"]) {
+    display: none;
+}
+
+@media (max-width: 720px) {
+    .reader-endmatter { margin-left: 1rem; margin-right: 1rem; padding-left: 1.3rem; padding-right: 1.3rem; }
+    .essay-index { margin-left: 1rem; margin-right: 1rem; padding-left: 1.3rem; padding-right: 1.3rem; }
+    .reader-prevnext { flex-direction: column; }
+    .reader-prevnext a { max-width: 100%; }
+    .reader-nav-older { text-align: left; margin-left: 0; }
+}
+
+/* /newsletter — the quiet conversion page in the reader shell: lede, the
+   Substack /embed iframe (self-contained; our page stays script-free) with an
+   always-visible plain-link fallback, then a reverse-chron issue archive.
+   Column-aligned to --reader-col exactly like .essay-index so /essays and
+   /newsletter read as one family. */
+.newsletter {
+    max-width: var(--reader-col);
+    margin: 1.5rem auto 4rem;
+    padding: 1.5rem 3rem 0;
+}
+.newsletter-lede {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 1.02rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-stone, #4a4540);
+    margin: 0 0 2rem;
+    max-width: 42rem;
+}
+.newsletter-signup { margin: 0 0 3rem; }
+.newsletter-embed {
+    display: block;
+    width: 100%;
+    max-width: 480px;
+    min-height: 360px;
+    border: 1px solid var(--glass-border, rgba(45, 42, 38, 0.06));
+    border-radius: 8px;
+    background: #fff;
+    overflow: hidden;
+}
+.newsletter-fallback {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--text-clay, #6b6258);
+    margin: 0.9rem 0 0;
+}
+.newsletter-archive-title {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-clay, #6b6258);
+    margin: 0;
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--glass-border, rgba(45, 42, 38, 0.06));
+}
+/* main.doc-scoped for the same reason as .essay-list — beat `main.doc ul`. */
+main.doc .issue-list { list-style: none; margin: 0; padding: 0; }
+.issue-card { border-bottom: 1px solid var(--glass-border, rgba(45, 42, 38, 0.06)); }
+/* Scoped under main.doc to beat the prose `main.doc a` underline (0,1,2) —
+   same specificity fix as .essay-card-link (these are cards, not prose). */
+main.doc .issue-card-link {
+    display: block;
+    padding: 1.6rem 0;
+    text-decoration: none;
+    color: inherit;
+}
+.issue-card-meta {
+    display: block;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-clay, #6b6258);
+}
+.issue-card-meta time { font-variant-numeric: tabular-nums; }
+.issue-card-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.55rem;
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--text-earth, #2d2a26);
+    margin: 0.5rem 0 0;
+    transition: color 0.2s ease;
+}
+.issue-card-link:hover .issue-card-title { color: var(--accent-terracotta, #b8654a); }
+.issue-card-dek {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 0.92rem;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--text-stone, #4a4540);
+    margin: 0.55rem 0 0;
+    max-width: 46rem;
+}
+.issue-empty {
+    margin: 2.5rem 0;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-style: italic;
+    color: var(--text-clay, #6b6258);
+}
+
+@media (max-width: 720px) {
+    .newsletter { margin-left: 1rem; margin-right: 1rem; padding-left: 1.3rem; padding-right: 1.3rem; }
+}
+
+/* /courses — index is a reverse-chron card archive (no toolbar, so no flex
+   row unlike .essay-index); detail pages append a reading list + a single
+   quiet dashboard pointer into the doc body. Column-aligned to --reader-col
+   exactly like .essay-index / .newsletter so all reader surfaces share a
+   measure and /courses reads as one family with /essays and /newsletter. */
+.course-index {
+    max-width: var(--reader-col);
+    margin: 1.5rem auto 4rem;
+    padding: 1.5rem 3rem 0;
+}
+.courses-lede {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 1.02rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-stone, #4a4540);
+    margin: 0 0 2rem;
+    max-width: 42rem;
+}
+/* Scoped under main.doc so list-style:none / padding:0 beat the prose
+   `main.doc ul` (0,1,1) — an unscoped .course-list (0,1,0) loses and the
+   index renders disc bullets + a 1.6rem indent inside the reader shell. */
+main.doc .course-list {
+    list-style: none;
+    margin: 1.8rem 0 0;
+    padding: 0;
+}
+.course-card { border-top: 1px solid var(--glass-border, rgba(45, 42, 38, 0.06)); }
+.course-card:last-child { border-bottom: 1px solid var(--glass-border, rgba(45, 42, 38, 0.06)); }
+/* Scoped under main.doc to beat the prose `main.doc a` underline (0,1,2):
+   the index body renders inside <main class="doc"> but these are cards, not
+   prose links. */
+main.doc .course-card-link {
+    display: block;
+    padding: 1.6rem 0;
+    text-decoration: none;
+    color: inherit;
+}
+.course-card-meta {
+    display: block;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-clay, #6b6258);
+}
+.course-card-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.55rem;
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--text-earth, #2d2a26);
+    margin: 0.5rem 0 0;
+    transition: color 0.2s ease;
+}
+.course-card-link:hover .course-card-title { color: var(--accent-terracotta, #b8654a); }
+.course-card-dek {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 0.92rem;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--text-stone, #4a4540);
+    margin: 0.55rem 0 0;
+    max-width: 46rem;
+}
+.course-empty {
+    margin: 2.5rem 0;
+    text-align: center;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-style: italic;
+    color: var(--text-clay, #6b6258);
+}
+
+/* /courses/<id> — reading list appended after the body's Assessment section;
+   border-top separates it from the prose above. The <h2> deliberately has no
+   own rule so it inherits prose `main.doc h2` and matches the body's Course
+   Overview / Weekly Structure / Assessment headings. */
+.course-readings {
+    margin-top: 2.5rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--glass-border, rgba(45, 42, 38, 0.06));
+}
+/* main.doc-scoped for the same reason as .course-list — beat `main.doc ul`. */
+main.doc .reading-list { list-style: none; margin: 1rem 0 0; padding: 0; }
+.reading-item {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 0.92rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-stone, #4a4540);
+    margin-bottom: 0.6rem;
+}
+.reading-title { font-style: italic; color: var(--text-earth, #2d2a26); }
+.reading-author { color: var(--text-clay, #6b6258); }
+.reading-year { color: var(--text-clay, #6b6258); font-variant-numeric: tabular-nums; }
+.course-dashboard {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--text-clay, #6b6258);
+    margin-top: 2.5rem;
+}
+
+@media (max-width: 720px) {
+    .course-index { margin-left: 1rem; margin-right: 1rem; padding-left: 1.3rem; padding-right: 1.3rem; }
+}
