@@ -65,7 +65,7 @@ In the remainder of this article, this definition is used to describe how 'vibe 
 
 ### Lifecycle of Research
 
-Vibe scholarship is discussed here in relation to what is often treated, in varied ways, as the lifecycle of social research in classic and widely cited methodology texts [@booth_craft_2009, bryman, yin, braun_and_clark]. Though approaches naturally vary, common features of social research include 
+Vibe scholarship is discussed here in relation to what is often treated, in varied ways, as the lifecycle of social research in classic and widely cited methodology texts [@booth_craft_2009; @bryman_social_2016; @yin_case_2009; @braun_using_2006]. Though approaches naturally vary, common features of social research include 
 
 
 ### Conclusion
