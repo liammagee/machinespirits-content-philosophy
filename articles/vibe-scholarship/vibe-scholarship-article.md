@@ -5,6 +5,7 @@ category: "AI & Education"
 date: "2025-01-01"  # provisional — year-only original, exact date TBC
 theme: "charisma"
 dek: "When AI dissolves the boundary that once cordoned scholarly expertise, is what remains democratized inquiry or intellectual fraud?"
+bibliography: ../../references/bibliography.bib
 ---
 
 # Vibe Scholarship: Accessible Academia or Intellectual Fraud?
@@ -13,7 +14,7 @@ Rated Collin's dictionary word of the year, one key phrase of the informatic Zei
 
 Meske et al. formalize 'vibe coding' as: 
 
-> Vibe coding is a software development paradigm where humans and generative AI engage in collaborative flow to co-create software artifacts through natural language dialogue, shifting the mediation of developer intent from deterministic instruction to probabilistic inference. [@Meske2025Vibe] 
+> Vibe coding is a software development paradigm where humans and generative AI engage in collaborative flow to co-create software artifacts through natural language dialogue, shifting the mediation of developer intent from deterministic instruction to probabilistic inference. [@meske_vibe_2025] 
 
 
 [More on vibe coding...]
@@ -26,7 +27,7 @@ Consider also the attraction of the term "resonance" in the humanity desciplines
 
 Such clues point to the possibility of a concept of "vibe scholarship". The obvious - and extreme - example of vibe scholarship is the plagiarised essay. If a LLM can "one-shot" a web application, it can of course also produce a research paper through the summons of a prompt. In the case of coding, where the question of authorial attribution and "co-creation" is not always at issue, plagiaristic "vibe coding" represents less of a disruption. Conversely in the world of scholarship, plagiarism strikes at the heart at its enterprise. This example marks a limit at which AI use cannot be santioned. But are there other uses?
 
-At the other extreme, AI serves as a minimal advance on existing digital tools for checking spelling and grammar. University policies permit these uses, though preferably with acknowledgement. But vibe scholarship as it is envisioned here also considers a concerning middle ground: a set of uses that operate within the fuzziness of acceptability of the process of 'co-creation' [-@Meske2025Vibe] describe above. These include many well-documented AI operations, more or less also operating within most policy limits: summarizing and explaining other articles, structuring and reviewing one's own article. 
+At the other extreme, AI serves as a minimal advance on existing digital tools for checking spelling and grammar. University policies permit these uses, though preferably with acknowledgement. But vibe scholarship as it is envisioned here also considers a concerning middle ground: a set of uses that operate within the fuzziness of acceptability of the process of 'co-creation' [-@meske_vibe_2025] describe above. These include many well-documented AI operations, more or less also operating within most policy limits: summarizing and explaining other articles, structuring and reviewing one's own article. 
 
 These are standard AI uses, with nothing necessarily 'vibration'-related. But there are other types of AI use that lean into the metaphor more directly. Some examples include:
 
@@ -38,7 +39,7 @@ These are standard AI uses, with nothing necessarily 'vibration'-related. But th
 
 Summarzing such uses, if Meske et al.'s formulation were to be translated to the world of scholarship, it might read as: 
 
-> Vibe scholarship is a academic paradigm where humans and generative AI engage in collaborative flow to co-create research artifacts through natural language dialogue, shifting the mediation of developer intent from deterministic instruction to probabilistic inference. [@Meske2025Vibe] 
+> Vibe scholarship is a academic paradigm where humans and generative AI engage in collaborative flow to co-create research artifacts through natural language dialogue, shifting the mediation of developer intent from deterministic instruction to probabilistic inference. [@meske_vibe_2025] 
 
 
 
@@ -46,7 +47,7 @@ Summarzing such uses, if Meske et al.'s formulation were to be translated to the
 
 What about the domain of scholarship? Can artificial intelligence – in particular, large language models (LLMs) such as OpenAI's ChatGPT, Anthropic's Claude or DeepSeek – be applied to similar purposes in a field that has sought to maintain, via practices of peer review, citation curation, and journal quality management, much tighter control over who and what is permitted through its gates? Conversely – since it is already clear that LLM use is rife within academia – can that use be legitimate and if so how?
 
-Borrowing from Karpathy [-@Karpathy2025How], this article introduces the idea of 'vibe scholarship'. What is this idea, and how can it be distinguished from related terms like 'vibe research' [@Gullett2025, @Bertina2025VibeResearch]? 
+Borrowing from Karpathy [-@andrej_karpathy_how_2025], this article introduces the idea of 'vibe scholarship'. What is this idea, and how can it be distinguished from related terms like 'vibe research' [@gullett_7_nodate, @bertina_vibe-research_2025]? 
 
 Following Meske's formulation above, we can start with the following definition:
 
