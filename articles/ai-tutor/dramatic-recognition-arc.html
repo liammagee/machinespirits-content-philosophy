@@ -3612,14 +3612,14 @@
 /* ════════════════════════════════════════════════════════════════
    techne.js — shared behaviour for techne editorial docs.
 
-   Drop into any doc with  <script src="assets/techne.js"></script>
+   Drop into any doc with  <script src="assets/techne.js"><\/script>
    just before </body>. Every feature is GUARDED and opt-in: it
    activates only if its markup is present, so this file is safe to
    load on a doc that has no rail / TOC / beacon / charts / glossary.
 
    Doc-specific *content* stays in the doc as declarative JSON:
-     • chart data:   <script type="application/json" class="techne-chart" data-target="myChartId">{…}</script>
-     • gloss aliases: <script type="application/json" id="techne-gloss-aliases">{ "inline term": "glossary-key" }</script>
+     • chart data:   <script type="application/json" class="techne-chart" data-target="myChartId">{…}<\/script>
+     • gloss aliases: <script type="application/json" id="techne-gloss-aliases">{ "inline term": "glossary-key" }<\/script>
    ════════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
@@ -3838,7 +3838,7 @@
        Provide data per chart with:
          <script type="application/json" class="techne-chart" data-target="X">
            { "metrics": [{"label": "…"}], "arms": [{"key":"routine","values":[…],"denom":[…]}] }
-         </script>                                                                      */
+         <\/script>                                                                      */
     function renderGroupedChart(svgEl, data) {
       const W = 720,
         H = 280,
