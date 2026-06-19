@@ -1,8 +1,8 @@
 ---
-title: "From Paper 2.0 to dramatic recognition — arc to date"
+title: "From Paper 2.0 to dramatic recognition — the derivation arc"
 date: 2026-05-26
 theme: ai-tutor
-dek: "Staging the tutoring dialogue as drama: can a tutor answer a learner's specific stuck point with a visible change of move? A live, data-driven synthesis note."
+dek: "Stage the lesson as a proof the tutor must walk a learner across, one scheduled clue at a time. A tutor that governs its own conduct — and two pacing guards that trade places from world to world. A plain-language synthesis of the dramatic-derivation arc."
 ---
 
 <!-- The page itself is the sibling dramatic-recognition-arc.html — a self-contained, hand-authored
