@@ -1,0 +1,115 @@
+#!/usr/bin/env bash
+# Validate the deployable content package without publishing it.
+#
+# This is the content-side contract for the website handoff. It deliberately
+# does not depend on a sibling checkout of either the brand or website repo:
+# the generated brand/ mirror must be independently verifiable once committed.
+#
+# Usage:
+#   ./validate
+#   ./validate --strict-metadata   # also fail on thin essay index metadata
+
+set -euo pipefail
+cd "$(dirname "$0")"
+
+strict_metadata=0
+brand_dir="${MS_BRAND_DIR:-brand}"
+case "${1:-}" in
+  "") ;;
+  --strict-metadata) strict_metadata=1 ;;
+  --help|-h) sed -n '2,/^$/p' "$0" | sed 's/^# \?//'; exit 0 ;;
+  *) echo "validate: unknown argument: $1" >&2; exit 2 ;;
+esac
+
+fail() {
+  echo "validate: $*" >&2
+  exit 1
+}
+
+fm_scalar() {
+  local file="$1" key="$2"
+  awk -v key="$key" '
+    NR == 1 { if ($0 != "---") exit; in_fm = 1; next }
+    in_fm && $0 == "---" { exit }
+    in_fm && index($0, key ":") == 1 {
+      value = substr($0, length(key) + 2)
+      sub(/^[ \t]*/, "", value)
+      sub(/[ \t]*#.*/, "", value)
+      gsub(/^["'"'"']|["'"'"']$/, "", value)
+      sub(/[ \t]*$/, "", value)
+      print value
+      exit
+    }
+  ' "$file"
+}
+
+echo "Content package validation"
+
+for script in build publish urls; do
+  bash -n "$script" || fail "$script has invalid shell syntax"
+done
+
+./urls check
+./sitemap --check
+./artifacts-index --check
+
+test -s "$brand_dir/index.html" || fail "$brand_dir/index.html is missing"
+test -s "$brand_dir/courses/index.html" || fail "$brand_dir/courses/index.html is missing"
+test -s "$brand_dir/assets/alt/course-techne.css" || fail "Techne course stylesheet is missing from brand mirror"
+grep -q 'class="techne-course-page"' "$brand_dir/courses/index.html" \
+  || fail "$brand_dir/courses/index.html is not using the Techne course shell"
+
+public_count=0
+while IFS= read -r course_md; do
+  [ -n "$course_md" ] || continue
+  course_id="$(fm_scalar "$course_md" id)"
+  [ -n "$course_id" ] || course_id="$(basename "$(dirname "$course_md")")"
+  public_slug="$(fm_scalar "$course_md" public_slug)"
+  [ -n "$public_slug" ] || public_slug="$course_id"
+  published="$(fm_scalar "$course_md" published)"
+
+  case "$published" in
+    true)
+      public_count=$((public_count + 1))
+      test -s "$brand_dir/courses/$public_slug/index.html" \
+        || fail "published course $course_id is missing $brand_dir/courses/$public_slug/index.html"
+      test -s "$brand_dir/courses/$public_slug.html" \
+        || fail "published course $course_id is missing $brand_dir/courses/$public_slug.html"
+      grep -q "href=\"/courses/$public_slug\"" "$brand_dir/courses/index.html" \
+        || fail "published course $course_id is missing from the course index"
+      while IFS= read -r material_md; do
+        [ -n "$material_md" ] || continue
+        test -s "${material_md%.md}.html" \
+          || fail "published course material has no rendered HTML: $material_md"
+      done < <(find "$(dirname "$course_md")" -maxdepth 1 -name '*.md' -type f ! -name course.md | LC_ALL=C sort)
+      ;;
+    false)
+      test ! -e "$brand_dir/courses/$public_slug/index.html" \
+        || fail "private course $course_id has a generated canonical page"
+      test ! -e "$brand_dir/courses/$public_slug.html" \
+        || fail "private course $course_id has a generated flat page"
+      if grep -q "href=\"/courses/$public_slug\"" "$brand_dir/courses/index.html"; then
+        fail "private course $course_id appears in the public course index"
+      fi
+      ;;
+    *) fail "$course_md must declare published: true or published: false" ;;
+  esac
+done < <(find courses -mindepth 2 -maxdepth 2 -name course.md -type f | LC_ALL=C sort)
+
+grep -q "$public_count public courses" "$brand_dir/courses/index.html" \
+  || fail "course index count does not match the $public_count published course sources"
+
+while IFS= read -r essay_url; do
+  [ -n "$essay_url" ] || continue
+  essay_slug="${essay_url#/essays/}"
+  test -s "$brand_dir/essays/$essay_slug/index.html" \
+    || fail "public essay is missing its brand mirror page: $essay_url"
+done < <(./urls site | sed -n '/^\/essays\//p')
+
+if [ "$strict_metadata" = 1 ]; then
+  ./lint --strict
+else
+  ./lint
+fi
+
+echo "validate: OK — $public_count public courses; generated mirror and indexes agree."

@@ -2,6 +2,25 @@
 
 Content package for the Machine Spirits learning platform.
 
+## Repository role and publishing
+
+This repo is the source of course and essay content and the owner of the
+generated `brand/` mirror. Do not hand-edit `brand/`; it is produced by the
+sibling `machinespirits-brand` repo.
+
+Normal public releases enter through the brand repo so source content and the
+public mirror move together:
+
+```bash
+cd ../machinespirits-brand
+./check
+./publish-to-content --publish -m "Describe the public-site update"
+```
+
+For a content-side preflight without staging or pushing, run `./publish --check`.
+The eventual content push dispatches the website deployment with this commit's
+SHA; the website Docker build fetches that exact revision.
+
 ## Overview
 
 This package contains the Philosophy of Technology curriculum, including:
@@ -10,29 +29,19 @@ This package contains the Philosophy of Technology curriculum, including:
 - **Theme**: Custom branding, colors, and typography
 - **Tutor Prompts**: Customized Ego/Superego agent prompts
 
-## Installation
+## Local usage
+
+For local website development, point `CONTENT_PACKAGE` at this checkout:
 
 ```bash
-npm install @machinespirits/content-philosophy
+CONTENT_PACKAGE="../machinespirits-content-philosophy"
 ```
 
-Or link locally during development:
+The package metadata remains available for tooling that consumes the repository
+as a package. Production deployment does not resolve a floating npm version.
 
-```bash
-npm link
-# In platform directory:
-npm link @machinespirits/content-philosophy
-```
-
-## Usage
-
-Set the content package in your platform configuration:
-
-```bash
-CONTENT_PACKAGE="@machinespirits/content-philosophy"
-```
-
-Or in `config/platform.yaml`:
+Legacy consumers can alternatively reference the package name in
+`config/platform.yaml`:
 
 ```yaml
 content:

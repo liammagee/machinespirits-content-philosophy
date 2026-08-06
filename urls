@@ -23,7 +23,7 @@
 #   essays   articles/**/*.html w/ sibling .md, not essay_excluded;
 #            slug = .html basename; /essays/<date>-<slug> (ISO date fm) | /essays/<slug>
 #   courses  courses/<id>/course.md with frontmatter `published: true`;
-#            id = fm `id:` or dir name; /courses/<id>
+#            public_slug = fm `public_slug:` or id/dir name; /courses/<slug>
 #   probes   probes/<probe-NN-slug>/index.md; /lab/probes/<dir>
 #   notes    notes/<...>.md; /notes/<stem>
 #   reading  reading-room/<YYYY-MM-DD-author-title>/index.md; /reading-room/<dir>
@@ -113,6 +113,7 @@ lastmod_for() {
   if is_iso "${2:-}"; then printf '%s' "$2"; return 0; fi
   local g; g="$(git_lastmod "$1")"
   is_iso "$g" && printf '%s' "$g"
+  return 0
 }
 
 # ---- essay exclusions (MIRRORS render-site essay_excluded — keep in sync) --
@@ -137,7 +138,7 @@ essay_excluded() {
 # emit_records -> one "<urlpath>\t<source>\t<lastmod>" line per public URL.
 # urlpath has a leading "/"; lastmod may be empty. Unsorted.
 emit_records() {
-  local f art md slug date up id cmd dir stem lm
+  local f art md slug date up id public_slug cmd dir stem lm
 
   # Essays — articles/**/*.html with sibling .md, not excluded.
   while IFS= read -r f; do
@@ -161,8 +162,11 @@ emit_records() {
     id="$(awk 'NR==1{if($0!="---")exit;f=1;next} f&&$0=="---"{exit}
               f&&/^id:/{v=$0;sub(/^id:[ \t]*/,"",v);gsub(/["'"'"' \t]/,"",v);print v;exit}' "$cmd")"
     [ -n "$id" ] || id="$(basename "$(dirname "$cmd")")"
+    public_slug="$(awk 'NR==1{if($0!="---")exit;f=1;next} f&&$0=="---"{exit}
+              f&&/^public_slug:/{v=$0;sub(/^public_slug:[ \t]*/,"",v);gsub(/["'"'"' \t]/,"",v);print v;exit}' "$cmd")"
+    [ -n "$public_slug" ] || public_slug="$id"
     lm="$(lastmod_for "$cmd" "$(fm_date "$cmd")")"
-    printf '%s\t%s\t%s\n' "/courses/${id}" "$cmd" "$lm"
+    printf '%s\t%s\t%s\n' "/courses/${public_slug}" "$cmd" "$lm"
   done < <(find courses -mindepth 2 -maxdepth 2 -name course.md -type f 2>/dev/null | grep -v '/_' | LC_ALL=C sort || true)
 
   # Probes — probes/<probe-NN-slug>/index.md.

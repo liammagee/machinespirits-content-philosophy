@@ -198,9 +198,12 @@ def build_index() -> dict:
 
 
 def stable_dump(data: dict) -> str:
-    # `generated` is the only field that changes on every run, so strip it for
-    # the equality check the --check mode uses.
     return json.dumps(data, indent=2, ensure_ascii=False) + "\n"
+
+
+def with_preserved_timestamp(new_index: dict, old_index: dict) -> dict:
+    """Compare substantive index data without manufacturing timestamp churn."""
+    return {**new_index, "generated": old_index.get("generated")}
 
 
 def main() -> int:
@@ -212,8 +215,7 @@ def main() -> int:
             print(f"{INDEX_PATH} missing; would create.", file=sys.stderr)
             return 1
         old = json.loads(INDEX_PATH.read_text(encoding="utf-8"))
-        # Ignore the `generated` timestamp when comparing.
-        new_copy = {**new_index, "generated": old.get("generated")}
+        new_copy = with_preserved_timestamp(new_index, old)
         if old != new_copy:
             print(f"{INDEX_PATH} is out of date.", file=sys.stderr)
             return 1
@@ -222,6 +224,15 @@ def main() -> int:
             f"{len(new_index['probes'])} probes, {len(new_index['demos'])} demos)."
         )
         return 0
+
+    if INDEX_PATH.exists():
+        old = json.loads(INDEX_PATH.read_text(encoding="utf-8"))
+        if old == with_preserved_timestamp(new_index, old):
+            print(
+                f"{INDEX_PATH.relative_to(ROOT)} unchanged ({new_index['count']} artifacts, "
+                f"{len(new_index['probes'])} probes, {len(new_index['demos'])} demos)."
+            )
+            return 0
 
     INDEX_PATH.write_text(stable_dump(new_index), encoding="utf-8")
     print(

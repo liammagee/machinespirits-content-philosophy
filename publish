@@ -1,16 +1,47 @@
 #!/usr/bin/env bash
 # Publish content edits to machinespirits.org.
 #
-# Stages everything in this repo, commits, and pushes. The push triggers
+# Stages only the deployable package surface, commits, and pushes. The push triggers
 # a GitHub Action that dispatches a `content-updated` event to the website
 # repo, which redeploys via Fly.io. Site is live in ~3-5 min.
 #
 # Usage:
-#   ./publish                          # auto-generated commit message
-#   ./publish "Add dictatorship essay" # custom message
+#   ./publish                              # auto-generated commit message
+#   ./publish "Add dictatorship essay"     # backwards-compatible custom message
+#   ./publish -m "Add dictatorship essay"  # explicit custom message
+#   ./publish --check                      # build + validate, do not stage/push
 
 set -euo pipefail
 cd "$(dirname "$0")"
+
+message=""
+check_only=0
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -m|--message)
+      shift
+      [ $# -gt 0 ] || { echo "publish: --message requires a value" >&2; exit 2; }
+      message="$1"
+      ;;
+    --check) check_only=1 ;;
+    --help|-h) sed -n '2,/^$/p' "$0" | sed 's/^# \?//'; exit 0 ;;
+    -*) echo "publish: unknown argument: $1" >&2; exit 2 ;;
+    *)
+      [ -z "$message" ] || { echo "publish: only one commit message may be supplied" >&2; exit 2; }
+      message="$1"
+      ;;
+  esac
+  shift
+done
+
+# A pre-populated index would make the eventual commit wider than this script's
+# declared package surface. Force that state to be resolved explicitly first.
+if [ "$check_only" = 0 ] && ! git diff --cached --quiet; then
+  echo "publish: refusing to publish with pre-existing staged changes." >&2
+  echo "Commit or unstage them, then run ./publish again." >&2
+  exit 1
+fi
 
 # Render any stale Markdown to HTML before staging.
 ./build
@@ -21,6 +52,14 @@ cd "$(dirname "$0")"
 # Regenerate the sitemap from the current published set.
 ./sitemap
 
+# Validate the exact package state that will be staged.
+./validate
+
+if [ "$check_only" = 1 ]; then
+  echo "Publish check complete — nothing staged, committed, or pushed."
+  exit 0
+fi
+
 if [ -n "$(git status --porcelain)" ]; then
   :
 else
@@ -28,15 +67,27 @@ else
   exit 0
 fi
 
-git add -A
+# Only runtime/package paths belong in a content publication commit. Tooling,
+# docs, editor state, and other repo-local work stay untouched and visible.
+publish_paths=(
+  articles artifacts assets brand config courses notes probes prompts
+  reading-room references theme manifest.yaml package.json sitemap.xml
+)
+git add -A -- "${publish_paths[@]}"
+
+remaining_paths="$({ git diff --name-only; git ls-files --others --exclude-standard; } | LC_ALL=C sort -u)"
+if [ -n "$remaining_paths" ]; then
+  echo "The following non-package changes remain unstaged:" >&2
+  printf '%s\n' "$remaining_paths" | sed 's/^/  /' >&2
+fi
 
 if git diff --cached --quiet; then
   echo "Nothing staged after add."
   exit 0
 fi
 
-if [ $# -ge 1 ] && [ -n "$1" ]; then
-  msg="$1"
+if [ -n "$message" ]; then
+  msg="$message"
 else
   count=$(git diff --cached --name-only | wc -l | tr -d ' ')
   first=$(git diff --cached --name-only | head -1)
