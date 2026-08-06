@@ -651,7 +651,7 @@ def render_other_sections(files: list[Path]) -> tuple[str, int, list[str]]:
     return "\n".join(blocks), total, present
 
 
-def render_page(files: list[Path]) -> str:
+def render_page(files: list[Path], generated: str | None = None) -> str:
     from datetime import date
 
     articles_body, articles_count = build_articles_section(files)
@@ -670,7 +670,7 @@ def render_page(files: list[Path]) -> str:
         courses_body=courses_body,
         other_sections=other_sections,
         toc=build_toc(article_topics, course_ids, other_present),
-        generated=date.today().isoformat(),
+        generated=generated or date.today().isoformat(),
     )
 
 
@@ -679,14 +679,23 @@ def render_page(files: list[Path]) -> str:
 def main(argv: list[str]) -> int:
     mode = argv[1] if len(argv) > 1 else ""
     files = list_published()
-    html = render_page(files)
+
+    # The displayed generation date is informational, not part of whether the
+    # published set is current. Preserve the committed date during --check so
+    # validation is deterministic across time zones and across midnight.
+    existing = OUT.read_text(encoding="utf-8") if OUT.exists() else ""
+    committed_date = None
+    if mode == "--check":
+        match = re.search(r"Generated <time>(\d{4}-\d{2}-\d{2})</time>", existing)
+        if match:
+            committed_date = match.group(1)
+    html = render_page(files, generated=committed_date)
 
     if mode == "--stdout":
         sys.stdout.write(html)
         return 0
 
     if mode == "--check":
-        existing = OUT.read_text(encoding="utf-8") if OUT.exists() else ""
         if existing != html:
             print("sitemap.html is stale. Run ./sitemap to regenerate.", file=sys.stderr)
             return 1
