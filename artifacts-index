@@ -15,6 +15,8 @@ Usage:
 
 from __future__ import annotations
 
+import copy
+import hashlib
 import json
 import re
 import sys
@@ -65,7 +67,8 @@ def humanise(slug: str) -> str:
 
 
 def scan_artifact(path: Path) -> dict:
-    html = path.read_text(encoding="utf-8", errors="replace")
+    raw = path.read_bytes()
+    html = raw.decode("utf-8", errors="replace")
     stat = path.stat()
     slug = path.stem
 
@@ -97,6 +100,7 @@ def scan_artifact(path: Path) -> dict:
         "thumbnail": thumbnail,
         "file": path.name,
         "size": stat.st_size,
+        "sha256": hashlib.sha256(raw).hexdigest(),
         "modified": mtime.isoformat().replace("+00:00", "Z"),
     }
     if course:
@@ -201,7 +205,30 @@ def stable_dump(data: dict) -> str:
     return json.dumps(data, indent=2, ensure_ascii=False) + "\n"
 
 
-def with_preserved_timestamp(new_index: dict, old_index: dict) -> dict:
+def with_stable_artifact_times(new_index: dict, old_index: dict) -> dict:
+    """Preserve display times when artifact bytes have not changed.
+
+    Git does not preserve filesystem mtimes, so fresh checkouts cannot use them
+    as artifact identity. SHA-256 is stable; the first hash-bearing refresh also
+    preserves existing dates to avoid manufacturing historical churn.
+    """
+    stable = copy.deepcopy(new_index)
+    old_by_slug = {entry.get("slug"): entry for entry in old_index.get("artifacts", [])}
+    for entry in stable.get("artifacts", []):
+        old = old_by_slug.get(entry.get("slug"))
+        if not old:
+            continue
+        same_bytes = not old.get("sha256") or old.get("sha256") == entry.get("sha256")
+        if not same_bytes:
+            continue
+        if old.get("date"):
+            entry["date"] = old["date"]
+        if old.get("modified"):
+            entry["modified"] = old["modified"]
+    return stable
+
+
+def with_preserved_generation_time(new_index: dict, old_index: dict) -> dict:
     """Compare substantive index data without manufacturing timestamp churn."""
     return {**new_index, "generated": old_index.get("generated")}
 
@@ -215,7 +242,8 @@ def main() -> int:
             print(f"{INDEX_PATH} missing; would create.", file=sys.stderr)
             return 1
         old = json.loads(INDEX_PATH.read_text(encoding="utf-8"))
-        new_copy = with_preserved_timestamp(new_index, old)
+        stable_new = with_stable_artifact_times(new_index, old)
+        new_copy = with_preserved_generation_time(stable_new, old)
         if old != new_copy:
             print(f"{INDEX_PATH} is out of date.", file=sys.stderr)
             return 1
@@ -227,7 +255,8 @@ def main() -> int:
 
     if INDEX_PATH.exists():
         old = json.loads(INDEX_PATH.read_text(encoding="utf-8"))
-        if old == with_preserved_timestamp(new_index, old):
+        new_index = with_stable_artifact_times(new_index, old)
+        if old == with_preserved_generation_time(new_index, old):
             print(
                 f"{INDEX_PATH.relative_to(ROOT)} unchanged ({new_index['count']} artifacts, "
                 f"{len(new_index['probes'])} probes, {len(new_index['demos'])} demos)."

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-06T21:15:34.071607Z",
+  "generated": "2026-08-06T22:27:32.443502Z",
   "count": 5,
   "artifacts": [
     {
@@ -12,6 +12,7 @@
       "thumbnail": null,
       "file": "anthropic-reading-list.html",
       "size": 23596,
+      "sha256": "7802c5c7a51ef8babac39a97dfd0cc7d408d80ef6d50605b57e1b9c0cb217f2d",
       "modified": "2026-05-09T15:05:24.838657Z"
     },
     {
@@ -29,6 +30,7 @@
       "thumbnail": null,
       "file": "design-audit-playground.html",
       "size": 10903,
+      "sha256": "5d94cc6339352ab8062384eafb532c116f3c0a88a922c75c205df04908be052f",
       "modified": "2026-05-11T00:13:09.782084Z"
     },
     {
@@ -41,6 +43,7 @@
       "thumbnail": null,
       "file": "gpt-5-5-dijkstra.html",
       "size": 66827,
+      "sha256": "b6e805e57b518b8157422f968a86ed8fddd47750779f5de5dd1b716314fa51d1",
       "modified": "2026-05-11T22:04:35.353506Z"
     },
     {
@@ -59,6 +62,7 @@
       "thumbnail": null,
       "file": "hegel-recognition-explorer.html",
       "size": 22612,
+      "sha256": "ce316096b836856f051ca9a242344e8545eade0201a046beef686991287ae472",
       "modified": "2026-03-15T04:36:39.607231Z",
       "course": "479",
       "lecture": "lecture-3"
@@ -80,6 +84,7 @@
       "thumbnail": null,
       "file": "warpstrike-60.html",
       "size": 2850,
+      "sha256": "be47a4d463c28b75f4a12b8988ad63f875e842c145630c76295c3577e813d4ab",
       "modified": "2026-05-10T17:16:11.667031Z"
     }
   ],
