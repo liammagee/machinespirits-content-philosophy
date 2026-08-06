@@ -13,17 +13,15 @@ jobs:
       - name: Checkout content package
         uses: actions/checkout@v6
 
-      - name: Install Pandoc
-        run: sudo apt-get update && sudo apt-get install -y pandoc
-
-      - name: Build stale Markdown
-        run: ./build
-
-      - name: Validate deployable package
+      # Validate the committed publication package. Do not run ./build here:
+      # Git checkouts do not preserve meaningful source/output mtimes, so a
+      # clean runner would rebuild arbitrary Markdown and overwrite managed
+      # HTML even when the committed package is already current.
+      - name: Validate committed deployable package
         run: ./validate
 
-      - name: Require generated HTML to be committed
-        run: git diff --exit-code -- articles courses
+      - name: Require validation to be read-only
+        run: git diff --exit-code
 
   trigger-deploy:
     if: github.event_name != 'pull_request'
