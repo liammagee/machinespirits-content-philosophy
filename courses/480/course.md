@@ -34,7 +34,7 @@ readings:
   - title: "Braiding Sweetgrass: Indigenous Wisdom"
     author: "Robin Wall Kimmerer"
     type: "book"
-published: true
+published: false
 ---
 
 # Technology and Educational Reform

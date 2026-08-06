@@ -12,6 +12,7 @@ semester: "Testing"
 institution: "Machine Spirits LMS"
 credits: 0
 prerequisites: []
+published: true
 tags:
   - test
   - activities

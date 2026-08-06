@@ -1,5 +1,6 @@
 ---
 id: "socsci_and_ai"
+public_slug: "socsci-and-ai"
 title: "Social Science Research and AI"
 subtitle: "Bolashak Program: AI-Augmented Research Methods"
 description: |
@@ -13,6 +14,7 @@ semester: "Spring 2025"
 institution: "Bolashak Program"
 credits: 3
 prerequisites: []
+published: true
 tags:
   - social science
   - research methods

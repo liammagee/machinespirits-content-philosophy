@@ -13,6 +13,7 @@ semester: "Fall 2025, Term B"
 institution: "University of Illinois Urbana-Champaign"
 credits: 4
 prerequisites: []
+published: true
 tags:
   - literature review
   - research methods

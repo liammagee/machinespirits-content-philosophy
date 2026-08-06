@@ -11,6 +11,7 @@ semester: "Ongoing"
 institution: "University of Illinois Urbana-Champaign"
 credits: 0
 prerequisites: []
+published: true
 tags:
   - dissertation
   - thesis writing

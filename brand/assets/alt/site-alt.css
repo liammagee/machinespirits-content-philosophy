@@ -127,6 +127,15 @@
             scroll-behavior: smooth;
         }
 
+        /* Accessibility — a visible keyboard focus ring on every focusable
+           element (canon parity with assets/ms.css:119; required by EVAL.md:53).
+           :focus-visible keeps the ring off mouse clicks, on for keyboard nav. */
+        :focus-visible {
+            outline: 2px solid var(--accent-terracotta);
+            outline-offset: 2px;
+            border-radius: 3px;
+        }
+
         body {
             font-family: 'DM Sans', sans-serif;
             background: var(--bg-warm);
@@ -1621,7 +1630,8 @@
             border:1px solid var(--glass-border);
             color:var(--text-earth);
         }
-        .newsletter-form input:focus{ outline:none; border-color:var(--accent-umber); background:rgba(255,255,255,.75);}
+        .newsletter-form input:focus{ border-color:var(--accent-umber); background:rgba(255,255,255,.75);}
+        .newsletter-form input:focus-visible{ outline:2px solid var(--accent-terracotta); outline-offset:2px; }
         .newsletter-form button{
             font-family:'DM Sans',sans-serif; font-size:.7rem; letter-spacing:.05em;
             padding:.7rem 1.25rem; border-radius:22px; cursor:pointer;
@@ -2255,6 +2265,47 @@
         .tweaks-panel .foot{
             margin-top: 10px; padding-top: 9px; border-top: 1px solid var(--glass-border);
             font-size: .58rem; color: var(--text-clay); line-height: 1.4;
+        }
+
+        /* ============================================
+           REDUCED MOTION  — canon: IDENTITY.md:76 ("Frozen in
+           prefers-reduced-motion — the line stays put") and EVAL.md:47/56
+           (motion is subtle and respects the OS setting; the Klee line freezes
+           at its drawn end-state, parallax + scroll-reveals resolve to rest).
+           Parity with assets/ms.css:591. The matching JS guard in site-alt.js
+           stops the continuous loops (parallax, scroll-walked dots, auto-quote).
+        ============================================ */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+            }
+            html { scroll-behavior: auto !important; }
+
+            /* Klee walking-line: freeze fully drawn (stroke-dashoffset end-state). */
+            .walking-line .line-path,
+            .walking-line-sidebar .line-path {
+                animation: none !important;
+                stroke-dashoffset: 0 !important;
+            }
+            /* The dots are positioned by JS; with the JS guard active they never
+               move, so hide them rather than strand them at the path origin. */
+            .walking-dot,
+            .walking-dot-sidebar {
+                animation: none !important;
+                opacity: 0 !important;
+            }
+            /* Depth-field parallax off (mirrors :root[data-atmosphere="off"]). */
+            .depth-field { display: none !important; }
+            /* Scroll-reveal resolves to its visible end-state immediately, so no
+               content depends on the (now-guarded) IntersectionObserver. */
+            .materialize {
+                opacity: 1 !important;
+                filter: none !important;
+                transform: none !important;
+                transition: none !important;
+            }
         }
 
     

@@ -48,14 +48,14 @@ description: Rethinking the relation between machines and the people they learn 
 <span class="axis-num">I.</span>
 <h3>Recognition</h3>
 <p class="axis-line">Hegel · Honneth · J. Benjamin</p>
-<p class="axis-blurb">The relation a learning system is already in, badly: addressed-ness, mis-recognition, and the mutuality that scoring cannot see.</p>
+<p class="axis-blurb">The relation a learning system is already in, badly: addressed-ness, mis-recognition, the mutuality that scoring cannot see. A first measurement is in — ask a tutor to recognise its student and its writing improves markedly, on a judge's reading, not yet a learner's; and it is the stance, not the word, that the numbers reward.</p>
 <div class="axis-tally"><span>6 papers</span><span>2 probes</span><span>1 tutor</span></div>
 </div>
 <div class="axis materialize">
 <span class="axis-num">II.</span>
 <h3>The Nonconscious</h3>
 <p class="axis-line">Hayles · Freud</p>
-<p class="axis-blurb">Cognition that does not pass through awareness — in us, in transformers. Reading interpretability as the description of a nonconscious.</p>
+<p class="axis-blurb">Cognition that does not pass through awareness — in us, in transformers; interpretability read as the description of a nonconscious. And a faculty built in its image: a critic set over the tutor like a superego, a watcher for the moment it stalls — load-bearing on a weak model, and quietly redundant once recognition is already in the room.</p>
 <div class="axis-tally"><span>3 papers</span><span>1 probe</span></div>
 </div>
 <div class="axis materialize">
@@ -69,7 +69,7 @@ description: Rethinking the relation between machines and the people they learn 
 <span class="axis-num">IV.</span>
 <h3>Temporal orientation</h3>
 <p class="axis-line">Heidegger via Pippin</p>
-<p class="axis-blurb">Being-toward-the-end against a fixed token budget: two finitudes, and what each one organises. A reading of the "context window" that refuses the analogy.</p>
+<p class="axis-blurb">Being-toward-the-end against a fixed token budget: two finitudes, and what each one organises — a reading of the "context window" that refuses the analogy. The long arc — a tutor that revises itself across a session — is still running, and lean so far: less state beats more, the headline advantages keep dissolving under audit, the apparatus contributing more than the adaptation does.</p>
 <div class="axis-tally"><span>2 papers</span><span>1 reading-group</span></div>
 </div>
 </div>

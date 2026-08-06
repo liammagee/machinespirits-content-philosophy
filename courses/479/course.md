@@ -14,6 +14,7 @@ semester: "Fall 2025, Term A"
 institution: "University of Illinois Urbana-Champaign"
 credits: 4
 prerequisites: []
+published: true
 tags:
   - machine learning
   - pedagogy

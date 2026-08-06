@@ -1,5 +1,7 @@
-/* Generated from site-mockup-alt-some-more.html by tools/extract-alt-template.py.
- * Edit the mockup, not this file. */
+/* Live behaviour for the alt design system — loaded by templates/page-alt-*.html.
+ * Originally generated from site-mockup-alt-some-more.html via extract-alt-template.py,
+ * but that mockup->extract pipeline was retired (the mockup and the tool now live
+ * under archive/), so this file is maintained directly. */
 
         // Elements
         const shapes = document.querySelectorAll('.geo-shape');
@@ -18,6 +20,12 @@
         let mouseX = 0;
         let mouseY = 0;
         let lineAnimated = false;
+
+        // Respect the OS "reduce motion" setting: gate the continuous / auto-running
+        // motion (the parallax rAF loop, the scroll-walked dots, the auto-rotating
+        // quote). The @media (prefers-reduced-motion) block in site-alt.css freezes
+        // everything else at its end-state. (EVAL.md:47/56; IDENTITY.md:76.)
+        const reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
         const statusMessages = [
             "At the head of the line.",
@@ -53,9 +61,12 @@
             }
 
             // The dots walk the line in lock-step with the scroll —
-            // scroll back up and they walk back.
-            positionDotAt(walkingLine, pathH, dotH, t);
-            positionDotAt(walkingLineSidebar, pathV, dotV, t);
+            // scroll back up and they walk back. (Skipped under reduced motion:
+            // the dots are hidden and the line is frozen fully-drawn by CSS.)
+            if (!reduceMotion) {
+                positionDotAt(walkingLine, pathH, dotH, t);
+                positionDotAt(walkingLineSidebar, pathV, dotV, t);
+            }
         });
 
         // Re-place on resize (container size changes → px mapping changes)
@@ -102,7 +113,9 @@
 
             requestAnimationFrame(animate);
         }
-        animate();
+        // Parallax depth loop — the main continuous motion. Off under reduced
+        // motion; the shapes/orbs then rest at their CSS positions.
+        if (!reduceMotion) animate();
 
         // Place a dot at fractional progress `t` (0–1) along its SVG path.
         // The SVG uses preserveAspectRatio="none", so we sample in viewBox units
@@ -132,8 +145,10 @@
 
         materializeElements.forEach(el => observer.observe(el));
 
-        // Place dots at t=0 on load so they reveal at the start of the line
+        // Place dots at t=0 on load so they reveal at the start of the line.
+        // (Skipped under reduced motion — the dots are hidden by CSS.)
         window.addEventListener('load', () => {
+            if (reduceMotion) return;
             positionDotAt(walkingLine, pathH, dotH, 0);
             positionDotAt(walkingLineSidebar, pathV, dotV, 0);
         });
@@ -424,9 +439,11 @@
                     qText.style.opacity = ''; qAuth.style.opacity = ''; }, 220); }
             if (cText) { cText.textContent = q.callout; cAuth.textContent = q.cAuthor; }
         }
-        if (qText) { qText.style.transition = 'opacity .4s ease'; qAuth.style.transition = 'opacity .4s ease'; }
+        if (qText && !reduceMotion) { qText.style.transition = 'opacity .4s ease'; qAuth.style.transition = 'opacity .4s ease'; }
         showQuote(0);
-        setInterval(()=>{ qIdx = (qIdx+1) % QUOTES.length; showQuote(qIdx); }, 7500);
+        // Auto-rotate the sidebar quote — paused under reduced motion (WCAG 2.2.2:
+        // no auto-advancing content); a single static quote is shown instead.
+        if (!reduceMotion) setInterval(()=>{ qIdx = (qIdx+1) % QUOTES.length; showQuote(qIdx); }, 7500);
 
         // ============================================
         // TWEAKS — toolbar protocol + panel wiring + in-page toggle

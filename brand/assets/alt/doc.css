@@ -58,7 +58,7 @@ main.doc h3,
 main.doc h4 {
     font-family: 'Instrument Serif', Georgia, serif;
     font-weight: 400;
-    color: var(--text-strong, #1a1814);
+    color: var(--text-strong, var(--text-earth, #1a1814));
     letter-spacing: -0.01em;
     line-height: 1.2;
 }
@@ -101,7 +101,7 @@ main.doc a {
 }
 main.doc a:hover { text-decoration-color: currentColor; }
 
-main.doc strong { font-weight: 500; color: var(--text-strong, #1a1814); }
+main.doc strong { font-weight: 500; color: var(--text-strong, var(--text-earth, #1a1814)); }
 main.doc em { font-style: italic; }
 
 main.doc ul,
@@ -167,7 +167,7 @@ main.doc td {
 main.doc th {
     font-weight: 500;
     background: rgba(0,0,0,0.025);
-    color: var(--text-strong, #1a1814);
+    color: var(--text-strong, var(--text-earth, #1a1814));
 }
 
 main.doc hr {
@@ -697,13 +697,15 @@ main.doc .course-card-link {
     text-transform: uppercase;
     color: var(--text-clay, #6b6258);
 }
-.course-card-title {
+main.doc .course-card-title {
     font-family: 'Instrument Serif', serif;
     font-size: 1.55rem;
     font-weight: 400;
     line-height: 1.15;
     color: var(--text-earth, #2d2a26);
     margin: 0.5rem 0 0;
+    padding-bottom: 0;
+    border-bottom: 0;
     transition: color 0.2s ease;
 }
 .course-card-link:hover .course-card-title { color: var(--accent-terracotta, #b8654a); }

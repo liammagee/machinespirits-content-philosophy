@@ -37,6 +37,7 @@ readings:
     author: "J.L. Austin"
     type: "book"
     year: "1962"
+published: true
 lectures:
   - week: 1
     title: "Pathways to AI - History and Foundations"
