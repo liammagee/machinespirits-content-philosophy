@@ -1,0 +1,15 @@
+# Public essay hold-outs, matched against paths relative to articles/.
+#
+# This file controls index eligibility only. Publication state remains derived
+# from file location/form as documented in CONVENTIONS.md.
+_*
+*/_*
+TRIAGE.*
+sitemap.*
+hegel-primary-texts/*
+publications/*
+hegel-essays/hegel-voice-1.*
+ai-tutor/machinagogy-v2.*
+ai-tutor/full-paper-2026-01-28.*
+ai-pedagogy/geist-explained.*
+ai-pedagogy/multiagent-tutor-architecture.*

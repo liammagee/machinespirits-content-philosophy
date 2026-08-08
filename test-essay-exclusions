@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# Contract tests for the content-owned public essay exclusion manifest.
+
+set -euo pipefail
+cd "$(dirname "$0")"
+
+source lib/essay-exclusions.sh
+
+fail() {
+  echo "test-essay-exclusions: $*" >&2
+  exit 1
+}
+
+load_essay_exclusions config/essay-exclusions.txt
+
+for excluded in \
+  hegel-primary-texts/logic-being.html \
+  publications/publications.html \
+  hegel-essays/hegel-voice-1.html \
+  ai-tutor/machinagogy-v2.html \
+  ai-pedagogy/multiagent-tutor-architecture.html; do
+  essay_excluded "$excluded" || fail "expected exclusion did not match: $excluded"
+done
+
+essay_excluded articles/hegel-essays/hegel-voice-1.html \
+  || fail "articles/ prefix normalization did not match"
+essay_excluded hegel-essays/discarded-master.html \
+  && fail "public essay was unexpectedly excluded"
+
+scratch="$(mktemp -d "${TMPDIR:-/tmp}/essay-exclusions-test.XXXXXX")"
+cleanup() {
+  case "$scratch" in
+    "${TMPDIR:-/tmp}"/essay-exclusions-test.*) rm -rf "$scratch" ;;
+    *) fail "refusing to remove unexpected scratch path: $scratch" ;;
+  esac
+}
+trap cleanup EXIT
+
+if load_essay_exclusions "$scratch/missing.txt" 2>/dev/null; then
+  fail "missing manifest was accepted"
+fi
+
+printf '%s\n' 'valid/*' '../escape/*' > "$scratch/malformed.txt"
+if load_essay_exclusions "$scratch/malformed.txt" 2>/dev/null; then
+  fail "malformed manifest was accepted"
+fi
+
+printf '%s\n' '# comments only' > "$scratch/empty.txt"
+if load_essay_exclusions "$scratch/empty.txt" 2>/dev/null; then
+  fail "empty manifest was accepted"
+fi
+
+echo "test-essay-exclusions: OK"

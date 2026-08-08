@@ -16,6 +16,9 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
+source lib/essay-exclusions.sh
+load_essay_exclusions "${ESSAY_EXCLUSIONS_MANIFEST:-config/essay-exclusions.txt}"
+
 strict=""
 case "${1:-}" in
   --strict)   strict=1 ;;
@@ -27,25 +30,6 @@ esac
 is_hidden() {
   # True if any path component starts with _
   [[ "$1" =~ (^|/)_ ]]
-}
-
-# MIRRORS urls/render-site essay_excluded -- keep in sync. These paths remain
-# served on another surface (or deliberately held out), but are not /essays
-# index candidates and therefore do not need essay metadata.
-essay_excluded() {
-  local art="${1#articles/}"
-  case "$art" in
-    _*|*/_*)                                     return 0 ;;
-    TRIAGE.*|sitemap.*)                          return 0 ;;
-    hegel-primary-texts/*)                       return 0 ;;
-    publications/*)                              return 0 ;;
-    hegel-essays/hegel-voice-1.*)                return 0 ;;
-    ai-tutor/machinagogy-v2.*)                   return 0 ;;
-    ai-tutor/full-paper-2026-01-28.*)            return 0 ;;
-    ai-pedagogy/geist-explained.*)               return 0 ;;
-    ai-pedagogy/multiagent-tutor-architecture.*) return 0 ;;
-  esac
-  return 1
 }
 
 # Print the first YAML frontmatter block (between a line-1 '---' and the next

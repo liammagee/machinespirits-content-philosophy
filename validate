@@ -45,10 +45,11 @@ fm_scalar() {
 
 echo "Content package validation"
 
-for script in build publish urls; do
+for script in build publish urls lint validate test-essay-exclusions lib/essay-exclusions.sh; do
   bash -n "$script" || fail "$script has invalid shell syntax"
 done
 
+./test-essay-exclusions
 ./urls check
 ./sitemap --check
 ./artifacts-index --check
@@ -99,12 +100,43 @@ done < <(find courses -mindepth 2 -maxdepth 2 -name course.md -type f | LC_ALL=C
 grep -q "$public_count public courses" "$brand_dir/courses/index.html" \
   || fail "course index count does not match the $public_count published course sources"
 
+public_paths="$(./urls site | sed -E 's#^https?://[^/]+##; s#^$#/#')"
+public_url_exists() {
+  local needle="$1" candidate
+  while IFS= read -r candidate; do
+    [ "$candidate" = "$needle" ] && return 0
+  done <<< "$public_paths"
+  return 1
+}
+
 while IFS= read -r essay_url; do
   [ -n "$essay_url" ] || continue
   essay_slug="${essay_url#/essays/}"
   test -s "$brand_dir/essays/$essay_slug/index.html" \
     || fail "public essay is missing its brand mirror page: $essay_url"
-done < <(./urls site | sed -n '/^\/essays\//p')
+  test -s "$brand_dir/essays/$essay_slug.html" \
+    || fail "public essay is missing its flat brand mirror page: $essay_url"
+done < <(printf '%s\n' "$public_paths" | sed -n '/^\/essays\//p')
+
+# Reject stale generated pages for sources that have since been held out. This
+# is the reverse half of mirror coverage and prevents an excluded essay from
+# remaining publicly reachable after its source leaves the index.
+while IFS= read -r essay_page; do
+  [ -n "$essay_page" ] || continue
+  essay_slug="$(basename "$(dirname "$essay_page")")"
+  public_url_exists "/essays/$essay_slug" \
+    || fail "brand mirror contains a stale or excluded essay page: /essays/$essay_slug"
+done < <(find "$brand_dir/essays" -mindepth 2 -maxdepth 2 -name index.html -type f | LC_ALL=C sort)
+
+while IFS= read -r essay_page; do
+  [ -n "$essay_page" ] || continue
+  essay_slug="$(basename "${essay_page%.html}")"
+  [ "$essay_slug" = "index" ] && continue
+  # Brand-authored newsletter compatibility page, not an articles/ corpus item.
+  [ "$essay_slug" = "recognition-not-just-alignment" ] && continue
+  public_url_exists "/essays/$essay_slug" \
+    || fail "brand mirror contains a stale or excluded flat essay page: /essays/$essay_slug"
+done < <(find "$brand_dir/essays" -mindepth 1 -maxdepth 1 -name '*.html' -type f | LC_ALL=C sort)
 
 if [ "$strict_metadata" = 1 ]; then
   ./lint --strict

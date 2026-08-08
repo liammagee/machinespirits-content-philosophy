@@ -42,6 +42,7 @@ The website-side indexer enforces this by walking `articles/**/*.html` and skipp
 - **Don't edit committed `.html` files** that have a `.md` sibling — they'll be overwritten by the next `./build`. Edit the `.md` source.
 - **Don't put working notes / raw chats / scratch files** at the top of a topic folder — they'll get rendered and indexed. Put them under `_drafts/`.
 - **Don't break the `_*` prefix convention** when naming new utility folders. `_drafts/`, `_archive/`, `_review/` are fine; `wip/` or `archive/` would leak into the index.
+- **Don't duplicate essay hold-outs in code.** Edit `config/essay-exclusions.txt`; `./urls`, `./lint`, and the brand renderer consume it through `lib/essay-exclusions.sh`.
 
 ## When `./publish` fails
 
@@ -57,6 +58,7 @@ The website-side indexer enforces this by walking `articles/**/*.html` and skipp
 - `theme/` — colours, fonts (consumed by website)
 - `prompts/` — tutor prompt customizations
 - `config/` — navigation, feature flags
+- `config/essay-exclusions.txt` — content-owned `/essays` hold-outs shared with the brand renderer
 - `manifest.yaml` — package entry point (read by website)
 
 ## See also
