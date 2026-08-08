@@ -1,10 +1,10 @@
-name: Deploy Site on Content Update
+name: Validate Public Site Package
 
 on:
   push:
     branches: [main, master]
   pull_request:
-  workflow_dispatch:  # Allow manual trigger
+  workflow_dispatch:
 
 jobs:
   validate:
@@ -23,15 +23,13 @@ jobs:
       - name: Require validation to be read-only
         run: git diff --exit-code
 
-  trigger-deploy:
+  handoff:
     if: github.event_name != 'pull_request'
     needs: validate
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger main site rebuild
-        uses: peter-evans/repository-dispatch@v3
-        with:
-          token: ${{ secrets.MAIN_REPO_PAT }}
-          repository: liammagee/machinespirits
-          event-type: content-updated
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+      - name: Record pull-owned deployment handoff
+        run: |
+          echo "Validated content revision $GITHUB_SHA."
+          echo "The website repository resolves and pins content master on deploy,"
+          echo "and its scheduled drift check deploys this revision when production differs."
