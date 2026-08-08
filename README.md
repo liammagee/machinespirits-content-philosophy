@@ -18,8 +18,10 @@ cd ../machinespirits-brand
 ```
 
 For a content-side preflight without staging or pushing, run `./publish --check`.
-The eventual content push dispatches the website deployment with this commit's
-SHA; the website Docker build fetches that exact revision.
+The content workflow validates each push without holding a write-capable token
+for another repository. The website owns deployment: every website release
+resolves and pins content `master`, and a scheduled drift check deploys a newer
+validated content SHA when production differs.
 
 ## Overview
 
