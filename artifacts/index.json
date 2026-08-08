@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-06T22:27:32.443502Z",
+  "generated": "2026-08-08T21:27:45.622983Z",
   "count": 5,
   "artifacts": [
     {
@@ -90,16 +90,17 @@
   ],
   "probes": [
     {
-      "slug": "probe-01-scaffold",
-      "url": "/lab/probes/probe-01-scaffold",
-      "title": "Probe 01 — scaffold",
-      "date": "2026-05-17",
+      "slug": "probe-01-recognition-under-correction",
+      "url": "/lab/probes/probe-01-recognition-under-correction",
+      "title": "Probe 01 — Recognition under correction",
+      "date": "2026-08-09",
       "theme": "recognition",
-      "summary": "Type-defining seed for the probes/ source. Establishes the frontmatter contract and the path-derived URL form so urls/sitemap/artifacts-index can enumerate probes. Replace this body with the real Probe 01 write-up.",
-      "status": "scaffold",
+      "summary": "A runnable dialogue probe that asks whether an AI tutor merely repairs an answer after a learner objects, or treats the objection as evidence that can change the shared account of the problem.",
+      "status": "protocol-v1",
       "kind": "probe",
-      "source": "probes/probe-01-scaffold/index.md",
+      "source": "probes/probe-01-recognition-under-correction/index.md",
       "n": "1",
+      "expands": "/notes/2026-08-09-recognition-under-correction",
       "figure": "figure.svg"
     }
   ],

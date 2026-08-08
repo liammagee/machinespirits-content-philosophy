@@ -26,6 +26,7 @@ SHA; the website Docker build fetches that exact revision.
 This package contains the Philosophy of Technology curriculum, including:
 
 - **Courses**: Machine Learning and Human Learning, Philosophy of AI, and more
+- **Research artifacts**: Public probes, course notes, and reading dispatches
 - **Theme**: Custom branding, colors, and typography
 - **Tutor Prompts**: Customized Ego/Superego agent prompts
 
@@ -57,6 +58,9 @@ content-philosophy/
 │   ├── 479/              # Machine Learning and Human Learning
 │   ├── 480/              # Philosophy of AI
 │   └── .../
+├── probes/                # Evaluation protocols at /lab/probes
+├── notes/                 # Public course notes at /notes
+├── reading-room/          # Editorial sources rendered at /research/dispatches
 ├── assets/               # Images, logos, media
 ├── theme/                # Colors, fonts
 ├── prompts/              # Custom tutor prompts

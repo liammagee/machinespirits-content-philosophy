@@ -51,7 +51,7 @@ them and fails the build on collisions or malformed slugs.
 |---|---|---|
 | `probes/` | `probes/probe-NN-<slug>/index.md` | `/lab/probes/probe-NN-<slug>` |
 | `notes/` | `notes/<YYYY-MM-DD->-<slug>.md` | `/notes/<YYYY-MM-DD->-<slug>` |
-| `reading-room/` | `reading-room/YYYY-MM-DD-author-title/index.md` | `/reading-room/YYYY-MM-DD-author-title` |
+| `reading-room/` | `reading-room/YYYY-MM-DD-author-title/index.md` | `/research/dispatches/YYYY-MM-DD-author-title` |
 
 Presentational frontmatter (read only for indexing/headers, never for state):
 
@@ -60,7 +60,8 @@ Presentational frontmatter (read only for indexing/headers, never for state):
   `status`, `figure` (one figure per probe; the build renders it).
 - **notes** (the *course-note* type) — `title`, `date`, `course` (which course
   it came from), `prompt`, `exercise`, `summary`.
-- **reading-room** — `author`, `title`, `year`, `our-note`, `source-url`,
+- **reading-room** — editorial dispatch sources rendered at
+  `/research/dispatches`; `author`, `title`, `year`, `our-note`, `source-url`,
   `source-pdf` (primary-text PDFs live on a CDN, **not** in this repo — see
   `WEBSITE-REFACTOR.md` §I.3), `date` (when we wrote the note).
 
