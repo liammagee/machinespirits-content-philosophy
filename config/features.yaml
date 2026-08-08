@@ -12,7 +12,7 @@ features:
   probes: true          # PUBLIC: /lab/probes (new content type — implementation pending §H.1)
   tutor-demo: true      # PUBLIC: /lab/demos/tutor (no-login Ego/Superego demo — pending §D.3)
   newsletter: true      # PUBLIC: /newsletter signup + archive
-  reading-room: true    # PUBLIC: /reading-room (was /reading; rename §D.5)
+  reading-room: true    # PUBLIC editorial dispatches: /research/dispatches; Focus Reader is /reading-room
   courses: true         # PUBLIC: /courses read-only syllabi + materials
 
   # --- Core tutor features (public demo + app) ---

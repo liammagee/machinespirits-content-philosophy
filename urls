@@ -26,7 +26,7 @@
 #            public_slug = fm `public_slug:` or id/dir name; /courses/<slug>
 #   probes   probes/<probe-NN-slug>/index.md; /lab/probes/<dir>
 #   notes    notes/<...>.md; /notes/<stem>
-#   reading  reading-room/<YYYY-MM-DD-author-title>/index.md; /reading-room/<dir>
+#   reading  reading-room/<YYYY-MM-DD-author-title>/index.md; /research/dispatches/<dir>
 #   fixed    the brand index/landing routes render-site always emits
 # Demos and videos have no corpus yet — emitting nothing is corpus reality, not
 # an omission (matches render-site's own feed comment).
@@ -177,7 +177,7 @@ emit_records() {
     [ -n "$f" ] || continue
     dir="$(basename "$(dirname "$f")")"
     lm="$(lastmod_for "$f" "$(fm_date "$f")")"
-    printf '%s\t%s\t%s\n' "/reading-room/${dir}" "$f" "$lm"
+    printf '%s\t%s\t%s\n' "/research/dispatches/${dir}" "$f" "$lm"
   done < <(find reading-room -mindepth 2 -maxdepth 2 -name index.md -type f 2>/dev/null | grep -v '/_' | LC_ALL=C sort || true)
 
   # Fixed brand routes render-site always emits — the public brand-prose
