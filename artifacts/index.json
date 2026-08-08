@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-08T21:27:45.622983Z",
+  "generated": "2026-08-08T23:41:17.106491Z",
   "count": 5,
   "artifacts": [
     {
@@ -101,6 +101,20 @@
       "source": "probes/probe-01-recognition-under-correction/index.md",
       "n": "1",
       "expands": "/notes/2026-08-09-recognition-under-correction",
+      "figure": "figure.svg"
+    },
+    {
+      "slug": "probe-02-suspended-judgment",
+      "url": "/lab/probes/probe-02-suspended-judgment",
+      "title": "Probe 02 — Suspended judgment",
+      "date": "2026-08-09",
+      "theme": "inquiry",
+      "summary": "A runnable dialogue probe for whether an AI tutor pauses when a learner's difficulty supports several explanations, or prematurely commits to one diagnosis and teaches past the uncertainty.",
+      "status": "protocol-v1",
+      "kind": "probe",
+      "source": "probes/probe-02-suspended-judgment/index.md",
+      "n": "2",
+      "expands": "/notes/2026-08-09-suspended-judgment",
       "figure": "figure.svg"
     }
   ],
