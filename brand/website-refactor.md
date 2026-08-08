@@ -15,7 +15,7 @@ Repos in scope:
 **Keep the React SPA and bolt on a real router, or split into a static public site + a separate `/app/*` React app?**
 
 - **Option A — one app, real router.** Add `react-router` (or similar), give every public page a real URL, lazy-load the LMS chunks behind `/app/*`. Least churn; ships fastest. Risk: the public site still loads (a slimmed) React bundle, still inherits the LMS's auth/context stack, and "simplify" stays partly cosmetic.
-- **Option B — split.** Public site (`/`, `/manifesto`, `/essays/*`, `/lab/*`, `/reading-room/*`, `/courses/*` read-only) becomes static or near-static (Astro / Eleventy / a thin Vite build) consuming the content package directly. The LMS (dashboards, eval, instructor, KB, experiment lab, dialogue sim, etc.) moves wholesale to `app.machinespirits.org` or `machinespirits.org/app/*`, untouched. Most work up front; gives the cleanest "haunted, not promotional" public surface and the cleanest separation for "locked off the main path."
+- **Option B — split.** Public site (`/`, `/manifesto`, `/essays/*`, `/lab/*`, `/notes/*`, `/research/dispatches/*`, `/courses/*` read-only) becomes static or near-static (Astro / Eleventy / a thin Vite build) consuming the content package directly. The interactive Focus Reader remains at `/reading-room`; the LMS (dashboards, eval, instructor, KB, experiment lab, dialogue sim, etc.) moves wholesale to `app.machinespirits.org` or `machinespirits.org/app/*`, untouched. Most work up front; gives the cleanest "haunted, not promotional" public surface and the cleanest separation for "locked off the main path."
 
 **Recommendation: B, phased.** Phase 1 = ship the public site as a small static build at the apex domain and reverse-proxy `/app/*` (and `/api/*`) to the existing Express+React app unchanged — i.e. *don't refactor the LMS at all yet, just move it behind a path*. Phase 2+ = iterate on the public site. This lets "general release" mean "the public face is right," not "we rewrote the LMS." If the team would rather not run two deploys, fall back to A — the workstreams below are written to apply either way; items that only matter for one option are tagged **[A]** or **[B]**.
 
@@ -42,8 +42,9 @@ Target public routes (from IDENTITY.md):
 | `/lab/probes/probe-NN-slug` | A probe (≤500 words + one figure) |
 | `/lab/demos` | Demo index |
 | `/lab/demos/tutor` | **Public, no-login tutor demo** with the Ego/Superego split visible (the headline software artifact) |
-| `/reading-room` | Reading-room index |
-| `/reading-room/YYYY-MM-DD-author-title` | A reading-room entry |
+| `/reading-room` | Interactive Focus Reader |
+| `/research/dispatches` | Editorial reading-dispatch index |
+| `/research/dispatches/YYYY-MM-DD-author-title` | A reading dispatch |
 | `/videos` | Video index (if/when videos exist) |
 | `/videos/YYYY-MM-DD-slug` | A video |
 | `/courses` | Courses landing — de-emphasized, "teaching home" framing, public syllabi |
@@ -114,7 +115,7 @@ STRATEGY: construction now narrows to **two software artifacts in active dev** �
 - [ ] **D.2** — `/lab/probes` index + `/lab/probes/probe-NN-slug` detail. **This requires a new `probes` content type in `content-philosophy`** — see §H. Probe template: ≤500 words, exactly one figure/chart, mono or mono-accented type, a "method" disclosure (`<details>`), a "discuss/cite" line, link to the essay or course-note that expands it.
 - [ ] **D.3** — `/lab/demos/tutor` — the headline artifact. A **public, no-login** tutor demo with the **Ego/Superego (or "proposer/checker") split-pane visible**: left = the tutor's draft reply, right = the critique/revision pass, then the final answer. Today this lives behind the LMS chat (`case 'chat'`, `/api/chat`, `/api/socratic`). Extract a standalone demo: a small page that hits a rate-limited public endpoint, ships a couple of canned conversation starters, and *shows the internal turn* (that visible self-checking is the whole point — it's the "recognition" claim made tangible). Add a clear "this is a demo; the full tutor lives inside courses" note linking `/courses` / `/app`.
 - [ ] **D.4** — `/lab/demos` index (tutor + warpstrike/`/games/warpstrike` if it's kept, + the content-philosophy `artifacts/*` interactive pieces like `hegel-recognition-explorer.html`, `design-audit-playground.html` — decide which of those graduate to "demo" vs get retired). Wire `content-philosophy/artifacts-index` output into this page.
-- [ ] **D.5** — `/reading-room` — the existing "reading" feature (`app.get('/reading')`, `/reading/*`, `public/texts/*.pdf`). Rename routes to `/reading-room/*`, give it the IDENTITY.md URL form (`/reading-room/YYYY-MM-DD-author-title`), and keep it as a curated "what we're reading + notes" surface. **Note:** `public/texts/` holds ~100 MB of arXiv PDFs — host those on the CDN / object storage, not in the repo (see §I).
+- [x] **D.5** — Route ownership resolved (2026-08-09): the interactive Focus Reader owns `/reading-room`; editorial "what we're reading" dispatches use `/research/dispatches/YYYY-MM-DD-author-title`. Primary-text PDFs remain external (`source-url` now; CDN/object storage later), not committed to the repo.
 - [ ] **D.6** — Strip LMS coupling from all lab pages (no enrolment, no progress, no auth wall) — the lab is fully public.
 - [ ] **D.7** — Demote the LMS-flavoured "lab" components from the public bundle: `ExperimentLab.tsx`, `ResearchDashboard.tsx`, `ResearchLabModal.tsx` belong to `/app`, not `/lab`. `/lab` is content + the tutor demo, not a dashboard.
 
@@ -178,8 +179,8 @@ The content package needs to learn the new vocabulary. It currently knows `artic
 
 - [ ] **H.1** — Add a `probes/` content source: `manifest.yaml` gains `content.probes: "./probes"`; create `probes/probe-01-<slug>/index.md` with frontmatter (`title`, `date`, `n` (probe number), `slug`, `figure` (path), `theme`, `summary`, `expands` (link to essay/course-note), `status`). One figure per probe; the build renders it.
 - [ ] **H.2** — Define the **course-note** type — either a frontmatter `type: course-note` on articles, or a `notes/` source. Frontmatter for course-notes: `title`, `date`, `course` (which course it came from), `prompt`, `exercise`, `summary`. Pick one and document it in `CONVENTIONS.md`.
-- [ ] **H.3** — Reading-room: formalize the `/reading-room/YYYY-MM-DD-author-title` form — a `reading-room/` source (or reuse `references/`) with `author`, `title`, `year`, `our-note`, `source-url`/`source-pdf` (PDF hosted on CDN, not in repo), `date` (when we wrote the note).
-- [ ] **H.4** — `urls` script: emit the IDENTITY.md scheme for every type — `/manifesto`, `/essays/YYYY-MM-DD-slug`, `/lab/probes/probe-NN-slug`, `/lab/demos/slug`, `/reading-room/YYYY-MM-DD-author-title`, `/notes/...`, `/videos/YYYY-MM-DD-slug`, `/courses/<id>`. Fail the build on collisions or malformed slugs.
+- [x] **H.3** — Reading dispatches formalized (2026-08-09): dedicated `reading-room/` source with `author`, `title`, `year`, `our-note`, `source-url`/`source-pdf`, and `date`, rendered publicly at `/research/dispatches/YYYY-MM-DD-author-title`.
+- [ ] **H.4** — `urls` script: emit the IDENTITY.md scheme for every type — `/manifesto`, `/essays/YYYY-MM-DD-slug`, `/lab/probes/probe-NN-slug`, `/lab/demos/slug`, `/research/dispatches/YYYY-MM-DD-author-title`, `/notes/...`, `/videos/YYYY-MM-DD-slug`, `/courses/<id>`. Fail the build on collisions or malformed slugs.
 - [ ] **H.5** — `sitemap` script: produce a real `sitemap.xml` (not just an internal map) covering all public URLs, with `lastmod` from frontmatter `date`/git.
 - [ ] **H.6** — `artifacts-index`: extend to include probes and demos, and emit the data the website's `/lab` pages consume (JSON the SPA/static build reads at build time).
 - [x] **H.7** — `config/navigation.yaml` rewritten (2026-05-13): public nav Essays · Lab · Courses · About + Subscribe, real paths. `app:` section and `footer:` section added. (Same as A.5.)
@@ -248,7 +249,7 @@ Not everything above blocks launch. Minimum viable "general release" (maps to ST
 **Fast-follow (weeks after launch, also Q1):**
 - [ ] §D.2 + §H.1 — the `probes` content type and `/lab/probes` (the first probe is a Q1 deliverable but the *type* can land just after the homepage)
 - [ ] §E.4 + §H.2 — course-notes as a public artifact type
-- [ ] §D.5 + §H.3 — `/reading-room` formalized
+- [x] §D.5 + §H.3 — Focus Reader and editorial dispatch routes separated and formalized
 - [ ] §G.6 — new logo/sigil if the current mark is the old one
 - [ ] §I.3, I.5–I.8, I.10, I.12 — finish the repo cleanup
 - [ ] §J.6–J.9 — canonicals, analytics/consent, Search Console

@@ -232,11 +232,12 @@ bundle, still inherits the LMS’s auth/context stack, and “simplify”
 stays partly cosmetic.</li>
 <li><strong>Option B — split.</strong> Public site (<code>/</code>,
 <code>/manifesto</code>, <code>/essays/*</code>, <code>/lab/*</code>,
-<code>/reading-room/*</code>, <code>/courses/*</code> read-only) becomes
-static or near-static (Astro / Eleventy / a thin Vite build) consuming
-the content package directly. The LMS (dashboards, eval, instructor, KB,
-experiment lab, dialogue sim, etc.) moves wholesale to
-<code>app.machinespirits.org</code> or
+<code>/notes/*</code>, <code>/research/dispatches/*</code>,
+<code>/courses/*</code> read-only) becomes static or near-static (Astro
+/ Eleventy / a thin Vite build) consuming the content package directly.
+The interactive Focus Reader remains at <code>/reading-room</code>; the
+LMS (dashboards, eval, instructor, KB, experiment lab, dialogue sim,
+etc.) moves wholesale to <code>app.machinespirits.org</code> or
 <code>machinespirits.org/app/*</code>, untouched. Most work up front;
 gives the cleanest “haunted, not promotional” public surface and the
 cleanest separation for “locked off the main path.”</li>
@@ -325,11 +326,15 @@ split visible (the headline software artifact)</td>
 </tr>
 <tr>
 <td><code>/reading-room</code></td>
-<td>Reading-room index</td>
+<td>Interactive Focus Reader</td>
 </tr>
 <tr>
-<td><code>/reading-room/YYYY-MM-DD-author-title</code></td>
-<td>A reading-room entry</td>
+<td><code>/research/dispatches</code></td>
+<td>Editorial reading-dispatch index</td>
+</tr>
+<tr>
+<td><code>/research/dispatches/YYYY-MM-DD-author-title</code></td>
+<td>A reading dispatch</td>
 </tr>
 <tr>
 <td><code>/videos</code></td>
@@ -583,15 +588,12 @@ content-philosophy <code>artifacts/*</code> interactive pieces like
 graduate to “demo” vs get retired). Wire
 <code>content-philosophy/artifacts-index</code> output into this
 page.</label></li>
-<li><label><input type="checkbox" /><strong>D.5</strong> —
-<code>/reading-room</code> — the existing “reading” feature
-(<code>app.get('/reading')</code>, <code>/reading/*</code>,
-<code>public/texts/*.pdf</code>). Rename routes to
-<code>/reading-room/*</code>, give it the IDENTITY.md URL form
-(<code>/reading-room/YYYY-MM-DD-author-title</code>), and keep it as a
-curated “what we’re reading + notes” surface. <strong>Note:</strong>
-<code>public/texts/</code> holds ~100 MB of arXiv PDFs — host those on
-the CDN / object storage, not in the repo (see §I).</label></li>
+<li><label><input type="checkbox" checked="" /><strong>D.5</strong> —
+Route ownership resolved (2026-08-09): the interactive Focus Reader owns
+<code>/reading-room</code>; editorial “what we’re reading” dispatches
+use <code>/research/dispatches/YYYY-MM-DD-author-title</code>.
+Primary-text PDFs remain external (<code>source-url</code> now;
+CDN/object storage later), not committed to the repo.</label></li>
 <li><label><input type="checkbox" /><strong>D.6</strong> — Strip LMS
 coupling from all lab pages (no enrolment, no progress, no auth wall) —
 the lab is fully public.</label></li>
@@ -833,18 +835,18 @@ source. Frontmatter for course-notes: <code>title</code>,
 <code>date</code>, <code>course</code> (which course it came from),
 <code>prompt</code>, <code>exercise</code>, <code>summary</code>. Pick
 one and document it in <code>CONVENTIONS.md</code>.</label></li>
-<li><label><input type="checkbox" /><strong>H.3</strong> — Reading-room:
-formalize the <code>/reading-room/YYYY-MM-DD-author-title</code> form —
-a <code>reading-room/</code> source (or reuse <code>references/</code>)
-with <code>author</code>, <code>title</code>, <code>year</code>,
-<code>our-note</code>, <code>source-url</code>/<code>source-pdf</code>
-(PDF hosted on CDN, not in repo), <code>date</code> (when we wrote the
-note).</label></li>
+<li><label><input type="checkbox" checked="" /><strong>H.3</strong> —
+Reading dispatches formalized (2026-08-09): dedicated
+<code>reading-room/</code> source with <code>author</code>,
+<code>title</code>, <code>year</code>, <code>our-note</code>,
+<code>source-url</code>/<code>source-pdf</code>, and <code>date</code>,
+rendered publicly at
+<code>/research/dispatches/YYYY-MM-DD-author-title</code>.</label></li>
 <li><label><input type="checkbox" /><strong>H.4</strong> —
 <code>urls</code> script: emit the IDENTITY.md scheme for every type —
 <code>/manifesto</code>, <code>/essays/YYYY-MM-DD-slug</code>,
 <code>/lab/probes/probe-NN-slug</code>, <code>/lab/demos/slug</code>,
-<code>/reading-room/YYYY-MM-DD-author-title</code>,
+<code>/research/dispatches/YYYY-MM-DD-author-title</code>,
 <code>/notes/...</code>, <code>/videos/YYYY-MM-DD-slug</code>,
 <code>/courses/&lt;id&gt;</code>. Fail the build on collisions or
 malformed slugs.</label></li>
@@ -1063,8 +1065,9 @@ probe is a Q1 deliverable but the <em>type</em> can land just after the
 homepage)</label></li>
 <li><label><input type="checkbox" />§E.4 + §H.2 — course-notes as a
 public artifact type</label></li>
-<li><label><input type="checkbox" />§D.5 + §H.3 —
-<code>/reading-room</code> formalized</label></li>
+<li><label><input type="checkbox" checked="" />§D.5 + §H.3 — Focus
+Reader and editorial dispatch routes separated and
+formalized</label></li>
 <li><label><input type="checkbox" />§G.6 — new logo/sigil if the current
 mark is the old one</label></li>
 <li><label><input type="checkbox" />§I.3, I.5–I.8, I.10, I.12 — finish

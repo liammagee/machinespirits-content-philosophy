@@ -100,7 +100,8 @@ Reserve these even if dormant. Owner: Liam Magee (`liam.magee@gmail.com`).
 - **Essays on site**: dated path `/essays/YYYY-MM-DD-slug`.
 - **Probes / eval results**: `/lab/probes/probe-NN-slug`.
 - **Demos**: `/lab/demos/slug` (link from public-tutor-demo onwards).
-- **Reading-room dispatches**: `/reading-room/YYYY-MM-DD-author-title`.
+- **Reading-room dispatches**: `/research/dispatches/YYYY-MM-DD-author-title`
+  (the interactive Focus Reader separately owns `/reading-room`).
 - **Videos**: `/videos/YYYY-MM-DD-slug` mirrored on YouTube.
 
 ## Bio one-liners (reusable)
