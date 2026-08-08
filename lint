@@ -6,9 +6,10 @@
 #   ./lint --strict   # exit non-zero if any published article has a gap (CI)
 #
 # State is location/form (see CONVENTIONS.md "The rule"); this NEVER changes it.
-# For each PUBLISHED article (articles/**/*.html, minus any _* path) it reads
-# the sibling .md's frontmatter and checks the presentational fields the
-# /essays index needs: title, date (YYYY-MM-DD), theme, dek.
+# For each ESSAY-ELIGIBLE published article (articles/**/*.html, minus any _*
+# path and the deliberate non-essay hold-outs shared with ./urls/render-site)
+# it reads the sibling .md's frontmatter and checks the presentational fields
+# the /essays index needs: title, date (YYYY-MM-DD), theme, dek.
 # slug (path-derived) and reading time (computed) are intentionally not checked.
 # See CONVENTIONS.md "Index metadata (presentational frontmatter)".
 
@@ -26,6 +27,25 @@ esac
 is_hidden() {
   # True if any path component starts with _
   [[ "$1" =~ (^|/)_ ]]
+}
+
+# MIRRORS urls/render-site essay_excluded -- keep in sync. These paths remain
+# served on another surface (or deliberately held out), but are not /essays
+# index candidates and therefore do not need essay metadata.
+essay_excluded() {
+  local art="${1#articles/}"
+  case "$art" in
+    _*|*/_*)                                     return 0 ;;
+    TRIAGE.*|sitemap.*)                          return 0 ;;
+    hegel-primary-texts/*)                       return 0 ;;
+    publications/*)                              return 0 ;;
+    hegel-essays/hegel-voice-1.*)                return 0 ;;
+    ai-tutor/machinagogy-v2.*)                   return 0 ;;
+    ai-tutor/full-paper-2026-01-28.*)            return 0 ;;
+    ai-pedagogy/geist-explained.*)               return 0 ;;
+    ai-pedagogy/multiagent-tutor-architecture.*) return 0 ;;
+  esac
+  return 1
 }
 
 # Print the first YAML frontmatter block (between a line-1 '---' and the next
@@ -52,12 +72,17 @@ value_of() {
 clean=0
 flagged=0
 nomd=0
+excluded=0
 flagged_lines=()
 nomd_lines=()
 
 while IFS= read -r html; do
   rel="${html#./}"
   is_hidden "$rel" && continue
+  if essay_excluded "$rel"; then
+    excluded=$((excluded+1))
+    continue
+  fi
 
   md="${html%.html}.md"
   if [ ! -f "$md" ]; then
@@ -110,7 +135,7 @@ if [ "$nomd" -gt 0 ]; then
   echo
 fi
 
-echo "Clean: $clean   Needs metadata: $flagged   Hand-authored (.html only): $nomd"
+echo "Clean: $clean   Needs metadata: $flagged   Excluded from /essays: $excluded   Hand-authored (.html only): $nomd"
 
 if [ -n "$strict" ] && [ "$flagged" -gt 0 ]; then
   exit 1
