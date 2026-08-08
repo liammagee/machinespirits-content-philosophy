@@ -34,6 +34,11 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
+# The editorial hold-out list is content-owned and shared with ./lint and the
+# brand renderer. Missing or malformed policy is a hard failure.
+source lib/essay-exclusions.sh
+load_essay_exclusions "${ESSAY_EXCLUSIONS_MANIFEST:-config/essay-exclusions.txt}"
+
 base="https://machinespirits.org"
 out="sitemap.xml"
 plain=""
@@ -114,25 +119,6 @@ lastmod_for() {
   local g; g="$(git_lastmod "$1")"
   is_iso "$g" && printf '%s' "$g"
   return 0
-}
-
-# ---- essay exclusions (MIRRORS render-site essay_excluded — keep in sync) --
-# Durable decision: todo.md §3.3 line 60 / TRIAGE.md "post-sweep state".
-# These articles/-relative paths are served on another surface (reading-room,
-# /about, /probes) so /essays must not list them.
-essay_excluded() {
-  case "$1" in
-    _*|*/_*)                                     return 0 ;;
-    TRIAGE.*|sitemap.*)                          return 0 ;;
-    hegel-primary-texts/*)                       return 0 ;;
-    publications/*)                              return 0 ;;
-    hegel-essays/hegel-voice-1.*)                return 0 ;;
-    ai-tutor/machinagogy-v2.*)                   return 0 ;;
-    ai-tutor/full-paper-2026-01-28.*)            return 0 ;;
-    ai-pedagogy/geist-explained.*)               return 0 ;;
-    ai-pedagogy/multiagent-tutor-architecture.*) return 0 ;;
-  esac
-  return 1
 }
 
 # ---- URL enumeration ------------------------------------------------------
