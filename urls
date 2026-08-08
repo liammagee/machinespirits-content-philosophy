@@ -126,6 +126,7 @@ essay_excluded() {
     TRIAGE.*|sitemap.*)                          return 0 ;;
     hegel-primary-texts/*)                       return 0 ;;
     publications/*)                              return 0 ;;
+    hegel-essays/hegel-voice-1.*)                return 0 ;;
     ai-tutor/machinagogy-v2.*)                   return 0 ;;
     ai-tutor/full-paper-2026-01-28.*)            return 0 ;;
     ai-pedagogy/geist-explained.*)               return 0 ;;

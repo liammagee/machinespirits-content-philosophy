@@ -31,9 +31,11 @@ is still served; it just appears thinly in the index.
 | `slug` | — | **Derived from the file path** — do not author a `slug:` key. |
 | reading time | — | **Computed** from word count at index time — not authored. |
 
-The frontmatter audit (`./lint`, below) reports — but never blocks — published
-files that are missing or malforming these. Missing index metadata degrades the
-listing only; it never changes whether the page is served.
+The frontmatter audit (`./lint`, below) reports — but never blocks — published,
+essay-eligible files that are missing or malforming these. It applies the same
+deliberate non-essay exclusions as `./urls` and the brand renderer. Missing
+index metadata degrades the listing only; it never changes whether the page is
+served.
 
 ## New content sources: `probes/`, `notes/`, `reading-room/`
 
@@ -111,10 +113,11 @@ For each `articles/**/*.md` and `courses/**/*.md` outside `_*` paths:
 
 ## What `./lint` does
 
-Audits **index metadata**, never state. For each *published* article (the
-location rule: `articles/**/*.html` minus `_*` paths) it reads the sibling
-`.md`'s frontmatter and reports any missing/malformed `title`, `date`
-(`YYYY-MM-DD`), `theme`, or `dek`.
+Audits **index metadata**, never state. For each *published, essay-eligible*
+article (the location rule: `articles/**/*.html` minus `_*` paths and the
+deliberate non-essay exclusions mirrored in `./urls` and the brand renderer) it
+reads the sibling `.md`'s frontmatter and reports any missing/malformed `title`,
+`date` (`YYYY-MM-DD`), `theme`, or `dek`.
 
 - Report-only by default — a thin entry is a quality issue, not a build error.
 - `./lint --strict` exits non-zero on any gap (for future CI).

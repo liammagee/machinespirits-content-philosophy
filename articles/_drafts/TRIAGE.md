@@ -1,5 +1,5 @@
 # Articles triage
-# Last reviewed: 2026-05-16
+# Last reviewed: 2026-08-08
 #
 # Three fates: PUBLISH (public essay/probe/reading-room entry on the site),
 #              INTERNAL (not public — teaching notes, tooling docs, drafts),
@@ -42,6 +42,7 @@
 # future /essays indexer MUST exclude these paths):
 #   hegel-primary-texts/*                    → /reading-room
 #   publications/publications.*              → /about (or /publications)
+#   hegel-essays/hegel-voice-1.*             → held out (misfiled cinema notes; correct source required)
 #   ai-tutor/machinagogy-v2.*                → /probes  (formal paper)
 #   ai-pedagogy/geist-explained.html         → /probes  (its reader's guide)
 #   ai-pedagogy/multiagent-tutor-architecture.* → /probes  (Drama-Machine paper, decided 2026-05-16)
@@ -53,7 +54,7 @@
 #
 # BUG: hegel-essays/hegel-voice-1.md is mis-saved — its title/body are
 # "Character Development in Contemporary Cinema" (film notes), not Hegel.
-# Needs the correct source pasted in before it can publish. (Liam.)
+# It is explicitly held out of /essays until the correct source is restored.
 
 ## _drafts/
 fate: INTERNAL
@@ -91,8 +92,8 @@ files:
 ## hegel-essays/
 fate: PUBLISH (essays)
 files:
-  - hegel-voice-1.md    # → essay; BUG: file holds cinema notes, not Hegel — BLOCKED on correct source (theme: recognition once fixed)
-  - hegel-voice-2.md    # → essay "Back to the Future with Hegel"; theme: recognition; dek HELD until raw-transcript cleanup (prose will change)
+  - hegel-voice-1.md    # → held out; BUG: file holds cinema notes, not Hegel — BLOCKED on correct source (theme: recognition once fixed)
+  - hegel-voice-2.md    # → essay "Back to the Future with Hegel"; index metadata repaired 2026-08-08; transcript cleanup still warranted
   - discarded-master.md # → essay; INDEX-CLEAN 2026-05-16 (theme: recognition; dek written; date 2024-01-01 provisional)
 
 ## hegel-primary-texts/
