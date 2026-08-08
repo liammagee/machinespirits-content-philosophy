@@ -60,7 +60,7 @@ The one-liner — *recognition theory + working software + pedagogy; none of the
 
 ### Architecture decision (resolved 2026-05-13)
 
-**Option A — one React SPA with `react-router`.** The existing `machinespirits-website` (React 19 + Vite + Tailwind + Express, deployed on Fly.io) gains a real client-side router. Every public page (`/`, `/manifesto`, `/essays/*`, `/lab/*`, `/reading-room/*`, `/courses/*`, `/about`, `/tools`) gets a real URL via `react-router`. The LMS (dashboards, eval, instructor, KB, etc.) is lazy-loaded behind `/app/*` and remains login-gated. No second deploy; no split.
+**Option A — one React SPA with `react-router`.** The existing `machinespirits-website` (React 19 + Vite + Tailwind + Express, deployed on Fly.io) gains a real client-side router. Every public page (`/`, `/manifesto`, `/essays/*`, `/lab/*`, `/notes/*`, `/research/dispatches/*`, `/courses/*`, `/about`, `/tools`) gets a real URL via `react-router`; the interactive Focus Reader remains at `/reading-room`. The LMS (dashboards, eval, instructor, KB, etc.) is lazy-loaded behind `/app/*` and remains login-gated. No second deploy; no split.
 
 *Trade-off accepted*: the public side still loads a (code-split) React bundle; "simplify" is partly cosmetic in Phase 1. If bundle size becomes a problem, Option B (static public site + proxy) is revisited in Phase 2.
 

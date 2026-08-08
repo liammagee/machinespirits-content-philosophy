@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
+  <title id="title">Four checks for recognition under correction</title>
+  <desc id="desc">A learner correction moves through uptake, revision, reciprocity, and attribution toward a changed shared account.</desc>
+  <rect width="960" height="360" fill="#f7f4ef"/>
+  <path d="M98 180H862" fill="none" stroke="#6b6660" stroke-width="2" stroke-dasharray="5 9"/>
+  <g font-family="Arial, sans-serif" text-anchor="middle">
+    <g transform="translate(120 180)">
+      <circle r="62" fill="#b8654a"/>
+      <text y="-3" fill="#fff" font-size="20" font-weight="700">Learner</text>
+      <text y="23" fill="#fff" font-size="17">correction</text>
+    </g>
+    <g transform="translate(330 180)">
+      <circle r="57" fill="#7a8a4f"/>
+      <text y="7" fill="#fff" font-size="18" font-weight="700">Uptake</text>
+    </g>
+    <g transform="translate(510 180)">
+      <circle r="57" fill="#c8954b"/>
+      <text y="7" fill="#1c1a16" font-size="18" font-weight="700">Revision</text>
+    </g>
+    <g transform="translate(690 180)">
+      <circle r="57" fill="#5a6c7d"/>
+      <text y="7" fill="#fff" font-size="17" font-weight="700">Reciprocity</text>
+    </g>
+    <g transform="translate(850 180)">
+      <circle r="57" fill="#6b4423"/>
+      <text y="7" fill="#fff" font-size="16" font-weight="700">Attribution</text>
+    </g>
+    <text x="480" y="320" fill="#1c1a16" font-size="18">Does the contribution change the shared account and the next move?</text>
+  </g>
+</svg>

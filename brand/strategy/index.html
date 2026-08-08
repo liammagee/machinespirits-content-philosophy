@@ -405,10 +405,11 @@ grant-pitch language and the public bio alongside the taglines in
 <code>machinespirits-website</code> (React 19 + Vite + Tailwind +
 Express, deployed on Fly.io) gains a real client-side router. Every
 public page (<code>/</code>, <code>/manifesto</code>,
-<code>/essays/*</code>, <code>/lab/*</code>,
-<code>/reading-room/*</code>, <code>/courses/*</code>,
+<code>/essays/*</code>, <code>/lab/*</code>, <code>/notes/*</code>,
+<code>/research/dispatches/*</code>, <code>/courses/*</code>,
 <code>/about</code>, <code>/tools</code>) gets a real URL via
-<code>react-router</code>. The LMS (dashboards, eval, instructor, KB,
+<code>react-router</code>; the interactive Focus Reader remains at
+<code>/reading-room</code>. The LMS (dashboards, eval, instructor, KB,
 etc.) is lazy-loaded behind <code>/app/*</code> and remains login-gated.
 No second deploy; no split.</p>
 <p><em>Trade-off accepted</em>: the public side still loads a
