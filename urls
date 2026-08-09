@@ -18,7 +18,7 @@
 #   ./urls sitemap -o <file>     # write sitemap.xml elsewhere
 #   ./urls --plain               # no colour
 #
-# URL derivation MIRRORS render-site (brand repo) exactly — the two tools share
+# URL derivation mirrors the website-owned Techne renderer exactly — the tools share
 # no code but must agree on the URL space or the sitemap advertises 404s:
 #   essays   articles/**/*.html w/ sibling .md, not essay_excluded;
 #            slug = .html basename; /essays/<date>-<slug> (ISO date fm) | /essays/<slug>
@@ -27,7 +27,7 @@
 #   probes   probes/<probe-NN-slug>/index.md; /lab/probes/<dir>
 #   notes    notes/<...>.md; /notes/<stem>
 #   reading  reading-room/<YYYY-MM-DD-author-title>/index.md; /research/dispatches/<dir>
-#   fixed    the brand index/landing routes render-site always emits
+#   fixed    the public index/landing routes render-site always emits
 # Demos and videos have no corpus yet — emitting nothing is corpus reality, not
 # an omission (matches render-site's own feed comment).
 
@@ -35,7 +35,7 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 # The editorial hold-out list is content-owned and shared with ./lint and the
-# brand renderer. Missing or malformed policy is a hard failure.
+# website renderer. Missing or malformed policy is a hard failure.
 source lib/essay-exclusions.sh
 load_essay_exclusions "${ESSAY_EXCLUSIONS_MANIFEST:-config/essay-exclusions.txt}"
 
@@ -180,17 +180,17 @@ emit_records() {
     printf '%s\t%s\t%s\n' "/research/dispatches/${dir}" "$f" "$lm"
   done < <(find reading-room -mindepth 2 -maxdepth 2 -name index.md -type f 2>/dev/null | grep -v '/_' | LC_ALL=C sort || true)
 
-  # Fixed brand routes render-site always emits — the public brand-prose
+  # Fixed routes the website renderer always emits — the public prose
   # contract. Must stay === the website's server.js public brand routes:
   # brandProseRoutes (manifesto/about/colophon) + the /,/essays,/lab,/courses,
   # /tools,/newsletter page routes, all asserted by
   # scripts/smoke-brand-surface.mjs. The /identity,/strategy,/social,
   # /website-refactor docs render-site also emits are internal working notes,
-  # not public surface — deliberately excluded. No lastmod — brand-driven, and
+  # not public surface — deliberately excluded. No lastmod — shell-driven, and
   # <lastmod> is optional in the protocol.
   local r
   for r in / /manifesto /about /colophon /essays /lab /courses /tools /newsletter; do
-    printf '%s\t%s\t%s\n' "$r" "(brand route)" ""
+    printf '%s\t%s\t%s\n' "$r" "(website route)" ""
   done
 }
 

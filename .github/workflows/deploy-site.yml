@@ -1,4 +1,4 @@
-name: Validate Public Site Package
+name: Validate Public Content Package
 
 on:
   push:

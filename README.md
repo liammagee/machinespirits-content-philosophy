@@ -4,24 +4,24 @@ Content package for the Machine Spirits learning platform.
 
 ## Repository role and publishing
 
-This repo is the source of course and essay content and the owner of the
-generated `brand/` mirror. Do not hand-edit `brand/`; it is produced by the
-sibling `machinespirits-brand` repo.
+This repo is the source of courses, essays, probes, notes, reading dispatches,
+media, and publication metadata. Public HTML is rendered during the website
+Docker build by the website-owned Techne renderer; no generated site mirror is
+committed here.
 
-Normal public releases enter through the brand repo so source content and the
-public mirror move together:
+Normal content releases begin here:
 
 ```bash
-cd ../machinespirits-brand
-./check
-./publish-to-content --publish -m "Describe the public-site update"
+./validate
+./publish --check
+./publish -m "Describe the content update"
 ```
 
 For a content-side preflight without staging or pushing, run `./publish --check`.
 The content workflow validates each push without holding a write-capable token
-for another repository. The website owns deployment: every website release
-resolves and pins content `master`, and a scheduled drift check deploys a newer
-validated content SHA when production differs.
+for another repository. The website owns rendering and deployment: every
+website release resolves and pins content `master`, and a scheduled drift check
+deploys a newer validated content SHA when production differs.
 
 ## Overview
 
