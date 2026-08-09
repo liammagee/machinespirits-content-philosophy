@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Publish content edits to machinespirits.org.
 #
-# Stages only the deployable package surface, commits, and pushes. The push triggers
-# a GitHub Action that dispatches a `content-updated` event to the website
-# repo, which redeploys via Fly.io. Site is live in ~3-5 min.
+# Stages only the deployable package surface, commits, and pushes. The website
+# resolves validated content master on its scheduled drift check and deploys an
+# exact pinned revision when production differs.
 #
 # Usage:
 #   ./publish                              # auto-generated commit message
@@ -70,7 +70,7 @@ fi
 # Only runtime/package paths belong in a content publication commit. Tooling,
 # docs, editor state, and other repo-local work stay untouched and visible.
 publish_paths=(
-  articles artifacts assets brand config courses notes probes prompts
+  articles artifacts assets config courses notes probes prompts
   reading-room references theme manifest.yaml package.json sitemap.xml
 )
 git add -A -- "${publish_paths[@]}"
