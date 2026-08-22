@@ -1,5 +1,5 @@
 
-## Introducing Hegel and The Concept of Experience (`Erfahrung')
+## Introducing Hegel and The Concept of Experience (*Erfahrung*)
 
 
 
