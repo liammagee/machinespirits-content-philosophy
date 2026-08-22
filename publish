@@ -103,11 +103,20 @@ git pull --rebase --autostash
 git push
 
 sha=$(git rev-parse --short HEAD)
+full_sha=$(git rev-parse HEAD)
 
+# Deployment is pull-owned: this repo only validates. The website resolves and
+# pins content master itself, and its scheduled drift check (cron */15) deploys
+# this revision once production differs. Nothing is dispatched from here.
 cat <<EOF
 
-Pushed ${sha}. Site rebuild starts now (~3-5 min).
-  Live:    https://machinespirits.org
-  Actions: https://github.com/liammagee/machinespirits/actions
-  Watch:   gh run watch -R liammagee/machinespirits
+Pushed ${sha}. Validation runs here; the site deploys on the website's next
+drift check (every 15 min, sometimes longer when GitHub defers schedules).
+  Live:      https://machinespirits.org
+  Validate:  https://github.com/liammagee/machinespirits-content-philosophy/actions
+  Deploys:   https://github.com/liammagee/machinespirits/actions
+  Watch:     gh run watch -R liammagee/machinespirits
+
+Deploy this revision immediately instead of waiting:
+  gh workflow run deploy.yml -R liammagee/machinespirits -f content_revision=${full_sha}
 EOF
