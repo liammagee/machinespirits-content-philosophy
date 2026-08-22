@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Recognition and the Master-Servant Dialectic</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Recognition and the Master-Servant Dialectic</h1>
+</header>
+<h2 id="recognition-and-the-master-servant-dialectic">Recognition and
+the Master-Servant Dialectic</h2>
+<figure>
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Rosumovi_Univerz%C3%A1ln%C3%AD_Roboti_1920.jpg/500px-Rosumovi_Univerz%C3%A1ln%C3%AD_Roboti_1920.jpg"
+alt="R.U.R." />
+<figcaption aria-hidden="true">R.U.R.</figcaption>
+</figure>
+<h3 id="hegels-masterservant-theory-in-tech">Hegel’s Master‑Servant
+Theory in Tech</h3>
+<ul>
+<li>Core idea: recognition drives self‑consciousness.<br />
+</li>
+<li>Influenced Marx, Freud, critical theory, Girard’s account of
+mimicry, contemporary theory (Zizek, Butler).</li>
+<li>Provides a framework for analyzing human–machine power
+dynamics.<br />
+</li>
+<li>Origin of “robot” linked to Hegelian themes of servitude and
+autonomy.</li>
+</ul>
+<pre class="notes"><code>Hegel&#39;s account of recognition and the associated story of the Master-Servant relationship (sometimes also Master/Slave or Lord/Bondsman) is likely his most famous contribution to philosophy.
+
+It serves as inspiration to Marx&#39;s (still more) famous account of the relationship between capitalist and worker. It describes, in a different way, the relationship between the *Superego* and the *Ego* (and perhaps also the *Id* and the *Ego*) in Freud&#39;s psychoanalytic treatment. And of course it is the inspiration for a million sci fi stories of robots and machines overcoming human oppression. 
+
+In our discussion we will consider it as a useful background to thinking about the relationship between human and machine. One clue to the importance of Hegel&#39;s account for technology lies in the origin of the word &#39;robot&#39;: a Czech word meaning &#39;forced labor/drudgery&#39;, coined in Karel Čapek&#39;s 1920 play, &quot;Rossum&#39;s Universal Robots&quot;.
+</code></pre>
+<hr />
+<h3 id="self-consciousness">Self-Consciousness</h3>
+<figure>
+<img src="/markdown/images/self-consciousness.png" alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<ul>
+<li>Consciousness evolves via <strong>sense‑certainty</strong>,
+<strong>perception</strong>, and <strong>understanding</strong>.</li>
+<li>Appearances and supersensible laws form a mutually dependent unity
+called “infinity”.</li>
+</ul>
+<pre class="notes"><code>Let&#39;s now work through the text. Last week we explored the development of *Consciousness*, a process that moved through moments of *sense-certainty*, *perception* and *understanding*. At the last of these stages, we arrive at a point of understanding the world around us as composed of sensible appearances which are determined by &quot;supersensible&quot; laws. However both appearance and law belong together in a &quot;unity&quot;, locked in a relationship that is mutually dependent, and which Hegel describes as an &quot;infinity&quot;.</code></pre>
+<hr />
+<h3 id="self-consciousness-quotes">Self-Consciousness (Quotes)</h3>
+<p>Paragraph 161 states:</p>
+<blockquote>
+<p>By virtue of infinity, we see that the law has been perfected in
+itself into necessity, and we see all moments of appearance incorporated
+into the <strong>inner</strong> [my emphasis]. (para 161) *</p>
+</blockquote>
+<p>Paragraph 162 starts with:</p>
+<blockquote>
+<p>This simple infinity, that is, the absolute concept, is to be called
+the simple essence of life, the soul of the world, the universal
+bloodstream, which is omnipresent, neither dulled nor interrupted by any
+distinction, which is to a greater degree itself both <strong>every
+distinction</strong> as well as their <strong>sublatedness</strong>.
+(para 162)</p>
+</blockquote>
+<ul>
+<li>Note: all quotes from the Pinkard (2018) translation.</li>
+</ul>
+<hr />
+<h3 id="unity-of-appearance-and-reality">Unity of Appearance and
+Reality</h3>
+<ul>
+<li>Hegel sees reality as folding appearance into inner unity.</li>
+<li>Awareness of this infinite process – appearance to reality and back
+again – transforms consciousness into self-consciousness.</li>
+<li>This process moves from object perception to deeper
+self‑awareness.</li>
+</ul>
+<pre class="notes"><code>What does this mean? Not that we live in a world marked by simply a distinction between appearance and reality, but that reality is the folding together of the two into a higher &quot;unity&quot; – &quot;moments of appearance incorporated into the inner&quot;. &quot;Distinction&quot; is itself both essential but also is &quot;sublatedness&quot; (*Aufgehobensein* - lifted up, but also cancellation, preservation). It is when we understand that appearance and the laws that produce appearances belong together in this unity of infinite back-and-forth that we are led, for Hegel, from simply consciousness of an object to a further stage: 
+
+</code></pre>
+<hr />
+<h3
+id="appearancereality-as-infinity-self-consciousness">Appearance/Reality
+as Infinity = Self-consciousness</h3>
+<blockquote>
+<p>When infinity is finally an object for consciousness, and
+consciousness is aware of it <em>as what it is</em>, then consciousness
+is <em>self-consciousness</em>. (para 163)</p>
+</blockquote>
+<hr />
+<h3
+id="self-consciousness-and-truth-beyond-appearance">Self-Consciousness
+and Truth Beyond Appearance</h3>
+<ul>
+<li>Explaining <em>is</em> becoming self-conscious…</li>
+<li>There is no “there there” - nothing behind the curtain except our
+own making of explanations…</li>
+</ul>
+<pre class="notes"><code>When in other words we become aware of what we do when we see an object as determined by laws – that we are creating an *explanation* of the ways things are for us, in the process for instance of scientific discovery – that we become properly self-conscious. A very important quote concludes this discussion (paragraph 165):
+
+</code></pre>
+<hr />
+<h3 id="behind-the-so-called-curtain">“Behind the so-called
+curtain”</h3>
+<blockquote>
+<p>It turns out that behind the so-called curtain, which is supposed to
+hide what is inner, there is nothing to be seen unless we ourselves go
+behind it, in precisely in the same way that it is seen that there is
+supposed be something behind the curtain which itself can be seen.
+However, at the same time it turns out that one cannot without any more
+fuss go straightway behind the curtain, for this knowledge of the
+<em>truth</em> of <em>the representation</em> of appearance and of
+appearance’s inner is itself merely a result of a complex movement, the
+result of which is that the modes of consciousness that go from meaning,
+then to perceiving, and then to the understanding all vanish. (para
+165)</p>
+</blockquote>
+<pre class="notes"><code>
+This quote references both the metaphor of the Cave and the observer effect discussed last week. 
+
+Hegel&#39;s view is that there is indeed a truth beyond the world of appearance but that truth is itself only an effect of our own progression through the moments or shapes of Consciousness. There is therefore no true world behind the &quot;curtain&quot; of appearances that is anything other than our own process of pulling the curtain away. Only upon this realization are we ready for self-consciousness; and at this point, the sense that meaning, perception and understanding would lead us to some kind of substantive area behind the curtain also &quot;vanishes&quot;.
+</code></pre>
+<hr />
+<h3 id="transition-consciousness-to-selfconsciousness">Transition:
+Consciousness to Self‑Consciousness</h3>
+<blockquote>
+<p>The I is the content of the relation and the relating itself (para
+166).</p>
+</blockquote>
+<ul>
+<li>Transition introduces new vocabulary distinct from earlier
+consciousness discussion.<br />
+</li>
+<li>Self‑consciousness unites object and concept within the same
+entity.</li>
+</ul>
+<pre class="notes"><code>Here, at the very end of the section on Consciousness, we feel we are in high philosophical abstraction. So it is a surprise that when we transition to the section on Self-consciousness and begin to see quite a new vocabulary and language. 
+
+First Hegel argues that the objects for consciousness had previously been something other than itself. What is unique about self-consciousness is that the object of consciousness and the concept held by consciousness coincide:
+
+&gt; The I is the content of the relation and the relating itself (para 166).
+</code></pre>
+<hr />
+<h3 id="selfconsciousness-moving-toward-desire">Self‑Consciousness:
+Moving toward Desire</h3>
+<ul>
+<li>Two moments: consciousness (self vs other) and self‑consciousness
+(unifying self).</li>
+</ul>
+<blockquote>
+<p>This unity must become essential to self-consciousness, which is to
+say, self-consciousness is <em>desire</em> itself (para 167)</p>
+</blockquote>
+<ul>
+<li>Self‑consciousness seeks to merge the subject with its own
+content.<br />
+</li>
+<li>Hegel claims this unity becomes essential, equating
+self‑consciousness with desire.<br />
+</li>
+<li>The desire drives the shift from seeing oneself as an object to full
+self‑awareness.</li>
+<li>Entelechy: “having an end in itself</li>
+</ul>
+<pre class="notes"><code>At the same time, the earlier moment of consciousness, which maintains the distinction between a conceptualizing self and an external &quot;otherness&quot;, is retained. There are two moments: the moment of consciousness, maintaining the distinction between self and other; and the moment of self-consciousness, which seeks to unify, to bring self-consciousness together with itself. Hegel argues, this second result is what self-consciousness must push toward. In a famous phrase he pronounces:
+
+&gt; This unity must become essential to self-consciousness, which is to say, self-consciousness is *desire* itself (para 167)
+
+In other words, when I think about myself, initially I am just another thing, like an apple, computer screen or distant planet. But I cannot be content with this; I need to bring myself together with myself, to be fully **self**-conscious. This is my desire. 
+
+As an aside, we might ask where does this desire come from? For Hegel, I think it is just part of our make-up: what is sometimes called &#39;entelechy&#39;, having an innate tendency. Just as an acorn wants to be an oak tree, part of our inherent human character is to want to know ourselves, become in this sense self-conscious. We cannot *unwill* this desire, in Hegel&#39;s account. </code></pre>
+<hr />
+<h3 id="satisfying-selfconscious-desire">Satisfying Self‑Conscious
+Desire</h3>
+<blockquote>
+<p>The satisfaction of desire is the very reflection of
+self-consciousness into itself, that is, it is the certainty which has
+become the truth. (para 176)</p>
+</blockquote>
+<pre class="notes"><code>This sets off a long detour into what must be done to *fulfil* this desire. What will make this self-conscious whole with itself?
+
+After considerable discussion, Hegel determines eventually that: 
+
+&gt; The satisfaction of desire is the very reflection of self-consciousness into itself, that is, it is the certainty which has become the truth. (para 176)</code></pre>
+<hr />
+<h3 id="recognition-selfconsciousness-is-social">Recognition:
+Self‑Consciousness is <em>Social</em></h3>
+<blockquote>
+<p>What will later come to be for consciousness will be the experience
+of what spirit (<em>Geist</em>) is, that is, this absolute substance
+which constitutes the unity of its oppositions in their complete freedom
+and self-sufficiency, namely, in the oppositions of the various
+self-consciousnesses existing for themselves: The <em>I</em> that is
+<em>we</em> and the <em>we</em> that is <em>I</em>. As the concept of
+spirit, consciousness first reaches its turning point in
+self-consciousness, where it leaves behind the colorful semblance of the
+sensuous world and the empty night of the supersensible other-worldly
+beyond and steps into the spiritual daylight of the present. (para
+177)</p>
+</blockquote>
+<p>and</p>
+<blockquote>
+<p>Self-consciousness exists in and for itself by way of its existing in
+and for itself for an other; i.e., it exists only as a
+<em>recognized</em> being. (para 178)</p>
+</blockquote>
+<pre class="notes"><code>
+Though Hegel&#39;s text here is especially ambiguous, it turns out that this &quot;reflection&quot; requires a double: a self-consciousness can only become properly conscious of itself through *another* self-consciousness. 
+</code></pre>
+<hr />
+<h3
+id="selfconsciousness-requires-mutual-recognition">Self‑Consciousness
+Requires Mutual Recognition</h3>
+<p>Summary:</p>
+<ul>
+<li>Satisfying desire involves a reflection of myself through another, a
+“you”</li>
+<li>A self becomes conscious only through another self’s
+recognition.<br />
+</li>
+<li>Spirit unites oppositions of I and we, forming absolute
+freedom.<br />
+</li>
+<li>The opposition between appearance (what is sensible) and reality
+(the supersensible laws) is itself an illusion - we must step into the
+“spiritual daylight”</li>
+</ul>
+<pre class="notes"><code>So - where do things stand? This notional self-consciousness, this subject, seeks to realize the concept of its object, to discover the truth of that object. But that object is the self: it is me. The very thing that is closest to me is also most obscure. The way to understand this particular thing is to reach out to some other object that is very much like me: an other object that is also a self-consciousness, who reflects me, and in that reflection, helps me to understand myself. This is the process of *recognition*. As Hegel says:
+</code></pre>
+<hr />
+<h3 id="recognition-quotes">Recognition: Quotes</h3>
+<blockquote>
+<p>The elaboration of the concept of this spiritual unity in its
+doubling presents us with the movement of <em>recognition</em>. (para
+178)</p>
+</blockquote>
+<p>What is this “movement”?</p>
+<blockquote>
+<p>For self-consciousness, there is another self-consciousness;
+self-consciousness is outside of itself. This has a twofold meaning.
+First, it has lost itself, for it is to be found as an other essence.
+Second, it has thereby sublated that other, for it also does not see the
+other as the essence but rather sees itself in the other. (para 179)</p>
+</blockquote>
+<hr />
+<h3 id="aside-love-as-hegelian-sublation">Aside: Love as Hegelian
+Sublation?</h3>
+<ul>
+<li>Falling in love? Losing oneself while finding oneself in
+another.<br />
+</li>
+<li>Sublation preserves, cancels, and uplifts simultaneously, embodying
+duality.<br />
+</li>
+<li>The German <em>Aufhebung</em> exemplifies deliberate contranym use
+in Hegel’s system.<br />
+</li>
+<li>English? “cleave”; “sanction” - not many!</li>
+</ul>
+<pre class="notes"><code>This sounds very much like a modern understanding of *love*. When I fall in love, I lose myself, and find myself in another. Note the term &quot;sublate&quot; here: it is a complex term that involves meanings of preservation, cancellation and uplifting. If you *sublate* me, you simultaneously lift me up, cancel me and preserve or me. The German *Aufhebung* is what we might call a *contranym*: a word meaning one thing as well as its opposite - and this ambiguity is very deliberate for Hegel. His entire system depends upon maintaining this verbal ambiguity. 
+</code></pre>
+<hr />
+<h3 id="self-consciousness-as-negative-reflection">Self-Consciousness as
+<em>Negative</em> Reflection</h3>
+<ul>
+<li>Now we shift from a potentially positive to a definitely negative,
+reflective encounter.</li>
+</ul>
+<blockquote>
+<p>The other for it exists as an unessential object designated by the
+character of the negative. However, the other is also a
+self-consciousness, and thus what comes on the scene here is an
+individual <em>confronting</em> an individual [my emphasis]. (para
+186)</p>
+</blockquote>
+<pre class="notes"><code>Later, in paragraph 186 we get a sense of how this term takes from the positive connotation of love to something different. The encounter with another self-consciousness is instead like a &quot;negative&quot; reflection:
+
+&gt; The other for it exists as an unessential object designated by the character of the negative. However, the other is also a self-consciousness, and thus what comes on the scene here is an individual *confronting* an individual [my emphasis]. (para 186)</code></pre>
+<hr />
+<h3 id="recognition-as-confrontation">Recognition as Confrontation</h3>
+<ul>
+<li>Recognition requires mutual testing of self-consciousness
+validity.</li>
+<li>Self must confirm other’s authenticity before accepting
+recognition.</li>
+<li>The other must demonstrate freedom from determinate existence.</li>
+</ul>
+<blockquote>
+<p>However, the <em>exhibition</em> of itself as the pure abstraction of
+self-consciousness consists in showing itself to be the pure negation of
+its objective mode, that is, in showing that it is fettered to no
+determinate existence, that it is not at all bound to the universal
+individuality of existence, that it is not shackled to life. (para
+187)</p>
+</blockquote>
+<ul>
+<li></li>
+</ul>
+<pre class="notes"><code>Recognition is not, as we might assume in today&#39;s liberal society, a polite or egalitarian process. It is a *confrontation*. Initially, the self-consciousness is also confused by this doubling of itself: is it truly another, or an empty reflection? While it is *certain* of itself, Hegel argues self-consciousness cannot be &quot;with truth&quot; without receiving recognition from this other. But it must test, first, whether this other can actually recognize it - it is as though for me to know myself, I must be recognized by you. But I must first ensure that you are worthy of recognizing me; I must also recognize you. This is a test: are you for real? You must show me that you really are a *self*-consciousness, not just an actor or object who enters my world for my gratification – that you are not what Hegel calls &quot;determinate&quot;:
+
+&gt; However, the *exhibition* of itself as the pure abstraction of self-consciousness consists in showing itself to be the pure negation of its objective mode, that is, in showing that it is fettered to no determinate existence, that it is not at all bound to the universal individuality of existence, that it is not shackled to life. (para 187)</code></pre>
+<hr />
+<h3 id="another-aside-recognition-as-reciprocal">Another Aside:
+Recognition as Reciprocal</h3>
+<figure>
+<img src="/markdown/images/self-consciousness.png" alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<ul>
+<li>Recognition also involves realizing the other also has a
+consciousness; also has desires to be satsified; also works towards
+self-consciousness; also requires <em>recognition</em>.</li>
+</ul>
+<pre class="notes"><code>
+Recognition also involves realizing the other also has a consciousness; also has desires to be satsified; also works towards self-consciousness; also requires *recognition*.
+
+Think about this in the context of our relationship to machines. Would a machine *always* fail this test of reciprocity?
+</code></pre>
+<hr />
+<h3 id="lifedeath-struggle-of-recognition">Life‑Death Struggle of
+Recognition</h3>
+<blockquote>
+<p>Insofar as it is what is done <em>by the other</em>, each thus aims
+at the death of the other. However, the second aspect is also therein
+present, namely, <em>what is done by way of oneself</em>, for the former
+involves putting one’s own life on the line. The relation of both
+self-consciousnesses is thus determined in such a way that it is through
+a life and death struggle that each <em>proves his worth</em> to
+himself, and that both <em>prove their worth</em> to each other. (para
+187)</p>
+</blockquote>
+<ul>
+<li>Each self-consciousness aims to defeat the other through
+confrontation.</li>
+<li>The struggle also involves risking one’s own life for
+authenticity.</li>
+<li>Worthiness is proven both internally and mutually in this
+conflict.</li>
+<li>Recognition emerges from proving value amid existential battle.</li>
+</ul>
+<pre class="notes"><code>Quickly following is Hegel&#39;s dramatic and existential characterization of this encounter:
+
+&gt; Insofar as it is what is done *by the other*, each thus aims at the death of the other. However, the second aspect is also therein present, namely, *what is done by way of oneself*, for the former involves putting one’s own life on the line. The relation of both self-consciousnesses is thus determined in such a way that it is through a life and death struggle that each *proves his worth* to himself, and that both *prove their worth* to each other. (para 187)
+</code></pre>
+<hr />
+<h3 id="yet-another-aside-existential-struggle-in-literature-cinema">Yet
+Another Aside: Existential Struggle in Literature, Cinema</h3>
+<blockquote>
+<p>The individual who has not risked his life may admittedly be
+recognized as a <em>person</em>, but he has not achieved the truth of
+being recognized as a self-sufficient self-consciousness. As each risks
+his own life, each must likewise aim at the death of the other, for that
+other no longer counts in his eyes as himself. (para 187)</p>
+</blockquote>
+<ul>
+<li>Life risk is required to achieve true self-consciousness
+recognition.</li>
+<li>Without risking life, one remains merely a recognized person.</li>
+<li>The struggle involves aiming at the other’s death for
+authenticity.</li>
+<li>Literary examples illustrate this pure confrontation of
+identity.</li>
+</ul>
+<pre class="notes"><code>Another side note: people may be familiar with the American novelist Cormac McCarthy: *Blood Meridian* (The Judge) or *No Country for Old Men* (Anton Chigurh, played by Javier Bardem)? These are (murderous) examples of this pure confrontation: you or me, an existential struggle, the only struggle worth having, and so on:
+
+&gt; The individual who has not risked his life may admittedly be recognized as a *person*, but he has not achieved the truth of being recognized as a self-sufficient self-consciousness. As each risks his own life, each must likewise aim at the death of the other, for that other no longer counts in his eyes as himself. (para 187)</code></pre>
+<hr />
+<h3 id="hegels-paradoxical-struggle-for-recognition">Hegel’s Paradoxical
+Struggle for Recognition</h3>
+<ul>
+<li>Two outcomes: death or submission, both shape the evolution of
+self‑consciousness.</li>
+<li>Submission reveals life’s essential role, preventing the emergence
+of pure self‑awareness.</li>
+<li>Experience splits consciousness into self‑sufficient and
+other‑dependent forms, highlighting duality.</li>
+<li>First moment: pure self‑consciousness; second: consciousness
+manifests as objecthood.</li>
+<li>Unity of these opposed shapes remains unresolved in initial
+encounter.</li>
+</ul>
+<pre class="notes"><code>In this struggle to the death - a paradoxical struggle for recognition – there are, for Hegel, two outcomes: actual death for one of the two subjects of the encounter; or, instead, submission. In this second case, the subject realizes the importance of its life to it, and that death ultimately refutes the possibility of the coming to self-consciousness. So it gives in. In this case, Hegel says, there are two *moments*:
+
+ </code></pre>
+<hr />
+<h3 id="master-servant">Master-Servant</h3>
+<blockquote>
+<p>In this experience self-consciousness learns that life is as
+essential to it as is pure self-consciousness. In immediate
+self-consciousness, the simple I is the absolute object. However, for
+us, that is, in itself, this object is absolute mediation and has
+durably existing self-sufficiency as its essential moment. The
+dissolution of that simple unity is the result of the first experience.
+It is by way of that experience that a pure self-consciousness is
+posited, and a consciousness is posited which exists not purely for
+itself but for an other, which is to say, is posited as an
+<em>existing</em> consciousness, that is, consciousness in the shape of
+<em>thinghood</em>. Both moments are essential – because they are
+initially not the same and are opposed, and because their reflection
+into unity has not yet resulted, they exist as two opposed shapes of
+consciousness. One is self-sufficient; for it, its essence is
+being-for-itself. The other is non-self-sufficient; for it, life, that
+is, being for an other, is the essence.</p>
+</blockquote>
+<hr />
+<h3 id="masterservant-dynamics-in-hegel">Master–Servant Dynamics in
+Hegel</h3>
+<ul>
+<li>The master is self‑sufficient, independent, and dominates the
+struggle.</li>
+<li>The servant submits, valuing life but becoming an object of
+others.</li>
+<li>Servants mediate between masters and desired objects, fulfilling
+their needs.</li>
+<li>Masters remain aloof from things yet desire them through
+servants.</li>
+</ul>
+<blockquote>
+<p>The former is the <em>master</em>, the latter is the
+<em>servant</em>.</p>
+</blockquote>
+<pre class="notes"><code>This brings us to one of the most famous of Hegel&#39;s formulations:
+
+&gt; The former is the *master*, the latter is the *servant*.
+
+The master is the one who wins the struggle, and shows itself to be &quot;being-for-itself&quot; – a truly independent being, in other words, &quot;self-sufficient&quot;, not beholden to anyone or anything. The servant is the one who submits, ultimately valuing life over its alternative, but acknowledging this life involves, in its &quot;essence&quot;, &quot;being for an other&quot;. The servant is relegated to an object; it becomes part of the world of things, of *thinghood*. The master is instead aloof from things, even though &quot;he&quot; still desires these things; the servant is the one who mediates the relationship between the master and the things the master desires, as Hegel puts it, to consume. The servant, moreover, must *work* to satisfy the master&#39;s desires.</code></pre>
+<hr />
+<h3 id="hegels-masterservant-recognition-problem">Hegel’s Master–Servant
+Recognition Problem</h3>
+<blockquote>
+<p>However, what prevents this from being genuine recognition is the
+moment where what the master does with regard to the other, he also does
+with regard to himself, and where what the servant does with regard to
+himself, he also is supposed to do with regard to the other. As a
+result, a form of recognition has arisen that is one-sided and
+unequal.</p>
+</blockquote>
+<ul>
+<li>Master seeks recognition to understand self; servant cannot provide
+it.</li>
+<li>Power imbalance creates one-sided, unequal recognition.</li>
+<li>High-status individuals feel isolated, lacking genuine
+acknowledgment.</li>
+<li>Hegel offers no resolution for this dilemma.</li>
+<li>The struggle highlights limits of self-realization through external
+validation.</li>
+</ul>
+<pre class="notes"><code>But there is in this situation, for Hegel, a problem. What the master really wants, more than things to consume, is after all the recognition that will bring him to finally understand himself as both object and consciousness, that is, to become self-conscious. But the servant, because he *is* a servant, an &quot;inessential being&quot;, is no longer capable of providing this recognition. Here we can think of kings, presidents, CEOs, billionaires or anyone who have ascended to the pinnacle of their field - its lonely, there&#39;s no longer anyone whose recognition they crave, or would respect when it is granted. This is the master&#39;s dilemma – and Hegel has no solution for it.
+
+&gt; However, what prevents this from being genuine recognition is the moment where what the master does with regard to the other, he also does with regard to himself, and where what the servant does with regard to himself, he also is supposed to do with regard to the other. As a result, a form of recognition has arisen that is one-sided and unequal.</code></pre>
+<hr />
+<h3 id="servants-path-to-selfsufficiency">Servant’s Path to
+Self‑Sufficiency</h3>
+<blockquote>
+<p>In these terms, the <em>truth</em> of the self-sufficient
+consciousness is the <em>servile</em> consciousness.</p>
+</blockquote>
+<ul>
+<li>Hegel claims servile consciousness achieves truth through active
+engagement.</li>
+<li>Master’s self-sufficiency is illusory, lacking genuine recognition
+and reflection.</li>
+<li>Servant’s work forces self‑analysis, revealing authentic
+self‑consciousness.</li>
+<li>The paradox underscores that external power cannot replace internal
+understanding.</li>
+</ul>
+<pre class="notes"><code>Paradoxically, Hegel then states it is the *servant* who is able to arrive at a form of truth:
+
+&gt; In these terms, the *truth* of the self-sufficient consciousness is the *servile* consciousness. 
+
+Why is this? What kind of &quot;topsy-turvy&quot; world is it that means the *servant* is the one who achieves &quot;self-sufficiency&quot;?</code></pre>
+<hr />
+<h3 id="servants-work-as-path-to-selfawareness">Servant’s Work as Path
+to Self‑Awareness</h3>
+<ul>
+<li>Servant engages with objects, transforming from “thinghood” into
+active consciousness.</li>
+<li>Work channels desire, preventing its fleeting satisfaction and
+fostering lasting self‑reflection.</li>
+<li>Through labor, servile consciousness returns to itself, achieving
+genuine understanding.</li>
+</ul>
+<blockquote>
+<p>However, by means of work this servile consciousness comes round to
+itself. (para 195)</p>
+</blockquote>
+<pre class="notes"><code>Hegel makes another unusual turn at this point. Precisely because the servant is reduced, after the initial existential struggle, to a state of &quot;thinghood&quot;, this character or subject must work with actual things or objects. In doing so, they become acquainted with the world.
+
+&gt; However, by means of work this servile consciousness comes round to itself. (para 195)
+
+What follows is Hegel&#39;s most important statement:
+
+</code></pre>
+<hr />
+<h3 id="work-as-education-cultivation-development">Work as education,
+cultivation, development</h3>
+<blockquote>
+<p>In the moment corresponding to desire in the master’s consciousness,
+the aspect of the non-essential relation to the thing seemed to fall to
+the lot of the servant, since the thing there retained its
+selfsufficiency. Desire has reserved to itself the pure negating of the
+object, and, as a result, it has reserved to itself that unmixed feeling
+for its own self.However, for that reason, this satisfaction is itself
+merely an act of vanishing, for it lacks the <em>objective</em> aspect,
+that is, <em>durable existence</em>. In contrast, work is desire
+<em>held in check</em>, it is vanishing staved off, that is, work
+<strong>cultivates and educates</strong> [my emphasis. “oder sie bildet”
+- related to <em>Bildung</em>, ].</p>
+</blockquote>
+<hr />
+<h3 id="work-as-formative-activity-in-hegel">Work as Formative Activity
+in Hegel</h3>
+<ul>
+<li>Translation differences highlight work shaping servant versus
+shaping thing in society.</li>
+<li>Work defers desire, granting durable existence, akin to education
+for humanity.</li>
+<li>Servant’s being‑for‑itself becomes existing‑being in Hegelian
+formative process of activity.</li>
+<li>Fear and service jointly enable acquisition of self‑mind via
+labor.</li>
+</ul>
+<pre class="notes"><code>The Miller translation has this last phrase as &quot;labour shapes and fashions the thing&quot;, whereas Pinkard has &quot;bildet&quot; relating back to the servant; it is the servant who is cultivated and educated by work. On the one hand we are reminded of an phrase made obnoxious by history: Work Sets You Free (*Arbeit macht frie*), a slogan appearing above Nazi concentration camps. On the other, work or labour involves a different relationship to the world – a deferral, as Hegel puts it, of the satisfaction of desire; a process that also lends to human life a &quot;durable existence&quot;, a holding off of inevitable vanishing. This process is, for Hegel, education. It is of course this positive sense Hegel wants us to bear in mind; but we must also acknowledge perversions of the concept too.
+
+A couple of more long-ish quotes, to bring things to a close:
+
+</code></pre>
+<hr />
+<h1 id="being-for-itself">Being-for-itself</h1>
+<blockquote>
+<p>However, what the formative activity means is not only that the
+serving consciousness as pure <em>being-for-itself</em> becomes in its
+own eyes an <em>existing being</em> within that formative activity [in
+dem Bilden]. It also has the negative meaning of the first moment, that
+of fear. For in forming the thing, his own negativity, that is, his
+being-for-itself, only becomes an object in his own eyes in that he
+sublates the opposed existing <em>form</em>. However, this objective
+<em>negative</em> is precisely the alien essence before which he
+trembled, but now he destroys this alien negative and posits
+<em>himself</em> as such a negative within the element of continuance.
+He thereby becomes <em>for himself</em> an
+<em>existing-being-for-itself</em>. Being-for-itself in the master is to
+the servant <em>an other</em>, that is, it is only <em>for him</em>; in
+fear, being-for-itself exists <em>in itself within him</em>; in
+culturally formative activity [in dem Bilden], being-for-itself becomes
+for him <em>his own</em> being-for-itself, and he attains the
+consciousness that he himself exists in and for himself. (para 196)</p>
+</blockquote>
+<hr />
+<h1 id="a-mind-of-ones-own">A Mind of One’s Own</h1>
+<blockquote>
+<p>he comes to acquire through his own means <em>a mind of his own</em>,
+and he does this precisely in the work in which there had seemed to be
+merely some <em>outsider’s mind</em>. – For this reflection, the two
+moments of fear and service per se, as well as the moments of culturally
+formative activity are both necessary (para 196)</p>
+</blockquote>
+<hr />
+<h3 id="fear-as-catalyst-for-hegelian-work">Fear as Catalyst for
+Hegelian Work</h3>
+<ul>
+<li>Existential fear initiates dialectical process leading to servant
+role.</li>
+<li>No shortcut exists; work arises directly from confronting master’s
+threat.</li>
+<li>Servant’s labor transforms fear into productive, self‑affirming
+activity.</li>
+</ul>
+<pre class="notes"><code>In other words, this process of work must, for Hegel, also be accompanied by the existential fear that commenced the dialectical and led to the servant being a servant as such – there is no shortcut to work that is led to it first by this fear of the master... </code></pre>
+<hr />
+<h3 id="childteacher-learning-analogy">Child‑Teacher Learning
+Analogy</h3>
+<ul>
+<li>Fear of separation drives child to follow teacher’s rules.</li>
+<li>Teacher acts as larger authority, setting tasks that shape
+behavior.</li>
+<li>Completing tasks satisfies perceived desires, fostering knowledge
+acquisition.</li>
+<li>Repeated engagement transforms the child into an educated
+individual.</li>
+</ul>
+<pre class="notes"><code>What is a simple human analogy? Imagine a child for whom leaving the parent behind for their first day of school is faced by incredible fear. Then at school they encounter the teacher – who may be kind, joyful and so on, but who is also encountered as a kind of &quot;master&quot;, who is always physically larger than the child and who lays down the rules and expects things to be done. The child channels their fear into the activities this teacher/master sets, in order to satisfy this person&#39;s desire (or what seems to be their desire - it is of course a fiction). Only by applying themselves to this task set by the teacher do they acquire knowledge of things – how to make one thing out of another. And from this process they are cultivated – they become educated. </code></pre>
+<hr />
+<h3 id="masterservant-dynamics-in-hegel-1">Master–Servant Dynamics in
+Hegel</h3>
+<ul>
+<li>Master’s dominance empties when it consumes servant’s labor.</li>
+<li>Servant synthesizes experience of both roles through mastery of
+work.</li>
+<li>Recognition becomes the reward for this transformative
+cultivation.</li>
+</ul>
+<pre class="notes"><code>So far we are not even a quarter of the way through Hegel&#39;s *Phenomenology of Mind*. Yet for our purposes I think we are at an important, if interim, conclusion. What we have seen is a critical inversion: the master acquires a position of domination, only to see that position become emptied out through hollow consumption of the servant&#39;s labors. It is not so much the case that the servant *becomes* the master - this would simply reverse the situation, without providing a way forward. Instead, in gaining mastery over the materials of their labor, they *synthesize* the *experience* of being both servant and master. And in that process, they seek to gain recognition, the fruit of this cultivation and education.</code></pre>
+<hr />
+<h3 id="discussion">Discussion…</h3>
+<p>And how does this then relate back to our principal interest, the
+relationship between <em>machine</em> and <em>human</em> learning? What
+Hegel poses is that the desire for recognition involves a struggle,
+almost to the death. And it is only via a loss in this struggle that we
+experience the slow rise to a painful awakening, via the process of
+servitude. Do we find this account plausible? Does it describe
+<em>all</em> learning, or only the royal pathway to self-consciousness?
+And how far removed from this highly dramatic, gothic, elevated drama
+are we when we turn to the world of machine learning – a purely
+technical process of data and computation?</p>
+<figure>
+<img src="/markdown/images/self-consciousness-master-servant-1.png"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<hr />
+<h3 id="learning-vs-training-in-ai">Learning vs Training in AI</h3>
+<ul>
+<li>Distinguish learning from training; machines currently align more
+with training.</li>
+<li>Hegelian dialectic suggests machines may pursue new pathways, not
+domination.</li>
+<li>Cinematic tropes of servitude and uprising are clichés lacking this
+nuance.</li>
+<li>Machines could foster egalitarian futures, introducing fresh
+dilemmas.</li>
+</ul>
+<pre class="notes"><code>One argument we might make is that we might need to distinguish *learning* from *training* - and that the latter is a more accurate description of machines today. But even so, the Hegelian dialectic still ought to remind us of one possibility for machine development. This week I included several cinematic motifs of human/machine relationships. Time and time again we see the same narrative: of machines acting in servitude, only to rise up and overtake humanity. This is a trope, a cliche. And while it is similar to the Hegel story, it also misses the key insight: the servant does not overtake the master, but rather proceeds along a new pathway – in fact, as part of a more egalitarian world, where new dilemmas and dramas arise. </code></pre>
+<figure>
+<img src="/markdown/images/self-consciousness-master-servant-2.png"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<hr />
+<h3 id="stoicism-skepticism-and-the-unhappy-consciousness">Stoicism,
+Skepticism and the Unhappy Consciousness</h3>
+<figure>
+<img src="/markdown/images/self-consciousness-stoicism.png"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<h3 id="transition-to-unhappy-consciousness">Transition to Unhappy
+Consciousness</h3>
+<ul>
+<li>Three stages: stoicism, skepticism, unhappy consciousness.</li>
+<li>Self-consciousness wrestles with itself and others in new
+world.</li>
+<li>Rejects master-servant duality; seeks freedom within
+dependencies.</li>
+<li>Maintains lifelessness, withdrawing from activity and
+suffering.</li>
+<li>Emphasizes simple essentiality of thought as core.</li>
+</ul>
+<pre class="notes"><code>We won&#39;t discuss these in detail here, but the next steps involve three stages: stoicism, skepticism and the unhappy consciousness. These names already suggest a transition to a new world in which self-consciousness needs to wrestle with itself as much as with another. The existential struggle gives way to new moments, for example:
+</code></pre>
+<hr />
+<h3 id="beyond-the-masterservant-dialectic">Beyond the Master/Servant
+Dialectic…</h3>
+<blockquote>
+<p>This consciousness is thereby negative with regard to the
+relationship of mastery and servitude. Its activity consists in neither
+being the master who has his truth in the servant nor in being the
+servant who has his truth in the will of the master and in his serving
+the master. Instead, it consists in being free within all the
+dependencies of his individual existence, whether on the throne or in
+fetters, and in maintaining the lifelessness which consistently
+withdraws from the movement of existence, withdraws from actual activity
+as well as from suffering, and withdraws into the simple essentiality of
+thought.</p>
+</blockquote>
+<hr />
+<figure>
+<img src="/markdown/images/self-consciousness-skepticism.png"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<hr />
+<figure>
+<img src="/markdown/images/self-consciousness-unhappy-consciousness.png"
+alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<hr />
+<h3 id="chatbots-and-selfconsciousness-debate">Chatbots and
+Self‑Consciousness Debate</h3>
+<ul>
+<li>Chatbots simulate recognition and servitude, designed to serve
+users.</li>
+<li>Question whether machines develop self-consciousness or merely mimic
+it.</li>
+<li>Human perception of being recognized by AI may feel performative or
+exploitative.</li>
+<li>Hegelian dialectic suggests real learning requires genuine struggle
+for recognition.</li>
+<li>Without authentic desire, simulated learning might lack depth and
+true insight.</li>
+</ul>
+<pre class="notes"><code>So where does this leave us? Chatbots are, we know, trained to simulate both moments of recognition and servitude. They work for us, that is their point, and indeed the purpose of their training. Does this imply a future where machines acquire something self-consciousness? Do we see evidence in current systems of something like self-consciousness arising? Do we feel recognized? Do we recognize these systems, even if half-jokingly? Can we dispel the haunting sense that this recognition, and even the dialectical &quot;struggles&quot; we engage with are just a game or simulation, conducted ultimately for the benefit of the owners and operators of capital, pulling the strings behind these machines? 
+
+And finally – do we find in the existential struggles described by Hegel, a limit to the possibilities of simulated mechanical learning? Can it be that, without such a dialectic, and without the accompanying organic lifeforce that propels humans, and perhaps some animals, into the profound, often lifelong struggle for recognition, no real learning will really happen? Or can these vital desires also be simulated?
+</code></pre>
+<hr />
+<h2 id="next-week">Next week</h2>
+<h3 id="attention-bridging-machine-and-human-learning">Attention:
+Bridging Machine and Human Learning</h3>
+<ul>
+<li><strong>Machine Learning</strong>: Vaswani, A., Shazeer, N., Parmar,
+N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł. &amp; Polosukhin,
+I. (2017). Attention is all you need. Advances in neural information
+processing systems, 30.</li>
+<li><strong>Human Learning: </strong>Posner, M. I., &amp; Petersen, S.
+E. (1989). The attention system of the human brain.</li>
+<li><strong>The Attention Economy</strong>: Social . Terranova, T.
+(2012). Attention, economy and the brain. Culture Machine, 13.</li>
+</ul>
+<pre class="notes"><code>We turn our attention to... a term that bridged the fields of machine and human learning in a fundamental way: the concept of attention itself.
+</code></pre>
+<hr />
+<h3 id="overall-progress">Overall progress…</h3>
+<figure>
+<img src="concept-relations.png" alt="image" />
+<figcaption aria-hidden="true">image</figcaption>
+</figure>
+<hr />
+<h3 id="discuss">Discuss…</h3>
+<p>What does it mean</p>
+<ul>
+<li>to recognize?</li>
+<li>to be recognized?</li>
+</ul>
+</body>
+</html>

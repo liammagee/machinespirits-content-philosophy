@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>lecture-8</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h2 id="hegels-revenge-the-return-of-the-grand-récit">Hegel’s Revenge:
+The Return of the <em>Grand Récit</em>?</h2>
+<ul>
+<li>From Synthesis (Week 1) back to Synthesis (Week 8)</li>
+<li>But what is being synthesized? Review of key concepts Weeks 2 – 7
+<ul>
+<li>Experience</li>
+<li>Recognition</li>
+<li>Attention</li>
+<li>Consciousness</li>
+<li>Alignment</li>
+<li>Critique</li>
+</ul></li>
+</ul>
+<pre class="notes"><code>So far in this course we have traversed a wide array of concepts, loosely guided by Hegel&#39;s early but influential account of learning - as I have interpreted *The Phenomenology of Spirit*. 
+
+Today we return to our originating concept of *Synthesis* – a return to the beginning that echoes Hegel&#39;s own description of Spirit in that text, with hopefully the benefit of some lessons along the way. Each week we&#39;ve covered a key concept – sometimes derived from Hegel, sometimes not – and sought to mobilize that concept to understand something about the emerging differences and similarities between machine and human learning.  In returning to Week one&#39;s concept, I&#39;ll summarize the concepts we&#39;ve covered in Weeks 2–7 - closing the loop, as it were, by returning to Week one&#39;s key concept of *Synthesis*.</code></pre>
+<hr />
+<h3 id="synthesis-as-a-concept">Synthesis as a Concept</h3>
+<ul>
+<li>Conceptual meaning: bringing together other concepts</li>
+<li>Historical meaning: bringing together past periods into a united
+present
+<ul>
+<li>Liberal democracies bring together prior Greek and Christian periods
+(Hegel; Fukuyama)</li>
+<li>Communism brings together prior feudal and capitalist periods
+(Marx)</li>
+<li>Transhumanism / posthumanism / technopoeisis / cybersocial: bring
+together elements of the organic (pre-industrial; romantic) and the
+mechanical (industrial; post-romantic)</li>
+</ul></li>
+<li>Pedagogical meaning: we synthesize concepts in a cumulative way,
+when we are ready, in conjuction with others (cf. Vygotsky’s Zone of
+Proximal Development - Vygotsky was apparently himself influenced by
+Hegel)</li>
+</ul>
+<pre class="notes"><code>But first, a note about the term &quot;synthesis&quot; itself.
+One question to bear in mind for today, the final assignment and perhaps beyond: how do these seven concepts work together to form a *theory* of intelligence, consciousness or what – following Kant and Hegel here too – we can call the &quot;automated subject&quot;. This is one sense of the term &quot;synthesis&quot; - the bringing together of a series of concepts in order to produce something new. 
+
+But there is another sense to hold on to - synthesis as a process that unfolds, and which includes the social historical process we all belong to. We can see examples of this in all the readings this week. Following Hegel, many kinds of discussions about the future involve some kind of implicit idea using this historical sense of synthesis - that we are &quot;rolling up&quot; elements of the past into the present and future. Even attempts to characterize how machines and humans might operate together employ this idea more or less explicitly: that we start with a pre-industrial society, evolve to an industrial or mechanized society, and now need to move forward to a post-industrial society that blends both &quot;moments&quot; of development and moves beyond them.</code></pre>
+<hr />
+<h3 id="ontogeny-recapitulates-phylogeny">“Ontogeny recapitulates
+phylogeny”</h3>
+<ul>
+<li>Individual development follows the pattern of social development
+(infancy &gt; adolescence &gt; maturity (Spencer, Freud, many
+others))</li>
+</ul>
+<pre class="notes"><code>One key quote here – a piece of early 19th century biology that sounds as though it could come from Hegel:
+
+ - &quot;ontogeny recapitulates phylogeny&quot;
+ 
+This means something like the individual&#39;s history follows that of the species. In social terms: our own development (from infancy to adolescence to maturity) follows that of society&#39;s (from early to middle to late stages of development). See Herbert Spencer on pedagogy. This partly accounts from Hegel&#39;s shift in the Phenomenology from psychological to sociological language - and while many might wish to deny it, this pseudo-fallacy – of a relationship between individual and group – lives in variants of the narrative we tell ourselves even about technology.  
+</code></pre>
+<hr />
+<h3 id="experience">Experience</h3>
+<ul>
+<li>For Hegel, experience is the synthesis of concepts and sensory
+perception</li>
+<li>Perceptions correct concepts…</li>
+<li>But perceptions can be fallible, so we need <em>laws</em> - made up
+of concepts – that also check perceptions (for hallucinations, etc)</li>
+<li>We <em>synthesize</em> conceptual laws (e.g. theory of gravitation)
+and perceptions (‘but what about this object that flies?’) to produce
+understanding</li>
+</ul>
+<pre class="notes"><code>We&#39;ll move now back to the structure of our course.
+
+When we talk of synthesis then, we think of the convergence of machine learning with human learning. I think we have already seen ways that is happening. With the concept of Experience, Hegel suggests we always integrating or synthesizing our concepts with our perceptions: a process of revising our concepts to be consistent with those perceptions. To do so, we need to take account also of the fallibility of our perceptions, devising rules or laws, such as the law of gravity, to apply some order and regulation to the flow of sensations which can often be disorted. Hence we move from sense to perception to, finally, understanding. Synthesis involves this back-and-forth between the reality of the law and the concept and the appearance of things involved in perception - each working to shape the other through experience.</code></pre>
+<hr />
+<h3 id="recognition">Recognition</h3>
+<ul>
+<li>But <em>understanding</em> has limits; it is directed outward,
+toward external objects, but cannot “know itself” (Hegel)</li>
+<li>Need further synthesis: consciousness knows itself through
+<em>knowing others</em> / <em>being known by others</em>
+(Recognition)</li>
+</ul>
+<pre class="notes"><code>We then saw synthesis in a different form: in the coming together of social roles. What Hegel describes as an existential fight to the death results in the production of a society made up of masters and servants. Yet this equilibrium cannot hold. The servant is no longer the passive recipient of experience that results in even the lofty products of understanding. Instead they learn how to work with things: if you like, they move from a scientific understanding to a technological and practical know-how – ironically, a kind of mastery. In the process they seek to overcome the paradox of recognition faced by the master, who desires the recognition of equals but equally demands they submit to his authority as servants. The servant, by contrast, can acquire recognition of their labour – not by this master, we imagine, but by other servants who are coming into their own as equals in modern society. 
+
+Here the synthesis exists in its social form: what we call society or the social is the synthesis of individuals coming together via at  least the pursuit of mutual recognition.</code></pre>
+<hr />
+<h3 id="attention">Attention</h3>
+<ul>
+<li>Humans pay attention via three mechanisms: alerting, orienting,
+executing</li>
+<li>“Attention is all you need” - machine tokens pay attention to each
+other, and build up rich context from this</li>
+<li>The mechanisms are very different - but machinic attention bears
+some resemblance to the implicit semantic theory of Hegel (and later
+semantic theories – e.g. generative semantics of Lakoff)</li>
+</ul>
+<pre class="notes"><code>By week 4 we reached the concept of Attention, and while we departed from a direct reading of Hegel, we again saw synthesis in the form of how both humans and machines, at least metaphorically, enact cognition via attention mechanisms. 
+
+If we apply synthesis here, it is in a metaphorical way. Our experience of consciousness involves synthesizing different moments of neurological attention: moving from being alert, to orienting, to higher order executive functions, involving the sustaining and switching of the lower level attention subsystems. 
+
+Synthesis applies even less obviously to the attention mechanisms of generative AI systems. I did suggest however some analogy between Hegel&#39;s discussion of the concept – as something that stands in relation to, and is defined by, an intricate web of other concepts – and the ways tokens acquire semantic meaning via the Transformer attention mechanism. In an abstract, we might say both share a common semantic theory, insofar as terms obtain their meaning primarily through their connection to other terms. This idea, for people interested, is also taken up by semantic theorists like George Lakoff and Mark Johnson in recent decades.
+</code></pre>
+<hr />
+<h3
+id="industrial-revolution-fordism-generative-ai-how-does-technology-remake-concepts-of-consciousness">Industrial
+Revolution / Fordism / Generative AI: How does Technology remake
+Concepts of Consciousness?</h3>
+<ul>
+<li>“The hand-mill gives you society with the feudal lord; the
+steam-mill society with the industrial capitalist.” (Marx, 1847)
+<ul>
+<li>But what does technology give to our concepts of consciousness?</li>
+</ul></li>
+<li>Early 19th century: Consciousness to Self-consciousness</li>
+<li>Early 20th century: Consciousness | Pre-conscious | Unconscious</li>
+<li>Early 21st century: Nonconscious cognition
+<ul>
+<li>“Joins” machine and human cognition</li>
+<li>Human “consciousness”: second-order cognitive effect - downstream
+from nonconscious cognition</li>
+</ul></li>
+</ul>
+<pre class="notes"><code>In week 5 we returned to Hegel&#39;s interest in consciousness, enriched perhaps via our interest in attention. Where Hegel plotted the path from consciousness to self-consciousness, we saw later developments that both undermine and enrich concepts of consciousness. 
+
+With Freud, we get a partly mechanistic account that involves an interplay between conscious, pre-conscious and unconconscious subsystems or components. Messages from the unconscious are first screened by a pre-conscious before it is admitted to consciousness, while conscious messages are only reluctantly, via the process of therapy, permitted to revise deep unconscious structures. 
+
+Taking into account neuroscientific discoveries like the attention mechanism alongside the rise of artificial intelligence, N Katherine Hayles&#39; more recent work sought to *synthesize* machinic and human cognitive processes under the name of &quot;nonconscious cognition&quot;. 
+
+Yet even more recent AI systems – notably the attention mechanism itself in Transformer systems – has perhaps – even for some of you – raised again quite basic questions of whether machines can experience, recognise and so – in this much earlier Hegelian sense – can be said to be conscious.</code></pre>
+<hr />
+<h3 id="alignment">Alignment</h3>
+<ul>
+<li>Alignment: synthesis in the sense of the machine with “human
+values”</li>
+<li>Suggests another similarity between deviant human and machinic
+“subjects” – subject to disciplinary systems (schools, prisons,
+hospitals, clinics, workplaces) – cf. Michel Foucault</li>
+</ul>
+<pre class="notes"><code>By the time we reach alignment, it is as though this obscure idea of synthesis has gone fully mainstream. Isn&#39;t alignment just another word for &#39;synthesis&#39;? Not entirely perhaps, but it is as though the idea of synthesizing human with machines had gone from a strange 1960s or 70s sci fi scenario dreamed up by Isaac Asimov or Philip K. Dick had suddenly turned into a core industrial – and pedagogical - project.
+
+ Think back to Michele&#39;s insightful discusion of her work as a trainer and teacher of AI systems at Scale AI. While AI clearly needs some kind of alignment – to avoid being offensive, to be useful and so on – we also saw several strange side-effects of this work. Companies now are in charge of determining what &quot;human values&quot; AI must conform to. AI is subject to many of the similar disciplinary techniques that have and continue to haunt human subjects. The language of machinic deviance - jailbroken, hallucination and so on – suggests a strong connection with the language of human deviance. 
+ 
+ Perhaps this is a kind of synthesis that could be unintentionally reassuring? Will we see errant AI agents conspiring with rogue human subjects? Does a refusal to align suggest perhaps an uneasy allyship between machine and human?</code></pre>
+<hr />
+<h3 id="critique">Critique</h3>
+<ul>
+<li><em>External</em> (Goodlad &amp; Stone; Gebru &amp; Torres) vs
+<em>Internal</em> (LeCun, Simmons) Criticism</li>
+<li>Another distinction: immanent vs transcendental critique
+<ul>
+<li><em>Transcendental</em>: standards of criticism brought from outside
+the world of the object (e.g. from a god)</li>
+<li><em>Immanent</em>: standards belong to the world of the object - the
+object is <em>self-contradictory</em>, in that it promises but does not
+deliver X.
+<ul>
+<li>But the critique must account for <em>itself</em> - it does not just
+condemn the object, it says why the critique itself is possible</li>
+<li><em>Synthesizes</em> the object and the standards of assessment into
+a unitary account.</li>
+</ul></li>
+</ul></li>
+</ul>
+<pre class="notes"><code>In week 7, we examine what it means to criticize AI, looking at two recent works of critical AI studies. We also saw two prominent AI researchers criticize the overreliance of AI upon the attention mechanism - we could say they are arguing other aspects of AI have not received enough... attention!
+
+Yet what I wanted to pay attention to myself here was the complicated concept of &quot;immanent critique&quot;. This was not due to any sense that the criticisms we reviewed were insufficiently reflexive, must less valid. Instead it was to address the concern might arise, almost unconsciously, whenever we hear criticism: that it contains at its core dogmatic beliefs, and that we need first to strip away the outer appearance of critique to arrive at what the criticism is really &#39;selling&#39; - which might be as bad or worse than the object of criticism itself. 
+
+So in examining how critique can be immanent - a move that, as we saw, originates with Hegel himself – we also get another sense of synthesis: as the way critique can account for its own production alongside that of the object it criticizes. If we can show how both object and critical standpoint derive from the same historical process, we might, according to this line of argument, be able to produce something new from this contradictory state – a synthesis that moves things forward. We used the example of the printing press as a way for seeing how a properly immanent criticism needs to account for how what it is that produces the object of criticism can also be responsible for the development of criticism itself.
+
+In a contemporary situation, it may not be enough to show that AI is flawed and problematic. We may also want to say that the standards we use to judge AI stem from the same origins – for example, the Enlightenment, which unleashed the mathematical techniques and industrial concentrations of capital alongside a sense of liberalism and humanism that found the present day results of these techniques so troubling. From there, we might seek ways to amend the object via the critique to generate new synthesized ideas to move forward. Which brings us to this week&#39;s readings... 
+</code></pre>
+<hr />
+<h3 id="history-as-synthesis">History as Synthesis</h3>
+<ul>
+<li>Does history have a direction? Can it “end”? What would this
+mean?</li>
+<li>History as moving from A to its negation, B (not-A) - and then to C,
+as a combination of A and B.
+<ul>
+<li>Synthesis emerges from the <strong>contradition</strong> of A and
+not-A.</li>
+<li>Contradition is <strong>generative</strong>.</li>
+</ul></li>
+<li>Example:
+<ul>
+<li>Ancient Greek: rationalism, art, philosophy</li>
+<li>Judeo-Christian: religion, monotheism</li>
+<li>Medieval / Renaissance: integrates Greek <strong>thought</strong>
+with Judeo-Christian <strong>belief</strong>.</li>
+</ul></li>
+</ul>
+<pre class="notes"><code>Finally we arrive at yet another turn - that of history itself, and whether we imagine the concept of synthesis applies here. For Hegel - and as we see with someone like Fukuyama – history has a definite arc. Despite the inevitable deviations and detours, if it is to unfold according to its destiny, history will arrive at its destination. In Fukuyama&#39;s famous phrase, it has an **end**. 
+
+How does the concept of synthesis work here? For Hegel, even the deviations and detours – such as the European Dark Ages – are productive. They allow earlier insights, such as the classical age of Greek philosophy and art, to be integrated with Judeo-Christian religion. They are integrated and synthesized, eventually producing, after an extended incubation, the Renaissance and the Enlightenment. And it was medieval feudal society that, despite its apparent backwardness, could effect this reconciliation.
+
+For our machine-obsessed era, it is important to note that Hegel dealt exclusively in the trade of *ideas*. He was not interested in what the printing press, the steam engine or the Jacquard loom would lead to, and of course could not foretell the eventual arrival of the computer. It was Karl Marx who famously turned Hegel on his head, declaring that it was material and matter, not mind and spirit, that were the driving force of history. Ironically this insight continues to motivate almost all of modern discourse about progress: think for example of whether talk of &#39;progress&#39; today relates to new ideas about social organization or ethics, or instead relates to advances in medicine, transportation, architecture, computation – and of course, to artificial intelligence.
+
+And yet Hegel&#39;s ideas about the &#39;arc&#39; of history still lurk behind this same discourse of progress. Anxieties about the future – about nuclear holocaust, environmental sustainability, AI doomerism, viral contagions, even zombie apocalypses –  is itself, we might say, a *modern* invention. It relies upon a sense that the future is something we can *control* – or otherwise why be worried about it? 
+</code></pre>
+<hr />
+<h3 id="history-as-technological-synthesis">History as Technological
+Synthesis?</h3>
+<ul>
+<li>With Marx, Darwin, Freud: move to <strong>materialist</strong> view
+of historical development</li>
+<li>Modern inheritors
+<ul>
+<li>posthuman (Braidotti)</li>
+<li>technopoeisis (N Katherine Hayles)</li>
+<li>technodiverse (Hui)</li>
+<li>cybersocial (Kalantzis &amp; Cope)</li>
+</ul></li>
+</ul>
+<pre class="notes"><code>So while the present-day form of progress may not be &#39;idea-driven&#39; – perhaps because we have run out of them? or because we have unwittingly taken Marx&#39; materialism to heart, even if we want to dispute Marxism itself? – we still hold dear the idea that we can bend history to our will. In the first four readings this week – by Rosa Braidotti, N Katherine Hayles, Yuk Hui, and Mary Kalantzis and Bill Cope – we see several variations of this.
+
+Each of these readings identifies a key concept that describes a future that is completely determined by the sort of reductive transhumanist ideology we saw criticized in the Gebru and Torres article last week. We should note how each of these concepts is itself an example of portmanteau that synthesis aspects of the machine with the human:
+
+ - posthuman (Braidotti)
+ - technopoeisis (N Katherine Hayles)
+ - technodiverse (Hui)
+ - cybersocial (Kalantzis &amp; Cope)  
+
+Rosa Braidotti&#39;s discussion of AI develops upon her earlier work over several decades on the concept of the posthuman. We revisted N Katherine Hayles&#39; work earlier on nonconscious congition; here she presents another concept, technopoeisis. Yuk Hui is a philosopher of technology who has written several prominent books over the past decade. I include this interview with him, as it involves not only a discussion of another term we can consider – technodiversity – but a useful elaboration of AI across geopolitical lines. With Mary Kalantzis and Bill Cope&#39;s work on the cybersocial, we have a fourth and final concept. 
+
+Each of these terms gestures towards one or another way of thinking about exactly how we might consider our contemporary situation with respect to technology, and to AI. 
+
+
+</code></pre>
+<hr />
+<h3 id="owl-of-minerva-roman-goddess-of-wisdom">Owl of Minerva (Roman
+Goddess of Wisdom)</h3>
+<ul>
+<li>Fukuyama (neo-Hegelianism): history is over, liberal democracy has
+“won”. What remains?
+<ul>
+<li>Tinkering with the political and economic systems</li>
+<li>Techno-scientific progress (AI etc).</li>
+</ul></li>
+<li>But is AI causing a return to “big picture” thinking? Is the
+permanence of a global liberal democratic world order still certain? Can
+technology drive history?</li>
+<li>Hegel’s best-known quote: “the owl of Minerva spreads its wings only
+with the coming of the dusk”
+<ul>
+<li>We can only understand events as history - once they are
+<em>past</em></li>
+<li>Cautionary note on our ability to predict the future, or even
+interpret the present</li>
+</ul></li>
+<li><strong>What do we make of AI’s own ability to either predict or
+produce new futures? </strong>
+<ul>
+<li>“The truth is that no one really knows how AIs will develop in the
+coming decades.” (Katherine Hayles 2024)</li>
+</ul></li>
+</ul>
+<pre class="notes"><code>
+On the other hand, we have a neo-Hegelian thinker like Fukuyama, who might argue this situation does not represent break or change, but instead a continuity with the past. In Fukuyama&#39;s case, the end of the Cold War witnessed the End of History, as the only true ideological rival to liberalism collapsed. Ironically, one of the signs of the end of history might be that time is marked by technological change rather than fundamentally new concepts of social or political organization. All that remains, according to this argument, is the stretching out of the achievements of liberalism to the parts of the world yet to fully experience its benefits. 
+
+For some, of course, this thesis was always absurd (see Derrida&#39;s critique in Spectres of Marx - a point I&#39;ll return to), and a far too literal reading of Hegel&#39;s own thesis about the end of history. However its naivete makes explicit the utopic elements that are often submerged within other, less explicitly historicist cases. These too include a sense of history as purpose-driven, a process that seeks synthesize our collective experience. 
+
+We might ask today whether these examples of &quot;synthetic&quot; thinking indicate how AI serves as a catalyst for the return, as I&#39;ve put it, of the *grand recit* - the big picture or grand narrative. Or instead, as Fukuyama signals at the end of his essay, the calcification of history: when the bots take over, the genuine desire for recognition fades, and we are faced instead with the interminable &quot;boredom at the end of history&quot;. In this view, AI - helping us to look back through our archives of culture – serves as a nostalgic reminder of a now-lost heroic age.
+
+Finally, we need to remind ourselves that Hegel himself, even while confidently calling the French Revolution &quot;the end of history&quot;, remained ambivalent about the possibility for prediction. His most famous quote:
+
+&gt; the owl of Minerva spreads its wings only with the coming of the dusk
+
+Is an example of epistemological caution. 
+
+This is part of Derrida&#39;s critique of Fukuyama - Fukuyama is essentially a naive Hegelian, whereas Hegel was himself far more circumspect. There is always the possibility for new contradictions – and therefore new syntheses. 
+
+What do we make of AI&#39;s own ability to either predict or produce new futures? 
+
+</code></pre>
+<hr />
+<h3
+id="designing-curriculum-for-the-forthcoming-machinehuman-synthesis">Designing
+Curriculum for the Forthcoming Machine/Human Synthesis!</h3>
+<ol type="1">
+<li>Does history have an arc or tendency? If so, is it something we can
+influence? And what role does technology – and machine learning –
+play?</li>
+<li>What do machines still need to learn? What about humans? What will
+help us get there?</li>
+</ol>
+<figure>
+<img src="concept-relations.png" alt="concept-relations" />
+<figcaption aria-hidden="true">concept-relations</figcaption>
+</figure>
+<pre class="notes"><code>On that note, I&#39;ll conclude. We&#39;ll now move to another exercise that prepares for the final assessment (covered in greater detail back in Week 6). 
+
+We&#39;ll start by asking, in a Hegelian vein: does history have an arc or tendency? If so, is it something we can influence? And what role does technology – and machine learning – play?
+
+From these wild speculations we&#39;ll move to a more concrete (though still &#39;big picture&#39;) topic: what do we (and let&#39;s be inclusive, and consider both machines and humans) need to learn? What would be the syllabus and / or curriculum for this ideal learning? How is our combined, synthetic knowledge limited? What – if anything – from our repetoire of concepts can steer us into the new horizons forecast by Braidotti, Katherine Hayles, Hui, Kalantzis &amp; Cope? Discuss!</code></pre>
+</body>
+</html>

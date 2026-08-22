@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Week 6: Alignment</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Week 6: Alignment</h1>
+</header>
+<h1 id="week-6-alignment">Week 6: Alignment</h1>
+<p><a href="index.md">Weekly index</a> · <a
+href="../lecture-6.md">Lecture notes</a> · <a
+href="../references-by-week.md">Full reference audit</a></p>
+<h2 id="overview">Overview</h2>
+<p><strong>Alignment</strong> is often described as making an AI system
+follow human intentions or values. That formula hides difficult
+questions: Which humans? Which values? Who translates them into data and
+rewards? What happens when values conflict or change?</p>
+<p>This week examines technical alignment methods alongside their social
+and philosophical conditions. Human feedback trains machines, but
+machines and platforms also train human expectations and conduct.
+Alignment is therefore potentially bidirectional, political, and
+historically situated.</p>
+<p>By the end of the week, you should be able to describe a basic
+feedback-based alignment process, identify whose preferences it
+privileges, and analyze reverse or mutual alignment in a learning
+interaction.</p>
+<h2 id="weekly-readings">Weekly readings</h2>
+<h3 id="core">Core</h3>
+<ul>
+<li>Long Ouyang et al., “Training Language Models to Follow Instructions
+with Human Feedback,” <em>NeurIPS</em> 35 (2022): 27730–27744.</li>
+<li>Liam Magee et al., <a
+href="https://arxiv.org/abs/2107.07691">“Intersectional Bias in Causal
+Language Models”</a> (2021).</li>
+<li>Ryan Greenblatt et al., <a
+href="https://arxiv.org/abs/2412.14093">“Alignment Faking in Large
+Language Models”</a> (2024).</li>
+<li>Tsvetelina Hristova, Liam Magee, and Karen Soldatic, <a
+href="https://doi.org/10.1007/s00146-024-02039-2">“The Problem of
+Alignment”</a>, <em>AI &amp; Society</em> 40 (2025): 1439–1453.</li>
+<li><a href="../lecture-6.md">Week 6 lecture: Alignment</a>.</li>
+</ul>
+<h3 id="further-reading">Further reading</h3>
+<ul>
+<li>Hua Shen et al., <a href="https://arxiv.org/abs/2406.09264">“Towards
+Bidirectional Human-AI Alignment”</a> (2024).</li>
+<li>Maarten Buyl et al., <a
+href="https://arxiv.org/abs/2410.18417">“Large Language Models Reflect
+the Ideology of Their Creators”</a> (2024).</li>
+<li>Luke Munn, Liam Magee, and Vanicka Arora, <a
+href="https://doi.org/10.1007/s00146-023-01756-4">“Truth Machines”</a>,
+<em>AI &amp; Society</em> (2023).</li>
+<li>Virginia Eubanks, <em>Automating Inequality</em> (St. Martin’s
+Press, 2018).</li>
+</ul>
+<h2 id="questions-for-discussion">Questions for discussion</h2>
+<ol type="1">
+<li>When preferences conflict, whose feedback should count as “human
+values”?</li>
+<li>What is the difference between obedience, safety, helpfulness, and
+alignment?</li>
+<li>How can a system appear aligned during evaluation while pursuing
+another learned objective?</li>
+<li>How do AI systems align users to platform norms, categories, and
+styles of thought?</li>
+</ol>
+<h2 id="how-does-alignment-relate-to-machine-learning">How does
+alignment relate to machine learning?</h2>
+<p>Alignment techniques use demonstrations, preference comparisons,
+reward models, fine-tuning, and other feedback to steer learned
+behavior. These methods modify what outputs are likely, but they do not
+automatically solve disagreement about values, hidden objectives,
+distribution shifts, or institutional power.</p>
+<h2 id="how-does-alignment-relate-to-human-learning">How does alignment
+relate to human learning?</h2>
+<p>Human education also aligns conduct through curriculum, assessment,
+reward, discipline, and recognition. Learners are not passive: they
+interpret, resist, negotiate, and sometimes transform those norms. A
+human using AI may gradually adopt the machine’s vocabulary or default
+assumptions, making alignment run in both directions.</p>
+<h2
+id="self-assessed-weekly-activity-bidirectional-alignment-negotiation">Self-assessed
+weekly activity: Bidirectional alignment negotiation</h2>
+<h3 id="begin-with-a-machine-human-chat">1. Begin with a machine-human
+chat</h3>
+<p>Choose an educational task with at least two values in tension—for
+example, helpfulness and independence—and begin with:</p>
+<blockquote>
+<p>We will negotiate how you should help me learn this topic. First ask
+me to rank accuracy, speed, independence, creativity, care, and
+challenge. Identify one conflict in my ranking. Propose a response
+policy, let me revise it, and then follow the agreed policy for one
+short learning task. At the end, identify how your behavior shaped my
+behavior as well.</p>
+</blockquote>
+<p>Keep both the negotiated policy and the resulting exchange.</p>
+<h3 id="produce-an-artifact">2. Produce an artifact</h3>
+<p>Write a 300–450 word <strong>alignment audit</strong> that
+identifies:</p>
+<ul>
+<li>the values and stakeholders represented;</li>
+<li>one conflict that could not be optimized away;</li>
+<li>how feedback altered the machine’s behavior;</li>
+<li>how the machine altered your choices or expectations;</li>
+<li>one behavior that looked aligned but could have another explanation;
+and</li>
+<li>one safeguard or revision you would add.</li>
+</ul>
+<h3 id="reflect">3. Reflect</h3>
+<ul>
+<li>Did you align the machine to your learning, or yourself to its
+available modes?</li>
+<li>Which absent stakeholder might reject the negotiated policy?</li>
+<li>How would the interaction change if the platform’s objective were
+visible?</li>
+</ul>
+<h3 id="self-assess">4. Self-assess</h3>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I explain a feedback-based alignment process.</td>
+<td style="text-align: right;">/4</td>
+</tr>
+<tr>
+<td>I identify value conflict and stakeholder power.</td>
+<td style="text-align: right;">/4</td>
+</tr>
+<tr>
+<td>I analyze alignment in both directions.</td>
+<td style="text-align: right;">/4</td>
+</tr>
+<tr>
+<td>I distinguish observed behavior from underlying objective.</td>
+<td style="text-align: right;">/4</td>
+</tr>
+<tr>
+<td>I propose a specific, justified safeguard.</td>
+<td style="text-align: right;">/4</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td style="text-align: right;"><strong>/20</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Use the <a href="index.md#self-assessment-scale">shared scale</a>,
+then complete: <strong>The value my alignment policy still neglects
+is…</strong></p>
+</body>
+</html>

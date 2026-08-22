@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>EPOL 479 Syllabus — Machine Learning and Human Learning</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">EPOL 479 Syllabus — Machine Learning and Human
+Learning</h1>
+</header>
+<h1 id="machine-learning-and-human-learning">Machine Learning and Human
+Learning</h1>
+<h2 id="epol-479-fall-2026-term-a-4-credit-hours">EPOL 479 · Fall 2026,
+Term A · 4 credit hours</h2>
+<p><strong>Towards Synthesis: Rethinking Learning in the AI
+Era</strong></p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td><strong>Meeting time</strong></td>
+<td>Mondays, 5:00–7:50 PM Central</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td>Online — live seminar over Zoom, with asynchronous work between
+sessions</td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td>Online. Zoom link posted on Canvas; no physical room.</td>
+</tr>
+<tr>
+<td><strong>Term</strong></td>
+<td>Part of Term A, 24 August – 16 October 2026 (seven seminars over
+eight weeks)</td>
+</tr>
+<tr>
+<td><strong>Sections</strong></td>
+<td>Section B, CRN 79602 (undergraduate) · Section ONL, CRN 79603
+(graduate)</td>
+</tr>
+</tbody>
+</table>
+<p>Both sections meet together as a single seminar and are held to the
+same expectations under this syllabus.</p>
+<p><strong>Instructor:</strong> Professor Liam Magee, Department of
+Education Policy, Organization and Leadership (EPOL), College of
+Education <strong>E-mail:</strong> <a href="mailto:lmagee@illinois.edu"
+class="email">lmagee@illinois.edu</a> — by far the best way to reach me
+<strong>Office hours:</strong> by appointment only. Email me and we will
+find a time; I am glad to meet over Zoom at short notice.</p>
+<hr />
+<h2 id="course-description">Course description</h2>
+<p><strong>Catalog description.</strong> Examines the differences
+between machine and human learning and the ways in which machines can
+complement human learning. It examines technical definitions of
+supervised and unsupervised machine learning, as well as broader views
+of mechanical intelligence able to replicate or exceed human
+intelligence. The course will also explore practical applications of
+learning analytics and artificial intelligence in learning management
+systems and other educational tools.</p>
+<p>This section approaches that remit philosophically as well as
+technically, responding to a new learning reality shaped by advances in
+machine learning. It traces the long history of tools that externalize
+memory, from the stylus to the internet and the smartphone, and examines
+the reciprocal learning relationship between humans and AI systems.
+Through concepts such as <em>technosymbiosis</em> and <em>symbiotic
+pedagogy</em>, we ask how both forms of learning — machine and human —
+come together in synthesis.</p>
+<p><strong>Prerequisites:</strong> none.</p>
+<h2 id="course-outline">Course outline</h2>
+<p>What does it mean for both humans and machines to “learn”? The usual
+picture has an active human learner using a passive machine. That
+picture does not survive contact with the present. People select the
+data, goals, categories, and evaluation criteria that shape
+computational systems; those systems in turn reorganize what people
+notice, practice, and come to know.</p>
+<p>The course proceeds through eight concepts, each of which does double
+duty as a term in the philosophy of mind and a term of art in machine
+learning:</p>
+<ol type="1">
+<li><strong>Synthesis</strong> — how a new relation forms in which both
+sides change</li>
+<li><strong>Experience</strong> — expectation, encounter, contradiction,
+revision</li>
+<li><strong>Recognition</strong> — identification, validation,
+compliance, reciprocity</li>
+<li><strong>Attention</strong> — selection in transformers and in
+brains</li>
+<li><strong>Consciousness</strong> — cognition, self-report, and the
+nonconscious</li>
+<li><strong>Alignment</strong> — whose values, translated by whom, into
+what rewards</li>
+<li><strong>Critique</strong> — immanent rather than merely
+external</li>
+<li><strong>Technosymbiosis</strong> — interdependence, and whether it
+is equal</li>
+</ol>
+<p>The shared vocabulary is the course’s central problem, not its
+solution. That transformer “attention” and human attention bear the same
+name is a question to investigate, not a conclusion to assume.
+Throughout, we read Hegel’s <em>Phenomenology of Spirit</em> alongside
+contemporary machine learning literature, letting each estrange the
+other.</p>
+<p>The emphasis is on developing defensible positions and recognizing
+the limits of your own, not on reproducing settled answers. There are
+none.</p>
+<h2 id="what-i-expect-from-you">What I expect from you</h2>
+<p>This is a compressed eight-week course carrying four credit hours.
+You will engage in five kinds of activity:</p>
+<table>
+<thead>
+<tr>
+<th>Activity</th>
+<th>Hours per week</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Core readings, read closely and more than once</td>
+<td>6–8</td>
+</tr>
+<tr>
+<td>Seminar attendance and participation</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Revising and extending your responses; reflective note</td>
+<td>3–4</td>
+</tr>
+<tr>
+<td>AI chat session and notes</td>
+<td>2–3</td>
+</tr>
+<tr>
+<td>Work towards the final synthesis report</td>
+<td>2–4</td>
+</tr>
+</tbody>
+</table>
+<p>Budget <strong>at least 20 hours per week</strong> in total, of which
+roughly 17 fall outside the seminar itself. A four-credit course
+delivered over eight weeks rather than sixteen does not contain less
+work; it contains the same work, twice as fast. Most of your learning
+will happen outside our three hours together. Come to seminar having
+read — the discussion is not a substitute for the reading, and it will
+not be legible to you if you have not done it.</p>
+<p>Because we meet online, the asynchronous half of the course carries
+real weight. Readings, weekly responses, and AI dialogue practice happen
+between sessions on Canvas; the live seminar is where those threads are
+argued out.</p>
+<p>Philosophy rewards rereading in a way that few things do. A passage
+of Hegel that is opaque on first pass is often tractable on the third.
+Plan for that.</p>
+<h2 id="what-you-should-expect-from-me">What you should expect from
+me</h2>
+<ul>
+<li>I will hold office hours as scheduled, and will find another time if
+you cannot make them.</li>
+<li>I will answer email within 24 hours on weekdays.</li>
+<li>I will return written work with substantive comments within one
+week.</li>
+<li>I will post clarifications when a reading or an assignment is
+causing broad difficulty.</li>
+<li>I will give you my own written commentary at two points — across
+Sessions 3/4 and Sessions 6/7 — so you are never guessing about where
+you stand.</li>
+<li>I will grade the quality of your thinking, not its agreement with
+mine. A well-argued position I disagree with earns full marks; an echo
+of my own view, poorly defended, does not.</li>
+<li>If nobody in the class managed something, I will treat that as a
+fact about my teaching rather than about you, and act accordingly.</li>
+</ul>
+<h2 id="course-objectives">Course objectives</h2>
+<p>By the end of this course, you will be able to:</p>
+<ol type="1">
+<li>Understand the historical relationship between technology and
+learning.</li>
+<li>Explore the phenomenology of AI-mediated learning experiences.</li>
+<li>Develop critical frameworks for evaluating AI in educational
+contexts.</li>
+<li>Practice synthesis of human and machine learning approaches.</li>
+<li>Distinguish the technical from the philosophical sense of shared
+terms such as attention, alignment, and learning, and assess where the
+analogy holds.</li>
+<li>Construct an immanent critique of an AI system or institution using
+its own stated norms.</li>
+</ol>
+<h2 id="texts-readings-and-tools">Texts, readings, and tools</h2>
+<p><strong>Books to obtain:</strong></p>
+<ul>
+<li>G. W. F. Hegel, <em>Phenomenology of Spirit</em>, trans. Terry
+Pinkard (Cambridge University Press, 2018).</li>
+<li>N. Katherine Hayles, <em>Unthought: The Power of the Cognitive
+Nonconscious</em> (University of Chicago Press, 2017).</li>
+</ul>
+<p>All other readings — journal articles, ML papers, and excerpts — are
+provided through the course site. See the <a
+href="weeks/index.md">weekly index</a> for the full reading list by week
+and <a href="references-by-week.md">references by week</a> for complete
+citations.</p>
+<p><strong>Tools:</strong> the running record of your responses is kept
+in Google Docs; Canvas carries readings, announcements, Zoom links,
+recordings, and grades. You will also need access to at least one
+contemporary generative AI system, since a weekly chat session is part
+of the assessed cycle. Free tiers are sufficient. If cost or access is a
+barrier, tell me early and we will arrange an alternative — no student
+should be disadvantaged by this requirement.</p>
+<h2 id="evaluation">Evaluation</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Formative self-assessments (6 × 10%)</td>
+<td>60%</td>
+</tr>
+<tr>
+<td>Peer commentary (2 × 5%)</td>
+<td>10%</td>
+</tr>
+<tr>
+<td>Final synthesis report</td>
+<td>30%</td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td><strong>100%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Think of the course as <strong>six-plus-one iterations</strong> on
+your own initial impulses, with a mix of self- and other-assessment. You
+start by writing down what you already think. Each week you revise it in
+the light of a new concept. At the end you synthesize. You will keep the
+whole sequence in a Google Doc, so that the revisions stay visible to
+you and to me — the record of the changes <em>is</em> the work.</p>
+<h3 id="baseline-response-not-assessed">Baseline response (not
+assessed)</h3>
+<p>In the first fortnight, write 200–300 words — longer is fine, but not
+more than 500 — in your own words, on:</p>
+<ul>
+<li>How would you define <em>machine learning</em>, in your own words
+and based on your own understanding of the term, today?</li>
+<li>How would you define <em>human learning</em>?</li>
+<li>What are the <em>similarities</em> between the two? What are the
+<em>differences</em>?</li>
+<li>What can we say about the <em>relationship</em> between the two? In
+what ways does machine learning <em>build upon</em> human learning? And
+in what ways can human learning benefit — or not — from machine
+learning?</li>
+<li>What is the <em>most important question</em> you want to pose and
+have answered about AI in relation to learning and education? Put
+another way: what are <em>you yourself</em> hoping to learn here, and
+how would you answer that question provisionally?</li>
+</ul>
+<p>This sounds like a survey, and in a way it is. More importantly it
+sets a <em>baseline</em> of your own understanding, which the rest of
+the course revisits. It is not graded.</p>
+<h3 id="formative-self-assessments-60">1. Formative self-assessments
+(60%)</h3>
+<p>Six weekly cycles, one for each of the concepts in Sessions 2–7. Each
+week you:</p>
+<ol type="1">
+<li>take notes from the readings, the lecture, and the group
+discussion;</li>
+<li>hold a chat session with your preferred AI system;</li>
+<li>copy your previous responses, then revise and extend them;</li>
+<li>bring the result to peer review in class;</li>
+<li>close with a short reflective note, and grade your own
+contribution.</li>
+</ol>
+<p><strong>Why self-assessment.</strong> It is subjective, obviously.
+Two arguments for it anyway. The first is Hegelian, and this is a Hegel
+course: I can only judge the facade of your learning, its outward
+appearance. Only you know whether you have learned something. Aligning
+the assessment of the course with its content is itself a Hegelian move.
+The second is that in an age of AI we want learning to become
+<em>more</em> accountable, not less — and accountability that you
+exercise on yourself is the kind that survives contact with a tool that
+can write for you.</p>
+<p><strong>Rubric.</strong> There isn’t a conventional one, which I know
+is uncomfortable. I suggest grading the <em>derivative</em>: what did I
+know last week, what do I know now, and how would I grade that rate of
+change? I reserve the right to upgrade marks that strike me as
+excessively punitive.</p>
+<h3 id="peer-commentary-10">2. Peer commentary (10%)</h3>
+<p>Two rounds — across Sessions 3/4 and again across Sessions 6/7 — in
+which you read and comment on a peer’s revised responses. This is a
+hurdle requirement: the 10% is awarded on completing it in good faith,
+and the commentary itself is not graded on quality. I will provide my
+own commentary at the same two points, so you have an outside reading of
+your work twice before the final report.</p>
+<h3 id="final-synthesis-report-30">3. Final synthesis report (30%)</h3>
+<p>A summative piece that synthesizes the course materials — a report,
+an essay, or a curriculum design. It builds directly on the formative
+work: the six iterations are the raw material, and this is the seventh.
+Its exact shape is something we will settle together during the course;
+the form should follow what you have actually been arguing. Due
+<strong>Friday 16 October</strong> at 11:59 PM Central, the last day of
+Term A.</p>
+<h3 id="use-of-ai-in-this-course">Use of AI in this course</h3>
+<p>You are studying these systems, so you should use them — a weekly AI
+chat session is a required part of the formative cycle. What I ask is
+that the use be visible and reflective rather than concealed.</p>
+<ul>
+<li><strong>Permitted and encouraged</strong> throughout: using AI to
+explore ideas, test arguments, find sources you then verify, and
+stress-test your drafts. This is course material.</li>
+<li><strong>Required</strong>: where AI shaped a submitted piece of
+work, append a short note describing how. A sentence or two is enough.
+This is a scholarly disclosure, not a confession, and it does not affect
+your grade.</li>
+<li><strong>Not permitted</strong>: submitting generated prose as your
+own unexamined writing. Not because it is cheating in some abstract
+sense, but because the point of the assignment is the change in
+<em>you</em> that writing produces. Outsourcing that leaves you with a
+document and no education — and in a course assessed on the rate of that
+change, it is self-defeating as well as a breach.</li>
+<li><strong>Verify every citation.</strong> Generated bibliographies
+routinely contain plausible references to work that does not exist. An
+uncheckable citation will be treated as an error of scholarship.</li>
+</ul>
+<p>Beyond this, the University’s <a
+href="https://studentcode.illinois.edu/article1/part4/1-401/">Academic
+Integrity Policy</a> applies in full.</p>
+<h2 id="weekly-schedule">Weekly schedule</h2>
+<p>The seminar meets on Mondays. There is no class on Monday 7 September
+(Labor Day); that week runs as a reading week, and Critique and the
+closing Synthesis session are combined in the final seminar.</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Session</th>
+<th>Date</th>
+<th>Concept</th>
+<th>Core reading</th>
+<th>Due</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Mon 24 Aug</td>
+<td><a href="weeks/week-1.md">Synthesis</a></td>
+<td>Hegel, <em>Phenomenology</em>, Preface &amp; Introduction; Brandom,
+<em>A Spirit of Trust</em>, Introduction</td>
+<td>Baseline response <em>(not assessed)</em></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Mon 31 Aug</td>
+<td><a href="weeks/week-2.md">Experience</a></td>
+<td>Hegel, “Sense-Certainty,” “Perception,” “Force and the
+Understanding”</td>
+<td>Self-assessment 1</td>
+</tr>
+<tr>
+<td>—</td>
+<td>Mon 7 Sep</td>
+<td><em>Labor Day — no class; reading week</em></td>
+<td>Catch up on the <em>Phenomenology</em></td>
+<td>—</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Mon 14 Sep</td>
+<td><a href="weeks/week-3.md">Recognition</a></td>
+<td>Hegel, ¶161–196, “Lordship and Bondage”; Čapek, <em>R.U.R.</em></td>
+<td>Self-assessment 2 · <strong>Peer commentary 1</strong> (Sessions
+3/4)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Mon 21 Sep</td>
+<td><a href="weeks/week-4.md">Attention</a></td>
+<td>Vaswani et al., “Attention Is All You Need”; Petersen &amp; Posner;
+Terranova</td>
+<td>Self-assessment 3 · instructor commentary returned</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Mon 28 Sep</td>
+<td><a href="weeks/week-5.md">Consciousness</a></td>
+<td>Hayles, <em>Unthought</em>; Freud, “The Unconscious”; Lemoine, “Is
+LaMDA Sentient?”</td>
+<td>Self-assessment 4</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Mon 5 Oct</td>
+<td><a href="weeks/week-6.md">Alignment</a></td>
+<td>Ouyang et al. (InstructGPT); Hristova, Magee &amp; Soldatic, “The
+Problem of Alignment”; Greenblatt et al.</td>
+<td>Self-assessment 5 · <strong>Peer commentary 2</strong> (Sessions
+6/7)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Mon 12 Oct</td>
+<td><a href="weeks/week-7.md">Critique</a>, then <a
+href="weeks/week-8.md">synthesis, technosymbiosis, history</a></td>
+<td>Goodlad &amp; Stone, “Beyond Chatbot-K”; Gebru &amp; Torres, “The
+TESCREAL Bundle”; Stahl, “What Is Immanent Critique?”; Hegel, concluding
+passages; Marx, <em>Poverty of Philosophy</em></td>
+<td>Self-assessment 6 · instructor commentary returned · <strong>Final
+report</strong>, Fri 16 Oct</td>
+</tr>
+</tbody>
+</table>
+<p>Each seminar runs three hours, with ten-minute breaks between
+them:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr>
+<td><strong>Hour 1</strong></td>
+<td>Group discussion of the previous week’s responses (about 30
+minutes), then your reflective note and self-assessment</td>
+</tr>
+<tr>
+<td><strong>Hour 2</strong></td>
+<td>Lecture — with interruptions, please</td>
+</tr>
+<tr>
+<td><strong>Hour 3</strong></td>
+<td>Group discussion, in rotated groups: the readings and the lecture in
+relation to the week’s concept</td>
+</tr>
+</tbody>
+</table>
+<p>The final session is a double one in substance: it closes the
+critique thread and then draws the eight concepts together, so budget
+extra reading time for that week.</p>
+<h2 id="grading-scale">Grading scale</h2>
+<table>
+<tbody>
+<tr>
+<td>96.0–100 = A+</td>
+<td>86.0–89.9 = B+</td>
+<td>76.0–79.9 = C+</td>
+<td>66.0–69.9 = D+</td>
+</tr>
+<tr>
+<td>93.0–95.9 = A</td>
+<td>83.0–85.9 = B</td>
+<td>73.0–75.9 = C</td>
+<td>63.0–65.9 = D</td>
+</tr>
+<tr>
+<td>90.0–92.9 = A−</td>
+<td>80.0–82.9 = B−</td>
+<td>70.0–72.9 = C−</td>
+<td>60.0–62.9 = D−</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>59.9 and below = F</td>
+</tr>
+</tbody>
+</table>
+<h2 id="policies">Policies</h2>
+<p><strong>Attendance.</strong> Attendance means joining the live Zoom
+seminar. With only seven seminars, each one is roughly a seventh of the
+term, so an absence has real weight. Tell me in advance if you must miss
+one and we will arrange for you to make up the discussion.</p>
+<p><strong>Late work.</strong> The weekly cycle only works if it is
+weekly — a self-assessment written three weeks late is a memory
+exercise, not a revision, and the peer commentary rounds depend on your
+classmates having something to read. Tell me before the deadline if you
+are going to be late and we will sort it out. The final report is the
+one hard deadline: Term A grades are due to the University shortly after
+the term ends, so extensions on it must be arranged in advance. If
+something serious is going on, talk to me — I would much rather grant an
+extension than receive nothing.</p>
+<p><strong>Students with disabilities.</strong> To obtain
+accommodations, contact <a
+href="https://www.disability.illinois.edu/">Disability Resources and
+Educational Services (DRES)</a> as early in the term as possible, and
+speak with me so we can implement them promptly. If you have a condition
+that may require accommodation but are not yet registered with DRES,
+please come and see me regardless.</p>
+<p><strong>Recording.</strong> Seminars are recorded and posted to
+Canvas. The recording is a resource for revision and for genuine
+conflicts, not a substitute for attending — the argument only happens if
+you are in it.</p>
+<p><strong>Mental health.</strong> Seeking help is a sign of strength.
+The <a href="https://counselingcenter.illinois.edu/">Counseling
+Center</a> and McKinley Health Center offer free, confidential services
+to enrolled students.</p>
+<hr />
+<p>The official University-formatted version of this syllabus, built on
+the UIUC template, is kept alongside this file in
+<code>syllabus/</code>. All submissions are made through Canvas.</p>
+</body>
+</html>

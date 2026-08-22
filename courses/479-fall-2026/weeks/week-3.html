@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Week 3: Recognition</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Week 3: Recognition</h1>
+</header>
+<h1 id="week-3-recognition">Week 3: Recognition</h1>
+<p><a href="index.md">Weekly index</a> · <a
+href="../lecture-3.md">Lecture notes</a> · <a
+href="../references-by-week.md">Full reference audit</a></p>
+<h2 id="overview">Overview</h2>
+<p><strong>Recognition</strong> is more than identifying an object or
+matching a pattern. In Hegel’s account, a self becomes a self through
+another self: each seeks acknowledgment, yet genuine recognition
+requires reciprocity rather than one-sided dependence.</p>
+<p>The human-machine setting makes this difficult. A system can address
+a person by name, mirror their language, and respond to their reasons.
+Those performances may feel recognitive, but the machine may lack
+vulnerability, social standing, or a stake in being recognized. At the
+same time, people can still be changed by the encounter.</p>
+<p>By the end of the week, you should be able to distinguish
+identification, validation, compliance, and reciprocal recognition, and
+analyze the asymmetries of a human-machine dialogue.</p>
+<h2 id="weekly-readings">Weekly readings</h2>
+<h3 id="core">Core</h3>
+<ul>
+<li>G. W. F. Hegel, <em>Phenomenology of Spirit</em>, paragraphs
+161–196, including “Self-Consciousness” and “Lordship and Bondage.”
+Terry Pinkard’s 2018 translation is listed in the lecture.</li>
+<li><a href="../lecture-3.md">Week 3 lecture: Recognition</a>.</li>
+</ul>
+<h3 id="further-reading">Further reading</h3>
+<ul>
+<li>Robert Brandom, <em>A Spirit of Trust: A Reading of Hegel’s
+Phenomenology</em> (2019), relevant chapters on recognition and
+normativity.</li>
+<li>Karel Čapek, <em>R.U.R. (Rossum’s Universal Robots)</em>, for the
+modern history of the “robot” as coerced laborer.</li>
+</ul>
+<h2 id="questions-for-discussion">Questions for discussion</h2>
+<ol type="1">
+<li>What is the difference between being identified, being affirmed, and
+being recognized?</li>
+<li>Why must recognition be reciprocal?</li>
+<li>Can a machine disagree with a person in a way that supports
+recognition rather than merely frustrates them?</li>
+<li>How do ownership, labor, data extraction, and control shape a
+seemingly equal conversation?</li>
+</ol>
+<h2 id="how-does-recognition-relate-to-machine-learning">How does
+recognition relate to machine learning?</h2>
+<p>Machine-learning systems perform recognition in the technical sense:
+classifying images, speech, patterns, or identities. Social recognition
+is different. It involves treating another as a participant whose claims
+can matter and whose response can alter one’s own commitments. A
+conversational model may simulate this relation convincingly, but the
+simulation should not be confused with proof of reciprocal
+self-consciousness.</p>
+<h2 id="how-does-recognition-relate-to-human-learning">How does
+recognition relate to human learning?</h2>
+<p>Human learning is social. Learners develop agency when their
+contributions are taken seriously and when they must also respond to the
+reasons of others. Recognition can support learning by making
+disagreement consequential: I revise not because an input triggered me,
+but because I acknowledge another participant as someone to whom reasons
+are owed.</p>
+<h2 id="self-assessed-weekly-activity-recognition-test">Self-assessed
+weekly activity: Recognition test</h2>
+<h3 id="begin-with-a-machine-human-chat">1. Begin with a machine-human
+chat</h3>
+<p>Choose a course-related claim you genuinely hold, then begin
+with:</p>
+<blockquote>
+<p>I will state a claim about human or machine learning. Do not
+immediately agree. First restate the claim so I can confirm that I have
+been understood. Then offer the strongest reason to disagree, ask me to
+respond, and revise your position only when my reason warrants it. At
+the end, help me distinguish identification, validation, compliance, and
+reciprocal recognition in our exchange.</p>
+</blockquote>
+<p>Continue for at least eight exchanges and preserve one moment of real
+disagreement.</p>
+<h3 id="produce-an-artifact">2. Produce an artifact</h3>
+<p>Annotate the transcript with four labels:
+<strong>identification</strong>, <strong>validation</strong>,
+<strong>challenge</strong>, and <strong>revision</strong>. Then write
+250–400 words answering:</p>
+<ul>
+<li>Was this recognition, a simulation of recognition, or something in
+between?</li>
+<li>Did either participant take responsibility for a claim?</li>
+<li>Who could actually change the conditions of the interaction?</li>
+<li>What asymmetry remained even when the conversation sounded
+reciprocal?</li>
+</ul>
+<h3 id="reflect">3. Reflect</h3>
+<ul>
+<li>Did agreement make you feel recognized? Would justified disagreement
+have done so more strongly?</li>
+<li>Did the machine revise because of your reason, or generate the
+appearance of revision?</li>
+<li>Can an educational relation be valuable even if recognition is not
+fully mutual?</li>
+</ul>
+<h3 id="self-assess">4. Self-assess</h3>
+<table>
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 57%" />
+</colgroup>
+<thead>
+<tr>
+<th>Criterion</th>
+<th style="text-align: right;">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I distinguish technical identification from social recognition.</td>
+<td style="text-align: right;">/4</td>
+</tr>
+<tr>
+<td>I explain why reciprocity matters.</td>
+<td style="text-align: right;">/4</td>
+</tr>
+<tr>
+<td>I analyze power and asymmetry in the exchange.</td>
+<td style="text-align: right;">/4</td>
+</tr>
+<tr>
+<td>I use specific dialogue evidence rather than impressions alone.</td>
+<td style="text-align: right;">/4</td>
+</tr>
+<tr>
+<td>I make a qualified judgment about what the interaction
+achieved.</td>
+<td style="text-align: right;">/4</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td style="text-align: right;"><strong>/20</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Use the <a href="index.md#self-assessment-scale">shared scale</a>,
+then complete: <strong>A more recognitive learning relationship would
+require…</strong></p>
+</body>
+</html>
