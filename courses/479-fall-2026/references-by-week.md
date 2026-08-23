@@ -68,9 +68,11 @@ Local slide images are excluded. The two externally hosted Wikimedia images and 
 - Marx, Freud, René Girard, Slavoj Žižek, and Judith Butler are named as inheritors or applications of the master–servant/recognition framework, with no particular works cited. (`lecture-3.md:19-31`)
 - The Nazi slogan *Arbeit macht frei* is referenced historically in the discussion of work and education. (`lecture-3.md:484-492`)
 
-## Week 4: Attention
+## Week 4: Attention and Consciousness
 
-### Assigned and supporting readings
+### Attention
+
+#### Assigned and supporting readings
 
 - Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L., and I. Polosukhin. (2017). [“Attention Is All You Need.”](https://i-share-uiu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=cdi_proquest_journals_2076493815&context=PC&vid=01CARLI_UIU:CARLI_UIU&search_scope=CentralIndex&tab=CentralIndex&lang=en) *Advances in Neural Information Processing Systems*, 30. (`lecture-4.md:4`)
 - Petersen, S. E., and M. I. Posner. (2012). [“The Attention System of the Human Brain: 20 Years After.”](https://i-share-uiu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=cdi_pubmedcentral_primary_oai_pubmedcentral_nih_gov_3413263&context=PC&vid=01CARLI_UIU:CARLI_UIU&search_scope=CentralIndex&tab=CentralIndex&lang=en) *Annual Review of Neuroscience*, 35(1), 73–89. (`lecture-4.md:5`)
@@ -84,14 +86,14 @@ Local slide images are excluded. The two externally hosted Wikimedia images and 
 - Stea, J. N., Black, T. R., and S. I. Di Domenico. (2022). “Phrenology and Neuroscience.” In *Investigating Pop Psychology* (pp. 9–19). Routledge. (`lecture-4.md:149-164`)
 - Radford, A., Narasimhan, K., Salimans, T., and I. Sutskever. (2018). *Improving Language Understanding by Generative Pre-Training*. (`lecture-4.md:173-180`)
 
-### Citations embedded in quoted material
+#### Citations embedded in quoted material
 
 - Green (2003), on Galen’s ventricular doctrine; full metadata is not supplied. (`lecture-4.md:147`)
 - Gall and Spurzheim (1810), on phrenology; full metadata is not supplied. (`lecture-4.md:147`)
 - Posner and DiGirolamo (2000), on cognitive neuroscience; full metadata is not supplied. (`lecture-4.md:147`)
 - Uttal (2001) and Uttal (2011), criticizing a psychological atlas of the brain; titles are not supplied. (`lecture-4.md:147`)
 
-### Videos and further references
+#### Videos and further references
 
 - YouTube video, title not supplied: <https://www.youtube.com/watch?v=PKzz1OAiTRQ>. (`lecture-4.md:521-523`)
 - Michael Posner, “The Anatomy of Attentional Networks: A Historical Perspective on Attention Research”: <https://www.youtube.com/watch?v=uYUdwS7-WvA>. (`lecture-4.md:521-523`)
@@ -99,9 +101,9 @@ Local slide images are excluded. The two externally hosted Wikimedia images and 
 - Mark B. N. Hansen is cited for an argument about platforms predicting and controlling conscious thought; no title is supplied. (`lecture-4.md:498-508`)
 - Edward Bernays is cited as a pioneer in attention-shaping media practice; no work is identified. (`lecture-4.md:459-466`)
 
-## Week 5: Consciousness
+### Consciousness
 
-### Readings and resources
+#### Readings and resources
 
 - Hegel, G. W. F. (1807). *Phenomenology of Spirit*. The lecture revisits consciousness, self-consciousness, experience, and recognition. (`lecture-5.md:59-127`)
 - Freud, Sigmund. (1915). “The Unconscious.” The lecture calls it a short essay and quotes its discussion of the conscious/unconscious system, censorship, and schizophrenia, but does not print a formal citation. (`lecture-5.md:133-183`)
@@ -110,7 +112,7 @@ Local slide images are excluded. The two externally hosted Wikimedia images and 
 - EPOL 479 Week 5 CGScholar page: <https://cgscholar.com/community/community_profiles/epol-479-fa25/community_updates/243872>. (`lecture-5.md:293-300`)
 - Shared ChatGPT rubric for artificial consciousness: <https://chatgpt.com/share/68cf28c6-7188-8007-8125-fb5b69327d42>. (`lecture-5.md:301-303`)
 
-### Other explicit references
+#### Other explicit references
 
 - *The Matrix* is used as a cultural example of subjective idealism/simulation. (`lecture-5.md:73-88`)
 - René Descartes is implicitly referenced by “Cogito ergo sum,” but is not named in the lecture. (`lecture-5.md:78`, `lecture-5.md:86-88`)
@@ -118,7 +120,7 @@ Local slide images are excluded. The two externally hosted Wikimedia images and 
 - Jacques Lacan, Judith Butler, and Slavoj Žižek are named as a tradition coupling Hegel and Freud, without particular works. (`lecture-5.md:191-205`)
 - Luciana Parisi and Steve Goodman are cited on the “affective economy”; the exact work is not supplied. (`lecture-5.md:233-242`)
 
-## Week 6: Alignment
+## Week 5: Alignment
 
 ### Readings, papers, and technical resources
 
@@ -141,7 +143,7 @@ Local slide images are excluded. The two externally hosted Wikimedia images and 
 - Michel Foucault’s account of disciplinary subjects/institutions is invoked without a particular work. (`lecture-6.md:128-156`)
 - William Blake’s *Songs of Innocence and of Experience* is referenced through the contrast between innocence and experience. (`lecture-6.md:226-246`)
 
-## Week 7: Criticism and immanent critique
+## Week 6: Criticism and immanent critique
 
 ### Readings and viewings
 
@@ -160,7 +162,7 @@ Local slide images are excluded. The two externally hosted Wikimedia images and 
 - Karl Marx is referenced through Stahl’s distinction between social domination and conceptual self-determination; no particular Marx work is identified. (`lecture-7.md:201-217`)
 - Darwin, Einstein, and Freud are named as examples in the closing philosophical discussion, with no particular works. (`lecture-7.md:285-293`)
 
-## Week 8: Synthesis and history
+## Week 7: Synthesis, technosymbiosis, and history
 
 ### Identifiable works
 
@@ -172,7 +174,7 @@ Local slide images are excluded. The two externally hosted Wikimedia images and 
 - Derrida, Jacques. (1993). *Specters of Marx*. The lecture spells the title “Spectres of Marx.” (`lecture-8.md:238`)
 - Hegel, G. W. F. (1820). *Elements of the Philosophy of Right*, Preface. Source of the “owl of Minerva” quotation. (`lecture-8.md:220-248`)
 
-### Four Week 8 readings named only by author/concept
+### Four Session 7 readings named only by author/concept
 
 The lecture explicitly calls these “the first four readings this week,” but it does not provide titles, dates, or links. They cannot be uniquely reconstructed from the course files alone. (`lecture-8.md:189-212`)
 

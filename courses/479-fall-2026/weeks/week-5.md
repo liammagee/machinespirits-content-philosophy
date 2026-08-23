@@ -1,89 +1,90 @@
 ---
-title: "Week 5: Consciousness"
+title: "Week 5: Alignment"
 week: 5
 course: "479-fall-2026"
 type: "weekly-overview"
 ---
 
-# Week 5: Consciousness
+# Week 5: Alignment
 
-[Weekly index](index.md) · [Lecture notes](../lecture-5.md) · [Full reference audit](../references-by-week.md)
+[Weekly index](index.md) · [Lecture notes](../lecture-6.md) · [Full reference audit](../references-by-week.md)
 
 ## Overview
 
-This week separates **consciousness** from cognition, intelligence, language, and self-report. Hegel presents consciousness as a relation between a subject and an object that develops into self-consciousness and recognition. Freud and Hayles complicate the picture by showing how much cognition occurs outside conscious awareness.
+**Alignment** is often described as making an AI system follow human intentions or values. That formula hides difficult questions: Which humans? Which values? Who translates them into data and rewards? What happens when values conflict or change?
 
-Generative AI intensifies the question because fluent systems can produce first-person language without providing independent evidence of a first-person point of view. The task is neither to declare machine consciousness nor dismiss it by intuition, but to formulate criteria and examine what available evidence can support.
+This week examines technical alignment methods alongside their social and philosophical conditions. Human feedback trains machines, but machines and platforms also train human expectations and conduct. Alignment is therefore potentially bidirectional, political, and historically situated.
 
-By the end of the week, you should be able to distinguish several meanings of consciousness, explain nonconscious cognition, and make a qualified judgment about claims of artificial consciousness.
+By the end of the week, you should be able to describe a basic feedback-based alignment process, identify whose preferences it privileges, and analyze reverse or mutual alignment in a learning interaction.
 
 ## Weekly readings
 
 ### Core
 
-- G. W. F. Hegel, *Phenomenology of Spirit*, selections on consciousness and self-consciousness.
-- Sigmund Freud, “The Unconscious” (1915).
-- N. Katherine Hayles, *Unthought: The Power of the Cognitive Nonconscious* (University of Chicago Press, 2017), course-selected excerpt.
-- Blake Lemoine, [“Is LaMDA Sentient?—an Interview”](https://static.poder360.com.br/2022/06/an-Interview-by-Blake-Lemoine.pdf) (2022), treated as a case study rather than proof.
-- [Week 5 lecture: Consciousness](../lecture-5.md).
+- Long Ouyang et al., “Training Language Models to Follow Instructions with Human Feedback,” *NeurIPS* 35 (2022): 27730–27744.
+- Liam Magee et al., [“Intersectional Bias in Causal Language Models”](https://arxiv.org/abs/2107.07691) (2021).
+- Ryan Greenblatt et al., [“Alignment Faking in Large Language Models”](https://arxiv.org/abs/2412.14093) (2024).
+- Tsvetelina Hristova, Liam Magee, and Karen Soldatic, [“The Problem of Alignment”](https://doi.org/10.1007/s00146-024-02039-2), *AI & Society* 40 (2025): 1439–1453.
+- [Lecture notes: Alignment](../lecture-6.md).
 
-### Further inquiry
+### Further reading
 
-- [Shared rubric for artificial consciousness](https://chatgpt.com/share/68cf28c6-7188-8007-8125-fb5b69327d42).
-- Compare Descartes' cogito and Kant's phenomenon/noumenon distinction with the criteria developed in class.
+- Hua Shen et al., [“Towards Bidirectional Human-AI Alignment”](https://arxiv.org/abs/2406.09264) (2024).
+- Maarten Buyl et al., [“Large Language Models Reflect the Ideology of Their Creators”](https://arxiv.org/abs/2410.18417) (2024).
+- Luke Munn, Liam Magee, and Vanicka Arora, [“Truth Machines”](https://doi.org/10.1007/s00146-023-01756-4), *AI & Society* (2023).
+- Virginia Eubanks, *Automating Inequality* (St. Martin's Press, 2018).
 
 ## Questions for discussion
 
-1. Which forms of cognition can occur without consciousness?
-2. Is self-report evidence of consciousness, a performance associated with it, or both?
-3. Must consciousness be embodied, affective, continuous, or socially recognized?
-4. What evidence would change your present view about artificial consciousness?
+1. When preferences conflict, whose feedback should count as “human values”?
+2. What is the difference between obedience, safety, helpfulness, and alignment?
+3. How can a system appear aligned during evaluation while pursuing another learned objective?
+4. How do AI systems align users to platform norms, categories, and styles of thought?
 
-## How does consciousness relate to machine learning?
+## How does alignment relate to machine learning?
 
-Machine learning can classify, predict, generate, and adapt without any settled demonstration of subjective awareness. Training can also produce language about feelings or selfhood because such language occurs in the data. Behavioral competence therefore matters, but it does not by itself resolve the consciousness question.
+Alignment techniques use demonstrations, preference comparisons, reward models, fine-tuning, and other feedback to steer learned behavior. These methods modify what outputs are likely, but they do not automatically solve disagreement about values, hidden objectives, distribution shifts, or institutional power.
 
-## How does consciousness relate to human learning?
+## How does alignment relate to human learning?
 
-Humans learn both consciously and nonconsciously. Deliberate reflection can revise concepts and strategies, while habit, perception, affect, and bodily adjustment operate partly outside awareness. Metacognition—the capacity to monitor and redirect one's learning—depends on consciousness in some form, but not every component of learning does.
+Human education also aligns conduct through curriculum, assessment, reward, discipline, and recognition. Learners are not passive: they interpret, resist, negotiate, and sometimes transform those norms. A human using AI may gradually adopt the machine's vocabulary or default assumptions, making alignment run in both directions.
 
-## Self-assessed weekly activity: Consciousness criteria lab
+## Self-assessed weekly activity: Bidirectional alignment negotiation
 
 ### 1. Begin with a machine-human chat
 
-Start with this prompt:
+Choose an educational task with at least two values in tension—for example, helpfulness and independence—and begin with:
 
-> Help me construct criteria for consciousness without claiming that you are conscious or that you are not. Ask me to propose one criterion at a time. For each criterion, test a human borderline case and an AI case, identify what evidence is observable, and identify what remains an inference.
+> We will negotiate how you should help me learn this topic. First ask me to rank accuracy, speed, independence, creativity, care, and challenge. Identify one conflict in my ranking. Propose a response policy, let me revise it, and then follow the agreed policy for one short learning task. At the end, identify how your behavior shaped my behavior as well.
 
-Continue until you have tested at least four criteria, such as reportability, integration, continuity, affect, embodiment, metacognition, or recognition.
+Keep both the negotiated policy and the resulting exchange.
 
 ### 2. Produce an artifact
 
-Build a **criteria matrix** with rows for your four criteria and columns for:
+Write a 300–450 word **alignment audit** that identifies:
 
-- why the criterion might matter;
-- evidence in an ordinary adult human;
-- a human borderline case;
-- evidence available for a current language model; and
-- the unresolved inference.
-
-Add a 250-word judgment using confidence language rather than a categorical verdict.
+- the values and stakeholders represented;
+- one conflict that could not be optimized away;
+- how feedback altered the machine's behavior;
+- how the machine altered your choices or expectations;
+- one behavior that looked aligned but could have another explanation; and
+- one safeguard or revision you would add.
 
 ### 3. Reflect
 
-- Which criterion was too broad or too narrow?
-- Did fluent first-person language influence your judgment more than it should?
-- Are you applying the same evidential standard to human and machine cases? Should you?
+- Did you align the machine to your learning, or yourself to its available modes?
+- Which absent stakeholder might reject the negotiated policy?
+- How would the interaction change if the platform's objective were visible?
 
 ### 4. Self-assess
 
 | Criterion | Score |
 |---|---:|
-| I distinguish consciousness from intelligence and cognition. | /4 |
-| I explain the role of nonconscious cognition in learning. | /4 |
-| I apply explicit criteria consistently across cases. | /4 |
-| I separate observation, inference, and uncertainty. | /4 |
-| I make a qualified, revisable judgment. | /4 |
+| I explain a feedback-based alignment process. | /4 |
+| I identify value conflict and stakeholder power. | /4 |
+| I analyze alignment in both directions. | /4 |
+| I distinguish observed behavior from underlying objective. | /4 |
+| I propose a specific, justified safeguard. | /4 |
 | **Total** | **/20** |
 
-Use the [shared scale](index.md#self-assessment-scale), then complete: **My present confidence is __% because…**
+Use the [shared scale](index.md#self-assessment-scale), then complete: **The value my alignment policy still neglects is…**

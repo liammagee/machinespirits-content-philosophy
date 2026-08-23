@@ -18,7 +18,7 @@ credits: 4
 |---|---|
 | **Meeting time** | Mondays, 5:00–7:50 PM Central |
 | **Format** | Online — live seminar over Zoom, with asynchronous work between sessions |
-| **Location** | Online. Zoom link posted on Canvas; no physical room. |
+| **Location** | Online. Zoom link posted on CGScholar; no physical room. |
 | **Term** | Part of Term A, 24 August – 16 October 2026 (seven seminars over eight weeks) |
 | **Sections** | Section B, CRN 79602 (undergraduate) · Section ONL, CRN 79603 (graduate) |
 
@@ -73,6 +73,13 @@ term in the philosophy of mind and a term of art in machine learning:
 7. **Critique** — immanent rather than merely external
 8. **Technosymbiosis** — interdependence, and whether it is equal
 
+Eight concepts across seven seminars: **Attention and Consciousness are taken
+together in Session 4**. They remain two concepts rather than one. Pairing them
+concentrates the course's sharpest case in a single session, because machine
+attention is a demonstrable, inspectable operation that proceeds with no
+awareness whatever. Where attention and consciousness come apart — and how far
+they come apart in us — is a better question than either concept asked alone.
+
 The shared vocabulary is the course's central problem, not its solution. That
 transformer "attention" and human attention bear the same name is a question to
 investigate, not a conclusion to assume. Throughout, we read Hegel's
@@ -104,7 +111,7 @@ the reading, and it will not be legible to you if you have not done it.
 
 Because we meet online, the asynchronous half of the course carries real weight.
 Readings, weekly responses, and AI dialogue practice happen between sessions on
-Canvas; the live seminar is where those threads are argued out.
+CGScholar; the live seminar is where those threads are argued out.
 
 Philosophy rewards rereading in a way that few things do. A passage of Hegel that
 is opaque on first pass is often tractable on the third. Plan for that.
@@ -115,7 +122,7 @@ is opaque on first pass is often tractable on the third. Plan for that.
 - I will answer email within 24 hours on weekdays.
 - I will return written work with substantive comments within one week.
 - I will post clarifications when a reading or an assignment is causing broad difficulty.
-- I will give you my own written commentary at two points — across Sessions 3/4 and Sessions 6/7 — so you are never guessing about where you stand.
+- I will give you my own written commentary at two points — on the work from Sessions 3 and 6, returned to you in Sessions 4 and 7 — so you are never guessing about where you stand.
 - I will grade the quality of your thinking, not its agreement with mine. A well-argued position I disagree with earns full marks; an echo of my own view, poorly defended, does not.
 - If nobody in the class managed something, I will treat that as a fact about my teaching rather than about you, and act accordingly.
 
@@ -142,8 +149,10 @@ through the course site. See the [weekly index](weeks/index.md) for the full
 reading list by week and [references by week](references-by-week.md) for
 complete citations.
 
-**Tools:** the running record of your responses is kept in Google Docs; Canvas
-carries readings, announcements, Zoom links, recordings, and grades. You will
+**Tools:** the running record of your responses is kept in Google Docs;
+CGScholar carries readings, materials, announcements, Zoom links, recordings, and
+the marks and comments on your formative work. Final grades are returned through
+the University's own system at the end of the term. You will
 also need access to at least one contemporary generative AI system, since a
 weekly chat session is part of the assessed cycle. Free tiers are sufficient. If
 cost or access is a barrier, tell me early and we will arrange an alternative —
@@ -153,12 +162,12 @@ no student should be disadvantaged by this requirement.
 
 | Component | Weight |
 |---|---|
-| Formative self-assessments (6 × 10%) | 60% |
+| Formative self-assessments (5 × 12%) | 60% |
 | Peer commentary (2 × 5%) | 10% |
 | Final synthesis report | 30% |
 | **TOTAL** | **100%** |
 
-Think of the course as **six-plus-one iterations** on your own initial impulses,
+Think of the course as **five-plus-one iterations** on your own initial impulses,
 with a mix of self- and other-assessment. You start by writing down what you
 already think. Each week you revise it in the light of a new concept. At the end
 you synthesize. You will keep the whole sequence in a Google Doc, so that the
@@ -182,7 +191,8 @@ is not graded.
 
 ### 1. Formative self-assessments (60%)
 
-Six weekly cycles, one for each of the concepts in Sessions 2–7. Each week you:
+Five weekly cycles, one for each of Sessions 2 to 6, worth 12% each. Each week
+you:
 
 1. take notes from the readings, the lecture, and the group discussion;
 2. hold a chat session with your preferred AI system;
@@ -205,20 +215,23 @@ that strike me as excessively punitive.
 
 ### 2. Peer commentary (10%)
 
-Two rounds — across Sessions 3/4 and again across Sessions 6/7 — in which you
-read and comment on a peer's revised responses. This is a hurdle requirement:
+Two rounds — three comments in Session 3, and three more in Session 6 — in which
+you read and comment on a peer's revised responses. This is a hurdle requirement:
 the 10% is awarded on completing it in good faith, and the commentary itself is
-not graded on quality. I will provide my own commentary at the same two points,
-so you have an outside reading of your work twice before the final report.
+not graded on quality. I will read the same two rounds and return my own
+commentary the following session, so you have an outside reading of your work
+twice before the final report.
 
 ### 3. Final synthesis report (30%)
 
 A summative piece that synthesizes the course materials — a report, an essay, or
-a curriculum design. It builds directly on the formative work: the six
-iterations are the raw material, and this is the seventh. Its exact shape is
+a curriculum design. It builds directly on the formative work: the five
+iterations are the raw material, and this is the sixth. Its exact shape is
 something we will settle together during the course; the form should follow what
-you have actually been arguing. Due **Friday 16 October** at 11:59 PM Central,
-the last day of Term A.
+you have actually been arguing. **Session 7 is given over to it** — there is no
+self-assessment that week — so you arrive at the deadline with a settled form, a
+thesis, and your own record of revisions to draw on. Due **Friday 16 October** at
+11:59 PM Central, the last day of Term A.
 
 ### Use of AI in this course
 
@@ -236,19 +249,20 @@ Beyond this, the University's [Academic Integrity Policy](https://studentcode.il
 ## Weekly schedule
 
 The seminar meets on Mondays. There is no class on Monday 7 September
-(Labor Day); that week runs as a reading week, and Critique and the closing
-Synthesis session are combined in the final seminar.
+(Labor Day); that week runs as a reading week. Attention and Consciousness are
+taken together in Session 4, which frees Critique to have a session of its own
+and leaves the final seminar for the synthesis and your report.
 
 | Session | Date | Concept | Core reading | Due |
 |---|---|---|---|---|
 | 1 | Mon 24 Aug | [Synthesis](weeks/week-1.md) | Hegel, *Phenomenology*, Preface & Introduction; Brandom, *A Spirit of Trust*, Introduction | Baseline response *(not assessed)* |
 | 2 | Mon 31 Aug | [Experience](weeks/week-2.md) | Hegel, "Sense-Certainty," "Perception," "Force and the Understanding" | Self-assessment 1 |
 | — | Mon 7 Sep | *Labor Day — no class; reading week* | Catch up on the *Phenomenology* | — |
-| 3 | Mon 14 Sep | [Recognition](weeks/week-3.md) | Hegel, ¶161–196, "Lordship and Bondage"; Čapek, *R.U.R.* | Self-assessment 2 · **Peer commentary 1** (Sessions 3/4) |
-| 4 | Mon 21 Sep | [Attention](weeks/week-4.md) | Vaswani et al., "Attention Is All You Need"; Petersen & Posner; Terranova | Self-assessment 3 · instructor commentary returned |
-| 5 | Mon 28 Sep | [Consciousness](weeks/week-5.md) | Hayles, *Unthought*; Freud, "The Unconscious"; Lemoine, "Is LaMDA Sentient?" | Self-assessment 4 |
-| 6 | Mon 5 Oct | [Alignment](weeks/week-6.md) | Ouyang et al. (InstructGPT); Hristova, Magee & Soldatic, "The Problem of Alignment"; Greenblatt et al. | Self-assessment 5 · **Peer commentary 2** (Sessions 6/7) |
-| 7 | Mon 12 Oct | [Critique](weeks/week-7.md), then [synthesis, technosymbiosis, history](weeks/week-8.md) | Goodlad & Stone, "Beyond Chatbot-K"; Gebru & Torres, "The TESCREAL Bundle"; Stahl, "What Is Immanent Critique?"; Hegel, concluding passages; Marx, *Poverty of Philosophy* | Self-assessment 6 · instructor commentary returned · **Final report**, Fri 16 Oct |
+| 3 | Mon 14 Sep | [Recognition](weeks/week-3.md) | Hegel, ¶161–196, "Lordship and Bondage"; Čapek, *R.U.R.* | Self-assessment 2 · **Peer commentary 1** (3 comments) |
+| 4 | Mon 21 Sep | [Attention **and** Consciousness](weeks/week-4.md) | Vaswani et al., "Attention Is All You Need"; Petersen & Posner; Hayles, *Unthought*; Hegel on consciousness and self-consciousness | Self-assessment 3 · instructor commentary returned |
+| 5 | Mon 28 Sep | [Alignment](weeks/week-5.md) | Ouyang et al. (InstructGPT); Hristova, Magee & Soldatic, "The Problem of Alignment"; Greenblatt et al. | Self-assessment 4 |
+| 6 | Mon 5 Oct | [Critique](weeks/week-6.md) | Goodlad & Stone, "Beyond Chatbot-K"; Gebru & Torres, "The TESCREAL Bundle"; Stahl, "What Is Immanent Critique?" | Self-assessment 5 · **Peer commentary 2** (3 comments) |
+| 7 | Mon 12 Oct | [Synthesis, technosymbiosis, history](weeks/week-7.md) — **final report workshop** | Hegel, concluding passages and a return to the Preface; Marx, *Poverty of Philosophy*; Hayles revisited | *No self-assessment* · instructor commentary returned · **Final report**, Fri 16 Oct |
 
 Each seminar runs three hours, with ten-minute breaks between them:
 
@@ -258,9 +272,14 @@ Each seminar runs three hours, with ten-minute breaks between them:
 | **Hour 2** | Lecture — with interruptions, please |
 | **Hour 3** | Group discussion, in rotated groups: the readings and the lecture in relation to the week's concept |
 
-The final session is a double one in substance: it closes the critique thread
-and then draws the eight concepts together, so budget extra reading time for
-that week.
+Session 4 is the heaviest for reading, since it carries two concepts; budget
+extra time in the Labor Day reading week ahead of it.
+
+Session 7 does not follow this pattern. There is no self-assessment and no new
+concept to examine. The seminar draws the eight concepts together and then works
+directly on your final report — settling its form, testing your thesis against
+the group, and identifying which of your own revisions the argument will rest
+on. You leave with the report planned rather than merely assigned.
 
 ## Grading scale
 
@@ -283,7 +302,9 @@ written three weeks late is a memory exercise, not a revision, and the peer
 commentary rounds depend on your classmates having something to read. Tell me
 before the deadline if you are going to be late and we will sort it out. The
 final report is the one hard deadline: Term A grades are due to the University
-shortly after the term ends, so extensions on it must be arranged in advance. If
+at 2:00 PM on **Friday 23 October**, one week after the report itself, so
+extensions on it must be arranged in advance — after that date I cannot enter a
+grade at all. If
 something serious is going on, talk to me — I would much rather grant an
 extension than receive nothing.
 
@@ -293,7 +314,7 @@ as early in the term as possible, and speak with me so we can implement them
 promptly. If you have a condition that may require accommodation but are not yet
 registered with DRES, please come and see me regardless.
 
-**Recording.** Seminars are recorded and posted to Canvas. The recording is a
+**Recording.** Seminars are recorded and posted to CGScholar. The recording is a
 resource for revision and for genuine conflicts, not a substitute for attending
 — the argument only happens if you are in it.
 
@@ -305,4 +326,4 @@ Center offer free, confidential services to enrolled students.
 
 The official University-formatted version of this syllabus, built on the UIUC
 template, is kept alongside this file in `syllabus/`. All submissions are made
-through Canvas.
+through CGScholar.

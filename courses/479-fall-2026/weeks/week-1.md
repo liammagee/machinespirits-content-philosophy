@@ -45,43 +45,43 @@ Machine learning synthesizes patterns from data, objectives, architectures, and 
 
 Human learning also transforms a learner's prior concepts through new evidence, dialogue, conflict, and reflection. A learner does not merely collect facts; they revise the relations among what they know. In a human-machine encounter, the learner may change the prompt, the machine may change the available representation, and both changes may alter the next stage of inquiry.
 
-## Self-assessed weekly activity: A synthesis dialogue
+## Week 1 activity: Baseline response *(not assessed)*
 
-### 1. Begin with a machine-human chat
+**There is no self-assessment this week.** The five assessed cycles begin in
+Session 2. What Session 1 asks for instead is a baseline: a record of what you
+already think, before the course has worked on it. Everything you write later
+revises this document, so the value of it lies in its being honest rather than
+polished.
 
-Start a new chat and give the machine this instruction:
+### Write it first, unaided
+
+Write **200–300 words** — longer is fine, but no more than 500 — in your own
+words, before you consult any AI system and, if you can manage it, before the
+readings.
+
+1. How would you define **machine learning**, in your own words and based on your own understanding of the term, today?
+2. How would you define **human learning**?
+3. What are the **similarities** between the two? What are the **differences**?
+4. What can we say about the **relationship** between the two? In what ways does machine learning **build upon** human learning? And in what ways can human learning benefit — or not — from machine learning?
+5. What is the **most important question** you want to pose and have answered about AI in relation to learning and education? Put another way: what are **you yourself** hoping to learn here, and how would you answer that question provisionally?
+
+This sounds like a survey, and in a way it is. More importantly it sets a
+*baseline* of your own understanding, which the rest of the course revisits. It
+is not graded.
+
+Start the Google Doc you will keep for the whole course, and put this at the top
+of it. Each later session copies forward what you wrote and revises it, so the
+record of the changes stays visible — to you and to me. That record *is* the
+work.
+
+### Then, optionally, test it against a machine
+
+Once the baseline is written and saved, you may start a chat and give the machine
+this instruction:
 
 > Act as a learning partner, not an answer machine. First ask me to define synthesis in my own words. Then ask for one example and one counterexample from human-machine learning. Challenge one assumption in each response, and do not offer your own definition until I have revised mine.
 
-Continue for at least six exchanges. Save the transcript or detailed notes.
+Keep whatever this provokes as a note beneath the baseline — but do not edit the
+baseline itself. Its usefulness depends on it staying as you first wrote it.
 
-### 2. Produce an artifact
-
-Write a 250–400 word **synthesis memo** containing:
-
-- your initial and revised definitions of synthesis;
-- the contradiction or tension that caused the revision;
-- one way the machine changed your learning process;
-- one way your choices shaped what the machine could contribute; and
-- one claim from the dialogue that you would verify independently.
-
-### 3. Reflect
-
-- Did the dialogue produce a new relation, or merely combine two contributions?
-- Where did agency remain unequal?
-- What would count as evidence that genuine learning occurred?
-
-### 4. Self-assess
-
-Score each criterion from 0–4 using the [shared scale](index.md#self-assessment-scale).
-
-| Criterion | Score |
-|---|---:|
-| I distinguish synthesis from simple combination. | /4 |
-| I explain the machine-learning connection accurately. | /4 |
-| I explain the human-learning connection accurately. | /4 |
-| I use evidence from the dialogue and readings. | /4 |
-| I revise an initial idea and explain why. | /4 |
-| **Total** | **/20** |
-
-Finish with one sentence: **Next week, I will improve my learning by…**
+Bring both to Session 2, where the assessed cycle begins.

@@ -6,11 +6,13 @@ course: "479"
 
 ## <a id="main-lecture"></a>Welcome to Machine Learning and Human Learning!
 
---- 
 
+
+---
 
 ### Towards Synthesis? Rethinking Learning in the AI Era
 
+#### Or: What is this course about?
 
 
 - Responds to a new learning reality shaped by advances in machine learning.
@@ -30,13 +32,27 @@ First it is a response to a certain new reality about learning, triggered by the
 
 But today we also talk about machines learning how to do things themselves. Most obviously this happens in the fields of AI, and more specifically, of Generative AI. These machines now learn from *us* – from the traces of us we leave in data stored on the Internet. Machines learn from us; and from these new machines, we also learn differently. Asking ChatGPT to create a new recipe is different, we could say, from asking a calculator to add two numbers or even asking Google to find a recipe. We will explore this difference in the course, but for now we can note that we have entered a period in which "learning" comes to be applied to machines as well as humans, and that this learning – for both cases, machine and human – depends upon the other. Even if they differ, both forms of learning form, in their co-dependence, a kind of *synthesis*.
 
-We can now speak in various ways about this much closer relationship we share with machines. We can speak of socio-technical systems; of cyborgian creatures (Haraway); of cyber-social systems (Kalantzis & Cope); and of compound terms like 'technosymbiosis' (N. Katherine Hayles) or a term I'll be using, in the context of learning, 'symbiotic pedagogy'. But the wider concept we'll be working with this week - and returning to, as we'll see - is that of *synthesis*. *Synthesis* will describe how both the similarities and differences between machine and human learning come together in our present moment.
+We can now speak in various ways about this much closer relationship we share with machines. We can speak of socio-technical systems; of cyborgian creatures (Haraway); of cyber-social systems (Kalantzis & Cope); and of compound terms like 'technosymbiosis' (N. Katherine Hayles). But the wider concept we'll be working with this week - and returning to, as we'll see - is that of *synthesis*. *Synthesis* will describe how both the similarities and differences between machine and human learning come together in our present moment.
 
 Through the course we will be studying this relationship in a number of ways. Later I'll talk through the organization of the course materials. 
 
 ```
 
 
+
+---
+
+## Overview of Tonight
+
+
+Hour 1:
+
+1. Outline of the Course
+2. Introductions and General Discussion about Machine and Human Learning
+
+Hour 2:
+
+More details about the course - Conceptual Overview 
 
 
 ---
@@ -65,8 +81,8 @@ On to some basic notes about the course and administration.
 
 The course will use a mix of CGScholar for readings / materials and Google Docs. Assessments will be divided between:
 
-1. Weekly discussion and commentary (weeks 2-7) (60%) CGScholar (formative assessment). 
-2. 2 x 3 comments (during weeks 3-4 & weeks 6-7) on peer reflections: 10%.
+1. Weekly discussion and commentary (weeks 2-6) (5 x 12%) CGScholar (formative assessment). 
+2. 2 x 3 comments (in week 3 & week 6) on peer reflections: 10%.
 3. A final project (30%): An individual curriculum, learning guide or conference presentation outline (summative assessment). This will be your choice, but could be any of:
   a. Learning materials designed for machines, describing some facet of human culture
   b. or Learning materials designed for humans, describing some facet of machine "experience"
@@ -214,12 +230,7 @@ Finally, a challenge for us today is to think through what Artificial Intelligen
 - His renewed relevance (e.g., Brandom) in language, norms, and consciousness provides contemporary scaffolding for AI ethics, pedagogy, and discourse.
 - As the thinker of contradiction, he helps us hold AI’s benefits and harms together, suspending strict non‑contradiction for nuanced, both‑and evaluation.
 
-* * *
 
-## <a id="organization-of-the-course"></a>Organization of the Course
-
-
-The course is structured over eight weeks, and each week introduces and discusses a new concept. 
 
 * * *
 
@@ -252,21 +263,6 @@ The course is structured over eight weeks, and each week introduces and discusse
 
 * * *
 
-## **Attention Across Disciplines**
-
-- Integrates neuroscience, psychology, CS, philosophy, and media studies.
-- Highlights the seminal paper *Attention is All You Need* as a pivot in machine learning.
-- Connects computational attention mechanisms to human learning processes.
-- Examines critiques of the “Attention Economy” within critical media theory.
-
-```notes
-Attention
-  - Following that, we will focus on the idea of attention. This is an idea that spans neuroscience, psychology, computer science, philosophy and media studies. We'll examine a key text in the development of machine learning, "Attention is All you Need". But we will also think about how attention is important for human learning. And we will look at recent critical studies of attention and what has become known as the Attention Economy.
-
-```  
-
-* * *
-
 ### Recognition as a Social Dimension of Learning
 
 - Hegel frames recognition as linking individual learning to relational dynamics with others.
@@ -282,6 +278,22 @@ Attention
 
 5. Consciousness (Self/Other/Un/Non)
 The early parts of Phenomenology of Spirit is dominated by the ideas of Consciousness and Self-consciousness. We'll explore how these relate to Experience, Attention and Recognition (and whether indeed they "synthesize" these earlier ideas). We'll explore also later ideas of the Unconscious (Freud) and Nonconscious Cognition (Katherine Hayles). This leads us naturally to an obvious question: can machines be conscious? If not, can they be unconscious? 
+
+
+* * *
+
+## **Attention Across Disciplines**
+
+- Integrates neuroscience, psychology, CS, philosophy, and media studies.
+- Highlights the seminal paper *Attention is All You Need* as a pivot in machine learning.
+- Connects computational attention mechanisms to human learning processes.
+- Examines critiques of the “Attention Economy” within critical media theory.
+
+```notes
+Attention
+  - Following that, we will focus on the idea of attention. This is an idea that spans neuroscience, psychology, computer science, philosophy and media studies. We'll examine a key text in the development of machine learning, "Attention is All you Need". But we will also think about how attention is important for human learning. And we will look at recent critical studies of attention and what has become known as the Attention Economy.
+
+```  
 
 
 * * *
@@ -326,35 +338,6 @@ Alignment is a "vogue" term in machine learning, and describes the process of al
 ```notes
 8. Synthesis: Technosymbiosis
 Finally, we return to where we started: with the concept of synthesis. However – just like a Hegelian process of argument – our original concept is now modified and inflected by the other concepts and materials we've encountered. In particular we are in a position to understand N. Katherine Hayles' idea of "technosymbiosis" – the combining of technology and life – a synthesis that also incorporates earlier ideas of experience, attention, recognition, consciousness, alignment and critique. 
-```
-
-
-* * *
-
-## Technosymbiosis – A Dialectical Journey Toward Human‑Machine Co‑Development
-
-- Finally, a word from GPT-5 on all this...
- 
-> This lecture traces a dialectical arc from the initial synthesis of machine and human learning to a higher reconciliation in technosymbiosis. Learning, for both, proceeds through experience as determinate negation: errors, surprises, and feedback that reshape models and minds. Attention functions as the selective mediation of this process—mechanically as weighting and salience, pedagogically as disciplined focus—organizing the field in which meaning can emerge. Recognition supplies the intersubjective and evaluative moment: humans become self-conscious through mutual acknowledgment, while models are shaped by social signals (labels, feedback) that confer norms. Across these movements, we clarify consciousness—self- and other-relation for persons, and the un/non-conscious operations of machines—so that we do not confuse functional intelligence with lived subjectivity. Alignment then names the practical task of orienting capacities toward shared ends, integrating ethical, social, and technical constraints. Critique provides the immanent negativity that guards against dogma and misalignment, refining concepts and objectives. The result is a second, richer synthesis: technosymbiosis, in which human Bildung and machine optimization co-develop, each sublating the other’s limits while preserving their difference.
-
-
-
-
-* * *
-
-## <a id="a-word-on-software"></a>A word on software....
-
-
-- Introduces “Hegel Pedagogy AI,” a custom note‑to‑presentation converter developed via prompt engineering with Claude.
-- Highlights the shift from traditional coding to conversational design—“vibe coding”—emphasizing communication over algorithmic depth.
-- Positions AI as a low‑barrier software‑writing assistant that democratizes technical creation for educators and learners.
-- Connects this new skill set to broader course themes, framing it as a necessary form of human–machine co‑learning.
-
-```notes
-Now some of you may have seen that I'm using some unusual software to do this presentation – and I'll be using it for the rest of this course. You'll see it's called "Hegel Pedagogy AI", and indeed I've written this software – or more exactly, I've prompted Claude to write the software. I used to be a software developer, and I've always wanted something that could convert notes into a presentation. So I asked Claude to write this "note converter" for this course. It may change week-to-week, and if I think it is useful for anyone other than myself, I'll release it.
-
-
-But more to the point, I want people also to experiment with how these AI tools also write software. In fact this might be one of the sweet spots of AI today – as a software writing assistant. For the right applications, it has reduced the technical demands of users to nearly zero. One practical effect is that the key skills needed for so-called "vibe coding" are no longer deep algorithmic knowledge, but rather design and writing – specifically, how to talk to machines to get the results you want. Management, in other words, and not far removed from teaching. A new kind of human human learning is required to make use of these new kinds of learning machines, and to offset some of the conceptual terrain of this course, we'll also be practicing how to write software.
 ```
 
 

@@ -1,88 +1,125 @@
 ---
-title: "Week 7: Critique"
+title: "Week 7: Synthesis, Technosymbiosis, and History"
 week: 7
 course: "479-fall-2026"
 type: "weekly-overview"
 ---
 
-# Week 7: Critique
+# Week 7: Synthesis, Technosymbiosis, and History
 
-[Weekly index](index.md) · [Lecture notes](../lecture-7.md) · [Full reference audit](../references-by-week.md)
+[Weekly index](index.md) · [Lecture notes](../lecture-8.md) · [Full reference audit](../references-by-week.md)
 
 ## Overview
 
-**Critique** is more than finding faults from an external position. Immanent critique begins with the norms, promises, or concepts of a practice and demonstrates how the practice fails by its own standards or generates contradictions it cannot resolve.
+The final week returns to **synthesis**, now informed by experience, recognition, attention, consciousness, alignment, and critique. **Technosymbiosis** names the possibility that humans and technical systems develop through sustained interdependence. It does not guarantee harmony: symbiotic relations can remain unequal, extractive, or unstable.
 
-AI criticism often opposes spectacular promises with documented harms and limitations. This week asks how such criticism can move beyond dismissal: What standards do AI systems and institutions claim? Where do their actual practices contradict those standards? Can that contradiction support transformation?
+The historical question is whether AI should be understood as a tool within existing institutions, a new stage of those institutions, or part of a deeper transformation in human learning and social life. Hegelian synthesis asks us to preserve what the course has learned from its contradictions rather than resolve them with either technological optimism or refusal.
 
-By the end of the week, you should be able to distinguish external criticism from immanent critique and use a system's own stated norm to analyze one of its failures.
+By the end of the week, you should be able to connect the seven course concepts, formulate a defensible account of human-machine co-learning, and propose a future learning practice that remains open to critique.
 
 ## Weekly readings
 
-### Core
+### Core synthesis
 
-- Lauren M. E. Goodlad and Matthew Stone, “Beyond Chatbot-K,” *Critical AI* 2, no. 1 (2024).
-- Timnit Gebru and Émile P. Torres, [“The TESCREAL Bundle”](https://doi.org/10.5210/fm.v29i4.13636), *First Monday* 29, no. 4 (2024).
-- Richard S. Sutton, “The Bitter Lesson” (2019).
-- Titus Stahl, [“What Is Immanent Critique?”](https://doi.org/10.2139/ssrn.2357957) (2013).
-- [Week 7 lecture: Critique](../lecture-7.md).
+- G. W. F. Hegel, *Phenomenology of Spirit*, course-selected concluding passages and a return to the Preface.
+- N. Katherine Hayles, *Unthought: The Power of the Cognitive Nonconscious* (2017), revisited.
+- Karl Marx, *The Poverty of Philosophy* (1847), selection on productive forces and social relations.
+- Francis Fukuyama, “The End of History?” (1989), read alongside Jacques Derrida, *Specters of Marx* (1993).
+- [Lecture notes: Synthesis and history](../lecture-8.md).
 
-### Further reading
+### Contemporary readings requiring citation confirmation
 
-- Emily M. Bender et al., “On the Dangers of Stochastic Parrots,” *FAccT '21* (2021): 610–623.
-- G. W. F. Hegel, *Phenomenology of Spirit*, revisiting contradiction and determinate negation.
-- Immanuel Kant, selections from the three Critiques, for comparison with Hegelian critique.
+The lecture identifies the following four readings by author and concept, but the course source does not yet provide unique titles, dates, or links. Confirm the assigned editions before publication:
+
+- Rosi Braidotti on the posthuman.
+- N. Katherine Hayles on “technopoeisis” (spelling in the course source).
+- A Yuk Hui interview on technodiversity and AI across geopolitical lines.
+- Mary Kalantzis and Bill Cope on the cyber-social.
 
 ## Questions for discussion
 
-1. What makes a critique immanent rather than merely hostile or external?
-2. Which promises of generative AI create standards by which it can be judged?
-3. Can an AI system criticize its own outputs, or is it only generating a learned genre of criticism?
-4. When does critique transform a practice, and when does it merely help the practice absorb opposition?
+1. What has the course's final synthesis preserved, rejected, and transformed?
+2. When does human-machine interdependence become symbiosis, and who benefits from it?
+3. Does AI mark a historical break or intensify older relations of labor, knowledge, and power?
+4. What would an educational institution designed for critical technosymbiosis look like?
 
-## How does critique relate to machine learning?
+## How does synthesis relate to machine learning?
 
-Machine-learning systems are evaluated against loss functions, benchmarks, safety policies, and product claims. Contradictions appear when success on one measure undermines another—for example, fluent helpfulness producing confident falsehoods. Models can generate counterarguments and self-revisions, but those performances must be assessed against external evidence and the system's actual capacity to change.
+Machine learning develops inside a larger system of data, human judgment, labor, infrastructure, institutions, and use. A final synthesis therefore cannot be a claim about model capability alone. It must explain how these relations produce one another and how contradictions—such as assistance versus dependency or personalization versus control—might drive change.
 
-## How does critique relate to human learning?
+## How does synthesis relate to human learning?
 
-Human learners develop critical capacity when they can identify the assumptions and standards inside a claim, test those standards against practice, and revise both their object of inquiry and their own position. Critique is therefore reflexive: the learner is also implicated in the concepts and institutions being examined.
+Human learning becomes synthetic when earlier concepts are reorganized into a more adequate whole without losing their important differences. The learner should now be able to see experience, recognition, attention, consciousness, alignment, and critique as connected dimensions of a shared learning situation rather than isolated topics.
 
-## Self-assessed weekly activity: Immanent critique of a chatbot promise
+## In session: from charter to report
 
-### 1. Begin with a machine-human chat
+**There is no self-assessment this week.** The five formative cycles closed with
+Critique in Week 6. This session is given over to the final synthesis report,
+and the work below feeds directly into it rather than being marked on its own.
 
-Select one promise associated with chatbots—helpfulness, accuracy, personalization, neutrality, accessibility, or empowerment—and begin with:
+### 1. Build the charter (in class)
 
-> State the strongest version of the claim that a chatbot is [chosen promise]. Turn that claim into three standards by which your responses could be judged. Help me design a short test for one standard, respond to the test, and then analyze any contradiction between the promise and the result. Do not treat your self-evaluation as sufficient evidence.
+Work through a machine-human chat, starting from:
 
-Record the promise, standard, test, response, and evaluation.
+> Help me synthesize a theory of human-machine learning from seven concepts: synthesis, experience, recognition, attention, consciousness, alignment, and critique. Ask me to define the relation between two concepts at a time. Challenge any link that erases a difference between human and machine. Then help me draft principles for a learning relationship that is useful, reciprocal where possible, evidence-aware, and open to revision.
 
-### 2. Produce an artifact
+Continue until every concept has been connected to at least two others. Produce a
+one-page **charter for critical technosymbiosis** containing:
 
-Write a 350–500 word **immanent critique** containing:
+- a concept map connecting all seven concepts;
+- three principles for human-machine co-learning;
+- one unresolved contradiction the charter does not pretend to solve;
+- one institutional condition required for the charter to work;
+- one empirical claim that would need testing; and
+- one practice for continuing critique after the course.
 
-- the practice's own promise;
-- the standard implied by that promise;
-- evidence of a contradiction or an explanation of why the test did not establish one;
-- the social or technical conditions producing the result; and
-- a determinate revision—what should change, not only what should be rejected.
+The charter is not the report. It is scaffolding — the shortest statement of what
+you now think, which the report then argues for at length.
 
-### 3. Reflect
+### 2. Settle the shape of your report
 
-- Was your test capable of falsifying your initial suspicion?
-- Did the machine's critique change the practice or only describe it?
-- Are you, as user and evaluator, outside the contradiction you identified?
+The final report is due **Friday 16 October, 11:59 PM Central**, four days after
+this seminar. By the end of tonight you should leave with:
 
-### 4. Self-assess
+- **A form.** A report, an essay, or a curriculum design — whichever fits the
+  argument you have actually been making across the five cycles. We settle this
+  together; the form should follow the argument, not the other way round.
+- **A thesis.** One sentence you are prepared to defend, which your five
+  self-assessments have been circling without quite stating.
+- **A spine.** Which concepts do real work in your argument, and in what order.
+  You do not need all eight. You need the ones your thesis depends on.
+- **The raw material identified.** Which passages of your own Google Doc —
+  baseline response, five revisions, reflective notes, peer and instructor
+  commentary — you will draw on. The record of your changes *is* the evidence.
 
-| Criterion | Score |
-|---|---:|
-| I distinguish external criticism from immanent critique. | /4 |
-| I derive a clear standard from the practice's own promise. | /4 |
-| I use evidence that could challenge my prior view. | /4 |
-| I connect the contradiction to its conditions. | /4 |
-| I propose a specific transformation. | /4 |
-| **Total** | **/20** |
+### 3. Workshop
 
-Use the [shared scale](index.md#self-assessment-scale), then complete: **My critique would be stronger if…**
+In rotated groups, present your thesis in two minutes and take challenges. You
+are looking for the objection you cannot yet answer — better to meet it tonight
+than to discover it while writing on Thursday.
+
+### 4. Reflect
+
+Carry these into the report rather than submitting them separately:
+
+- Which concept most changed your account of learning?
+- Where did the machine strengthen the synthesis, and where did it flatten a real difference?
+- How has your own use of the machine changed since Week 1?
+- What future evidence could force you to rewrite the charter?
+
+### What the report is assessed on
+
+The final report carries 30%. It is the only piece I grade rather than you, and
+it is assessed on the quality of the thinking, not its agreement with mine:
+
+| | |
+|---|---|
+| Synthesis | Connects the concepts without collapsing their differences |
+| Grounding | Explains both machine-learning and human-learning relations |
+| Situation | Addresses power, institutions, and historical conditions |
+| Honesty | Preserves an unresolved contradiction rather than resolving it cheaply |
+| Consequence | Proposes something that could guide an actual learning practice |
+
+If you need an extension, ask **before** 16 October. Term A grades are due to the
+University at 2:00 PM on Friday 23 October, so there is very little room after
+the deadline.
