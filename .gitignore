@@ -17,3 +17,8 @@ brand/
 
 # Word lock files
 ~$*
+
+# Student records. Never version-controlled: names, emails, grades, and notes
+# about identifiable students stay on local disk only. The leading underscore
+# also keeps the folder out of ./build and the site index.
+_students/
