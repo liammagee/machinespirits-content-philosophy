@@ -109,7 +109,7 @@ On to some basic notes about the course and administration.
 
 The course will use a mix of CGScholar for readings / materials and Google Docs. Assessments will be divided between:
 
-1. Weekly responses to questions (weeks 2-7) (5 x 10%) - Google Docs (formative assessment). 
+1. Weekly responses to questions (weeks 2-6) (5 x 10%) - Google Docs (formative assessment). 
 2. 2 x 3 comments (in week 4 & week 7) on peer reflections: 10%.
 3. A final project (40%): An individual curriculum, learning guide, or policy report (summative assessment). This will be your choice, but could be any of:
   a. Learning materials designed for machines, describing some facet of human culture
@@ -300,7 +300,7 @@ Finally, a challenge for us today is to think through what Artificial Intelligen
 
 ---
 
-## Recognition as a Social Dimension of Learning
+## Recognition as a Social Dimension of Learning / Consciousness (Self/Other/Un/Non)
 
 - Hegel frames recognition as linking individual learning to relational dynamics with others.
 - The week’s discussion juxtaposes Vygotsky’s sociocultural theory with Hegelian insights on intersubjectivity.
@@ -309,17 +309,19 @@ Finally, a challenge for us today is to think through what Artificial Intelligen
 
 ```notes
 
-4. Recognition  
+3. Recognition  
  - Another key Hegelian idea, this week we will examine how *recognition* connects individual learning to our relation to others - to, in other words, a social process. We'll discuss here Vygotsky's theory of human learning, and also examine ways machines could be considered as "recognizing" us. 
+ 
+
+4. Consciousness (Self/Other/Un/Non)
+The early parts of *Phenomenology of Spirit* are dominated by the ideas of Consciousness and Self-consciousness. We'll explore how these relate to Experience, Attention and Recognition (and whether indeed they "synthesize" these earlier ideas). We'll explore also later ideas of the Unconscious (Freud) and Nonconscious Cognition (Katherine Hayles). This leads us naturally to an obvious question: can machines be conscious? If not, can they be unconscious?  
 ```
 
-5. Consciousness (Self/Other/Un/Non)
-The early parts of *Phenomenology of Spirit* are dominated by the ideas of Consciousness and Self-consciousness. We'll explore how these relate to Experience, Attention and Recognition (and whether indeed they "synthesize" these earlier ideas). We'll explore also later ideas of the Unconscious (Freud) and Nonconscious Cognition (Katherine Hayles). This leads us naturally to an obvious question: can machines be conscious? If not, can they be unconscious? 
 
 
 ---
 
-## **Attention Across Disciplines**
+## Attention Across Disciplines
 
 - Integrates neuroscience, psychology, CS, philosophy, and media studies.
 - Highlights the seminal paper *Attention is All You Need* as a pivot in machine learning.
@@ -327,7 +329,7 @@ The early parts of *Phenomenology of Spirit* are dominated by the ideas of Consc
 - Examines critiques of the “Attention Economy” within critical media theory.
 
 ```notes
-Attention
+5. Attention
   - Following that, we will focus on the idea of attention. This is an idea that spans neuroscience, psychology, computer science, philosophy and media studies. We'll examine a key text in the development of machine learning, "Attention is All You Need". But we will also think about how attention is important for human learning. And we will look at recent critical studies of attention and what has become known as the Attention Economy.
 
 ```  
@@ -374,7 +376,7 @@ Alignment is a "vogue" term in machine learning, and describes the process of al
 
 ```notes
 8. Synthesis: Technosymbiosis
-Finally, we return to where we started: with the concept of synthesis. However – just like a Hegelian process of argument – our original concept is now modified and inflected by the other concepts and materials we've encountered. In particular we are in a position to understand N. Katherine Hayles' idea of "technosymbiosis" – the combining of technology and life – a synthesis that also incorporates earlier ideas of experience, attention, recognition, consciousness, alignment and critique. 
+Finally, we return to where we started: with the concept of synthesis. However – just like a Hegelian process of argument – our original concept is now modified and inflected by the other concepts and materials we've encountered. In particular we are in a position to understand N. Katherine Hayles' idea of "technosymbiosis" – the conjoining of technology and life – a synthesis that also incorporates earlier ideas of experience, attention, recognition, consciousness, alignment and critique. 
 ```
 
 
