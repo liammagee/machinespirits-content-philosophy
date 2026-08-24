@@ -67,18 +67,21 @@ term in the philosophy of mind and a term of art in machine learning:
 1. **Synthesis** — how a new relation forms in which both sides change
 2. **Experience** — expectation, encounter, contradiction, revision
 3. **Recognition** — identification, validation, compliance, reciprocity
-4. **Attention** — selection in transformers and in brains
-5. **Consciousness** — cognition, self-report, and the nonconscious
+4. **Consciousness** — cognition, self-report, and the nonconscious
+5. **Attention** — selection in transformers and in brains
 6. **Alignment** — whose values, translated by whom, into what rewards
 7. **Critique** — immanent rather than merely external
 8. **Technosymbiosis** — interdependence, and whether it is equal
 
-Eight concepts across seven seminars: **Attention and Consciousness are taken
-together in Session 4**. They remain two concepts rather than one. Pairing them
-concentrates the course's sharpest case in a single session, because machine
-attention is a demonstrable, inspectable operation that proceeds with no
-awareness whatever. Where attention and consciousness come apart — and how far
-they come apart in us — is a better question than either concept asked alone.
+Eight concepts across seven seminars: **Recognition and Consciousness are taken
+together in Session 3**. They remain two concepts rather than one, but in Hegel
+they are barely separable — the passages on lordship and bondage sit inside the
+chapter on self-consciousness, and recognition is what self-consciousness turns
+out to require. Pairing them lets the course ask whether recognition needs a
+conscious partner on both sides, or only one. Attention then stands alone in
+Session 4, where it carries the sharpest case in the course: machine attention
+is a demonstrable, inspectable operation that proceeds with no awareness
+whatever.
 
 The shared vocabulary is the course's central problem, not its solution. That
 transformer "attention" and human attention bear the same name is a question to
@@ -215,7 +218,7 @@ that strike me as excessively punitive.
 
 ### 2. Peer commentary (10%)
 
-Two rounds — three comments in Session 3, and three more in Session 6 — in which
+Two rounds — three comments in Session 4, and three more in Session 6 — in which
 you read and comment on a peer's revised responses. This is a hurdle requirement:
 the 10% is awarded on completing it in good faith, and the commentary itself is
 not graded on quality. I will read the same two rounds and return my own
@@ -275,8 +278,8 @@ Beyond this, the University's [Academic Integrity Policy](https://studentcode.il
 ## Weekly schedule
 
 The seminar meets on Mondays. There is no class on Monday 7 September
-(Labor Day); that week runs as a reading week. Attention and Consciousness are
-taken together in Session 4, which frees Critique to have a session of its own
+(Labor Day); that week runs as a reading week. Recognition and Consciousness are
+taken together in Session 3, which frees Critique to have a session of its own
 and leaves the final seminar for the synthesis and your report.
 
 | Session | Date | Concept | Core reading | Due |
@@ -284,9 +287,9 @@ and leaves the final seminar for the synthesis and your report.
 | 1 | Mon 24 Aug | [Synthesis](weeks/week-1.md) | Hegel, *Phenomenology*, Preface & Introduction; Brandom, *A Spirit of Trust*, Introduction | Baseline response *(not assessed)* |
 | 2 | Mon 31 Aug | [Experience](weeks/week-2.md) | Hegel, "Sense-Certainty," "Perception," "Force and the Understanding" | Self-assessment 1 |
 | — | Mon 7 Sep | *Labor Day — no class; reading week* | Catch up on the *Phenomenology* | — |
-| 3 | Mon 14 Sep | [Recognition](weeks/week-3.md) | Hegel, ¶161–196, "Lordship and Bondage"; Čapek, *R.U.R.* | Self-assessment 2 · **Peer commentary 1** (3 comments) |
-| 4 | Mon 21 Sep | [Attention **and** Consciousness](weeks/week-4.md) | Vaswani et al., "Attention Is All You Need"; Petersen & Posner; Hayles, *Unthought*; Hegel on consciousness and self-consciousness | Self-assessment 3 · instructor commentary returned |
-| 5 | Mon 28 Sep | [Alignment](weeks/week-5.md) | Ouyang et al. (InstructGPT); Hristova, Magee & Soldatic, "The Problem of Alignment"; Greenblatt et al. | Self-assessment 4 |
+| 3 | Mon 14 Sep | [Recognition **and** Consciousness](weeks/week-3.md) | Hegel, ¶161–196, "Lordship and Bondage"; Hegel on consciousness and self-consciousness; Hayles, *Unthought*; Čapek, *R.U.R.* | Self-assessment 2 |
+| 4 | Mon 21 Sep | [Attention](weeks/week-4.md) | Vaswani et al., "Attention Is All You Need"; Petersen & Posner | Self-assessment 3 · **Peer commentary 1** (3 comments) |
+| 5 | Mon 28 Sep | [Alignment](weeks/week-5.md) | Ouyang et al. (InstructGPT); Hristova, Magee & Soldatic, "The Problem of Alignment"; Greenblatt et al. | Self-assessment 4 · instructor commentary returned |
 | 6 | Mon 5 Oct | [Critique](weeks/week-6.md) | Goodlad & Stone, "Beyond Chatbot-K"; Gebru & Torres, "The TESCREAL Bundle"; Stahl, "What Is Immanent Critique?" | Self-assessment 5 · **Peer commentary 2** (3 comments) |
 | 7 | Mon 12 Oct | [Synthesis, technosymbiosis, history](weeks/week-7.md) — **final report workshop** | Hegel, concluding passages and a return to the Preface; Marx, *Poverty of Philosophy*; Hayles revisited | *No self-assessment* · instructor commentary returned · **Final report**, Fri 16 Oct |
 
@@ -298,8 +301,8 @@ Each seminar runs three hours, with ten-minute breaks between them:
 | **Hour 2** | Lecture — with interruptions, please |
 | **Hour 3** | Group discussion, in rotated groups: the readings and the lecture in relation to the week's concept |
 
-Session 4 is the heaviest for reading, since it carries two concepts; budget
-extra time in the Labor Day reading week ahead of it.
+Session 3 is the heaviest for reading, since it carries two concepts; budget
+extra time in the Labor Day reading week immediately ahead of it.
 
 Session 7 does not follow this pattern. There is no self-assessment and no new
 concept to examine. The seminar draws the eight concepts together and then works

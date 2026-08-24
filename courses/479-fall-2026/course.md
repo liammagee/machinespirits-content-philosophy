@@ -53,4 +53,4 @@ What does it mean for both humans and machines to "learn"? This course explores:
 
 Each week consists of a three-hour online seminar combining group discussion, lecture, and hands-on practice, with 10-minute breaks between hours. Seven seminars run across Term A; there is no class on Labor Day.
 
-Eight concepts are covered across the seven seminars: Attention and Consciousness are taken together in Session 4. Sessions 2 to 6 each close with a self-assessed activity, five in all. Session 7 turns to the final synthesis report.
+Eight concepts are covered across the seven seminars: Recognition and Consciousness are taken together in Session 3. Sessions 2 to 6 each close with a self-assessed activity, five in all. Session 7 turns to the final synthesis report.

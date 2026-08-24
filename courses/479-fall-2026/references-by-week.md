@@ -47,7 +47,7 @@ Local slide images are excluded. The two externally hosted Wikimedia images and 
 - William Blake and Jimi Hendrix are invoked as cultural associations of “experience,” with no works specified. (`lecture-2.md:235`)
 - *Star Wars* is referenced through C-3PO and R2-D2 as contrasting machine forms. (`lecture-2.md:272`)
 
-## Week 3: Recognition and the master–servant dialectic
+## Week 3: Recognition, the master–servant dialectic, and consciousness
 
 ### Identifiable works and resources
 
@@ -68,39 +68,6 @@ Local slide images are excluded. The two externally hosted Wikimedia images and 
 - Marx, Freud, René Girard, Slavoj Žižek, and Judith Butler are named as inheritors or applications of the master–servant/recognition framework, with no particular works cited. (`lecture-3.md:19-31`)
 - The Nazi slogan *Arbeit macht frei* is referenced historically in the discussion of work and education. (`lecture-3.md:484-492`)
 
-## Week 4: Attention and Consciousness
-
-### Attention
-
-#### Assigned and supporting readings
-
-- Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L., and I. Polosukhin. (2017). [“Attention Is All You Need.”](https://i-share-uiu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=cdi_proquest_journals_2076493815&context=PC&vid=01CARLI_UIU:CARLI_UIU&search_scope=CentralIndex&tab=CentralIndex&lang=en) *Advances in Neural Information Processing Systems*, 30. (`lecture-4.md:4`)
-- Petersen, S. E., and M. I. Posner. (2012). [“The Attention System of the Human Brain: 20 Years After.”](https://i-share-uiu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=cdi_pubmedcentral_primary_oai_pubmedcentral_nih_gov_3413263&context=PC&vid=01CARLI_UIU:CARLI_UIU&search_scope=CentralIndex&tab=CentralIndex&lang=en) *Annual Review of Neuroscience*, 35(1), 73–89. (`lecture-4.md:5`)
-- Terranova, Tiziana. (2012). [“Attention, Economy and the Brain.”](https://culturemachine.net/wp-content/uploads/2019/01/465-973-1-PB.pdf) *Culture Machine*, 13. (`lecture-4.md:6`)
-- Rueda, M. R., and M. I. Posner. (2013). “Development of Attention Networks.” Publication details are not supplied. (`lecture-4.md:97-103`)
-- Posner, M. I., and M. K. Rothbart. (2007). “Research on Attention Networks as a Model for the Integration of Psychological Science.” *Annual Review of Psychology*, 58, 1–23. (`lecture-4.md:102`)
-- Boen, R., Ferschmann, L., Vijayakumar, N., Overbye, K., Fjell, A. M., Espeseth, T., and C. K. Tamnes. (2021). “Development of Attention Networks from Childhood to Young Adulthood: A Study of Performance, Intraindividual Variability and Cortical Thickness.” *Cortex*, 138, 138–151. (`lecture-4.md:103`)
-- Rueda, M. R., Posner, M. I., and M. K. Rothbart. (2004). “Attentional Control and Self-Regulation in Early Development.” *Trends in Cognitive Sciences*, 8, 140–147. This citation exists only in a source comment and is not rendered on the course page. (`lecture-4.md:107`)
-- Hegel, G. W. F. *Phenomenology of Spirit*, paragraph 340, on phrenology. (`lecture-4.md:121-128`)
-- Dobbs, D. (2005). “Fact or Phrenology?” *Scientific American Mind*, 16(1), 24–31. (`lecture-4.md:149-155`)
-- Stea, J. N., Black, T. R., and S. I. Di Domenico. (2022). “Phrenology and Neuroscience.” In *Investigating Pop Psychology* (pp. 9–19). Routledge. (`lecture-4.md:149-164`)
-- Radford, A., Narasimhan, K., Salimans, T., and I. Sutskever. (2018). *Improving Language Understanding by Generative Pre-Training*. (`lecture-4.md:173-180`)
-
-#### Citations embedded in quoted material
-
-- Green (2003), on Galen’s ventricular doctrine; full metadata is not supplied. (`lecture-4.md:147`)
-- Gall and Spurzheim (1810), on phrenology; full metadata is not supplied. (`lecture-4.md:147`)
-- Posner and DiGirolamo (2000), on cognitive neuroscience; full metadata is not supplied. (`lecture-4.md:147`)
-- Uttal (2001) and Uttal (2011), criticizing a psychological atlas of the brain; titles are not supplied. (`lecture-4.md:147`)
-
-#### Videos and further references
-
-- YouTube video, title not supplied: <https://www.youtube.com/watch?v=PKzz1OAiTRQ>. (`lecture-4.md:521-523`)
-- Michael Posner, “The Anatomy of Attentional Networks: A Historical Perspective on Attention Research”: <https://www.youtube.com/watch?v=uYUdwS7-WvA>. (`lecture-4.md:521-523`)
-- Terranova’s discussion names Nicholas Carr, Catherine Malabou, Jonathan Crary, Maurizio Lazzarato, and Bernard Stiegler without identifying the particular works being summarized. (`lecture-4.md:459-491`)
-- Mark B. N. Hansen is cited for an argument about platforms predicting and controlling conscious thought; no title is supplied. (`lecture-4.md:498-508`)
-- Edward Bernays is cited as a pioneer in attention-shaping media practice; no work is identified. (`lecture-4.md:459-466`)
-
 ### Consciousness
 
 #### Readings and resources
@@ -119,6 +86,37 @@ Local slide images are excluded. The two externally hosted Wikimedia images and 
 - Immanuel Kant’s phenomenon/noumenon distinction is referenced without a particular work. (`lecture-5.md:143-148`)
 - Jacques Lacan, Judith Butler, and Slavoj Žižek are named as a tradition coupling Hegel and Freud, without particular works. (`lecture-5.md:191-205`)
 - Luciana Parisi and Steve Goodman are cited on the “affective economy”; the exact work is not supplied. (`lecture-5.md:233-242`)
+
+## Week 4: Attention
+
+### Assigned and supporting readings
+
+- Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L., and I. Polosukhin. (2017). [“Attention Is All You Need.”](https://i-share-uiu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=cdi_proquest_journals_2076493815&context=PC&vid=01CARLI_UIU:CARLI_UIU&search_scope=CentralIndex&tab=CentralIndex&lang=en) *Advances in Neural Information Processing Systems*, 30. (`lecture-4.md:4`)
+- Petersen, S. E., and M. I. Posner. (2012). [“The Attention System of the Human Brain: 20 Years After.”](https://i-share-uiu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=cdi_pubmedcentral_primary_oai_pubmedcentral_nih_gov_3413263&context=PC&vid=01CARLI_UIU:CARLI_UIU&search_scope=CentralIndex&tab=CentralIndex&lang=en) *Annual Review of Neuroscience*, 35(1), 73–89. (`lecture-4.md:5`)
+- Terranova, Tiziana. (2012). [“Attention, Economy and the Brain.”](https://culturemachine.net/wp-content/uploads/2019/01/465-973-1-PB.pdf) *Culture Machine*, 13. (`lecture-4.md:6`)
+- Rueda, M. R., and M. I. Posner. (2013). “Development of Attention Networks.” Publication details are not supplied. (`lecture-4.md:97-103`)
+- Posner, M. I., and M. K. Rothbart. (2007). “Research on Attention Networks as a Model for the Integration of Psychological Science.” *Annual Review of Psychology*, 58, 1–23. (`lecture-4.md:102`)
+- Boen, R., Ferschmann, L., Vijayakumar, N., Overbye, K., Fjell, A. M., Espeseth, T., and C. K. Tamnes. (2021). “Development of Attention Networks from Childhood to Young Adulthood: A Study of Performance, Intraindividual Variability and Cortical Thickness.” *Cortex*, 138, 138–151. (`lecture-4.md:103`)
+- Rueda, M. R., Posner, M. I., and M. K. Rothbart. (2004). “Attentional Control and Self-Regulation in Early Development.” *Trends in Cognitive Sciences*, 8, 140–147. This citation exists only in a source comment and is not rendered on the course page. (`lecture-4.md:107`)
+- Hegel, G. W. F. *Phenomenology of Spirit*, paragraph 340, on phrenology. (`lecture-4.md:121-128`)
+- Dobbs, D. (2005). “Fact or Phrenology?” *Scientific American Mind*, 16(1), 24–31. (`lecture-4.md:149-155`)
+- Stea, J. N., Black, T. R., and S. I. Di Domenico. (2022). “Phrenology and Neuroscience.” In *Investigating Pop Psychology* (pp. 9–19). Routledge. (`lecture-4.md:149-164`)
+- Radford, A., Narasimhan, K., Salimans, T., and I. Sutskever. (2018). *Improving Language Understanding by Generative Pre-Training*. (`lecture-4.md:173-180`)
+
+### Citations embedded in quoted material
+
+- Green (2003), on Galen’s ventricular doctrine; full metadata is not supplied. (`lecture-4.md:147`)
+- Gall and Spurzheim (1810), on phrenology; full metadata is not supplied. (`lecture-4.md:147`)
+- Posner and DiGirolamo (2000), on cognitive neuroscience; full metadata is not supplied. (`lecture-4.md:147`)
+- Uttal (2001) and Uttal (2011), criticizing a psychological atlas of the brain; titles are not supplied. (`lecture-4.md:147`)
+
+### Videos and further references
+
+- YouTube video, title not supplied: <https://www.youtube.com/watch?v=PKzz1OAiTRQ>. (`lecture-4.md:521-523`)
+- Michael Posner, “The Anatomy of Attentional Networks: A Historical Perspective on Attention Research”: <https://www.youtube.com/watch?v=uYUdwS7-WvA>. (`lecture-4.md:521-523`)
+- Terranova’s discussion names Nicholas Carr, Catherine Malabou, Jonathan Crary, Maurizio Lazzarato, and Bernard Stiegler without identifying the particular works being summarized. (`lecture-4.md:459-491`)
+- Mark B. N. Hansen is cited for an argument about platforms predicting and controlling conscious thought; no title is supplied. (`lecture-4.md:498-508`)
+- Edward Bernays is cited as a pioneer in attention-shaping media practice; no work is identified. (`lecture-4.md:459-466`)
 
 ## Week 5: Alignment
 

@@ -61,7 +61,7 @@ and the work below feeds directly into it rather than being marked on its own.
 
 Work through a machine-human chat, starting from:
 
-> Help me synthesize a theory of human-machine learning from seven concepts: synthesis, experience, recognition, attention, consciousness, alignment, and critique. Ask me to define the relation between two concepts at a time. Challenge any link that erases a difference between human and machine. Then help me draft principles for a learning relationship that is useful, reciprocal where possible, evidence-aware, and open to revision.
+> Help me synthesize a theory of human-machine learning from seven concepts: synthesis, experience, recognition, consciousness, attention, alignment, and critique. Ask me to define the relation between two concepts at a time. Challenge any link that erases a difference between human and machine. Then help me draft principles for a learning relationship that is useful, reciprocal where possible, evidence-aware, and open to revision.
 
 Continue until every concept has been connected to at least two others. Produce a
 one-page **charter for critical technosymbiosis** containing:

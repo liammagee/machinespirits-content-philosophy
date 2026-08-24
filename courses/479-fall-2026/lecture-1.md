@@ -110,7 +110,7 @@ On to some basic notes about the course and administration.
 The course will use a mix of CGScholar for readings / materials and Google Docs. Assessments will be divided between:
 
 1. Weekly responses to questions (weeks 2-6) (5 x 10%) - Google Docs (formative assessment). 
-2. 2 x 3 comments (in week 4 & week 7) on peer reflections: 10%.
+2. 2 x 3 comments (in week 5 & week 7) on peer reflections: 10%.
 3. A final project (40%): An individual curriculum, learning guide, or policy report (summative assessment). This will be your choice, but could be any of:
   a. Learning materials designed for machines, describing some facet of human culture
   b. or Learning materials designed for humans, describing some facet of machine "experience"
@@ -271,7 +271,7 @@ Finally, a challenge for us today is to think through what Artificial Intelligen
 
 ---
 
-### **Week‑1 Overview & Upcoming Focus on Hegelian Experience**
+## Week‑1 Overview & Upcoming Focus on Hegelian Experience
 
 - Introductory session establishes “Synthesis” as the course’s foundational theme.
 - Next week centers on Hegel’s concept of *Experience* from the Phenomenology of Spirit, framing it as a critique of non‑human learning.
@@ -285,7 +285,7 @@ Finally, a challenge for us today is to think through what Artificial Intelligen
 
 ---
 
-### Experience
+## Experience
 
 - Focus on Hegel’s *Experience* as the cornerstone critiquing non‑human learning.
 - Contrast Hegelian experience with Locke’s empiricism to illuminate differences between human and machinic “experience.”
