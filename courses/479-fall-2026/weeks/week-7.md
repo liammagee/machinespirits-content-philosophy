@@ -109,7 +109,7 @@ Carry these into the report rather than submitting them separately:
 
 ### What the report is assessed on
 
-The final report carries 30%. It is the only piece I grade rather than you, and
+The final report carries 40%. It is the only piece I grade rather than you, and
 it is assessed on the quality of the thinking, not its agreement with mine:
 
 | | |

@@ -10,6 +10,34 @@ course: "479"
 
 ---
 
+## Overview of Tonight
+
+
+#### Hour 1:
+
+1. Outline of the Course
+2. Introductions and General Discussion about Machine and Human Learning
+
+
+#### Hour 2:
+
+1. More details about the course - Conceptual Overview 
+2. Assessment
+3. Why Hegel on Machine Learning?
+
+
+#### Hour 3:
+
+Breakout Rooms:
+
+1. Accessing the Google Doc
+2. Setting up AI
+3. Discussing and making notes for Week 1's questions
+4. Test chat?
+
+
+---
+
 ### Towards Synthesis? Rethinking Learning in the AI Era
 
 #### Or: What is this course about?
@@ -20,8 +48,8 @@ course: "479"
 - Highlights reciprocal learning: generative AI learns from us, we learn differently.
 - Explores differences between ChatGPT requests and calculators or traditional search engines.
 - Frames relationship through synthesis, alongside concepts like technosymbiosis and symbiotic pedagogy.
-- Website: https://cgscholar.com/community/community_profiles/epol-479-fa25
-- DON'T BE PUT OFF BY THE VOCABULARY! This might start as a tough course, but we will stepping through things – with AI's help!
+- Website: https://cgscholar.com/communities/150?active-tab=feed&active-switch=members
+- DON'T BE PUT OFF BY THE VOCABULARY! This might start as a tough course, but we will be stepping through things – with AI's help!
 
 ```notes
 Welcome to Machine Learning and Human Learning!
@@ -42,17 +70,10 @@ Through the course we will be studying this relationship in a number of ways. La
 
 ---
 
-## Overview of Tonight
+### Experiences of Machine (and of Human Learning)
 
+What do we know? What are the problems? What do we need to find out? Discuss!
 
-Hour 1:
-
-1. Outline of the Course
-2. Introductions and General Discussion about Machine and Human Learning
-
-Hour 2:
-
-More details about the course - Conceptual Overview 
 
 
 ---
@@ -81,26 +102,45 @@ On to some basic notes about the course and administration.
 
 The course will use a mix of CGScholar for readings / materials and Google Docs. Assessments will be divided between:
 
-1. Weekly discussion and commentary (weeks 2-6) (5 x 12%) CGScholar (formative assessment). 
-2. 2 x 3 comments (in week 3 & week 6) on peer reflections: 10%.
-3. A final project (30%): An individual curriculum, learning guide or conference presentation outline (summative assessment). This will be your choice, but could be any of:
+1. Weekly responses to questions (weeks 2-7) (5 x 10%) - Google Docs (formative assessment). 
+2. 2 x 3 comments (in week 4 & week 7) on peer reflections: 10%.
+3. A final project (40%): An individual curriculum, learning guide, or policy report (summative assessment). This will be your choice, but could be any of:
   a. Learning materials designed for machines, describing some facet of human culture
   b. or Learning materials designed for humans, describing some facet of machine "experience"
-  c. A hybrid guide for a new world of cyber-social learning - how both machines and humans can learn from eachother.
+  c. A hybrid guide for a new world of cyber-social learning - how both machines and humans can learn from each other.
 
 
 
 ```notes
-A note on use of machine learning materials – for the formative assessment tasks, it would be good to use machine learning explicitly, but in a way that is visible. My preferred option for this at the moment is actually in the form of a dialogue – and edited chat session between you and your preferred chat agent / assistant – followed by some kind of summary by you, which includes your reflection on what the AI supplied, and your consideration of how useful the resulting artefact would really be. 
+A note on use of machine learning materials – for the formative assessment tasks, it would be good to use machine learning explicitly, but in a way that is visible. My preferred option for this at the moment is actually in the form of a dialogue – an edited chat session between you and your preferred chat agent / assistant – followed by some kind of summary by you, which includes your reflection on what the AI supplied, and your consideration of how useful the resulting artefact would really be. 
 
 
 We can discuss which models, and how to access them in future weeks.
 ```
 
 
+---
+
+### Syllabus
+
+ - Word doc supplied via chat...
+ - Note: precise mechanism on peer review TBD
 
 ---
 
+### Technologies and Tools
+
+Check people have access to:
+
+ - Zoom meeting
+ - CGScholar
+ - Google Docs
+ - AI tools (will revisit this)
+ 
+
+---
+
+<!--
 ### <a id="previous-course"></a>Current Course vs Previous Version
 
 
@@ -117,17 +157,13 @@ A previous version of this course ran in 2023 and 2024: [[2023-Course]]. Another
 Despite this having the same name as that course, it is very different. And I would encourage people to look back to Bill and Mary's earlier course, and especially their videos, which are excellent. As you will probably gather, I have a quite different take. I would say by going back and forth, you might get the best of both worlds. Keep the link to the course handy, and feel free to consult both videos and readings.
 
 ```
-
-
----
-
-## <a id="our-approach-in-2025"></a>Our Approach in 2026
+-->
 
 
 
 --- 
 
-## Why Hegel? 
+## Our Approach in 2025/26: Why Hegel? 
 
 
 - What can 19th century German Philosophy tell us about Machine (and Human) Learning?
@@ -135,7 +171,7 @@ Despite this having the same name as that course, it is very different. And I wo
 - What can Machine Learning tell us about 19th century German Philosophy? 
 
 ```notes
-So what distinguishes our approach in 2025? The first and biggest difference will be my reliance on the work of a early 19th century German Philosopher, Georg Wilhelm Friedrich Hegel. 
+So what distinguishes our approach in 2025 / 2026? The first and biggest difference will be my reliance on the work of an early 19th century German Philosopher, Georg Wilhelm Friedrich Hegel. 
 
 Why Hegel? Why build a course on machine learning around a thinker who pre-dates, not only the recent era of machine learning, but the entire history of computation altogether?
 
@@ -159,9 +195,9 @@ In what will become a key theme for us here, just as Hegel is a lens for us to u
 - Learning is also *organized* by our concepts (Kant as well as Hegel).
 
 ```notes
-First, I will be arguing one of the present limitations of machine learning is that it is stuck in a period of thinking about learning: the 18th century. According to the philosophy of the period – and I am of course simplifying here – the human mind was a blank slate that needed to be filled up with facts. I learn by simply adding new experiences, observations, sensations, to an existing repository, then retrieving from that repository to understand and integrate yet more new experiences. Learning was a comparatively simple process of *accumulation*. Just as life itself is the experience of a sequence of moments, each of which is compared to other moments, so learning is the acquisition of experience that are recorded in the mind. 
+First, I will be arguing one of the present limitations of machine learning is that it is stuck in a period of thinking about learning: the 18th century. According to the philosophy of the period – and I am of course simplifying here – the human mind was a blank slate that needed to be filled up with facts. I learn by simply adding new experiences, observations, sensations, to an existing repository, then retrieving from that repository to understand and integrate yet more new experiences. Learning was a comparatively simple process of *accumulation*. Just as life itself is the experience of a sequence of moments, each of which is compared to other moments, so learning is the acquisition of experiences that are recorded in the mind. 
 
-This, as we'll review, is a form of the *empiricism* that underpins our current paradigm of machine learning. Now Hegel – as we'll also see – represents a profound challenge to the empirical tradition. His account of experience is not simply accumulative –– it is *dialectical*, which presumes that new experiences can sometimes *negate* those that they succeed. Learning proceeds, in other words, in a series of developmental stages, each of which involves some kind of realization or learning moment which can sometimes refute a past moment. Although, at least in Hegel's account, both past and present moment, even if they stand in contradiction, can be reconciled in a process of *synthesis*, constituting in turn a future moment which initiates the whole process all over again. Some of you might hear echoes here of later theorists of learning like Jean Piaget, who also supposed learning proceeded in development stages.
+This, as we'll review, is a form of the *empiricism* that underpins our current paradigm of machine learning. Now Hegel – as we'll also see – represents a profound challenge to the empirical tradition. His account of experience is not simply accumulative –– it is *dialectical*, which presumes that new experiences can sometimes *negate* those that they succeed. Learning proceeds, in other words, in a series of developmental stages, each of which involves some kind of realization or learning moment which can sometimes refute a past moment. Although, at least in Hegel's account, both past and present moment, even if they stand in contradiction, can be reconciled in a process of *synthesis*, constituting in turn a future moment which initiates the whole process all over again. Some of you might hear echoes here of later theorists of learning like Jean Piaget, who also supposed learning proceeded in developmental stages.
 
 One final point here: for Hegel, experience is also organized by the concepts we have. For Hegel, as for Kant, I experience properly only if I have some concepts – such as time and space – to help synthesize that experience. We'll return to this point – it is a key distinction between how humans and machines – at least machines today – learn. 
 
@@ -177,7 +213,7 @@ One final point here: for Hegel, experience is also organized by the concepts we
 - Whether machines can be truly “social” in Hegel’s sense remains unresolved, highlighting a key difference between human and machine learning.
 
 ```notes
-In addition – and here is the second reason – Hegel's account is rooted in our experience of *others*. In a way that prempts another learning theorist, Vygotsky, Hegel's account of human experience also involves a specific development from consciousness to self-consciousness. Ironically, our awareness of ourselves is closely connected to our awareness of other selves who are not our self - other people, in other words. This awareness means our experience and learning is *social*, conditioned and mediated by others. Now it is an open question as to whether machines are said to be social at all, but certainly not, as we'll see, in the sense that Hegel means. 
+In addition – and here is the second reason – Hegel's account is rooted in our experience of *others*. In a way that pre-empts another learning theorist, Vygotsky, Hegel's account of human experience also involves a specific development from consciousness to self-consciousness. Ironically, our awareness of ourselves is closely connected to our awareness of other selves who are not our self - other people, in other words. This awareness means our experience and learning is *social*, conditioned and mediated by others. Now it is an open question as to whether machines are said to be social at all, but certainly not, as we'll see, in the sense that Hegel means. 
 ```
 
 ---
@@ -216,7 +252,7 @@ Fourth, Hegel occupies an unusual position himself in the recent history of phil
 - Recognize binary logic underlies machines and us, yet humans can hold paradox.
 
 ```notes
-Finally, a challenge for us today is to think through what Artificial Intelligence means for us in its manifold sense: what it does for us, what it limits us to, what it enables and constrains, who it helps, who it oppresses, and so on. In other words, we need to think AI always in a certain spirit of contradiction: as involving the good and the bad, and understanding how these are to some degrees indissociable. Hegel is **the** thinker of contradiction, the paradoxes of "the this and the not-this" are throughout his work. There is an irony then that in trying to think about AI *intelligently* we have to give up on a particular rule of logic – the law of non-contradiction – that for many is the very hallmark of intelligent, that is to say, *consistent* thinking. We don't need to give it up entirely, of course, and we cannot – machine learning is bound up, for example, in binary logic, and it is foundational for us as well as for machines. But we can perhaps suspend it, in order to hold on to the idea that before we *judge* machine learning – in a disjunctive sense, as better or worse – we need to think it *conjunctively*: as both *this-and-that*, or *this-and-not-this*, simultaneously. We have to allow ourselves to do what, in a certain sense, machines cannot do, in order to talk about how they are different, as well as similar, to us.
+Finally, a challenge for us today is to think through what Artificial Intelligence means for us in its manifold sense: what it does for us, what it limits us to, what it enables and constrains, who it helps, who it oppresses, and so on. In other words, we need to think AI always in a certain spirit of contradiction: as involving the good and the bad, and understanding how these are to some degree indissociable. Hegel is **the** thinker of contradiction, the paradoxes of "the this and the not-this" are throughout his work. There is an irony then that in trying to think about AI *intelligently* we have to give up on a particular rule of logic – the law of non-contradiction – that for many is the very hallmark of intelligent, that is to say, *consistent* thinking. We don't need to give it up entirely, of course, and we cannot – machine learning is bound up, for example, in binary logic, and it is foundational for us as well as for machines. But we can perhaps suspend it, in order to hold on to the idea that before we *judge* machine learning – in a disjunctive sense, as better or worse – we need to think it *conjunctively*: as both *this-and-that*, or *this-and-not-this*, simultaneously. We have to allow ourselves to do what, in a certain sense, machines cannot do, in order to talk about how they are different from as well as similar to us.
 
 ```
 
@@ -273,11 +309,11 @@ Finally, a challenge for us today is to think through what Artificial Intelligen
 ```notes
 
 4. Recognition  
- - Another key Hegelian idea, this week we will examine how *recognition* connects individual  learning to our relation to others - to, in other words, a social process. We'll discuss here Vygotsky's theory of human learning, and also examine ways machines could be considered as "recognizing" us. 
+ - Another key Hegelian idea, this week we will examine how *recognition* connects individual learning to our relation to others - to, in other words, a social process. We'll discuss here Vygotsky's theory of human learning, and also examine ways machines could be considered as "recognizing" us. 
 ```
 
 5. Consciousness (Self/Other/Un/Non)
-The early parts of Phenomenology of Spirit is dominated by the ideas of Consciousness and Self-consciousness. We'll explore how these relate to Experience, Attention and Recognition (and whether indeed they "synthesize" these earlier ideas). We'll explore also later ideas of the Unconscious (Freud) and Nonconscious Cognition (Katherine Hayles). This leads us naturally to an obvious question: can machines be conscious? If not, can they be unconscious? 
+The early parts of *Phenomenology of Spirit* are dominated by the ideas of Consciousness and Self-consciousness. We'll explore how these relate to Experience, Attention and Recognition (and whether indeed they "synthesize" these earlier ideas). We'll explore also later ideas of the Unconscious (Freud) and Nonconscious Cognition (Katherine Hayles). This leads us naturally to an obvious question: can machines be conscious? If not, can they be unconscious? 
 
 
 * * *
@@ -291,7 +327,7 @@ The early parts of Phenomenology of Spirit is dominated by the ideas of Consciou
 
 ```notes
 Attention
-  - Following that, we will focus on the idea of attention. This is an idea that spans neuroscience, psychology, computer science, philosophy and media studies. We'll examine a key text in the development of machine learning, "Attention is All you Need". But we will also think about how attention is important for human learning. And we will look at recent critical studies of attention and what has become known as the Attention Economy.
+  - Following that, we will focus on the idea of attention. This is an idea that spans neuroscience, psychology, computer science, philosophy and media studies. We'll examine a key text in the development of machine learning, "Attention is All You Need". But we will also think about how attention is important for human learning. And we will look at recent critical studies of attention and what has become known as the Attention Economy.
 
 ```  
 
@@ -322,7 +358,7 @@ Alignment is a "vogue" term in machine learning, and describes the process of al
 
 ```notes
 7. Critique 
-"Critique" then brings us to what happens when alignment, one way or another, fails: when technology, in other words, fails to meet the wider social standards we set for it. Critique is another keyword also in the Hegelian nomenclature - it comes famously from Kant, for whom "Critique" is the method for understanding how "pure" (rational, scientific), "practical" (applied, moral) and "judgemental" (aesthetic) reasoning can happen. Here we will look at how Critical AI has been responding to AI - and look in turn at how AI works itself as a tool for, as well as of, critique. 
+"Critique" then brings us to what happens when alignment, one way or another, fails: when technology, in other words, fails to meet the wider social standards we set for it. Critique is another keyword also in the Hegelian nomenclature - it comes famously from Kant, for whom "Critique" is the method for understanding how "pure" (rational, scientific), "practical" (applied, moral) and "judgment" (aesthetic) reasoning can happen. Here we will look at how Critical AI has been responding to AI - and look in turn at how AI works itself as a tool for, as well as of, critique. 
 ``` 
 
 
@@ -331,7 +367,7 @@ Alignment is a "vogue" term in machine learning, and describes the process of al
 ## Technosymbiosis as a Hegelian Synthesis
 
 - Revisits synthesis, now enriched by prior concepts (experience, attention, recognition, consciousness).
-- Positions Katherine Hayles’ “technosymbiosis” as the fusion of technology and life.
+- Positions Katherine Hayles’ “technosymbiosis” as the conjunction of technology and life.
 - Frames technosymbiosis as an integrative model that subsumes alignment and critique.
 - Emphasizes a dialectical evolution: each new idea reshapes the foundational notion of synthesis.
 
@@ -341,7 +377,7 @@ Finally, we return to where we started: with the concept of synthesis. However �
 ```
 
 
-
+<!--
 * * *
 
 Authors:
@@ -349,3 +385,4 @@ Authors:
 [@hegel2025phenomenology; @kojeve1980introduction; @hyppolite1974genesis; @houlgate2012hegel; @heidegger1988hegel; @pippin2010hegel; @hegel2014science; @vzivzek2020hegel]
 
 
+-->

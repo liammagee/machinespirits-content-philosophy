@@ -162,9 +162,9 @@ no student should be disadvantaged by this requirement.
 
 | Component | Weight |
 |---|---|
-| Formative self-assessments (5 × 12%) | 60% |
+| Formative self-assessments (5 × 10%) | 50% |
 | Peer commentary (2 × 5%) | 10% |
-| Final synthesis report | 30% |
+| Final synthesis report | 40% |
 | **TOTAL** | **100%** |
 
 Think of the course as **five-plus-one iterations** on your own initial impulses,
@@ -189,9 +189,9 @@ This sounds like a survey, and in a way it is. More importantly it sets a
 *baseline* of your own understanding, which the rest of the course revisits. It
 is not graded.
 
-### 1. Formative self-assessments (60%)
+### 1. Formative self-assessments (50%)
 
-Five weekly cycles, one for each of Sessions 2 to 6, worth 12% each. Each week
+Five weekly cycles, one for each of Sessions 2 to 6, worth 10% each. Each week
 you:
 
 1. take notes from the readings, the lecture, and the group discussion;
@@ -222,15 +222,41 @@ not graded on quality. I will read the same two rounds and return my own
 commentary the following session, so you have an outside reading of your work
 twice before the final report.
 
-### 3. Final synthesis report (30%)
+**Sharing, and an alternative.** The running document is yours. You create it in
+your own University Google account, and you decide who sees it. For each round I
+will pair you with someone; you share your document with that person yourself,
+and you can unshare it once the round closes. Share with named people only —
+never "anyone with the link" — and use your `@illinois.edu` account rather than a
+personal one, so the document stays inside the University's agreement with
+Google.
+
+Two things stay out of that shared document. My commentary and any marks come
+back to you through CGScholar, not onto a page a classmate can open. And I will
+never ask you to share the baseline response.
+
+Your coursework is part of your education record, and under FERPA it is your
+call whether a classmate sees it — not mine. So if you would rather not show
+identifiable work to a peer, tell me and that is the end of it. No penalty, no
+reason needed. You can complete the round on an anonymised extract, or send your
+comments to me and I will pass them on unattributed. What earns the 10% is doing
+the reading and writing the comments, and every one of these routes earns it in
+full. Let me know before a round opens if you can — ideally in the first
+fortnight — so I can arrange partners around it.
+
+When you are the one commenting, keep it about the work, and treat what you read
+as your classmate's to share further, not yours.
+
+### 3. Final synthesis report (40%)
 
 A summative piece that synthesizes the course materials — a report, an essay, or
 a curriculum design. It builds directly on the formative work: the five
 iterations are the raw material, and this is the sixth. Its exact shape is
 something we will settle together during the course; the form should follow what
 you have actually been arguing. **Session 7 is given over to it** — there is no
-self-assessment that week — so you arrive at the deadline with a settled form, a
-thesis, and your own record of revisions to draw on. Due **Friday 16 October** at
+self-assessment that week, and the workshop work of that session is folded into
+this component rather than assessed separately, which is why it carries 40%
+rather than 30% — so you arrive at the deadline with a settled form, a thesis,
+and your own record of revisions to draw on. Due **Friday 16 October** at
 11:59 PM Central, the last day of Term A.
 
 ### Use of AI in this course
