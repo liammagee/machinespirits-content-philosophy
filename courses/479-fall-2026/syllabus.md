@@ -125,7 +125,7 @@ is opaque on first pass is often tractable on the third. Plan for that.
 - I will answer email within 24 hours on weekdays.
 - I will return written work with substantive comments within one week.
 - I will post clarifications when a reading or an assignment is causing broad difficulty.
-- I will give you my own written commentary at two points — on the work from Sessions 3 and 6, returned to you in Sessions 4 and 7 — so you are never guessing about where you stand.
+- I will give you my own written commentary at two points — in Sessions 4 and 6, alongside each peer commentary round — so you are never guessing about where you stand.
 - I will grade the quality of your thinking, not its agreement with mine. A well-argued position I disagree with earns full marks; an echo of my own view, poorly defended, does not.
 - If nobody in the class managed something, I will treat that as a fact about my teaching rather than about you, and act accordingly.
 
@@ -221,9 +221,10 @@ that strike me as excessively punitive.
 Two rounds — three comments in Session 4, and three more in Session 6 — in which
 you read and comment on a peer's revised responses. This is a hurdle requirement:
 the 10% is awarded on completing it in good faith, and the commentary itself is
-not graded on quality. I will read the same two rounds and return my own
-commentary the following session, so you have an outside reading of your work
-twice before the final report.
+not graded on quality. In the same two sessions I will return my own written
+commentary on your work to date, running alongside the peer round rather than
+after it, so you have two outside readings of your work at each point and both
+of them before the final report.
 
 **Sharing, and an alternative.** The running document is yours. You create it in
 your own University Google account, and you decide who sees it. For each round I
@@ -288,10 +289,10 @@ and leaves the final seminar for the synthesis and your report.
 | 2 | Mon 31 Aug | [Experience](weeks/week-2.md) | Hegel, "Sense-Certainty," "Perception," "Force and the Understanding" | Self-assessment 1 |
 | — | Mon 7 Sep | *Labor Day — no class; reading week* | Catch up on the *Phenomenology* | — |
 | 3 | Mon 14 Sep | [Recognition **and** Consciousness](weeks/week-3.md) | Hegel, ¶161–196, "Lordship and Bondage"; Hegel on consciousness and self-consciousness; Hayles, *Unthought*; Čapek, *R.U.R.* | Self-assessment 2 |
-| 4 | Mon 21 Sep | [Attention](weeks/week-4.md) | Vaswani et al., "Attention Is All You Need"; Petersen & Posner | Self-assessment 3 · **Peer commentary 1** (3 comments) |
-| 5 | Mon 28 Sep | [Alignment](weeks/week-5.md) | Ouyang et al. (InstructGPT); Hristova, Magee & Soldatic, "The Problem of Alignment"; Greenblatt et al. | Self-assessment 4 · instructor commentary returned |
-| 6 | Mon 5 Oct | [Critique](weeks/week-6.md) | Goodlad & Stone, "Beyond Chatbot-K"; Gebru & Torres, "The TESCREAL Bundle"; Stahl, "What Is Immanent Critique?" | Self-assessment 5 · **Peer commentary 2** (3 comments) |
-| 7 | Mon 12 Oct | [Synthesis, technosymbiosis, history](weeks/week-7.md) — **final report workshop** | Hegel, concluding passages and a return to the Preface; Marx, *Poverty of Philosophy*; Hayles revisited | *No self-assessment* · instructor commentary returned · **Final report**, Fri 16 Oct |
+| 4 | Mon 21 Sep | [Attention](weeks/week-4.md) | Vaswani et al., "Attention Is All You Need"; Petersen & Posner | Self-assessment 3 · **Peer commentary 1** (3 comments) · instructor commentary returned |
+| 5 | Mon 28 Sep | [Alignment](weeks/week-5.md) | Ouyang et al. (InstructGPT); Hristova, Magee & Soldatic, "The Problem of Alignment"; Greenblatt et al. | Self-assessment 4 |
+| 6 | Mon 5 Oct | [Critique](weeks/week-6.md) | Goodlad & Stone, "Beyond Chatbot-K"; Gebru & Torres, "The TESCREAL Bundle"; Stahl, "What Is Immanent Critique?" | Self-assessment 5 · **Peer commentary 2** (3 comments) · instructor commentary returned |
+| 7 | Mon 12 Oct | [Synthesis, technosymbiosis, history](weeks/week-7.md) — **final report workshop** | Hegel, concluding passages and a return to the Preface; Marx, *Poverty of Philosophy*; Hayles revisited | *No self-assessment* · **Final report**, Fri 16 Oct |
 
 Each seminar runs three hours, with ten-minute breaks between them:
 
