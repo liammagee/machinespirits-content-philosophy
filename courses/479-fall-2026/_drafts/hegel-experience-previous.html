@@ -1,0 +1,2678 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Previous iteration archive — Experience Under Pressure</title>
+  <meta name="description" content="An interactive EPOL 479 inquiry into Hegelian experience and the comparison of human with machine learning.">
+  <meta name="theme-color" content="#11110f">
+  <meta property="og:title" content="Experience Under Pressure">
+  <meta property="og:description" content="What changes when a learner’s concept and object no longer agree? An interactive Hegelian inquiry.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://machinespirits.org/content/courses/479-fall-2026/hegel-experience/">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #11110f;
+      --paper: #f3f0e7;
+      --paper-2: #e6e1d3;
+      --red: #c83e2b;
+      --blue: #214b68;
+      --acid: #d6ef4a;
+      --muted: #656259;
+      --line: rgba(17, 17, 15, .22);
+      --serif: Iowan Old Style, Baskerville, "Times New Roman", serif;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, transparent 49.8%, rgba(17,17,15,.035) 50%, transparent 50.2%),
+        var(--paper);
+      font-family: var(--sans);
+    }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+    .masthead {
+      min-height: 100svh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      border-bottom: 1px solid var(--ink);
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .8rem clamp(1rem, 3vw, 3rem);
+      border-bottom: 1px solid var(--ink);
+      font-family: var(--mono);
+      font-size: .74rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .course-mark { display: flex; align-items: center; gap: .65rem; }
+    .course-mark::before { content: ""; width: .7rem; height: .7rem; background: var(--red); border-radius: 50%; }
+    .topbar a { text-decoration-thickness: 1px; text-underline-offset: .25em; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(18rem, .55fr);
+      align-items: stretch;
+    }
+    .hero-copy {
+      padding: clamp(3rem, 8vw, 7rem) clamp(1rem, 6vw, 6rem) clamp(2.5rem, 5vw, 5rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--ink);
+    }
+    .eyebrow {
+      margin: 0 0 1.4rem;
+      color: var(--red);
+      font-family: var(--mono);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 12ch;
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(4.1rem, 10vw, 9rem);
+      font-weight: 500;
+      letter-spacing: -.065em;
+      line-height: .82;
+    }
+    h1 em { color: var(--red); font-weight: 400; }
+    .dek {
+      max-width: 58rem;
+      margin: clamp(2rem, 5vw, 4rem) 0 0;
+      font-family: var(--serif);
+      font-size: clamp(1.35rem, 2.3vw, 2.15rem);
+      line-height: 1.25;
+    }
+    .hero-aside {
+      display: grid;
+      align-content: end;
+      gap: 2rem;
+      padding: clamp(2rem, 4vw, 4rem);
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .definition-no {
+      color: var(--acid);
+      font-family: var(--mono);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 1;
+    }
+    .definition p { margin: .65rem 0 0; font-size: .95rem; line-height: 1.55; }
+    .definition strong { color: var(--acid); }
+    .source-chip {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: .55rem;
+      padding: .58rem .72rem;
+      border: 1px solid currentColor;
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .04em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .source-chip::after { content: "↗"; }
+    .hero-foot {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--ink);
+    }
+    .hero-foot div { padding: 1rem clamp(1rem, 3vw, 3rem); border-right: 1px solid var(--ink); }
+    .hero-foot div:last-child { border-right: 0; }
+    .hero-foot span { display: block; font-family: var(--mono); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; }
+    .hero-foot strong { display: block; margin-top: .3rem; font-family: var(--serif); font-size: 1.1rem; font-weight: 500; }
+
+    main { display: block; }
+    .section {
+      padding: clamp(4rem, 8vw, 8rem) clamp(1rem, 5vw, 5rem);
+      border-bottom: 1px solid var(--ink);
+    }
+    .section-heading { display: grid; grid-template-columns: minmax(12rem, .55fr) minmax(0, 1.45fr); gap: 2rem; margin-bottom: 3rem; }
+    .kicker { font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; }
+    h2 { margin: 0; font-family: var(--serif); font-size: clamp(2.6rem, 6vw, 5.5rem); font-weight: 500; letter-spacing: -.045em; line-height: .95; }
+    .intro { max-width: 45rem; margin: 1.25rem 0 0; font-size: 1.05rem; line-height: 1.65; }
+
+    .engine { border: 1px solid var(--ink); background: #f9f7f0; box-shadow: .7rem .7rem 0 var(--ink); }
+    .engine-bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .75rem 1rem; border-bottom: 1px solid var(--ink); background: var(--blue); color: white; font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
+    .engine-status { display: flex; align-items: center; gap: .55rem; }
+    .engine-status::before { content: ""; width: .55rem; height: .55rem; border-radius: 50%; background: var(--acid); box-shadow: 0 0 0 .25rem rgba(214,239,74,.18); }
+    .engine-grid { display: grid; grid-template-columns: 1fr 1fr; }
+    .engine-panel { min-height: 20rem; padding: clamp(1.35rem, 3vw, 2.5rem); }
+    .engine-panel:first-child { border-right: 1px solid var(--ink); }
+    .panel-label { display: flex; justify-content: space-between; gap: 1rem; padding-bottom: .8rem; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
+    .panel-term { color: var(--muted); text-transform: none; }
+    .panel-content { display: flex; min-height: 14rem; flex-direction: column; justify-content: space-between; padding-top: 1.4rem; }
+    .panel-content h3 { max-width: 15ch; margin: 0; font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 500; line-height: 1; }
+    .panel-content p { max-width: 34rem; margin: 2rem 0 0; line-height: 1.55; }
+    .change-tag { width: fit-content; margin-top: 2rem; padding: .35rem .55rem; background: var(--paper-2); font-family: var(--mono); font-size: .68rem; text-transform: uppercase; }
+    .change-tag.active { background: var(--acid); }
+    .engine-nav { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--ink); }
+    .stage-button {
+      position: relative;
+      min-height: 5.4rem;
+      padding: .85rem;
+      border: 0;
+      border-right: 1px solid var(--ink);
+      background: var(--paper-2);
+      color: var(--ink);
+      cursor: pointer;
+      text-align: left;
+    }
+    .stage-button:last-child { border-right: 0; }
+    .stage-button:hover { background: #ddd7c6; }
+    .stage-button[aria-selected="true"] { background: var(--ink); color: var(--paper); }
+    .stage-number { display: block; margin-bottom: .45rem; font-family: var(--mono); font-size: .65rem; opacity: .68; }
+    .stage-label { display: block; font-size: .78rem; font-weight: 750; text-transform: uppercase; }
+    .engine-note { display: grid; grid-template-columns: .7fr 1.3fr; gap: 1.5rem; padding: 1.2rem 1rem; border-top: 1px solid var(--ink); font-size: .86rem; line-height: 1.45; }
+    .engine-note strong { font-family: var(--mono); font-size: .7rem; letter-spacing: .07em; text-transform: uppercase; }
+
+    .inquiry-nav {
+      position: sticky;
+      z-index: 10;
+      top: 0;
+      display: flex;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--ink);
+      background: rgba(243, 240, 231, .94);
+      backdrop-filter: blur(12px);
+      scrollbar-width: none;
+    }
+    .inquiry-nav::-webkit-scrollbar { display: none; }
+    .inquiry-nav a {
+      flex: 1 0 auto;
+      padding: .8rem 1rem;
+      border-right: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .07em;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .inquiry-nav a:hover { background: var(--acid); }
+
+    .misconception {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.2rem;
+      max-width: 58rem;
+      margin: 2.2rem 0 0;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--ink);
+      background: var(--acid);
+    }
+    .misconception-mark { font-family: var(--mono); font-size: 1.45rem; font-weight: 800; }
+    .misconception p { margin: 0; line-height: 1.5; }
+
+    .journey-section { background: #d8d1c0; }
+    .journey-shell { border: 1px solid var(--ink); background: var(--paper); box-shadow: .7rem .7rem 0 var(--red); }
+    .journey-progress { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--ink); background: var(--ink); gap: 1px; }
+    .journey-marker {
+      min-height: 5.2rem;
+      padding: .85rem 1rem;
+      border: 0;
+      background: var(--paper-2);
+      color: var(--ink);
+      cursor: pointer;
+      text-align: left;
+    }
+    .journey-marker:disabled { cursor: not-allowed; color: #827e73; }
+    .journey-marker[aria-current="step"] { background: var(--red); color: white; }
+    .journey-marker.is-complete { background: var(--acid); color: var(--ink); }
+    .journey-marker small { display: block; margin-bottom: .45rem; font-family: var(--mono); font-size: .61rem; letter-spacing: .08em; text-transform: uppercase; }
+    .journey-marker strong { display: block; font-family: var(--serif); font-size: 1.12rem; font-weight: 500; }
+    .journey-frame { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(18rem, .6fr); }
+    .journey-scene { position: relative; display: flex; min-height: 38rem; flex-direction: column; justify-content: space-between; overflow: hidden; padding: clamp(1.2rem, 3vw, 2.25rem); background: #101823; color: var(--paper); }
+    .journey-scene::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 78% 19%, rgba(243,240,231,.15), transparent 13rem); pointer-events: none; }
+    .journey-scene.is-day { background: #afc7cc; color: var(--ink); }
+    .journey-scene.is-day::before { background: radial-gradient(circle at 78% 19%, rgba(255,244,174,.95) 0 2.8rem, rgba(255,244,174,.28) 2.9rem 8rem, transparent 13rem); }
+    .journey-scene.is-perception { background: #dad2bd; color: var(--ink); }
+    .journey-scene.is-perception::before { background: linear-gradient(135deg, rgba(33,75,104,.12), transparent 42%, rgba(200,62,43,.11)); }
+    .journey-scene.is-understanding { background: #152533; color: var(--paper); }
+    .journey-scene.is-understanding::before { background: radial-gradient(circle at center, rgba(214,239,74,.12), transparent 48%); }
+    .journey-scene.is-threshold { background: var(--acid); color: var(--ink); }
+    .journey-scene.is-threshold::before { background: repeating-linear-gradient(135deg, transparent 0 42px, rgba(17,17,15,.055) 43px 44px); }
+    .journey-scene-head, .journey-encounter, .journey-prompt { position: relative; z-index: 1; }
+    .journey-scene-head { display: flex; justify-content: space-between; gap: 1rem; font-family: var(--mono); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; }
+    .journey-encounter { display: grid; place-items: center; min-height: 19rem; }
+    .journey-this {
+      position: relative;
+      width: clamp(9rem, 22vw, 14rem);
+      aspect-ratio: 1;
+      border: 1px solid rgba(243,240,231,.72);
+      border-radius: 50%;
+      background: rgba(243,240,231,.06);
+      color: var(--paper);
+      cursor: crosshair;
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 6vw, 5.5rem);
+      font-style: italic;
+    }
+    .journey-this::after { content: ""; position: absolute; inset: -.8rem; border: 1px dashed rgba(214,239,74,.55); border-radius: 50%; }
+    .journey-this:hover, .journey-this.is-chosen { border-color: var(--acid); background: var(--acid); color: var(--ink); }
+    .journey-scene.is-day .journey-this { border-color: rgba(17,17,15,.65); color: var(--ink); }
+    .journey-scene.is-day .journey-this:hover, .journey-scene.is-day .journey-this.is-chosen { background: var(--red); color: white; }
+    .journey-object-study { display: grid; grid-template-columns: repeat(3, minmax(5rem, 1fr)); gap: .75rem; align-items: center; width: min(100%, 34rem); }
+    .salt-figure { display: grid; grid-column: 2; place-items: center; min-height: 10rem; }
+    .salt-cube { position: relative; width: 7.2rem; height: 7.2rem; border: 2px solid var(--ink); background: #fbfaf5; box-shadow: 1.1rem 1.1rem 0 rgba(33,75,104,.28); transform: rotate(-4deg); }
+    .salt-cube::before { content: "ONE"; position: absolute; inset: 0; display: grid; place-items: center; color: var(--blue); font: 700 .75rem var(--mono); letter-spacing: .12em; }
+    .property-chip { min-height: 3.3rem; padding: .55rem .7rem; border: 1px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer; font-family: var(--mono); font-size: .65rem; letter-spacing: .06em; text-transform: uppercase; }
+    .property-chip:nth-of-type(1), .property-chip:nth-of-type(3) { justify-self: end; }
+    .property-chip.is-seen { background: var(--blue); color: white; }
+    .property-chip.is-seen::after { content: " ✓"; color: var(--acid); }
+    .perception-choice { display: grid; grid-template-columns: 1fr 1fr; grid-column: 1 / -1; gap: .6rem; margin-top: .7rem; }
+    .perception-choice button { min-height: 4.6rem; padding: .8rem; border: 1px solid var(--ink); background: var(--paper); color: var(--ink); cursor: pointer; font-family: var(--serif); font-size: 1.05rem; }
+    .perception-choice button:hover { background: var(--red); color: white; }
+    .perception-result { grid-column: 1 / -1; padding: 1rem; border: 1px solid var(--ink); background: var(--paper); font-family: var(--serif); font-size: 1.15rem; line-height: 1.35; }
+    .perception-result strong { color: var(--red); }
+    .force-study { width: min(100%, 38rem); }
+    .force-field { position: relative; height: 11rem; border: 1px solid rgba(243,240,231,.45); background: linear-gradient(90deg, rgba(200,62,43,.12), transparent 42% 58%, rgba(214,239,74,.11)); overflow: hidden; }
+    .force-pole { position: absolute; top: 50%; display: grid; width: 5rem; aspect-ratio: 1; place-items: center; border: 2px solid var(--paper); border-radius: 50%; font: 700 .68rem var(--mono); transform: translate(-50%, -50%); transition: left .12s linear, transform .12s linear; }
+    .force-pole.a { left: var(--force-left, 28%); background: var(--red); }
+    .force-pole.b { left: var(--force-right, 72%); background: var(--blue); }
+    .force-relation { position: absolute; top: 50%; left: var(--force-left, 28%); width: calc(var(--force-right, 72%) - var(--force-left, 28%)); height: 2px; background: var(--acid); transform: translateY(-50%); }
+    .force-relation::after { content: "relation"; position: absolute; left: 50%; bottom: .5rem; color: var(--acid); font: .58rem var(--mono); letter-spacing: .06em; text-transform: uppercase; transform: translateX(-50%); }
+    .force-control { display: grid; grid-template-columns: auto 1fr auto; gap: .7rem; align-items: center; margin-top: 1rem; font: .63rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+    .force-control input { width: 100%; accent-color: var(--acid); }
+    .law-card { width: min(100%, 34rem); padding: clamp(1.2rem, 4vw, 2.4rem); border: 1px solid var(--paper); background: rgba(17,17,15,.45); text-align: center; }
+    .law-card small { display: block; margin-bottom: .75rem; color: var(--acid); font: .62rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .law-card strong { display: block; font-family: var(--serif); font-size: clamp(1.6rem, 4vw, 2.8rem); font-weight: 500; line-height: 1.05; }
+    .law-card p { margin: 1rem 0 0; color: #cbc6b9; line-height: 1.5; }
+    .threshold-map { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; width: min(100%, 44rem); border: 1px solid var(--ink); background: var(--ink); }
+    .threshold-moment { min-height: 12rem; padding: 1rem; background: var(--acid); }
+    .threshold-moment small { display: block; margin-bottom: 1.5rem; font: .6rem var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+    .threshold-moment strong { display: block; margin-bottom: .6rem; font-family: var(--serif); font-size: 1.25rem; font-weight: 500; }
+    .threshold-moment p { margin: 0; font-size: .78rem; line-height: 1.45; }
+    .threshold-self { grid-column: 1 / -1; padding: 1rem; background: var(--ink); color: var(--paper); text-align: center; }
+    .threshold-self strong { color: var(--acid); font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2.3rem); font-weight: 500; }
+    .journey-inscription { max-width: 25rem; margin: -1rem auto 0; padding: .8rem 1rem; border: 1px solid currentColor; background: rgba(17,17,15,.5); color: var(--paper); font-family: var(--mono); font-size: .74rem; text-align: center; transform: rotate(-1deg); }
+    .journey-scene.is-day .journey-inscription { background: rgba(243,240,231,.88); color: var(--ink); }
+    .journey-prompt { display: flex; align-items: end; justify-content: space-between; gap: 1.5rem; padding-top: 1rem; border-top: 1px solid currentColor; }
+    .journey-prompt p { max-width: 33rem; margin: 0; font-family: var(--serif); font-size: clamp(1.25rem, 2.4vw, 2rem); line-height: 1.18; }
+    .journey-prompt span { flex: 0 0 auto; font-family: var(--mono); font-size: .63rem; letter-spacing: .07em; text-transform: uppercase; }
+    .journey-reflection { display: flex; min-height: 38rem; flex-direction: column; justify-content: space-between; padding: clamp(1.25rem, 3vw, 2.4rem); border-left: 1px solid var(--ink); }
+    .journey-voice { color: var(--red); font-family: var(--mono); font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .journey-reflection h3 { margin: .75rem 0 1rem; font-family: var(--serif); font-size: clamp(2.1rem, 4vw, 3.7rem); font-weight: 500; letter-spacing: -.035em; line-height: .95; }
+    .journey-reflection-copy { margin: 0; line-height: 1.6; }
+    .journey-ledger { display: grid; gap: 1px; margin-top: 1.6rem; border: 1px solid var(--line); background: var(--line); }
+    .journey-ledger-row { display: grid; grid-template-columns: 6.6rem 1fr; gap: 1rem; padding: .75rem; background: var(--paper); }
+    .journey-ledger-row span { font-family: var(--mono); font-size: .6rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+    .journey-ledger-row p { margin: 0; font-size: .82rem; line-height: 1.45; }
+    .journey-actions { display: grid; grid-template-columns: 1fr auto; gap: .55rem; margin-top: 1.5rem; }
+    .journey-action { min-height: 3rem; padding: .7rem .85rem; border: 1px solid var(--ink); background: var(--ink); color: var(--paper); cursor: pointer; font-family: var(--mono); font-size: .66rem; letter-spacing: .05em; text-align: left; text-transform: uppercase; }
+    .journey-action:hover:not(:disabled) { background: var(--red); }
+    .journey-action.secondary { background: transparent; color: var(--ink); }
+    .journey-action.secondary:hover { background: var(--paper-2); }
+    .journey-action:disabled { cursor: not-allowed; opacity: .35; }
+    .journey-observer { margin: 1rem 0 0; padding-left: 1rem; border-left: 3px solid var(--red); color: var(--muted); font-size: .78rem; line-height: 1.5; }
+
+    .everyday-section { background: #f0bd4e; }
+    .everyday-lab { border: 1px solid var(--ink); background: #f8f5ec; box-shadow: .7rem .7rem 0 var(--blue); }
+    .everyday-progress { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--ink); border-bottom: 1px solid var(--ink); }
+    .everyday-stage {
+      min-height: 4.7rem;
+      padding: .8rem 1rem;
+      border: 0;
+      background: var(--paper-2);
+      color: var(--ink);
+      cursor: pointer;
+      text-align: left;
+    }
+    .everyday-stage[aria-current="step"] { background: var(--blue); color: white; }
+    .everyday-stage:disabled { cursor: not-allowed; color: #817b6e; }
+    .everyday-stage small { display: block; margin-bottom: .4rem; font: .62rem var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+    .everyday-stage strong { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; }
+    .everyday-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(19rem, .8fr); }
+    .everyday-situation { display: grid; min-height: 35rem; place-items: center; padding: clamp(1.4rem, 4vw, 3rem); background: #dce8e8; }
+    .transit-phone { width: min(100%, 25rem); border: 2px solid var(--ink); background: #fbfaf5; box-shadow: .65rem .65rem 0 rgba(17,17,15,.18); }
+    .transit-phone-head { display: flex; justify-content: space-between; gap: 1rem; padding: .65rem .8rem; border-bottom: 1px solid var(--ink); background: var(--ink); color: white; font: .62rem var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+    .transit-route { padding: 1.25rem; }
+    .transit-route-name { display: flex; align-items: center; gap: .7rem; font-family: var(--serif); font-size: 1.15rem; }
+    .transit-route-name strong { display: grid; width: 2.2rem; aspect-ratio: 1; place-items: center; background: var(--red); color: white; font: 700 .75rem var(--mono); }
+    .transit-eta { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin: 1.5rem 0; }
+    .transit-eta strong { font-family: var(--serif); font-size: clamp(4rem, 10vw, 7rem); font-weight: 500; letter-spacing: -.07em; line-height: .75; }
+    .transit-eta span { font: .66rem var(--mono); letter-spacing: .07em; text-align: right; text-transform: uppercase; }
+    .transit-line { position: relative; height: 2.2rem; margin: 2rem 0 1rem; }
+    .transit-line::before { content: ""; position: absolute; top: 50%; right: 0; left: 0; height: .35rem; background: var(--blue); transform: translateY(-50%); }
+    .transit-stop { position: absolute; z-index: 1; top: 50%; right: 0; width: 1.2rem; aspect-ratio: 1; border: .28rem solid var(--blue); border-radius: 50%; background: white; transform: translateY(-50%); }
+    .transit-bus { position: absolute; z-index: 2; top: 50%; left: var(--bus-position, 18%); padding: .32rem .45rem; background: var(--acid); border: 1px solid var(--ink); font: 700 .58rem var(--mono); transform: translate(-50%, -50%); transition: left .25s ease; }
+    .transit-meta { display: flex; justify-content: space-between; gap: 1rem; padding-top: .8rem; border-top: 1px solid var(--line); color: var(--muted); font: .62rem var(--mono); text-transform: uppercase; }
+    .wait-control { display: grid; grid-template-columns: 1fr auto; gap: .6rem; align-items: center; padding: .8rem; border-top: 1px solid var(--ink); background: var(--paper-2); }
+    .wait-control button { min-height: 3rem; padding: .7rem .9rem; border: 1px solid var(--ink); background: var(--blue); color: white; cursor: pointer; font: .67rem var(--mono); letter-spacing: .05em; text-transform: uppercase; }
+    .wait-control button:hover:not(:disabled) { background: var(--red); }
+    .wait-control button:disabled { cursor: not-allowed; opacity: .4; }
+    .wait-control span { font: .64rem var(--mono); text-align: right; text-transform: uppercase; }
+    .everyday-reading { display: flex; min-height: 35rem; flex-direction: column; justify-content: space-between; padding: clamp(1.3rem, 3vw, 2.5rem); border-left: 1px solid var(--ink); }
+    .plain-label { color: var(--blue); font: 700 .67rem var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+    .everyday-reading h3 { margin: .75rem 0 1rem; font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.8rem); font-weight: 500; letter-spacing: -.04em; line-height: .95; }
+    .everyday-reading > div > p { margin: 0; line-height: 1.6; }
+    .plain-ledger { display: grid; gap: 1px; margin-top: 1.6rem; border: 1px solid var(--line); background: var(--line); }
+    .plain-row { padding: .75rem; background: #f8f5ec; }
+    .plain-row strong { display: block; margin-bottom: .35rem; font: .61rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+    .plain-row p { margin: 0; font-size: .84rem; line-height: 1.45; }
+    .everyday-actions { display: grid; grid-template-columns: 1fr auto; gap: .55rem; margin-top: 1.5rem; }
+    .everyday-action { min-height: 3rem; padding: .7rem .85rem; border: 1px solid var(--ink); background: var(--ink); color: var(--paper); cursor: pointer; font: .66rem var(--mono); letter-spacing: .05em; text-align: left; text-transform: uppercase; }
+    .everyday-action.secondary { background: transparent; color: var(--ink); }
+    .everyday-action:hover:not(:disabled) { background: var(--red); color: white; }
+    .everyday-action:disabled { cursor: not-allowed; opacity: .35; }
+    .everyday-stage.is-complete { background: var(--acid); color: var(--ink); }
+    .blame-board { width: min(100%, 38rem); }
+    .blame-question { margin: 0 0 1rem; font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2.2rem); line-height: 1.15; text-align: center; }
+    .blame-choices { display: grid; grid-template-columns: 1fr 1fr; gap: .65rem; }
+    .blame-choice { min-height: 5.2rem; padding: .8rem; border: 1px solid var(--ink); background: #fbfaf5; color: var(--ink); cursor: pointer; text-align: left; }
+    .blame-choice:hover, .blame-choice[aria-pressed="true"] { background: var(--red); color: white; }
+    .blame-choice strong { display: block; margin-bottom: .35rem; font-family: var(--serif); font-size: 1.05rem; font-weight: 500; }
+    .blame-choice span { display: block; font-size: .75rem; line-height: 1.35; }
+    .blame-result { margin-top: .75rem; padding: .9rem; border-left: 4px solid var(--red); background: var(--paper); font-size: .85rem; line-height: 1.5; }
+    .eta-model { width: min(100%, 42rem); }
+    .eta-model-output { display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: end; padding-bottom: 1rem; border-bottom: 1px solid var(--ink); }
+    .eta-model-output span { font: .63rem var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+    .eta-model-output strong { display: block; margin-top: .35rem; font-family: var(--serif); font-size: clamp(3.8rem, 9vw, 6.7rem); font-weight: 500; letter-spacing: -.07em; line-height: .8; }
+    .eta-confidence { text-align: right; }
+    .eta-confidence b { display: block; margin-top: .3rem; color: var(--blue); font-family: var(--serif); font-size: 1.6rem; font-weight: 500; }
+    .eta-controls { display: grid; gap: 1rem; margin-top: 1.25rem; }
+    .eta-control { display: grid; grid-template-columns: 8.5rem 1fr 5.4rem; gap: .8rem; align-items: center; }
+    .eta-control label { font: 700 .63rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+    .eta-control input { width: 100%; accent-color: var(--blue); }
+    .eta-control output { font: .65rem var(--mono); text-align: right; text-transform: uppercase; }
+    .eta-relation { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem; margin-top: 1.3rem; }
+    .eta-relation span { padding: .4rem .5rem; border: 1px solid var(--ink); background: #fbfaf5; font: .59rem var(--mono); letter-spacing: .05em; text-transform: uppercase; }
+    .eta-relation i { align-self: center; font-style: normal; }
+    .plain-translation { display: grid; gap: 1px; width: min(100%, 42rem); border: 1px solid var(--ink); background: var(--ink); }
+    .translation-row { display: grid; grid-template-columns: 8rem 1fr; gap: 1rem; padding: .9rem; background: #f8f5ec; }
+    .translation-row strong { color: var(--red); font: 700 .62rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+    .translation-row p { margin: 0; font-size: .85rem; line-height: 1.45; }
+    .translation-result { padding: 1.1rem; background: var(--blue); color: white; font-family: var(--serif); font-size: clamp(1.2rem, 2.5vw, 1.8rem); line-height: 1.25; }
+
+    .simulator-section { background: var(--ink); color: var(--paper); }
+    .simulator-section .kicker { color: var(--acid); }
+    .simulation-switch { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid rgba(243,240,231,.55); }
+    .simulation-mode {
+      min-height: 4.6rem;
+      padding: 1rem;
+      border: 0;
+      border-right: 1px solid rgba(243,240,231,.55);
+      background: transparent;
+      color: var(--paper);
+      cursor: pointer;
+      text-align: left;
+    }
+    .simulation-mode:last-child { border-right: 0; }
+    .simulation-mode[aria-selected="true"] { background: var(--acid); color: var(--ink); }
+    .simulation-mode small { display: block; margin-bottom: .25rem; font-family: var(--mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; }
+    .simulation-mode strong { font-family: var(--serif); font-size: 1.3rem; font-weight: 500; }
+    .simulation-view[hidden] { display: none; }
+    .simulation-view { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(18rem, .45fr); border: 1px solid rgba(243,240,231,.55); border-top: 0; }
+    .simulation-stage { position: relative; min-height: 35rem; background: #171b1e; overflow: hidden; }
+    .simulation-stage canvas { display: block; width: 100%; height: 35rem; touch-action: none; cursor: grab; }
+    .simulation-stage canvas:active { cursor: grabbing; }
+    .simulation-instruction { position: absolute; left: 1rem; bottom: 1rem; margin: 0; padding: .5rem .65rem; background: rgba(17,17,15,.76); color: var(--paper); font-family: var(--mono); font-size: .65rem; letter-spacing: .04em; pointer-events: none; }
+    .simulation-panel { display: flex; min-height: 35rem; flex-direction: column; justify-content: space-between; padding: clamp(1.25rem, 3vw, 2.4rem); border-left: 1px solid rgba(243,240,231,.55); }
+    .simulation-state { color: var(--acid); font-family: var(--mono); font-size: .68rem; letter-spacing: .09em; text-transform: uppercase; }
+    .simulation-panel h3 { margin: .75rem 0 1rem; font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.6rem); font-weight: 500; line-height: .98; }
+    .simulation-panel p { margin: 0; line-height: 1.55; }
+    .tension-readout { margin: 2rem 0 1.4rem; }
+    .tension-label { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: .55rem; font-family: var(--mono); font-size: .64rem; letter-spacing: .06em; text-transform: uppercase; }
+    .tension-track { height: .65rem; background: rgba(243,240,231,.16); }
+    .tension-fill { width: 0; height: 100%; background: var(--acid); transition: width .18s linear, background-color .18s linear; }
+    .tension-fill.is-contradiction { background: var(--red); }
+    .simulation-actions { display: grid; gap: .55rem; margin-top: 1.5rem; }
+    .sim-action {
+      min-height: 3rem;
+      padding: .7rem .8rem;
+      border: 1px solid rgba(243,240,231,.65);
+      background: transparent;
+      color: var(--paper);
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: .67rem;
+      letter-spacing: .05em;
+      text-align: left;
+      text-transform: uppercase;
+    }
+    .sim-action:hover:not(:disabled) { background: rgba(243,240,231,.1); }
+    .sim-action.primary { border-color: var(--acid); color: var(--acid); }
+    .sim-action:disabled { cursor: not-allowed; opacity: .34; }
+    .simulation-footnote { margin-top: 1.4rem !important; padding-top: 1rem; border-top: 1px solid rgba(243,240,231,.3); font-size: .78rem; color: #cbc6b9; }
+    .spiral-toolbar { position: absolute; right: 1rem; bottom: 1rem; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .45rem; max-width: calc(100% - 2rem); }
+    .spiral-button { min-width: 2.8rem; min-height: 2.8rem; padding: .55rem .7rem; border: 1px solid rgba(243,240,231,.6); background: rgba(17,17,15,.82); color: var(--paper); cursor: pointer; font-family: var(--mono); font-size: .65rem; text-transform: uppercase; }
+    .spiral-button:hover { background: var(--acid); color: var(--ink); }
+    .spiral-button:disabled { cursor: not-allowed; opacity: .35; }
+    .spiral-button:disabled:hover { background: rgba(17,17,15,.82); color: var(--paper); }
+    .spiral-range { display: grid; grid-template-columns: auto minmax(8rem, 16rem); gap: .7rem; align-items: center; min-height: 2.8rem; padding: .45rem .65rem; background: rgba(17,17,15,.82); color: var(--paper); font-family: var(--mono); font-size: .62rem; letter-spacing: .05em; text-transform: uppercase; }
+    .spiral-range input { width: 100%; accent-color: var(--acid); }
+    .movement-list { display: grid; gap: 1px; margin: 1.8rem 0 0; background: rgba(243,240,231,.3); }
+    .movement-item { padding: .85rem; background: var(--ink); }
+    .movement-item span { display: block; margin-bottom: .35rem; color: var(--acid); font-family: var(--mono); font-size: .62rem; letter-spacing: .07em; text-transform: uppercase; }
+    .movement-item:nth-child(2) span { color: #f3b3a8; }
+    .movement-item p { font-size: .86rem; }
+    .german-term { display: inline-block; margin-top: 1.3rem; padding: .35rem .5rem; border: 1px solid rgba(243,240,231,.42); font-family: var(--mono); font-size: .66rem; letter-spacing: .04em; }
+    .simulation-source { margin: 1rem 0 0; color: #cbc6b9; font-family: var(--mono); font-size: .68rem; line-height: 1.5; }
+    .simulation-source a { color: var(--acid); text-underline-offset: .25em; }
+
+    .shape-lab { display: grid; grid-template-columns: minmax(14rem, .55fr) minmax(0, 1.45fr); border: 1px solid var(--ink); }
+    .shape-tabs { background: var(--ink); color: var(--paper); }
+    .shape-tab {
+      width: 100%;
+      padding: 1.4rem;
+      border: 0;
+      border-bottom: 1px solid rgba(243, 240, 231, .28);
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      text-align: left;
+    }
+    .shape-tab:last-child { border-bottom: 0; }
+    .shape-tab[aria-selected="true"] { background: var(--red); }
+    .shape-tab small { display: block; margin-bottom: .45rem; font-family: var(--mono); font-size: .64rem; letter-spacing: .08em; opacity: .74; text-transform: uppercase; }
+    .shape-tab strong { display: block; font-family: var(--serif); font-size: 1.5rem; font-weight: 500; }
+    .shape-stage { position: relative; min-height: 34rem; overflow: hidden; padding: clamp(1.6rem, 4vw, 4rem); background: #f9f7f0; }
+    .shape-glyph { position: absolute; right: -1.5rem; top: -3rem; color: var(--paper-2); font-family: var(--serif); font-size: clamp(13rem, 31vw, 27rem); line-height: 1; pointer-events: none; }
+    .shape-content { position: relative; z-index: 1; max-width: 48rem; }
+    .shape-content h3 { margin: 0 0 1rem; font-family: var(--serif); font-size: clamp(2.7rem, 6vw, 5rem); font-weight: 500; letter-spacing: -.04em; line-height: .95; }
+    .shape-thesis { max-width: 40rem; margin: 0; font-size: 1.15rem; line-height: 1.55; }
+    .shape-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3.2rem; }
+    .shape-column { padding-top: 1rem; border-top: 1px solid var(--ink); }
+    .shape-column h4 { margin: 0 0 .7rem; font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
+    .shape-column p { margin: 0; line-height: 1.55; }
+    .shape-source { display: inline-flex; margin-top: 2.4rem; font-family: var(--mono); font-size: .7rem; text-underline-offset: .25em; }
+
+    .comparison-section { background: var(--blue); color: #fff; }
+    .comparison-section .kicker { color: var(--acid); }
+    .comparison-section .section-heading { margin-bottom: 2.4rem; }
+    .profile-picker { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid rgba(255,255,255,.78); }
+    .profile-button {
+      min-height: 7.5rem;
+      padding: 1rem;
+      border: 0;
+      border-right: 1px solid rgba(255,255,255,.5);
+      background: transparent;
+      color: white;
+      cursor: pointer;
+      text-align: left;
+    }
+    .profile-button:last-child { border-right: 0; }
+    .profile-button:hover { background: rgba(255,255,255,.08); }
+    .profile-button[aria-selected="true"] { background: var(--acid); color: var(--ink); }
+    .profile-button span { display: block; margin-bottom: .55rem; font-family: var(--mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; }
+    .profile-button strong { display: block; font-family: var(--serif); font-size: 1.45rem; font-weight: 500; }
+    .comparison-frame { margin-top: 1rem; border: 1px solid rgba(255,255,255,.78); }
+    .comparison-head { display: grid; grid-template-columns: .5fr 1fr 1fr; background: rgba(0,0,0,.18); }
+    .comparison-head div { padding: 1rem; border-right: 1px solid rgba(255,255,255,.35); font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
+    .comparison-head div:last-child { border-right: 0; }
+    .comparison-row { display: grid; grid-template-columns: .5fr 1fr 1fr; border-top: 1px solid rgba(255,255,255,.35); }
+    .comparison-row > * { min-width: 0; padding: 1.1rem; border-right: 1px solid rgba(255,255,255,.35); }
+    .comparison-row > *:last-child { border-right: 0; }
+    .comparison-row h3 { margin: 0; color: var(--acid); font-family: var(--mono); font-size: .68rem; letter-spacing: .07em; line-height: 1.4; text-transform: uppercase; }
+    .comparison-row p { margin: 0; font-size: .92rem; line-height: 1.55; }
+    .comparison-verdict { display: grid; grid-template-columns: .5fr 2fr; gap: 1rem; padding: 1.2rem 1rem; border-top: 1px solid rgba(255,255,255,.78); background: var(--ink); }
+    .comparison-verdict strong { color: var(--acid); font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
+    .comparison-verdict p { margin: 0; font-family: var(--serif); font-size: 1.2rem; line-height: 1.4; }
+    .comparison-caution { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 1rem; background: rgba(255,255,255,.45); border: 1px solid rgba(255,255,255,.45); }
+    .caution-card { padding: 1.2rem; background: var(--blue); }
+    .caution-card strong { display: block; margin-bottom: .55rem; color: var(--acid); font-family: var(--mono); font-size: .68rem; letter-spacing: .07em; text-transform: uppercase; }
+    .caution-card p { margin: 0; font-size: .88rem; line-height: 1.55; }
+
+    .boundary-lab { display: grid; grid-template-columns: minmax(16rem, .65fr) minmax(0, 1.35fr); border: 1px solid var(--ink); }
+    .boundary-controls { padding: 1.2rem; border-right: 1px solid var(--ink); background: var(--paper-2); }
+    .boundary-controls h3 { margin: 0 0 1rem; font-family: var(--serif); font-size: 2rem; font-weight: 500; }
+    .boundary-toggle { display: flex; align-items: flex-start; gap: .8rem; padding: .9rem 0; border-top: 1px solid var(--line); cursor: pointer; }
+    .boundary-toggle input { width: 1.15rem; height: 1.15rem; margin: .15rem 0 0; accent-color: var(--red); }
+    .boundary-toggle span { font-size: .9rem; line-height: 1.4; }
+    .boundary-toggle strong { display: block; margin-bottom: .18rem; }
+    .boundary-output { display: flex; min-height: 32rem; flex-direction: column; justify-content: space-between; padding: clamp(1.5rem, 4vw, 4rem); background: #f9f7f0; }
+    .analogy-label { font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
+    .analogy-score { margin: .5rem 0 0; font-family: var(--serif); font-size: clamp(5rem, 12vw, 10rem); letter-spacing: -.08em; line-height: .9; }
+    .analogy-score span { color: var(--red); }
+    .analogy-meter { height: .9rem; margin: 1.4rem 0 2rem; border: 1px solid var(--ink); background: var(--paper-2); }
+    .analogy-fill { width: 0; height: 100%; background: var(--red); transition: width .25s ease; }
+    .analogy-copy { max-width: 44rem; font-family: var(--serif); font-size: 1.35rem; line-height: 1.4; }
+    .analogy-warning { max-width: 44rem; margin: 1.5rem 0 0; padding-top: 1rem; border-top: 1px solid var(--ink); font-size: .82rem; line-height: 1.5; }
+
+    .audit-section { background: var(--paper-2); }
+    .audit-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+    .privacy-note { max-width: 40rem; margin: 0; font-size: .78rem; line-height: 1.5; }
+    .button-row { display: flex; flex-wrap: wrap; gap: .65rem; }
+    .action-button {
+      padding: .72rem .9rem;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .action-button:hover { background: var(--red); }
+    .action-button.secondary { background: transparent; color: var(--ink); }
+    .action-button.secondary:hover { background: var(--paper); }
+    .audit-grid { display: grid; grid-template-columns: 10rem 1fr 1fr; border: 1px solid var(--ink); background: var(--ink); gap: 1px; }
+    .audit-cell { padding: 1rem; background: var(--paper); }
+    .audit-head { min-height: 5.7rem; background: var(--blue); color: white; }
+    .audit-head strong { display: block; font-family: var(--serif); font-size: 1.45rem; font-weight: 500; }
+    .audit-head span { display: block; margin-top: .35rem; font-family: var(--mono); font-size: .62rem; letter-spacing: .06em; text-transform: uppercase; }
+    .audit-label { font-family: var(--mono); font-size: .66rem; font-weight: 700; letter-spacing: .06em; line-height: 1.4; text-transform: uppercase; }
+    .audit-cell textarea {
+      display: block;
+      width: 100%;
+      min-height: 7.4rem;
+      resize: vertical;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      font: .92rem/1.5 var(--sans);
+    }
+    .audit-cell textarea::placeholder { color: #77736a; }
+    .audit-synthesis { grid-column: 1 / -1; padding: 1.2rem; background: var(--acid); }
+    .audit-synthesis label { display: block; margin-bottom: .75rem; font-family: var(--mono); font-size: .68rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+    .audit-synthesis textarea { width: 100%; min-height: 8rem; resize: vertical; border: 1px solid var(--ink); padding: 1rem; background: #f9f7f0; color: var(--ink); font: 1rem/1.55 var(--sans); }
+    .copy-status { min-height: 1.4rem; margin: .8rem 0 0; font-family: var(--mono); font-size: .68rem; }
+
+    .claims-grid { display: grid; grid-template-columns: repeat(2, 1fr); border: 1px solid var(--ink); background: var(--ink); gap: 1px; }
+    .claim-card { min-height: 18rem; padding: clamp(1.4rem, 3vw, 2.5rem); background: #f9f7f0; }
+    .claim-number { color: var(--red); font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
+    .claim-card h3 { margin: 3.5rem 0 1rem; font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 500; line-height: 1.05; }
+    .claim-card p { margin: 0; line-height: 1.55; }
+
+    .sources { background: var(--ink); color: var(--paper); }
+    .sources .kicker { color: var(--acid); }
+    .source-list { border-top: 1px solid rgba(243,240,231,.35); }
+    .source-item { border-bottom: 1px solid rgba(243,240,231,.35); }
+    .source-item summary { display: grid; grid-template-columns: 10rem 1fr auto; gap: 1rem; align-items: center; padding: 1.1rem 0; cursor: pointer; }
+    .source-ref { color: var(--acid); font-family: var(--mono); font-size: .68rem; letter-spacing: .07em; text-transform: uppercase; }
+    .source-title { font-family: var(--serif); font-size: 1.2rem; }
+    .source-item summary::after { content: "+"; font-family: var(--mono); font-size: 1.2rem; }
+    .source-item[open] summary::after { content: "−"; }
+    .source-body { max-width: 60rem; padding: 0 0 1.4rem 10rem; font-size: .9rem; line-height: 1.6; }
+    .source-body p { margin: 0 0 .7rem; }
+    .source-body a { color: var(--acid); text-underline-offset: .25em; }
+    .site-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding: 1.2rem clamp(1rem, 5vw, 5rem); background: var(--acid); color: var(--ink); font-family: var(--mono); font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; }
+
+    @media (max-width: 820px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-copy { min-height: 70svh; border-right: 0; border-bottom: 1px solid var(--ink); }
+      .hero-aside { min-height: 24rem; }
+      .hero-foot { grid-template-columns: 1fr; }
+      .hero-foot div { border-right: 0; border-bottom: 1px solid var(--ink); }
+      .hero-foot div:last-child { border-bottom: 0; }
+      .section-heading { grid-template-columns: 1fr; }
+      .engine-grid { grid-template-columns: 1fr; }
+      .engine-panel:first-child { border-right: 0; border-bottom: 1px solid var(--ink); }
+      .engine-nav { grid-template-columns: 1fr; }
+      .stage-button { min-height: auto; border-right: 0; border-bottom: 1px solid var(--ink); }
+      .stage-button:last-child { border-bottom: 0; }
+      .engine-note { grid-template-columns: 1fr; }
+      .journey-frame { grid-template-columns: 1fr; }
+      .journey-reflection { min-height: auto; border-top: 1px solid var(--ink); border-left: 0; }
+      .everyday-grid { grid-template-columns: 1fr; }
+      .everyday-reading { min-height: auto; border-top: 1px solid var(--ink); border-left: 0; }
+      .shape-lab, .boundary-lab { grid-template-columns: 1fr; }
+      .simulation-view { grid-template-columns: 1fr; }
+      .simulation-panel { min-height: auto; border-left: 0; border-top: 1px solid rgba(243,240,231,.55); }
+      .shape-tabs { display: grid; grid-template-columns: repeat(3, 1fr); }
+      .shape-tab { padding: .9rem; border-bottom: 0; border-right: 1px solid rgba(243, 240, 231, .28); }
+      .shape-tab:last-child { border-right: 0; }
+      .shape-tab strong { font-size: 1rem; }
+      .shape-columns { grid-template-columns: 1fr; }
+      .profile-picker { grid-template-columns: 1fr; }
+      .profile-button { min-height: auto; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.5); }
+      .profile-button:last-child { border-bottom: 0; }
+      .comparison-head, .comparison-row { grid-template-columns: 8rem 1fr 1fr; }
+      .comparison-frame { overflow-x: auto; }
+      .comparison-head, .comparison-row, .comparison-verdict { min-width: 43rem; }
+      .comparison-verdict { grid-template-columns: 8rem 1fr; }
+      .comparison-caution { grid-template-columns: 1fr; }
+      .boundary-controls { border-right: 0; border-bottom: 1px solid var(--ink); }
+      .audit-grid { grid-template-columns: 7rem 1fr 1fr; overflow-x: auto; }
+      .audit-cell { min-width: 0; }
+      .claims-grid { grid-template-columns: 1fr; }
+      .source-item summary { grid-template-columns: 7rem 1fr auto; }
+      .source-body { padding-left: 7rem; }
+    }
+
+    @media (max-width: 560px) {
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .journey-progress { grid-template-columns: 1fr 1fr; }
+      .journey-marker { min-height: 4.6rem; }
+      .journey-prompt { align-items: flex-start; flex-direction: column; }
+      .journey-actions { grid-template-columns: 1fr; }
+      .everyday-progress { grid-template-columns: 1fr; }
+      .everyday-stage { min-height: 4rem; }
+      .everyday-actions { grid-template-columns: 1fr; }
+      .simulation-switch { grid-template-columns: 1fr; }
+      .simulation-mode { border-right: 0; border-bottom: 1px solid rgba(243,240,231,.55); }
+      .simulation-mode:last-child { border-bottom: 0; }
+      .blame-choices { grid-template-columns: 1fr; }
+      .eta-control { grid-template-columns: 1fr; gap: .35rem; }
+      .eta-control output { text-align: left; }
+      .translation-row { grid-template-columns: 1fr; gap: .4rem; }
+      .journey-object-study { grid-template-columns: 1fr 1fr; }
+      .salt-figure { grid-column: 1 / -1; grid-row: 1; }
+      .property-chip { justify-self: stretch !important; }
+      .perception-choice, .perception-result { grid-column: 1 / -1; }
+      .threshold-map { grid-template-columns: 1fr; }
+      .threshold-self { grid-column: auto; }
+      .shape-tabs { grid-template-columns: 1fr; }
+      .shape-tab { border-right: 0; border-bottom: 1px solid rgba(243, 240, 231, .28); }
+      .audit-grid { grid-template-columns: 1fr; background: transparent; gap: .7rem; overflow: visible; }
+      .audit-cell { border: 1px solid var(--ink); }
+      .audit-cell:first-child { display: none; }
+      .audit-label { padding-bottom: .4rem; border: 0; background: transparent; }
+      .audit-label::after { content: " — describe both cases below"; font-weight: 400; text-transform: none; }
+      .audit-synthesis { grid-column: auto; }
+      .source-item summary { grid-template-columns: 1fr auto; }
+      .source-ref { grid-column: 1 / -1; }
+      .source-body { padding-left: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .analogy-fill { transition: none; }
+      .tension-fill { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="topbar">
+      <div class="course-mark">EPOL 479 · Machine Learning &amp; Human Learning</div>
+      <a href="../lecture-2.html">Week 2 lecture</a>
+    </div>
+    <div class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Erfahrung · an interactive inquiry</p>
+        <h1>Experience <em>under pressure.</em></h1>
+        <p class="dek">A learner has an experience when resistance does more than correct an answer: it reorganizes both the learner’s way of knowing and the object as the learner understands it.</p>
+      </div>
+      <aside class="hero-aside" aria-label="Working definition">
+        <div class="definition">
+          <div class="definition-no">≠</div>
+          <p>Experience is <strong>not just input</strong>, not just a feeling, and not just a parameter update.</p>
+          <p>For Hegel, it names a movement in which a form of consciousness tests itself and a new object emerges.</p>
+        </div>
+        <a class="source-chip" href="../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf#page=104">Pinkard, Introduction §86</a>
+      </aside>
+    </div>
+    <div class="hero-foot" aria-label="Inquiry coordinates">
+      <div><span>01 · Problem</span><strong>Concept meets resistance</strong></div>
+      <div><span>02 · Movement</span><strong>Knowing and object both shift</strong></div>
+      <div><span>03 · Question</span><strong>Can a machine undergo this?</strong></div>
+    </div>
+  </header>
+
+  <nav class="inquiry-nav" aria-label="Inquiry sections">
+    <a href="#engine">Movement</a>
+    <a href="#journey">Journey</a>
+    <a href="#everyday">Everyday</a>
+    <a href="#simulator">Simulate</a>
+    <a href="#shapes">Shapes</a>
+    <a href="#compare">Compare</a>
+    <a href="#boundary">Boundary</a>
+    <a href="#audit">Audit</a>
+    <a href="#claims">Theses</a>
+    <a href="#sources">Sources</a>
+  </nav>
+
+  <main>
+    <section class="section" id="engine">
+      <div class="section-heading">
+        <p class="kicker">01 · The dialectical engine</p>
+        <div>
+          <h2>Watch a certainty become an experience.</h2>
+          <p class="intro">Hegel asks consciousness to supply its own claim and its own standard. Move through the sequence. Notice that the end is not simply a better answer to the same question: the terms of the question have changed.</p>
+        </div>
+      </div>
+
+      <div class="engine" aria-labelledby="engine-title">
+        <div class="engine-bar">
+          <span id="engine-title">Case 01 · “Now is night”</span>
+          <span class="engine-status">movement active</span>
+        </div>
+        <div class="engine-grid" aria-live="polite">
+          <article class="engine-panel">
+            <div class="panel-label"><span>Concept / knowing</span><span class="panel-term">Begriff</span></div>
+            <div class="panel-content">
+              <div>
+                <h3 id="concept-title">The immediate is true.</h3>
+                <p id="concept-body">What I can point to here and now appears to need no mediation, comparison, or interpretation.</p>
+              </div>
+              <span class="change-tag" id="concept-tag">initial standard</span>
+            </div>
+          </article>
+          <article class="engine-panel">
+            <div class="panel-label"><span>Object / what is true</span><span class="panel-term">Gegenstand</span></div>
+            <div class="panel-content">
+              <div>
+                <h3 id="object-title">“Now is night.”</h3>
+                <p id="object-body">A singular Now is treated as a stable object whose truth can be preserved by writing it down.</p>
+              </div>
+              <span class="change-tag" id="object-tag">apparently fixed</span>
+            </div>
+          </article>
+        </div>
+        <div class="engine-nav" role="tablist" aria-label="Stages of experience">
+          <button class="stage-button" role="tab" aria-selected="true" data-stage="0"><span class="stage-number">00</span><span class="stage-label">Certainty</span></button>
+          <button class="stage-button" role="tab" aria-selected="false" data-stage="1"><span class="stage-number">01</span><span class="stage-label">Encounter</span></button>
+          <button class="stage-button" role="tab" aria-selected="false" data-stage="2"><span class="stage-number">02</span><span class="stage-label">Contradiction</span></button>
+          <button class="stage-button" role="tab" aria-selected="false" data-stage="3"><span class="stage-number">03</span><span class="stage-label">Double revision</span></button>
+          <button class="stage-button" role="tab" aria-selected="false" data-stage="4"><span class="stage-number">04</span><span class="stage-label">New object</span></button>
+        </div>
+        <div class="engine-note">
+          <strong id="note-label">At stake</strong>
+          <span id="note-body">Sense-certainty claims direct access to a singular this. Its own attempt to preserve the claim will test that standard.</span>
+        </div>
+        <div class="misconception">
+          <span class="misconception-mark" aria-hidden="true">!</span>
+          <p><strong>A dialectic is not a three-step recipe.</strong> “Thesis → antithesis → synthesis” can be a mnemonic, but it hides the important mechanism here: consciousness is undone by the consequences of its own criterion.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section journey-section" id="journey">
+      <div class="section-heading">
+        <p class="kicker">02 · The path of consciousness</p>
+        <div>
+          <h2>Do not watch the dialectic. Enter it.</h2>
+          <p class="intro">For a few minutes, take the standpoint of consciousness. You do not yet know Hegel’s result. Point, preserve, and test what seems true from within each shape; the next standpoint opens only when the present one defeats itself.</p>
+        </div>
+      </div>
+
+      <div class="journey-shell" id="journey-lab" data-journey-stage="sense">
+        <div class="journey-progress" aria-label="Path through consciousness">
+          <button class="journey-marker" type="button" aria-current="step" data-journey="sense"><small>Moment 01 · within</small><strong>Sense-certainty</strong></button>
+          <button class="journey-marker" type="button" data-journey="perception" disabled><small>Moment 02 · locked</small><strong>Perception</strong></button>
+          <button class="journey-marker" type="button" data-journey="understanding" disabled><small>Moment 03 · locked</small><strong>Understanding</strong></button>
+          <button class="journey-marker" type="button" data-journey="threshold" disabled><small>Moment 04 · locked</small><strong>The threshold</strong></button>
+        </div>
+
+        <div class="journey-frame">
+          <div class="journey-scene" id="journey-scene">
+            <div class="journey-scene-head"><span id="journey-location">Here · night</span><span id="journey-scene-state">Before reflection</span></div>
+            <div class="journey-encounter" id="journey-encounter">
+              <button class="journey-this" id="journey-this" type="button" aria-describedby="journey-prompt-copy">This</button>
+            </div>
+            <div class="journey-inscription" id="journey-inscription" hidden>Preserved claim: “Now is night.”</div>
+            <div class="journey-prompt">
+              <p id="journey-prompt-copy">Something is immediately present. Point to the singular <em>This</em> you mean.</p>
+              <span id="journey-gesture">Your move · point</span>
+            </div>
+          </div>
+
+          <aside class="journey-reflection" aria-live="polite">
+            <div>
+              <span class="journey-voice">From within · I</span>
+              <h3 id="journey-title">I know this—simply because it is here.</h3>
+              <p class="journey-reflection-copy" id="journey-copy">This certainty feels maximally concrete. I need no reasons, no comparison, and no concepts: I only have to indicate what is present to me now.</p>
+              <div class="journey-ledger" aria-label="Changing structure of the encounter">
+                <div class="journey-ledger-row"><span>My criterion</span><p id="journey-criterion">Truth is immediate contact with this singular.</p></div>
+                <div class="journey-ledger-row"><span>My object</span><p id="journey-object">This night, here and now.</p></div>
+                <div class="journey-ledger-row"><span>Pressure</span><p id="journey-pressure">None yet. The intended object and my certainty appear identical.</p></div>
+              </div>
+            </div>
+            <div>
+              <div class="journey-actions">
+                <button class="journey-action" id="journey-primary" type="button" disabled>First point to “This”</button>
+                <button class="journey-action secondary" id="journey-reset" type="button">Restart</button>
+              </div>
+              <p class="journey-observer" id="journey-observer"><strong>Observer’s margin:</strong> Stay with what consciousness takes to be true. The interface will name Hegel’s result only after the standpoint has generated it.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+      <p class="simulation-source" style="color: var(--muted)">Journey grounded in Pinkard’s translation: <a style="color: var(--blue)" href="../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf#page=108">Sense-certainty §§90–110</a> · <a style="color: var(--blue)" href="../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf#page=115">Perception §§111–131</a> · <a style="color: var(--blue)" href="../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf#page=126">Force and understanding §§132 onward</a>.</p>
+    </section>
+
+    <section class="section everyday-section" id="everyday">
+      <div class="section-heading">
+        <p class="kicker">03 · Hegel in plain clothes</p>
+        <div>
+          <h2>The five-minute bus that never arrives.</h2>
+          <p class="intro">No “dialectic,” no “mediation,” no “supersensible world”—at least not yet. Begin with an ordinary transit-app annoyance and follow what has to change when the number on the screen stops behaving like a fact.</p>
+        </div>
+      </div>
+
+      <div class="everyday-lab" id="everyday-lab">
+        <div class="everyday-progress" aria-label="Everyday encounter stages">
+          <button class="everyday-stage" type="button" aria-current="step" data-everyday-stage="0"><small>Part 01 · now</small><strong>Take it literally</strong></button>
+          <button class="everyday-stage" type="button" data-everyday-stage="1" disabled><small>Part 02 · locked</small><strong>Blame something</strong></button>
+          <button class="everyday-stage" type="button" data-everyday-stage="2" disabled><small>Part 03 · locked</small><strong>See the setup</strong></button>
+        </div>
+
+        <div class="everyday-grid">
+          <div class="everyday-situation" id="everyday-situation">
+            <div class="transit-phone" aria-label="A transit app showing a bus five minutes away">
+              <div class="transit-phone-head"><span>Northbound · Stop 1842</span><span id="everyday-clock">8:12</span></div>
+              <div class="transit-route">
+                <div class="transit-route-name"><strong>22</strong><span>Clark bus to Howard</span></div>
+                <div class="transit-eta"><strong id="everyday-eta">5</strong><span>minutes<br>away</span></div>
+                <div class="transit-line" id="everyday-line"><span class="transit-bus">BUS</span><span class="transit-stop" aria-label="Your stop"></span></div>
+                <div class="transit-meta"><span id="everyday-updated">Updated now</span><span>Your stop →</span></div>
+              </div>
+              <div class="wait-control"><button id="everyday-wait" type="button">Wait one minute</button><span><strong id="everyday-waited">0</strong> min spent waiting</span></div>
+            </div>
+          </div>
+
+          <aside class="everyday-reading" aria-live="polite">
+            <div>
+              <span class="plain-label">In everyday language</span>
+              <h3 id="everyday-title">The screen gives me a fact.</h3>
+              <p id="everyday-copy">It says five minutes. I organize my next move around that number: stay here, do not start walking, do not order a ride.</p>
+              <div class="plain-ledger">
+                <div class="plain-row"><strong id="everyday-assumption-label">What I assumed</strong><p id="everyday-assumption">“Five minutes” is simply a property of this bus right now.</p></div>
+                <div class="plain-row"><strong id="everyday-resistance-label">What pushes back</strong><p id="everyday-resistance">Nothing yet. Wait and see whether the displayed fact behaves like one.</p></div>
+                <div class="plain-row"><strong id="everyday-change-label">What may need to change</strong><p id="everyday-change">For now, only the number—not my idea of what the number is.</p></div>
+              </div>
+            </div>
+            <div class="everyday-actions">
+              <button class="everyday-action" id="everyday-next" type="button" disabled>Wait three minutes first</button>
+              <button class="everyday-action secondary" id="everyday-reset" type="button">Restart</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+      <p class="simulation-source" style="color: #514937">This bus-stop case is a teaching analogy, not an example from Hegel. It translates the structure of <a style="color: var(--blue)" href="../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf#page=102">experience in Introduction §§84–89</a> through the movements of sense-certainty, perception, and understanding.</p>
+    </section>
+
+    <section class="section simulator-section" id="simulator">
+      <div class="section-heading">
+        <p class="kicker">04 · Experience simulator</p>
+        <div>
+          <h2>Put concept and object under tension.</h2>
+          <p class="intro">Drag the object away from the concept that claims to know it. A small mismatch can be patched. A contradiction becomes Hegelian experience only when the governing standard also fails and a new object emerges.</p>
+        </div>
+      </div>
+
+      <div class="simulation-switch" role="tablist" aria-label="Simulation views">
+        <button class="simulation-mode" role="tab" aria-selected="true" aria-controls="field-view" data-simulation="field"><small>2D laboratory</small><strong>Concept–object field</strong></button>
+        <button class="simulation-mode" role="tab" aria-selected="false" aria-controls="spiral-view" data-simulation="spiral"><small>3D trajectory</small><strong>Experience spiral</strong></button>
+        <button class="simulation-mode" role="tab" aria-selected="false" aria-controls="world-view" data-simulation="world"><small>3D world</small><strong>Circle ↔ spiral</strong></button>
+      </div>
+      <div class="simulation-view" id="field-view">
+        <div class="simulation-stage">
+          <canvas id="field-canvas" width="960" height="560" role="img" aria-describedby="field-description"></canvas>
+          <p class="simulation-instruction">Drag OBJECT · or use “introduce resistance”</p>
+          <p class="sr-only" id="field-description">An interactive field showing a concept and its object connected by their claimed relation. Moving the object increases mismatch until their shared standard must be transformed.</p>
+        </div>
+        <aside class="simulation-panel" aria-live="polite">
+          <div>
+            <span class="simulation-state" id="field-state">Fit · the claim holds</span>
+            <h3 id="field-title">The object appears inside its concept.</h3>
+            <p id="field-copy">Consciousness takes its way of knowing and the object’s truth to correspond. The standard—“the immediate singular is true”—remains invisible because it seems to work.</p>
+            <div class="tension-readout">
+              <div class="tension-label"><span>Mismatch within the claim</span><strong id="tension-value">0%</strong></div>
+              <div class="tension-track"><div class="tension-fill" id="tension-fill"></div></div>
+            </div>
+          </div>
+          <div>
+            <div class="simulation-actions">
+              <button class="sim-action" id="resist-button" type="button">Introduce resistance →</button>
+              <button class="sim-action" id="patch-button" type="button" disabled>Patch the answer</button>
+              <button class="sim-action primary" id="reversal-button" type="button" disabled>Reveal the reversal</button>
+              <button class="sim-action" id="field-reset" type="button">Reset the field</button>
+            </div>
+            <p class="simulation-footnote"><strong>Important:</strong> “Reveal” is our act as observers. Consciousness does not freely choose the next shape; its own standard makes the transition necessary. The object shown is the object <em>for consciousness</em>, not an uninterpreted thing hidden behind experience.</p>
+          </div>
+        </aside>
+      </div>
+      <div class="simulation-view" id="spiral-view" hidden>
+        <div class="simulation-stage">
+          <canvas id="spiral-canvas" width="960" height="560" role="img" aria-describedby="spiral-description">A projected three-dimensional spiral of the shapes of consciousness.</canvas>
+          <p class="simulation-instruction">Drag to rotate · select a node · move through the shapes</p>
+          <p class="sr-only" id="spiral-description">A rotatable spiral showing seven moments from the singular Now through force and law to the threshold of self-consciousness. Each moment negates and preserves part of the previous one.</p>
+          <div class="spiral-toolbar" aria-label="Spiral controls">
+            <button class="spiral-button" id="spiral-left" type="button" aria-label="Rotate spiral left">↶ rotate</button>
+            <button class="spiral-button" id="spiral-previous" type="button">← prior</button>
+            <label class="spiral-range"><span>Moment <strong id="spiral-range-value">1</strong>/7</span><input id="spiral-range" type="range" min="0" max="6" step="1" value="0" aria-label="Selected moment"></label>
+            <button class="spiral-button" id="spiral-next" type="button">next →</button>
+            <button class="spiral-button" id="spiral-right" type="button" aria-label="Rotate spiral right">rotate ↷</button>
+          </div>
+        </div>
+        <aside class="simulation-panel" aria-live="polite" id="spiral-live">
+          <div>
+            <span class="simulation-state" id="spiral-state">Sense-certainty · moment 01</span>
+            <h3 id="spiral-title">The singular Now</h3>
+            <p id="spiral-copy">Consciousness begins by treating the immediate This as the richest and truest object.</p>
+            <span class="german-term" id="spiral-german">das Diese · Hier · Jetzt</span>
+            <div class="movement-list">
+              <div class="movement-item"><span>Negated</span><p id="spiral-negated">The claim that immediacy is self-sufficient.</p></div>
+              <div class="movement-item"><span>Preserved</span><p id="spiral-preserved">Sensuous contact and the demand that knowing answer to its object.</p></div>
+              <div class="movement-item"><span>New problem</span><p id="spiral-emerges">How can a singular be said without becoming universal?</p></div>
+            </div>
+          </div>
+          <p class="simulation-footnote"><strong>Aufhebung:</strong> the spiral returns across related terrain without returning to the same place. A determination is cancelled, retained, and repositioned inside a more complex whole.</p>
+        </aside>
+      </div>
+      <div class="simulation-view" id="world-view" hidden>
+        <div class="simulation-stage">
+          <canvas id="world-canvas" width="960" height="560" role="img" aria-describedby="world-description">A two-turn helix that appears as a circle when viewed along its depth axis.</canvas>
+          <p class="simulation-instruction">Drag sideways · click a moment · compare repeated positions</p>
+          <p class="sr-only" id="world-description">A rotatable three-dimensional helix. Face-on, its two turns coincide as one circle; viewed obliquely, the later return is revealed at a different depth.</p>
+          <div class="spiral-toolbar" aria-label="Circle and spiral view controls">
+            <button class="spiral-button" id="world-face" type="button">Face-on circle</button>
+            <button class="spiral-button" id="world-previous" type="button" disabled>← prior</button>
+            <label class="spiral-range"><span>View <strong id="world-angle-value">0</strong>°</span><input id="world-angle" type="range" min="0" max="90" step="1" value="0" aria-label="Viewing angle from face-on circle to side-on history"></label>
+            <button class="spiral-button" id="world-next" type="button">next →</button>
+            <button class="spiral-button" id="world-reveal" type="button">Reveal depth</button>
+          </div>
+        </div>
+        <aside class="simulation-panel" aria-live="polite">
+          <div>
+            <span class="simulation-state" id="world-state">Face-on · apparent circle</span>
+            <h3 id="world-title">A beginning with no visible history.</h3>
+            <p id="world-copy">Certainty starts as if knowing and object simply coincide. Face-on, this beginning occupies the same point as both later returns.</p>
+            <span class="german-term" id="world-german">Unmittelbarkeit · immediacy</span>
+            <div class="movement-list">
+              <div class="movement-item"><span>Face-on reading</span><p id="world-flat">Beginning, first return, and second return appear to be one position.</p></div>
+              <div class="movement-item"><span>With depth</span><p id="world-depth">This is the earliest point: no contradiction has yet become part of its history.</p></div>
+              <div class="movement-item"><span>Carried forward</span><p id="world-carried">Sensuous contact and the demand that knowing answer to its object.</p></div>
+            </div>
+          </div>
+          <p class="simulation-footnote"><strong>The intuition:</strong> A closed circle says “back where we started.” The helix says “back over related ground, now carrying a history.” Face-on truth is not false; it is incomplete because depth has been hidden. The helix is our teaching model, not a diagram supplied by Hegel.</p>
+        </aside>
+      </div>
+      <p class="simulation-source">Conceptual model: <a href="../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf#page=102">Introduction §§84–89</a> · trajectory: <a href="../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf#page=108">Consciousness §§90 onward</a></p>
+    </section>
+
+    <section class="section" id="shapes">
+      <div class="section-heading">
+        <p class="kicker">05 · Shapes of consciousness</p>
+        <div>
+          <h2>Not levels. Not a technology ranking.</h2>
+          <p class="intro">Sense-certainty, perception, and understanding are forms of knowing, each with a distinctive claim about its object. Each discovers a contradiction it cannot contain and passes into a more adequate shape.</p>
+        </div>
+      </div>
+
+      <div class="shape-lab">
+        <div class="shape-tabs" role="tablist" aria-label="Shapes of consciousness">
+          <button class="shape-tab" role="tab" aria-selected="true" data-shape="sense"><small>Shape 01</small><strong>Sense-certainty</strong></button>
+          <button class="shape-tab" role="tab" aria-selected="false" data-shape="perception"><small>Shape 02</small><strong>Perception</strong></button>
+          <button class="shape-tab" role="tab" aria-selected="false" data-shape="understanding"><small>Shape 03</small><strong>Understanding</strong></button>
+        </div>
+        <article class="shape-stage" aria-live="polite">
+          <div class="shape-glyph" id="shape-glyph" aria-hidden="true">•</div>
+          <div class="shape-content">
+            <h3 id="shape-title">“This. Here. Now.”</h3>
+            <p class="shape-thesis" id="shape-thesis">Knowing seems richest when it adheres to the singular thing immediately before it. Yet language and pointing turn the intended singular into a universal.</p>
+            <div class="shape-columns">
+              <div class="shape-column"><h4>What it gains</h4><p id="shape-gain">Direct contact: a relation that appears free of inference, memory, or interpretation.</p></div>
+              <div class="shape-column"><h4>What breaks it open</h4><p id="shape-break">The Now passes; the Here changes; “I” can be said by anyone. Immediacy proves already mediated.</p></div>
+              <div class="shape-column"><h4>Machine analogy</h4><p id="shape-machine">A sensor reading is a useful analogy only if we remember that sensing already depends on selection, calibration, encoding, and a system boundary.</p></div>
+              <div class="shape-column"><h4>Question for learning</h4><p id="shape-question">Can an event become evidence without being related to other events?</p></div>
+            </div>
+            <a class="shape-source" id="shape-source" href="../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf#page=108">Read Pinkard, §§90–110, pp. 60–68 ↗</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section comparison-section" id="compare">
+      <div class="section-heading">
+        <p class="kicker">06 · Compare learning regimes</p>
+        <div>
+          <h2>Which machine are we comparing?</h2>
+          <p class="intro">“A machine” is too coarse a category. Choose a system architecture. The human column stays deliberately general; the machine column changes so that the comparison does not smuggle in abilities the system lacks.</p>
+        </div>
+      </div>
+
+      <div class="profile-picker" role="tablist" aria-label="Machine system profiles">
+        <button class="profile-button" role="tab" aria-selected="true" data-profile="static"><span>System A</span><strong>Static inference model</strong></button>
+        <button class="profile-button" role="tab" aria-selected="false" data-profile="agent"><span>System B</span><strong>Agent with tools + memory</strong></button>
+        <button class="profile-button" role="tab" aria-selected="false" data-profile="continual"><span>System C</span><strong>Continual embodied learner</strong></button>
+      </div>
+
+      <div class="comparison-frame">
+        <div class="comparison-head" aria-hidden="true"><div>Dimension</div><div>Human learner</div><div id="machine-column-title">Static inference model</div></div>
+        <div id="comparison-rows"></div>
+        <div class="comparison-verdict"><strong>Provisional reading</strong><p id="profile-verdict"></p></div>
+      </div>
+      <div class="comparison-caution">
+        <div class="caution-card"><strong>Functional claim</strong><p>We can inspect inputs, outputs, stored state, parameter changes, policies, and behavior. These support claims about what a system does.</p></div>
+        <div class="caution-card"><strong>Phenomenal claim</strong><p>Those observations do not by themselves establish what, if anything, it is like to be the system. Self-description is evidence of generated behavior, not decisive access to experience.</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="boundary">
+      <div class="section-heading">
+        <p class="kicker">07 · The boundary problem</p>
+        <div>
+          <h2>Make the machine more experience-like.</h2>
+          <p class="intro">Add capacities and watch the structural analogy with Hegelian experience strengthen. The result is an analogy meter—not a consciousness detector.</p>
+        </div>
+      </div>
+
+      <div class="boundary-lab">
+        <div class="boundary-controls">
+          <h3>System conditions</h3>
+          <label class="boundary-toggle"><input type="checkbox" data-weight="14" data-key="history"><span><strong>Persistent history</strong>Prior encounters remain available across episodes.</span></label>
+          <label class="boundary-toggle"><input type="checkbox" data-weight="20" data-key="revision"><span><strong>Online self-revision</strong>The system changes its own model or policy during use.</span></label>
+          <label class="boundary-toggle"><input type="checkbox" data-weight="16" data-key="embodiment"><span><strong>Sensorimotor loop</strong>Action changes the environment that supplies the next input.</span></label>
+          <label class="boundary-toggle"><input type="checkbox" data-weight="22" data-key="standard"><span><strong>Revisable standards</strong>The criterion of success can itself become an object of criticism.</span></label>
+          <label class="boundary-toggle"><input type="checkbox" data-weight="18" data-key="social"><span><strong>Social recognition</strong>Other agents can contest its claims and practical standing.</span></label>
+        </div>
+        <div class="boundary-output" aria-live="polite">
+          <div>
+            <div class="analogy-label">Structural analogy</div>
+            <div class="analogy-score"><span id="analogy-score">10</span>/100</div>
+            <div class="analogy-meter" aria-hidden="true"><div class="analogy-fill" id="analogy-fill"></div></div>
+            <p class="analogy-copy" id="analogy-copy">The system receives input and produces change, but the conditions for a Hegelian experience are mostly outside the system boundary.</p>
+          </div>
+          <p class="analogy-warning"><strong>Do not infer:</strong> A high score does not show sentience, feeling, moral status, or consciousness. It only marks how many structural features of concept–object revision are present in the description.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section audit-section" id="audit">
+      <div class="section-heading">
+        <p class="kicker">08 · Weekly activity</p>
+        <div>
+          <h2>Build an experience audit.</h2>
+          <p class="intro">Compare one human learning episode with one machine episode using the same terms. The symmetry is methodological, not a claim that the two cases are identical.</p>
+        </div>
+      </div>
+
+      <div class="audit-toolbar">
+        <p class="privacy-note">Drafts are saved only in this browser on this device. Nothing is submitted or transmitted by this page.</p>
+        <div class="button-row">
+          <button class="action-button" id="copy-audit" type="button">Copy as Markdown</button>
+          <button class="action-button secondary" id="clear-audit" type="button">Clear draft</button>
+        </div>
+      </div>
+      <div class="audit-grid">
+        <div class="audit-cell audit-head"><strong>Moment</strong><span>same lens, different evidence</span></div>
+        <div class="audit-cell audit-head"><strong>Human case</strong><span>lived + observed + reported</span></div>
+        <div class="audit-cell audit-head"><strong>Machine case</strong><span>functional evidence first</span></div>
+
+        <div class="audit-cell audit-label">Expectation / standard</div>
+        <div class="audit-cell"><textarea data-audit="human-expectation" aria-label="Human expectation or standard" placeholder="What did the learner take to be true or adequate?"></textarea></div>
+        <div class="audit-cell"><textarea data-audit="machine-expectation" aria-label="Machine expectation or standard" placeholder="What objective, policy, representation, prompt, or prediction existed?"></textarea></div>
+
+        <div class="audit-cell audit-label">Encounter / resistance</div>
+        <div class="audit-cell"><textarea data-audit="human-encounter" aria-label="Human encounter or resistance" placeholder="What resisted the learner’s expectation?"></textarea></div>
+        <div class="audit-cell"><textarea data-audit="machine-encounter" aria-label="Machine encounter or resistance" placeholder="What input, error, reward, or outcome differed?"></textarea></div>
+
+        <div class="audit-cell audit-label">Contradiction noticed</div>
+        <div class="audit-cell"><textarea data-audit="human-contradiction" aria-label="Human contradiction" placeholder="How did the mismatch become meaningful to the learner?"></textarea></div>
+        <div class="audit-cell"><textarea data-audit="machine-contradiction" aria-label="Machine contradiction" placeholder="Which mechanism detected or registered a mismatch?"></textarea></div>
+
+        <div class="audit-cell audit-label">Revision + new object</div>
+        <div class="audit-cell"><textarea data-audit="human-revision" aria-label="Human revision and new object" placeholder="What changed in the belief, practice, standard, and object understood?"></textarea></div>
+        <div class="audit-cell"><textarea data-audit="machine-revision" aria-label="Machine revision and new object" placeholder="What state, parameters, policy, representation, or task definition changed?"></textarea></div>
+
+        <div class="audit-cell audit-label">Persistence</div>
+        <div class="audit-cell"><textarea data-audit="human-persistence" aria-label="Human persistence" placeholder="Did the change endure, transfer, or become a habit?"></textarea></div>
+        <div class="audit-cell"><textarea data-audit="machine-persistence" aria-label="Machine persistence" placeholder="Where is the change stored, and when is it available again?"></textarea></div>
+
+        <div class="audit-cell audit-label">Limit of inference</div>
+        <div class="audit-cell"><textarea data-audit="human-limit" aria-label="Human limit of inference" placeholder="What remains inaccessible, uncertain, or reconstructed after the fact?"></textarea></div>
+        <div class="audit-cell"><textarea data-audit="machine-limit" aria-label="Machine limit of inference" placeholder="What can behavior or logs not establish?"></textarea></div>
+
+        <div class="audit-synthesis">
+          <label for="audit-synthesis">Provisional answer: Does functional revision count as experience?</label>
+          <textarea id="audit-synthesis" data-audit="synthesis" placeholder="Answer, then name the evidence that would make you revise your answer."></textarea>
+          <p class="copy-status" id="copy-status" role="status"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="claims">
+      <div class="section-heading">
+        <p class="kicker">09 · Four provisional theses</p>
+        <div>
+          <h2>What the comparison lets us say.</h2>
+          <p class="intro">These are positions to test, not answers the interface has proved.</p>
+        </div>
+      </div>
+      <div class="claims-grid">
+        <article class="claim-card"><span class="claim-number">Thesis 01</span><h3>Input is not yet experience.</h3><p>An event becomes experience through a relation among expectation, resistance, contradiction, and revision. More data can leave the governing concept untouched.</p></article>
+        <article class="claim-card"><span class="claim-number">Thesis 02</span><h3>An update is not enough.</h3><p>A change imposed by an external optimizer may improve performance while leaving the system unable to examine the standard by which it is judged.</p></article>
+        <article class="claim-card"><span class="claim-number">Thesis 03</span><h3>The object changes too.</h3><p>Learning is not only fitting a better representation to a fixed world. What counts as the object, the problem, or the evidence can be reorganized.</p></article>
+        <article class="claim-card"><span class="claim-number">Thesis 04</span><h3>Comparison precedes verdict.</h3><p>We should compare memory, embodiment, persistence, self-revision, norm formation, and social relation before making a binary declaration about machine experience.</p></article>
+      </div>
+    </section>
+
+    <section class="section sources" id="sources">
+      <div class="section-heading">
+        <p class="kicker">10 · Reading map</p>
+        <div>
+          <h2>Trace the interpretation.</h2>
+          <p class="intro">The app paraphrases the Week 2 materials and Terry Pinkard’s translation. Page links point to the relevant physical PDF page.</p>
+        </div>
+      </div>
+      <div class="source-list">
+        <details class="source-item" open><summary><span class="source-ref">Preface §36</span><span class="source-title">Experience as alienation and return</span></summary><div class="source-body"><p>Hegel describes experience as a movement in which the immediate becomes other to itself and returns from that alienation. This grounds the app’s claim that experience is a transformation, not a stock of events.</p><a href="../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf#page=69">Pinkard, pp. 22–23</a></div></details>
+        <details class="source-item"><summary><span class="source-ref">Introduction §§84–86</span><span class="source-title">Consciousness supplies and tests its own standard</span></summary><div class="source-body"><p>Concept, object, knowing, and truth all fall within the consciousness being examined. When knowing does not correspond to its object, both knowing and object are altered for consciousness. This movement “is properly what is called experience.”</p><a href="../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf#page=102">Pinkard, pp. 55–57</a></div></details>
+        <details class="source-item"><summary><span class="source-ref">Introduction §§87–89</span><span class="source-title">The new object emerges through reversal</span></summary><div class="source-body"><p>The next object is not merely encountered from outside. It arises through consciousness’s reversal, with the result preserving the determinate failure of the prior shape.</p><a href="../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf#page=104">Pinkard, pp. 57–59</a></div></details>
+        <details class="source-item"><summary><span class="source-ref">Consciousness §§90–110</span><span class="source-title">The “Now is night” experiment</span></summary><div class="source-body"><p>Sense-certainty attempts to state and preserve the singular Here and Now. Language and pointing reveal that its intended singular is mediated by universality.</p><a href="../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf#page=108">Pinkard, pp. 60–68</a></div></details>
+        <details class="source-item"><summary><span class="source-ref">Consciousness §§111–135</span><span class="source-title">Perception, the thing, and understanding</span></summary><div class="source-body"><p>Perception organizes a thing as a unity of many properties but oscillates between opposed abstractions. Understanding seeks the relations and laws through which objects are what they are.</p><a href="../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf#page=115">Pinkard, pp. 68–81</a></div></details>
+        <details class="source-item"><summary><span class="source-ref">Course synthesis</span><span class="source-title">EPOL 479 Week 2: machine and human experience</span></summary><div class="source-body"><p>The comparison dimensions, evidence boundary, and audit activity synthesize the Week 2 course prompt, the current weekly overview, and the lecture’s questions about sense-certainty, perception, understanding, continuous learning, embodiment, and the “experience of experience.”</p><a href="../weeks/week-2.html">Open the Week 2 overview</a> · <a href="../lecture-2.html">Open the lecture</a></div></details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><span>Machine Spirits · EPOL 479 · Fall 2026</span><span>Content iteration 04 · not yet published</span></footer>
+
+  <script>
+    const stages = [
+      {
+        conceptTitle: 'The immediate is true.',
+        conceptBody: 'What I can point to here and now appears to need no mediation, comparison, or interpretation.',
+        conceptTag: 'initial standard',
+        objectTitle: '“Now is night.”',
+        objectBody: 'A singular Now is treated as a stable object whose truth can be preserved by writing it down.',
+        objectTag: 'apparently fixed',
+        noteLabel: 'At stake',
+        noteBody: 'Sense-certainty claims direct access to a singular this. Its own attempt to preserve the claim will test that standard.',
+        active: 'none'
+      },
+      {
+        conceptTitle: 'Preserve the truth.',
+        conceptBody: 'The claim assumes that writing records the same truth without changing it.',
+        conceptTag: 'standard applied',
+        objectTitle: 'The page still says “night.”',
+        objectBody: 'The inscription endures while the world moves. At midday, the preserved Now is no longer night.',
+        objectTag: 'resistance appears',
+        noteLabel: 'Encounter',
+        noteBody: 'The counterexample is not imported by an outside critic. It arrives through the claim’s own test: preserve this immediate truth.',
+        active: 'object'
+      },
+      {
+        conceptTitle: 'Immediacy requires mediation.',
+        conceptBody: 'To say “Now” already reaches beyond this instant. Language states a universal that can be said of many Nows.',
+        conceptTag: 'standard fails',
+        objectTitle: 'The Now is many Nows.',
+        objectBody: 'Night passes into day, yet “Now” remains. The object is no longer the isolated instant first intended.',
+        objectTag: 'object fails',
+        noteLabel: 'Contradiction',
+        noteBody: 'Knowing and object do not correspond. But correcting only the sentence would miss the deeper result: what a Now is has also changed.',
+        active: 'both'
+      },
+      {
+        conceptTitle: 'Knowing revises its criterion.',
+        conceptBody: 'Truth cannot mean unmediated access to a private singular. Pointing and language are part of what is known.',
+        conceptTag: 'knowing revised',
+        objectTitle: 'The object is re-formed.',
+        objectBody: 'The true Now becomes a unity that preserves difference: a day containing hours, each containing many Nows.',
+        objectTag: 'object revised',
+        noteLabel: 'Double revision',
+        noteBody: 'This is the hinge of Hegelian experience: consciousness alters its knowing, and the object itself is altered for consciousness.',
+        active: 'both'
+      },
+      {
+        conceptTitle: 'A richer form of knowing.',
+        conceptBody: 'The result preserves immediacy as a moment, but no longer treats it as self-sufficient.',
+        conceptTag: 'negated + preserved',
+        objectTitle: 'A new, true object arises.',
+        objectBody: 'The Now is understood as a mediated universal. The failure has generated the next object of inquiry.',
+        objectTag: 'experience',
+        noteLabel: 'Result',
+        noteBody: 'Experience is the whole movement—not the initial data, not the error alone, and not a correction imposed from outside.',
+        active: 'both'
+      }
+    ];
+
+    const ids = ['concept-title', 'concept-body', 'concept-tag', 'object-title', 'object-body', 'object-tag', 'note-label', 'note-body'];
+    const buttons = [...document.querySelectorAll('.stage-button')];
+
+    function renderStage(index) {
+      const stage = stages[index];
+      const values = [stage.conceptTitle, stage.conceptBody, stage.conceptTag, stage.objectTitle, stage.objectBody, stage.objectTag, stage.noteLabel, stage.noteBody];
+      ids.forEach((id, i) => { document.getElementById(id).textContent = values[i]; });
+      document.getElementById('concept-tag').classList.toggle('active', stage.active === 'concept' || stage.active === 'both');
+      document.getElementById('object-tag').classList.toggle('active', stage.active === 'object' || stage.active === 'both');
+      buttons.forEach((button, i) => {
+        button.setAttribute('aria-selected', String(i === index));
+        button.tabIndex = i === index ? 0 : -1;
+      });
+    }
+
+    buttons.forEach((button, index) => {
+      button.addEventListener('click', () => renderStage(index));
+      button.addEventListener('keydown', event => {
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        let next = index;
+        if (event.key === 'ArrowRight') next = (index + 1) % buttons.length;
+        if (event.key === 'ArrowLeft') next = (index - 1 + buttons.length) % buttons.length;
+        if (event.key === 'Home') next = 0;
+        if (event.key === 'End') next = buttons.length - 1;
+        buttons[next].focus();
+        renderStage(next);
+      });
+    });
+
+    const journeyScene = document.getElementById('journey-scene');
+    const journeyEncounter = document.getElementById('journey-encounter');
+    const journeyPrimary = document.getElementById('journey-primary');
+    const journeyInscription = document.getElementById('journey-inscription');
+    const journeyMarkers = [...document.querySelectorAll('.journey-marker')];
+    const journeyState = {
+      stage: 0,
+      unlocked: 0,
+      phases: [0, 0, 0, 0],
+      properties: new Set(),
+      firstPerceptionChoice: null,
+      force: 20,
+      forceMoved: false
+    };
+
+    const senseJourneyMoments = [
+      {
+        location: 'Here · night', state: 'Before reflection', prompt: 'Something is immediately present. Point to the singular This you mean.', gesture: 'Your move · point',
+        title: 'I know this—simply because it is here.', copy: 'This certainty feels maximally concrete. I need no reasons, no comparison, and no concepts: I only have to indicate what is present to me now.',
+        criterion: 'Truth is immediate contact with this singular.', object: 'This night, here and now.', pressure: 'None yet. The intended object and my certainty appear identical.',
+        action: 'First point to “This”', disabled: true, day: false, inscription: false
+      },
+      {
+        location: 'Here · night', state: 'The singular intended', prompt: 'You mean this one Now—not Now in general. Can you preserve precisely what you know?', gesture: 'Your move · preserve it',
+        title: 'This Now is night.', copy: 'Pointing seems to isolate exactly what I mean. I will write the truth down so that the same singular certainty remains available.',
+        criterion: 'A singular truth can be indicated and preserved without changing it.', object: 'The night that this act of pointing selects.', pressure: 'To say or write my certainty, I must use the repeatable word “Now.”',
+        action: 'Write: “Now is night”', disabled: false, day: false, inscription: false
+      },
+      {
+        location: 'Here · night', state: 'Truth preserved?', prompt: 'The sentence remains. Let the Now move while your preserved claim stays where it is.', gesture: 'Your move · let time pass',
+        title: 'I have secured the truth.', copy: 'The writing seems to keep what would otherwise vanish. If my certainty was of this immediate Now, the inscription should still say what is true of it.',
+        criterion: 'The record preserves the very same immediate truth.', object: 'A Now supposedly fixed as night.', pressure: 'The sentence is stable only because it can outlast the singular moment it names.',
+        action: 'Let the Now pass →', disabled: false, day: false, inscription: true
+      },
+      {
+        location: 'Here · day', state: 'The object has answered', prompt: 'The page still says “Now is night.” But this Now is day. Which “Now” did your word actually preserve?', gesture: 'Contradiction encountered',
+        title: 'What I meant and what I said have separated.', copy: 'I intended an utterly singular Now. Yet “Now” can name night and day alike. The universal I dismissed as empty has proved more enduring than the singular I called true.',
+        criterion: 'Immediacy alone cannot state or preserve its own truth.', object: 'Now as a mediated universal: a unity of many passing Nows.', pressure: 'My own test overturned both my way of knowing and what I took the object to be.',
+        action: 'Perception is opening…', disabled: true, day: true, inscription: true
+      }
+    ];
+
+    function journeyPropertyStudy(includeChoice = false, result = '') {
+      const properties = ['white', 'cubical', 'tart', 'specific gravity'];
+      const chips = properties.map(property => `<button class="property-chip${journeyState.properties.has(property) ? ' is-seen' : ''}" type="button" data-property="${property}" aria-pressed="${journeyState.properties.has(property)}">${property}</button>`).join('');
+      const choice = includeChoice ? `<div class="perception-choice"><button type="button" data-perception-choice="one">Truth is the one thing</button><button type="button" data-perception-choice="also">Truth is the many properties</button></div>` : '';
+      const resultCard = result ? `<div class="perception-result">${result}</div>` : '';
+      return `<div class="journey-object-study"><div class="salt-figure"><div class="salt-cube" aria-label="A single cube of salt"></div></div>${chips}${choice}${resultCard}</div>`;
+    }
+
+    function forceStudy() {
+      const left = 18 + journeyState.force * .2;
+      const right = 82 - journeyState.force * .2;
+      return `<div class="force-study" style="--force-left:${left}%; --force-right:${right}%"><div class="force-field" aria-hidden="true"><div class="force-relation"></div><div class="force-pole a">A</div><div class="force-pole b">B</div></div><label class="force-control"><span>apart</span><input id="force-range" type="range" min="0" max="100" value="${journeyState.force}" aria-label="Change the relation between the appearing bodies"><span>compressed</span></label></div>`;
+    }
+
+    function senseMoment() {
+      const phase = journeyState.phases[0];
+      const moment = senseJourneyMoments[phase];
+      return {
+        ...moment,
+        sceneClass: moment.day ? 'is-day' : '',
+        encounter: `<button class="journey-this${phase > 0 ? ' is-chosen' : ''}" type="button" data-journey-action="point" aria-describedby="journey-prompt-copy">This</button>`,
+        action: phase === 3 ? 'Enter perception →' : moment.action,
+        disabled: phase === 3 ? false : moment.disabled,
+        inscription: moment.inscription,
+        observer: phase < 3
+          ? '<strong>Observer’s margin:</strong> Stay with what consciousness takes to be true. “Reveal” is delayed until its own act has produced the result.'
+          : '<strong>What happened:</strong> <em>das Diese</em> was not lost; it was <em>aufgehoben</em>—cancelled as self-sufficient, retained as sensuous presence, and re-situated within <em>das Allgemeine</em>.'
+      };
+    }
+
+    function perceptionMoment() {
+      const phase = journeyState.phases[1];
+      const seen = journeyState.properties.size;
+      if (phase === 0) return {
+        location: 'Here · one thing', state: `${seen}/4 properties encountered`, sceneClass: 'is-perception', inscription: false,
+        prompt: seen < 4 ? 'Attend to the object. Touch each property that belongs to this one thing.' : 'Every property is a universal—many things can be white or cubical—yet they meet here in one salt.',
+        gesture: seen < 4 ? 'Your move · inspect' : 'Properties gathered', encounter: journeyPropertyStudy(),
+        title: seen < 4 ? 'I perceive a stable thing with properties.' : 'The one thing is also a field of many universals.',
+        copy: 'Unlike the fleeting Now, this object seems to endure by gathering determinate properties. I take the thing to be one; I take its whiteness, shape, taste, and weight to coexist in it.',
+        criterion: 'Truth is a stable thing correctly bearing determinate properties.', object: 'One salt: white, cubical, tart, and possessing a specific gravity.', pressure: seen < 4 ? 'The object still appears quietly unified.' : 'Each property is independently shareable, while the thing claims exclusive unity.',
+        action: seen < 4 ? `Inspect ${4 - seen} more ${4 - seen === 1 ? 'property' : 'properties'}` : 'I have the thing →', disabled: seen < 4,
+        observer: '<strong>From within perception:</strong> The universal is no longer merely a word. It has become the object’s structure: a thing is knowable through repeatable properties.'
+      };
+      if (phase === 1) return {
+        location: 'The thing · under pressure', state: 'One or Also?', sceneClass: 'is-perception', inscription: false,
+        prompt: 'Where does the object’s truth finally lie? Commit to one side of the structure.', gesture: 'Your move · judge', encounter: journeyPropertyStudy(true),
+        title: 'I must distinguish the essential from the inessential.', copy: 'The thing seems to demand two incompatible descriptions: an excluding One that keeps its unity, and an inclusive Also in which properties coexist without excluding one another.',
+        criterion: 'One side must contain the object’s essential truth.', object: 'Either the One or the many properties.', pressure: 'Unity and multiplicity each claim to be what the thing really is.',
+        action: 'Choose inside the scene', disabled: true,
+        observer: '<strong>Do not average the two answers:</strong> Perception first oscillates. It makes one side essential and blames the other on circumstance, the object, or its own act of perceiving.'
+      };
+      const choseOne = journeyState.firstPerceptionChoice === 'one';
+      const firstFailure = choseOne
+        ? '<strong>The One without properties is empty.</strong> Strip away white, cubical, tart, and specific gravity, and nothing determinate remains for this unity to unify.'
+        : '<strong>The properties without the One disperse.</strong> White belongs to many objects; so do cubical form, tartness, and specific gravity. Nothing makes this bundle this particular thing.';
+      const secondFailure = choseOne
+        ? '<strong>The opposite also fails.</strong> A mere “Also” of free-standing properties supplies no principle by which they belong together as this salt.'
+        : '<strong>The opposite also fails.</strong> A bare One that excludes difference has no content by which it could be perceived or distinguished.';
+      if (phase === 2) return {
+        location: 'The thing · abstraction tested', state: choseOne ? 'The One isolated' : 'The Also isolated', sceneClass: 'is-perception', inscription: false,
+        prompt: 'Your account preserved one side by erasing the other. Now test the abstraction you rejected.', gesture: 'Contradiction · first side', encounter: journeyPropertyStudy(false, firstFailure),
+        title: 'My distinction has made the object disappear.', copy: 'I tried to protect truth by placing unity on one side and multiplicity on the other. But the side I called essential depends on the side I treated as inessential.',
+        criterion: 'The essential can be separated from its opposite.', object: choseOne ? 'An empty One without determinate content.' : 'A loose medium of properties with no thinghood.', pressure: 'My corrective distinction reproduces the same contradiction.',
+        action: 'Test the opposite claim →', disabled: false,
+        observer: '<strong>The characteristic motion is oscillation:</strong> Perception alternately assigns unity and diversity to the object or to itself. Neither assignment stabilizes the thing.'
+      };
+      return {
+        location: 'The thing · internally divided', state: 'The opposite also fails', sceneClass: 'is-perception', inscription: false,
+        prompt: 'The object is not One beside Also. Its unity is the act of holding differentiated properties together.', gesture: 'Contradiction · both sides', encounter: journeyPropertyStudy(false, secondFailure),
+        title: 'The thing is one through its differences.', copy: 'I can no longer treat unity and multiplicity as fixed predicates that sit peacefully side by side. Their opposition belongs to the object’s own structure and must be grasped as a relation.',
+        criterion: 'Truth must think the opposed determinations together.', object: 'The thing as the unstable unity of the One and the Also.', pressure: 'A static property list cannot explain how the thing maintains and expresses this unity.',
+        action: 'Seek the relation →', disabled: false,
+        observer: '<strong>Transition:</strong> <em>das Ding</em>, <em>das Eins</em>, and <em>das Auch</em> lead consciousness toward a dynamic object—not just what appears, but the relations through which it appears.'
+      };
+    }
+
+    function understandingMoment() {
+      const phase = journeyState.phases[2];
+      if (phase === 0) return {
+        location: 'Appearance · changing', state: journeyState.forceMoved ? 'A pattern is emerging' : 'Relations in motion', sceneClass: 'is-understanding', inscription: false,
+        prompt: journeyState.forceMoved ? 'Across different positions, the relation persists. What accounts for the changing appearances?' : 'Move the bodies. Watch how each position is defined through the other.',
+        gesture: 'Your move · vary the relation', encounter: forceStudy(),
+        title: 'I look for what remains through change.', copy: 'Properties no longer seem self-contained. Each body appears as it acts on and responds to another. I seek a unity that can explain these changing expressions.',
+        criterion: 'Truth is the stable relation behind changing appearances.', object: 'A play of attraction, resistance, expression, and response.', pressure: journeyState.forceMoved ? 'No appearance contains the explanation by itself; the pattern exists across their changes.' : 'The object will show whether relation is merely external.',
+        action: journeyState.forceMoved ? 'Infer a force behind the changes →' : 'First vary the relation', disabled: !journeyState.forceMoved,
+        observer: '<strong>Understanding begins:</strong> <em>der Verstand</em> moves from sensible properties to <em>Kraft</em> and <em>Gesetz</em>—force and law—as explanatory unities.'
+      };
+      if (phase === 1) return {
+        location: 'Behind appearance?', state: 'Force posited', sceneClass: 'is-understanding', inscription: false,
+        prompt: 'You have named “force” as what produces the visible play. Can it be true entirely apart from expression?', gesture: 'Your move · isolate it',
+        encounter: '<div class="law-card"><small>The supersensible candidate</small><strong>Hidden force → visible expression</strong><p>The explanation appears to divide one movement into a true inner cause and a merely apparent outer effect.</p></div>',
+        title: 'I place the truth behind what appears.', copy: 'Force promises a stable inner world: a cause that remains itself while its expressions vary. I now treat appearance as evidence of something more real than appearance.',
+        criterion: 'An invariant inner force explains the changing outer world.', object: 'Force as a supersensible cause behind expression.', pressure: 'A force with no expression, solicitation, or counter-force has no determinate content.',
+        action: 'Remove every expression →', disabled: false,
+        observer: '<strong>The temptation:</strong> turn explanation into a second, motionless world. But an isolated “force” risks becoming another empty One.'
+      };
+      if (phase === 2) return {
+        location: 'Behind appearance · empty', state: 'Explanation tested', sceneClass: 'is-understanding', inscription: false,
+        prompt: 'Nothing remains to distinguish this force from any other. Restore its expression and relation.', gesture: 'Contradiction encountered',
+        encounter: '<div class="law-card"><small>Force without expression</small><strong>F = ?</strong><p>Remove what force does, what solicits it, and what resists it. The hidden cause has become an empty name.</p></div>',
+        title: 'The hidden essence exists only in appearing.', copy: 'What I placed behind the phenomenon is intelligible only through the very relations I demoted. Force is not first complete and then expressed; it is actual in the play of expression and counter-force.',
+        criterion: 'Explanation must be immanent in the relational movement it explains.', object: 'Force as a reciprocal play, not an occult thing.', pressure: 'Law must contain difference and reversal within itself, rather than exile change to a lesser world.',
+        action: 'Return law to the relation →', disabled: false,
+        observer: '<strong>Hegel’s pressure:</strong> the supersensible is appearance understood in its intelligible relations—not a duplicate object concealed behind it.'
+      };
+      return {
+        location: 'Appearance · intelligible', state: 'Relation is the object', sceneClass: 'is-understanding', inscription: false,
+        prompt: 'The law is not elsewhere: it is the unity enacted as the opposed terms pass into and define one another.', gesture: 'A new object has emerged',
+        encounter: '<div class="law-card"><small>Law returned to movement</small><strong>A ⇄ relation ⇄ B</strong><p>Identity persists through internally related difference. The “other world” is this world grasped as a structured movement.</p></div>',
+        title: 'I find identity within difference.', copy: 'My object is no longer an isolated This, a thing with predicates, or a hidden substance. It is a self-differentiating relation whose moments exist through one another.',
+        criterion: 'Truth is a unity that sustains itself through difference.', object: 'The play of forces and law as internally articulated movement.', pressure: 'The movement I recognize in the object resembles the movement of my own knowing.',
+        action: 'Turn toward the knower →', disabled: false,
+        observer: '<strong>Threshold:</strong> When consciousness encounters self-related movement as truth, its object-directed path begins to turn back toward <em>Selbstbewusstsein</em>—self-consciousness.'
+      };
+    }
+
+    function thresholdMoment() {
+      const phase = journeyState.phases[3];
+      const encounter = `<div class="threshold-map"><div class="threshold-moment"><small>Sense-certainty</small><strong>I pointed.</strong><p>The singular became a universal through my saying and preserving it.</p></div><div class="threshold-moment"><small>Perception</small><strong>I distinguished.</strong><p>The One and the Also exchanged roles through my judgments.</p></div><div class="threshold-moment"><small>Understanding</small><strong>I explained.</strong><p>The law was true only in the relational movement I followed.</p></div>${phase > 0 ? '<div class="threshold-self"><strong>The subject was in the object-relation all along.</strong></div>' : ''}</div>`;
+      return phase === 0 ? {
+        location: 'The path · recollected', state: 'A history of my knowing', sceneClass: 'is-threshold', inscription: false,
+        prompt: 'Look back. In every object, your own acts of pointing, distinguishing, and explaining helped constitute what counted as true.', gesture: 'Your move · recollect', encounter,
+        title: 'The object changed—and so did I.', copy: 'Each defeat preserved a capacity while transforming its authority. Sensuous presence, determinate properties, and explanatory law remain, but none can claim to be self-sufficient.',
+        criterion: 'The standard itself has become visible as part of the experience.', object: 'The whole path as a relation between consciousness and its objects.', pressure: 'Can I be certain of myself without encountering another self who can recognize or contest me?',
+        action: 'Recognize my part in the path →', disabled: false,
+        observer: '<strong>Recollection is not a victory screen:</strong> the result opens the next problem. Self-consciousness requires recognition; it is not private introspection added to perception.'
+      } : {
+        location: 'Threshold · self-consciousness', state: 'Recognition ahead', sceneClass: 'is-threshold', inscription: false,
+        prompt: 'The journey has reached its threshold, not its terminus. The next object is a self for whom another self matters.', gesture: 'Selbstbewusstsein', encounter,
+        title: 'I encounter myself in how I encounter the world.', copy: 'Experience has not revealed a hidden ego behind appearances. It has shown that knowing is an active, historically revised relation—and that the certainty of self will depend upon recognition by another.',
+        criterion: 'Truth now includes the knower’s relation to itself and to other knowers.', object: 'Self-conscious life and the problem of recognition.', pressure: 'A new question: how can independent selves recognize one another without reducing the other to an object?',
+        action: 'Compare the observer models ↓', disabled: false,
+        observer: '<strong>For the human–machine question:</strong> ask not only whether a system changes, but whether encounters become its history, whether its standards become objects for it, and whether other agents have normative standing within that history.'
+      };
+    }
+
+    function currentJourneyMoment() {
+      return [senseMoment, perceptionMoment, understandingMoment, thresholdMoment][journeyState.stage]();
+    }
+
+    function updateJourneyMarkers() {
+      const names = ['Sense-certainty', 'Perception', 'Understanding', 'The threshold'];
+      journeyMarkers.forEach((marker, index) => {
+        const state = index === journeyState.stage ? 'within' : index < journeyState.stage || index < journeyState.unlocked ? 'complete' : index <= journeyState.unlocked ? 'open' : 'locked';
+        marker.disabled = index > journeyState.unlocked;
+        marker.classList.toggle('is-complete', state === 'complete');
+        if (index === journeyState.stage) marker.setAttribute('aria-current', 'step');
+        else marker.removeAttribute('aria-current');
+        marker.querySelector('small').textContent = `Moment 0${index + 1} · ${state}`;
+        marker.querySelector('strong').textContent = names[index];
+      });
+    }
+
+    function renderJourney() {
+      const moment = currentJourneyMoment();
+      document.getElementById('journey-location').textContent = moment.location;
+      document.getElementById('journey-scene-state').textContent = moment.state;
+      document.getElementById('journey-prompt-copy').innerHTML = moment.prompt;
+      document.getElementById('journey-gesture').textContent = moment.gesture;
+      document.getElementById('journey-title').textContent = moment.title;
+      document.getElementById('journey-copy').textContent = moment.copy;
+      document.getElementById('journey-criterion').textContent = moment.criterion;
+      document.getElementById('journey-object').textContent = moment.object;
+      document.getElementById('journey-pressure').textContent = moment.pressure;
+      journeyPrimary.textContent = moment.action;
+      journeyPrimary.disabled = moment.disabled;
+      journeyScene.className = `journey-scene ${moment.sceneClass}`.trim();
+      journeyEncounter.innerHTML = moment.encounter;
+      journeyInscription.hidden = !moment.inscription;
+      document.getElementById('journey-observer').innerHTML = moment.observer;
+      updateJourneyMarkers();
+    }
+
+    function advanceJourneyStage(nextStage) {
+      journeyState.unlocked = Math.max(journeyState.unlocked, nextStage);
+      journeyState.stage = nextStage;
+      renderJourney();
+    }
+
+    journeyEncounter.addEventListener('click', event => {
+      const point = event.target.closest('[data-journey-action="point"]');
+      if (point && journeyState.stage === 0 && journeyState.phases[0] === 0) {
+        journeyState.phases[0] = 1;
+        renderJourney();
+        journeyPrimary.focus();
+        return;
+      }
+      const property = event.target.closest('[data-property]');
+      if (property && journeyState.stage === 1 && journeyState.phases[1] === 0) {
+        journeyState.properties.add(property.dataset.property);
+        renderJourney();
+        const nextProperty = journeyEncounter.querySelector('[data-property][aria-pressed="false"]');
+        (nextProperty || journeyPrimary).focus();
+        return;
+      }
+      const choice = event.target.closest('[data-perception-choice]');
+      if (choice && journeyState.stage === 1 && journeyState.phases[1] === 1) {
+        journeyState.firstPerceptionChoice = choice.dataset.perceptionChoice;
+        journeyState.phases[1] = 2;
+        renderJourney();
+        journeyPrimary.focus();
+      }
+    });
+
+    journeyEncounter.addEventListener('input', event => {
+      if (event.target.id !== 'force-range') return;
+      journeyState.force = Number(event.target.value);
+      journeyState.forceMoved = true;
+      const left = 18 + journeyState.force * .2;
+      const right = 82 - journeyState.force * .2;
+      const study = journeyEncounter.querySelector('.force-study');
+      study.style.setProperty('--force-left', `${left}%`);
+      study.style.setProperty('--force-right', `${right}%`);
+      document.getElementById('journey-scene-state').textContent = 'A pattern is emerging';
+      document.getElementById('journey-prompt-copy').textContent = 'Across different positions, the relation persists. What accounts for the changing appearances?';
+      document.getElementById('journey-pressure').textContent = 'No appearance contains the explanation by itself; the pattern exists across their changes.';
+      journeyPrimary.textContent = 'Infer a force behind the changes →';
+      journeyPrimary.disabled = false;
+    });
+
+    journeyPrimary.addEventListener('click', () => {
+      const stage = journeyState.stage;
+      const phase = journeyState.phases[stage];
+      if (stage === 0) {
+        if (phase < 3) journeyState.phases[0] += 1;
+        else advanceJourneyStage(1);
+      } else if (stage === 1) {
+        if (phase === 0 && journeyState.properties.size === 4) journeyState.phases[1] = 1;
+        else if (phase === 2) journeyState.phases[1] = 3;
+        else if (phase === 3) advanceJourneyStage(2);
+      } else if (stage === 2) {
+        if (phase < 3) journeyState.phases[2] += 1;
+        else advanceJourneyStage(3);
+      } else if (stage === 3) {
+        if (phase === 0) {
+          journeyState.phases[3] = 1;
+        } else {
+          const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          document.getElementById('simulator').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        }
+      }
+      if (journeyState.stage === stage) renderJourney();
+    });
+
+    journeyMarkers.forEach((marker, index) => marker.addEventListener('click', () => {
+      if (index > journeyState.unlocked) return;
+      journeyState.stage = index;
+      renderJourney();
+    }));
+
+    document.getElementById('journey-reset').addEventListener('click', () => {
+      journeyState.stage = 0;
+      journeyState.unlocked = 0;
+      journeyState.phases = [0, 0, 0, 0];
+      journeyState.properties = new Set();
+      journeyState.firstPerceptionChoice = null;
+      journeyState.force = 20;
+      journeyState.forceMoved = false;
+      renderJourney();
+    });
+    renderJourney();
+
+    const everydaySituation = document.getElementById('everyday-situation');
+    const everydayNext = document.getElementById('everyday-next');
+    const everydayMarkers = [...document.querySelectorAll('.everyday-stage')];
+    const everydayState = {
+      stage: 0,
+      unlocked: 0,
+      waited: 0,
+      blame: null,
+      traffic: 2,
+      dwell: 1,
+      age: 3,
+      tuned: false,
+      revealed: false
+    };
+
+    function busPhoneHTML() {
+      const clockMinutes = 12 + everydayState.waited;
+      const updated = everydayState.waited ? `Updated ${everydayState.waited} min ago` : 'Updated now';
+      const busPosition = 18 + [0, 3, 2, 4][everydayState.waited];
+      return `<div class="transit-phone" aria-label="A transit app still showing a bus five minutes away after ${everydayState.waited} minutes"><div class="transit-phone-head"><span>Northbound · Stop 1842</span><span>8:${String(clockMinutes).padStart(2, '0')}</span></div><div class="transit-route"><div class="transit-route-name"><strong>22</strong><span>Clark bus to Howard</span></div><div class="transit-eta"><strong>5</strong><span>minutes<br>away</span></div><div class="transit-line" style="--bus-position:${busPosition}%"><span class="transit-bus">BUS</span><span class="transit-stop" aria-label="Your stop"></span></div><div class="transit-meta"><span>${updated}</span><span>Your stop →</span></div></div><div class="wait-control"><button type="button" data-everyday-action="wait"${everydayState.waited >= 3 ? ' disabled' : ''}>Wait one minute</button><span><strong>${everydayState.waited}</strong> min spent waiting</span></div></div>`;
+    }
+
+    const blameOptions = {
+      bus: ['The bus or driver', 'Maybe it is simply moving too slowly.'],
+      app: ['The app', 'Maybe the software is just wrong.'],
+      traffic: ['Traffic', 'Maybe congestion owns the delay.'],
+      me: ['Me', 'Maybe I treated an estimate too literally.']
+    };
+
+    const blameLimits = {
+      bus: 'The bus has a location and speed, but “five minutes” also depends on the route ahead, stops, traffic, and when its position was measured.',
+      app: 'Calling the app wrong names the failure, but not what the ETA is or why the same software can be useful under other conditions.',
+      traffic: 'Traffic matters, but its effect depends on where the bus is, the route, stop dwell, and what the prediction model can see.',
+      me: 'Your literal reading matters because the number guides action, but interpretation alone did not produce the stale location or prediction.'
+    };
+
+    function blameBoardHTML() {
+      const choices = Object.entries(blameOptions).map(([key, [title, copy]]) => `<button class="blame-choice" type="button" data-blame="${key}" aria-pressed="${everydayState.blame === key}"><strong>${title}</strong><span>${copy}</span></button>`).join('');
+      const result = everydayState.blame ? `<div class="blame-result"><strong>Yes, partly.</strong> ${blameLimits[everydayState.blame]}</div>` : '';
+      return `<div class="blame-board"><p class="blame-question">The ETA failed. Who—or what—owns the failure?</p><div class="blame-choices">${choices}</div>${result}</div>`;
+    }
+
+    function etaValues() {
+      const eta = 3 + Math.ceil(everydayState.traffic * .55 + everydayState.dwell * .4);
+      const confidence = Math.max(35, 96 - everydayState.age * 5 - everydayState.traffic * 2 - everydayState.dwell);
+      return { eta, confidence };
+    }
+
+    function trafficWord(value) {
+      return value < 3 ? 'clear' : value < 6 ? 'moving slowly' : value < 9 ? 'heavy' : 'jammed';
+    }
+
+    function dwellWord(value) {
+      return value < 3 ? 'light boarding' : value < 6 ? 'steady boarding' : value < 9 ? 'busy stops' : 'crowded stops';
+    }
+
+    function etaModelHTML() {
+      const { eta, confidence } = etaValues();
+      return `<div class="eta-model"><div class="eta-model-output"><div><span>Predicted arrival</span><strong><span id="eta-live">${eta}</span> min</strong></div><div class="eta-confidence"><span>Model confidence</span><b id="eta-confidence">${confidence}%</b></div></div><div class="eta-controls"><div class="eta-control"><label for="eta-traffic">Traffic ahead</label><input id="eta-traffic" type="range" min="0" max="10" value="${everydayState.traffic}" data-eta-factor="traffic"><output id="eta-traffic-output">${trafficWord(everydayState.traffic)}</output></div><div class="eta-control"><label for="eta-dwell">Boarding delay</label><input id="eta-dwell" type="range" min="0" max="10" value="${everydayState.dwell}" data-eta-factor="dwell"><output id="eta-dwell-output">${dwellWord(everydayState.dwell)}</output></div><div class="eta-control"><label for="eta-age">GPS update age</label><input id="eta-age" type="range" min="0" max="10" value="${everydayState.age}" data-eta-factor="age"><output id="eta-age-output">${everydayState.age} min old</output></div></div><div class="eta-relation" aria-label="Factors jointly producing the estimate"><span>bus</span><i>+</i><span>route</span><i>+</i><span>traffic</span><i>+</i><span>stops</span><i>+</i><span>sensor</span><i>+</i><span>model</span><i>→</i><span>ETA</span></div></div>`;
+    }
+
+    function translationHTML() {
+      return '<div class="plain-translation"><div class="translation-row"><strong>Take it literally</strong><p>The display looked like an immediate fact. Hegel’s point: even the apparently given comes through language, instruments, categories, and a standpoint.</p></div><div class="translation-row"><strong>Blame a thing</strong><p>I treated “late” or “wrong” as a property of one culprit. Hegel’s point: the thing cannot be separated cleanly from its many properties and contexts.</p></div><div class="translation-row"><strong>See the setup</strong><p>The ETA became a relation among moving parts. Hegel’s point: understanding looks for the law or structure through which appearances are connected.</p></div><div class="translation-result">Experience is not that the bus was late. It is that the failure changed both my answer and what I thought the “thing” was.</div></div>';
+    }
+
+    function setEverydayReading(title, copy, assumption, resistance, change, action, disabled, labels = ['What I assumed', 'What pushes back', 'What may need to change']) {
+      document.getElementById('everyday-title').textContent = title;
+      document.getElementById('everyday-copy').textContent = copy;
+      document.getElementById('everyday-assumption-label').textContent = labels[0];
+      document.getElementById('everyday-resistance-label').textContent = labels[1];
+      document.getElementById('everyday-change-label').textContent = labels[2];
+      document.getElementById('everyday-assumption').textContent = assumption;
+      document.getElementById('everyday-resistance').textContent = resistance;
+      document.getElementById('everyday-change').textContent = change;
+      everydayNext.textContent = action;
+      everydayNext.disabled = disabled;
+    }
+
+    function updateEverydayMarkers() {
+      everydayMarkers.forEach((marker, index) => {
+        marker.disabled = index > everydayState.unlocked;
+        marker.classList.toggle('is-complete', index < everydayState.stage || (index < everydayState.unlocked && index !== everydayState.stage));
+        if (index === everydayState.stage) marker.setAttribute('aria-current', 'step');
+        else marker.removeAttribute('aria-current');
+        const state = index === everydayState.stage ? 'now' : index <= everydayState.unlocked ? 'open' : 'locked';
+        marker.querySelector('small').textContent = `Part 0${index + 1} · ${state}`;
+      });
+    }
+
+    function renderEveryday() {
+      updateEverydayMarkers();
+      if (everydayState.stage === 0) {
+        everydaySituation.innerHTML = busPhoneHTML();
+        const waited = everydayState.waited;
+        setEverydayReading(
+          waited ? `${waited} ${waited === 1 ? 'minute' : 'minutes'} later. Still “five minutes.”` : 'The screen gives me a fact.',
+          waited ? 'Clock time has moved, but the promised interval has not shrunk. The number still guides my action even as it stops behaving like a simple countdown.' : 'It says five minutes. I organize my next move around that number: stay here, do not start walking, do not order a ride.',
+          '“Five minutes” is simply a property of this bus right now.',
+          waited < 3 ? (waited ? 'The ETA is not decreasing with the time I spend waiting.' : 'Nothing yet. Wait and see whether the displayed fact behaves like one.') : 'My own test—waiting one minute—has contradicted my literal reading three times.',
+          waited < 3 ? 'I can still dismiss this as a small delay.' : 'Maybe “five minutes” was never a property sitting inside the bus.',
+          waited < 3 ? `Wait ${3 - waited} more ${3 - waited === 1 ? 'minute' : 'minutes'}` : 'Ask what the number means →',
+          waited < 3
+        );
+      } else if (everydayState.stage === 1) {
+        everydaySituation.innerHTML = blameBoardHTML();
+        const chosen = Boolean(everydayState.blame);
+        setEverydayReading(
+          chosen ? 'Plausible—but no single culprit owns the ETA.' : 'I want one thing to blame.',
+          chosen ? blameLimits[everydayState.blame] : 'The immediate fact failed, so I look for the stable thing carrying the bad property: a slow bus, a broken app, terrible traffic, or a careless interpretation.',
+          'If I identify the faulty thing, the rest of the situation can remain unchanged.',
+          chosen ? 'Each culprit explains something only through its relations to all the others.' : 'Every candidate looks plausible by itself. Choose the one that seems most decisive.',
+          chosen ? 'The “thing” may be larger than any single item in the scene.' : 'So far I am replacing one simple property with another: “five minutes” becomes “bad app” or “slow bus.”',
+          chosen ? 'Open the whole setup →' : 'Choose a culprit in the scene',
+          !chosen
+        );
+      } else if (!everydayState.revealed) {
+        everydaySituation.innerHTML = etaModelHTML();
+        const { eta } = etaValues();
+        setEverydayReading(
+          everydayState.tuned ? 'The output changes because the relation changes.' : '“Five minutes” belongs to a setup, not to the bus alone.',
+          'Change the conditions. The same bus can have a different ETA without becoming a different bus, because an ETA is a prediction made from relations among moving parts.',
+          'The app was reporting a property possessed by one object.',
+          everydayState.tuned ? `Your changes now produce a ${eta}-minute estimate. The output depends on conditions and on how recently the system observed them.` : 'Vary traffic, boarding, or the age of the last GPS update.',
+          'The object of my attention is now a prediction system: vehicle, route, environment, sensors, model—and my use of its output.',
+          everydayState.tuned ? 'Name what changed →' : 'Change at least one condition',
+          !everydayState.tuned
+        );
+      } else {
+        everydaySituation.innerHTML = translationHTML();
+        setEverydayReading(
+          'Experience is the rewrite—not merely the delay.',
+          'Changing “5” to “8” would correct an answer. The deeper learning is that I now understand an ETA differently and will test future ETAs differently.',
+          'Next time I check the update age, context, and alternatives instead of obeying one number.',
+          'The predictor learns only if errors feed back into its parameters, rules, data practices, or objective—not whenever it displays an inference.',
+          'Can the machine make its own standard and object into a problem, or do people perform that redefinition around it?',
+          'Take this lens to the comparison ↓',
+          false,
+          ['Human learner', 'Machine learner', 'Course question']
+        );
+      }
+    }
+
+    function updateEtaModelLive() {
+      const { eta, confidence } = etaValues();
+      everydaySituation.querySelector('#eta-live').textContent = eta;
+      everydaySituation.querySelector('#eta-confidence').textContent = `${confidence}%`;
+      everydaySituation.querySelector('#eta-traffic-output').textContent = trafficWord(everydayState.traffic);
+      everydaySituation.querySelector('#eta-dwell-output').textContent = dwellWord(everydayState.dwell);
+      everydaySituation.querySelector('#eta-age-output').textContent = `${everydayState.age} min old`;
+      setEverydayReading(
+        'The output changes because the relation changes.',
+        'Change the conditions. The same bus can have a different ETA without becoming a different bus, because an ETA is a prediction made from relations among moving parts.',
+        'The app was reporting a property possessed by one object.',
+        `Your changes now produce a ${eta}-minute estimate. The output depends on conditions and on how recently the system observed them.`,
+        'The object of my attention is now a prediction system: vehicle, route, environment, sensors, model—and my use of its output.',
+        'Name what changed →',
+        false
+      );
+    }
+
+    everydaySituation.addEventListener('click', event => {
+      const wait = event.target.closest('[data-everyday-action="wait"]');
+      if (wait && everydayState.stage === 0 && everydayState.waited < 3) {
+        everydayState.waited += 1;
+        renderEveryday();
+        const nextWait = everydaySituation.querySelector('[data-everyday-action="wait"]');
+        (nextWait && !nextWait.disabled ? nextWait : everydayNext).focus();
+        return;
+      }
+      const blame = event.target.closest('[data-blame]');
+      if (blame && everydayState.stage === 1) {
+        everydayState.blame = blame.dataset.blame;
+        renderEveryday();
+        everydayNext.focus();
+      }
+    });
+
+    everydaySituation.addEventListener('input', event => {
+      const factor = event.target.dataset.etaFactor;
+      if (!factor) return;
+      everydayState[factor] = Number(event.target.value);
+      everydayState.tuned = true;
+      updateEtaModelLive();
+    });
+
+    everydayNext.addEventListener('click', () => {
+      if (everydayState.stage === 0 && everydayState.waited >= 3) {
+        everydayState.stage = 1;
+        everydayState.unlocked = Math.max(1, everydayState.unlocked);
+      } else if (everydayState.stage === 1 && everydayState.blame) {
+        everydayState.stage = 2;
+        everydayState.unlocked = 2;
+      } else if (everydayState.stage === 2 && everydayState.tuned && !everydayState.revealed) {
+        everydayState.revealed = true;
+      } else if (everydayState.stage === 2 && everydayState.revealed) {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        document.getElementById('compare').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        return;
+      }
+      renderEveryday();
+    });
+
+    everydayMarkers.forEach((marker, index) => marker.addEventListener('click', () => {
+      if (index > everydayState.unlocked) return;
+      everydayState.stage = index;
+      renderEveryday();
+    }));
+
+    document.getElementById('everyday-reset').addEventListener('click', () => {
+      everydayState.stage = 0;
+      everydayState.unlocked = 0;
+      everydayState.waited = 0;
+      everydayState.blame = null;
+      everydayState.traffic = 2;
+      everydayState.dwell = 1;
+      everydayState.age = 3;
+      everydayState.tuned = false;
+      everydayState.revealed = false;
+      renderEveryday();
+    });
+    renderEveryday();
+
+    const fieldCanvas = document.getElementById('field-canvas');
+    const fieldContext = fieldCanvas.getContext('2d');
+    const fieldState = {
+      concept: { x: .45, y: .52 },
+      object: { x: .55, y: .52 },
+      standard: 0,
+      rotation: 0,
+      histories: [],
+      dragging: false
+    };
+    const standards = [
+      { short: 'immediacy', claim: 'the immediate singular is true' },
+      { short: 'universality', claim: 'the Now is a unity of many Nows' },
+      { short: 'thinghood', claim: 'the thing unifies many properties' },
+      { short: 'relation', claim: 'the object is what it does in a field of relations' }
+    ];
+
+    function fieldPalette() {
+      const style = getComputedStyle(document.documentElement);
+      return {
+        paper: style.getPropertyValue('--paper').trim(),
+        acid: style.getPropertyValue('--acid').trim(),
+        red: style.getPropertyValue('--red').trim(),
+        blue: style.getPropertyValue('--blue').trim(),
+        ink: style.getPropertyValue('--ink').trim(),
+        muted: '#8e8b82'
+      };
+    }
+
+    function fieldSize() {
+      const rect = fieldCanvas.getBoundingClientRect();
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      const width = Math.max(320, rect.width);
+      const height = Math.max(420, rect.height);
+      if (fieldCanvas.width !== Math.round(width * ratio) || fieldCanvas.height !== Math.round(height * ratio)) {
+        fieldCanvas.width = Math.round(width * ratio);
+        fieldCanvas.height = Math.round(height * ratio);
+      }
+      fieldContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+      return { width, height, ratio };
+    }
+
+    function fieldDistance() {
+      return Math.hypot(fieldState.object.x - fieldState.concept.x, fieldState.object.y - fieldState.concept.y);
+    }
+
+    function fieldPhase() {
+      const distance = fieldDistance();
+      if (distance < .2) return 'fit';
+      if (distance < .36) return 'tension';
+      return 'contradiction';
+    }
+
+    function drawFieldNode(context, point, label, fill, width, height, isObject = false) {
+      const x = point.x * width;
+      const y = point.y * height;
+      context.save();
+      context.translate(x, y);
+      context.fillStyle = fill;
+      context.strokeStyle = fieldPalette().paper;
+      context.lineWidth = 2;
+      if (isObject) {
+        context.rotate(Math.PI / 4);
+        context.fillRect(-24, -24, 48, 48);
+        context.strokeRect(-24, -24, 48, 48);
+        context.rotate(-Math.PI / 4);
+      } else {
+        context.beginPath();
+        context.arc(0, 0, 30, 0, Math.PI * 2);
+        context.fill();
+        context.stroke();
+      }
+      context.fillStyle = fieldPalette().paper;
+      context.font = '700 11px SFMono-Regular, Consolas, monospace';
+      context.textAlign = 'center';
+      context.fillText(label, 0, 4);
+      context.restore();
+    }
+
+    function drawField() {
+      const { width, height } = fieldSize();
+      const palette = fieldPalette();
+      const context = fieldContext;
+      context.clearRect(0, 0, width, height);
+      context.fillStyle = '#171b1e';
+      context.fillRect(0, 0, width, height);
+
+      context.save();
+      context.translate(width / 2, height / 2);
+      context.rotate(fieldState.rotation);
+      context.strokeStyle = 'rgba(243,240,231,.13)';
+      context.lineWidth = 1;
+      const spacing = 48;
+      for (let x = -width; x <= width; x += spacing) {
+        context.beginPath(); context.moveTo(x, -height); context.lineTo(x, height); context.stroke();
+      }
+      for (let y = -height; y <= height; y += spacing) {
+        context.beginPath(); context.moveTo(-width, y); context.lineTo(width, y); context.stroke();
+      }
+      context.restore();
+
+      fieldState.histories.forEach((history, index) => {
+        const alpha = .12 + index * .05;
+        context.strokeStyle = `rgba(214,239,74,${Math.min(alpha, .32)})`;
+        context.lineWidth = 1;
+        context.beginPath();
+        context.ellipse(history.x * width, history.y * height, 55 + index * 8, 55 + index * 8, history.rotation, 0, Math.PI * 2);
+        context.stroke();
+      });
+
+      const cx = fieldState.concept.x * width;
+      const cy = fieldState.concept.y * height;
+      const ox = fieldState.object.x * width;
+      const oy = fieldState.object.y * height;
+      const phase = fieldPhase();
+
+      context.strokeStyle = phase === 'contradiction' ? palette.red : phase === 'tension' ? palette.acid : palette.paper;
+      context.lineWidth = phase === 'contradiction' ? 4 : 2;
+      context.beginPath();
+      context.moveTo(cx, cy);
+      const bend = Math.min(70, Math.abs(ox - cx) * .18 + Math.abs(oy - cy) * .18);
+      context.quadraticCurveTo((cx + ox) / 2, (cy + oy) / 2 - bend, ox, oy);
+      context.stroke();
+
+      context.strokeStyle = phase === 'contradiction' ? 'rgba(200,62,43,.72)' : 'rgba(214,239,74,.34)';
+      context.lineWidth = 2;
+      context.beginPath();
+      context.arc(cx, cy, Math.min(width, height) * .18, 0, Math.PI * 2);
+      context.stroke();
+
+      drawFieldNode(context, fieldState.concept, 'CONCEPT', palette.blue, width, height, false);
+      drawFieldNode(context, fieldState.object, 'OBJECT', phase === 'contradiction' ? palette.red : palette.acid, width, height, true);
+
+      context.fillStyle = palette.paper;
+      context.textAlign = 'left';
+      context.font = '700 11px SFMono-Regular, Consolas, monospace';
+      context.fillText(`STANDARD ${String(fieldState.standard + 1).padStart(2, '0')} · ${standards[fieldState.standard].short.toUpperCase()}`, 22, 30);
+      context.fillStyle = palette.muted;
+      context.font = '12px system-ui, sans-serif';
+      context.fillText(standards[fieldState.standard].claim, 22, 50);
+    }
+
+    function updateFieldReadout(message) {
+      const phase = fieldPhase();
+      const distance = fieldDistance();
+      const mismatch = Math.round(Math.min(100, Math.max(0, (distance - .1) / .38 * 100)));
+      const content = {
+        fit: ['Fit · the claim holds', 'The object appears inside its concept.', 'Consciousness takes its way of knowing and the object’s truth to correspond. The governing standard remains invisible because it seems to work.'],
+        tension: ['Tension · resistance appears', 'The object exceeds the easy fit.', 'The claim can absorb this difference as an exception or error. Consciousness may patch its answer while leaving its criterion untouched.'],
+        contradiction: ['Contradiction · the standard fails', 'The relation cannot contain its own result.', 'The mismatch now implicates the criterion that defined both knowing and object. A new answer inside the old frame is no longer enough.']
+      }[phase];
+      document.getElementById('field-state').textContent = content[0];
+      document.getElementById('field-title').textContent = content[1];
+      document.getElementById('field-copy').textContent = message || content[2];
+      document.getElementById('tension-value').textContent = `${mismatch}%`;
+      const fill = document.getElementById('tension-fill');
+      fill.style.width = `${mismatch}%`;
+      fill.classList.toggle('is-contradiction', phase === 'contradiction');
+      document.getElementById('patch-button').disabled = phase === 'fit';
+      document.getElementById('reversal-button').disabled = phase !== 'contradiction';
+      drawField();
+    }
+
+    function canvasPoint(event) {
+      const rect = fieldCanvas.getBoundingClientRect();
+      return {
+        x: Math.min(.94, Math.max(.06, (event.clientX - rect.left) / rect.width)),
+        y: Math.min(.9, Math.max(.1, (event.clientY - rect.top) / rect.height))
+      };
+    }
+
+    fieldCanvas.addEventListener('pointerdown', event => {
+      const point = canvasPoint(event);
+      if (Math.hypot(point.x - fieldState.object.x, point.y - fieldState.object.y) > .1) return;
+      fieldState.dragging = true;
+      fieldCanvas.setPointerCapture(event.pointerId);
+    });
+    fieldCanvas.addEventListener('pointermove', event => {
+      if (!fieldState.dragging) return;
+      fieldState.object = canvasPoint(event);
+      updateFieldReadout();
+    });
+    fieldCanvas.addEventListener('pointerup', event => {
+      if (!fieldState.dragging) return;
+      fieldState.dragging = false;
+      fieldCanvas.releasePointerCapture(event.pointerId);
+      updateFieldReadout();
+    });
+    fieldCanvas.addEventListener('pointercancel', () => { fieldState.dragging = false; });
+
+    document.getElementById('resist-button').addEventListener('click', () => {
+      fieldState.object.x = Math.min(.9, fieldState.object.x + .2);
+      fieldState.object.y = Math.max(.14, fieldState.object.y - .1);
+      updateFieldReadout();
+    });
+    document.getElementById('patch-button').addEventListener('click', () => {
+      fieldState.concept.x += (fieldState.object.x - fieldState.concept.x) * .72;
+      fieldState.concept.y += (fieldState.object.y - fieldState.concept.y) * .72;
+      updateFieldReadout('The answer has been adjusted to recover a fit, but the same grid and standard still organize the object. This is correction—not yet a new shape of experience.');
+    });
+    document.getElementById('reversal-button').addEventListener('click', () => {
+      const midpoint = { x: (fieldState.concept.x + fieldState.object.x) / 2, y: (fieldState.concept.y + fieldState.object.y) / 2 };
+      fieldState.histories.push({ x: midpoint.x, y: midpoint.y, rotation: fieldState.rotation });
+      fieldState.standard = Math.min(fieldState.standard + 1, standards.length - 1);
+      fieldState.rotation += Math.PI / 9;
+      const dx = Math.cos(fieldState.rotation) * .065;
+      const dy = Math.sin(fieldState.rotation) * .065;
+      fieldState.concept = { x: midpoint.x - dx, y: midpoint.y - dy };
+      fieldState.object = { x: midpoint.x + dx, y: midpoint.y + dy };
+      updateFieldReadout(`The old relation survives as a trace, but it no longer governs the field. Concept and object re-form together under the new standard: ${standards[fieldState.standard].claim}.`);
+      selectSpiral([0, 1, 2, 4][fieldState.standard]);
+    });
+    document.getElementById('field-reset').addEventListener('click', () => {
+      fieldState.concept = { x: .45, y: .52 };
+      fieldState.object = { x: .55, y: .52 };
+      fieldState.standard = 0;
+      fieldState.rotation = 0;
+      fieldState.histories = [];
+      updateFieldReadout();
+    });
+    window.addEventListener('resize', drawField);
+    updateFieldReadout();
+
+    const simulationButtons = [...document.querySelectorAll('.simulation-mode')];
+    function showSimulation(key) {
+      document.getElementById('field-view').hidden = key !== 'field';
+      document.getElementById('spiral-view').hidden = key !== 'spiral';
+      document.getElementById('world-view').hidden = key !== 'world';
+      simulationButtons.forEach(button => button.setAttribute('aria-selected', String(button.dataset.simulation === key)));
+      if (key === 'spiral') drawSpiral();
+      if (key === 'field') drawField();
+      if (key === 'world') drawWorld();
+    }
+    simulationButtons.forEach(button => button.addEventListener('click', () => showSimulation(button.dataset.simulation)));
+
+    const worldCanvas = document.getElementById('world-canvas');
+    const worldContext = worldCanvas.getContext('2d');
+    const worldMoments = [
+      {
+        title: 'A beginning with no visible history.', german: 'Unmittelbarkeit · immediacy',
+        copy: 'Certainty starts as if knowing and object simply coincide. Face-on, this beginning occupies the same point as both later returns.',
+        flat: 'Beginning, first return, and second return appear to be one position.',
+        depth: 'This is the earliest point: no contradiction has yet become part of its history.',
+        carried: 'Sensuous contact and the demand that knowing answer to its object.'
+      },
+      {
+        title: 'The object resists the easy fit.', german: 'Gegenstand · object',
+        copy: 'What appeared settled no longer behaves as the claim requires. The path bends away from its starting certainty.',
+        flat: 'This resistance overlaps a later, more determinate resistance when depth is hidden.',
+        depth: 'The first encounter still seems repairable inside the original way of knowing.',
+        carried: 'The difference between what consciousness expects and what its object does.'
+      },
+      {
+        title: 'The failure reaches the standard.', german: 'Widerspruch · contradiction',
+        copy: 'A wrong answer can be replaced. A contradiction is deeper: the criterion that made the answer intelligible has become unstable.',
+        flat: 'Two contradictions occupy the same circular bearing, as if the same problem simply recurred.',
+        depth: 'This first contradiction exposes immediacy; the later one will expose a richer standard.',
+        carried: 'A determinate failure—not generic doubt, but knowledge of what the prior claim could not contain.'
+      },
+      {
+        title: 'The relation reorganizes itself.', german: 'Aufhebung · sublation',
+        copy: 'Knowing and object change together. The path does not leap elsewhere; it curves through the failure and retains its content.',
+        flat: 'Revision and later recollection share a position in the circle.',
+        depth: 'Here the first shape is cancelled as sufficient, preserved as a moment, and repositioned.',
+        carried: 'What worked in the old relation, now deprived of its claim to be the whole truth.'
+      },
+      {
+        title: 'The first return is a new beginning.', german: 'neuer Gegenstand · new object',
+        copy: 'The path returns to the same angular position—but one turn deeper. Consciousness again has certainty, now about a transformed object.',
+        flat: 'This point exactly covers the beginning when viewed face-on.',
+        depth: 'One complete experience separates this return from its beginning.',
+        carried: 'The first shape survives as the history internal to the new object.'
+      },
+      {
+        title: 'The richer object produces richer resistance.', german: 'bestimmte Negation · determinate negation',
+        copy: 'A transformed standpoint does not end experience. Its new object generates a new, more specific way for knowing and truth to diverge.',
+        flat: 'It looks identical to the first resistance from the circular view.',
+        depth: 'This resistance presupposes the first turn; it could not arise at the beginning.',
+        carried: 'The earlier demand for adequacy, now applied to a more complex object.'
+      },
+      {
+        title: 'Contradiction returns at another depth.', german: 'Vermittlung · mediation',
+        copy: 'The path revisits contradiction, but the terms are no longer immediate singulars. The whole history mediates what can now fail.',
+        flat: 'The two contradictions collapse into a single point on the circle.',
+        depth: 'The later contradiction contains the first transition as one of its conditions.',
+        carried: 'The capacity to let failure disclose the limits of the governing standard.'
+      },
+      {
+        title: 'The path becomes recollectable.', german: 'Erinnerung · recollection',
+        copy: 'Consciousness can now see prior shapes as moments of one development, not as discarded mistakes left behind.',
+        flat: 'Recollection looks like another revision if only circular position is visible.',
+        depth: 'The path begins to relate to its own accumulated form.',
+        carried: 'Earlier objects, standards, and failures as an organized history.'
+      },
+      {
+        title: 'Return becomes relation to self.', german: 'Selbstbewusstsein · self-consciousness',
+        copy: 'At the second complete return, consciousness confronts the fact that its changing object-relations have also been changes in itself.',
+        flat: 'Beginning, first return, and second return are exactly superimposed face-on.',
+        depth: 'Two full turns now separate apparent immediacy from this self-related standpoint.',
+        carried: 'The entire path—preserved not as a list, but as the structure of the present standpoint.'
+      }
+    ];
+    const worldState = { angle: 0, selected: 0, dragging: false, moved: false, lastX: 0, projected: [] };
+
+    function worldSize() {
+      const rect = worldCanvas.getBoundingClientRect();
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      const width = Math.max(320, rect.width);
+      const height = Math.max(420, rect.height);
+      if (worldCanvas.width !== Math.round(width * ratio) || worldCanvas.height !== Math.round(height * ratio)) {
+        worldCanvas.width = Math.round(width * ratio);
+        worldCanvas.height = Math.round(height * ratio);
+      }
+      worldContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+      return { width, height };
+    }
+
+    function projectWorldCoordinates(point, width, height) {
+      const view = worldState.angle * Math.PI / 180;
+      return {
+        x: width / 2 + point.x * Math.cos(view) + point.z * Math.sin(view),
+        y: height / 2 + point.y,
+        z: -point.x * Math.sin(view) + point.z * Math.cos(view)
+      };
+    }
+
+    function projectWorld(t, width, height) {
+      const theta = t * Math.PI * 2;
+      const radius = Math.min(width, height) * .29;
+      const depth = Math.min(width * .32, 340);
+      return projectWorldCoordinates({ x: Math.cos(theta) * radius, y: Math.sin(theta) * radius, z: (t - 1) * depth }, width, height);
+    }
+
+    function drawWorld() {
+      const { width, height } = worldSize();
+      const context = worldContext;
+      const palette = fieldPalette();
+      context.clearRect(0, 0, width, height);
+      context.fillStyle = '#11191f';
+      context.fillRect(0, 0, width, height);
+
+      context.strokeStyle = 'rgba(243,240,231,.08)';
+      context.lineWidth = 1;
+      for (let i = 1; i < 7; i++) {
+        context.beginPath();
+        context.moveTo(width * i / 7, 0);
+        context.lineTo(width * i / 7, height);
+        context.stroke();
+      }
+      for (let i = 1; i < 5; i++) {
+        context.beginPath();
+        context.moveTo(0, height * i / 5);
+        context.lineTo(width, height * i / 5);
+        context.stroke();
+      }
+
+      const helixDepth = Math.min(width * .32, 340);
+      const axisStart = projectWorldCoordinates({ x: 0, y: 0, z: -helixDepth }, width, height);
+      const axisEnd = projectWorldCoordinates({ x: 0, y: 0, z: helixDepth }, width, height);
+      context.strokeStyle = 'rgba(243,240,231,.24)';
+      context.lineWidth = 1;
+      context.beginPath();
+      context.moveTo(axisStart.x, axisStart.y);
+      context.lineTo(axisEnd.x, axisEnd.y);
+      context.stroke();
+      if (worldState.angle > 8) {
+        context.fillStyle = '#8e8b82';
+        context.font = '10px SFMono-Regular, Consolas, monospace';
+        context.textAlign = 'center';
+        context.fillText('EARLIER', axisStart.x, axisStart.y - 10);
+        context.fillText('LATER', axisEnd.x, axisEnd.y - 10);
+      }
+
+      const points = [];
+      for (let t = 0; t <= 2.001; t += .015) points.push(projectWorld(t, width, height));
+      const depthLimit = helixDepth + Math.min(width, height) * .29;
+      for (let i = 1; i < points.length; i++) {
+        const depth = (points[i - 1].z + points[i].z) / 2;
+        const alpha = .24 + ((depth + depthLimit) / (depthLimit * 2)) * .7;
+        context.strokeStyle = `rgba(214,239,74,${Math.max(.22, Math.min(.94, alpha))})`;
+        context.lineWidth = 2.5;
+        context.beginPath();
+        context.moveTo(points[i - 1].x, points[i - 1].y);
+        context.lineTo(points[i].x, points[i].y);
+        context.stroke();
+      }
+
+      worldState.projected = worldMoments.map((moment, index) => ({ ...projectWorld(index / 4, width, height), index }));
+      const orderedMoments = [...worldState.projected].sort((a, b) => a.z - b.z);
+      const selectedPoint = orderedMoments.find(point => point.index === worldState.selected);
+      orderedMoments.filter(point => point.index !== worldState.selected).concat(selectedPoint).forEach(point => {
+        const selected = point.index === worldState.selected;
+        const turn = Math.floor(point.index / 4);
+        context.fillStyle = turn === 0 ? palette.red : turn === 1 ? palette.blue : palette.acid;
+        context.strokeStyle = palette.paper;
+        context.lineWidth = selected ? 3 : 1.5;
+        context.beginPath();
+        context.arc(point.x, point.y, selected ? 17 : 10, 0, Math.PI * 2);
+        context.fill();
+        context.stroke();
+        context.fillStyle = turn === 2 ? palette.ink : palette.paper;
+        context.font = `700 ${selected ? 11 : 9}px SFMono-Regular, Consolas, monospace`;
+        context.textAlign = 'center';
+        context.textBaseline = 'middle';
+        context.fillText(String(point.index + 1), point.x, point.y + .5);
+      });
+
+      const mode = worldState.angle < 8 ? 'FACE-ON · ONE CIRCLE' : worldState.angle > 78 ? 'SIDE-ON · HISTORY EXPOSED' : 'OBLIQUE · RETURN WITH DEPTH';
+      context.fillStyle = palette.paper;
+      context.font = '700 11px SFMono-Regular, Consolas, monospace';
+      context.textAlign = 'left';
+      context.textBaseline = 'alphabetic';
+      context.fillText(mode, 22, 30);
+      context.fillStyle = '#8e8b82';
+      context.font = '12px system-ui, sans-serif';
+      context.fillText('Two turns · three returns · one path', 22, 50);
+
+      document.getElementById('world-angle').value = Math.round(worldState.angle);
+      document.getElementById('world-angle-value').textContent = Math.round(worldState.angle);
+      renderWorldPanel();
+    }
+
+    function renderWorldPanel() {
+      const moment = worldMoments[worldState.selected];
+      const view = worldState.angle < 8 ? 'Face-on · apparent circle' : worldState.angle > 78 ? 'Side-on · history exposed' : 'Oblique · spiral revealed';
+      document.getElementById('world-state').textContent = `${view} · moment ${String(worldState.selected + 1).padStart(2, '0')}`;
+      document.getElementById('world-title').textContent = moment.title;
+      document.getElementById('world-copy').textContent = moment.copy;
+      document.getElementById('world-german').textContent = moment.german;
+      document.getElementById('world-flat').textContent = moment.flat;
+      document.getElementById('world-depth').textContent = moment.depth;
+      document.getElementById('world-carried').textContent = moment.carried;
+      document.getElementById('world-previous').disabled = worldState.selected === 0;
+      document.getElementById('world-next').disabled = worldState.selected === worldMoments.length - 1;
+    }
+
+    function selectWorld(index) {
+      worldState.selected = Math.max(0, Math.min(worldMoments.length - 1, index));
+      drawWorld();
+    }
+
+    function setWorldAngle(angle) {
+      worldState.angle = Math.max(0, Math.min(90, angle));
+      drawWorld();
+    }
+
+    worldCanvas.addEventListener('pointerdown', event => {
+      worldState.dragging = true;
+      worldState.moved = false;
+      worldState.lastX = event.clientX;
+      worldCanvas.setPointerCapture(event.pointerId);
+    });
+    worldCanvas.addEventListener('pointermove', event => {
+      if (!worldState.dragging) return;
+      const dx = event.clientX - worldState.lastX;
+      if (Math.abs(dx) > 2) worldState.moved = true;
+      setWorldAngle(worldState.angle + dx * .35);
+      worldState.lastX = event.clientX;
+    });
+    worldCanvas.addEventListener('pointerup', event => {
+      if (!worldState.dragging) return;
+      worldState.dragging = false;
+      worldCanvas.releasePointerCapture(event.pointerId);
+      if (worldState.moved) return;
+      const rect = worldCanvas.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      const candidates = worldState.projected
+        .map(point => ({ ...point, distance: Math.hypot(point.x - x, point.y - y) }))
+        .filter(point => point.distance < 42)
+        .sort((a, b) => a.index - b.index);
+      if (!candidates.length) return;
+      const current = candidates.findIndex(point => point.index === worldState.selected);
+      selectWorld(candidates[(current + 1) % candidates.length].index);
+    });
+    worldCanvas.addEventListener('pointercancel', () => { worldState.dragging = false; });
+    document.getElementById('world-angle').addEventListener('input', event => setWorldAngle(Number(event.target.value)));
+    document.getElementById('world-face').addEventListener('click', () => setWorldAngle(0));
+    document.getElementById('world-previous').addEventListener('click', () => selectWorld(worldState.selected - 1));
+    document.getElementById('world-next').addEventListener('click', () => selectWorld(worldState.selected + 1));
+    document.getElementById('world-reveal').addEventListener('click', () => setWorldAngle(58));
+    window.addEventListener('resize', () => {
+      if (!document.getElementById('world-view').hidden) drawWorld();
+    });
+
+    const spiralNodes = [
+      {
+        section: 'Sense-certainty', title: 'The singular Now', german: 'das Diese · Hier · Jetzt',
+        copy: 'Consciousness begins by treating the immediate This as the richest and truest object.',
+        negated: 'The claim that immediacy is self-sufficient.',
+        preserved: 'Sensuous contact and the demand that knowing answer to its object.',
+        emerges: 'How can a singular be said without becoming universal?'
+      },
+      {
+        section: 'Sense-certainty', title: 'The universal This', german: 'das Allgemeine',
+        copy: '“Now,” “Here,” and “I” endure only by applying to many different moments, places, and speakers.',
+        negated: 'Private meaning as an adequate statement of truth.',
+        preserved: 'The Here and Now, now grasped as mediated and repeatable.',
+        emerges: 'An object must gather differentiated properties into a stable thing.'
+      },
+      {
+        section: 'Perception', title: 'The thing of many properties', german: 'das Ding · Eigenschaften',
+        copy: 'Perception receives the object as a universal medium: one salt that is also white, tart, cubical, and possesses a specific gravity.',
+        negated: 'The isolated singular with no internally differentiated content.',
+        preserved: 'Sensuous difference, now organized as determinate properties.',
+        emerges: 'How can the thing be one and also let each property be independently universal?'
+      },
+      {
+        section: 'Perception', title: 'The One and the Also', german: 'das Eins · das Auch',
+        copy: 'Perception oscillates between the thing as exclusive unity and as the inclusive “Also” of many properties.',
+        negated: 'A fixed division between unity and multiplicity, essence and the inessential.',
+        preserved: 'The thing as a structured unity rather than a feature list.',
+        emerges: 'The opposed determinations must be thought together in one movement.'
+      },
+      {
+        section: 'Understanding', title: 'Force and law', german: 'Kraft · Gesetz',
+        copy: 'Understanding treats the object through relations, forces, and laws that explain changing appearances.',
+        negated: 'Surface properties as self-contained and simply present.',
+        preserved: 'Appearance as evidence, now related within an explanatory whole.',
+        emerges: 'Is law a living relation of appearances or a second world placed behind them?'
+      },
+      {
+        section: 'Understanding', title: 'The inverted world', german: 'die verkehrte Welt',
+        copy: 'When law is isolated from appearance, each determination turns into its opposite. Difference proves internal to the law itself.',
+        negated: 'A motionless supersensible realm standing safely behind change.',
+        preserved: 'Law, relation, and the search for unity across opposed appearances.',
+        emerges: 'Can consciousness recognize this self-relating movement as its own?'
+      },
+      {
+        section: 'Threshold', title: 'Self-consciousness', german: 'Selbstbewusstsein',
+        copy: 'Consciousness discovers that its object-relations have also been relations to itself. The next problem is recognition by another self-consciousness.',
+        negated: 'Knowing understood as only outward-facing contemplation.',
+        preserved: 'The entire path of object-directed consciousness as a condition of self-relation.',
+        emerges: 'Recognition: can a self be certain of itself without another self?'
+      }
+    ];
+    const spiralCanvas = document.getElementById('spiral-canvas');
+    const spiralContext = spiralCanvas.getContext('2d');
+    const spiralState = { yaw: -.55, tilt: .22, selected: 0, dragging: false, moved: false, lastX: 0, lastY: 0, projected: [] };
+
+    function spiralPoint(t) {
+      const angle = -.8 + t * 1.28;
+      const radius = 142;
+      return { x: Math.cos(angle) * radius, y: (t - 3) * 69, z: Math.sin(angle) * radius };
+    }
+
+    function rotateSpiralPoint(point) {
+      const cosY = Math.cos(spiralState.yaw);
+      const sinY = Math.sin(spiralState.yaw);
+      const x1 = point.x * cosY - point.z * sinY;
+      const z1 = point.x * sinY + point.z * cosY;
+      const cosT = Math.cos(spiralState.tilt);
+      const sinT = Math.sin(spiralState.tilt);
+      return { x: x1, y: point.y * cosT - z1 * sinT, z: point.y * sinT + z1 * cosT };
+    }
+
+    function spiralSize() {
+      const rect = spiralCanvas.getBoundingClientRect();
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      const width = Math.max(320, rect.width);
+      const height = Math.max(420, rect.height);
+      if (spiralCanvas.width !== Math.round(width * ratio) || spiralCanvas.height !== Math.round(height * ratio)) {
+        spiralCanvas.width = Math.round(width * ratio);
+        spiralCanvas.height = Math.round(height * ratio);
+      }
+      spiralContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+      return { width, height };
+    }
+
+    function projectSpiral(point, width, height) {
+      const rotated = rotateSpiralPoint(point);
+      const scale = 520 / (650 + rotated.z);
+      return { x: width / 2 + rotated.x * scale, y: height / 2 + rotated.y * scale, z: rotated.z, scale };
+    }
+
+    function drawSpiral() {
+      const { width, height } = spiralSize();
+      const context = spiralContext;
+      const palette = fieldPalette();
+      context.clearRect(0, 0, width, height);
+      context.fillStyle = '#171b1e';
+      context.fillRect(0, 0, width, height);
+
+      context.strokeStyle = 'rgba(243,240,231,.09)';
+      context.lineWidth = 1;
+      context.beginPath();
+      context.moveTo(width * .12, height / 2);
+      context.lineTo(width * .88, height / 2);
+      context.stroke();
+
+      const curve = [];
+      for (let t = 0; t <= 6.001; t += .06) curve.push(projectSpiral(spiralPoint(t), width, height));
+      for (let i = 1; i < curve.length; i++) {
+        const depth = (curve[i - 1].z + curve[i].z) / 2;
+        const alpha = .22 + ((depth + 220) / 440) * .48;
+        context.strokeStyle = `rgba(214,239,74,${Math.max(.14, Math.min(.7, alpha))})`;
+        context.lineWidth = 2.2;
+        context.beginPath();
+        context.moveTo(curve[i - 1].x, curve[i - 1].y);
+        context.lineTo(curve[i].x, curve[i].y);
+        context.stroke();
+      }
+
+      spiralState.projected = spiralNodes.map((node, index) => ({ ...projectSpiral(spiralPoint(index), width, height), index }));
+      [...spiralState.projected].sort((a, b) => a.z - b.z).forEach(point => {
+        const selected = point.index === spiralState.selected;
+        const radius = (selected ? 22 : 13) * Math.max(.78, point.scale);
+        context.fillStyle = selected ? palette.red : palette.acid;
+        context.strokeStyle = palette.paper;
+        context.lineWidth = selected ? 3 : 1.5;
+        context.beginPath();
+        context.arc(point.x, point.y, radius, 0, Math.PI * 2);
+        context.fill();
+        context.stroke();
+        context.fillStyle = selected ? palette.paper : palette.ink;
+        context.font = `700 ${selected ? 12 : 10}px SFMono-Regular, Consolas, monospace`;
+        context.textAlign = 'center';
+        context.textBaseline = 'middle';
+        context.fillText(String(point.index + 1).padStart(2, '0'), point.x, point.y + .5);
+        if (selected) {
+          context.fillStyle = palette.paper;
+          context.font = '700 11px SFMono-Regular, Consolas, monospace';
+          context.textAlign = point.x > width * .63 ? 'right' : 'left';
+          const offset = point.x > width * .63 ? -radius - 10 : radius + 10;
+          context.fillText(spiralNodes[point.index].title.toUpperCase(), point.x + offset, point.y + 4);
+        }
+      });
+
+      context.fillStyle = palette.paper;
+      context.textAlign = 'left';
+      context.textBaseline = 'alphabetic';
+      context.font = '700 11px SFMono-Regular, Consolas, monospace';
+      context.fillText('EXPERIENCE IS A RETURN WITH DIFFERENCE', 22, 30);
+      context.fillStyle = '#8e8b82';
+      context.font = '12px system-ui, sans-serif';
+      context.fillText('Not a ladder. Not a closed circle. A history carried into each new object.', 22, 50);
+    }
+
+    function selectSpiral(index) {
+      const bounded = Math.max(0, Math.min(spiralNodes.length - 1, index));
+      spiralState.selected = bounded;
+      const node = spiralNodes[bounded];
+      document.getElementById('spiral-state').textContent = `${node.section} · moment ${String(bounded + 1).padStart(2, '0')}`;
+      document.getElementById('spiral-title').textContent = node.title;
+      document.getElementById('spiral-copy').textContent = node.copy;
+      document.getElementById('spiral-german').textContent = node.german;
+      document.getElementById('spiral-negated').textContent = node.negated;
+      document.getElementById('spiral-preserved').textContent = node.preserved;
+      document.getElementById('spiral-emerges').textContent = node.emerges;
+      document.getElementById('spiral-range').value = bounded;
+      document.getElementById('spiral-range-value').textContent = bounded + 1;
+      drawSpiral();
+    }
+
+    spiralCanvas.addEventListener('pointerdown', event => {
+      spiralState.dragging = true;
+      spiralState.moved = false;
+      spiralState.lastX = event.clientX;
+      spiralState.lastY = event.clientY;
+      spiralCanvas.setPointerCapture(event.pointerId);
+    });
+    spiralCanvas.addEventListener('pointermove', event => {
+      if (!spiralState.dragging) return;
+      const dx = event.clientX - spiralState.lastX;
+      const dy = event.clientY - spiralState.lastY;
+      if (Math.abs(dx) + Math.abs(dy) > 2) spiralState.moved = true;
+      spiralState.yaw += dx * .009;
+      spiralState.tilt = Math.max(-.48, Math.min(.48, spiralState.tilt + dy * .003));
+      spiralState.lastX = event.clientX;
+      spiralState.lastY = event.clientY;
+      drawSpiral();
+    });
+    spiralCanvas.addEventListener('pointerup', event => {
+      if (!spiralState.dragging) return;
+      spiralState.dragging = false;
+      spiralCanvas.releasePointerCapture(event.pointerId);
+      if (spiralState.moved) return;
+      const rect = spiralCanvas.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      const nearest = spiralState.projected.reduce((best, point) => {
+        const distance = Math.hypot(point.x - x, point.y - y);
+        return distance < best.distance ? { index: point.index, distance } : best;
+      }, { index: spiralState.selected, distance: Infinity });
+      if (nearest.distance < 42) selectSpiral(nearest.index);
+    });
+    spiralCanvas.addEventListener('pointercancel', () => { spiralState.dragging = false; });
+    document.getElementById('spiral-left').addEventListener('click', () => { spiralState.yaw -= .28; drawSpiral(); });
+    document.getElementById('spiral-right').addEventListener('click', () => { spiralState.yaw += .28; drawSpiral(); });
+    document.getElementById('spiral-previous').addEventListener('click', () => selectSpiral(spiralState.selected - 1));
+    document.getElementById('spiral-next').addEventListener('click', () => selectSpiral(spiralState.selected + 1));
+    document.getElementById('spiral-range').addEventListener('input', event => selectSpiral(Number(event.target.value)));
+    window.addEventListener('resize', () => {
+      if (!document.getElementById('spiral-view').hidden) drawSpiral();
+    });
+    selectSpiral(0);
+
+    const shapes = {
+      sense: {
+        glyph: '•', title: '“This. Here. Now.”',
+        thesis: 'Knowing seems richest when it adheres to the singular thing immediately before it. Yet language and pointing turn the intended singular into a universal.',
+        gain: 'Direct contact: a relation that appears free of inference, memory, or interpretation.',
+        break: 'The Now passes; the Here changes; “I” can be said by anyone. Immediacy proves already mediated.',
+        machine: 'A sensor reading is a useful analogy only if we remember that sensing already depends on selection, calibration, encoding, and a system boundary.',
+        question: 'Can an event become evidence without being related to other events?',
+        source: 'Read Pinkard, §§90–110, pp. 60–68 ↗', page: 108
+      },
+      perception: {
+        glyph: '◇', title: '“A thing of many properties.”',
+        thesis: 'Perception organizes qualities into an object: this salt is white, tart, cubical, and possesses a specific gravity. The thing must be one and also many.',
+        gain: 'Stable objects and attributes make comparison, classification, and descriptive knowledge possible.',
+        break: 'Perception shifts responsibility for contradiction between object and observer, unity and multiplicity, essence and the inessential.',
+        machine: 'Pattern recognition and classification fit here more closely than raw sensing, but labels and feature spaces already encode a concept of the object.',
+        question: 'Who decides which differences are properties and which are noise?',
+        source: 'Read Pinkard, §§111–131, pp. 68–79 ↗', page: 115
+      },
+      understanding: {
+        glyph: '↝', title: '“Relations beneath appearances.”',
+        thesis: 'Understanding moves from isolated properties toward forces, laws, and relations. The object is grasped through what it does and how it connects.',
+        gain: 'Explanatory structure: appearances become intelligible within a relational or law-governed whole.',
+        break: 'If law is placed behind appearance as a separate, supersensible world, understanding reproduces the very split it sought to overcome.',
+        machine: 'A learned world model may predict relations and consequences. The question is whether its laws are merely fitted, or can become objects of criticism.',
+        question: 'Does successful prediction amount to understanding the law?',
+        source: 'Read Pinkard, §§132 onward, p. 79 onward ↗', page: 126
+      }
+    };
+
+    const shapeButtons = [...document.querySelectorAll('.shape-tab')];
+    const shapePdf = '../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf#page=';
+    function renderShape(key) {
+      const shape = shapes[key];
+      document.getElementById('shape-glyph').textContent = shape.glyph;
+      document.getElementById('shape-title').textContent = shape.title;
+      document.getElementById('shape-thesis').textContent = shape.thesis;
+      document.getElementById('shape-gain').textContent = shape.gain;
+      document.getElementById('shape-break').textContent = shape.break;
+      document.getElementById('shape-machine').textContent = shape.machine;
+      document.getElementById('shape-question').textContent = shape.question;
+      const link = document.getElementById('shape-source');
+      link.textContent = shape.source;
+      link.href = shapePdf + shape.page;
+      shapeButtons.forEach(button => button.setAttribute('aria-selected', String(button.dataset.shape === key)));
+    }
+    shapeButtons.forEach(button => button.addEventListener('click', () => renderShape(button.dataset.shape)));
+
+    const humanComparison = {
+      encounter: 'Bodily, practical, linguistic, emotional, and social encounters can all resist an expectation.',
+      history: 'Prior experience persists unevenly in memory, habit, skill, institutions, and relations.',
+      change: 'Beliefs, habits, attention, identity, action, and the understood object may all change.',
+      standard: 'Standards are inherited socially and historically, yet can themselves become objects of criticism.',
+      evidence: 'Behavior, artifacts, physiology, and first-person report are available; none is perfectly transparent.'
+    };
+    const profiles = {
+      static: {
+        title: 'Static inference model',
+        rows: {
+          encounter: 'A prompt or input changes activation and output, but the trained parameters remain fixed during the episode.',
+          history: 'Only the supplied context or external retrieval is available; a new session may begin without it.',
+          change: 'Transient state and generated output change. Durable learning happened earlier, during training.',
+          standard: 'The objective, feedback rule, and task framing are largely supplied by designers, trainers, or users.',
+          evidence: 'Inputs, outputs, activations, and evaluations support functional claims—not a claim of felt experience.'
+        },
+        verdict: 'The model may be the product of learning from data without undergoing a Hegelian experience in this inference episode. “Trained by experience” and “having an experience” are different claims.'
+      },
+      agent: {
+        title: 'Agent with tools + memory',
+        rows: {
+          encounter: 'Actions produce results; failed tool calls, retrieved records, and user correction can alter the next decision.',
+          history: 'External memory can persist across episodes, though what is stored and retrieved depends on system design.',
+          change: 'Plans, working state, records, and future behavior can change even when base-model parameters do not.',
+          standard: 'The agent may choose subgoals or checks, while its top-level objective and permissions remain externally bounded.',
+          evidence: 'Logs can show revision across time. They do not decide whether remembered events are lived or self-interpreted.'
+        },
+        verdict: 'Persistent memory and action make the functional analogy stronger. The key question becomes whether the agent merely accumulates records or can revise the concepts and standards organizing those records.'
+      },
+      continual: {
+        title: 'Continual embodied learner',
+        rows: {
+          encounter: 'The system acts in an environment whose response supplies ongoing resistance and new evidence.',
+          history: 'Internal models and policies can be updated across episodes, with preservation and forgetting as design problems.',
+          change: 'Perception, prediction, policy, and sometimes task representation can change through the loop of action and response.',
+          standard: 'Some criteria may be learned or adapted, but objectives, safeguards, and embodiment still have an engineered history.',
+          evidence: 'Longitudinal behavior can support a strong structural comparison. Phenomenal and normative claims remain open.'
+        },
+        verdict: 'This profile most closely resembles the form of expectation, encounter, contradiction, and revision. Resemblance still does not establish subjective experience—and may expose that “the system” includes designers, infrastructure, and other agents.'
+      }
+    };
+    const rowLabels = {
+      encounter: 'Source of resistance', history: 'Continuity of history', change: 'Site of change', standard: 'Who sets the standard?', evidence: 'Evidence boundary'
+    };
+    const profileButtons = [...document.querySelectorAll('.profile-button')];
+    function renderProfile(key) {
+      const profile = profiles[key];
+      document.getElementById('machine-column-title').textContent = profile.title;
+      document.getElementById('comparison-rows').innerHTML = Object.keys(rowLabels).map(row => `
+        <div class="comparison-row">
+          <h3>${rowLabels[row]}</h3>
+          <p>${humanComparison[row]}</p>
+          <p>${profile.rows[row]}</p>
+        </div>`).join('');
+      document.getElementById('profile-verdict').textContent = profile.verdict;
+      profileButtons.forEach(button => button.setAttribute('aria-selected', String(button.dataset.profile === key)));
+    }
+    profileButtons.forEach(button => button.addEventListener('click', () => renderProfile(button.dataset.profile)));
+    renderProfile('static');
+
+    function wireArrowNavigation(tabButtons, render, keyFor) {
+      tabButtons.forEach((button, index) => {
+        button.tabIndex = button.getAttribute('aria-selected') === 'true' ? 0 : -1;
+        button.addEventListener('keydown', event => {
+          if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) return;
+          event.preventDefault();
+          let next = index;
+          if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = (index + 1) % tabButtons.length;
+          if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = (index - 1 + tabButtons.length) % tabButtons.length;
+          if (event.key === 'Home') next = 0;
+          if (event.key === 'End') next = tabButtons.length - 1;
+          tabButtons.forEach((item, itemIndex) => { item.tabIndex = itemIndex === next ? 0 : -1; });
+          tabButtons[next].focus();
+          render(keyFor(tabButtons[next]));
+        });
+        button.addEventListener('click', () => {
+          tabButtons.forEach(item => { item.tabIndex = item === button ? 0 : -1; });
+        });
+      });
+    }
+    wireArrowNavigation(shapeButtons, renderShape, button => button.dataset.shape);
+    wireArrowNavigation(profileButtons, renderProfile, button => button.dataset.profile);
+    wireArrowNavigation(simulationButtons, showSimulation, button => button.dataset.simulation);
+
+    const boundaryChecks = [...document.querySelectorAll('.boundary-toggle input')];
+    function renderBoundary() {
+      const enabled = boundaryChecks.filter(input => input.checked);
+      const score = 10 + enabled.reduce((sum, input) => sum + Number(input.dataset.weight), 0);
+      document.getElementById('analogy-score').textContent = score;
+      document.getElementById('analogy-fill').style.width = `${score}%`;
+      const copy = score < 35
+        ? 'The system receives input and produces change, but the conditions for a Hegelian experience are mostly outside the system boundary.'
+        : score < 65
+          ? 'The system now has a history and a feedback loop. The analogy strengthens, but revision may still be governed by fixed external standards.'
+          : score < 90
+            ? 'The system can carry encounters forward and reorganize its behavior. Ask whether its objects and standards—not only its answers—can change.'
+            : 'Nearly every structural feature in this model is present. The remaining gap is not a missing checkbox: lived experience and moral standing require different evidence and argument.';
+      document.getElementById('analogy-copy').textContent = copy;
+    }
+    boundaryChecks.forEach(input => input.addEventListener('change', renderBoundary));
+    renderBoundary();
+
+    const auditFields = [...document.querySelectorAll('[data-audit]')];
+    const storageKey = 'epol479-hegel-experience-audit-v1';
+    function saveAudit() {
+      const values = Object.fromEntries(auditFields.map(field => [field.dataset.audit, field.value]));
+      try { localStorage.setItem(storageKey, JSON.stringify(values)); } catch (_) {}
+    }
+    function restoreAudit() {
+      try {
+        const values = JSON.parse(localStorage.getItem(storageKey) || '{}');
+        auditFields.forEach(field => { field.value = values[field.dataset.audit] || ''; });
+      } catch (_) {}
+    }
+    function auditMarkdown() {
+      const value = key => document.querySelector(`[data-audit="${key}"]`).value.trim() || '[Not yet completed]';
+      const tableValue = key => value(key).replaceAll('|', '\\|').replace(/\r?\n/g, '<br>');
+      const moments = [
+        ['Expectation / standard', 'expectation'], ['Encounter / resistance', 'encounter'], ['Contradiction noticed', 'contradiction'],
+        ['Revision + new object', 'revision'], ['Persistence', 'persistence'], ['Limit of inference', 'limit']
+      ];
+      const rows = moments.map(([label, key]) => `| ${label} | ${tableValue(`human-${key}`)} | ${tableValue(`machine-${key}`)} |`).join('\n');
+      return `# Experience audit\n\n| Moment | Human case | Machine case |\n|---|---|---|\n${rows}\n\n## Provisional answer\n\n${value('synthesis')}\n`;
+    }
+    auditFields.forEach(field => field.addEventListener('input', saveAudit));
+    document.getElementById('copy-audit').addEventListener('click', async () => {
+      const status = document.getElementById('copy-status');
+      try {
+        await navigator.clipboard.writeText(auditMarkdown());
+        status.textContent = 'Copied. Paste this Markdown into your weekly reflection.';
+      } catch (_) {
+        status.textContent = 'Clipboard access was blocked. Select and copy your entries manually.';
+      }
+    });
+    document.getElementById('clear-audit').addEventListener('click', () => {
+      auditFields.forEach(field => { field.value = ''; });
+      try { localStorage.removeItem(storageKey); } catch (_) {}
+      document.getElementById('copy-status').textContent = 'Local draft cleared.';
+    });
+    restoreAudit();
+  </script>
+</body>
+</html>

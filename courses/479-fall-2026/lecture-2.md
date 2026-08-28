@@ -2,6 +2,15 @@
 ## Introducing Hegel and The Concept of Experience (*Erfahrung*)
 
 
+---
+
+### Lecture Overview
+
+ - Introduction to Hegel (and summary of what I missed last week - why Hegel matters today)
+ - Hegel on Experience: Sense-Certainty, Perception, Force and Understanding
+ - Note: the 'law of threes' is everywhere in Hegel (thesis / antithesis / synthesis: reductive but useful shorthand) 
+
+
 
 
 ---
@@ -33,7 +42,7 @@
  - Significant for psychoanalysis (Freud? Certainly Jacques Lacan, Slavoj Žižek)
  - Phenomenology (Edmund Husserl, Martin Heidegger)
  - French theory: existentialism, structuralism, deconstruction (via Alexandre Kojeve's 1930s lectures)
-   - Also Rene Girard (and so Silicon Valley)
+   - Also Rene Girard, scapegoat / mimesis theory (@ Stanford, and so Silicon Valley, via Peter Thiel)
  - American philosophy:
    - Pragmatism (Robert Brandom, Robert Pippin, Terry Pinchard)
    - Francis Fukuyama (The End of History)

@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>One Cup, Three Ways of Knowing — Hegel’s Experience</title>
+  <meta name="description" content="A concrete, interactive journey through sense-certainty, perception, and understanding using one everyday cup of coffee.">
+  <meta name="theme-color" content="#1b1915">
+  <meta property="og:title" content="One Cup, Three Ways of Knowing">
+  <meta property="og:description" content="Follow one everyday cup through sense-certainty, perception, and understanding—and ask what it would mean for a machine to learn from experience.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://machinespirits.org/content/courses/479-fall-2026/hegel-experience/">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1b1915;
+      --cream: #f4eddf;
+      --paper: #fffaf0;
+      --coral: #de5b3f;
+      --green: #294c3d;
+      --blue: #456c88;
+      --gold: #f2c85b;
+      --muted: #6e685e;
+      --line: rgba(27,25,21,.22);
+      --serif: Iowan Old Style, Baskerville, "Times New Roman", serif;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--sans); }
+    button, input { font: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    .topbar { display: flex; justify-content: space-between; gap: 1rem; padding: .8rem clamp(1rem,4vw,3.5rem); border-bottom: 1px solid var(--ink); background: var(--paper); font: .68rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .topbar a { color: inherit; text-underline-offset: .25em; }
+    .intro { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(17rem,.8fr); border-bottom: 1px solid var(--ink); }
+    .intro-copy { padding: clamp(2.8rem,7vw,6rem) clamp(1rem,6vw,5.5rem); }
+    .eyebrow { margin: 0 0 1rem; color: var(--coral); font: 700 .72rem var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    h1 { max-width: 11ch; margin: 0; font: 500 clamp(3.7rem,9vw,8rem)/.85 var(--serif); letter-spacing: -.06em; }
+    h1 em { color: var(--coral); font-weight: 500; }
+    .intro-copy > p:last-child { max-width: 44rem; margin: 2rem 0 0; font: clamp(1.2rem,2.2vw,1.75rem)/1.35 var(--serif); }
+    .promise { display: flex; flex-direction: column; justify-content: end; padding: clamp(2rem,4vw,3.5rem); background: var(--green); color: var(--paper); }
+    .promise strong { color: var(--gold); font: 500 clamp(1.8rem,4vw,3rem)/1.05 var(--serif); }
+    .promise p { margin: 1rem 0 0; line-height: 1.6; }
+
+    main { padding: clamp(3rem,7vw,6rem) clamp(1rem,5vw,4.5rem); }
+    .experience { max-width: 92rem; margin: 0 auto; border: 1px solid var(--ink); background: var(--paper); box-shadow: .7rem .7rem 0 var(--ink); }
+    .moments { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; border-bottom: 1px solid var(--ink); background: var(--ink); }
+    .moment { min-height: 5.4rem; padding: .85rem 1rem; border: 0; background: #e3dbcc; color: var(--ink); cursor: pointer; text-align: left; }
+    .moment:disabled { cursor: not-allowed; color: #898174; }
+    .moment[aria-current="step"] { background: var(--coral); color: white; }
+    .moment.is-complete { background: var(--gold); color: var(--ink); }
+    .moment small { display: block; margin-bottom: .4rem; font: .61rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .moment strong { font: 500 1.25rem var(--serif); }
+
+    .lab { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(20rem,.75fr); }
+    .scene { position: relative; display: flex; min-height: 39rem; flex-direction: column; justify-content: space-between; overflow: hidden; padding: clamp(1.2rem,3vw,2.2rem); background: #d8c3a3; transition: background-color .35s ease; }
+    .scene::after { content: ""; position: absolute; right: -8rem; bottom: -11rem; width: 30rem; aspect-ratio: 1; border: 1px solid rgba(27,25,21,.12); border-radius: 50%; box-shadow: 0 0 0 5rem rgba(27,25,21,.035), 0 0 0 10rem rgba(27,25,21,.025); pointer-events: none; }
+    .scene-head { position: relative; z-index: 1; display: flex; justify-content: space-between; gap: 1rem; font: .65rem var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+    .claim-note { position: absolute; z-index: 3; top: 5rem; right: clamp(1rem,5vw,4rem); max-width: 13rem; padding: .8rem; border: 1px solid var(--ink); background: var(--gold); font: .7rem/1.45 var(--mono); transform: rotate(2deg); }
+    .claim-note[hidden] { display: none; }
+    .cup-stage { position: relative; z-index: 1; display: grid; min-height: 22rem; place-items: center; }
+    .cup-wrap { position: relative; width: 15rem; height: 17rem; }
+    .saucer { position: absolute; left: 50%; bottom: 0; width: 14.5rem; height: 2.2rem; border: 2px solid var(--ink); border-radius: 50%; background: #efe9dc; transform: translateX(-50%); }
+    .cup { position: absolute; left: 50%; bottom: 1rem; width: 10rem; height: 10.5rem; border: 3px solid var(--ink); border-radius: .8rem .8rem 3.7rem 3.7rem; background: #f6f0e6; transform: translateX(-50%); }
+    .cup::after { content: ""; position: absolute; z-index: -1; top: 1.6rem; right: -3.9rem; width: 4.8rem; height: 5.5rem; border: 3px solid var(--ink); border-left: 0; border-radius: 0 50% 50% 0; }
+    .coffee { position: absolute; top: .5rem; left: .55rem; right: .55rem; height: 1.45rem; border: 2px solid var(--ink); border-radius: 50%; background: #4a2618; }
+    .steam { position: absolute; bottom: 11.6rem; width: 1.1rem; height: 5rem; border-left: 3px solid rgba(255,250,240,.88); border-radius: 50%; transform: rotate(8deg); opacity: var(--steam-opacity,1); transition: opacity .5s ease; }
+    .steam.one { left: 5rem; }
+    .steam.two { left: 7.2rem; height: 4rem; transform: rotate(-7deg); }
+    .steam.three { left: 9rem; height: 4.7rem; }
+    .temperature { position: absolute; left: 50%; bottom: 5.25rem; color: var(--coral); font: 700 .85rem var(--mono); transform: translateX(-50%); }
+    .scene-prompt { position: relative; z-index: 2; display: flex; align-items: end; justify-content: space-between; gap: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--ink); }
+    .scene-prompt p { max-width: 32rem; margin: 0; font: 500 clamp(1.25rem,2.4vw,1.9rem)/1.2 var(--serif); }
+    .scene-prompt span { font: .62rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+
+    .reflection { display: flex; min-height: 39rem; flex-direction: column; justify-content: space-between; padding: clamp(1.3rem,3vw,2.5rem); border-left: 1px solid var(--ink); }
+    .reflection .stage-name { color: var(--coral); font: 700 .67rem var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+    .reflection h2 { margin: .75rem 0 1rem; font: 500 clamp(2.3rem,4.5vw,4rem)/.95 var(--serif); letter-spacing: -.045em; }
+    .reflection-copy { margin: 0; line-height: 1.62; }
+    .voice { margin: 1.4rem 0 0; padding: 1rem; border-left: 4px solid var(--coral); background: var(--cream); font: 500 1.15rem/1.4 var(--serif); }
+    .ledger { display: grid; gap: 1px; margin-top: 1.4rem; border: 1px solid var(--line); background: var(--line); }
+    .ledger-row { padding: .75rem; background: var(--paper); }
+    .ledger-row strong { display: block; margin-bottom: .35rem; font: 700 .6rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+    .ledger-row p { margin: 0; font-size: .84rem; line-height: 1.45; }
+    .actions { display: grid; grid-template-columns: 1fr auto; gap: .55rem; margin-top: 1.5rem; }
+    .action { min-height: 3.2rem; padding: .75rem .9rem; border: 1px solid var(--ink); background: var(--ink); color: var(--paper); cursor: pointer; font: .67rem var(--mono); letter-spacing: .05em; text-align: left; text-transform: uppercase; }
+    .action:hover:not(:disabled) { background: var(--coral); }
+    .action.secondary { background: transparent; color: var(--ink); }
+    .action.secondary:hover { background: var(--cream); }
+    .action:disabled { cursor: not-allowed; opacity: .35; }
+    .takeaway { margin: 1rem 0 0; color: var(--muted); font-size: .78rem; line-height: 1.5; }
+    .takeaway strong { color: var(--green); }
+
+    .property-study, .system-study { display: grid; grid-template-columns: minmax(12rem,.8fr) minmax(15rem,1.2fr); gap: clamp(1rem,3vw,2.4rem); align-items: center; width: min(100%,44rem); }
+    .cup-wrap.compact { justify-self: center; transform: scale(.78); }
+    .property-tools h3, .system-tools h3 { margin: 0 0 .8rem; font: 500 clamp(1.35rem,2.6vw,2rem)/1.1 var(--serif); }
+    .property-tools > p, .system-tools > p { margin: 0 0 1rem; font-size: .84rem; line-height: 1.5; }
+    .property-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; }
+    .property-button, .modifier-button, .same-button { min-height: 3.4rem; padding: .65rem .75rem; border: 1px solid var(--ink); background: var(--paper); color: var(--ink); cursor: pointer; text-align: left; }
+    .property-button:hover, .modifier-button:hover, .same-button:hover { background: var(--gold); }
+    .property-button[aria-pressed="true"], .modifier-button[aria-pressed="true"], .same-button[aria-pressed="true"] { background: var(--green); color: var(--paper); }
+    .property-button strong, .modifier-button strong { display: block; margin-bottom: .2rem; font: 700 .62rem var(--mono); letter-spacing: .05em; text-transform: uppercase; }
+    .property-button span, .modifier-button span { font-size: .78rem; line-height: 1.35; }
+    .experiment { display: grid; gap: .75rem; }
+    .modifier-buttons { display: grid; grid-template-columns: repeat(3,1fr); gap: .5rem; }
+    .same-question { padding-top: .8rem; border-top: 1px solid var(--ink); }
+    .same-question p { margin: 0 0 .6rem; font: 500 1.1rem var(--serif); }
+    .same-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+    .experiment-result { padding: .75rem; border-left: 4px solid var(--coral); background: var(--paper); font-size: .8rem; line-height: 1.45; }
+
+    .system-study { grid-template-columns: minmax(11rem,.65fr) minmax(17rem,1.35fr); }
+    .system-controls { display: grid; gap: .8rem; }
+    .system-control { display: grid; grid-template-columns: 6.8rem 1fr 4.8rem; gap: .6rem; align-items: center; }
+    .system-control label { font: 700 .61rem var(--mono); letter-spacing: .05em; text-transform: uppercase; }
+    .system-control input { width: 100%; accent-color: var(--coral); }
+    .system-control output { font: .62rem var(--mono); text-align: right; text-transform: uppercase; }
+    .live-cup { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; margin-top: 1rem; border: 1px solid var(--ink); background: var(--ink); }
+    .live-cup div { padding: .65rem; background: var(--paper); }
+    .live-cup small { display: block; margin-bottom: .25rem; font: .56rem var(--mono); letter-spacing: .05em; text-transform: uppercase; }
+    .live-cup strong { font: 500 1rem var(--serif); }
+    .relation-chain { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .9rem; }
+    .relation-chain span { padding: .35rem .45rem; border: 1px solid var(--ink); background: var(--paper); font: .56rem var(--mono); letter-spacing: .04em; text-transform: uppercase; }
+    .relation-chain i { align-self: center; font-style: normal; }
+
+    .machine-question { max-width: 92rem; margin: 4rem auto 0; border: 1px solid var(--ink); background: var(--green); color: var(--paper); }
+    .machine-question[hidden] { display: none; }
+    .machine-head { display: grid; grid-template-columns: .6fr 1.4fr; gap: 2rem; padding: clamp(1.4rem,4vw,3rem); border-bottom: 1px solid rgba(255,255,255,.45); }
+    .machine-head .eyebrow { color: var(--gold); }
+    .machine-head h2 { margin: 0; font: 500 clamp(2.6rem,6vw,5rem)/.93 var(--serif); letter-spacing: -.045em; }
+    .machine-head p { max-width: 42rem; margin: 1rem 0 0; line-height: 1.6; }
+    .machine-steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(255,255,255,.45); }
+    .machine-step { min-height: 15rem; padding: 1.2rem; background: var(--green); }
+    .machine-step small { color: var(--gold); font: .6rem var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+    .machine-step h3 { margin: 2rem 0 .7rem; font: 500 1.5rem var(--serif); }
+    .machine-step p { margin: 0; font-size: .85rem; line-height: 1.5; }
+    .machine-bottom { padding: 1.2rem; background: var(--gold); color: var(--ink); font: 500 clamp(1.15rem,2.3vw,1.6rem)/1.4 var(--serif); }
+
+    .source-line { max-width: 92rem; margin: 1.4rem auto 0; color: var(--muted); font: .67rem/1.55 var(--mono); }
+    .source-line a { color: var(--green); text-underline-offset: .22em; }
+    footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding: 1.2rem clamp(1rem,4vw,3.5rem); border-top: 1px solid var(--ink); background: var(--green); color: var(--paper); font: .65rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+
+    @media (max-width: 820px) {
+      .intro, .lab { grid-template-columns: 1fr; }
+      .promise { min-height: 18rem; }
+      .reflection { min-height: auto; border-top: 1px solid var(--ink); border-left: 0; }
+      .machine-head { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .topbar { flex-direction: column; }
+      .moments { grid-template-columns: 1fr; }
+      .moment { min-height: 4rem; }
+      .scene { min-height: 34rem; }
+      .scene-prompt { align-items: flex-start; flex-direction: column; }
+      .actions { grid-template-columns: 1fr; }
+      .property-study, .system-study { grid-template-columns: 1fr; gap: .5rem; }
+      .cup-wrap.compact { margin: -1.8rem 0; transform: scale(.62); }
+      .modifier-buttons, .machine-steps { grid-template-columns: 1fr; }
+      .system-control { grid-template-columns: 1fr; gap: .25rem; }
+      .system-control output { text-align: left; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .scene, .steam { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topbar"><span>EPOL 479 · Machine Learning &amp; Human Learning</span><a href="../lecture-2.html">Week 2 lecture</a></div>
+    <div class="intro">
+      <div class="intro-copy">
+        <p class="eyebrow">Erfahrung · experience developing</p>
+        <h1>One cup. <em>Three ways of knowing it.</em></h1>
+        <p>Touch it. Describe it. Change it. The same ordinary coffee will become a different kind of object as your way of knowing develops.</p>
+      </div>
+      <aside class="promise">
+        <strong>No Hegel vocabulary required to begin.</strong>
+        <p>Stay with the cup and what happens to your own expectations. The philosophical names arrive only after you have felt the need for them.</p>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section class="experience" aria-labelledby="experience-title">
+      <h2 class="sr-only" id="experience-title">One cup through three moments of consciousness</h2>
+      <div class="moments" aria-label="Three moments of the experience">
+        <button class="moment" type="button" aria-current="step" data-moment="0"><small>Moment 01 · now</small><strong>Sense-certainty</strong></button>
+        <button class="moment" type="button" data-moment="1" disabled><small>Moment 02 · locked</small><strong>Perception</strong></button>
+        <button class="moment" type="button" data-moment="2" disabled><small>Moment 03 · locked</small><strong>Understanding</strong></button>
+      </div>
+
+      <div class="lab">
+        <div class="scene" id="scene" style="--steam-opacity:1">
+          <div class="scene-head"><span id="scene-time">8:00 AM · just poured</span><span id="scene-status">Immediate encounter</span></div>
+          <div class="claim-note" id="claim-note" hidden>Saved at 8:00 AM<br><strong>“This is hot now.”</strong></div>
+          <div class="cup-stage" id="cup-stage" aria-label="A freshly poured cup of coffee">
+            <div class="cup-wrap" aria-hidden="true">
+              <div class="steam one"></div><div class="steam two"></div><div class="steam three"></div>
+              <div class="saucer"></div>
+              <div class="cup"><div class="coffee"></div></div>
+              <div class="temperature" id="temperature">82°C</div>
+            </div>
+          </div>
+          <div class="scene-prompt"><p id="scene-prompt">The cup has just been poured. Begin with what is immediately here.</p><span id="scene-gesture">Your move · touch it</span></div>
+        </div>
+
+        <aside class="reflection" aria-live="polite">
+          <div>
+            <span class="stage-name" id="stage-name">Moment 01 · from your standpoint</span>
+            <h2 id="reflection-title">Before you explain anything, what do you know?</h2>
+            <p class="reflection-copy" id="reflection-copy">The coffee is simply here. Its warmth feels like the most direct kind of truth: no theory, no comparison, just contact.</p>
+            <blockquote class="voice" id="voice">“I only need to touch it.”</blockquote>
+            <div class="ledger">
+              <div class="ledger-row"><strong>What I trust</strong><p id="trust">What is present to me right here, right now.</p></div>
+              <div class="ledger-row"><strong>What happens</strong><p id="happens">Nothing has challenged this certainty yet.</p></div>
+              <div class="ledger-row"><strong>What changes</strong><p id="changes">Nothing yet—not the claim, not the cup, not my standard.</p></div>
+            </div>
+          </div>
+          <div>
+            <div class="actions"><button class="action" id="primary" type="button">Touch the cup</button><button class="action secondary" id="reset" type="button">Restart</button></div>
+            <p class="takeaway" id="takeaway"><strong>Stay inside the moment:</strong> do not explain the cup yet. Let the immediate claim test itself.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <p class="source-line">The interaction is a teaching analogy grounded in Pinkard’s translation: <a href="../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf#page=108">Sense-certainty §§90–110</a> · <a href="../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf#page=115">Perception §§111–131</a> · <a href="../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf#page=126">Understanding §§132 onward</a>. The cup is our example, not Hegel’s.</p>
+
+    <section class="machine-question" id="machine-question" hidden aria-labelledby="machine-title">
+      <div class="machine-head">
+        <div><p class="eyebrow">The course question</p><h2 id="machine-title">What would the machine have to learn?</h2></div>
+        <p>The three moments also describe increasingly rich functions a system might perform. But functional sophistication and lived experience are not the same claim.</p>
+      </div>
+      <div class="machine-steps">
+        <article class="machine-step"><small>Immediate signal</small><h3>A sensor reads 64°C.</h3><p>It registers one present value. Useful—but the reading alone has no history and does not decide what counts as a good cup.</p></article>
+        <article class="machine-step"><small>Perceived thing</small><h3>A classifier labels the cup.</h3><p>“Coffee, warm, dark, low sugar.” It organizes properties into an object, but its categories and boundaries may remain fixed by designers.</p></article>
+        <article class="machine-step"><small>Relational model</small><h3>An adaptive system changes the recipe.</h3><p>It predicts how beans, heat, milk, sugar, time, and your reactions interact—and revises future preparation from the outcome.</p></article>
+      </div>
+      <div class="machine-bottom">The Hegelian pressure is not only “did the output improve?” Ask whether the encounter became part of the system’s history, changed its own standard of a good cup, and changed what it treated as the relevant object.</div>
+    </section>
+  </main>
+
+  <footer><span>Machine Spirits · EPOL 479 · Fall 2026</span><span>Content restart 01 · not yet published</span></footer>
+
+  <script>
+    const app = {
+      moment: 0,
+      unlocked: 0,
+      sensePhase: 0,
+      perceptionPhase: 0,
+      properties: new Set(),
+      modifier: null,
+      sameAnswer: null,
+      factors: { strength: 6, milk: 0, sugar: 0, time: 10 },
+      adjusted: false,
+      complete: false
+    };
+
+    const senseStates = [
+      {
+        time: '8:00 AM · just poured', status: 'Immediate encounter', temperature: 82, steam: 1, note: false,
+        prompt: 'The cup has just been poured. Begin with what is immediately here.', gesture: 'Your move · touch it',
+        title: 'Before you explain anything, what do you know?', copy: 'The coffee is simply here. Its warmth feels like the most direct kind of truth: no theory, no comparison, just contact.', voice: '“I only need to touch it.”',
+        trust: 'What is present to me right here, right now.', happens: 'Nothing has challenged this certainty yet.', changes: 'Nothing yet—not the claim, not the cup, not my standard.',
+        action: 'Touch the cup', takeaway: '<strong>Stay inside the moment:</strong> do not explain the cup yet. Let the immediate claim test itself.'
+      },
+      {
+        time: '8:00 AM · just poured', status: 'Immediate certainty', temperature: 82, steam: 1, note: false,
+        prompt: 'Your hand pulls back. The warmth is unmistakable. Say exactly what is true.', gesture: 'Your move · state it',
+        title: 'This is hot. Now.', copy: 'The sensation is vivid and certain. It seems as though the words simply report the exact singular moment you are touching.', voice: '“This coffee is hot now.”',
+        trust: 'The immediate feeling and the words that point to it.', happens: 'The contact feels richer than any general description.', changes: 'The fleeting touch has become a repeatable sentence.',
+        action: 'Keep that exact truth', takeaway: '<strong>Notice the small shift:</strong> the private touch has been turned into public words—“this,” “hot,” and “now.”'
+      },
+      {
+        time: '8:00 AM · claim saved', status: 'Can the truth be preserved?', temperature: 82, steam: 1, note: true,
+        prompt: 'The note keeps your sentence still. Let the cup and the Now continue moving.', gesture: 'Your move · wait',
+        title: 'I have saved the truth.', copy: 'If the sentence captured this exact moment, it should preserve what you knew. The paper stays fixed while the coffee continues to cool.', voice: '“Later, this note will still tell me what was true now.”',
+        trust: 'That writing can hold the same singular truth unchanged.', happens: 'The sentence remains while the moment it names passes.', changes: 'A memory now stands apart from the living encounter.',
+        action: 'Wait ten minutes', takeaway: '<strong>This is the test:</strong> not whether the touch was real, but whether pure immediacy can be held as pure immediacy.'
+      },
+      {
+        time: '8:10 AM · ten minutes later', status: 'The cup answers', temperature: 64, steam: .24, note: true,
+        prompt: 'The note still says “now,” but this Now is not the one you touched. The cup is warm, not scalding.', gesture: 'Contradiction encountered',
+        title: 'The feeling was true. My idea of “exactly this” was not enough.', copy: '“This” and “now” did not preserve one private instant. They kept working as the cup changed. The immediate moment turns out to be knowable only through words, memory, contrast, and time.', voice: '“The cup changed—but so did what I think a ‘Now’ is.”',
+        trust: 'Immediate contact still matters, but it cannot explain or preserve itself alone.', happens: 'The same words survive across different moments and different temperatures.', changes: 'The object is no longer only one touch; it is something that persists through changing appearances.',
+        action: 'Meet the cup as a thing →', takeaway: '<strong>Hegel’s name: sense-certainty.</strong> Its failure does not erase sensation. It reveals that sensation was never the whole relation.'
+      }
+    ];
+
+    const properties = {
+      warmth: ['Warm', '64°C—cooler than the first touch'],
+      color: ['Dark brown', 'visible against the pale ceramic'],
+      taste: ['Bitter', 'how this coffee meets your palate'],
+      vessel: ['In a ceramic mug', 'where does the coffee end and its “thing” begin?']
+    };
+
+    const modifiers = {
+      milk: { label: 'Add milk', note: 'The drink becomes lighter, cooler, and smoother.', color: '#9b7658', temperature: 59, steam: .12 },
+      sugar: { label: 'Add sugar', note: 'The drink stays dark but tastes sweeter.', color: '#4a2618', temperature: 62, steam: .17 },
+      wait: { label: 'Wait longer', note: 'The drink cools again while remaining in the same mug.', color: '#4a2618', temperature: 48, steam: .02 }
+    };
+
+    const primary = document.getElementById('primary');
+    const cupStage = document.getElementById('cup-stage');
+    const markers = [...document.querySelectorAll('.moment')];
+
+    function cupVisualHTML({ temperature = 64, color = '#4a2618', steam = .24, compact = false } = {}) {
+      return `<div class="cup-wrap${compact ? ' compact' : ''}" style="--steam-opacity:${steam}" aria-hidden="true"><div class="steam one"></div><div class="steam two"></div><div class="steam three"></div><div class="saucer"></div><div class="cup"><div class="coffee" style="background:${color}"></div></div><div class="temperature">${temperature}°C</div></div>`;
+    }
+
+    function setScene(time, status, prompt, gesture, background) {
+      document.getElementById('scene-time').textContent = time;
+      document.getElementById('scene-status').textContent = status;
+      document.getElementById('scene-prompt').textContent = prompt;
+      document.getElementById('scene-gesture').textContent = gesture;
+      document.getElementById('scene').style.backgroundColor = background;
+    }
+
+    function setReading(stage, title, copy, voice, trust, happens, changes, action, disabled, takeaway) {
+      document.getElementById('stage-name').textContent = stage;
+      document.getElementById('reflection-title').textContent = title;
+      document.getElementById('reflection-copy').textContent = copy;
+      document.getElementById('voice').textContent = voice;
+      document.getElementById('trust').textContent = trust;
+      document.getElementById('happens').textContent = happens;
+      document.getElementById('changes').textContent = changes;
+      primary.textContent = action;
+      primary.disabled = disabled;
+      document.getElementById('takeaway').innerHTML = takeaway;
+    }
+
+    function updateMarkers() {
+      const statuses = ['Sense-certainty', 'Perception', 'Understanding'];
+      markers.forEach((marker, index) => {
+        marker.disabled = index > app.unlocked;
+        marker.classList.toggle('is-complete', index < app.moment || (index < app.unlocked && index !== app.moment));
+        if (index === app.moment) marker.setAttribute('aria-current', 'step');
+        else marker.removeAttribute('aria-current');
+        const state = index === app.moment ? 'now' : index <= app.unlocked ? 'open' : 'locked';
+        marker.querySelector('small').textContent = `Moment 0${index + 1} · ${state}`;
+        marker.querySelector('strong').textContent = statuses[index];
+      });
+    }
+
+    function renderSenseCertainty() {
+      const state = senseStates[app.sensePhase];
+      document.getElementById('claim-note').hidden = !state.note;
+      cupStage.setAttribute('aria-label', `A cup of coffee at ${state.temperature} degrees Celsius`);
+      cupStage.innerHTML = cupVisualHTML({ temperature: state.temperature, steam: state.steam });
+      setScene(state.time, state.status, state.prompt, state.gesture, '#d8c3a3');
+      setReading('Moment 01 · from your standpoint', state.title, state.copy, state.voice, state.trust, state.happens, state.changes, state.action, false, state.takeaway);
+    }
+
+    function propertyStudyHTML() {
+      const buttons = Object.entries(properties).map(([key, [name, detail]]) => `<button class="property-button" type="button" data-property="${key}" aria-pressed="${app.properties.has(key)}"><strong>${name}</strong><span>${detail}</span></button>`).join('');
+      return `<div class="property-study">${cupVisualHTML({ compact: true })}<div class="property-tools"><h3>What kind of thing is this?</h3><p>Touch each feature you use to recognize one stable cup of coffee.</p><div class="property-buttons">${buttons}</div></div></div>`;
+    }
+
+    function experimentHTML() {
+      const selected = app.modifier ? modifiers[app.modifier] : { color: '#4a2618', temperature: 64, steam: .24 };
+      const modifierButtons = Object.entries(modifiers).map(([key, modifier]) => `<button class="modifier-button" type="button" data-modifier="${key}" aria-pressed="${app.modifier === key}"><strong>${modifier.label}</strong><span>${modifier.note}</span></button>`).join('');
+      const sameQuestion = app.modifier ? `<div class="same-question"><p>Properties changed. Is it still the same coffee?</p><div class="same-buttons"><button class="same-button" type="button" data-same="yes" aria-pressed="${app.sameAnswer === 'yes'}">Yes—the same cup</button><button class="same-button" type="button" data-same="no" aria-pressed="${app.sameAnswer === 'no'}">No—a new cup</button></div></div>` : '';
+      const result = app.sameAnswer === 'yes'
+        ? '<div class="experiment-result"><strong>Then the One is not any fixed property.</strong> It persists while warmth, color, or taste changes.</div>'
+        : app.sameAnswer === 'no'
+          ? '<div class="experiment-result"><strong>Then the thing vanishes at every change.</strong> Ordinary experience still treats the changing drink as one continuing cup.</div>'
+          : '';
+      return `<div class="property-study">${cupVisualHTML({ ...selected, compact: true })}<div class="property-tools experiment"><h3>Change one feature.</h3><div class="modifier-buttons">${modifierButtons}</div>${sameQuestion}${result}</div></div>`;
+    }
+
+    function renderPerception() {
+      document.getElementById('claim-note').hidden = true;
+      setScene('8:10 AM · the cup persists', app.perceptionPhase ? 'One thing, changing properties' : `${app.properties.size}/4 properties noticed`, app.perceptionPhase ? 'Alter one feature of the coffee, then decide what remained the same.' : 'The fleeting Now has become one recognizable thing. Inspect what makes it this cup.', app.perceptionPhase ? 'Your move · change it' : 'Your move · inspect it', '#d7d0bd');
+      if (app.perceptionPhase === 0) {
+        cupStage.innerHTML = propertyStudyHTML();
+        const remaining = 4 - app.properties.size;
+        setReading(
+          'Moment 02 · from your standpoint',
+          app.properties.size < 4 ? 'Now I know one thing through many features.' : 'Each feature is general. Their gathering seems to make this cup.',
+          'Unlike one passing touch, the coffee seems stable because you can identify it through warmth, color, taste, and vessel.',
+          '“It is one cup—and it is warm, dark, bitter, and held by this mug.”',
+          'A thing is what holds its recognizable properties together.',
+          app.properties.size < 4 ? 'Each feature adds content to the object.' : 'Every feature could belong elsewhere, while this cup claims to be one.',
+          app.properties.size < 4 ? 'The object is becoming more determinate.' : 'The One and its many properties now have to survive an actual change.',
+          remaining ? `Inspect ${remaining} more ${remaining === 1 ? 'feature' : 'features'}` : 'Change the same cup →',
+          remaining > 0,
+          '<strong>Hegel’s name: perception.</strong> The object is no longer a bare “this.” It is one thing known through many shareable properties.'
+        );
+      } else {
+        cupStage.innerHTML = experimentHTML();
+        const answered = Boolean(app.sameAnswer);
+        setReading(
+          'Moment 02 · from your standpoint',
+          answered ? 'The cup needs both sameness and difference.' : app.modifier ? 'The same cup no longer has the same properties.' : 'Can one feature change while the thing remains?',
+          answered ? 'Calling only the unity essential makes it empty; calling only the properties essential makes the cup dissolve at every change. Each side needs the other.' : 'Milk, sugar, and time let you test whether the thing is simply a fixed bundle of features.',
+          answered ? '“It is one through changes—not one instead of changes.”' : '“If I change it, will it still be this coffee?”',
+          'A stable object should remain itself while bearing its properties.',
+          app.modifier ? modifiers[app.modifier].note : 'Choose a small intervention and watch several features move together.',
+          answered ? 'The object is no longer a static holder of properties. I need to understand the process connecting them.' : 'The question of what makes this one cup is now explicit.',
+          answered ? 'Ask what connects the changes →' : app.modifier ? 'Answer inside the scene' : 'Change the coffee inside the scene',
+          !answered,
+          answered ? '<strong>The pressure:</strong> the “one” and the “many” are not two detachable pieces. Their relation has become the next object.' : '<strong>Test the thing:</strong> do not solve the puzzle verbally. Change the cup and see what your criterion can preserve.'
+        );
+      }
+    }
+
+    function systemValues() {
+      const { strength, milk, sugar, time } = app.factors;
+      const temperature = Math.round(Math.max(35, 82 - time * 1.8 - milk * .7));
+      const bitterness = Math.max(0, Math.min(100, Math.round(strength * 10 - sugar * 6 - milk * 3 + time * .15)));
+      const ratio = Math.min(.82, milk / 12);
+      const dark = [74, 38, 24];
+      const light = [226, 214, 188];
+      const rgb = dark.map((value, index) => Math.round(value + (light[index] - value) * ratio));
+      const color = `rgb(${rgb.join(',')})`;
+      const colorName = milk === 0 ? 'dark' : milk < 4 ? 'brown' : milk < 8 ? 'light' : 'pale';
+      const taste = bitterness >= 72 ? 'very bitter' : bitterness >= 52 ? 'bitter' : bitterness >= 32 ? 'balanced' : 'mild / sweet';
+      const heat = temperature >= 70 ? 'hot' : temperature >= 55 ? 'warm' : 'cool';
+      return { temperature, bitterness, color, colorName, taste, heat, steam: temperature >= 70 ? .9 : temperature >= 55 ? .28 : .03 };
+    }
+
+    function systemStudyHTML() {
+      const values = systemValues();
+      return `<div class="system-study">${cupVisualHTML({ temperature: values.temperature, color: values.color, steam: values.steam, compact: true })}<div class="system-tools"><h3>Change the relations, not just the label.</h3><p>The cup you encounter is produced through a history of ingredients, heat, time, and taste.</p><div class="system-controls"><div class="system-control"><label for="strength">Coffee</label><input id="strength" type="range" min="1" max="10" value="${app.factors.strength}" data-factor="strength"><output id="strength-output">${app.factors.strength}/10</output></div><div class="system-control"><label for="milk">Milk</label><input id="milk" type="range" min="0" max="10" value="${app.factors.milk}" data-factor="milk"><output id="milk-output">${app.factors.milk}/10</output></div><div class="system-control"><label for="sugar">Sugar</label><input id="sugar" type="range" min="0" max="10" value="${app.factors.sugar}" data-factor="sugar"><output id="sugar-output">${app.factors.sugar}/10</output></div><div class="system-control"><label for="time">Time</label><input id="time" type="range" min="0" max="30" value="${app.factors.time}" data-factor="time"><output id="time-output">${app.factors.time} min</output></div></div><div class="live-cup"><div><small>Temperature</small><strong id="live-temperature">${values.temperature}°C · ${values.heat}</strong></div><div><small>Appearance</small><strong id="live-color">${values.colorName}</strong></div><div><small>Likely taste</small><strong id="live-taste">${values.taste}</strong></div></div><div class="relation-chain"><span>beans</span><i>+</i><span>water</span><i>+</i><span>heat</span><i>+</i><span>milk</span><i>+</i><span>sugar</span><i>+</i><span>time</span><i>+</i><span>palate</span></div></div></div>`;
+    }
+
+    function renderUnderstanding() {
+      document.getElementById('claim-note').hidden = true;
+      cupStage.innerHTML = systemStudyHTML();
+      setScene('The cup · as a living process', app.complete ? 'The relation is visible' : 'Conditions in motion', app.complete ? 'The cup remains one process because its differences are connected, not because they stand still.' : 'Move any control. Watch one intervention alter several appearances at once.', app.complete ? 'Experience recollected' : 'Your move · experiment', '#c6d4c9');
+      setReading(
+        'Moment 03 · from your standpoint',
+        app.complete ? 'I know this cup through the way it changes.' : app.adjusted ? 'One change travels through the whole cup.' : 'What connects warmth, color, and taste?',
+        app.complete ? 'The object is now a process: a structured relation among ingredients, heat, time, environment, and your sensing body. The properties are real as moments of that process.' : 'Instead of choosing between the One and its properties, vary the conditions that produce both. The cup becomes intelligible through connected change.',
+        app.complete ? '“The cup is not hidden behind its appearances. It is the organized way they change together.”' : '“If I understand the relation, I can anticipate what the next sip will be like.”',
+        'A good explanation should connect appearances and support expectations about change.',
+        app.adjusted ? 'Your intervention changed temperature, appearance, or taste together rather than moving one isolated label.' : 'The controls expose relations that were already active in every touch and property.',
+        app.complete ? 'My standard changed from “name what is there” to “grasp the process that makes these appearances hang together.”' : 'The relevant object has expanded from the cup-as-bundle to the cup-in-a-system.',
+        app.complete ? 'Ask what a machine would learn ↓' : app.adjusted ? 'Name what changed →' : 'Change at least one relation',
+        !app.adjusted,
+        app.complete ? '<strong>Hegel’s name: understanding.</strong> Knowing seeks the forces, relations, and laws through which appearances form one intelligible movement.' : '<strong>Do not look for a secret coffee behind the coffee.</strong> The deeper object is the connected movement visible through its changes.'
+      );
+    }
+
+    function render() {
+      updateMarkers();
+      document.getElementById('machine-question').hidden = !app.complete;
+      if (app.moment === 0) renderSenseCertainty();
+      if (app.moment === 1) renderPerception();
+      if (app.moment === 2) renderUnderstanding();
+    }
+
+    function updateSystemLive() {
+      const values = systemValues();
+      const visual = cupStage.querySelector('.cup-wrap');
+      visual.style.setProperty('--steam-opacity', values.steam);
+      visual.querySelector('.coffee').style.background = values.color;
+      visual.querySelector('.temperature').textContent = `${values.temperature}°C`;
+      cupStage.querySelector('#strength-output').textContent = `${app.factors.strength}/10`;
+      cupStage.querySelector('#milk-output').textContent = `${app.factors.milk}/10`;
+      cupStage.querySelector('#sugar-output').textContent = `${app.factors.sugar}/10`;
+      cupStage.querySelector('#time-output').textContent = `${app.factors.time} min`;
+      cupStage.querySelector('#live-temperature').textContent = `${values.temperature}°C · ${values.heat}`;
+      cupStage.querySelector('#live-color').textContent = values.colorName;
+      cupStage.querySelector('#live-taste').textContent = values.taste;
+      if (app.complete) return;
+      setReading(
+        'Moment 03 · from your standpoint', 'One change travels through the whole cup.',
+        'Instead of choosing between the One and its properties, vary the conditions that produce both. The cup becomes intelligible through connected change.',
+        '“If I understand the relation, I can anticipate what the next sip will be like.”',
+        'A good explanation should connect appearances and support expectations about change.',
+        'Your intervention changed temperature, appearance, or taste together rather than moving one isolated label.',
+        'The relevant object has expanded from the cup-as-bundle to the cup-in-a-system.',
+        'Name what changed →', false,
+        '<strong>Do not look for a secret coffee behind the coffee.</strong> The deeper object is the connected movement visible through its changes.'
+      );
+    }
+
+    cupStage.addEventListener('click', event => {
+      const property = event.target.closest('[data-property]');
+      if (property && app.moment === 1 && app.perceptionPhase === 0) {
+        app.properties.add(property.dataset.property);
+        render();
+        const next = cupStage.querySelector('[data-property][aria-pressed="false"]');
+        (next || primary).focus();
+        return;
+      }
+      const modifier = event.target.closest('[data-modifier]');
+      if (modifier && app.moment === 1 && app.perceptionPhase === 1) {
+        app.modifier = modifier.dataset.modifier;
+        app.sameAnswer = null;
+        render();
+        cupStage.querySelector('[data-same]').focus();
+        return;
+      }
+      const same = event.target.closest('[data-same]');
+      if (same && app.moment === 1 && app.perceptionPhase === 1) {
+        app.sameAnswer = same.dataset.same;
+        render();
+        primary.focus();
+      }
+    });
+
+    cupStage.addEventListener('input', event => {
+      const factor = event.target.dataset.factor;
+      if (!factor || app.moment !== 2) return;
+      app.factors[factor] = Number(event.target.value);
+      app.adjusted = true;
+      updateSystemLive();
+    });
+
+    primary.addEventListener('click', () => {
+      if (app.moment === 0) {
+        if (app.sensePhase < senseStates.length - 1) app.sensePhase += 1;
+        else { app.moment = 1; app.unlocked = Math.max(app.unlocked, 1); }
+      } else if (app.moment === 1) {
+        if (app.perceptionPhase === 0 && app.properties.size === 4) app.perceptionPhase = 1;
+        else if (app.perceptionPhase === 1 && app.sameAnswer) { app.moment = 2; app.unlocked = 2; }
+      } else if (app.moment === 2) {
+        if (app.adjusted && !app.complete) app.complete = true;
+        else if (app.complete) {
+          const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          document.getElementById('machine-question').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+          return;
+        }
+      }
+      render();
+    });
+
+    markers.forEach((marker, index) => marker.addEventListener('click', () => {
+      if (index > app.unlocked) return;
+      app.moment = index;
+      render();
+    }));
+
+    document.getElementById('reset').addEventListener('click', () => {
+      app.moment = 0;
+      app.unlocked = 0;
+      app.sensePhase = 0;
+      app.perceptionPhase = 0;
+      app.properties = new Set();
+      app.modifier = null;
+      app.sameAnswer = null;
+      app.factors = { strength: 6, milk: 0, sugar: 0, time: 10 };
+      app.adjusted = false;
+      app.complete = false;
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>
