@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Experience of Consciousness — Hegel, animated</title>
-<meta name="description" content="An animated commentary on the first three shapes of Hegel's Phenomenology of Spirit: sense-certainty, perception, and force &amp; the understanding. Perform Hegel's own experiments and watch each shape of consciousness undo and remake itself.">
+<meta name="description" content="An animated commentary on the first three shapes of Hegel's Phenomenology of Spirit: sense-certainty, perception, and force &amp; the understanding. Perform Hegel's own experiments and watch each shape of consciousness undo and remake itself — with a running parable, the night-watch, set alongside the text.">
 <meta name="theme-color" content="#0b0d13">
 <style>
   :root{
@@ -44,6 +44,13 @@
   header h1 em{font-style:normal; color:var(--gold)}
   .head-note{margin-left:auto; font:.62rem var(--mono); letter-spacing:.08em; text-transform:uppercase; color:var(--faint)}
   .head-note a{color:var(--dim); text-underline-offset:.25em}
+  #music{
+    border:1px solid var(--line); background:transparent; color:var(--faint); cursor:pointer;
+    font:600 .58rem var(--mono); letter-spacing:.12em; text-transform:uppercase;
+    padding:.35rem .65rem; border-radius:1rem; transition:color .2s,border-color .2s;
+  }
+  #music:hover{color:var(--dim); border-color:var(--dim)}
+  #music[aria-pressed="true"]{color:var(--violet); border-color:var(--violet)}
 
   /* ---------- stage ---------- */
   .stagecol{grid-area:stage; display:flex; flex-direction:column; min-height:0; border-right:1px solid var(--line)}
@@ -96,6 +103,16 @@
   .b-inside{border-left-color:var(--blue)} .b-inside h3{color:var(--blue)}
   .b-forus{border-left-color:var(--violet)} .b-forus h3{color:var(--violet)}
   .b-forus p{color:#cfc8e2}
+  /* the night-watch — our parable, typographically fenced off from Hegel */
+  .b-parable{
+    border-left:0; border-radius:0; padding:.85rem .95rem .9rem;
+    border-top:1px solid rgba(154,168,199,.3); border-bottom:1px solid rgba(154,168,199,.3);
+    background:linear-gradient(180deg,rgba(151,163,199,.07),rgba(151,163,199,.015));
+  }
+  .b-parable h3{color:#9aa8c7}
+  .b-parable h3::before{content:'☾  '}
+  .b-parable p{font-style:italic; color:#c9cfdd}
+  .b-parable p i{color:#e0d7c0}
   .keyline{
     margin:1rem 0 0; padding:.85rem .95rem; border:1px solid var(--line); border-radius:.25rem;
     background:rgba(230,185,92,.05);
@@ -167,6 +184,7 @@
     <span class="brand">EPOL 479 · Reading Lab</span>
     <h1>The Experience of <em>Consciousness</em></h1>
     <span class="head-note">Hegel, <i>Phenomenology of Spirit</i> · <a id="pdflink" href="#" target="_blank" rel="noopener">open the reading (Pinkard tr.)</a></span>
+    <button id="music" type="button" aria-pressed="false" title="Quiet generative accompaniment — synthesized locally, off by default">♪ night music</button>
   </header>
 
   <div class="stagecol">
@@ -175,7 +193,7 @@
         <title id="stagetitle">Animated stage for the current scene</title>
         <defs>
           <radialGradient id="vig" cx="50%" cy="42%" r="75%">
-            <stop offset="0%" stop-color="#141b26"/><stop offset="70%" stop-color="#0d1119"/><stop offset="100%" stop-color="#080a0f"/>
+            <stop offset="0%" stop-color="#131a24"/><stop offset="70%" stop-color="#0c0f16"/><stop offset="100%" stop-color="#06070b"/>
           </radialGradient>
           <linearGradient id="nightsky" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stop-color="#0b1026"/><stop offset="100%" stop-color="#1a2038"/>
@@ -213,9 +231,13 @@
           <filter id="fSoft" x="-60%" y="-60%" width="220%" height="220%">
             <feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#f0e6cc" flood-opacity=".5"/>
           </filter>
+          <filter id="fMist" x="-40%" y="-120%" width="180%" height="340%">
+            <feGaussianBlur stdDeviation="26"/>
+          </filter>
         </defs>
         <rect width="1200" height="675" fill="url(#vig)"/>
         <g id="starfield"></g>
+        <g id="mist" aria-hidden="true"></g>
         <g id="scene"></g>
         <g id="observer" aria-hidden="true"></g>
       </svg>
@@ -234,8 +256,9 @@
     <div id="blocks"></div>
     <blockquote class="keyline" id="keyline"><p id="keytext"></p><cite id="keycite"></cite></blockquote>
     <details class="gloss">
-      <summary>Five words you need</summary>
+      <summary>Five words you need — and one parable</summary>
       <dl>
+        <dt>☾ the night-watch</dt><dd>The italic interludes marked ☾ are <i>our</i> parable, not Hegel’s text: one watcher’s night, retold alongside the argument, losing what each scene loses. It mirrors; it never argues. Where it and Hegel differ, trust Hegel.</dd>
         <dt>universal</dt><dd>What holds itself steady across different instances — “now”, “here”, “I”, “thing”, “red”. The opposite of a bare singular. Sense-certainty’s whole drama is discovering that its words were universals all along.</dd>
         <dt>sublate (aufheben)</dt><dd>Hegel’s verb for how a shape fails: it is cancelled <i>and</i> kept. The wreckage is never thrown away — it becomes material for the next object.</dd>
         <dt>in-itself / for-consciousness</dt><dd>What the object supposedly is independently of us, versus how it shows up for a knower. Experience is the discovery that the “in-itself” was an in-itself <i>for consciousness</i> — and the promotion of that discovery into a new object.</dd>
@@ -314,12 +337,41 @@ const PARTS=[
 /* ---------- stage base ---------- */
 const stageG=document.getElementById('scene');
 const starG=document.getElementById('starfield');
+const mistG=document.getElementById('mist');
 const obsG=document.getElementById('observer');
 (function stars(){
   for(let i=0;i<70;i++){
-    E('circle',{cx:Math.random()*1200,cy:Math.random()*675,r:Math.random()*1.1+.2,
-      fill:'#cfd6e4',opacity:(Math.random()*.28+.05).toFixed(2)},starG);
+    const op=(Math.random()*.28+.05).toFixed(2);
+    const s=E('circle',{cx:Math.random()*1200,cy:Math.random()*675,r:Math.random()*1.1+.2,
+      fill:'#cfd6e4',opacity:op},starG);
+    // a third of the field breathes, very slowly
+    if(!RM&&i%3===0) s.animate([{opacity:op},{opacity:op*.25},{opacity:op}],
+      {duration:5200+Math.random()*4800,iterations:Infinity,delay:Math.random()*5000,easing:'ease-in-out'});
   }
+})();
+(function mist(){
+  // ground fog under every scene; scenes paint over it
+  [[300,624,470,64,'#1b2333',.34,88,86e3],[860,644,520,52,'#161d2b',.28,-70,72e3]].forEach(([cx,cy,rx,ry,fill,op,drift,dur])=>{
+    const m=E('ellipse',{cx,cy,rx,ry,fill,opacity:op,filter:'url(#fMist)'},mistG);
+    if(!RM) m.animate([{transform:'translate(0,0)'},{transform:`translate(${drift}px,-6px)`},{transform:'translate(0,0)'}],
+      {duration:dur,iterations:Infinity,easing:'ease-in-out'});
+  });
+})();
+(function meteors(){
+  if(RM) return;
+  function one(){
+    const x0=260+Math.random()*760, y0=40+Math.random()*170;
+    const g=E('g',{opacity:0},starG);
+    E('line',{x1:x0,y1:y0,x2:x0+64,y2:y0-22,stroke:'#e8edf8','stroke-width':1.3,'stroke-linecap':'round'},g);
+    const a=g.animate([
+      {opacity:0,transform:'translate(0,0)'},
+      {opacity:.6,offset:.22},
+      {opacity:0,transform:'translate(-200px,70px)'}
+    ],{duration:1500,easing:'cubic-bezier(.2,.6,.4,1)'});
+    a.onfinish=()=>g.remove();
+    setTimeout(one,9000+Math.random()*16000);
+  }
+  setTimeout(one,4500);
 })();
 /* The observers' eye — Hegel's "we", who merely look on (¶85). */
 function drawEye(g,x,y,s,cls){
@@ -355,6 +407,7 @@ scenes.push({
     {cls:'b-claim',head:'The setup',at:0,html:'Consciousness always carries two things at once: its <i>object</i> — what it takes to be true in itself — and its <i>knowing</i> of that object, its certainty. Because it holds both, it needs no outside examiner. It can test itself. We contribute nothing; we <em>purely look on</em>.'},
     {cls:'b-inside',head:'The movement',at:1,html:'When the test fails, consciousness must revise its knowing. But its object was defined <i>through</i> that knowing — so the object does not survive either. What steps into its place is a new object: <em>what the old object turned out to be</em>. Claim, test, collapse, new object: that whole movement is what Hegel calls <i>experience</i> (Erfahrung).'},
     {cls:'b-forus',head:'For us',at:2,html:'Consciousness never sees the necessity of this sequence — the new object simply confronts it, as if from nowhere. The logic happens, Hegel says, <i>behind its back</i> (¶87). Watching that logic is our job. Every scene that follows plays twice: once from inside, once from up here.'},
+    {cls:'b-parable',head:'The night-watch · a parable (ours, not Hegel’s)',at:3,html:'Beside the argument we will keep a small story. It is ours — a parable set alongside Hegel’s text, not part of it; where they differ, trust him. A watcher keeps a tower through one long night, sure of nothing so much as their own eyes. No one countersigns the log. Each scene, the story will lose what the argument loses. Watch what the watcher keeps.'},
   ],
   keyline:{at:1,text:'“This dialectical movement that consciousness performs on itself — on its knowing and on its object alike — insofar as the new, true object springs forth from it, is precisely what is called experience.”',cite:'¶86 · our rendering of Hegel’s German — check it against Pinkard'},
   build(x){
@@ -429,6 +482,7 @@ scenes.push({
     {cls:'b-claim',head:'The claim',at:0,html:'Just receive what is there. Don’t infer, don’t compare, don’t conceptualise — alter nothing. <em>This. Here. Now.</em> Nothing could be more concrete, more certain, or richer than the bare presence of the world: an endless wealth in space and time, with nothing left out.'},
     {cls:'b-inside',head:'From inside',at:1,html:'Asked to say what it actually knows, this certainty can produce exactly one word: <i>is</i>. Every description leans on concepts, and concepts are what it renounced. The richest knowledge speaks one syllable — Hegel calls it the most abstract and poorest truth.'},
     {cls:'b-forus',head:'For us',at:1,html:'Even here the structure is double: an I that is a bare “this I”, an item that is a bare “this item” — each certain only <i>through</i> the other (¶92). Pure immediacy is already secretly mediated. Now let it test itself.'},
+    {cls:'b-parable',head:'The night-watch · a parable',at:1,html:'Asked at midnight what they have seen, the watcher opens both hands: everything — the whole sky, nothing left out. Asked to <i>say</i> it, they stand a long while at the rail. “It was there.”'},
   ],
   keyline:{at:1,text:'“It says of what it knows only this: it is. Its truth contains nothing but the being of the item.”',cite:'¶91 · our rendering — check against Pinkard'},
   build(x){
@@ -479,6 +533,7 @@ scenes.push({
     {cls:'b-claim',head:'The claim',at:0,html:'It is night. Asked <i>what is the Now?</i>, sense-certainty answers with perfect confidence: <em>“The ‘now’ is the night.”</em> What could be more certain, at this instant?'},
     {cls:'b-inside',head:'The experiment',at:1,html:'Hegel’s test is disarmingly simple: <i>write the truth down</i>. A truth can’t be damaged by being kept. Then wait. At noon the sentence is still here — and it has gone <em>stale</em>. The Now did not vanish with the night; it calmly persists as <i>not</i>-night, and then as <i>not</i>-day. Whatever holds itself steady through this and that, indifferent to both, is no singular. Hegel’s name for it: a <em>universal</em>.'},
     {cls:'b-forus',head:'For us',at:2,html:'The betrayal happened in language before the sun rose. “Now” never did name <i>this</i> night; it names any moment whatever. We literally cannot say the pure singular we mean — and language, Hegel says, is <i>the more truthful</i> (¶97): it refutes our meaning as we speak.'},
+    {cls:'b-parable',head:'The night-watch · a parable',at:2,html:'The watcher writes in the log: <i>the comet stands over the elm.</i> Toward dawn the page is still true to its ink and false to its sky — the comet has gone on; the words have stayed. The log keeps only what any night could say.'},
   ],
   keyline:{at:2,text:'“A simple something that is through negation — neither this nor that, a not-this, equally indifferent to being this or that — we call a universal.”',cite:'¶96 · our rendering — check against Pinkard'},
   build(x){
@@ -551,6 +606,7 @@ scenes.push({
     {cls:'b-claim',head:'The claim',at:0,html:'Then the truth doesn’t sit in the object — it sits in <em>me</em>. Now is daytime <i>because I see it</i>; here is a tree <i>because I see it</i>. My immediate seeing is the anchor no change can loosen.'},
     {cls:'b-inside',head:'The experiment',at:1,html:'Another I stands elsewhere and reports, with exactly my warrant: <i>here is a house, not a tree</i>. Immediate seeing against immediate seeing. Neither outranks the other; each truth vanishes into its rival. And when I retreat to “I, <i>this</i> I” — that is precisely what every I says of itself. The anchor is a universal too.'},
     {cls:'b-forus',head:'For us',at:2,html:'The certainty has now been driven out of the object and out of the I. One refuge remains: the <i>whole relation itself</i> — a single pure act of intuiting that refuses all comparison (¶103–104). Sense-certainty will make its last stand there.'},
+    {cls:'b-parable',head:'The night-watch · a parable',at:3,html:'On the far hill there is another tower, another log. <i>From my window,</i> the second watcher writes, <i>the comet stands over the river.</i> Two entries, one warrant each. The night countersigns neither.'},
   ],
   keyline:{at:2,text:'“Saying ‘this I’, I say every I; it is impossible to say the singular I that I mean.”',cite:'after ¶102 · our rendering — check against Pinkard'},
   build(x){
@@ -631,6 +687,7 @@ scenes.push({
     {cls:'b-claim',head:'The claim',at:0,html:'Very well — I will not describe at all. I will stand inside one single Now and <em>point</em>: <i>this</i>. Pure showing, no words to betray me, no comparison to dilute me.'},
     {cls:'b-inside',head:'The experiment',at:1,html:'The Now I point at has, in the act of pointing, <em>already been</em>. I am pointing at what no longer is. I take that back too — what-has-been is nothing either — and return to the Now… but the return is not the instant I started with. It is a <i>gathered plurality</i>: this hour of many nows, this day of many hours. Pointing is not a touch. It is a movement — and its result, once more, is the universal. The Here fares no better: it splays into an above, a below, a right, a left.'},
     {cls:'b-forus',head:'For us',at:2,html:'Sense-certainty is never refuted from outside; its own gesture performs the refutation. And nothing is lost: the This survives — <i>as universal</i>. German hands Hegel the moral. <em>Wahrnehmen</em>, “to perceive”, reads literally as <em>to take truly</em>. To take the This as it truly is — a universal — is already to perceive (¶110). The next shape has arrived.'},
+    {cls:'b-parable',head:'The night-watch · a parable',at:3,html:'So the watcher stops writing and only points. But the sky turns under the finger; by the time the gesture settles it names a track, not a star — an hour of sky gathered into one line. Even silence, held out long enough, becomes a sentence.'},
   ],
   keyline:{at:1,text:'“The pointing-out is itself the movement that declares what the Now in truth is: a result, a plurality of nows gathered together.”',cite:'¶107 · our rendering — check against Pinkard'},
   build(x){
@@ -725,6 +782,7 @@ scenes.push({
     {cls:'b-claim',head:'The new claim',at:0,html:'The new object stands firm where the This vanished: <em>one thing bearing many general properties</em>. This salt is a simple Here and yet manifold: white, <i>and also</i> tart, <i>and also</i> cubical, <i>and also</i> heavy. I can lose the instant and keep the thing.'},
     {cls:'b-inside',head:'Look closer',at:1,html:'Watch how it hangs together. Each property soaks the <i>whole same Here</i> — the white is everywhere the tart is — yet they never touch or alter one another. Their peaceful indifference is held in a soft medium Hegel names the <em>Also</em>. But a thing must exclude too — white, <i>not</i> black; salt, <i>not</i> sugar — a hard unity he names the <em>One</em>. The thing is all three at once: the Also, the One, and the properties themselves.'},
     {cls:'b-forus',head:'For us',at:2,html:'Every ingredient here is inherited from the last collapse: the properties just <i>are</i> the universals sense-certainty discovered — its wreckage, organised into furniture. The new object is the old experience, congealed (¶113). And the One and the Also are pulling in opposite directions.'},
+    {cls:'b-parable',head:'The night-watch · a parable',at:2,html:'The watcher starts drawing: many lights gathered into one figure — a hunter, say. Bright, <i>and also</i> red at the shoulder, <i>and also</i> flickering low in the east. One figure; many marks. It steadies the night wonderfully, for a while.'},
   ],
   keyline:{at:1,text:'“This salt is a simple Here and at the same time manifold: it is white, and also tart, and also cubically shaped, and also of a particular weight…”',cite:'¶113 · our rendering — check against Pinkard'},
   build(x){
@@ -797,6 +855,7 @@ scenes.push({
     {cls:'b-claim',head:'The claim',at:0,html:'To perceive truly I need only <em>receive</em> the thing, adding nothing. If a contradiction turns up, the error is mine to subtract — for the thing itself is self-same.'},
     {cls:'b-inside',head:'The experiment',at:1,html:'I take the thing as <i>One</i> — and meet sheer manyness. Fine: the diversity is my doing — white <i>to my eyes</i>, tart <i>on my tongue</i>, cubical <i>to my touch</i>; I am the medium in which it comes apart. But no — the thing over there is really the <i>Also</i>, a loose community of free matters; so its <i>unity</i> must be my doing instead: I supply the “insofar” — insofar as white, it is not cubical… Every time I park one moment in the thing, the other lands in me. Every correction swaps them back.'},
     {cls:'b-forus',head:'For us',at:2,html:'The shuttling is not clumsiness; it is the truth showing itself. Unity and diversity cannot be sorted into “the thing’s share” and “my share” — the object is quietly becoming <em>the whole two-sided movement</em>. Hold that thought: it comes back, under the name <i>force</i>.'},
+    {cls:'b-parable',head:'The night-watch · a parable',at:3,html:'But whose is the figure? The stars are scattered — the sky’s doing; the hunter is one — the pencil’s. No: the hunter is truly up there, and the scatter is these tired eyes. The watcher passes the figure back and forth all night, and the passing is the only thing that holds.'},
   ],
   keyline:{at:2,text:'“Consciousness alternately makes itself, and then again the thing, into both a pure One and an Also dissolved into independent matters — and finds that neither can bear the truth alone.”',cite:'after ¶119–122 · our summary rendering — check against Pinkard'},
   build(x){
@@ -871,6 +930,7 @@ scenes.push({
     {cls:'b-claim',head:'The last defence',at:0,html:'Distribute the contradiction across <i>respects</i>: the thing is One <em>for itself</em>; the diversity and opposition arise only in its <em>relations to other things</em>. In itself, sealed; for another, related. Two respects, cleanly kept apart.'},
     {cls:'b-inside',head:'The experiment',at:1,html:'But what makes <i>this</i> thing this thing — its determinateness, salt and not sugar — is nothing but its <em>difference from the others</em>. Strip the relation away and its character goes with it. Its being-for-itself is constituted by its being-for-another: one and the same respect. The wall that was to seal the thing in is made entirely of contact.'},
     {cls:'b-forus',head:'For us',at:2,html:'What survives the wreck is exactly what perception could never hold in one thought: for-itself and for-another <i>as one</i> — an <em>unconditioned universal</em>, no longer a sensuous thing at all. With that object, consciousness leaves the realm of sturdy things and enters the realm of the <i>understanding</i> — the realm of science (¶129, ¶132).'},
+    {cls:'b-parable',head:'The night-watch · a parable',at:3,html:'By the chart’s edge the hunter ends only where the swan and the river begin. Rub out the neighbours and the hunter goes with them: every figure is drawn from outside itself. The chart holds together; the figures do not.'},
   ],
   keyline:{at:1,text:'“The thing is posited as being for itself — as absolute negation of all otherness. But negation that relates itself to itself is the sublation of itself: the thing has its essence in an other.”',cite:'¶125–126 · our rendering — check against Pinkard'},
   build(x){
@@ -941,6 +1001,7 @@ scenes.push({
     {cls:'b-claim',head:'The new object',at:0,html:'The object is now a <em>movement</em> with two moments: it unfolds into a spread of many matters (the medium), and it gathers back into an excluding point (the One). Neither is the truth alone — the truth is their passing into each other. Thought as one movement, this is <em>force</em>: expression, and force driven back into itself.'},
     {cls:'b-inside',head:'The experiment',at:1,html:'To be actual, force must be <i>solicited</i> — but the soliciting other turns out to be force as well. Two forces, each being only what the other makes it, trading the roles of soliciting and solicited, medium and One, until the trade is all that remains. They have no substance to keep: their reality is the vanishing itself. What stands before the understanding is this whole shimmering exchange — <em>appearance</em> — and through it, it looks for what stays: <em>the inner</em>.'},
     {cls:'b-forus',head:'For us',at:2,html:'Force was never a hidden engine behind the world; it is the <i>concept</i> of the exchange, projected behind it. “The realization of force is the loss of its reality” (¶141). Consciousness now deals in pure concepts — and doesn’t yet know it. A syllogism has formed: the understanding, peering <i>through</i> the play of forces, into a supersensible background.'},
+    {cls:'b-parable',head:'The night-watch · a parable',at:3,html:'The watcher turns astronomer: behind the wandering lights there must be <i>forces</i>. But each force can be told only by what another draws out of it — push named by pull, pull by push. Behind the sky the watcher finds not a ground but an exchange, and names what stands behind that: the inner.'},
   ],
   keyline:{at:1,text:'“Each moment is only through the other, and what each is through the other, it immediately no longer is — for it is the other. They have no substance of their own; their being is a pure vanishing.”',cite:'¶141 · our rendering — check against Pinkard'},
   build(x){
@@ -1042,6 +1103,7 @@ scenes.push({
     {cls:'b-claim',head:'The claim',at:0,html:'Through the veil, the understanding finds what it always wanted: <em>the stable in the flux</em>. Where appearance restlessly alters, its <i>law</i> stands still — the supersensible as a <em>tranquil realm of laws</em>, the motionless likeness of the perceived world.'},
     {cls:'b-inside',head:'The experiment',at:1,html:'But the realm fills with many laws, and the understanding’s own principle — unity — makes it merge them. Merged, they thin out: “universal attraction” finally says only <i>that everything differs lawfully from everything else</i> — the bare concept of law. So the understanding <em>explains</em>: it distinguishes force from law, then concedes they have the same content. Lightning → the law of electricity → “electricity is the force whose expression is that law” → which is the law again. A circle that says one thing twice and calls the distance between <i>explanation</i>.'},
     {cls:'b-forus',head:'For us',at:2,html:'The tautology is the discovery. Watch <i>where</i> the wheel spins: not in the object — in the understanding. The flux that law had banished from the tranquil realm has re-entered it, through us. Explanation is consciousness “in immediate conversation with itself, enjoying only itself” (¶163). The observer has entered the observed — and, for us, that changes everything.'},
+    {cls:'b-parable',head:'The night-watch · a parable',at:3,html:'The tables at last: <i>the comet returns every seventy-six years.</i> Something that does not move. Asked why, the astronomer answers: because of its period. Asked what its period is: that it returns. The wheel turns smoothly. It is the astronomer turning it.'},
   ],
   keyline:{at:1,text:'“The supersensible world is a tranquil realm of laws: beyond the perceived world, which exhibits the law only through incessant change — yet present in it, as its immediate, motionless likeness.”',cite:'¶149 · our rendering — check against Pinkard'},
   build(x){
@@ -1111,7 +1173,21 @@ scenes.push({
       const eye=E('g',{color:C.violet},wg); drawEye(eye,wx,wy,1.1);
       T(wx,wy+46,'the understanding','t-tiny',wg,{fill:C.violet});
       const ring=E('g',{},wg); ring.style.transformOrigin=`${wx}px ${wy}px`;
-      E('circle',{cx:wx,cy:wy,r:150,fill:'none',stroke:C.violet,'stroke-width':1.4,'stroke-dasharray':'6 8'},ring);
+      // pathLength 938 = 67 whole dash periods of "6 8", so the ring closes seamlessly
+      E('circle',{cx:wx,cy:wy,r:150,fill:'none',stroke:C.violet,'stroke-width':1.4,'stroke-dasharray':'6 8',pathLength:938},ring);
+      // the circuit itself: solid arcs with arrowheads joining the three stations into one loop
+      const P150=a=>{const r=Math.PI/180*(a-90);return [wx+Math.cos(r)*150,wy+Math.sin(r)*150,r];};
+      [[27,93],[147,213],[267,333]].forEach(([a1,a2])=>{
+        const [x1,y1]=P150(a1), [x2,y2,r2]=P150(a2);
+        E('path',{d:`M${x1.toFixed(1)} ${y1.toFixed(1)} A150 150 0 0 1 ${x2.toFixed(1)} ${y2.toFixed(1)}`,
+          fill:'none',stroke:C.violet,'stroke-width':2,opacity:.75},ring);
+        const tang=r2+Math.PI/2; // direction of travel
+        const tip=[x2+Math.cos(tang)*15,y2+Math.sin(tang)*15];
+        const b1=[x2+Math.cos(r2)*6.5,y2+Math.sin(r2)*6.5];
+        const b2=[x2-Math.cos(r2)*6.5,y2-Math.sin(r2)*6.5];
+        E('path',{d:`M${tip[0].toFixed(1)} ${tip[1].toFixed(1)} L${b1[0].toFixed(1)} ${b1[1].toFixed(1)} L${b2[0].toFixed(1)} ${b2[1].toFixed(1)} Z`,
+          fill:C.violet,opacity:.85},ring);
+      });
       [[0,'⚡ the event'],[120,'the law of electricity'],[240,'the force “electricity”']].forEach(([deg,txt])=>{
         const a=Math.PI/180*(deg-90);
         const px=wx+Math.cos(a)*150, py=wy+Math.sin(a)*150;
@@ -1140,6 +1216,7 @@ scenes.push({
     {cls:'b-claim',head:'The claim',at:0,html:'Explanation has smuggled a <em>second law</em> into the tranquil realm, opposite in form to the first: not the constancy of the self-same, but <i>the self-same repelling itself; the unlike attracting</i>. Project it as a world of its own, and everything flips: what is sweet in the first world is, in itself, sour; what is north pole here is there south; what the first law punishes, the inverted law pardons.'},
     {cls:'b-inside',head:'The experiment',at:1,html:'Try to hold the two worlds apart, and every term slips through your fingers: if the sour “in itself” of the sweet were a second <i>thing</i> somewhere else, it would just be… an actual sour thing — back in world one. The inversion refuses to stay elsewhere. Each pole carries its opposite <em>within itself</em>: the difference is <i>inner</i>. Sealed as opposites-of-themselves, the two worlds fold into one.'},
     {cls:'b-forus',head:'For us',at:2,html:'This is the collapse of every two-world metaphysics, run from inside. The supersensible is not a second set of furniture behind the scenes — it is <em>appearance, as appearance</em>, comprehended (¶147). What thinking has actually reached is difference-itself: Hegel’s name for it is <em>infinity</em>.'},
+    {cls:'b-parable',head:'The night-watch · a parable',at:3,html:'Near morning the watcher dreams an inverted sky — every bright star dark there, every dark one burning — and wakes to find nothing to correct: each star already carries its own extinguishing with it. There was never a second sky to keep the opposites in.'},
   ],
   keyline:{at:1,text:'“In inner difference, the opposite is not one of two — it is the opposite of an opposite: its other is immediately present within it.”',cite:'¶160 · our rendering — check against Pinkard'},
   build(x){
@@ -1234,6 +1311,7 @@ scenes.push({
     {cls:'b-claim',head:'The result',at:0,html:'What the understanding now holds is no law among laws but <em>the form of every law</em>: a unity that divides itself, a division whose sides are each the whole. Hegel reaches for unscientific words — the <i>simple essence of life</i>, the <i>soul of the world</i>, the <i>universal blood</i>: pulsating in itself without moving, trembling in itself without being agitated.'},
     {cls:'b-inside',head:'Run the film backwards',at:1,html:'The pulse was always there. The Now that endured only by negating night and day. The One and the Also trading places through the perceiver’s hands. The two forces that existed only as each other’s vanishing. The law identical in content with its force. Every collapse you have watched was <em>this one movement</em>, wearing thicker and thicker costumes.'},
     {cls:'b-forus',head:'For us',at:2,html:'An object that is pure self-differentiation cannot sit <i>over against</i> consciousness the way things did. To have infinity as object is to have the structure of consciousness itself as object. The spectator arrangement — a knower here, a world there — is about to give way (¶163).'},
+    {cls:'b-parable',head:'The night-watch · a parable',at:2,html:'The watcher reads the whole night back: the stale log, the two towers, the traded figure, the circling tables. One movement, wearing different instruments. It was never in any of the pages. It was the reading.'},
   ],
   keyline:{at:0,text:'“Simple infinity — the absolute concept — may be called the simple essence of life, the soul of the world, the universal blood: omnipresent, dimmed and interrupted by no difference, itself every difference and their sublatedness.”',cite:'¶162 · our rendering — check against Pinkard'},
   build(x){
@@ -1292,6 +1370,7 @@ scenes.push({
     {cls:'b-claim',head:'The last picture',at:0,html:'One image remains — the oldest in the theatre: appearance as a <em>curtain</em>, and behind it, at last, the true inner of the world. Everything so far has been the walk toward it.'},
     {cls:'b-inside',head:'Lift it',at:1,html:'Behind the curtain there is nothing to see — <i>unless we go behind it ourselves</i>. And then what sees is what is seen. The understanding, explaining appearance, has all along been describing its own movement: distinguishing what is not distinct, uniting what it distinguished. Consciousness of an other has become <em>consciousness of itself</em>: I distinguish myself from myself — and see immediately that the distinguished is not distinct.'},
     {cls:'b-forus',head:'For us — and for it',at:2,html:'You have been here the whole time. The “for us” margin — the eye that watched every collapse from the balcony — is what consciousness has now become <i>for itself</i>. The two tracks of every scene converge. With self-consciousness, Hegel says, we step into <em>truth’s own realm</em> (¶167). Its object will be desire, life, and another self; its battles will be for recognition. That is the next reading.'},
+    {cls:'b-parable',head:'The night-watch · a parable — the last entry',at:2,html:'At dawn the watcher goes down to the great lens, to see at last what the night was hiding. In the eyepiece, before the day floods it: an eye. The night was not withholding an inner; the watcher was the inner of the watch. What was lost, each time, was a way of holding the sky. What was kept was the watcher — who stands now in daylight, which is the harder shift.'},
   ],
   keyline:{at:1,text:'“Behind the so-called curtain that is supposed to conceal the inner, there is nothing to see — unless we ourselves go behind it: as much so that there may be seeing, as that there be something behind to see.”',cite:'¶165 · our rendering — check against Pinkard'},
   build(x){
@@ -1509,6 +1588,68 @@ function updateMap(){
     return `<b style="color:${on?r.color:'var(--faint)'}">${r.label}</b>`;
   }).join(' <span style="color:#3d4450">→</span> ')+`<br><span style="color:#565f6e">each new object keeps the last inside it</span>`;
 }
+
+/* ---------- night music (optional; ours, like the parable) ----------
+   A quiet generative accompaniment, synthesized locally so the file
+   stays self-contained: a low drone in fifths plus sparse aeolian
+   notes through a feedback delay. Off by default; a user click starts it. */
+const musicBtn=document.getElementById('music');
+const music=(function(){
+  let ac,master,bus,timer,on=false;
+  const SCALE=[220,261.63,293.66,329.63,392,440,523.25]; // A aeolian, gentle
+  function build(){
+    ac=new (window.AudioContext||window.webkitAudioContext)();
+    master=ac.createGain(); master.gain.value=0; master.connect(ac.destination);
+    const lp=ac.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=1600; lp.connect(master);
+    bus=ac.createGain(); bus.connect(lp);
+    const delay=ac.createDelay(3); delay.delayTime.value=.85;
+    const fb=ac.createGain(); fb.gain.value=.38;
+    const wet=ac.createGain(); wet.gain.value=.35;
+    bus.connect(delay); delay.connect(fb); fb.connect(delay); delay.connect(wet); wet.connect(lp);
+    [[110,'sine',.05],[164.81,'triangle',.028]].forEach(([f,t,v])=>{ // A2 + E3 drone
+      const o=ac.createOscillator(); o.type=t; o.frequency.value=f; o.detune.value=Math.random()*6-3;
+      const g=ac.createGain(); g.gain.value=v;
+      o.connect(g); g.connect(bus); o.start();
+    });
+  }
+  function note(){
+    if(!on) return;
+    const f=SCALE[Math.floor(Math.random()*SCALE.length)]*(Math.random()<.25?.5:1);
+    const t=ac.currentTime;
+    const o=ac.createOscillator(); o.type='sine'; o.frequency.value=f;
+    const g=ac.createGain();
+    g.gain.setValueAtTime(0,t);
+    g.gain.linearRampToValueAtTime(.11,t+1.1);
+    g.gain.exponentialRampToValueAtTime(.0001,t+5.5);
+    o.connect(g); g.connect(bus);
+    o.start(t); o.stop(t+6);
+    timer=setTimeout(note,2800+Math.random()*5200);
+  }
+  return {toggle(){
+    on=!on;
+    if(on){
+      if(!ac) build();
+      ac.resume();
+      const t=ac.currentTime;
+      master.gain.cancelScheduledValues(t);
+      master.gain.setValueAtTime(master.gain.value,t);
+      master.gain.linearRampToValueAtTime(.85,t+2.5);
+      timer=setTimeout(note,600);
+    }else{
+      clearTimeout(timer);
+      const t=ac.currentTime;
+      master.gain.cancelScheduledValues(t);
+      master.gain.setValueAtTime(master.gain.value,t);
+      master.gain.linearRampToValueAtTime(0,t+1.8);
+    }
+    return on;
+  }};
+})();
+musicBtn.addEventListener('click',()=>{
+  const on=music.toggle();
+  musicBtn.setAttribute('aria-pressed',on);
+  musicBtn.textContent=on?'♪ night music · on':'♪ night music';
+});
 
 /* ---------- boot ---------- */
 (function(){
