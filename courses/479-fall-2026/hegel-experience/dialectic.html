@@ -1,0 +1,1515 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Experience of Consciousness — Hegel, animated</title>
+<meta name="description" content="An animated commentary on the first three shapes of Hegel's Phenomenology of Spirit: sense-certainty, perception, and force &amp; the understanding. Perform Hegel's own experiments and watch each shape of consciousness undo and remake itself.">
+<meta name="theme-color" content="#0b0d13">
+<style>
+  :root{
+    --bg0:#0b0d13; --bg1:#11161f; --panel:#12161e; --panel2:#161b25;
+    --ink:#ece4d2; --dim:#9d968a; --faint:#6b675f;
+    --gold:#e6b95c; --coral:#e0603f; --teal:#63b8a4; --blue:#7ea3c4; --violet:#a99bd0;
+    --line:rgba(236,228,210,.14);
+    --serif:"Iowan Old Style",Baskerville,"Palatino Linotype",Georgia,serif;
+    --mono:ui-monospace,"SF Mono","SFMono-Regular",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:
+      radial-gradient(120rem 60rem at 50% -20rem, #1a2230 0%, transparent 55%),
+      linear-gradient(180deg,var(--bg1),var(--bg0) 40rem);
+    color:var(--ink); font-family:var(--serif);
+    min-height:100dvh;
+  }
+  button{font:inherit; -webkit-tap-highlight-color:transparent}
+  :focus-visible{outline:2px solid var(--gold); outline-offset:3px; border-radius:2px}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+  /* ---------- frame ---------- */
+  .frame{
+    display:grid; height:100dvh; /* definite height so the 1fr row caps and the panel scrolls internally */
+    grid-template-columns:minmax(0,1fr) clamp(21rem,30vw,26.5rem);
+    grid-template-rows:auto minmax(0,1fr) auto;
+    grid-template-areas:"head head" "stage panel" "map map";
+  }
+  header{
+    grid-area:head; display:flex; flex-wrap:wrap; align-items:baseline; gap:.4rem 1.4rem;
+    padding:.85rem clamp(1rem,3vw,2.2rem) .8rem; border-bottom:1px solid var(--line);
+  }
+  .brand{font:600 .66rem var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--dim)}
+  header h1{margin:0; font:500 clamp(1.05rem,2.1vw,1.45rem)/1 var(--serif); letter-spacing:-.01em}
+  header h1 em{font-style:normal; color:var(--gold)}
+  .head-note{margin-left:auto; font:.62rem var(--mono); letter-spacing:.08em; text-transform:uppercase; color:var(--faint)}
+  .head-note a{color:var(--dim); text-underline-offset:.25em}
+
+  /* ---------- stage ---------- */
+  .stagecol{grid-area:stage; display:flex; flex-direction:column; min-height:0; border-right:1px solid var(--line)}
+  .stagewrap{position:relative; flex:1; min-height:20rem; overflow:hidden}
+  #stage{position:absolute; inset:0; width:100%; height:100%; display:block}
+
+  .controls{
+    display:grid; grid-template-columns:auto 1fr auto; gap:.6rem; align-items:stretch;
+    padding:.7rem clamp(.8rem,2vw,1.4rem); border-top:1px solid var(--line); background:rgba(10,12,17,.6);
+  }
+  .navbtn{
+    min-width:3rem; border:1px solid var(--line); background:transparent; color:var(--dim);
+    font:1rem var(--mono); cursor:pointer; border-radius:.2rem;
+  }
+  .navbtn:hover:not(:disabled){color:var(--ink); border-color:var(--dim)}
+  .navbtn:disabled{opacity:.3; cursor:default}
+  #action{
+    border:1px solid var(--gold); background:transparent; color:var(--gold); cursor:pointer;
+    padding:.75rem 1rem; border-radius:.2rem; font:600 .74rem var(--mono);
+    letter-spacing:.1em; text-transform:uppercase; transition:background .18s,color .18s;
+  }
+  #action:hover{background:var(--gold); color:#191408}
+  #action.done{border-color:var(--teal); color:var(--teal)}
+  #action.done:hover{background:var(--teal); color:#0d1512}
+
+  /* ---------- panel ---------- */
+  .panel{
+    grid-area:panel; min-height:0; overflow-y:auto; padding:1.15rem 1.3rem 1.6rem;
+    background:linear-gradient(180deg,var(--panel2),var(--panel));
+    scrollbar-width:thin; scrollbar-color:#2c3442 transparent;
+  }
+  .kicker{margin:0; font:600 .6rem var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--part,#a99bd0)}
+  .kicker .para{color:var(--faint); font-weight:400}
+  .kicker a{color:inherit; text-decoration:none; border-bottom:1px dotted currentColor}
+  .panel h2{margin:.45rem 0 .9rem; font:500 clamp(1.5rem,2.6vw,2rem)/1.06 var(--serif); letter-spacing:-.02em}
+  .block{
+    margin:0 0 .85rem; padding:.75rem .85rem .8rem; border-left:3px solid var(--faint);
+    background:rgba(255,255,255,.025); border-radius:0 .25rem .25rem 0;
+    opacity:0; transform:translateY(.4rem); transition:opacity .5s ease,transform .5s ease;
+  }
+  .block.show{opacity:1; transform:none}
+  .block h3{margin:0 0 .3rem; font:600 .6rem var(--mono); letter-spacing:.12em; text-transform:uppercase}
+  .block p{margin:0; font-size:.92rem; line-height:1.56; color:var(--ink)}
+  .block p + p{margin-top:.5rem}
+  .block em{color:var(--gold); font-style:italic}
+  .block i{font-style:italic}
+  .b-claim{border-left-color:var(--gold)} .b-claim h3{color:var(--gold)}
+  .b-inside{border-left-color:var(--blue)} .b-inside h3{color:var(--blue)}
+  .b-forus{border-left-color:var(--violet)} .b-forus h3{color:var(--violet)}
+  .b-forus p{color:#cfc8e2}
+  .keyline{
+    margin:1rem 0 0; padding:.85rem .95rem; border:1px solid var(--line); border-radius:.25rem;
+    background:rgba(230,185,92,.05);
+    opacity:0; transition:opacity .6s ease;
+  }
+  .keyline.show{opacity:1}
+  .keyline p{margin:0; font:italic 500 .98rem/1.5 var(--serif)}
+  .keyline cite{display:block; margin-top:.45rem; font:.6rem var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--dim); font-style:normal}
+  .stepdots{display:flex; gap:.35rem; margin:.15rem 0 .9rem}
+  .stepdots span{width:1.4rem; height:3px; border-radius:2px; background:var(--line)}
+  .stepdots span.on{background:var(--part,#a99bd0)}
+  details.gloss{margin-top:1.2rem; border-top:1px solid var(--line); padding-top:.8rem}
+  details.gloss summary{cursor:pointer; font:600 .62rem var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--dim)}
+  details.gloss dl{margin:.7rem 0 0; font-size:.83rem; line-height:1.5}
+  details.gloss dt{font:600 .68rem var(--mono); letter-spacing:.08em; text-transform:uppercase; color:var(--gold); margin-top:.55rem}
+  details.gloss dd{margin:0.1rem 0 0; color:var(--dim)}
+
+  /* ---------- map ---------- */
+  .map{
+    grid-area:map; display:flex; align-items:center; gap:clamp(.8rem,2.5vw,2rem);
+    padding:.65rem clamp(1rem,3vw,2.2rem) .75rem; border-top:1px solid var(--line);
+    background:rgba(8,10,14,.75); overflow-x:auto;
+  }
+  .rings{flex:0 0 auto; display:flex; align-items:center; gap:.7rem}
+  #ringsvg{display:block}
+  .chain{font:.58rem var(--mono); letter-spacing:.06em; text-transform:uppercase; color:var(--faint); white-space:nowrap}
+  .chain b{font-weight:600}
+  .journey{display:flex; align-items:flex-end; gap:clamp(.7rem,1.8vw,1.5rem); margin-left:auto}
+  .part{display:flex; flex-direction:column; gap:.35rem}
+  .part > span{font:600 .55rem var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--faint); white-space:nowrap}
+  .nodes{display:flex; gap:.4rem}
+  .node{
+    width:.85rem; height:.85rem; padding:0; border-radius:50%; border:1px solid var(--faint);
+    background:transparent; cursor:pointer; transition:transform .15s;
+  }
+  .node:hover{transform:scale(1.25)}
+  .node.seen{background:var(--pc); border-color:var(--pc); opacity:.55}
+  .node.here{background:var(--pc); border-color:var(--pc); opacity:1; box-shadow:0 0 10px var(--pc)}
+  .scenecount{font:.6rem var(--mono); color:var(--faint); letter-spacing:.08em; white-space:nowrap}
+
+  /* ---------- stage svg text ---------- */
+  text{user-select:none}
+  .t-label{font:600 17px var(--mono); letter-spacing:.1em; fill:var(--ink)}
+  .t-small{font:500 14px var(--mono); letter-spacing:.08em; fill:var(--dim)}
+  .t-tiny{font:500 12px var(--mono); letter-spacing:.06em; fill:var(--faint)}
+  .t-big{font:500 46px var(--serif); fill:var(--ink); letter-spacing:-.01em}
+  .t-huge{font:500 84px var(--serif); fill:var(--ink)}
+  .t-hand{font:italic 500 24px var(--serif); fill:#241d10}
+  .t-serif{font:italic 500 21px var(--serif); fill:var(--dim)}
+  .up{text-transform:uppercase}
+
+  @media (max-width:980px){
+    .frame{grid-template-columns:1fr; grid-template-rows:auto auto auto auto; grid-template-areas:"head" "stage" "panel" "map"; height:auto; min-height:0}
+    .stagecol{border-right:0}
+    .stagewrap{position:relative; height:auto; min-height:0; aspect-ratio:16/10}
+    #stage{position:absolute}
+    .panel{overflow:visible}
+    .journey{margin-left:0}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .block,.keyline{transition:none}
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <header>
+    <span class="brand">EPOL 479 · Reading Lab</span>
+    <h1>The Experience of <em>Consciousness</em></h1>
+    <span class="head-note">Hegel, <i>Phenomenology of Spirit</i> · <a id="pdflink" href="#" target="_blank" rel="noopener">open the reading (Pinkard tr.)</a></span>
+  </header>
+
+  <div class="stagecol">
+    <div class="stagewrap">
+      <svg id="stage" viewBox="0 0 1200 675" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="stagetitle">
+        <title id="stagetitle">Animated stage for the current scene</title>
+        <defs>
+          <radialGradient id="vig" cx="50%" cy="42%" r="75%">
+            <stop offset="0%" stop-color="#141b26"/><stop offset="70%" stop-color="#0d1119"/><stop offset="100%" stop-color="#080a0f"/>
+          </radialGradient>
+          <linearGradient id="nightsky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0b1026"/><stop offset="100%" stop-color="#1a2038"/>
+          </linearGradient>
+          <linearGradient id="noonsky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3b567a"/><stop offset="100%" stop-color="#b28e55"/>
+          </linearGradient>
+          <radialGradient id="coreglow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#f4e3b2" stop-opacity=".95"/><stop offset="45%" stop-color="#e6b95c" stop-opacity=".35"/><stop offset="100%" stop-color="#e6b95c" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="tealglow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#bdeadf" stop-opacity=".9"/><stop offset="50%" stop-color="#63b8a4" stop-opacity=".3"/><stop offset="100%" stop-color="#63b8a4" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="innerdepth" cx="50%" cy="50%" r="60%">
+            <stop offset="0%" stop-color="#050608"/><stop offset="80%" stop-color="#0d1119"/><stop offset="100%" stop-color="#131a25"/>
+          </radialGradient>
+          <linearGradient id="curtainL" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#3d1d2c"/><stop offset="55%" stop-color="#5c2438"/><stop offset="100%" stop-color="#2c1420"/>
+          </linearGradient>
+          <linearGradient id="curtainR" x1="1" y1="0" x2="0" y2="0">
+            <stop offset="0%" stop-color="#3d1d2c"/><stop offset="55%" stop-color="#5c2438"/><stop offset="100%" stop-color="#2c1420"/>
+          </linearGradient>
+          <filter id="fGold" x="-60%" y="-60%" width="220%" height="220%">
+            <feDropShadow dx="0" dy="0" stdDeviation="7" flood-color="#e6b95c" flood-opacity=".8"/>
+          </filter>
+          <filter id="fTeal" x="-60%" y="-60%" width="220%" height="220%">
+            <feDropShadow dx="0" dy="0" stdDeviation="7" flood-color="#63b8a4" flood-opacity=".8"/>
+          </filter>
+          <filter id="fCoral" x="-60%" y="-60%" width="220%" height="220%">
+            <feDropShadow dx="0" dy="0" stdDeviation="7" flood-color="#e0603f" flood-opacity=".85"/>
+          </filter>
+          <filter id="fViolet" x="-60%" y="-60%" width="220%" height="220%">
+            <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#a99bd0" flood-opacity=".8"/>
+          </filter>
+          <filter id="fSoft" x="-60%" y="-60%" width="220%" height="220%">
+            <feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#f0e6cc" flood-opacity=".5"/>
+          </filter>
+        </defs>
+        <rect width="1200" height="675" fill="url(#vig)"/>
+        <g id="starfield"></g>
+        <g id="scene"></g>
+        <g id="observer" aria-hidden="true"></g>
+      </svg>
+    </div>
+    <div class="controls">
+      <button class="navbtn" id="prev" type="button" aria-label="Previous scene">‹</button>
+      <button id="action" type="button">Begin</button>
+      <button class="navbtn" id="next" type="button" aria-label="Next scene">›</button>
+    </div>
+  </div>
+
+  <aside class="panel" id="panel" aria-live="polite">
+    <p class="kicker" id="kicker"></p>
+    <h2 id="scenetitle"></h2>
+    <div class="stepdots" id="stepdots" aria-hidden="true"></div>
+    <div id="blocks"></div>
+    <blockquote class="keyline" id="keyline"><p id="keytext"></p><cite id="keycite"></cite></blockquote>
+    <details class="gloss">
+      <summary>Five words you need</summary>
+      <dl>
+        <dt>universal</dt><dd>What holds itself steady across different instances — “now”, “here”, “I”, “thing”, “red”. The opposite of a bare singular. Sense-certainty’s whole drama is discovering that its words were universals all along.</dd>
+        <dt>sublate (aufheben)</dt><dd>Hegel’s verb for how a shape fails: it is cancelled <i>and</i> kept. The wreckage is never thrown away — it becomes material for the next object.</dd>
+        <dt>in-itself / for-consciousness</dt><dd>What the object supposedly is independently of us, versus how it shows up for a knower. Experience is the discovery that the “in-itself” was an in-itself <i>for consciousness</i> — and the promotion of that discovery into a new object.</dd>
+        <dt>“for us”</dt><dd>Hegel’s observers — you, here. Consciousness never sees why its new object had to arrive; we watch the necessity from the balcony. (¶87: it happens “behind its back”.)</dd>
+        <dt>shape of consciousness</dt><dd>A whole stance toward the world: an object, a criterion of truth, and a way of failing built in. Sense-certainty, perception, and understanding are the first three.</dd>
+      </dl>
+    </details>
+  </aside>
+
+  <nav class="map" aria-label="Journey map">
+    <div class="rings">
+      <svg id="ringsvg" width="86" height="86" viewBox="0 0 86 86" aria-hidden="true"></svg>
+      <div class="chain" id="chain"></div>
+    </div>
+    <div class="journey" id="journey"></div>
+    <span class="scenecount" id="scenecount"></span>
+  </nav>
+
+</div>
+
+<script>
+'use strict';
+/* ============================================================
+   The Experience of Consciousness
+   An animated commentary on Hegel, Phenomenology of Spirit,
+   ¶¶84–167 (Introduction; Sense-certainty; Perception;
+   Force and the Understanding). Paragraph numbers follow the
+   Pinkard translation used in the course reader.
+   ============================================================ */
+
+const SVGNS='http://www.w3.org/2000/svg';
+const RM=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const PDF='../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf';
+document.getElementById('pdflink').href=PDF+'#page=103';
+
+/* ---------- svg helpers ---------- */
+function E(tag,attrs,parent){
+  const n=document.createElementNS(SVGNS,tag);
+  for(const k in attrs) n.setAttribute(k,attrs[k]);
+  if(parent) parent.appendChild(n);
+  return n;
+}
+function T(x,y,str,cls,parent,attrs){
+  attrs=Object.assign({},attrs);
+  const fs=attrs['font-size']; delete attrs['font-size'];
+  const fl=attrs['fill']; delete attrs['fill'];
+  const t=E('text',Object.assign({x,y,'text-anchor':'middle',class:cls},attrs),parent);
+  if(fs) t.style.fontSize=fs; // inline style beats the class's font shorthand
+  if(fl) t.style.fill=fl;     // ditto for colour
+  t.textContent=str;
+  return t;
+}
+/* Web-Animations wrapper that respects prefers-reduced-motion. */
+function anim(el,frames,opts){
+  if(RM){
+    const last=frames[frames.length-1];
+    for(const k in last){ if(k!=='offset'&&k!=='easing') el.style[k]=last[k]; }
+    return {finished:Promise.resolve(),cancel(){}};
+  }
+  return el.animate(frames,Object.assign({fill:'forwards',easing:'ease-in-out'},opts));
+}
+function fadeIn(el,dur,delay){ el.style.opacity=0; return anim(el,[{opacity:0},{opacity:1}],{duration:dur||600,delay:delay||0}); }
+function fadeOut(el,dur,delay){ return anim(el,[{opacity:1},{opacity:0}],{duration:dur||600,delay:delay||0}); }
+const wait=(ms)=>new Promise(r=>setTimeout(r,RM?0:ms));
+
+/* ---------- palette ---------- */
+const C={ink:'#ece4d2',dim:'#9d968a',faint:'#6b675f',gold:'#e6b95c',coral:'#e0603f',teal:'#63b8a4',blue:'#7ea3c4',violet:'#a99bd0'};
+const PARTS=[
+  {name:'Prologue',color:C.violet},
+  {name:'I · Sense-certainty',color:C.gold},
+  {name:'II · Perception',color:C.blue},
+  {name:'III · Force & understanding',color:C.coral},
+  {name:'Threshold',color:C.teal},
+];
+
+/* ---------- stage base ---------- */
+const stageG=document.getElementById('scene');
+const starG=document.getElementById('starfield');
+const obsG=document.getElementById('observer');
+(function stars(){
+  for(let i=0;i<70;i++){
+    E('circle',{cx:Math.random()*1200,cy:Math.random()*675,r:Math.random()*1.1+.2,
+      fill:'#cfd6e4',opacity:(Math.random()*.28+.05).toFixed(2)},starG);
+  }
+})();
+/* The observers' eye — Hegel's "we", who merely look on (¶85). */
+function drawEye(g,x,y,s,cls){
+  const e=E('g',{transform:`translate(${x},${y}) scale(${s})`,class:cls||''},g);
+  E('path',{d:'M-26 0 Q0 -19 26 0 Q0 19 -26 0 Z',fill:'none',stroke:'currentColor','stroke-width':2.4},e);
+  E('circle',{cx:0,cy:0,r:8.5,fill:'none',stroke:'currentColor','stroke-width':2.4},e);
+  E('circle',{cx:0,cy:0,r:3.4,fill:'currentColor'},e);
+  return e;
+}
+(function observer(){
+  obsG.setAttribute('color',C.violet);
+  const e=drawEye(obsG,1128,46,.8);
+  e.setAttribute('opacity','.55');
+  T(1128,74,'for us','t-tiny',obsG,{fill:C.violet,opacity:.6});
+})();
+
+/* ============================================================
+   SCENES
+   Each scene: kicker, title, part, para (¶ refs), page (PDF),
+   blocks[{cls,head,html,at}], keyline{text,cite,at},
+   build(ctx)  -> constructs initial stage
+   steps[{label,run(ctx)}]
+   ============================================================ */
+const scenes=[];
+
+/* ------------------------------------------------------------
+   SCENE 0 · PROLOGUE — how experience works (Intro ¶84–88)
+------------------------------------------------------------ */
+scenes.push({
+  part:0, para:'Introduction ¶84–88', page:104,
+  title:'How experience works',
+  blocks:[
+    {cls:'b-claim',head:'The setup',at:0,html:'Consciousness always carries two things at once: its <i>object</i> — what it takes to be true in itself — and its <i>knowing</i> of that object, its certainty. Because it holds both, it needs no outside examiner. It can test itself. We contribute nothing; we <em>purely look on</em>.'},
+    {cls:'b-inside',head:'The movement',at:1,html:'When the test fails, consciousness must revise its knowing. But its object was defined <i>through</i> that knowing — so the object does not survive either. What steps into its place is a new object: <em>what the old object turned out to be</em>. Claim, test, collapse, new object: that whole movement is what Hegel calls <i>experience</i> (Erfahrung).'},
+    {cls:'b-forus',head:'For us',at:2,html:'Consciousness never sees the necessity of this sequence — the new object simply confronts it, as if from nowhere. The logic happens, Hegel says, <i>behind its back</i> (¶87). Watching that logic is our job. Every scene that follows plays twice: once from inside, once from up here.'},
+  ],
+  keyline:{at:1,text:'“This dialectical movement that consciousness performs on itself — on its knowing and on its object alike — insofar as the new, true object springs forth from it, is precisely what is called experience.”',cite:'¶86 · our rendering of Hegel’s German — check it against Pinkard'},
+  build(x){
+    const g=x.g;
+    // knowing orb
+    const kg=E('g',{},g); x.kg=kg;
+    E('circle',{cx:330,cy:290,r:74,fill:'none',stroke:C.gold,'stroke-width':2.5,filter:'url(#fGold)'},kg);
+    T(330,283,'KNOWING','t-label',kg,{fill:C.gold});
+    T(330,306,'its certainty','t-small',kg);
+    T(330,395,'what consciousness holds to be','t-tiny',kg);
+    T(330,412,'a knowing of the object','t-tiny',kg);
+    // object orb
+    const og=E('g',{},g); x.og=og;
+    E('circle',{cx:870,cy:290,r:74,fill:'none',stroke:C.ink,'stroke-width':2.5,filter:'url(#fSoft)'},og);
+    T(870,283,'OBJECT','t-label',og);
+    T(870,306,'the in-itself','t-small',og);
+    T(870,395,'what the object is supposed to be','t-tiny',og);
+    T(870,412,'independently of the knowing','t-tiny',og);
+    // the test
+    const tg=E('g',{},g); x.tg=tg;
+    E('line',{x1:415,y1:290,x2:560,y2:290,stroke:C.faint,'stroke-width':1.5,'stroke-dasharray':'2 6'},tg);
+    E('line',{x1:640,y1:290,x2:785,y2:290,stroke:C.faint,'stroke-width':1.5,'stroke-dasharray':'2 6'},tg);
+    x.q=T(600,302,'≟','t-big',tg,{fill:C.dim,'font-size':'54px'});
+    x.corr=T(600,345,'do they correspond?','t-small',tg);
+    T(600,90,'the shape of every scene to come','t-serif',g,{opacity:.8});
+  },
+  steps:[
+    {label:'Run the test',async run(x){
+      const flash=anim(x.q,[{opacity:1},{opacity:.15},{opacity:1},{opacity:.15},{opacity:1}],{duration:900});
+      await flash.finished; x.q.textContent='✕'; x.q.style.fill=C.coral; x.q.setAttribute('filter','url(#fCoral)');
+      const c1=E('path',{d:'M300 240 l22 30 l-16 26 l20 24',fill:'none',stroke:C.coral,'stroke-width':2,opacity:0},x.kg);
+      const c2=E('path',{d:'M892 238 l-20 32 l18 24 l-22 26',fill:'none',stroke:C.coral,'stroke-width':2,opacity:0},x.og);
+      fadeIn(c1,500); fadeIn(c2,500,150);
+      x.mm=T(600,462,'the knowing does not match its object','t-small',x.tg,{fill:C.coral,opacity:0});
+      fadeIn(x.mm,500,300);
+    }},
+    {label:'Watch both poles give way',async run(x){
+      fadeOut(x.corr,500); if(x.mm) fadeOut(x.mm,500);
+      // old object ghosts and nests
+      await anim(x.og,[{transform:'translate(0,0) scale(1)'},{transform:'translate(870px,290px) scale(.55) translate(-870px,-290px)'}],{duration:1000}).finished;
+      x.og.querySelectorAll('circle').forEach(c=>{c.setAttribute('stroke-dasharray','5 7');c.setAttribute('stroke',C.dim);c.removeAttribute('filter');});
+      x.og.querySelectorAll('text').forEach(t=>t.setAttribute('opacity','.001'));
+      const nest=E('circle',{cx:870,cy:290,r:96,fill:'none',stroke:C.teal,'stroke-width':2.5,filter:'url(#fTeal)',opacity:0},x.g);
+      fadeIn(nest,700,150);
+      const nl=E('g',{opacity:0},x.g);
+      T(870,148,'THE NEW OBJECT','t-label',nl,{fill:C.teal});
+      T(870,170,'what the first object turned out to be','t-small',nl);
+      T(870,420,'the old object survives inside it —','t-tiny',nl,{fill:C.dim});
+      T(870,437,'as “what was in-itself only for consciousness”','t-tiny',nl,{fill:C.dim});
+      fadeIn(nl,700,450);
+      x.q.textContent='⟳'; x.q.style.fill=C.teal; x.q.setAttribute('filter','url(#fTeal)');
+      const kc=x.kg.querySelector('circle'); anim(kc,[{strokeOpacity:1},{strokeOpacity:.35},{strokeOpacity:1}],{duration:1200});
+    }},
+    {label:'And who saw it happen?',async run(x){
+      obsG.firstChild&&anim(obsG,[{opacity:1},{opacity:1}],{duration:10});
+      const beam=E('path',{d:'M1110 60 Q 900 130 640 250',fill:'none',stroke:C.violet,'stroke-width':1.5,'stroke-dasharray':'3 7',opacity:0},x.g);
+      fadeIn(beam,700);
+      const t=T(600,470,'the necessity is visible only from here — “behind the back” of consciousness (¶87)','t-serif',x.g,{fill:C.violet,opacity:0});
+      fadeIn(t,700,300);
+      anim(obsG,[{opacity:.55},{opacity:1}],{duration:800});
+    }},
+  ],
+});
+
+/* ------------------------------------------------------------
+   SCENE 1 · SENSE-CERTAINTY — the richest knowledge (¶90–91)
+------------------------------------------------------------ */
+scenes.push({
+  part:1, para:'¶90–91', page:107,
+  title:'The richest knowledge',
+  blocks:[
+    {cls:'b-claim',head:'The claim',at:0,html:'Just receive what is there. Don’t infer, don’t compare, don’t conceptualise — alter nothing. <em>This. Here. Now.</em> Nothing could be more concrete, more certain, or richer than the bare presence of the world: an endless wealth in space and time, with nothing left out.'},
+    {cls:'b-inside',head:'From inside',at:1,html:'Asked to say what it actually knows, this certainty can produce exactly one word: <i>is</i>. Every description leans on concepts, and concepts are what it renounced. The richest knowledge speaks one syllable — Hegel calls it the most abstract and poorest truth.'},
+    {cls:'b-forus',head:'For us',at:1,html:'Even here the structure is double: an I that is a bare “this I”, an item that is a bare “this item” — each certain only <i>through</i> the other (¶92). Pure immediacy is already secretly mediated. Now let it test itself.'},
+  ],
+  keyline:{at:1,text:'“It says of what it knows only this: it is. Its truth contains nothing but the being of the item.”',cite:'¶91 · our rendering — check against Pinkard'},
+  build(x){
+    const g=x.g;
+    const wealth=E('g',{},g); x.wealth=wealth;
+    for(let i=0;i<90;i++){
+      const a=Math.random()*Math.PI*2, r=60+Math.random()*300;
+      const d=E('circle',{cx:600+Math.cos(a)*r*1.5,cy:320+Math.sin(a)*r*.85,r:Math.random()*2.2+.6,
+        fill:['#e6b95c','#ece4d2','#7ea3c4'][i%3],opacity:(Math.random()*.5+.15).toFixed(2)},wealth);
+      if(!RM) d.animate([{opacity:d.getAttribute('opacity')},{opacity:.05},{opacity:d.getAttribute('opacity')}],{duration:2400+Math.random()*3000,iterations:Infinity,delay:Math.random()*2000});
+    }
+    E('circle',{cx:600,cy:320,r:120,fill:'url(#coreglow)'},wealth);
+    x.core=E('circle',{cx:600,cy:320,r:9,fill:'#f6ecd0',filter:'url(#fGold)'},g);
+    x.words=E('g',{},g);
+    T(600,205,'NOW','t-label',x.words,{fill:C.gold,'font-size':'22px'});
+    T(430,330,'HERE','t-label',x.words,{fill:C.gold,'font-size':'22px'});
+    T(770,330,'THIS','t-label',x.words,{fill:C.gold,'font-size':'22px'});
+    x.iand=E('g',{},g);
+    E('circle',{cx:250,cy:545,r:7,fill:C.ink},x.iand);
+    T(250,575,'I — this I','t-small',x.iand);
+    E('circle',{cx:950,cy:545,r:7,fill:C.ink},x.iand);
+    T(950,575,'item — this item','t-small',x.iand);
+    E('line',{x1:262,y1:540,x2:588,y2:328,stroke:C.faint,'stroke-width':1,'stroke-dasharray':'2 6'},x.iand);
+    E('line',{x1:938,y1:540,x2:612,y2:328,stroke:C.faint,'stroke-width':1,'stroke-dasharray':'2 6'},x.iand);
+    T(600,80,'an infinite wealth, with nothing omitted','t-serif',g,{opacity:.8});
+  },
+  steps:[
+    {label:'Ask it to say what it knows',async run(x){
+      fadeOut(x.wealth,1400);
+      x.words.querySelectorAll('text').forEach((t,i)=>fadeOut(t,900,i*150));
+      await wait(900);
+      anim(x.core,[{r:9},{r:4}],{duration:600});
+      const said=E('g',{opacity:0},x.g);
+      T(600,330,'“It is.”','t-huge',said,{'font-style':'italic'});
+      T(600,392,'— the most abstract and poorest truth','t-small',said,{fill:C.dim});
+      fadeIn(said,900,300);
+    }},
+  ],
+});
+
+/* ------------------------------------------------------------
+   SCENE 2 · Experiment one: write the truth down (¶95–97)
+------------------------------------------------------------ */
+scenes.push({
+  part:1, para:'¶95–97', page:109,
+  title:'Experiment one: write the truth down',
+  blocks:[
+    {cls:'b-claim',head:'The claim',at:0,html:'It is night. Asked <i>what is the Now?</i>, sense-certainty answers with perfect confidence: <em>“The ‘now’ is the night.”</em> What could be more certain, at this instant?'},
+    {cls:'b-inside',head:'The experiment',at:1,html:'Hegel’s test is disarmingly simple: <i>write the truth down</i>. A truth can’t be damaged by being kept. Then wait. At noon the sentence is still here — and it has gone <em>stale</em>. The Now did not vanish with the night; it calmly persists as <i>not</i>-night, and then as <i>not</i>-day. Whatever holds itself steady through this and that, indifferent to both, is no singular. Hegel’s name for it: a <em>universal</em>.'},
+    {cls:'b-forus',head:'For us',at:2,html:'The betrayal happened in language before the sun rose. “Now” never did name <i>this</i> night; it names any moment whatever. We literally cannot say the pure singular we mean — and language, Hegel says, is <i>the more truthful</i> (¶97): it refutes our meaning as we speak.'},
+  ],
+  keyline:{at:2,text:'“A simple something that is through negation — neither this nor that, a not-this, equally indifferent to being this or that — we call a universal.”',cite:'¶96 · our rendering — check against Pinkard'},
+  build(x){
+    const g=x.g;
+    x.sky=E('rect',{x:0,y:0,width:1200,height:470,fill:'url(#nightsky)'},g);
+    x.stars2=E('g',{},g);
+    for(let i=0;i<50;i++) E('circle',{cx:Math.random()*1200,cy:Math.random()*400,r:Math.random()*1.4+.3,fill:'#dfe6f4',opacity:(Math.random()*.7+.2).toFixed(2)},x.stars2);
+    x.moon=E('g',{},g);
+    E('circle',{cx:905,cy:150,r:38,fill:'#e8e4d5',filter:'url(#fSoft)'},x.moon);
+    E('circle',{cx:922,cy:140,r:32,fill:'#141b2b'},x.moon);
+    x.sun=E('circle',{cx:180,cy:600,r:42,fill:'#f2c85b',filter:'url(#fGold)',opacity:0},g);
+    E('rect',{x:0,y:470,width:1200,height:205,fill:'#0a0c11'},g);
+    E('line',{x1:0,y1:470,x2:1200,y2:470,stroke:'#2a3040','stroke-width':1.5},g);
+    // the NOW monogram
+    x.nowG=E('g',{},g);
+    T(600,560,'NOW','t-big',x.nowG,{fill:C.gold,'font-size':'64px',filter:'url(#fGold)'});
+    x.content=T(600,615,'= the night','t-serif',x.nowG,{fill:C.ink,'font-size':'26px'});
+    // the paper tag (empty until written)
+    x.tag=E('g',{opacity:0},g);
+    E('rect',{x:120,y:120,width:315,height:104,rx:3,fill:'#efe6cd',transform:'rotate(-2 277 172)'},x.tag);
+    x.tagline=T(277,168,'“The Now is the night.”','t-hand',x.tag,{transform:'rotate(-2 277 172)'});
+    T(277,199,'written down, to keep — ¶95, tr. Pinkard','t-tiny',x.tag,{fill:'#6b5f45',transform:'rotate(-2 277 172)'});
+    x.stamp=E('g',{opacity:0},g);
+    E('rect',{x:196,y:114,width:170,height:40,rx:3,fill:'none',stroke:C.coral,'stroke-width':2.5,transform:'rotate(-8 280 134)'},x.stamp);
+    T(281,142,'GONE STALE','t-label',x.stamp,{fill:C.coral,transform:'rotate(-8 280 134)','font-size':'20px'});
+  },
+  steps:[
+    {label:'Write it down',async run(x){
+      fadeIn(x.tag,900);
+      if(!RM){x.tagline.style.opacity=0; anim(x.tagline,[{opacity:0},{opacity:1}],{duration:1200,delay:400});}
+    }},
+    {label:'Wait until noon',async run(x){
+      const D=RM?0:2600;
+      anim(x.sky,[{opacity:1},{opacity:1}],{duration:10});
+      const noon=E('rect',{x:0,y:0,width:1200,height:470,fill:'url(#noonsky)',opacity:0},x.g);
+      x.g.insertBefore(noon,x.stars2);
+      anim(noon,[{opacity:0},{opacity:1}],{duration:D||10});
+      fadeOut(x.stars2,D*.7||10);
+      anim(x.moon,[{transform:'translate(0,0)'},{transform:'translate(120px,-40px)',opacity:0}],{duration:D*.8||10});
+      anim(x.sun,[{opacity:0,transform:'translate(0,0)'},{opacity:1,transform:'translate(330px,-430px)'}],{duration:D||10,delay:D*.25||0});
+      await wait(D*.9);
+      // the tag ages
+      x.tag.querySelector('rect').style.fill='#d9c9a2';
+      fadeIn(x.stamp,700);
+      // NIGHT passes through NOW, DAY arrives, NOW abides
+      const nowT=x.nowG.querySelector('text');
+      anim(nowT,[{opacity:1},{opacity:1}],{duration:10});
+      const night=T(600,615,'night','t-serif',x.g,{fill:C.dim,'font-size':'26px'});
+      x.content.textContent='=';
+      anim(night,[{transform:'translate(0,0)',opacity:1},{transform:'translate(-260px,0)',opacity:0}],{duration:1600,delay:200});
+      const day=T(860,615,'day','t-serif',x.g,{fill:C.dim,'font-size':'26px',opacity:0});
+      anim(day,[{transform:'translate(0,0)',opacity:0},{transform:'translate(-225px,0)',opacity:1}],{duration:1600,delay:900});
+      await wait(2600);
+      anim(day,[{opacity:1},{opacity:.25}],{duration:900});
+      const verdict=E('g',{opacity:0},x.g);
+      T(600,660,'not night · not day — it survives both: a universal','t-small',verdict,{fill:C.teal});
+      fadeIn(verdict,800,200);
+      nowT.style.fill=C.teal; nowT.setAttribute('filter','url(#fTeal)');
+    }},
+  ],
+});
+
+/* ------------------------------------------------------------
+   SCENE 3 · Experiment two: the I will vouch for it (¶100–102)
+------------------------------------------------------------ */
+scenes.push({
+  part:1, para:'¶100–102', page:110,
+  title:'Experiment two: the I will vouch for it',
+  blocks:[
+    {cls:'b-claim',head:'The claim',at:0,html:'Then the truth doesn’t sit in the object — it sits in <em>me</em>. Now is daytime <i>because I see it</i>; here is a tree <i>because I see it</i>. My immediate seeing is the anchor no change can loosen.'},
+    {cls:'b-inside',head:'The experiment',at:1,html:'Another I stands elsewhere and reports, with exactly my warrant: <i>here is a house, not a tree</i>. Immediate seeing against immediate seeing. Neither outranks the other; each truth vanishes into its rival. And when I retreat to “I, <i>this</i> I” — that is precisely what every I says of itself. The anchor is a universal too.'},
+    {cls:'b-forus',head:'For us',at:2,html:'The certainty has now been driven out of the object and out of the I. One refuge remains: the <i>whole relation itself</i> — a single pure act of intuiting that refuses all comparison (¶103–104). Sense-certainty will make its last stand there.'},
+  ],
+  keyline:{at:2,text:'“Saying ‘this I’, I say every I; it is impossible to say the singular I that I mean.”',cite:'after ¶102 · our rendering — check against Pinkard'},
+  build(x){
+    const g=x.g;
+    E('line',{x1:80,y1:480,x2:1120,y2:480,stroke:'#2a3040','stroke-width':1.5},g);
+    // tree
+    const tree=E('g',{},g); x.tree=tree;
+    E('rect',{x:492,y:392,width:16,height:88,fill:'#5d4a33'},tree);
+    E('circle',{cx:500,cy:352,r:52,fill:'none',stroke:C.teal,'stroke-width':2.5},tree);
+    E('circle',{cx:470,cy:378,r:30,fill:'none',stroke:C.teal,'stroke-width':2},tree);
+    E('circle',{cx:532,cy:380,r:27,fill:'none',stroke:C.teal,'stroke-width':2},tree);
+    T(500,516,'tree','t-small',tree);
+    // house
+    const house=E('g',{},g); x.house=house;
+    E('rect',{x:648,y:392,width:110,height:88,fill:'none',stroke:C.blue,'stroke-width':2.5},house);
+    E('path',{d:'M636 392 L703 330 L770 392 Z',fill:'none',stroke:C.blue,'stroke-width':2.5},house);
+    E('rect',{x:688,y:430,width:28,height:50,fill:'none',stroke:C.blue,'stroke-width':2},house);
+    T(703,516,'house','t-small',house);
+    // two I's
+    function eyefig(px,label){
+      const f=E('g',{color:C.ink},g);
+      drawEye(f,px,432,1);
+      T(px,470,label,'t-small',f);
+      return f;
+    }
+    x.i1=eyefig(180,'I₁ — “this I”');
+    x.i2=eyefig(1020,'I₂ — “this I”');
+    x.claims=E('g',{},g);
+  },
+  steps:[
+    {label:'Say it: because I see it',async run(x){
+      x.beam1=E('path',{d:'M208 428 L456 340 L472 402 Z',fill:C.gold,opacity:0},x.g);
+      anim(x.beam1,[{opacity:0},{opacity:.22}],{duration:800});
+      const c=T(300,180,'“Here is a tree — I see it.”','t-serif',x.claims,{fill:C.gold,'font-size':'25px',opacity:0});
+      fadeIn(c,700,300); x.c1=c;
+    }},
+    {label:'Ask the other I',async run(x){
+      x.beam2=E('path',{d:'M992 428 L742 340 L728 402 Z',fill:C.blue,opacity:0},x.g);
+      anim(x.beam2,[{opacity:0},{opacity:.22}],{duration:800});
+      const c2=T(900,180,'“Here is a house — I see it.”','t-serif',x.claims,{fill:C.blue,'font-size':'25px',opacity:0});
+      fadeIn(c2,700,200);
+      await wait(1400);
+      // collision
+      const clash=E('circle',{cx:600,cy:372,r:6,fill:'#fff',opacity:0},x.g);
+      anim(clash,[{opacity:.9,r:6},{opacity:0,r:120}],{duration:900});
+      anim(x.c1,[{opacity:1},{opacity:.18}],{duration:900,delay:300});
+      anim(c2,[{opacity:1},{opacity:.18}],{duration:900,delay:300});
+      anim(x.beam1,[{opacity:.22},{opacity:.05}],{duration:900,delay:300});
+      anim(x.beam2,[{opacity:.22},{opacity:.05}],{duration:900,delay:300});
+      const v=T(600,250,'equal warrant — each vanishes into the other','t-small',x.g,{fill:C.coral,opacity:0});
+      fadeIn(v,700,900);
+    }},
+    {label:'Then who is “I”?',async run(x){
+      // ghost I's multiply around each figure
+      [[180,432],[1020,432]].forEach(([px,py],k)=>{
+        for(let i=0;i<4;i++){
+          const gh=E('g',{color:C.faint,opacity:0},x.g);
+          drawEye(gh,px+(i-1.5)*46,py-70-(i%2)*26,.5);
+          fadeIn(gh,600,i*140+k*80);
+        }
+      });
+      await wait(900);
+      const t=E('g',{opacity:0},x.g);
+      T(600,590,'“I” is what every I calls itself','t-serif',t,{'font-size':'26px',fill:C.teal});
+      T(600,624,'the I, like the Now, is a universal','t-small',t,{fill:C.dim});
+      fadeIn(t,800);
+    }},
+  ],
+});
+
+/* ------------------------------------------------------------
+   SCENE 4 · Experiment three: don't speak — point (¶104–110)
+------------------------------------------------------------ */
+scenes.push({
+  part:1, para:'¶104–110', page:111,
+  title:'Experiment three: don’t speak. Point.',
+  blocks:[
+    {cls:'b-claim',head:'The claim',at:0,html:'Very well — I will not describe at all. I will stand inside one single Now and <em>point</em>: <i>this</i>. Pure showing, no words to betray me, no comparison to dilute me.'},
+    {cls:'b-inside',head:'The experiment',at:1,html:'The Now I point at has, in the act of pointing, <em>already been</em>. I am pointing at what no longer is. I take that back too — what-has-been is nothing either — and return to the Now… but the return is not the instant I started with. It is a <i>gathered plurality</i>: this hour of many nows, this day of many hours. Pointing is not a touch. It is a movement — and its result, once more, is the universal. The Here fares no better: it splays into an above, a below, a right, a left.'},
+    {cls:'b-forus',head:'For us',at:2,html:'Sense-certainty is never refuted from outside; its own gesture performs the refutation. And nothing is lost: the This survives — <i>as universal</i>. German hands Hegel the moral. <em>Wahrnehmen</em>, “to perceive”, reads literally as <em>to take truly</em>. To take the This as it truly is — a universal — is already to perceive (¶110). The next shape has arrived.'},
+  ],
+  keyline:{at:1,text:'“The pointing-out is itself the movement that declares what the Now in truth is: a result, a plurality of nows gathered together.”',cite:'¶107 · our rendering — check against Pinkard'},
+  build(x){
+    const g=x.g;
+    x.dot=E('circle',{cx:640,cy:310,r:11,fill:'#f6ecd0',filter:'url(#fGold)'},g);
+    x.dotT=T(640,275,'NOW','t-label',g,{fill:C.gold});
+    // pointing hand: simple arrow
+    x.hand=E('g',{},g);
+    E('path',{d:'M900 420 L700 330',stroke:C.ink,'stroke-width':3,fill:'none'},x.hand);
+    E('path',{d:'M718 353 L697 328 L729 326 Z',fill:C.ink},x.hand);
+    T(918,448,'point!','t-small',x.hand);
+    x.ghosts=E('g',{},g);
+    x.count=0;
+  },
+  steps:[
+    {label:'Point to the Now',async run(x){
+      for(let k=0;k<3;k++){
+        // each pointed now slides into the past
+        const gx=520-k*95;
+        const ghost=E('circle',{cx:640,cy:310,r:9,fill:C.dim,opacity:.9},x.ghosts);
+        anim(ghost,[{transform:'translate(0,0)',opacity:.9},{transform:`translate(${gx-640}px,0)`,opacity:.35}],{duration:800});
+        const lbl=T(gx,340,'has been','t-tiny',x.ghosts,{opacity:0});
+        fadeIn(lbl,500,600);
+        anim(x.hand,[{transform:'translate(0,0)'},{transform:'translate(-14px,-7px)'},{transform:'translate(0,0)'}],{duration:500});
+        await wait(950);
+      }
+    }},
+    {label:'Gather what remains',async run(x){
+      // band of many nows
+      const band=E('g',{opacity:0},x.g);
+      E('rect',{x:180,y:296,width:640,height:28,rx:14,fill:'none',stroke:C.teal,'stroke-width':2,filter:'url(#fTeal)'},band);
+      T(500,246,'one Now — of many nows: a gathered plurality','t-small',band,{fill:C.teal});
+      fadeIn(band,900);
+      x.band=band;
+      // the Here splays
+      const here=E('g',{opacity:0},x.g);
+      const hx=640,hy=490;
+      E('circle',{cx:hx,cy:hy,r:6,fill:C.ink},here);
+      [['above',0,-52],['below',0,52],['left',-84,0],['right',84,0]].forEach(([w,dx,dy])=>{
+        E('line',{x1:hx,y1:hy,x2:hx+dx*.7,y2:hy+dy*.7,stroke:C.faint,'stroke-width':1.5},here);
+        T(hx+dx,hy+dy+4,w,'t-tiny',here);
+      });
+      T(hx,hy+92,'the Here — of many heres','t-tiny',here,{fill:C.teal});
+      fadeIn(here,900,400);
+      x.here=here;
+    }},
+    {label:'Take it truly (wahr-nehmen)',async run(x){
+      // clear the pointing apparatus so the burst owns the stage
+      if(x.band) anim(x.band,[{opacity:1},{opacity:.14}],{duration:600});
+      if(x.here) anim(x.here,[{opacity:1},{opacity:.3}],{duration:600});
+      anim(x.hand,[{opacity:1},{opacity:0}],{duration:500});
+      anim(x.ghosts,[{opacity:1},{opacity:.15}],{duration:600});
+      // the This bursts into properties
+      anim(x.dotT,[{opacity:1},{opacity:0}],{duration:400});
+      const flash=E('circle',{cx:640,cy:310,r:10,fill:'#fff',opacity:0},x.g);
+      anim(flash,[{opacity:.9,r:10},{opacity:0,r:90}],{duration:800});
+      await wait(300);
+      fadeOut(x.dot,300);
+      const props=[['white','#ece4d2',-120,-52],['tart',C.teal,120,-52],['cubical',C.blue,-120,64],['heavy',C.violet,120,64]];
+      props.forEach(([w,col,dx,dy],i)=>{
+        const o=E('g',{opacity:0},x.g);
+        E('circle',{cx:640+dx,cy:310+dy,r:17,fill:'none',stroke:col,'stroke-width':2.5},o);
+        T(640+dx,310+dy+41,w,'t-small',o,{fill:col});
+        anim(o,[{opacity:0,transform:'translate(0,0) scale(.3)'},{opacity:1,transform:`translate(0,0) scale(1)`}],{duration:700,delay:200+i*160});
+        o.style.transformOrigin=`${640+dx}px ${310+dy}px`;
+      });
+      await wait(1100);
+      const t=E('g',{opacity:0},x.g);
+      T(320,130,'the singular This has become','t-serif',t,{'font-size':'23px'});
+      T(320,166,'a This of general properties','t-serif',t,{fill:C.teal,'font-size':'23px'});
+      T(320,200,'“instead of knowing an immediate — I perceive” · ¶110','t-tiny',t,{fill:C.dim});
+      fadeIn(t,900);
+    }},
+  ],
+});
+
+/* ------------------------------------------------------------
+   SCENE 5 · PERCEPTION — the thing with many properties (¶112–115)
+------------------------------------------------------------ */
+function hexPath(cx,cy,r){
+  let d='';
+  for(let i=0;i<6;i++){
+    const a=Math.PI/180*(60*i-90);
+    d+=(i?'L':'M')+(cx+r*Math.cos(a)).toFixed(1)+' '+(cy+r*Math.sin(a)).toFixed(1)+' ';
+  }
+  return d+'Z';
+}
+scenes.push({
+  part:2, para:'¶112–115', page:116,
+  title:'The thing with many properties',
+  blocks:[
+    {cls:'b-claim',head:'The new claim',at:0,html:'The new object stands firm where the This vanished: <em>one thing bearing many general properties</em>. This salt is a simple Here and yet manifold: white, <i>and also</i> tart, <i>and also</i> cubical, <i>and also</i> heavy. I can lose the instant and keep the thing.'},
+    {cls:'b-inside',head:'Look closer',at:1,html:'Watch how it hangs together. Each property soaks the <i>whole same Here</i> — the white is everywhere the tart is — yet they never touch or alter one another. Their peaceful indifference is held in a soft medium Hegel names the <em>Also</em>. But a thing must exclude too — white, <i>not</i> black; salt, <i>not</i> sugar — a hard unity he names the <em>One</em>. The thing is all three at once: the Also, the One, and the properties themselves.'},
+    {cls:'b-forus',head:'For us',at:2,html:'Every ingredient here is inherited from the last collapse: the properties just <i>are</i> the universals sense-certainty discovered — its wreckage, organised into furniture. The new object is the old experience, congealed (¶113). And the One and the Also are pulling in opposite directions.'},
+  ],
+  keyline:{at:1,text:'“This salt is a simple Here and at the same time manifold: it is white, and also tart, and also cubically shaped, and also of a particular weight…”',cite:'¶113 · our rendering — check against Pinkard'},
+  build(x){
+    const g=x.g, cx=600, cy=330;
+    // co-located property layers, all sharing the same Here
+    x.white=E('g',{},g);
+    E('circle',{cx,cy,r:150,fill:'#ece4d2',opacity:.07},x.white);
+    E('circle',{cx,cy,r:150,fill:'none',stroke:'#ece4d2','stroke-width':1.6,opacity:.5},x.white);
+    x.tart=E('g',{},g);
+    E('circle',{cx,cy,r:150,fill:'none',stroke:C.teal,'stroke-width':2,'stroke-dasharray':'10 7',opacity:.55},x.tart);
+    x.heavy=E('g',{},g);
+    for(let i=-3;i<=3;i++) E('line',{x1:cx+i*34,y1:cy+96,x2:cx+i*34,y2:cy+140,stroke:C.violet,'stroke-width':2,opacity:.5},x.heavy);
+    // the cube (cubical)
+    x.cube=E('g',{},g);
+    const A=[540,392],B=[660,392],Cc=[660,272],D=[540,272],o=[42,-30];
+    const P=p=>p.join(' ');
+    E('path',{d:`M${P(A)} L${P(B)} L${P(Cc)} L${P(D)} Z`,fill:'#141a24',stroke:C.gold,'stroke-width':2,opacity:.95},x.cube);
+    E('path',{d:`M${P(D)} L${540+o[0]} ${272+o[1]} L${660+o[0]} ${272+o[1]} L${P(Cc)} Z`,fill:'#10151d',stroke:C.gold,'stroke-width':2},x.cube);
+    E('path',{d:`M${P(B)} L${660+o[0]} ${392+o[1]} L${660+o[0]} ${272+o[1]}`,fill:'#0d1117',stroke:C.gold,'stroke-width':2},x.cube);
+    T(600,340,'salt','t-serif',x.cube,{fill:C.ink});
+    // labels
+    x.lbls=E('g',{},g);
+    const props=[['white','#ece4d2',330,150],['also tart',C.teal,870,150],['also cubical',C.gold,330,560],['also heavy',C.violet,870,560]];
+    props.forEach(([w,col,px,py])=>T(px,py,w,'t-label',x.lbls,{fill:col}));
+    T(600,86,'one simple Here — and a manifold','t-serif',g,{opacity:.8});
+  },
+  steps:[
+    {label:'Inspect the properties',async run(x){
+      const seq=[[x.white,'the white fills the whole Here'],[x.tart,'so does the tart — the same Here'],[x.cube,'and the cubical'],[x.heavy,'and the weight']];
+      const cap=T(600,610,'','t-small',x.g,{fill:C.dim});
+      for(const [layer,txt] of seq){
+        cap.textContent=txt;
+        anim(layer,[{opacity:1},{opacity:.15},{opacity:1}],{duration:850});
+        await wait(950);
+      }
+      cap.textContent='indifferent to one another: none touches, none alters';
+      cap.style.fill=C.teal;
+    }},
+    {label:'Find the Also — and meet the One',async run(x){
+      const also=E('g',{opacity:0},x.g);
+      E('circle',{cx:600,cy:330,r:192,fill:'none',stroke:C.blue,'stroke-width':2,'stroke-dasharray':'3 9'},also);
+      T(600,118,'the ALSO — the indifferent medium, a “simple togetherness of many”','t-small',also,{fill:C.blue});
+      fadeIn(also,900);
+      await wait(1100);
+      const one=E('g',{opacity:0},x.g);
+      E('circle',{cx:600,cy:330,r:192,fill:'none',stroke:C.gold,'stroke-width':2.6,filter:'url(#fGold)'},one);
+      fadeIn(one,900);
+      const oneT=T(600,650,'the ONE — the excluding unity: white, not black; salt, not sugar','t-small',x.g,{fill:C.gold,opacity:0});
+      fadeIn(oneT,700,400);
+      // an intruding property is repelled
+      const intr=E('g',{},x.g);
+      const chip=E('g',{},intr);
+      E('rect',{x:1030,y:310,width:96,height:38,rx:19,fill:'none',stroke:C.coral,'stroke-width':2},chip);
+      T(1078,335,'sweet?','t-small',chip,{fill:C.coral});
+      await anim(chip,[{transform:'translate(0,0)'},{transform:'translate(-240px,0)'}],{duration:900,delay:300}).finished;
+      const flash=E('circle',{cx:806,cy:330,r:8,fill:C.coral,opacity:0},x.g);
+      anim(flash,[{opacity:.8,r:8},{opacity:0,r:60}],{duration:700});
+      anim(chip,[{transform:'translate(-240px,0)'},{transform:'translate(-60px,0)',opacity:.25}],{duration:800});
+    }},
+  ],
+});
+
+/* ------------------------------------------------------------
+   SCENE 6 · The juggle (¶116–122)
+------------------------------------------------------------ */
+scenes.push({
+  part:2, para:'¶116–122', page:118,
+  title:'The juggle: who holds the many?',
+  blocks:[
+    {cls:'b-claim',head:'The claim',at:0,html:'To perceive truly I need only <em>receive</em> the thing, adding nothing. If a contradiction turns up, the error is mine to subtract — for the thing itself is self-same.'},
+    {cls:'b-inside',head:'The experiment',at:1,html:'I take the thing as <i>One</i> — and meet sheer manyness. Fine: the diversity is my doing — white <i>to my eyes</i>, tart <i>on my tongue</i>, cubical <i>to my touch</i>; I am the medium in which it comes apart. But no — the thing over there is really the <i>Also</i>, a loose community of free matters; so its <i>unity</i> must be my doing instead: I supply the “insofar” — insofar as white, it is not cubical… Every time I park one moment in the thing, the other lands in me. Every correction swaps them back.'},
+    {cls:'b-forus',head:'For us',at:2,html:'The shuttling is not clumsiness; it is the truth showing itself. Unity and diversity cannot be sorted into “the thing’s share” and “my share” — the object is quietly becoming <em>the whole two-sided movement</em>. Hold that thought: it comes back, under the name <i>force</i>.'},
+  ],
+  keyline:{at:2,text:'“Consciousness alternately makes itself, and then again the thing, into both a pure One and an Also dissolved into independent matters — and finds that neither can bear the truth alone.”',cite:'after ¶119–122 · our summary rendering — check against Pinkard'},
+  build(x){
+    const g=x.g;
+    x.banner=T(600,95,'“the thing is self-same; any contradiction is my doing”','t-serif',g,{'font-size':'25px'});
+    // thing side
+    const th=E('g',{},g);
+    E('path',{d:hexPath(280,330,64),fill:'none',stroke:C.blue,'stroke-width':2.4},th);
+    T(280,338,'the thing','t-small',th);
+    T(280,430,'over there','t-tiny',th);
+    // I side
+    const me=E('g',{color:C.ink},g);
+    drawEye(me,920,318,1.25);
+    T(920,376,'the perceiving I','t-small',me);
+    T(920,404,'eyes · tongue · touch','t-tiny',me);
+    // tokens
+    function token(label,col,y){
+      const t=E('g',{},g);
+      E('rect',{x:-62,y:-21,width:124,height:42,rx:21,fill:'#10151d',stroke:col,'stroke-width':2.4},t);
+      T(0,7,label,'t-label',t,{fill:col});
+      t.dataset.col=col;
+      return t;
+    }
+    x.tONE=token('ONE',C.gold,0); x.tALSO=token('ALSO',C.blue,0);
+    x.posA={x:280,y:210}; x.posB={x:920,y:210}; // above thing / above I
+    x.tONE.setAttribute('transform','translate(600,190)');
+    x.tALSO.setAttribute('transform','translate(600,255)');
+    x.cap=T(600,600,'unity and diversity — both must live somewhere','t-small',g,{fill:C.dim});
+  },
+  steps:[
+    {label:'Take the thing as One',async run(x){
+      anim(x.tONE,[{transform:'translate(600px,190px)'},{transform:'translate(280px,210px)'}],{duration:800});
+      anim(x.tALSO,[{transform:'translate(600px,255px)'},{transform:'translate(920px,215px)'}],{duration:800,delay:150});
+      x.cap.textContent='then the manyness is mine: white to these eyes, tart on this tongue — I am the medium';
+    }},
+    {label:'No — the thing is the Also',async run(x){
+      anim(x.tALSO,[{transform:'translate(920px,215px)'},{transform:'translate(600px,120px)'},{transform:'translate(280px,210px)'}],{duration:900});
+      anim(x.tONE,[{transform:'translate(280px,210px)'},{transform:'translate(600px,300px)'},{transform:'translate(920px,215px)'}],{duration:900});
+      x.cap.textContent='then the unity is mine: I supply the “insofar” — insofar as white, not cubical…';
+    }},
+    {label:'Keep correcting',async run(x){
+      const durs=[650,520,410,320,250,200,170];
+      let a=x.tALSO,b=x.tONE; // a currently at thing, b at I
+      for(const d of durs){
+        anim(a,[{transform:'translate(280px,210px)'},{transform:'translate(600px,120px)'},{transform:'translate(920px,215px)'}],{duration:d,easing:'ease-in-out'});
+        anim(b,[{transform:'translate(920px,215px)'},{transform:'translate(600px,300px)'},{transform:'translate(280px,210px)'}],{duration:d,easing:'ease-in-out'});
+        [a,b]=[b,a];
+        await wait(d+40);
+      }
+      // blur into oscillation
+      [x.tONE,x.tALSO].forEach(t=>anim(t,[{opacity:1},{opacity:.45}],{duration:600}));
+      const blur=E('g',{opacity:0},x.g);
+      E('path',{d:'M280 210 Q600 120 920 215 Q600 300 280 210',fill:'none',stroke:C.dim,'stroke-width':1.5,'stroke-dasharray':'4 8'},blur);
+      fadeIn(blur,700);
+      // the claim banner cracks
+      anim(x.banner,[{opacity:1},{opacity:.3}],{duration:800});
+      const crack=E('path',{d:'M470 78 l30 14 l-20 12 l34 10',fill:'none',stroke:C.coral,'stroke-width':2,opacity:0},x.g);
+      fadeIn(crack,600,300);
+      x.cap.textContent='One — Also — One — Also — the sophistry of perceiving (¶130)';
+      x.cap.style.fill=C.coral;
+    }},
+  ],
+});
+
+/* ------------------------------------------------------------
+   SCENE 7 · The thing perishes (¶123–129)
+------------------------------------------------------------ */
+scenes.push({
+  part:2, para:'¶123–131', page:121,
+  title:'The thing perishes of its essential property',
+  blocks:[
+    {cls:'b-claim',head:'The last defence',at:0,html:'Distribute the contradiction across <i>respects</i>: the thing is One <em>for itself</em>; the diversity and opposition arise only in its <em>relations to other things</em>. In itself, sealed; for another, related. Two respects, cleanly kept apart.'},
+    {cls:'b-inside',head:'The experiment',at:1,html:'But what makes <i>this</i> thing this thing — its determinateness, salt and not sugar — is nothing but its <em>difference from the others</em>. Strip the relation away and its character goes with it. Its being-for-itself is constituted by its being-for-another: one and the same respect. The wall that was to seal the thing in is made entirely of contact.'},
+    {cls:'b-forus',head:'For us',at:2,html:'What survives the wreck is exactly what perception could never hold in one thought: for-itself and for-another <i>as one</i> — an <em>unconditioned universal</em>, no longer a sensuous thing at all. With that object, consciousness leaves the realm of sturdy things and enters the realm of the <i>understanding</i> — the realm of science (¶129, ¶132).'},
+  ],
+  keyline:{at:1,text:'“The thing is posited as being for itself — as absolute negation of all otherness. But negation that relates itself to itself is the sublation of itself: the thing has its essence in an other.”',cite:'¶125–126 · our rendering — check against Pinkard'},
+  build(x){
+    const g=x.g;
+    x.crys=[
+      {cx:280,cy:330,col:C.blue,name:'sugar'},
+      {cx:600,cy:330,col:C.gold,name:'this salt'},
+      {cx:920,cy:330,col:C.violet,name:'chalk'},
+    ];
+    x.hexes=x.crys.map(c=>{
+      const h=E('g',{},g);
+      E('path',{d:hexPath(c.cx,c.cy,c.cx===600?95:70),fill:'#10151d',stroke:c.col,'stroke-width':2.4},h);
+      T(c.cx,c.cy+ (c.cx===600?135:110),c.name,'t-small',h,{fill:c.col});
+      return h;
+    });
+    T(600,90,'sealed for itself — related only for another?','t-serif',g,{opacity:.8});
+  },
+  steps:[
+    {label:'Seal the thing in itself',async run(x){
+      const aura=E('path',{d:hexPath(600,330,112),fill:'none',stroke:C.gold,'stroke-width':2,'stroke-dasharray':'2 7',opacity:0},x.g);
+      fadeIn(aura,800);
+      const t=T(600,585,'for itself: absolute negation of all otherness','t-small',x.g,{fill:C.gold,opacity:0});
+      fadeIn(t,700,300); x.sealT=t;
+    }},
+    {label:'Trace where its edges come from',async run(x){
+      // salt's boundary segments take the neighbours' colours
+      const segs=[];
+      for(let i=0;i<6;i++){
+        const a1=Math.PI/180*(60*i-90), a2=Math.PI/180*(60*(i+1)-90), r=95;
+        segs.push(E('line',{x1:600+r*Math.cos(a1),y1:330+r*Math.sin(a1),x2:600+r*Math.cos(a2),y2:330+r*Math.sin(a2),
+          stroke:i%2?C.blue:C.violet,'stroke-width':4,opacity:0,filter:i%2?'url(#fTeal)':'url(#fViolet)'},x.g));
+      }
+      segs.forEach((s,i)=>fadeIn(s,500,i*140));
+      E('line',{x1:352,y1:330,x2:503,y2:330,stroke:C.blue,'stroke-width':1.2,'stroke-dasharray':'2 6',opacity:.6},x.g);
+      E('line',{x1:848,y1:330,x2:697,y2:330,stroke:C.violet,'stroke-width':1.2,'stroke-dasharray':'2 6',opacity:.6},x.g);
+      await wait(1100);
+      x.sealT.textContent='its determinateness — salt, not sugar, not chalk — is drawn entirely by its others';
+      x.sealT.style.fill=C.coral;
+    }},
+    {label:'Let the walls become relations',async run(x){
+      // interiors fade; a relations-mesh remains
+      x.hexes.forEach(h=>anim(h,[{opacity:1},{opacity:.18}],{duration:1200}));
+      const mesh=E('g',{opacity:0},x.g);
+      const pts=[];
+      x.crys.forEach(c=>{ for(let i=0;i<6;i+=2){ const a=Math.PI/180*(60*i-90), r=c.cx===600?95:70; pts.push([c.cx+r*Math.cos(a),330+r*Math.sin(a),c.col]); }});
+      for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++){
+        if(Math.hypot(pts[i][0]-pts[j][0],pts[i][1]-pts[j][1])<520)
+          E('line',{x1:pts[i][0],y1:pts[i][1],x2:pts[j][0],y2:pts[j][1],stroke:C.teal,'stroke-width':.7,opacity:.5},mesh);
+      }
+      pts.forEach(p=>E('circle',{cx:p[0],cy:p[1],r:3,fill:C.teal},mesh));
+      fadeIn(mesh,1400);
+      const t=E('g',{opacity:0},x.g);
+      T(600,585,'the unconditioned universal','t-serif',t,{fill:C.teal,'font-size':'27px',filter:'url(#fTeal)'});
+      T(600,618,'relation itself — with nothing left that merely sits on its own','t-small',t,{fill:C.dim});
+      fadeIn(t,900,500);
+      anim(x.sealT,[{opacity:1},{opacity:0}],{duration:600});
+    }},
+  ],
+});
+
+/* ------------------------------------------------------------
+   SCENE 8 · Force and the play of forces (¶136–143)
+------------------------------------------------------------ */
+scenes.push({
+  part:3, para:'¶136–143', page:130,
+  title:'Force, and the play of forces',
+  blocks:[
+    {cls:'b-claim',head:'The new object',at:0,html:'The object is now a <em>movement</em> with two moments: it unfolds into a spread of many matters (the medium), and it gathers back into an excluding point (the One). Neither is the truth alone — the truth is their passing into each other. Thought as one movement, this is <em>force</em>: expression, and force driven back into itself.'},
+    {cls:'b-inside',head:'The experiment',at:1,html:'To be actual, force must be <i>solicited</i> — but the soliciting other turns out to be force as well. Two forces, each being only what the other makes it, trading the roles of soliciting and solicited, medium and One, until the trade is all that remains. They have no substance to keep: their reality is the vanishing itself. What stands before the understanding is this whole shimmering exchange — <em>appearance</em> — and through it, it looks for what stays: <em>the inner</em>.'},
+    {cls:'b-forus',head:'For us',at:2,html:'Force was never a hidden engine behind the world; it is the <i>concept</i> of the exchange, projected behind it. “The realization of force is the loss of its reality” (¶141). Consciousness now deals in pure concepts — and doesn’t yet know it. A syllogism has formed: the understanding, peering <i>through</i> the play of forces, into a supersensible background.'},
+  ],
+  keyline:{at:1,text:'“Each moment is only through the other, and what each is through the other, it immediately no longer is — for it is the other. They have no substance of their own; their being is a pure vanishing.”',cite:'¶141 · our rendering — check against Pinkard'},
+  build(x){
+    const g=x.g;
+    x.cluster=E('g',{},g);
+    x.cluster.style.transformOrigin='600px 330px';
+    for(let i=0;i<14;i++){
+      const a=i/14*Math.PI*2;
+      E('circle',{cx:600+Math.cos(a)*115,cy:330+Math.sin(a)*115,r:6,fill:C.coral,opacity:.85},x.cluster);
+    }
+    E('circle',{cx:600,cy:330,r:7,fill:'#f6ded2',filter:'url(#fCoral)'},x.cluster);
+    x.capL=T(255,330,'expression','t-small',g,{fill:C.dim});
+    T(255,352,'the unfolded matters','t-tiny',g);
+    x.capR=T(950,330,'driven back','t-small',g,{fill:C.dim});
+    T(950,352,'into the One','t-tiny',g);
+    T(600,90,'the two moments of one movement','t-serif',g,{opacity:.8});
+  },
+  steps:[
+    {label:'Let force express itself',async run(x){
+      if(!RM){
+        x.breath=x.cluster.animate([{transform:'scale(1)'},{transform:'scale(.12)'},{transform:'scale(1)'}],{duration:3000,iterations:Infinity,easing:'ease-in-out'});
+        anim(x.capL,[{fill:C.dim},{fill:C.coral}],{duration:600});
+        anim(x.capR,[{fill:C.dim},{fill:C.coral}],{duration:600});
+      }
+      const t=T(600,585,'neither state is force — force is the passing between them','t-small',x.g,{fill:C.dim,opacity:0});
+      fadeIn(t,800,400);
+      x.cap1=t;
+    }},
+    {label:'Let it meet its other',async run(x){
+      if(x.breath) x.breath.cancel();
+      if(x.cap1){ const c1=x.cap1; fadeOut(c1,500).finished.then(()=>c1.remove()); }
+      // split into two forces in antiphase
+      anim(x.cluster,[{transform:'scale(1) translate(0,0)'},{transform:'scale(.55) translate(-540px,0)'}],{duration:1000});
+      const f2=x.cluster.cloneNode(true); x.g.appendChild(f2);
+      f2.style.transformOrigin='600px 330px';
+      anim(f2,[{transform:'scale(1) translate(0,0)',opacity:0},{transform:'scale(.55) translate(540px,0)',opacity:1}],{duration:1000});
+      await wait(1050);
+      if(!RM){
+        x.cluster.animate([{transform:'scale(.55) translate(-540px,0)'},{transform:'scale(.18) translate(-1650px,0)'},{transform:'scale(.55) translate(-540px,0)'}],{duration:2200,iterations:Infinity,easing:'ease-in-out'});
+        f2.animate([{transform:'scale(.18) translate(1650px,0)'},{transform:'scale(.55) translate(540px,0)'},{transform:'scale(.18) translate(1650px,0)'}],{duration:2200,iterations:Infinity,easing:'ease-in-out'});
+      }
+      // exchange arcs
+      const arcs=E('g',{opacity:0},x.g);
+      E('path',{d:'M420 300 Q600 220 780 300',fill:'none',stroke:C.coral,'stroke-width':1.6},arcs);
+      E('path',{d:'M780 360 Q600 440 420 360',fill:'none',stroke:C.coral,'stroke-width':1.6},arcs);
+      E('path',{d:'M760 292 l24 6 l-18 16 Z',fill:C.coral},arcs);
+      E('path',{d:'M440 368 l-24 -6 l18 -16 Z',fill:C.coral},arcs);
+      fadeIn(arcs,700);
+      // role labels that swap
+      x.rlA=T(420,190,'soliciting · the One','t-small',x.g,{fill:C.gold});
+      x.rlB=T(780,190,'solicited · the medium','t-small',x.g,{fill:C.blue});
+      const cap=T(600,585,'each is only what the other makes it — watch the roles refuse to stay put','t-small',x.g,{fill:C.dim});
+      for(const d of [900,700,500,380]){
+        await wait(d);
+        const a=x.rlA.textContent; x.rlA.textContent=x.rlB.textContent; x.rlB.textContent=a;
+        const fA=x.rlA.style.fill; x.rlA.style.fill=x.rlB.style.fill; x.rlB.style.fill=fA;
+        anim(x.rlA,[{opacity:.2},{opacity:1}],{duration:250});
+        anim(x.rlB,[{opacity:.2},{opacity:1}],{duration:250});
+      }
+      await wait(500);
+      cap.textContent='the difference between them has dissolved — only the exchange remains';
+      cap.style.fill=C.coral;
+    }},
+    {label:'Look through the play',async run(x){
+      // the whole play sinks to a shimmer behind the veil — labels included
+      Array.from(x.g.children).forEach(n=>anim(n,[{opacity:1},{opacity:.12}],{duration:1200}));
+      const veil=E('g',{opacity:0},x.g);
+      for(let i=0;i<9;i++){
+        const l=E('line',{x1:560+i*10,y1:200,x2:560+i*10,y2:460,stroke:'#e8b0a0','stroke-width':1,opacity:.5},veil);
+        if(!RM) l.animate([{opacity:.15},{opacity:.6},{opacity:.15}],{duration:1500+i*180,iterations:Infinity});
+      }
+      fadeIn(veil,900);
+      const ap=E('g',{opacity:0},x.g);
+      E('ellipse',{cx:900,cy:330,rx:120,ry:150,fill:'url(#innerdepth)',stroke:'#2a3040','stroke-width':1.5},ap);
+      T(900,325,'THE INNER','t-label',ap,{fill:C.teal});
+      T(900,350,'the supersensible','t-tiny',ap,{fill:C.dim});
+      fadeIn(ap,1100,300);
+      const und=E('g',{color:C.ink,opacity:0},x.g);
+      drawEye(und,255,330,1.2);
+      T(255,388,'UNDERSTANDING','t-small',und);
+      fadeIn(und,900,300);
+      T(605,185,'appearance','t-small',x.g,{fill:'#e8b0a0'});
+      const syl=E('g',{opacity:0},x.g);
+      E('line',{x1:300,y1:330,x2:545,y2:330,stroke:C.faint,'stroke-width':1,'stroke-dasharray':'2 6'},syl);
+      E('line',{x1:660,y1:330,x2:775,y2:330,stroke:C.faint,'stroke-width':1,'stroke-dasharray':'2 6'},syl);
+      T(600,630,'a syllogism: the understanding — through appearance — into the inner (¶145)','t-small',syl,{fill:C.dim});
+      fadeIn(syl,900,600);
+    }},
+  ],
+});
+
+/* ------------------------------------------------------------
+   SCENE 9 · The tranquil realm of laws (¶148–155)
+------------------------------------------------------------ */
+scenes.push({
+  part:3, para:'¶148–155', page:136,
+  title:'A tranquil realm of laws — and the secret of explanation',
+  blocks:[
+    {cls:'b-claim',head:'The claim',at:0,html:'Through the veil, the understanding finds what it always wanted: <em>the stable in the flux</em>. Where appearance restlessly alters, its <i>law</i> stands still — the supersensible as a <em>tranquil realm of laws</em>, the motionless likeness of the perceived world.'},
+    {cls:'b-inside',head:'The experiment',at:1,html:'But the realm fills with many laws, and the understanding’s own principle — unity — makes it merge them. Merged, they thin out: “universal attraction” finally says only <i>that everything differs lawfully from everything else</i> — the bare concept of law. So the understanding <em>explains</em>: it distinguishes force from law, then concedes they have the same content. Lightning → the law of electricity → “electricity is the force whose expression is that law” → which is the law again. A circle that says one thing twice and calls the distance between <i>explanation</i>.'},
+    {cls:'b-forus',head:'For us',at:2,html:'The tautology is the discovery. Watch <i>where</i> the wheel spins: not in the object — in the understanding. The flux that law had banished from the tranquil realm has re-entered it, through us. Explanation is consciousness “in immediate conversation with itself, enjoying only itself” (¶163). The observer has entered the observed — and, for us, that changes everything.'},
+  ],
+  keyline:{at:1,text:'“The supersensible world is a tranquil realm of laws: beyond the perceived world, which exhibits the law only through incessant change — yet present in it, as its immediate, motionless likeness.”',cite:'¶149 · our rendering — check against Pinkard'},
+  build(x){
+    const g=x.g;
+    E('rect',{x:120,y:80,width:960,height:420,rx:6,fill:'none',stroke:'#242c3a','stroke-width':1.5},g);
+    T(600,64,'inside the inner','t-tiny',g,{fill:C.faint});
+    // flux: falling dots + orbit
+    x.flux=E('g',{},g);
+    x.par='M220 140 Q 360 480 520 460';
+    const parPath=E('path',{d:x.par,fill:'none',stroke:'#242c3a','stroke-width':1,opacity:.001},x.flux);
+    for(let k=0;k<3;k++){
+      const d=E('circle',{r:5,fill:C.ink,opacity:.8},x.flux);
+      if(!RM){
+        d.style.offsetPath=`path('${x.par}')`;
+        d.animate([{offsetDistance:'0%'},{offsetDistance:'100%'}],{duration:2600,iterations:Infinity,delay:k*850,easing:'ease-in'});
+      } else { d.setAttribute('cx',360); d.setAttribute('cy',330); }
+    }
+    x.orbC={cx:820,cy:290,rx:150,ry:88};
+    const orb=E('circle',{r:6,fill:C.ink,opacity:.8},x.flux);
+    if(!RM){
+      orb.style.offsetPath=`path('M670 290 a150 88 0 1 0 300 0 a150 88 0 1 0 -300 0')`;
+      orb.animate([{offsetDistance:'0%'},{offsetDistance:'100%'}],{duration:4200,iterations:Infinity,easing:'linear'});
+    } else { orb.setAttribute('cx',670); orb.setAttribute('cy',290); }
+    T(370,540,'restless alteration — appearance','t-tiny',g,{fill:C.dim});
+    x.cards=E('g',{},g);
+  },
+  steps:[
+    {label:'Extract what holds still',async run(x){
+      const cur=E('g',{opacity:0},x.g);
+      E('path',{d:x.par,fill:'none',stroke:C.gold,'stroke-width':2.2,filter:'url(#fGold)'},cur);
+      E('ellipse',{cx:820,cy:290,rx:150,ry:88,fill:'none',stroke:C.gold,'stroke-width':2.2,filter:'url(#fGold)'},cur);
+      fadeIn(cur,1200); x.cur=cur;
+      const mk=(px,py,txt)=>{
+        const c=E('g',{opacity:0},x.cards);
+        E('rect',{x:px-95,y:py-24,width:190,height:44,rx:4,fill:'#141a24',stroke:C.gold,'stroke-width':1.6},c);
+        T(px,py+5,txt,'t-small',c,{fill:C.ink});
+        fadeIn(c,700,300);
+        return c;
+      };
+      x.c1=mk(300,200,'fall · s ∝ t²');
+      x.c2=mk(820,170,'orbit · R³ ∝ T²');
+      x.c3=mk(600,420,'electricity · + ⇄ −');
+      const t=T(600,585,'the law: what the flux keeps constant — a still image of the changing world','t-small',x.g,{fill:C.gold,opacity:0});
+      fadeIn(t,800,600); x.capt=t;
+    }},
+    {label:'Unify the laws',async run(x){
+      const mv=(c,dx,dy)=>anim(c,[{transform:'translate(0,0)'},{transform:`translate(${dx}px,${dy}px)`,opacity:0}],{duration:900});
+      mv(x.c1,300,90); mv(x.c2,-220,120); mv(x.c3,0,-130);
+      await wait(950);
+      const uni=E('g',{opacity:0},x.g);
+      E('rect',{x:380,y:255,width:440,height:70,rx:4,fill:'#12161e',stroke:C.dim,'stroke-width':1.2,'stroke-dasharray':'4 5'},uni);
+      T(600,285,'universal attraction','t-small',uni,{fill:C.dim});
+      T(600,310,'“everything differs, lawfully, from everything else”','t-tiny',uni,{fill:C.faint});
+      fadeIn(uni,900); x.uni=uni;
+      x.capt.textContent='unified, law thins to the bare concept of law — lawfulness as such (¶150)';
+      x.capt.style.fill=C.dim;
+    }},
+    {label:'Explain the lightning',async run(x){
+      // the tautology wheel spins around the understanding's eye, not the object
+      const wg=E('g',{opacity:0},x.g); x.wheel=wg;
+      const wx=600,wy=330;
+      anim(x.g.querySelector('rect'),[{opacity:1},{opacity:.4}],{duration:800});
+      // the tranquil realm recedes; the wheel spins in front of it
+      if(x.uni) anim(x.uni,[{opacity:1},{opacity:.12}],{duration:800});
+      if(x.cur) anim(x.cur,[{opacity:1},{opacity:.22}],{duration:800});
+      anim(x.flux,[{opacity:1},{opacity:.15}],{duration:800});
+      const eye=E('g',{color:C.violet},wg); drawEye(eye,wx,wy,1.1);
+      T(wx,wy+46,'the understanding','t-tiny',wg,{fill:C.violet});
+      const ring=E('g',{},wg); ring.style.transformOrigin=`${wx}px ${wy}px`;
+      E('circle',{cx:wx,cy:wy,r:150,fill:'none',stroke:C.violet,'stroke-width':1.4,'stroke-dasharray':'6 8'},ring);
+      [[0,'⚡ the event'],[120,'the law of electricity'],[240,'the force “electricity”']].forEach(([deg,txt])=>{
+        const a=Math.PI/180*(deg-90);
+        const px=wx+Math.cos(a)*150, py=wy+Math.sin(a)*150;
+        const n=E('g',{},ring);
+        E('rect',{x:px-92,y:py-18,width:184,height:36,rx:18,fill:'#12161e',stroke:C.violet,'stroke-width':1.5},n);
+        T(px,py+6,txt,'t-tiny',n,{fill:C.ink});
+        // counter-rotate so each label stays upright while orbiting
+        n.style.transformOrigin=`${px}px ${py}px`;
+        if(!RM) n.animate([{transform:'rotate(0deg)'},{transform:'rotate(-360deg)'}],{duration:9000,iterations:Infinity,easing:'linear'});
+      });
+      fadeIn(wg,900);
+      if(!RM) ring.animate([{transform:'rotate(0deg)'},{transform:'rotate(360deg)'}],{duration:9000,iterations:Infinity,easing:'linear'});
+      x.capt.textContent='same content, named twice — and the movement now runs in the understanding, not in the world';
+      x.capt.style.fill=C.violet;
+    }},
+  ],
+});
+
+/* ------------------------------------------------------------
+   SCENE 10 · The inverted world (¶156–160)
+------------------------------------------------------------ */
+scenes.push({
+  part:3, para:'¶156–160', page:142,
+  title:'The inverted world',
+  blocks:[
+    {cls:'b-claim',head:'The claim',at:0,html:'Explanation has smuggled a <em>second law</em> into the tranquil realm, opposite in form to the first: not the constancy of the self-same, but <i>the self-same repelling itself; the unlike attracting</i>. Project it as a world of its own, and everything flips: what is sweet in the first world is, in itself, sour; what is north pole here is there south; what the first law punishes, the inverted law pardons.'},
+    {cls:'b-inside',head:'The experiment',at:1,html:'Try to hold the two worlds apart, and every term slips through your fingers: if the sour “in itself” of the sweet were a second <i>thing</i> somewhere else, it would just be… an actual sour thing — back in world one. The inversion refuses to stay elsewhere. Each pole carries its opposite <em>within itself</em>: the difference is <i>inner</i>. Sealed as opposites-of-themselves, the two worlds fold into one.'},
+    {cls:'b-forus',head:'For us',at:2,html:'This is the collapse of every two-world metaphysics, run from inside. The supersensible is not a second set of furniture behind the scenes — it is <em>appearance, as appearance</em>, comprehended (¶147). What thinking has actually reached is difference-itself: Hegel’s name for it is <em>infinity</em>.'},
+  ],
+  keyline:{at:1,text:'“In inner difference, the opposite is not one of two — it is the opposite of an opposite: its other is immediately present within it.”',cite:'¶160 · our rendering — check against Pinkard'},
+  build(x){
+    const g=x.g;
+    x.hdr=T(600,120,'the first supersensible world — like stays like','t-serif',g,{'font-size':'23px',opacity:.9});
+    x.pairs=[['sweet','sour'],['black','white'],['north pole','south pole'],['punishment','pardon']];
+    x.chips=x.pairs.map((p,i)=>{
+      const px=228+i*248;
+      const c=E('g',{},g);
+      c.style.transformOrigin=`${px}px 300px`;
+      E('rect',{x:px-100,y:262,width:200,height:76,rx:6,fill:'#1a2130',stroke:C.ink,'stroke-width':1.6},c);
+      const t=T(px,310,p[0],'t-label',c,{'font-size':'21px'});
+      c._word=t; c._alt=null; c._px=px;
+      return c;
+    });
+    x.cap=T(600,585,'','t-small',g,{fill:C.dim});
+  },
+  steps:[
+    {label:'Apply the second law',async run(x){
+      x.hdr.textContent='the inverted world — like repels like; unlike attracts';
+      anim(x.hdr,[{opacity:.2},{opacity:.9}],{duration:700});
+      for(const [i,c] of x.chips.entries()){
+        anim(c,[{transform:'scaleX(1)'},{transform:'scaleX(0)'}],{duration:260,delay:i*160});
+        setTimeout(()=>{
+          c._word.textContent=x.pairs[i][1];
+          c.querySelector('rect').style.fill='#e4dcc8';
+          c._word.style.fill='#141a24';
+          anim(c,[{transform:'scaleX(0)'},{transform:'scaleX(1)'}],{duration:260});
+        },RM?0:(i*160+270));
+      }
+      await wait(1300);
+      x.cap.textContent='per se, the sweet is sour; per se, the north pole is south (¶158)';
+    }},
+    {label:'Try to hold the worlds apart',async run(x){
+      // the "first world" reappears above, faint — and each chip's opposite bleeds back inside it
+      const ghost=E('g',{opacity:0},x.g);
+      x.chips.forEach((c,i)=>{
+        E('rect',{x:c._px-80,y:172,width:160,height:52,rx:5,fill:'none',stroke:C.faint,'stroke-width':1.2,'stroke-dasharray':'4 5'},ghost);
+        T(c._px,204,x.pairs[i][0],'t-small',ghost,{fill:C.dim});
+        E('line',{x1:c._px,y1:224,x2:c._px,y2:260,stroke:C.faint,'stroke-width':1,'stroke-dasharray':'2 5'},ghost);
+      });
+      fadeIn(ghost,800);
+      await wait(900);
+      x.chips.forEach((c,i)=>{
+        const t=T(c._px,330,'· '+x.pairs[i][0]+' ·','t-tiny',c,{fill:'#5c5648',opacity:0});
+        fadeIn(t,700,i*140);
+      });
+      x.cap.textContent='an “in itself” kept elsewhere would just be another actual thing — each pole holds its other within';
+      x.cap.style.fill=C.coral;
+    }},
+    {label:'Fold them together',async run(x){
+      x.g.querySelectorAll('g').forEach(n=>anim(n,[{opacity:1},{opacity:0}],{duration:900}));
+      anim(x.hdr,[{opacity:.9},{opacity:0}],{duration:900});
+      anim(x.cap,[{opacity:1},{opacity:0}],{duration:400});
+      await wait(700);
+      // the lemniscate: difference held inside one movement
+      let d='';
+      for(let i=0;i<=200;i++){
+        const t=i/200*Math.PI*2;
+        const den=1+Math.sin(t)*Math.sin(t);
+        const px=600+300*Math.cos(t)/den;
+        const py=330+190*Math.sin(t)*Math.cos(t)/den;
+        d+=(i?'L':'M')+px.toFixed(1)+' '+py.toFixed(1)+' ';
+      }
+      x.lem=d;
+      const path=E('path',{d,fill:'none',stroke:C.teal,'stroke-width':2.6,filter:'url(#fTeal)'},x.g);
+      if(!RM){
+        const len=path.getTotalLength();
+        path.style.strokeDasharray=len; path.style.strokeDashoffset=len;
+        path.animate([{strokeDashoffset:len},{strokeDashoffset:0}],{duration:2200,fill:'forwards',easing:'ease-in-out'});
+      }
+      const p2=E('circle',{r:5,fill:'#d8f2ea',filter:'url(#fTeal)'},x.g);
+      if(!RM){
+        p2.style.offsetPath=`path('${d}')`;
+        p2.animate([{offsetDistance:'0%'},{offsetDistance:'100%'}],{duration:3600,iterations:Infinity,easing:'linear',delay:1800});
+      } else { p2.setAttribute('cx',900); p2.setAttribute('cy',330); }
+      const t2=E('g',{opacity:0},x.g);
+      T(600,560,'not two worlds — one world, opposed to itself','t-serif',t2,{'font-size':'25px'});
+      T(600,594,'inner difference · infinity','t-small',t2,{fill:C.teal});
+      fadeIn(t2,900,RM?0:2000);
+    }},
+  ],
+});
+
+/* ------------------------------------------------------------
+   SCENE 11 · Infinity — the pulse (¶161–163)
+------------------------------------------------------------ */
+scenes.push({
+  part:3, para:'¶161–163', page:145,
+  title:'Infinity: the pulse that was everywhere',
+  blocks:[
+    {cls:'b-claim',head:'The result',at:0,html:'What the understanding now holds is no law among laws but <em>the form of every law</em>: a unity that divides itself, a division whose sides are each the whole. Hegel reaches for unscientific words — the <i>simple essence of life</i>, the <i>soul of the world</i>, the <i>universal blood</i>: pulsating in itself without moving, trembling in itself without being agitated.'},
+    {cls:'b-inside',head:'Run the film backwards',at:1,html:'The pulse was always there. The Now that endured only by negating night and day. The One and the Also trading places through the perceiver’s hands. The two forces that existed only as each other’s vanishing. The law identical in content with its force. Every collapse you have watched was <em>this one movement</em>, wearing thicker and thicker costumes.'},
+    {cls:'b-forus',head:'For us',at:2,html:'An object that is pure self-differentiation cannot sit <i>over against</i> consciousness the way things did. To have infinity as object is to have the structure of consciousness itself as object. The spectator arrangement — a knower here, a world there — is about to give way (¶163).'},
+  ],
+  keyline:{at:0,text:'“Simple infinity — the absolute concept — may be called the simple essence of life, the soul of the world, the universal blood: omnipresent, dimmed and interrupted by no difference, itself every difference and their sublatedness.”',cite:'¶162 · our rendering — check against Pinkard'},
+  build(x){
+    const g=x.g;
+    let d='';
+    for(let i=0;i<=200;i++){
+      const t=i/200*Math.PI*2;
+      const den=1+Math.sin(t)*Math.sin(t);
+      d+=(i?'L':'M')+(600+310*Math.cos(t)/den).toFixed(1)+' '+(330+200*Math.sin(t)*Math.cos(t)/den).toFixed(1)+' ';
+    }
+    x.lem=d;
+    x.heart=E('g',{},g);
+    x.heart.style.transformOrigin='600px 330px';
+    E('path',{d,fill:'none',stroke:C.teal,'stroke-width':3,filter:'url(#fTeal)'},x.heart);
+    E('circle',{cx:600,cy:330,r:5,fill:'#d8f2ea'},x.heart);
+    T(600,600,'a movement that goes nowhere — and carries everything','t-serif',g,{opacity:.75});
+  },
+  steps:[
+    {label:'Sound the pulse',async run(x){
+      if(!RM) x.heart.animate(
+        [{transform:'scale(1)'},{transform:'scale(1.045)'},{transform:'scale(1)'},{transform:'scale(1.06)'},{transform:'scale(1)'}],
+        {duration:1600,iterations:Infinity,easing:'ease-in-out'});
+      const t=T(600,96,'pulsating in itself, without moving','t-serif',x.g,{'font-size':'24px',fill:C.teal,opacity:0});
+      fadeIn(t,900);
+    }},
+    {label:'Replay the whole journey',async run(x){
+      const riders=[['night / day',C.gold],['One / Also',C.blue],['force / force',C.coral],['law / force','#d9a2c6']];
+      riders.forEach(([txt,col],i)=>{
+        const r=E('g',{opacity:0},x.g);
+        E('rect',{x:-64,y:-17,width:128,height:34,rx:17,fill:'#10151d',stroke:col,'stroke-width':1.8},r);
+        T(0,5,txt,'t-tiny',r,{fill:col});
+        if(!RM){
+          r.style.offsetPath=`path('${x.lem}')`;
+          r.style.offsetRotate='0deg';
+          r.animate([{offsetDistance:'0%'},{offsetDistance:'100%'}],{duration:7000,iterations:Infinity,delay:i*1750,easing:'linear'});
+          fadeIn(r,600,i*1750);
+        } else {
+          const a=Math.PI/180*(i*80+20), den=1+Math.sin(a)*Math.sin(a);
+          r.setAttribute('transform',`translate(${600+310*Math.cos(a)/den},${330+200*Math.sin(a)*Math.cos(a)/den})`);
+          r.style.opacity=1;
+        }
+      });
+      const t=T(600,640,'the same form was the soul of every collapse','t-small',x.g,{fill:C.dim,opacity:0});
+      fadeIn(t,900,RM?0:1200);
+    }},
+  ],
+});
+
+/* ------------------------------------------------------------
+   SCENE 12 · Behind the curtain (¶164–167)
+------------------------------------------------------------ */
+scenes.push({
+  part:4, para:'¶164–167', page:148,
+  title:'Behind the curtain',
+  blocks:[
+    {cls:'b-claim',head:'The last picture',at:0,html:'One image remains — the oldest in the theatre: appearance as a <em>curtain</em>, and behind it, at last, the true inner of the world. Everything so far has been the walk toward it.'},
+    {cls:'b-inside',head:'Lift it',at:1,html:'Behind the curtain there is nothing to see — <i>unless we go behind it ourselves</i>. And then what sees is what is seen. The understanding, explaining appearance, has all along been describing its own movement: distinguishing what is not distinct, uniting what it distinguished. Consciousness of an other has become <em>consciousness of itself</em>: I distinguish myself from myself — and see immediately that the distinguished is not distinct.'},
+    {cls:'b-forus',head:'For us — and for it',at:2,html:'You have been here the whole time. The “for us” margin — the eye that watched every collapse from the balcony — is what consciousness has now become <i>for itself</i>. The two tracks of every scene converge. With self-consciousness, Hegel says, we step into <em>truth’s own realm</em> (¶167). Its object will be desire, life, and another self; its battles will be for recognition. That is the next reading.'},
+  ],
+  keyline:{at:1,text:'“Behind the so-called curtain that is supposed to conceal the inner, there is nothing to see — unless we ourselves go behind it: as much so that there may be seeing, as that there be something behind to see.”',cite:'¶165 · our rendering — check against Pinkard'},
+  build(x){
+    const g=x.g;
+    // proscenium + aperture
+    E('rect',{x:250,y:110,width:700,height:440,fill:'url(#innerdepth)',stroke:'#2a3040','stroke-width':2},g);
+    // what waits behind (hidden under curtains until lifted)
+    x.behind=E('g',{opacity:0},g);
+    E('ellipse',{cx:600,cy:320,rx:170,ry:200,fill:'none',stroke:C.gold,'stroke-width':2.4,filter:'url(#fGold)'},x.behind);
+    x.mirrorEye=E('g',{color:C.violet},x.behind);
+    drawEye(x.mirrorEye,600,320,2.6);
+    T(600,470,'the seer — seen','t-small',x.behind,{fill:C.violet});
+    // curtains
+    x.curL=E('g',{},g);
+    E('rect',{x:250,y:110,width:352,height:440,fill:'url(#curtainL)'},x.curL);
+    for(let i=0;i<6;i++) E('path',{d:`M${278+i*56} 110 q 10 220 -6 440`,fill:'none',stroke:'#301622','stroke-width':7,opacity:.7},x.curL);
+    x.curR=E('g',{},g);
+    E('rect',{x:598,y:110,width:352,height:440,fill:'url(#curtainR)'},x.curR);
+    for(let i=0;i<6;i++) E('path',{d:`M${640+i*56} 110 q -10 220 6 440`,fill:'none',stroke:'#301622','stroke-width':7,opacity:.7},x.curR);
+    E('path',{d:'M240 110 q 360 66 720 0 l0 -14 l-720 0 Z',fill:'#43172a',stroke:'#2b0f1c','stroke-width':2},g);
+    x.cap=T(600,600,'the curtain before the inner','t-small',g,{fill:C.dim});
+  },
+  steps:[
+    {label:'Lift the curtain',async run(x){
+      anim(x.curL,[{transform:'translate(0,0)'},{transform:'translate(-320px,0)'}],{duration:2200,easing:'cubic-bezier(.6,0,.3,1)'});
+      anim(x.curR,[{transform:'translate(0,0)'},{transform:'translate(320px,0)'}],{duration:2200,easing:'cubic-bezier(.6,0,.3,1)'});
+      await wait(1200);
+      fadeIn(x.behind,1600);
+      // the corner observer dims — it has moved onto the stage
+      anim(obsG,[{opacity:1},{opacity:.15}],{duration:1600});
+      x.cap.textContent='nothing to see — unless we go behind it ourselves';
+      await wait(1200);
+      x.cap.textContent='the eye from the margin. It was the inner all along.';
+      x.cap.style.fill=C.violet;
+    }},
+    {label:'Meet the new shape',async run(x){
+      fadeOut(x.mirrorEye,900);
+      // knowing & object — the two orbs of scene 0 — merge
+      const k=E('circle',{cx:440,cy:320,r:56,fill:'none',stroke:C.gold,'stroke-width':2.4,opacity:0},x.g);
+      const o=E('circle',{cx:760,cy:320,r:56,fill:'none',stroke:C.ink,'stroke-width':2.4,opacity:0},x.g);
+      fadeIn(k,700); fadeIn(o,700);
+      await wait(800);
+      anim(k,[{transform:'translate(0,0)'},{transform:'translate(104px,0)'}],{duration:1400});
+      anim(o,[{transform:'translate(0,0)'},{transform:'translate(-104px,0)'}],{duration:1400});
+      await wait(1500);
+      const ii=E('g',{opacity:0},x.g);
+      const ring=E('circle',{cx:600,cy:320,r:62,fill:'none',stroke:C.violet,'stroke-width':3,filter:'url(#fViolet)'},ii);
+      T(600,312,'I = I','t-big',ii,{fill:C.violet,'font-size':'40px'});
+      T(600,346,'a distinction — that is none','t-tiny',ii,{fill:C.ink,stroke:'#0b0d13','stroke-width':'3','paint-order':'stroke'});
+      fadeIn(ii,900);
+      if(!RM){ ring.style.transformOrigin='600px 320px'; ring.animate([{transform:'scale(1)'},{transform:'scale(1.05)'},{transform:'scale(1)'}],{duration:1600,iterations:Infinity,easing:'ease-in-out'}); }
+      anim(k,[{opacity:1},{opacity:.25}],{duration:900});
+      anim(o,[{opacity:1},{opacity:.25}],{duration:900});
+      x.cap.textContent='self-consciousness — the native realm of truth (¶167). Next: desire, life, recognition.';
+      x.cap.style.fill=C.ink;
+      const chain=T(600,650,'This → Thing → Force → Law → Infinity → I','t-small',x.g,{fill:C.teal,opacity:0});
+      fadeIn(chain,900,600);
+    }},
+  ],
+});
+
+/* ============================================================
+   ENGINE
+   ============================================================ */
+const kickerEl=document.getElementById('kicker');
+const titleEl=document.getElementById('scenetitle');
+const blocksEl=document.getElementById('blocks');
+const keylineEl=document.getElementById('keyline');
+const keytextEl=document.getElementById('keytext');
+const keyciteEl=document.getElementById('keycite');
+const actionBtn=document.getElementById('action');
+const prevBtn=document.getElementById('prev');
+const nextBtn=document.getElementById('next');
+const stepdotsEl=document.getElementById('stepdots');
+const panelEl=document.getElementById('panel');
+const journeyEl=document.getElementById('journey');
+const chainEl=document.getElementById('chain');
+const scenecountEl=document.getElementById('scenecount');
+
+let idx=0, step=0, ctx=null, busy=false, gen=0; // gen invalidates in-flight steps when the scene changes
+
+function partOf(s){ return PARTS[s.part]; }
+
+function renderScene(){
+  step=0; busy=false; gen++; actionBtn.disabled=false;
+  const s=scenes[idx];
+  // stage
+  stageG.replaceChildren();
+  ctx={g:stageG};
+  s.build(ctx);
+  // panel
+  const p=partOf(s);
+  panelEl.style.setProperty('--part',p.color);
+  kickerEl.innerHTML=`${p.name} <span class="para">· <a href="${PDF}#page=${s.page}" target="_blank" rel="noopener">${s.para}</a></span>`;
+  kickerEl.style.color=p.color;
+  titleEl.textContent=s.title;
+  blocksEl.replaceChildren();
+  s._blockEls=s.blocks.map(b=>{
+    const d=document.createElement('div');
+    d.className='block '+b.cls;
+    d.innerHTML=`<h3>${b.head}</h3><p>${b.html}</p>`;
+    blocksEl.appendChild(d);
+    return d;
+  });
+  keytextEl.textContent=s.keyline?s.keyline.text:'';
+  keyciteEl.textContent=s.keyline?s.keyline.cite:'';
+  keylineEl.style.display=s.keyline?'':'none';
+  keylineEl.classList.remove('show');
+  updateReveals();
+  updateButtons();
+  updateMap();
+  panelEl.scrollTop=0;
+  location.hash='s'+idx;
+}
+function updateReveals(){
+  const s=scenes[idx];
+  s.blocks.forEach((b,i)=>{ if(step>=b.at) s._blockEls[i].classList.add('show'); });
+  if(s.keyline&&step>=s.keyline.at) keylineEl.classList.add('show');
+  stepdotsEl.replaceChildren();
+  s.steps.forEach((_,i)=>{
+    const sp=document.createElement('span');
+    if(i<step) sp.classList.add('on');
+    stepdotsEl.appendChild(sp);
+  });
+}
+function updateButtons(){
+  const s=scenes[idx];
+  if(step<s.steps.length){
+    actionBtn.textContent=s.steps[step].label;
+    actionBtn.classList.remove('done');
+  }else{
+    actionBtn.textContent=(idx<scenes.length-1)?'Continue →':'Begin again ↻';
+    actionBtn.classList.add('done');
+  }
+  prevBtn.disabled=(idx===0);
+  nextBtn.disabled=(idx===scenes.length-1);
+  scenecountEl.textContent=`scene ${idx+1} / ${scenes.length}`;
+}
+async function doAction(){
+  if(busy) return;
+  const s=scenes[idx];
+  if(step<s.steps.length){
+    busy=true; actionBtn.disabled=true;
+    const g=gen;
+    try{ await s.steps[step].run(ctx); }catch(e){ console.error(e); }
+    if(g!==gen) return; // scene changed mid-step; renderScene already reset the state
+    step++;
+    busy=false; actionBtn.disabled=false;
+    updateReveals(); updateButtons();
+    // bring newly revealed narration into view
+    const revealed=s.blocks.map((b,i)=>b.at===step?s._blockEls[i]:null).filter(Boolean)[0];
+    if(revealed) revealed.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'});
+  }else if(idx<scenes.length-1){ idx++; renderScene(); }
+  else { idx=0; renderScene(); }
+}
+actionBtn.addEventListener('click',doAction);
+prevBtn.addEventListener('click',()=>{ if(idx>0){idx--;renderScene();} });
+nextBtn.addEventListener('click',()=>{ if(idx<scenes.length-1){idx++;renderScene();} });
+window.addEventListener('keydown',e=>{
+  if(e.target.closest('button,details,summary,a')) return;
+  if(e.key==='ArrowLeft'&&idx>0){idx--;renderScene();}
+  if(e.key==='ArrowRight'&&idx<scenes.length-1){idx++;renderScene();}
+});
+
+/* ---------- journey map ---------- */
+(function buildMap(){
+  const groups=new Map();
+  scenes.forEach((s,i)=>{ if(!groups.has(s.part)) groups.set(s.part,[]); groups.get(s.part).push(i); });
+  groups.forEach((ids,part)=>{
+    const d=document.createElement('div'); d.className='part';
+    d.style.setProperty('--pc',PARTS[part].color);
+    const lab=document.createElement('span'); lab.textContent=PARTS[part].name; d.appendChild(lab);
+    const nd=document.createElement('div'); nd.className='nodes';
+    ids.forEach(i=>{
+      const b=document.createElement('button'); b.className='node'; b.type='button';
+      b.style.setProperty('--pc',PARTS[part].color);
+      b.title=scenes[i].title; b.setAttribute('aria-label',`Scene ${i+1}: ${scenes[i].title}`);
+      b.addEventListener('click',()=>{idx=i;renderScene();});
+      b.dataset.scene=i;
+      nd.appendChild(b);
+    });
+    d.appendChild(nd); journeyEl.appendChild(d);
+  });
+})();
+
+/* ---------- the object chain (nested rings) ---------- */
+const RINGS=[
+  {label:'the This',from:1,color:C.gold},
+  {label:'the Thing',from:5,color:C.blue},
+  {label:'Force',from:8,color:C.coral},
+  {label:'Law',from:9,color:'#d9a2c6'},
+  {label:'Infinity',from:11,color:C.teal},
+  {label:'the I',from:12,color:C.violet},
+];
+const ringsvg=document.getElementById('ringsvg');
+function updateMap(){
+  document.querySelectorAll('.node').forEach(n=>{
+    const i=+n.dataset.scene;
+    n.classList.toggle('here',i===idx);
+    n.classList.toggle('seen',i<idx);
+  });
+  // rings
+  ringsvg.replaceChildren();
+  RINGS.forEach((r,i)=>{
+    const on=idx>=r.from;
+    E('circle',{cx:43,cy:43,r:7+i*6.4,fill:'none',stroke:on?r.color:'#2c3340','stroke-width':on?2:1,opacity:on?.95:.6},ringsvg);
+  });
+  E('circle',{cx:43,cy:43,r:2.4,fill:idx>=12?C.violet:'#4a5262'},ringsvg);
+  chainEl.innerHTML=RINGS.map(r=>{
+    const on=idx>=r.from;
+    return `<b style="color:${on?r.color:'var(--faint)'}">${r.label}</b>`;
+  }).join(' <span style="color:#3d4450">→</span> ')+`<br><span style="color:#565f6e">each new object keeps the last inside it</span>`;
+}
+
+/* ---------- boot ---------- */
+(function(){
+  const m=location.hash.match(/^#s(\d+)$/);
+  if(m){ const i=+m[1]; if(i>=0&&i<scenes.length) idx=i; }
+  renderScene();
+})();
+</script>
+</body>
+</html>
