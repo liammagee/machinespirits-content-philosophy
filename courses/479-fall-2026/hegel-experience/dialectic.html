@@ -63,11 +63,13 @@
   #action{
     border:1px solid var(--gold); background:transparent; color:var(--gold); cursor:pointer;
     padding:.75rem 1rem; border-radius:.2rem; font:600 .74rem var(--mono);
-    letter-spacing:.1em; text-transform:uppercase; transition:background .18s,color .18s;
+    letter-spacing:.1em; text-transform:uppercase; transition:background .18s,color .18s,opacity .18s;
   }
   #action:hover{background:var(--gold); color:#191408}
   #action.done{border-color:var(--teal); color:var(--teal)}
   #action.done:hover{background:var(--teal); color:#0d1512}
+  #action:disabled{opacity:.45; cursor:progress}
+  #action:disabled:hover{background:transparent; color:var(--gold)}
 
   /* ---------- panel ---------- */
   .panel{
@@ -1375,6 +1377,10 @@ function partOf(s){ return PARTS[s.part]; }
 
 function renderScene(){
   step=0; busy=false; gen++; actionBtn.disabled=false;
+  // scene 12 dims #observer with a filling animation that can outlive
+  // getAnimations() reporting — overwrite it, don't just cancel
+  obsG.getAnimations().forEach(a=>a.cancel());
+  anim(obsG,[{opacity:1},{opacity:1}],{duration:1});
   const s=scenes[idx];
   // stage
   stageG.replaceChildren();
