@@ -7,8 +7,8 @@ type: "course-reference"
 # Tutor Lab: Three Reference Deliberations
 
 [Open Tutor Lab](https://machinespirits.org/tutor-lab) ·
-[Activity guide](tutor-lab.html) ·
-[Course page](course.html)
+[Activity guide](/content/courses/479-fall-2026/tutor-lab.html) ·
+[Course page](/courses/479-fall-2026)
 
 These abbreviated examples were prepared from scripted reference conversations
 generated on 9 August 2026 with the frozen Course 479 profiles. They are design
