@@ -62,9 +62,9 @@ access to the project repository. Download your own transcript if you want to
 bring it into class discussion; the activity does not ask you to submit the
 conversation as research data.
 
-Start with the [Tutor Lab activity guide](tutor-lab.html), then use the
-[three reference deliberations](tutor-lab-transcripts.html) to see how a draft,
-critique, and revision can diverge before you begin.
+Start with the [Tutor Lab activity guide](/content/courses/479-fall-2026/tutor-lab.html),
+then use the [three reference deliberations](/content/courses/479-fall-2026/tutor-lab-transcripts.html)
+to see how a draft, critique, and revision can diverge before you begin.
 
 ## Weekly Structure
 

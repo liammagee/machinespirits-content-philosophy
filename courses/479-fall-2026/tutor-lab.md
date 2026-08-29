@@ -7,8 +7,8 @@ type: "course-activity"
 # Tutor Lab: Course 479 Activity Guide
 
 [Open Tutor Lab](https://machinespirits.org/tutor-lab) ·
-[Course page](course.html) ·
-[Reference deliberations](tutor-lab-transcripts.html)
+[Course page](/courses/479-fall-2026) ·
+[Reference deliberations](/content/courses/479-fall-2026/tutor-lab-transcripts.html)
 
 Tutor Lab lets you talk with the course tutor while seeing the sequence behind
 each response: an initial draft, an internal critique, and a revision. The
