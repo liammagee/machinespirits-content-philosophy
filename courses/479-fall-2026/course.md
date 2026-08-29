@@ -49,6 +49,23 @@ What does it mean for both humans and machines to "learn"? This course explores:
 - The master-bondsman dialectic in human-AI interaction
 - Ethical implications of AI in education
 
+## Tutor Lab
+
+[Open the Course 479 Tutor Lab](https://machinespirits.org/tutor-lab) to hold a
+conversation with the course tutor while its drafting process remains visible.
+Each reply appears alongside an initial draft, an internal critique, and a
+revision. You can change the tutor's prompt stance and critic setting during the
+conversation, then compare what changes and what stays fixed.
+
+The lab requires the class key distributed in the seminar. It does not require
+access to the project repository. Download your own transcript if you want to
+bring it into class discussion; the activity does not ask you to submit the
+conversation as research data.
+
+Start with the [Tutor Lab activity guide](tutor-lab.html), then use the
+[three reference deliberations](tutor-lab-transcripts.html) to see how a draft,
+critique, and revision can diverge before you begin.
+
 ## Weekly Structure
 
 Each week consists of a three-hour online seminar combining group discussion, lecture, and hands-on practice, with 10-minute breaks between hours. Seven seminars run across Term A; there is no class on Labor Day.
