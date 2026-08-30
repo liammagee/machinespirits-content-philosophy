@@ -3,555 +3,332 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>One Cup, Three Ways of Knowing — Hegel’s Experience</title>
-  <meta name="description" content="A concrete, interactive journey through sense-certainty, perception, and understanding using one everyday cup of coffee.">
-  <meta name="theme-color" content="#1b1915">
-  <meta property="og:title" content="One Cup, Three Ways of Knowing">
-  <meta property="og:description" content="Follow one everyday cup through sense-certainty, perception, and understanding—and ask what it would mean for a machine to learn from experience.">
+  <title>A Lamp, Reconsidered — Hegel’s Experience</title>
+  <meta name="description" content="One everyday desk lamp, three ways of knowing: an interactive teaching analogy for Hegel’s sense-certainty, perception, and understanding.">
+  <meta name="theme-color" content="#121021">
+  <meta property="og:title" content="A Lamp, Reconsidered">
+  <meta property="og:description" content="Switch it off. Change the room. Test the circuit. Let one everyday object change what you mean by knowing it.">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://machinespirits.org/content/courses/479-fall-2026/hegel-experience/art/lamp-on.webp">
+  <meta property="og:image:alt" content="A brass desk lamp casts a warm pool of light in a midnight-violet room.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="A Lamp, Reconsidered">
+  <meta name="twitter:description" content="An everyday route through Hegel’s three moments of consciousness.">
+  <meta name="twitter:image" content="https://machinespirits.org/content/courses/479-fall-2026/hegel-experience/art/lamp-on.webp">
   <link rel="canonical" href="https://machinespirits.org/content/courses/479-fall-2026/hegel-experience/">
+  <link rel="preload" href="art/lamp-on.webp" as="image">
   <style>
     :root {
-      color-scheme: light;
-      --ink: #1b1915;
-      --cream: #f4eddf;
-      --paper: #fffaf0;
-      --coral: #de5b3f;
-      --green: #294c3d;
-      --blue: #456c88;
-      --gold: #f2c85b;
-      --muted: #6e685e;
-      --line: rgba(27,25,21,.22);
-      --serif: Iowan Old Style, Baskerville, "Times New Roman", serif;
-      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      color-scheme: dark;
+      --bg0:#121021; --bg1:#1a1730; --panel:#181630; --panel2:#1d1a34;
+      --ink:#ece7f0; --dim:#b4acc7; --faint:#958aa9;
+      --gold:#f0c9a0; --coral:#e08e9b; --teal:#8fd6c2; --blue:#a9bbe8; --violet:#c0aee6;
+      --line:rgba(236,231,240,.14); --part:var(--gold);
+      --serif:"Iowan Old Style",Baskerville,"Palatino Linotype",Georgia,serif;
+      --mono:ui-monospace,"SF Mono","SFMono-Regular",Menlo,Consolas,monospace;
     }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--sans); }
-    button, input { font: inherit; }
-    button { -webkit-tap-highlight-color: transparent; }
-    :focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-
-    .topbar { display: flex; justify-content: space-between; gap: 1rem; padding: .8rem clamp(1rem,4vw,3.5rem); border-bottom: 1px solid var(--ink); background: var(--paper); font: .68rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
-    .topbar a { color: inherit; text-underline-offset: .25em; }
-    .intro { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(17rem,.8fr); border-bottom: 1px solid var(--ink); }
-    .intro-copy { padding: clamp(2.8rem,7vw,6rem) clamp(1rem,6vw,5.5rem); }
-    .eyebrow { margin: 0 0 1rem; color: var(--coral); font: 700 .72rem var(--mono); letter-spacing: .1em; text-transform: uppercase; }
-    h1 { max-width: 11ch; margin: 0; font: 500 clamp(3.7rem,9vw,8rem)/.85 var(--serif); letter-spacing: -.06em; }
-    h1 em { color: var(--coral); font-weight: 500; }
-    .intro-copy > p:last-child { max-width: 44rem; margin: 2rem 0 0; font: clamp(1.2rem,2.2vw,1.75rem)/1.35 var(--serif); }
-    .promise { display: flex; flex-direction: column; justify-content: end; padding: clamp(2rem,4vw,3.5rem); background: var(--green); color: var(--paper); }
-    .promise strong { color: var(--gold); font: 500 clamp(1.8rem,4vw,3rem)/1.05 var(--serif); }
-    .promise p { margin: 1rem 0 0; line-height: 1.6; }
-
-    main { padding: clamp(3rem,7vw,6rem) clamp(1rem,5vw,4.5rem); }
-    .experience { max-width: 92rem; margin: 0 auto; border: 1px solid var(--ink); background: var(--paper); box-shadow: .7rem .7rem 0 var(--ink); }
-    .moments { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; border-bottom: 1px solid var(--ink); background: var(--ink); }
-    .moment { min-height: 5.4rem; padding: .85rem 1rem; border: 0; background: #e3dbcc; color: var(--ink); cursor: pointer; text-align: left; }
-    .moment:disabled { cursor: not-allowed; color: #898174; }
-    .moment[aria-current="step"] { background: var(--coral); color: white; }
-    .moment.is-complete { background: var(--gold); color: var(--ink); }
-    .moment small { display: block; margin-bottom: .4rem; font: .61rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
-    .moment strong { font: 500 1.25rem var(--serif); }
-
-    .lab { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(20rem,.75fr); }
-    .scene { position: relative; display: flex; min-height: 39rem; flex-direction: column; justify-content: space-between; overflow: hidden; padding: clamp(1.2rem,3vw,2.2rem); background: #d8c3a3; transition: background-color .35s ease; }
-    .scene::after { content: ""; position: absolute; right: -8rem; bottom: -11rem; width: 30rem; aspect-ratio: 1; border: 1px solid rgba(27,25,21,.12); border-radius: 50%; box-shadow: 0 0 0 5rem rgba(27,25,21,.035), 0 0 0 10rem rgba(27,25,21,.025); pointer-events: none; }
-    .scene-head { position: relative; z-index: 1; display: flex; justify-content: space-between; gap: 1rem; font: .65rem var(--mono); letter-spacing: .07em; text-transform: uppercase; }
-    .claim-note { position: absolute; z-index: 3; top: 5rem; right: clamp(1rem,5vw,4rem); max-width: 13rem; padding: .8rem; border: 1px solid var(--ink); background: var(--gold); font: .7rem/1.45 var(--mono); transform: rotate(2deg); }
-    .claim-note[hidden] { display: none; }
-    .cup-stage { position: relative; z-index: 1; display: grid; min-height: 22rem; place-items: center; }
-    .cup-wrap { position: relative; width: 15rem; height: 17rem; }
-    .saucer { position: absolute; left: 50%; bottom: 0; width: 14.5rem; height: 2.2rem; border: 2px solid var(--ink); border-radius: 50%; background: #efe9dc; transform: translateX(-50%); }
-    .cup { position: absolute; left: 50%; bottom: 1rem; width: 10rem; height: 10.5rem; border: 3px solid var(--ink); border-radius: .8rem .8rem 3.7rem 3.7rem; background: #f6f0e6; transform: translateX(-50%); }
-    .cup::after { content: ""; position: absolute; z-index: -1; top: 1.6rem; right: -3.9rem; width: 4.8rem; height: 5.5rem; border: 3px solid var(--ink); border-left: 0; border-radius: 0 50% 50% 0; }
-    .coffee { position: absolute; top: .5rem; left: .55rem; right: .55rem; height: 1.45rem; border: 2px solid var(--ink); border-radius: 50%; background: #4a2618; }
-    .steam { position: absolute; bottom: 11.6rem; width: 1.1rem; height: 5rem; border-left: 3px solid rgba(255,250,240,.88); border-radius: 50%; transform: rotate(8deg); opacity: var(--steam-opacity,1); transition: opacity .5s ease; }
-    .steam.one { left: 5rem; }
-    .steam.two { left: 7.2rem; height: 4rem; transform: rotate(-7deg); }
-    .steam.three { left: 9rem; height: 4.7rem; }
-    .temperature { position: absolute; left: 50%; bottom: 5.25rem; color: var(--coral); font: 700 .85rem var(--mono); transform: translateX(-50%); }
-    .scene-prompt { position: relative; z-index: 2; display: flex; align-items: end; justify-content: space-between; gap: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--ink); }
-    .scene-prompt p { max-width: 32rem; margin: 0; font: 500 clamp(1.25rem,2.4vw,1.9rem)/1.2 var(--serif); }
-    .scene-prompt span { font: .62rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
-
-    .reflection { display: flex; min-height: 39rem; flex-direction: column; justify-content: space-between; padding: clamp(1.3rem,3vw,2.5rem); border-left: 1px solid var(--ink); }
-    .reflection .stage-name { color: var(--coral); font: 700 .67rem var(--mono); letter-spacing: .09em; text-transform: uppercase; }
-    .reflection h2 { margin: .75rem 0 1rem; font: 500 clamp(2.3rem,4.5vw,4rem)/.95 var(--serif); letter-spacing: -.045em; }
-    .reflection-copy { margin: 0; line-height: 1.62; }
-    .voice { margin: 1.4rem 0 0; padding: 1rem; border-left: 4px solid var(--coral); background: var(--cream); font: 500 1.15rem/1.4 var(--serif); }
-    .ledger { display: grid; gap: 1px; margin-top: 1.4rem; border: 1px solid var(--line); background: var(--line); }
-    .ledger-row { padding: .75rem; background: var(--paper); }
-    .ledger-row strong { display: block; margin-bottom: .35rem; font: 700 .6rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
-    .ledger-row p { margin: 0; font-size: .84rem; line-height: 1.45; }
-    .actions { display: grid; grid-template-columns: 1fr auto; gap: .55rem; margin-top: 1.5rem; }
-    .action { min-height: 3.2rem; padding: .75rem .9rem; border: 1px solid var(--ink); background: var(--ink); color: var(--paper); cursor: pointer; font: .67rem var(--mono); letter-spacing: .05em; text-align: left; text-transform: uppercase; }
-    .action:hover:not(:disabled) { background: var(--coral); }
-    .action.secondary { background: transparent; color: var(--ink); }
-    .action.secondary:hover { background: var(--cream); }
-    .action:disabled { cursor: not-allowed; opacity: .35; }
-    .takeaway { margin: 1rem 0 0; color: var(--muted); font-size: .78rem; line-height: 1.5; }
-    .takeaway strong { color: var(--green); }
-
-    .property-study, .system-study { display: grid; grid-template-columns: minmax(12rem,.8fr) minmax(15rem,1.2fr); gap: clamp(1rem,3vw,2.4rem); align-items: center; width: min(100%,44rem); }
-    .cup-wrap.compact { justify-self: center; transform: scale(.78); }
-    .property-tools h3, .system-tools h3 { margin: 0 0 .8rem; font: 500 clamp(1.35rem,2.6vw,2rem)/1.1 var(--serif); }
-    .property-tools > p, .system-tools > p { margin: 0 0 1rem; font-size: .84rem; line-height: 1.5; }
-    .property-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; }
-    .property-button, .modifier-button, .same-button { min-height: 3.4rem; padding: .65rem .75rem; border: 1px solid var(--ink); background: var(--paper); color: var(--ink); cursor: pointer; text-align: left; }
-    .property-button:hover, .modifier-button:hover, .same-button:hover { background: var(--gold); }
-    .property-button[aria-pressed="true"], .modifier-button[aria-pressed="true"], .same-button[aria-pressed="true"] { background: var(--green); color: var(--paper); }
-    .property-button strong, .modifier-button strong { display: block; margin-bottom: .2rem; font: 700 .62rem var(--mono); letter-spacing: .05em; text-transform: uppercase; }
-    .property-button span, .modifier-button span { font-size: .78rem; line-height: 1.35; }
-    .experiment { display: grid; gap: .75rem; }
-    .modifier-buttons { display: grid; grid-template-columns: repeat(3,1fr); gap: .5rem; }
-    .same-question { padding-top: .8rem; border-top: 1px solid var(--ink); }
-    .same-question p { margin: 0 0 .6rem; font: 500 1.1rem var(--serif); }
-    .same-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
-    .experiment-result { padding: .75rem; border-left: 4px solid var(--coral); background: var(--paper); font-size: .8rem; line-height: 1.45; }
-
-    .system-study { grid-template-columns: minmax(11rem,.65fr) minmax(17rem,1.35fr); }
-    .system-controls { display: grid; gap: .8rem; }
-    .system-control { display: grid; grid-template-columns: 6.8rem 1fr 4.8rem; gap: .6rem; align-items: center; }
-    .system-control label { font: 700 .61rem var(--mono); letter-spacing: .05em; text-transform: uppercase; }
-    .system-control input { width: 100%; accent-color: var(--coral); }
-    .system-control output { font: .62rem var(--mono); text-align: right; text-transform: uppercase; }
-    .live-cup { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; margin-top: 1rem; border: 1px solid var(--ink); background: var(--ink); }
-    .live-cup div { padding: .65rem; background: var(--paper); }
-    .live-cup small { display: block; margin-bottom: .25rem; font: .56rem var(--mono); letter-spacing: .05em; text-transform: uppercase; }
-    .live-cup strong { font: 500 1rem var(--serif); }
-    .relation-chain { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .9rem; }
-    .relation-chain span { padding: .35rem .45rem; border: 1px solid var(--ink); background: var(--paper); font: .56rem var(--mono); letter-spacing: .04em; text-transform: uppercase; }
-    .relation-chain i { align-self: center; font-style: normal; }
-
-    .machine-question { max-width: 92rem; margin: 4rem auto 0; border: 1px solid var(--ink); background: var(--green); color: var(--paper); }
-    .machine-question[hidden] { display: none; }
-    .machine-head { display: grid; grid-template-columns: .6fr 1.4fr; gap: 2rem; padding: clamp(1.4rem,4vw,3rem); border-bottom: 1px solid rgba(255,255,255,.45); }
-    .machine-head .eyebrow { color: var(--gold); }
-    .machine-head h2 { margin: 0; font: 500 clamp(2.6rem,6vw,5rem)/.93 var(--serif); letter-spacing: -.045em; }
-    .machine-head p { max-width: 42rem; margin: 1rem 0 0; line-height: 1.6; }
-    .machine-steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(255,255,255,.45); }
-    .machine-step { min-height: 15rem; padding: 1.2rem; background: var(--green); }
-    .machine-step small { color: var(--gold); font: .6rem var(--mono); letter-spacing: .07em; text-transform: uppercase; }
-    .machine-step h3 { margin: 2rem 0 .7rem; font: 500 1.5rem var(--serif); }
-    .machine-step p { margin: 0; font-size: .85rem; line-height: 1.5; }
-    .machine-bottom { padding: 1.2rem; background: var(--gold); color: var(--ink); font: 500 clamp(1.15rem,2.3vw,1.6rem)/1.4 var(--serif); }
-
-    .source-line { max-width: 92rem; margin: 1.4rem auto 0; color: var(--muted); font: .67rem/1.55 var(--mono); }
-    .source-line a { color: var(--green); text-underline-offset: .22em; }
-    footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding: 1.2rem clamp(1rem,4vw,3.5rem); border-top: 1px solid var(--ink); background: var(--green); color: var(--paper); font: .65rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
-
-    @media (max-width: 820px) {
-      .intro, .lab { grid-template-columns: 1fr; }
-      .promise { min-height: 18rem; }
-      .reflection { min-height: auto; border-top: 1px solid var(--ink); border-left: 0; }
-      .machine-head { grid-template-columns: 1fr; }
+    * { box-sizing:border-box; }
+    html,body { margin:0; }
+    body { min-height:100dvh; background:radial-gradient(120rem 60rem at 50% -20rem,#252043,transparent 55%),linear-gradient(180deg,var(--bg1),var(--bg0) 40rem); color:var(--ink); font-family:var(--serif); }
+    button,input { font:inherit; }
+    button { -webkit-tap-highlight-color:transparent; }
+    a { color:var(--gold); text-underline-offset:.25em; }
+    button:disabled { opacity:.4; cursor:not-allowed; }
+    :focus-visible { outline:2px solid var(--gold); outline-offset:4px; }
+    [hidden] { display:none !important; }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    .topbar { display:flex; align-items:baseline; flex-wrap:wrap; gap:.5rem 1.6rem; padding:1rem clamp(1rem,3vw,2.4rem); border-bottom:1px solid var(--line); }
+    .brand,.headlinks,.eyebrow,.scene-head,.scene-note,.moment small,.scene-tools h3,.block h3,.navbutton,.primary,.text-button,details summary,.source-line,footer { font-family:var(--mono); }
+    .brand { color:var(--dim); font-size:.64rem; letter-spacing:.13em; text-transform:uppercase; }
+    h1 { margin:0; font:500 clamp(1.3rem,2.6vw,1.8rem)/1.15 var(--serif); }
+    h1 em { color:var(--gold); font-weight:500; }
+    .headlinks { display:flex; flex-wrap:wrap; gap:1.1rem; margin-left:auto; font-size:.62rem; letter-spacing:.06em; text-transform:uppercase; }
+    .headlinks a { color:var(--dim); }
+    .intro { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; padding:1rem clamp(1rem,3vw,2.4rem); border-bottom:1px solid var(--line); }
+    .intro p { margin:0; max-width:60rem; color:var(--dim); font-size:1rem; line-height:1.5; }
+    .text-button { border:0; padding:.5rem 0; background:none; color:var(--dim); cursor:pointer; font-size:.64rem; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; }
+    .text-button:hover { color:var(--gold); }
+    .experience { display:grid; grid-template-columns:minmax(0,1fr) clamp(21rem,32vw,29rem); grid-template-areas:"scene panel" "map map"; }
+    .scene-column { grid-area:scene; display:flex; flex-direction:column; min-width:0; border-right:1px solid var(--line); background:var(--bg0); }
+    .scene { position:relative; flex:1; display:flex; flex-direction:column; min-height:33rem; padding:1.15rem clamp(1rem,2.4vw,2rem) 1.3rem; overflow:hidden; }
+    .scene-head { z-index:2; display:flex; flex-wrap:wrap; justify-content:space-between; gap:.5rem; font-size:.62rem; letter-spacing:.1em; text-transform:uppercase; color:var(--dim); }
+    .lamp-world { position:relative; flex:1; display:grid; place-items:center; min-height:21rem; margin:.3rem -1.5rem 0; isolation:isolate; }
+    .lamp-picture { position:relative; width:min(100%,58rem); aspect-ratio:3/2; }
+    .lamp-picture img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; transition:opacity .6s ease; }
+    #lamp-on { opacity:var(--lamp-on,1); }
+    .daylight { position:absolute; inset:0; background:#eeeffa; opacity:var(--daylight,0); pointer-events:none; transition:opacity .6s; mix-blend-mode:screen; }
+    .saved-note { position:absolute; z-index:2; top:1rem; left:clamp(1.6rem,4vw,3rem); max-width:12rem; padding:.8rem 1rem; border:1px solid rgba(240,201,160,.4); background:rgba(22,17,33,.9); box-shadow:0 6px 30px #0002; }
+    .saved-note small { display:block; margin-bottom:.45rem; font:.58rem var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--dim); }
+    .saved-note p { margin:0; font-style:italic; font-size:1.15rem; color:var(--gold); }
+    .saved-note span { display:block; margin-top:.6rem; color:var(--coral); font:.58rem/1.6 var(--mono); text-transform:uppercase; letter-spacing:.04em; }
+    .scene-caption { z-index:2; position:relative; margin-top:.2rem; text-align:center; }
+    .scene-caption h2 { margin:0; font:500 clamp(1.4rem,3.2vw,2.15rem)/1.15 var(--serif); letter-spacing:-.015em; }
+    .scene-caption p { margin:.6rem auto 0; max-width:38rem; color:var(--dim); font-size:1rem; line-height:1.5; }
+    .scene-note { margin:1rem 0 0; font-size:.6rem; line-height:1.6; letter-spacing:.06em; text-transform:uppercase; color:var(--faint); }
+    .scene-tools { padding:1rem clamp(1rem,2.4vw,2rem); border-top:1px solid var(--line); background:rgba(24,22,48,.65); }
+    .scene-tools:empty { display:none; }
+    .scene-tools h3 { margin:0 0 .7rem; font-size:.62rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--dim); }
+    .tool-row { display:flex; flex-wrap:wrap; gap:.5rem; }
+    .tool-button { flex:1 1 7rem; min-height:3.1rem; padding:.7rem .85rem; border:1px solid var(--line); border-radius:.25rem; background:transparent; color:var(--dim); cursor:pointer; text-align:left; }
+    .tool-button:hover { border-color:var(--dim); color:var(--ink); }
+    .tool-button[aria-pressed="true"] { border-color:var(--part); color:var(--part); background:color-mix(in srgb,var(--part) 8%,transparent); }
+    .tool-button strong { display:block; font:.66rem var(--mono); letter-spacing:.04em; }
+    .tool-button span { display:block; margin-top:.3rem; font-size:.83rem; line-height:1.35; }
+    .tool-feedback { margin:.85rem 0 0; min-height:2.8rem; font-size:1rem; line-height:1.5; color:var(--ink); }
+    .choice-row { display:grid; grid-template-columns:1fr 1fr; gap:.5rem; margin-top:.85rem; }
+    .choice-row .tool-button { min-width:0; font-size:.95rem; line-height:1.4; }
+    .lab-status { margin:.7rem 0 0; color:var(--teal); font:.63rem/1.6 var(--mono); letter-spacing:.02em; }
+    .nav { display:grid; grid-template-columns:3.2rem minmax(0,1fr); gap:.6rem; padding:.85rem clamp(1rem,2.4vw,2rem); border-top:1px solid var(--line); background:rgba(15,13,26,.7); }
+    .navbutton { border:1px solid var(--line); border-radius:.2rem; background:transparent; color:var(--dim); font-size:1.1rem; cursor:pointer; }
+    .primary { min-height:3.3rem; padding:.85rem 1rem; border:1px solid var(--gold); border-radius:.2rem; background:transparent; color:var(--gold); cursor:pointer; font-size:.7rem; line-height:1.5; letter-spacing:.09em; text-transform:uppercase; }
+    .primary:hover:not(:disabled) { background:var(--gold); color:var(--bg0); }
+    .panel { grid-area:panel; padding:1.4rem clamp(1.2rem,2.2vw,2rem) 1.8rem; background:linear-gradient(180deg,var(--panel2),var(--panel)); min-width:0; }
+    .eyebrow { margin:0; color:var(--part); font-size:.63rem; letter-spacing:.13em; text-transform:uppercase; line-height:1.6; }
+    .panel h2 { margin:.6rem 0 1rem; font:500 clamp(1.65rem,3.1vw,2.55rem)/1.08 var(--serif); letter-spacing:-.025em; }
+    .reading { margin:0 0 1.2rem; font-size:1.04rem; line-height:1.6; }
+    .voice { margin:0 0 1.2rem; padding:.85rem 1rem; border-left:2px solid var(--gold); background:rgba(240,201,160,.035); }
+    .voice small { display:block; margin-bottom:.5rem; color:var(--dim); font:.56rem var(--mono); letter-spacing:.1em; text-transform:uppercase; }
+    .voice p { margin:0; font-style:italic; font-size:1.15rem; line-height:1.4; color:var(--gold); }
+    .block { margin:0 0 .75rem; padding:.7rem .85rem; border-left:2px solid var(--blue); background:rgba(255,255,255,.025); }
+    .block:nth-child(2) { border-color:var(--coral); }
+    .block:nth-child(3) { border-color:var(--teal); }
+    .block h3 { margin:0 0 .35rem; color:var(--blue); font-size:.6rem; font-weight:500; letter-spacing:.09em; text-transform:uppercase; }
+    .block:nth-child(2) h3 { color:var(--coral); } .block:nth-child(3) h3 { color:var(--teal); }
+    .block p { margin:0; font-size:.94rem; line-height:1.5; }
+    details { margin-top:1.15rem; padding-top:.85rem; border-top:1px solid var(--line); }
+    details summary { cursor:pointer; color:var(--dim); font-size:.62rem; line-height:1.6; letter-spacing:.07em; text-transform:uppercase; }
+    details p { margin:.75rem 0 0; color:var(--dim); font-size:.93rem; line-height:1.55; }
+    .moments { grid-area:map; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:rgba(12,10,22,.7); }
+    .moment { display:flex; align-items:center; gap:1rem; min-width:0; padding:1.15rem clamp(.8rem,3vw,2.4rem); border:0; border-right:1px solid var(--line); background:none; color:var(--dim); cursor:pointer; text-align:left; }
+    .moment:last-child { border-right:0; }
+    .moment[aria-current="step"] { color:var(--part); background:rgba(192,174,230,.04); }
+    .moment .number { font:italic 1.55rem var(--serif); opacity:.7; }
+    .moment small { display:block; font-size:.57rem; line-height:1.5; text-transform:uppercase; letter-spacing:.08em; }
+    .moment strong { display:block; margin-top:.3rem; font-size:1.05rem; font-weight:500; }
+    .source-line { margin:0; padding:1rem clamp(1rem,3vw,2.4rem); color:var(--faint); font-size:.6rem; line-height:1.7; }
+    .machine { max-width:80rem; margin:2rem auto; padding:0 clamp(1rem,3vw,2.4rem); }
+    .machine h2 { margin:.55rem 0 1rem; font:500 clamp(1.75rem,4vw,3rem)/1.1 var(--serif); }
+    .machine > p { max-width:58rem; font-size:1.05rem; line-height:1.6; color:var(--dim); }
+    .machine-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.4rem; margin:1.5rem 0; }
+    .machine-grid article { border-top:1px solid var(--line); padding-top:1rem; }
+    .machine-grid h3 { margin:0 0 .6rem; color:var(--teal); font-size:1.2rem; font-weight:500; }
+    .machine-grid p { margin:0; font-size:1rem; line-height:1.55; }
+    .machine .question { padding:1rem 0; border-top:1px solid var(--line); color:var(--gold); font-style:italic; font-size:1.25rem; }
+    footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:.7rem; padding:1rem clamp(1rem,3vw,2.4rem); border-top:1px solid var(--line); color:var(--faint); font-size:.6rem; letter-spacing:.07em; text-transform:uppercase; }
+    @media (min-width:851px) {
+      .experience { height:max(42rem,calc(100dvh - 8rem)); grid-template-rows:minmax(0,1fr) auto; }
+      .scene-column,.scene,.lamp-world { min-height:0; }
+      .lamp-picture { position:absolute; inset:0; width:100%; height:100%; aspect-ratio:auto; }
+      .panel { min-height:0; overflow-y:auto; scrollbar-width:thin; scrollbar-color:#332f4e transparent; }
     }
-    @media (max-width: 560px) {
-      .topbar { flex-direction: column; }
-      .moments { grid-template-columns: 1fr; }
-      .moment { min-height: 4rem; }
-      .scene { min-height: 34rem; }
-      .scene-prompt { align-items: flex-start; flex-direction: column; }
-      .actions { grid-template-columns: 1fr; }
-      .property-study, .system-study { grid-template-columns: 1fr; gap: .5rem; }
-      .cup-wrap.compact { margin: -1.8rem 0; transform: scale(.62); }
-      .modifier-buttons, .machine-steps { grid-template-columns: 1fr; }
-      .system-control { grid-template-columns: 1fr; gap: .25rem; }
-      .system-control output { text-align: left; }
+    @media (max-width:850px) {
+      .experience { grid-template-columns:minmax(0,1fr); grid-template-areas:"scene" "panel" "map"; }
+      .scene-column { border-right:0; } .scene { min-height:28rem; }
+      .panel { border-top:1px solid var(--line); }
+      .lamp-world { min-height:18rem; } .lamp-picture { max-width:42rem; }
+      .headlinks { margin-left:0; } .machine-grid { grid-template-columns:1fr; }
     }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .scene, .steam { transition: none; }
+    @media (max-width:480px) {
+      .topbar { gap:.6rem; } .brand { width:100%; }
+      .headlinks { width:100%; gap:1.2rem; }
+      .intro { align-items:flex-start; } .intro p { font-size:.93rem; }
+      .scene { min-height:25rem; } .lamp-world { min-height:17rem; }
+      .saved-note { position:static; grid-row:1; justify-self:start; margin:.6rem 1.5rem 0; max-width:none; padding:.6rem .75rem; }
+      .lamp-picture { grid-row:2; }
+      .saved-note p { font-size:1rem; }
+      .moment { padding:1rem .65rem; gap:.4rem; align-items:flex-start; }
+      .moment .number { display:none; } .moment strong { font-size:.93rem; overflow-wrap:anywhere; }
+      .moment small { font-size:.53rem; }
+      .choice-row { grid-template-columns:1fr; }
+      .tool-button { flex-basis:40%; }
     }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { transition:none !important; scroll-behavior:auto !important; } }
   </style>
 </head>
 <body>
-  <header>
-    <div class="topbar"><span>EPOL 479 · Machine Learning &amp; Human Learning</span><a href="../lecture-2.html">Week 2 lecture</a></div>
-    <div class="intro">
-      <div class="intro-copy">
-        <p class="eyebrow">Erfahrung · experience developing</p>
-        <h1>One cup. <em>Three ways of knowing it.</em></h1>
-        <p>Touch it. Describe it. Change it. The same ordinary coffee will become a different kind of object as your way of knowing develops.</p>
-      </div>
-      <aside class="promise">
-        <strong>No Hegel vocabulary required to begin.</strong>
-        <p>Stay with the cup and what happens to your own expectations. The philosophical names arrive only after you have felt the need for them.</p>
-      </aside>
-    </div>
+  <header class="topbar">
+    <span class="brand">Machine Spirits · EPOL 479</span>
+    <h1>A lamp, <em>reconsidered.</em></h1>
+    <nav class="headlinks" aria-label="Related course material"><a href="dialectic.html">The dialectic</a><a href="../lecture-2.html">Week 2</a></nav>
   </header>
-
+  <div class="intro"><p>One familiar object. Three attempts to know it. Begin with what you see; let each attempt show you what it leaves out.</p><button class="text-button" id="reset" type="button">Start again ↺</button></div>
   <main>
-    <section class="experience" aria-labelledby="experience-title">
-      <h2 class="sr-only" id="experience-title">One cup through three moments of consciousness</h2>
-      <div class="moments" aria-label="Three moments of the experience">
-        <button class="moment" type="button" aria-current="step" data-moment="0"><small>Moment 01 · now</small><strong>Sense-certainty</strong></button>
-        <button class="moment" type="button" data-moment="1" disabled><small>Moment 02 · locked</small><strong>Perception</strong></button>
-        <button class="moment" type="button" data-moment="2" disabled><small>Moment 03 · locked</small><strong>Understanding</strong></button>
-      </div>
-
-      <div class="lab">
-        <div class="scene" id="scene" style="--steam-opacity:1">
-          <div class="scene-head"><span id="scene-time">8:00 AM · just poured</span><span id="scene-status">Immediate encounter</span></div>
-          <div class="claim-note" id="claim-note" hidden>Saved at 8:00 AM<br><strong>“This is hot now.”</strong></div>
-          <div class="cup-stage" id="cup-stage" aria-label="A freshly poured cup of coffee">
-            <div class="cup-wrap" aria-hidden="true">
-              <div class="steam one"></div><div class="steam two"></div><div class="steam three"></div>
-              <div class="saucer"></div>
-              <div class="cup"><div class="coffee"></div></div>
-              <div class="temperature" id="temperature">82°C</div>
-            </div>
+    <section class="experience" aria-label="A lamp through three moments of experience">
+      <div class="scene-column">
+        <div class="scene">
+          <div class="scene-head"><span id="scene-time">8:00 PM · a quiet room</span><span id="scene-count">Encounter 1 / 9</span></div>
+          <div class="lamp-world" id="lamp-world" role="img" aria-label="An illuminated brass desk lamp casts a warm pool of light.">
+            <div class="lamp-picture" aria-hidden="true"><img src="art/lamp-off.webp" alt="" width="1536" height="1024"><img id="lamp-on" src="art/lamp-on.webp" alt="" width="1536" height="1024" fetchpriority="high"><div class="daylight"></div></div>
+            <aside class="saved-note" id="saved-note" aria-hidden="true" hidden><small>What you wrote · 8:00 PM</small><p>“It is light here. Now.”</p><span id="note-status">The words stay put.</span></aside>
           </div>
-          <div class="scene-prompt"><p id="scene-prompt">The cup has just been poured. Begin with what is immediately here.</p><span id="scene-gesture">Your move · touch it</span></div>
+          <div class="scene-caption" aria-live="polite"><h2 id="scene-title">There is light. Here. Now.</h2><p id="scene-description">Before a name, a property list, or an explanation: this illuminated patch in front of you.</p></div>
+          <p class="scene-note" id="scene-note">Your move · try to keep this moment</p>
         </div>
-
-        <aside class="reflection" aria-live="polite">
-          <div>
-            <span class="stage-name" id="stage-name">Moment 01 · from your standpoint</span>
-            <h2 id="reflection-title">Before you explain anything, what do you know?</h2>
-            <p class="reflection-copy" id="reflection-copy">The coffee is simply here. Its warmth feels like the most direct kind of truth: no theory, no comparison, just contact.</p>
-            <blockquote class="voice" id="voice">“I only need to touch it.”</blockquote>
-            <div class="ledger">
-              <div class="ledger-row"><strong>What I trust</strong><p id="trust">What is present to me right here, right now.</p></div>
-              <div class="ledger-row"><strong>What happens</strong><p id="happens">Nothing has challenged this certainty yet.</p></div>
-              <div class="ledger-row"><strong>What changes</strong><p id="changes">Nothing yet—not the claim, not the cup, not my standard.</p></div>
-            </div>
-          </div>
-          <div>
-            <div class="actions"><button class="action" id="primary" type="button">Touch the cup</button><button class="action secondary" id="reset" type="button">Restart</button></div>
-            <p class="takeaway" id="takeaway"><strong>Stay inside the moment:</strong> do not explain the cup yet. Let the immediate claim test itself.</p>
-          </div>
-        </aside>
+        <div class="scene-tools" id="scene-tools"></div>
+        <div class="nav"><button class="navbutton" id="back" type="button" aria-label="Previous encounter" disabled>←</button><button class="primary" id="primary" type="button">Write down what is certain</button></div>
       </div>
+      <aside class="panel" aria-labelledby="reading-title">
+        <p class="eyebrow" id="stage-name">01 · sense-certainty</p>
+        <h2 id="reading-title">I don’t need a theory. It is right here.</h2>
+        <p class="reading" id="reading-copy">You come into a dark room. There is a pool of light. Suppose your certainty rests entirely on this immediate encounter—not on what kind of thing produces it.</p>
+        <blockquote class="voice"><small>Your working thought · teaching formulation</small><p id="voice">“I know this because I am seeing it now.”</p></blockquote>
+        <div id="ledger" aria-live="polite">
+          <div class="block"><h3>What I trust</h3><p id="trust">This present encounter, just as it is given.</p></div>
+          <div class="block"><h3>The test</h3><p id="test">Can I preserve this certainty without adding anything to it?</p></div>
+          <div class="block"><h3>What survives</h3><p id="survives">For the moment, nothing needs revising.</p></div>
+        </div>
+        <details id="hegel-detail"><summary>Read this alongside Hegel</summary><p id="hegel-gloss">In §§95–98, Hegel tests the Now and the Here by trying to preserve them. The problem is not that our senses are useless: it is whether a purely immediate singular can remain the whole truth of knowing.</p><p><a id="source-link" href="../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf#page=109">Pinkard · §§95–98 ↗</a></p></details>
+      </aside>
+      <nav class="moments" aria-label="Moments of consciousness">
+        <button class="moment" type="button" data-moment="0" aria-current="step"><span class="number">01</span><span><small>This, here, now</small><strong>Sense-certainty</strong></span></button>
+        <button class="moment" type="button" data-moment="1" disabled><span class="number">02</span><span><small>One thing, many properties</small><strong>Perception</strong></span></button>
+        <button class="moment" type="button" data-moment="2" disabled><span class="number">03</span><span><small>Conditions, relations, laws</small><strong>Understanding</strong></span></button>
+      </nav>
     </section>
-
-    <p class="source-line">The interaction is a teaching analogy grounded in Pinkard’s translation: <a href="../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf#page=108">Sense-certainty §§90–110</a> · <a href="../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf#page=115">Perception §§111–131</a> · <a href="../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf#page=126">Understanding §§132 onward</a>. The cup is our example, not Hegel’s.</p>
-
-    <section class="machine-question" id="machine-question" hidden aria-labelledby="machine-title">
-      <div class="machine-head">
-        <div><p class="eyebrow">The course question</p><h2 id="machine-title">What would the machine have to learn?</h2></div>
-        <p>The three moments also describe increasingly rich functions a system might perform. But functional sophistication and lived experience are not the same claim.</p>
+    <p class="source-line">An everyday teaching analogy, not an example from Hegel. Your working thoughts and the commentary are our formulations. The illustration and circuit simplify the physical situation; they do not reproduce the whole argument.</p>
+    <section class="machine" id="machine" hidden aria-labelledby="machine-title">
+      <p class="eyebrow">The course question · human and machine learning</p><h2 id="machine-title">What, exactly, would the machine learn?</h2>
+      <p>You did not merely collect more readings of the lamp. You changed what you were willing to count as knowing it: a present appearance, a continuing thing, a relation that makes different appearances intelligible.</p>
+      <div class="machine-grid">
+        <article><h3>Registering the light</h3><p>A sensor reports the current illumination. That measurement alone does not establish a standpoint for which the reading counts as truth.</p></article>
+        <article><h3>Recognizing the lamp</h3><p>A classifier identifies the object across changes in lighting. That is a real achievement; it does not by itself show that the system has questioned its own categories.</p></article>
+        <article><h3>Learning the dependencies</h3><p>A system learns which changes make the lamp shine and predicts new cases. This is closer to a relational account, but predictive success alone does not settle the question of experience.</p></article>
       </div>
-      <div class="machine-steps">
-        <article class="machine-step"><small>Immediate signal</small><h3>A sensor reads 64°C.</h3><p>It registers one present value. Useful—but the reading alone has no history and does not decide what counts as a good cup.</p></article>
-        <article class="machine-step"><small>Perceived thing</small><h3>A classifier labels the cup.</h3><p>“Coffee, warm, dark, low sugar.” It organizes properties into an object, but its categories and boundaries may remain fixed by designers.</p></article>
-        <article class="machine-step"><small>Relational model</small><h3>An adaptive system changes the recipe.</h3><p>It predicts how beans, heat, milk, sugar, time, and your reactions interact—and revises future preparation from the outcome.</p></article>
-      </div>
-      <div class="machine-bottom">The Hegelian pressure is not only “did the output improve?” Ask whether the encounter became part of the system’s history, changed its own standard of a good cup, and changed what it treated as the relevant object.</div>
+      <p class="question">When a prediction fails, does the system only correct an answer—or does it revise what the object is and what would count as knowing it? What evidence would let us tell?</p>
+      <p>These are comparisons of functions, not a claim that sensors, classifiers, and causal models literally instantiate Hegel’s three shapes of consciousness.</p>
     </section>
   </main>
-
-  <footer><span>Machine Spirits · EPOL 479 · Fall 2026</span><span>Content restart 01 · not yet published</span></footer>
-
+  <footer><span>Erfahrung · experience developing</span><span>A local teaching study · not yet published</span></footer>
+  <noscript><p style="padding:1rem">This interaction needs JavaScript. Its movement: the immediate light cannot be held unchanged by “here” and “now”; the lamp’s properties depend on circumstances; understanding seeks relations through which its appearances become intelligible. Follow the linked reading for Hegel’s argument.</p></noscript>
   <script>
-    const app = {
-      moment: 0,
-      unlocked: 0,
-      sensePhase: 0,
-      perceptionPhase: 0,
-      properties: new Set(),
-      modifier: null,
-      sameAnswer: null,
-      factors: { strength: 6, milk: 0, sugar: 0, time: 10 },
-      adjusted: false,
-      complete: false
-    };
-
-    const senseStates = [
-      {
-        time: '8:00 AM · just poured', status: 'Immediate encounter', temperature: 82, steam: 1, note: false,
-        prompt: 'The cup has just been poured. Begin with what is immediately here.', gesture: 'Your move · touch it',
-        title: 'Before you explain anything, what do you know?', copy: 'The coffee is simply here. Its warmth feels like the most direct kind of truth: no theory, no comparison, just contact.', voice: '“I only need to touch it.”',
-        trust: 'What is present to me right here, right now.', happens: 'Nothing has challenged this certainty yet.', changes: 'Nothing yet—not the claim, not the cup, not my standard.',
-        action: 'Touch the cup', takeaway: '<strong>Stay inside the moment:</strong> do not explain the cup yet. Let the immediate claim test itself.'
-      },
-      {
-        time: '8:00 AM · just poured', status: 'Immediate certainty', temperature: 82, steam: 1, note: false,
-        prompt: 'Your hand pulls back. The warmth is unmistakable. Say exactly what is true.', gesture: 'Your move · state it',
-        title: 'This is hot. Now.', copy: 'The sensation is vivid and certain. It seems as though the words simply report the exact singular moment you are touching.', voice: '“This coffee is hot now.”',
-        trust: 'The immediate feeling and the words that point to it.', happens: 'The contact feels richer than any general description.', changes: 'The fleeting touch has become a repeatable sentence.',
-        action: 'Keep that exact truth', takeaway: '<strong>Notice the small shift:</strong> the private touch has been turned into public words—“this,” “hot,” and “now.”'
-      },
-      {
-        time: '8:00 AM · claim saved', status: 'Can the truth be preserved?', temperature: 82, steam: 1, note: true,
-        prompt: 'The note keeps your sentence still. Let the cup and the Now continue moving.', gesture: 'Your move · wait',
-        title: 'I have saved the truth.', copy: 'If the sentence captured this exact moment, it should preserve what you knew. The paper stays fixed while the coffee continues to cool.', voice: '“Later, this note will still tell me what was true now.”',
-        trust: 'That writing can hold the same singular truth unchanged.', happens: 'The sentence remains while the moment it names passes.', changes: 'A memory now stands apart from the living encounter.',
-        action: 'Wait ten minutes', takeaway: '<strong>This is the test:</strong> not whether the touch was real, but whether pure immediacy can be held as pure immediacy.'
-      },
-      {
-        time: '8:10 AM · ten minutes later', status: 'The cup answers', temperature: 64, steam: .24, note: true,
-        prompt: 'The note still says “now,” but this Now is not the one you touched. The cup is warm, not scalding.', gesture: 'Contradiction encountered',
-        title: 'The feeling was true. My idea of “exactly this” was not enough.', copy: '“This” and “now” did not preserve one private instant. They kept working as the cup changed. The immediate moment turns out to be knowable only through words, memory, contrast, and time.', voice: '“The cup changed—but so did what I think a ‘Now’ is.”',
-        trust: 'Immediate contact still matters, but it cannot explain or preserve itself alone.', happens: 'The same words survive across different moments and different temperatures.', changes: 'The object is no longer only one touch; it is something that persists through changing appearances.',
-        action: 'Meet the cup as a thing →', takeaway: '<strong>Hegel’s name: sense-certainty.</strong> Its failure does not erase sensation. It reveals that sensation was never the whole relation.'
-      }
+    const PDF = '../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf';
+    const byId = id => document.getElementById(id);
+    const initialState = () => ({ step:0, furthest:0, features:new Set(), feature:null, room:'night', roomSeen:new Set(['night']), attributions:new Set(), attribution:null, power:true, closed:true, bulb:true, disrupted:false, restored:false, explanation:null });
+    const state = initialState();
+    const steps = [
+      { moment:0, time:'8:00 PM · a quiet room', lit:true, note:false, title:'There is light. Here. Now.', description:'Before a name, a property list, or an explanation: this illuminated patch in front of you.', cue:'Your move · try to keep this moment', heading:'I don’t need a theory. It is right here.', copy:'You come into a dark room. There is a pool of light. Suppose your certainty rests entirely on this immediate encounter—not on what kind of thing produces it.', voice:'I know this because I am seeing it now.', trust:'This present encounter, just as it is given.', test:'Can I preserve this certainty without adding anything to it?', survives:'For the moment, nothing needs revising.', action:'Write down what is certain' },
+      { moment:0, time:'8:00 PM · a sentence saved', lit:true, note:true, title:'You have kept the sentence.', description:'“It is light here. Now.” The note seems to hold exactly what you know. Leave it there.', cue:'Your move · flip the switch', heading:'There. I have captured it.', copy:'You write the immediate truth down. You have not yet asked what a lamp is, how it works, or what would keep it the same thing tomorrow.', voice:'The words say just what is before me.', trust:'The present appearance can stand on its own.', test:'Keep the words. Let the present change.', survives:'The record is there; whether it preserves immediacy is still untested.', action:'Flip the switch' },
+      { moment:0, time:'8:01 PM · the light is gone', lit:false, note:true, title:'The words stay. This now has gone.', description:'You can say “here” and “now” again—this time in darkness. The same words belong to different encounters.', cue:'The difficulty · to keep the first moment, you must relate it to another', heading:'“Now” was not mine to keep.', copy:'Your earlier sight was not a mistake. But to keep it as the truth of 8:00 PM, you now need a record, a time, and a comparison. That is more than bare immediacy.', voice:'I can recall that moment—but only as a moment in relation to others.', trust:'Nothing beyond what is immediately given.', test:'The words “here” and “now” remain usable after their original content has passed.', survives:'The light is not erased. It becomes a describable feature of a continuing object.', action:'Turn it on. Meet the thing.' },
+      { moment:1, time:'The light returns · the same lamp', lit:true, note:false, title:'One lamp. More than one property.', description:'Let your attention move. The color, the material, the shape, and the glow all belong to this one thing.', cue:'Your move · inspect all four properties', heading:'Now I can say what it is.', copy:'You no longer try to hold a bare “this”. You know a lamp: golden, rigid, angled, bright. Each is a property other things can share, yet here they belong to one object.', voice:'It is golden—and solid—and shaped like this—and bright. One lamp, all of these.', trust:'One continuing thing with determinate properties.', test:'How do several distinct properties belong to the same One?', survives:'The earlier sensuous encounter remains, now as a feature you can recognize and describe.', action:'Keep the lamp. Change the room.' },
+      { moment:1, time:'Same lamp · same light output', lit:true, note:false, title:'Is brightness simply in the lamp?', description:'The lamp stays on at the same setting. Compare it against a dark room and against daylight.', cue:'Your move · try both surroundings', heading:'I said the lamp was bright.', copy:'In the dark, it lights your reading spot. In daylight, the same output seems weak. You were trying to give the lamp a stable description—but your description has started to include its surroundings.', voice:'It is bright. But bright compared with what?', trust:'The lamp should have its properties in its own right.', test:'Keep the output fixed. Change only the surrounding light.', survives:'Neither appearance is simply invented. Both arise in a particular relation.', action:'Where should I put the difference?' },
+      { moment:1, time:'One object · two appearances', lit:true, note:false, title:'Has the lamp changed—or have I?', description:'Try both accounts of the difference. Notice what each has to leave out.', cue:'Your move · test both explanations', heading:'I keep moving the difficulty around.', copy:'Perhaps the brightness belongs to the lamp alone. Or perhaps the difference is only in my seeing. But neither side works in complete isolation: this lamp appears this way under these conditions.', voice:'I cannot keep the thing pure just by assigning all the difference to myself.', trust:'A self-contained thing on one side, my apprehension on the other.', test:'Put the difference wholly in the lamp; then put it wholly in the observer.', survives:'The thing and its appearance need to be thought together, through their relations.', action:'Ask what makes it shine.' },
+      { moment:2, time:'The same lamp · its conditions exposed', lit:true, note:false, title:'The glow depends on a relation.', description:'The plug, switch, and bulb are not three descriptions of the glow. Together, they make its appearance possible.', cue:'Your move · interrupt the circuit, then restore the light', heading:'I need more than a property list.', copy:'Now your question changes. Not just “what is the lamp like?” but “under what conditions does it do this?” Try removing one condition. Then bring the light back.', voice:'Its ability to shine becomes visible only through its connections.', trust:'A relation that makes changing appearances intelligible.', test:'Break a necessary connection. Restore it. Does the appearance follow?', survives:'The same thing and its properties remain, but no longer as an isolated bundle.', action:'Have I really explained it?' },
+      { moment:2, time:'A test of the explanation', lit:true, note:false, title:'An explanation—or just a new name?', description:'Both answers sound deeper than “it is bright”. Which one actually gives you something to test?', cue:'Your move · choose an explanation', heading:'What have I added by saying “force”?', copy:'Calling the glow a “power to shine” may just repeat the appearance in different words. An account of dependencies lets you distinguish cases: connected or disconnected, working or failed.', voice:'I want the relation—not a second name for what I already saw.', trust:'An explanation should articulate a difference that matters.', test:'Can the account tell us what would happen if a condition changed?', survives:'A lawful relation is more informative than a renamed appearance—but Hegel will test understanding too.', action:'Look back at what changed.' },
+      { moment:2, time:'One lamp · a changed way of knowing', lit:true, note:false, title:'The object is familiar. Your knowing is not.', description:'First an immediate “this”. Then one thing with many properties. Now something intelligible through relations.', cue:'Looking back · each attempt preserves something and gives up something', heading:'More than a collection of facts.', copy:'Looking back across the exercise, we can see a change in what counted as knowing. Immediate presence was not enough; a list of properties was not enough. Different appearances now call for an intelligible relation. This is a foothold in understanding—not the end of Hegel’s journey.', voice:'I need to know how it behaves under different conditions.', trust:'An account that can make sense of the earlier appearances and their limits.', test:'Ask not only what answer changed, but what now counts as a satisfactory answer.', survives:'Light, thing, and properties are not discarded. Their place in the account has changed.', action:'Consider the machine learner ↓' }
     ];
-
-    const properties = {
-      warmth: ['Warm', '64°C—cooler than the first touch'],
-      color: ['Dark brown', 'visible against the pale ceramic'],
-      taste: ['Bitter', 'how this coffee meets your palate'],
-      vessel: ['In a ceramic mug', 'where does the coffee end and its “thing” begin?']
+    const readings = [
+      { name:'Sense-certainty', label:'§§95–98', page:109, gloss:'Hegel tests the Now and the Here by trying to preserve them. They endure through different contents, and so are not the exclusive singulars that sense-certainty meant. Adding a timestamp can preserve a true historical statement, but already gives up the claim to purely immediate knowing.' },
+      { name:'Perception', label:'§§113–115', page:116, gloss:'The sensuous content is preserved as a universal property. The perceived thing is both an Also of many properties and a One that excludes opposed properties. Bright in darkness and weak in daylight are not a formal contradiction: their circumstances differ. The analogy pressures an unconditional property claim; it does not prove Hegel’s full argument about the One and the Also.' },
+      { name:'Force & understanding', label:'§§138–140', page:131, gloss:'Understanding seeks an intelligible inner relation through changing appearances. Hegel’s play of forces cannot be reduced to a one-way causal chain. The lamp’s dependencies provide a foothold, not a literal model of that play; even a stable realm of laws is only understanding’s first truth (§150).' }
+    ];
+    const features = {
+      color:{label:'Look at its color',value:'Brass-gold',description:'Golden: a property shared by many objects. It names a determinate quality, not the exclusive “this” you first meant.'},
+      material:{label:'Consider its material',value:'Rigid metal',description:'Solid metal: another property. The color does not disappear when you attend to the material; both belong to this lamp.'},
+      shape:{label:'Follow its shape',value:'An angled shade',description:'A particular shape, alongside the color and the material. You hold distinct determinations together as one thing.'},
+      glow:{label:'Notice its light',value:'Bright',description:'Bright: one more property of the same lamp. But does its brightness belong to the lamp independently of everything around it?'}
     };
-
-    const modifiers = {
-      milk: { label: 'Add milk', note: 'The drink becomes lighter, cooler, and smoother.', color: '#9b7658', temperature: 59, steam: .12 },
-      sugar: { label: 'Add sugar', note: 'The drink stays dark but tastes sweeter.', color: '#4a2618', temperature: 62, steam: .17 },
-      wait: { label: 'Wait longer', note: 'The drink cools again while remaining in the same mug.', color: '#4a2618', temperature: 48, steam: .02 }
-    };
-
-    const primary = document.getElementById('primary');
-    const cupStage = document.getElementById('cup-stage');
-    const markers = [...document.querySelectorAll('.moment')];
-
-    function cupVisualHTML({ temperature = 64, color = '#4a2618', steam = .24, compact = false } = {}) {
-      return `<div class="cup-wrap${compact ? ' compact' : ''}" style="--steam-opacity:${steam}" aria-hidden="true"><div class="steam one"></div><div class="steam two"></div><div class="steam three"></div><div class="saucer"></div><div class="cup"><div class="coffee" style="background:${color}"></div></div><div class="temperature">${temperature}°C</div></div>`;
+    function isLit() { return state.power && state.closed && state.bulb; }
+    function canAdvance() {
+      if(state.step===3) return state.features.size===4;
+      if(state.step===4) return state.roomSeen.size===2;
+      if(state.step===5) return state.attributions.size===2;
+      if(state.step===6) return state.disrupted && state.restored && isLit();
+      if(state.step===7) return state.explanation==='relation';
+      return true;
     }
-
-    function setScene(time, status, prompt, gesture, background) {
-      document.getElementById('scene-time').textContent = time;
-      document.getElementById('scene-status').textContent = status;
-      document.getElementById('scene-prompt').textContent = prompt;
-      document.getElementById('scene-gesture').textContent = gesture;
-      document.getElementById('scene').style.backgroundColor = background;
+    function toolButton(tool,value,label,detail,pressed) {
+      return `<button type="button" class="tool-button" data-tool="${tool}" data-value="${value}" aria-pressed="${pressed}"><strong>${label}</strong>${detail ? `<span>${detail}</span>`:''}</button>`;
     }
-
-    function setReading(stage, title, copy, voice, trust, happens, changes, action, disabled, takeaway) {
-      document.getElementById('stage-name').textContent = stage;
-      document.getElementById('reflection-title').textContent = title;
-      document.getElementById('reflection-copy').textContent = copy;
-      document.getElementById('voice').textContent = voice;
-      document.getElementById('trust').textContent = trust;
-      document.getElementById('happens').textContent = happens;
-      document.getElementById('changes').textContent = changes;
-      primary.textContent = action;
-      primary.disabled = disabled;
-      document.getElementById('takeaway').innerHTML = takeaway;
-    }
-
-    function updateMarkers() {
-      const statuses = ['Sense-certainty', 'Perception', 'Understanding'];
-      markers.forEach((marker, index) => {
-        marker.disabled = index > app.unlocked;
-        marker.classList.toggle('is-complete', index < app.moment || (index < app.unlocked && index !== app.moment));
-        if (index === app.moment) marker.setAttribute('aria-current', 'step');
-        else marker.removeAttribute('aria-current');
-        const state = index === app.moment ? 'now' : index <= app.unlocked ? 'open' : 'locked';
-        marker.querySelector('small').textContent = `Moment 0${index + 1} · ${state}`;
-        marker.querySelector('strong').textContent = statuses[index];
-      });
-    }
-
-    function renderSenseCertainty() {
-      const state = senseStates[app.sensePhase];
-      document.getElementById('claim-note').hidden = !state.note;
-      cupStage.setAttribute('aria-label', `A cup of coffee at ${state.temperature} degrees Celsius`);
-      cupStage.innerHTML = cupVisualHTML({ temperature: state.temperature, steam: state.steam });
-      setScene(state.time, state.status, state.prompt, state.gesture, '#d8c3a3');
-      setReading('Moment 01 · from your standpoint', state.title, state.copy, state.voice, state.trust, state.happens, state.changes, state.action, false, state.takeaway);
-    }
-
-    function propertyStudyHTML() {
-      const buttons = Object.entries(properties).map(([key, [name, detail]]) => `<button class="property-button" type="button" data-property="${key}" aria-pressed="${app.properties.has(key)}"><strong>${name}</strong><span>${detail}</span></button>`).join('');
-      return `<div class="property-study">${cupVisualHTML({ compact: true })}<div class="property-tools"><h3>What kind of thing is this?</h3><p>Touch each feature you use to recognize one stable cup of coffee.</p><div class="property-buttons">${buttons}</div></div></div>`;
-    }
-
-    function experimentHTML() {
-      const selected = app.modifier ? modifiers[app.modifier] : { color: '#4a2618', temperature: 64, steam: .24 };
-      const modifierButtons = Object.entries(modifiers).map(([key, modifier]) => `<button class="modifier-button" type="button" data-modifier="${key}" aria-pressed="${app.modifier === key}"><strong>${modifier.label}</strong><span>${modifier.note}</span></button>`).join('');
-      const sameQuestion = app.modifier ? `<div class="same-question"><p>Properties changed. Is it still the same coffee?</p><div class="same-buttons"><button class="same-button" type="button" data-same="yes" aria-pressed="${app.sameAnswer === 'yes'}">Yes—the same cup</button><button class="same-button" type="button" data-same="no" aria-pressed="${app.sameAnswer === 'no'}">No—a new cup</button></div></div>` : '';
-      const result = app.sameAnswer === 'yes'
-        ? '<div class="experiment-result"><strong>Then the One is not any fixed property.</strong> It persists while warmth, color, or taste changes.</div>'
-        : app.sameAnswer === 'no'
-          ? '<div class="experiment-result"><strong>Then the thing vanishes at every change.</strong> Ordinary experience still treats the changing drink as one continuing cup.</div>'
-          : '';
-      return `<div class="property-study">${cupVisualHTML({ ...selected, compact: true })}<div class="property-tools experiment"><h3>Change one feature.</h3><div class="modifier-buttons">${modifierButtons}</div>${sameQuestion}${result}</div></div>`;
-    }
-
-    function renderPerception() {
-      document.getElementById('claim-note').hidden = true;
-      setScene('8:10 AM · the cup persists', app.perceptionPhase ? 'One thing, changing properties' : `${app.properties.size}/4 properties noticed`, app.perceptionPhase ? 'Alter one feature of the coffee, then decide what remained the same.' : 'The fleeting Now has become one recognizable thing. Inspect what makes it this cup.', app.perceptionPhase ? 'Your move · change it' : 'Your move · inspect it', '#d7d0bd');
-      if (app.perceptionPhase === 0) {
-        cupStage.innerHTML = propertyStudyHTML();
-        const remaining = 4 - app.properties.size;
-        setReading(
-          'Moment 02 · from your standpoint',
-          app.properties.size < 4 ? 'Now I know one thing through many features.' : 'Each feature is general. Their gathering seems to make this cup.',
-          'Unlike one passing touch, the coffee seems stable because you can identify it through warmth, color, taste, and vessel.',
-          '“It is one cup—and it is warm, dark, bitter, and held by this mug.”',
-          'A thing is what holds its recognizable properties together.',
-          app.properties.size < 4 ? 'Each feature adds content to the object.' : 'Every feature could belong elsewhere, while this cup claims to be one.',
-          app.properties.size < 4 ? 'The object is becoming more determinate.' : 'The One and its many properties now have to survive an actual change.',
-          remaining ? `Inspect ${remaining} more ${remaining === 1 ? 'feature' : 'features'}` : 'Change the same cup →',
-          remaining > 0,
-          '<strong>Hegel’s name: perception.</strong> The object is no longer a bare “this.” It is one thing known through many shareable properties.'
-        );
-      } else {
-        cupStage.innerHTML = experimentHTML();
-        const answered = Boolean(app.sameAnswer);
-        setReading(
-          'Moment 02 · from your standpoint',
-          answered ? 'The cup needs both sameness and difference.' : app.modifier ? 'The same cup no longer has the same properties.' : 'Can one feature change while the thing remains?',
-          answered ? 'Calling only the unity essential makes it empty; calling only the properties essential makes the cup dissolve at every change. Each side needs the other.' : 'Milk, sugar, and time let you test whether the thing is simply a fixed bundle of features.',
-          answered ? '“It is one through changes—not one instead of changes.”' : '“If I change it, will it still be this coffee?”',
-          'A stable object should remain itself while bearing its properties.',
-          app.modifier ? modifiers[app.modifier].note : 'Choose a small intervention and watch several features move together.',
-          answered ? 'The object is no longer a static holder of properties. I need to understand the process connecting them.' : 'The question of what makes this one cup is now explicit.',
-          answered ? 'Ask what connects the changes →' : app.modifier ? 'Answer inside the scene' : 'Change the coffee inside the scene',
-          !answered,
-          answered ? '<strong>The pressure:</strong> the “one” and the “many” are not two detachable pieces. Their relation has become the next object.' : '<strong>Test the thing:</strong> do not solve the puzzle verbally. Change the cup and see what your criterion can preserve.'
-        );
+    function renderTools() {
+      let html='';
+      if(state.step===3) {
+        html=`<h3>Attend to the same lamp · ${state.features.size} of 4 explored</h3><div class="tool-row">${Object.entries(features).map(([key,f])=>toolButton('feature',key,f.label,state.features.has(key) ? `✓ ${f.value}`:'Explore this property',state.feature===key)).join('')}</div><p class="tool-feedback" role="status">${state.feature ? features[state.feature].description:'Choose a feature. Each description will add something without turning this into four lamps.'}</p>`;
+      } else if(state.step===4) {
+        html=`<h3>Change the context, not the lamp</h3><div class="tool-row">${toolButton('room','night','Dark room','The lamp stands out',state.room==='night')}${toolButton('room','day','Daylight','The room is already bright',state.room==='day')}</div><p class="tool-feedback" role="status">${state.room==='night' ? 'Against darkness, the lamp seems bright. Its light makes a conspicuous difference.':'Against daylight, the same output is less conspicuous. You have changed a relation, not turned the lamp down.'}</p><p class="lab-status">Illustrative contrast only; this is not a measurement of illumination.</p>`;
+      } else if(state.step===5) {
+        let response='Neither choice is a final answer. Try both and see what resists it.';
+        if(state.attribution==='object') response='If brightness belongs to the lamp alone, why does its unchanged output appear so different? Your description has left out the surroundings against which it is bright.';
+        if(state.attribution==='observer') response='If the difference is only an arbitrary act of seeing, why does changing the surrounding light alter the appearance so reliably? The object and conditions constrain what can appear.';
+        html=`<h3>Where does the difference belong? · ${state.attributions.size} of 2 tried</h3><div class="choice-row">${toolButton('attribution','object','Wholly in the lamp','Its property should be independent of me.',state.attribution==='object')}${toolButton('attribution','observer','Wholly in my seeing','The lamp is unchanged; the difference is mine.',state.attribution==='observer')}</div><p class="tool-feedback" role="status">${response}</p>`;
+      } else if(state.step===6) {
+        const missing=[!state.power && 'plug disconnected',!state.closed && 'switch open',!state.bulb && 'bulb failed'].filter(Boolean);
+        html=`<h3>A simplified circuit · select any condition to change it</h3><div class="tool-row">${toolButton('circuit','power','Power',state.power ? 'Connected':'Disconnected',state.power)}${toolButton('circuit','closed','Switch',state.closed ? 'Closed · on':'Open · off',state.closed)}${toolButton('circuit','bulb','Bulb',state.bulb ? 'Working':'Failed',state.bulb)}</div><p class="tool-feedback" role="status">${isLit() ? 'The light appears: power, a closed path, and a functioning bulb work together.' : `The light goes out: ${missing.join('; ')}. The lamp’s shape and material have not disappeared.`}</p><p class="lab-status">${state.restored && isLit() ? '✓ You interrupted the relation and restored its expression.' : state.disrupted ? 'You have interrupted the circuit. Restore every necessary condition to bring back the light.' : 'First interrupt one condition. Then restore it. Watch what the lamp does.'}</p>`;
+      } else if(state.step===7) {
+        let response='Try an account. Ask what it explains beyond the fact that light appears.';
+        if(state.explanation==='power') response='“It shines because it has a power to shine” has not yet distinguished any conditions. Without further content, the supposed inner cause merely repeats the appearance.';
+        if(state.explanation==='relation') response='This account distinguishes testable conditions. It is a useful step toward understanding—but, for Hegel, discovering stable laws is not the last word (§150).';
+        html=`<h3>Which account adds an intelligible difference?</h3><div class="choice-row">${toolButton('explanation','power','It has a power to shine.','The glow expresses its shining nature.',state.explanation==='power')}${toolButton('explanation','relation','It depends on a complete circuit.','Interrupt a necessary condition; the light stops.',state.explanation==='relation')}</div><p class="tool-feedback" role="status">${response}</p>`;
       }
+      byId('scene-tools').innerHTML=html;
     }
-
-    function systemValues() {
-      const { strength, milk, sugar, time } = app.factors;
-      const temperature = Math.round(Math.max(35, 82 - time * 1.8 - milk * .7));
-      const bitterness = Math.max(0, Math.min(100, Math.round(strength * 10 - sugar * 6 - milk * 3 + time * .15)));
-      const ratio = Math.min(.82, milk / 12);
-      const dark = [74, 38, 24];
-      const light = [226, 214, 188];
-      const rgb = dark.map((value, index) => Math.round(value + (light[index] - value) * ratio));
-      const color = `rgb(${rgb.join(',')})`;
-      const colorName = milk === 0 ? 'dark' : milk < 4 ? 'brown' : milk < 8 ? 'light' : 'pale';
-      const taste = bitterness >= 72 ? 'very bitter' : bitterness >= 52 ? 'bitter' : bitterness >= 32 ? 'balanced' : 'mild / sweet';
-      const heat = temperature >= 70 ? 'hot' : temperature >= 55 ? 'warm' : 'cool';
-      return { temperature, bitterness, color, colorName, taste, heat, steam: temperature >= 70 ? .9 : temperature >= 55 ? .28 : .03 };
+    function act(tool,value) {
+      if(tool==='feature' && state.step===3 && Object.hasOwn(features,value)) { state.features.add(value); state.feature=value; }
+      if(tool==='room' && state.step===4 && ['night','day'].includes(value)) { state.room=value; state.roomSeen.add(value); }
+      if(tool==='attribution' && state.step===5 && ['object','observer'].includes(value)) { state.attribution=value; state.attributions.add(value); }
+      if(tool==='circuit' && state.step===6 && ['power','closed','bulb'].includes(value)) {
+        state[value]=!state[value];
+        if(!isLit()) state.disrupted=true;
+        if(state.disrupted && isLit()) state.restored=true;
+      }
+      if(tool==='explanation' && state.step===7 && ['power','relation'].includes(value)) state.explanation=value;
     }
-
-    function systemStudyHTML() {
-      const values = systemValues();
-      return `<div class="system-study">${cupVisualHTML({ temperature: values.temperature, color: values.color, steam: values.steam, compact: true })}<div class="system-tools"><h3>Change the relations, not just the label.</h3><p>The cup you encounter is produced through a history of ingredients, heat, time, and taste.</p><div class="system-controls"><div class="system-control"><label for="strength">Coffee</label><input id="strength" type="range" min="1" max="10" value="${app.factors.strength}" data-factor="strength"><output id="strength-output">${app.factors.strength}/10</output></div><div class="system-control"><label for="milk">Milk</label><input id="milk" type="range" min="0" max="10" value="${app.factors.milk}" data-factor="milk"><output id="milk-output">${app.factors.milk}/10</output></div><div class="system-control"><label for="sugar">Sugar</label><input id="sugar" type="range" min="0" max="10" value="${app.factors.sugar}" data-factor="sugar"><output id="sugar-output">${app.factors.sugar}/10</output></div><div class="system-control"><label for="time">Time</label><input id="time" type="range" min="0" max="30" value="${app.factors.time}" data-factor="time"><output id="time-output">${app.factors.time} min</output></div></div><div class="live-cup"><div><small>Temperature</small><strong id="live-temperature">${values.temperature}°C · ${values.heat}</strong></div><div><small>Appearance</small><strong id="live-color">${values.colorName}</strong></div><div><small>Likely taste</small><strong id="live-taste">${values.taste}</strong></div></div><div class="relation-chain"><span>beans</span><i>+</i><span>water</span><i>+</i><span>heat</span><i>+</i><span>milk</span><i>+</i><span>sugar</span><i>+</i><span>time</span><i>+</i><span>palate</span></div></div></div>`;
+    function goTo(step) {
+      if(!Number.isInteger(step) || step<0 || step>=steps.length) return;
+      if(step>state.furthest && (step!==state.step+1 || !canAdvance())) return;
+      state.step=step;
+      state.furthest=Math.max(state.furthest,step);
+      render();
+      if(!canAdvance()) byId('scene-tools').querySelector('button')?.focus({preventScroll:true});
     }
-
-    function renderUnderstanding() {
-      document.getElementById('claim-note').hidden = true;
-      cupStage.innerHTML = systemStudyHTML();
-      setScene('The cup · as a living process', app.complete ? 'The relation is visible' : 'Conditions in motion', app.complete ? 'The cup remains one process because its differences are connected, not because they stand still.' : 'Move any control. Watch one intervention alter several appearances at once.', app.complete ? 'Experience recollected' : 'Your move · experiment', '#c6d4c9');
-      setReading(
-        'Moment 03 · from your standpoint',
-        app.complete ? 'I know this cup through the way it changes.' : app.adjusted ? 'One change travels through the whole cup.' : 'What connects warmth, color, and taste?',
-        app.complete ? 'The object is now a process: a structured relation among ingredients, heat, time, environment, and your sensing body. The properties are real as moments of that process.' : 'Instead of choosing between the One and its properties, vary the conditions that produce both. The cup becomes intelligible through connected change.',
-        app.complete ? '“The cup is not hidden behind its appearances. It is the organized way they change together.”' : '“If I understand the relation, I can anticipate what the next sip will be like.”',
-        'A good explanation should connect appearances and support expectations about change.',
-        app.adjusted ? 'Your intervention changed temperature, appearance, or taste together rather than moving one isolated label.' : 'The controls expose relations that were already active in every touch and property.',
-        app.complete ? 'My standard changed from “name what is there” to “grasp the process that makes these appearances hang together.”' : 'The relevant object has expanded from the cup-as-bundle to the cup-in-a-system.',
-        app.complete ? 'Ask what a machine would learn ↓' : app.adjusted ? 'Name what changed →' : 'Change at least one relation',
-        !app.adjusted,
-        app.complete ? '<strong>Hegel’s name: understanding.</strong> Knowing seeks the forces, relations, and laws through which appearances form one intelligible movement.' : '<strong>Do not look for a secret coffee behind the coffee.</strong> The deeper object is the connected movement visible through its changes.'
-      );
-    }
-
     function render() {
-      updateMarkers();
-      document.getElementById('machine-question').hidden = !app.complete;
-      if (app.moment === 0) renderSenseCertainty();
-      if (app.moment === 1) renderPerception();
-      if (app.moment === 2) renderUnderstanding();
+      const s=steps[state.step];
+      const lit=state.step===6 ? isLit():s.lit;
+      const daylight=[4,5].includes(state.step) && state.room==='day';
+      document.documentElement.style.setProperty('--part',['var(--gold)','var(--blue)','var(--teal)'][s.moment]);
+      byId('scene-time').textContent=s.time;
+      byId('scene-count').textContent=`Encounter ${state.step+1} / ${steps.length}`;
+      byId('lamp-world').style.setProperty('--lamp-on',lit ? '1':'0');
+      byId('lamp-world').style.setProperty('--daylight',daylight ? '.36':'0');
+      byId('lamp-world').setAttribute('aria-label',daylight ? 'The same illuminated lamp against brighter surroundings; its light stands out less.' : lit ? 'An illuminated brass desk lamp casts a warm pool of light.':'The same brass desk lamp, now unlit.');
+      byId('saved-note').hidden=!s.note;
+      byId('note-status').textContent=state.step===2 ? 'The room no longer matches this present-tense claim.':'The words stay put.';
+      for (const [id,key] of [['scene-title','title'],['scene-description','description'],['scene-note','cue'],['reading-title','heading'],['reading-copy','copy'],['trust','trust'],['test','test'],['survives','survives']]) byId(id).textContent=s[key];
+      byId('voice').textContent=`“${s.voice}”`;
+      const reading=state.step===7 ? {label:'§§154–155',page:140,gloss:'Hegel criticizes explanation when law and force are distinguished only to be declared identical in content: the explanation repeats what it was meant to explain. Our choice contrasts that verbal repetition with a testable dependency. Testability is our teaching bridge, not Hegel’s whole criterion or a solution to his subsequent argument.'} : state.step===8 ? {label:'§§85–87',page:104,gloss:'Experience changes not only knowing but also what counts as the true object and its standard. In §87, Hegel distinguishes what appears to the consciousness under examination from what we, tracing the series, can see about the necessity of the transition. This final panel is our retrospective reconstruction; the lamp exercise does not demonstrate that necessity in full.'} : readings[s.moment];
+      byId('stage-name').textContent=state.step===8 ? 'Looking back · our reconstruction' : `0${s.moment+1} · ${readings[s.moment].name}`;
+      byId('hegel-gloss').textContent=reading.gloss;
+      byId('source-link').href=`${PDF}#page=${reading.page}`;
+      byId('source-link').textContent=`Pinkard · ${reading.label} ↗`;
+      byId('primary').textContent=s.action;
+      byId('primary').disabled=!canAdvance();
+      byId('back').disabled=state.step===0;
+      byId('machine').hidden=state.step!==8;
+      document.querySelectorAll('[data-moment]').forEach((button,index)=>{
+        button.disabled=state.furthest<[0,3,6][index];
+        if(index===s.moment) button.setAttribute('aria-current','step');
+        else button.removeAttribute('aria-current');
+      });
+      renderTools();
     }
-
-    function updateSystemLive() {
-      const values = systemValues();
-      const visual = cupStage.querySelector('.cup-wrap');
-      visual.style.setProperty('--steam-opacity', values.steam);
-      visual.querySelector('.coffee').style.background = values.color;
-      visual.querySelector('.temperature').textContent = `${values.temperature}°C`;
-      cupStage.querySelector('#strength-output').textContent = `${app.factors.strength}/10`;
-      cupStage.querySelector('#milk-output').textContent = `${app.factors.milk}/10`;
-      cupStage.querySelector('#sugar-output').textContent = `${app.factors.sugar}/10`;
-      cupStage.querySelector('#time-output').textContent = `${app.factors.time} min`;
-      cupStage.querySelector('#live-temperature').textContent = `${values.temperature}°C · ${values.heat}`;
-      cupStage.querySelector('#live-color').textContent = values.colorName;
-      cupStage.querySelector('#live-taste').textContent = values.taste;
-      if (app.complete) return;
-      setReading(
-        'Moment 03 · from your standpoint', 'One change travels through the whole cup.',
-        'Instead of choosing between the One and its properties, vary the conditions that produce both. The cup becomes intelligible through connected change.',
-        '“If I understand the relation, I can anticipate what the next sip will be like.”',
-        'A good explanation should connect appearances and support expectations about change.',
-        'Your intervention changed temperature, appearance, or taste together rather than moving one isolated label.',
-        'The relevant object has expanded from the cup-as-bundle to the cup-in-a-system.',
-        'Name what changed →', false,
-        '<strong>Do not look for a secret coffee behind the coffee.</strong> The deeper object is the connected movement visible through its changes.'
-      );
-    }
-
-    cupStage.addEventListener('click', event => {
-      const property = event.target.closest('[data-property]');
-      if (property && app.moment === 1 && app.perceptionPhase === 0) {
-        app.properties.add(property.dataset.property);
-        render();
-        const next = cupStage.querySelector('[data-property][aria-pressed="false"]');
-        (next || primary).focus();
-        return;
-      }
-      const modifier = event.target.closest('[data-modifier]');
-      if (modifier && app.moment === 1 && app.perceptionPhase === 1) {
-        app.modifier = modifier.dataset.modifier;
-        app.sameAnswer = null;
-        render();
-        cupStage.querySelector('[data-same]').focus();
-        return;
-      }
-      const same = event.target.closest('[data-same]');
-      if (same && app.moment === 1 && app.perceptionPhase === 1) {
-        app.sameAnswer = same.dataset.same;
-        render();
-        primary.focus();
-      }
-    });
-
-    cupStage.addEventListener('input', event => {
-      const factor = event.target.dataset.factor;
-      if (!factor || app.moment !== 2) return;
-      app.factors[factor] = Number(event.target.value);
-      app.adjusted = true;
-      updateSystemLive();
-    });
-
-    primary.addEventListener('click', () => {
-      if (app.moment === 0) {
-        if (app.sensePhase < senseStates.length - 1) app.sensePhase += 1;
-        else { app.moment = 1; app.unlocked = Math.max(app.unlocked, 1); }
-      } else if (app.moment === 1) {
-        if (app.perceptionPhase === 0 && app.properties.size === 4) app.perceptionPhase = 1;
-        else if (app.perceptionPhase === 1 && app.sameAnswer) { app.moment = 2; app.unlocked = 2; }
-      } else if (app.moment === 2) {
-        if (app.adjusted && !app.complete) app.complete = true;
-        else if (app.complete) {
-          const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-          document.getElementById('machine-question').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
-          return;
-        }
-      }
+    byId('scene-tools').addEventListener('click',event=>{
+      const button=event.target.closest('button[data-tool]');
+      if(!button || !byId('scene-tools').contains(button)) return;
+      const {tool,value}=button.dataset;
+      act(tool,value);
       render();
+      byId('scene-tools').querySelector(`[data-tool="${tool}"][data-value="${value}"]`)?.focus({preventScroll:true});
     });
-
-    markers.forEach((marker, index) => marker.addEventListener('click', () => {
-      if (index > app.unlocked) return;
-      app.moment = index;
-      render();
+    byId('primary').addEventListener('click',()=>{
+      if(!canAdvance()) return;
+      if(state.step===8) byId('machine').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant':'smooth',block:'start'});
+      else goTo(state.step+1);
+    });
+    byId('back').addEventListener('click',()=>goTo(state.step-1));
+    byId('reset').addEventListener('click',()=>{Object.assign(state,initialState());render();});
+    document.querySelectorAll('[data-moment]').forEach(button=>button.addEventListener('click',()=>{
+      const step=[0,3,6][Number(button.dataset.moment)];
+      if(step<=state.furthest) goTo(step);
     }));
-
-    document.getElementById('reset').addEventListener('click', () => {
-      app.moment = 0;
-      app.unlocked = 0;
-      app.sensePhase = 0;
-      app.perceptionPhase = 0;
-      app.properties = new Set();
-      app.modifier = null;
-      app.sameAnswer = null;
-      app.factors = { strength: 6, milk: 0, sugar: 0, time: 10 };
-      app.adjusted = false;
-      app.complete = false;
-      render();
-    });
-
     render();
   </script>
 </body>

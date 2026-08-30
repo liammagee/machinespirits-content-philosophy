@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Experience of Consciousness — Hegel, animated</title>
-<meta name="description" content="An animated commentary on the first three shapes of Hegel's Phenomenology of Spirit: sense-certainty, perception, and force &amp; the understanding. Perform Hegel's own experiments and watch each shape of consciousness undo and remake itself — with a running parable, the night-watch, set alongside the text.">
-<meta name="theme-color" content="#0b0d13">
+<title>The Experience of Consciousness — an introduction to Hegel</title>
+<meta name="description" content="A general introduction to Hegel — and to thinking about human and machine learning — through the first three shapes of the Phenomenology of Spirit: sense-certainty, perception, and force &amp; the understanding. Perform Hegel's own experiments and watch each shape of consciousness undo and remake itself — with a small story, a child and a notebook, and Hegel's own words each on their own tab.">
+<meta name="theme-color" content="#121021">
 <style>
   :root{
-    --bg0:#0b0d13; --bg1:#11161f; --panel:#12161e; --panel2:#161b25;
-    --ink:#ece4d2; --dim:#9d968a; --faint:#6b675f;
-    --gold:#e6b95c; --coral:#e0603f; --teal:#63b8a4; --blue:#7ea3c4; --violet:#a99bd0;
-    --line:rgba(236,228,210,.14);
+    --bg0:#121021; --bg1:#1a1730; --panel:#181630; --panel2:#1d1a34;
+    --ink:#ece7f0; --dim:#a49db8; --faint:#78718f;
+    --gold:#f0c9a0; --coral:#e08e9b; --teal:#8fd6c2; --blue:#a9bbe8; --violet:#c0aee6;
+    --line:rgba(236,231,240,.14);
     --serif:"Iowan Old Style",Baskerville,"Palatino Linotype",Georgia,serif;
     --mono:ui-monospace,"SF Mono","SFMono-Regular",Menlo,Consolas,monospace;
   }
@@ -19,7 +19,7 @@
   html,body{margin:0}
   body{
     background:
-      radial-gradient(120rem 60rem at 50% -20rem, #1a2230 0%, transparent 55%),
+      radial-gradient(120rem 60rem at 50% -20rem, #252043 0%, transparent 55%),
       linear-gradient(180deg,var(--bg1),var(--bg0) 40rem);
     color:var(--ink); font-family:var(--serif);
     min-height:100dvh;
@@ -59,7 +59,7 @@
 
   .controls{
     display:grid; grid-template-columns:auto 1fr auto; gap:.6rem; align-items:stretch;
-    padding:.7rem clamp(.8rem,2vw,1.4rem); border-top:1px solid var(--line); background:rgba(10,12,17,.6);
+    padding:.7rem clamp(.8rem,2vw,1.4rem); border-top:1px solid var(--line); background:rgba(15,13,26,.6);
   }
   .navbtn{
     min-width:3rem; border:1px solid var(--line); background:transparent; color:var(--dim);
@@ -72,9 +72,9 @@
     padding:.75rem 1rem; border-radius:.2rem; font:600 .74rem var(--mono);
     letter-spacing:.1em; text-transform:uppercase; transition:background .18s,color .18s,opacity .18s;
   }
-  #action:hover{background:var(--gold); color:#191408}
+  #action:hover{background:var(--gold); color:#2b2140}
   #action.done{border-color:var(--teal); color:var(--teal)}
-  #action.done:hover{background:var(--teal); color:#0d1512}
+  #action.done:hover{background:var(--teal); color:#152521}
   #action:disabled{opacity:.45; cursor:progress}
   #action:disabled:hover{background:transparent; color:var(--gold)}
 
@@ -82,9 +82,9 @@
   .panel{
     grid-area:panel; min-height:0; overflow-y:auto; padding:1.15rem 1.3rem 1.6rem;
     background:linear-gradient(180deg,var(--panel2),var(--panel));
-    scrollbar-width:thin; scrollbar-color:#2c3442 transparent;
+    scrollbar-width:thin; scrollbar-color:#332f4e transparent;
   }
-  .kicker{margin:0; font:600 .6rem var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--part,#a99bd0)}
+  .kicker{margin:0; font:600 .6rem var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--part,#c0aee6)}
   .kicker .para{color:var(--faint); font-weight:400}
   .kicker a{color:inherit; text-decoration:none; border-bottom:1px dotted currentColor}
   .panel h2{margin:.45rem 0 .9rem; font:500 clamp(1.5rem,2.6vw,2rem)/1.06 var(--serif); letter-spacing:-.02em}
@@ -103,27 +103,102 @@
   .b-inside{border-left-color:var(--blue)} .b-inside h3{color:var(--blue)}
   .b-forus{border-left-color:var(--violet)} .b-forus h3{color:var(--violet)}
   .b-forus p{color:#cfc8e2}
-  /* the night-watch — our parable, typographically fenced off from Hegel */
-  .b-parable{
-    border-left:0; border-radius:0; padding:.85rem .95rem .9rem;
-    border-top:1px solid rgba(154,168,199,.3); border-bottom:1px solid rgba(154,168,199,.3);
-    background:linear-gradient(180deg,rgba(151,163,199,.07),rgba(151,163,199,.015));
+  .b-frame{border-left-color:var(--ink)} .b-frame h3{color:var(--ink)}
+  .b-machine{border-left-color:var(--teal)} .b-machine h3{color:var(--teal)}
+  .b-machine h3::before{content:'⌁  '}
+  /* ---------- the two registers: story / argument ---------- */
+  .tabs{display:flex; gap:.45rem; margin:.2rem 0 1rem}
+  .tab{ flex:1; border:1px solid var(--line); background:transparent; color:var(--dim);
+    font:600 .6rem var(--mono); letter-spacing:.12em; text-transform:uppercase;
+    padding:.55rem .4rem; border-radius:.3rem; cursor:pointer;
+    transition:color .2s,border-color .2s,background .2s; }
+  .tab:hover{color:var(--ink)}
+  .tab[aria-selected="true"]{color:var(--ink); border-color:var(--violet); background:rgba(192,174,230,.08)}
+  .storyview{position:absolute; inset:0; margin:0; background:var(--bg0)}
+  .storyview svg,.storyview img{display:block; width:100%; height:100%; object-fit:cover}
+  /* the quote slide: Hegel's words typeset large in the main visual pane */
+  .hegelview[hidden]{display:none} /* explicit display below would otherwise defeat [hidden] */
+  .hegelview{
+    position:absolute; inset:0; margin:0; overflow-y:auto;
+    display:flex; flex-direction:column;
+    gap:clamp(.7rem,2.4vh,1.5rem); padding:clamp(1.2rem,4vw,4.5rem);
+    background:radial-gradient(ellipse at 28% 18%, rgba(192,174,230,.09), transparent 62%) var(--bg0);
   }
-  .b-parable h3{color:#9aa8c7}
-  .b-parable h3::before{content:'☾  '}
-  .b-parable p{font-style:italic; color:#c9cfdd}
-  .b-parable p i{color:#e0d7c0}
-  .keyline{
-    margin:1rem 0 0; padding:.85rem .95rem; border:1px solid var(--line); border-radius:.25rem;
-    background:rgba(230,185,92,.05);
-    opacity:0; transition:opacity .6s ease;
+  /* auto-margins centre the quotes when they fit and yield to scrolling when
+     they don't (justify-content:center would clip the top on overflow) */
+  .hegelview::before{
+    content:'in Hegel’s words'; flex:none; margin-top:auto;
+    font:600 .62rem var(--mono); letter-spacing:.18em; text-transform:uppercase; color:var(--gold);
   }
-  .keyline.show{opacity:1}
-  .keyline p{margin:0; font:italic 500 .98rem/1.5 var(--serif)}
-  .keyline cite{display:block; margin-top:.45rem; font:.6rem var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--dim); font-style:normal}
+  .hegelview blockquote{margin:0; flex:none; padding-left:1.1rem; border-left:2px solid rgba(240,201,160,.45)}
+  .hegelview blockquote:last-child{margin-bottom:auto}
+  .hegelview blockquote p{margin:0; font:italic 500 clamp(1rem,2.1vw,1.45rem)/1.55 var(--serif); color:var(--ink)}
+  .hegelview blockquote cite{
+    display:block; margin-top:.5rem; font:.6rem var(--mono);
+    letter-spacing:.12em; text-transform:uppercase; color:var(--dim); font-style:normal;
+  }
+  /* interaction hint chip + clickable-target pulse */
+  .hint{
+    position:absolute; left:.9rem; bottom:.9rem; z-index:5; max-width:75%;
+    font:600 .6rem var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--gold);
+    background:rgba(12,10,22,.85); border:1px solid rgba(240,201,160,.4); border-radius:2rem;
+    padding:.5rem .9rem .5rem 1.7rem; pointer-events:none;
+  }
+  .hint::before{
+    content:''; position:absolute; left:.7rem; top:50%; width:.45rem; height:.45rem; margin-top:-.25rem;
+    border-radius:50%; background:var(--gold); animation:hintpulse 1.3s ease-in-out infinite;
+  }
+  @keyframes hintpulse{50%{opacity:.25; transform:scale(.7)}}
+  .hot{animation:hotglow 1.4s ease-in-out infinite}
+  @keyframes hotglow{50%{filter:brightness(1.7)}}
+  .story-chapter{margin:0 0 .55rem; font:600 .6rem var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--violet)}
+  .story-chapter::before{content:'☾  '}
+  .story-text p{margin:0 0 .6rem; font-size:.97rem; line-height:1.62; color:var(--ink)}
+  .story-text i{color:var(--gold); font-style:italic}
+  .story-note{margin:.9rem 0 0; padding-top:.6rem; border-top:1px solid var(--line); font:.62rem var(--mono); letter-spacing:.06em; color:var(--faint)}
+  .quote{
+    margin:0 0 .8rem; padding:.85rem .95rem; border:1px solid var(--line); border-radius:.25rem;
+    background:rgba(240,201,160,.06);
+  }
+  .quote p{margin:0; font:italic 500 .95rem/1.55 var(--serif)}
+  .quote cite{display:block; margin-top:.45rem; font:.6rem var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--dim); font-style:normal}
+  /* the "check against Pinkard" cite link that opens the reader */
+  .pklink{color:var(--gold); text-decoration:underline; text-decoration-style:dotted; text-underline-offset:.2em; cursor:pointer}
+  .pklink:hover{color:var(--ink)}
+  /* ---------- Pinkard reader (overlays the panel grid area) ---------- */
+  .reader[hidden]{display:none} /* explicit display below would otherwise defeat [hidden] */
+  .reader{
+    grid-area:panel; z-index:6; min-height:0; display:flex; flex-direction:column;
+    background:linear-gradient(180deg,var(--panel2),var(--panel));
+    border-left:1px solid var(--line);
+  }
+  .reader-head{
+    flex:none; display:flex; align-items:center; gap:.9rem;
+    padding:.7rem 1.3rem; border-bottom:1px solid var(--line);
+    font:600 .62rem var(--mono); letter-spacing:.12em; text-transform:uppercase;
+  }
+  #readerref{color:var(--gold)}
+  #readerext{margin-left:auto; color:var(--dim); text-decoration:none; border-bottom:1px dotted currentColor}
+  #readerext:hover{color:var(--ink)}
+  #readerclose{
+    border:1px solid var(--line); background:transparent; color:var(--dim);
+    font:600 .6rem var(--mono); letter-spacing:.1em; text-transform:uppercase;
+    padding:.3rem .6rem; border-radius:.3rem; cursor:pointer;
+  }
+  #readerclose:hover{color:var(--ink); border-color:var(--ink)}
+  .reader-body{min-height:0; overflow-y:auto; padding:1rem 1.3rem 1.6rem; scrollbar-width:thin; scrollbar-color:#332f4e transparent}
+  .reader-label{margin:1.1rem 0 .5rem; font:600 .6rem var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--gold)}
+  .reader-label:first-child{margin-top:0}
+  .readerlink{
+    display:block; padding:.7rem .85rem; border:1px solid var(--line); border-radius:.3rem;
+    font:.9rem/1.4 var(--serif); color:var(--gold); text-decoration:none; background:rgba(255,255,255,.02);
+  }
+  .readerlink:hover{color:var(--ink); border-color:var(--gold); background:rgba(240,201,160,.07)}
+  #readertext .unfilled{margin:.5rem 0 0; font-size:.78rem; line-height:1.5; color:var(--faint)}
+  #readergloss{margin:0; padding:.75rem .85rem .8rem; border-left:3px solid var(--teal); background:rgba(255,255,255,.025); border-radius:0 .25rem .25rem 0; font-size:.92rem; line-height:1.56; color:var(--ink)}
   .stepdots{display:flex; gap:.35rem; margin:.15rem 0 .9rem}
   .stepdots span{width:1.4rem; height:3px; border-radius:2px; background:var(--line)}
-  .stepdots span.on{background:var(--part,#a99bd0)}
+  .stepdots span.on{background:var(--part,#c0aee6)}
   details.gloss{margin-top:1.2rem; border-top:1px solid var(--line); padding-top:.8rem}
   details.gloss summary{cursor:pointer; font:600 .62rem var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--dim)}
   details.gloss dl{margin:.7rem 0 0; font-size:.83rem; line-height:1.5}
@@ -134,7 +209,7 @@
   .map{
     grid-area:map; display:flex; align-items:center; gap:clamp(.8rem,2.5vw,2rem);
     padding:.65rem clamp(1rem,3vw,2.2rem) .75rem; border-top:1px solid var(--line);
-    background:rgba(8,10,14,.75); overflow-x:auto;
+    background:rgba(12,10,22,.75); overflow-x:auto;
   }
   .rings{flex:0 0 auto; display:flex; align-items:center; gap:.7rem}
   #ringsvg{display:block}
@@ -173,7 +248,8 @@
     .journey{margin-left:0}
   }
   @media (prefers-reduced-motion:reduce){
-    .block,.keyline{transition:none}
+    .block{transition:none}
+    .hint::before,.hot{animation:none}
   }
 </style>
 </head>
@@ -183,7 +259,7 @@
   <header>
     <span class="brand">EPOL 479 · Reading Lab</span>
     <h1>The Experience of <em>Consciousness</em></h1>
-    <span class="head-note">Hegel, <i>Phenomenology of Spirit</i> · <a id="pdflink" href="#" target="_blank" rel="noopener">open the reading (Pinkard tr.)</a></span>
+    <span class="head-note">an introduction to Hegel · <i>Phenomenology of Spirit</i> · <a id="pdflink" href="#" target="_blank" rel="noopener">open the reading (Pinkard tr.)</a></span>
     <button id="music" type="button" aria-pressed="false" title="Quiet generative accompaniment — synthesized locally, off by default">♪ night music</button>
   </header>
 
@@ -193,43 +269,43 @@
         <title id="stagetitle">Animated stage for the current scene</title>
         <defs>
           <radialGradient id="vig" cx="50%" cy="42%" r="75%">
-            <stop offset="0%" stop-color="#131a24"/><stop offset="70%" stop-color="#0c0f16"/><stop offset="100%" stop-color="#06070b"/>
+            <stop offset="0%" stop-color="#1e1b33"/><stop offset="70%" stop-color="#131120"/><stop offset="100%" stop-color="#0a0914"/>
           </radialGradient>
           <linearGradient id="nightsky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#0b1026"/><stop offset="100%" stop-color="#1a2038"/>
+            <stop offset="0%" stop-color="#141232"/><stop offset="100%" stop-color="#252145"/>
           </linearGradient>
           <linearGradient id="noonsky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#3b567a"/><stop offset="100%" stop-color="#b28e55"/>
+            <stop offset="0%" stop-color="#6d7fb5"/><stop offset="100%" stop-color="#e0b48c"/>
           </linearGradient>
           <radialGradient id="coreglow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#f4e3b2" stop-opacity=".95"/><stop offset="45%" stop-color="#e6b95c" stop-opacity=".35"/><stop offset="100%" stop-color="#e6b95c" stop-opacity="0"/>
+            <stop offset="0%" stop-color="#f9e7cd" stop-opacity=".95"/><stop offset="45%" stop-color="#f0c9a0" stop-opacity=".35"/><stop offset="100%" stop-color="#f0c9a0" stop-opacity="0"/>
           </radialGradient>
           <radialGradient id="tealglow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#bdeadf" stop-opacity=".9"/><stop offset="50%" stop-color="#63b8a4" stop-opacity=".3"/><stop offset="100%" stop-color="#63b8a4" stop-opacity="0"/>
+            <stop offset="0%" stop-color="#d6f2e8" stop-opacity=".9"/><stop offset="50%" stop-color="#8fd6c2" stop-opacity=".3"/><stop offset="100%" stop-color="#8fd6c2" stop-opacity="0"/>
           </radialGradient>
           <radialGradient id="innerdepth" cx="50%" cy="50%" r="60%">
-            <stop offset="0%" stop-color="#050608"/><stop offset="80%" stop-color="#0d1119"/><stop offset="100%" stop-color="#131a25"/>
+            <stop offset="0%" stop-color="#0a0916"/><stop offset="80%" stop-color="#141222"/><stop offset="100%" stop-color="#1d1a33"/>
           </radialGradient>
           <linearGradient id="curtainL" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#3d1d2c"/><stop offset="55%" stop-color="#5c2438"/><stop offset="100%" stop-color="#2c1420"/>
+            <stop offset="0%" stop-color="#4a2b52"/><stop offset="55%" stop-color="#6b4276"/><stop offset="100%" stop-color="#33203f"/>
           </linearGradient>
           <linearGradient id="curtainR" x1="1" y1="0" x2="0" y2="0">
-            <stop offset="0%" stop-color="#3d1d2c"/><stop offset="55%" stop-color="#5c2438"/><stop offset="100%" stop-color="#2c1420"/>
+            <stop offset="0%" stop-color="#4a2b52"/><stop offset="55%" stop-color="#6b4276"/><stop offset="100%" stop-color="#33203f"/>
           </linearGradient>
           <filter id="fGold" x="-60%" y="-60%" width="220%" height="220%">
-            <feDropShadow dx="0" dy="0" stdDeviation="7" flood-color="#e6b95c" flood-opacity=".8"/>
+            <feDropShadow dx="0" dy="0" stdDeviation="7" flood-color="#f0c9a0" flood-opacity=".8"/>
           </filter>
           <filter id="fTeal" x="-60%" y="-60%" width="220%" height="220%">
-            <feDropShadow dx="0" dy="0" stdDeviation="7" flood-color="#63b8a4" flood-opacity=".8"/>
+            <feDropShadow dx="0" dy="0" stdDeviation="7" flood-color="#8fd6c2" flood-opacity=".8"/>
           </filter>
           <filter id="fCoral" x="-60%" y="-60%" width="220%" height="220%">
-            <feDropShadow dx="0" dy="0" stdDeviation="7" flood-color="#e0603f" flood-opacity=".85"/>
+            <feDropShadow dx="0" dy="0" stdDeviation="7" flood-color="#e08e9b" flood-opacity=".85"/>
           </filter>
           <filter id="fViolet" x="-60%" y="-60%" width="220%" height="220%">
-            <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#a99bd0" flood-opacity=".8"/>
+            <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#c0aee6" flood-opacity=".8"/>
           </filter>
           <filter id="fSoft" x="-60%" y="-60%" width="220%" height="220%">
-            <feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#f0e6cc" flood-opacity=".5"/>
+            <feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#f4e8dc" flood-opacity=".5"/>
           </filter>
           <filter id="fMist" x="-40%" y="-120%" width="180%" height="340%">
             <feGaussianBlur stdDeviation="26"/>
@@ -241,6 +317,9 @@
         <g id="scene"></g>
         <g id="observer" aria-hidden="true"></g>
       </svg>
+      <figure class="storyview" id="storyview" hidden aria-hidden="true"></figure>
+      <figure class="hegelview" id="hegelview" hidden></figure>
+      <div class="hint" id="hint" hidden></div>
     </div>
     <div class="controls">
       <button class="navbtn" id="prev" type="button" aria-label="Previous scene">‹</button>
@@ -252,13 +331,29 @@
   <aside class="panel" id="panel" aria-live="polite">
     <p class="kicker" id="kicker"></p>
     <h2 id="scenetitle"></h2>
+    <div class="tabs" role="tablist" aria-label="Three registers">
+      <button class="tab" id="tab-story" role="tab" aria-selected="true" aria-controls="pane-story" type="button">☾ the story</button>
+      <button class="tab" id="tab-hegel" role="tab" aria-selected="false" aria-controls="pane-hegel" type="button">in Hegel’s words</button>
+      <button class="tab" id="tab-arg" role="tab" aria-selected="false" aria-controls="pane-arg" type="button">the argument</button>
+    </div>
+    <div id="pane-story" role="tabpanel" aria-labelledby="tab-story">
+      <h3 class="story-chapter" id="storychapter"></h3>
+      <div class="story-text" id="storytext"></div>
+      <p class="story-note">The story is ours, not Hegel’s. Where the tabs differ, trust the argument — and behind it, Hegel.</p>
+    </div>
+    <div id="pane-hegel" role="tabpanel" aria-labelledby="tab-hegel" hidden>
+      <div id="quotes"></div>
+      <p class="story-note">Renderings of Hegel’s German made for this page — check each against the Pinkard translation before you quote it.</p>
+    </div>
+    <div id="pane-arg" role="tabpanel" aria-labelledby="tab-arg" hidden>
     <div class="stepdots" id="stepdots" aria-hidden="true"></div>
     <div id="blocks"></div>
-    <blockquote class="keyline" id="keyline"><p id="keytext"></p><cite id="keycite"></cite></blockquote>
+    </div>
     <details class="gloss">
-      <summary>Five words you need — and one parable</summary>
+      <summary>Five words you need — and two companions</summary>
       <dl>
-        <dt>☾ the night-watch</dt><dd>The italic interludes marked ☾ are <i>our</i> parable, not Hegel’s text: one watcher’s night, retold alongside the argument, losing what each scene loses. It mirrors; it never argues. Where it and Hegel differ, trust Hegel.</dd>
+        <dt>☾ the story</dt><dd>The story tab follows a child who sets out to learn the world with a notebook. It is <i>ours</i>, not Hegel’s text: each page quietly loses what the argument loses in that scene. It mirrors; it never argues. Where it and Hegel differ, trust Hegel.</dd>
+        <dt>⌁ meanwhile, the machine</dt><dd>Teal notes inside the argument weigh each shape against machine learning — the bare sensor, the pattern-recognizer, the world model. Hegel wrote none of this; the comparison is the course’s. It is why an AI course starts its Hegel here.</dd>
         <dt>universal</dt><dd>What holds itself steady across different instances — “now”, “here”, “I”, “thing”, “red”. The opposite of a bare singular. Sense-certainty’s whole drama is discovering that its words were universals all along.</dd>
         <dt>sublate (aufheben)</dt><dd>Hegel’s verb for how a shape fails: it is cancelled <i>and</i> kept. The wreckage is never thrown away — it becomes material for the next object.</dd>
         <dt>in-itself / for-consciousness</dt><dd>What the object supposedly is independently of us, versus how it shows up for a knower. Experience is the discovery that the “in-itself” was an in-itself <i>for consciousness</i> — and the promotion of that discovery into a new object.</dd>
@@ -267,6 +362,26 @@
       </dl>
     </details>
   </aside>
+
+  <!-- Pinkard reader: opened from a quote's "check against Pinkard" link;
+       covers the panel with a plain-language gloss → a deep link to the
+       paragraph in Pinkard's translation. The translation is in copyright, so
+       its text is never reproduced here; only the page number travels, and it
+       is generated into the PINKARD object from _notes/dialectic-map.md by
+       _notes/pinkard-refs.py. -->
+  <section class="reader" id="reader" hidden aria-label="Plain-language gloss and Pinkard reference">
+    <div class="reader-head">
+      <span id="readerref"></span>
+      <a id="readerext" href="#" target="_blank" rel="noopener">open PDF ↗</a>
+      <button id="readerclose" type="button">✕ close</button>
+    </div>
+    <div class="reader-body">
+      <p class="reader-label">in plain language</p>
+      <p id="readergloss"></p>
+      <p class="reader-label">read it in Hegel’s words</p>
+      <div id="readertext"></div>
+    </div>
+  </section>
 
   <nav class="map" aria-label="Journey map">
     <div class="rings">
@@ -291,8 +406,15 @@
 
 const SVGNS='http://www.w3.org/2000/svg';
 const RM=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const PDF='../_readings/Georg%20Wilhelm%20Friedrich%20Hegel%20-%20The%20Phenomenology%20of%20Spirit%20(Terry%20Pinkard%20Translation).pdf';
-document.getElementById('pdflink').href=PDF+'#page=103';
+// Pinkard's translation, freely hosted by marxists.org. Page numbers in the
+// PINKARD object below index this edition (bilingual, 739pp) — not the course
+// PDF, whose pagination differs.
+const PDF='https://www.marxists.org/reference/archive/hegel/works/ph/pinkard-translation-of-phenomenology.pdf';
+document.getElementById('pdflink').href=PDF+'#page=82';  // ¶84, the first paragraph this page cites
+
+/* PINKARD:BEGIN — generated from _notes/dialectic-map.md by _notes/pinkard-refs.py; edit there, then re-run (--sync for gloss-only changes). Page numbers index the marxists.org PDF; the translation itself is in copyright and is never embedded. */
+const PINKARD={"84": {"page": 82, "gloss": "Hegel's method in one move: we never need an outside yardstick to test knowledge. Consciousness always carries two things at once — what it takes the object to be, and how the object actually shows up for it — and the test is simply the comparison of the two. When they fail to match, consciousness cannot shrug the mismatch off; it has to revise its own account."}, "86": {"page": 85, "gloss": "When the test fails, it is not only the knowing that shifts — the object changes too, because the object was only ever the object-as-known. A new object emerges from the wreck of the old one. This self-correcting movement, in which each failure generates the next and richer shape, is exactly what Hegel means by the word “experience”."}, "87": {"page": 85, "gloss": "The learner never watches its own learning happen. From the inside, the new object seems simply to turn up — a lucky find. Only an observer of the whole series (Hegel says: “we”, the readers) sees that the new object was produced by the failure of the old one. The production happens, as the story puts it, behind the learner's back."}, "91": {"page": 89, "gloss": "Sense-certainty — just look, don't think — promises the richest knowledge there is: the whole world, immediately, nothing filtered out. But ask it to state what it knows and everything collapses into a single word: *is*. The richest-seeming knowledge yields the poorest truth, because it refuses the very distinctions that would make its content sayable."}, "95": {"page": 91, "gloss": "The famous experiment. If “the Now is the night” is true, writing it down cannot hurt it — a truth loses nothing by being preserved. But read the note at noon and it has gone stale. What survives the test is not night or day but the Now itself, which stays Now precisely by not being any particular content. The written note is the first machine in the book: an external memory that outlives what it recorded."}, "96": {"page": 92, "gloss": "Something that persists by negating every particular filling — not night, not day, “a not-this” — is what Hegel calls a universal. And the twist: universals are all that language can say. Say “Now”, “This”, “here” and you utter what everybody utters. The bare particular you *mean* is exactly what you cannot *say*."}, "101": {"page": 94, "gloss": "Pushed off the object, sense-certainty retreats into the subject: the truth of the This now lies in *my* seeing, *my* hearing — the immediacy of the I. The certainty has not been given up, only relocated: from the thing over there to the one who beholds it."}, "102": {"page": 94, "gloss": "But “I” fares no better than “Now”. Every speaker says “I”, and every “I” is any I. The word that was supposed to name pure singularity is the most common word in the language — so the singular I is just as unsayable as the singular This was."}, "107": {"page": 97, "gloss": "Fine — don't say the Now, point at it. But pointing takes time: by the moment the finger arrives, that Now *has been*. Pointing out the Now is not a touch but a little history — Now, has-been, and the return out of the has-been — and what the Now truly is turns out to be a result: many nows gathered into one."}, "110": {"page": 100, "gloss": "The same goes for the Here and for the piece of paper you mean. Speakers mean *this* paper, but what they say is “things”, “objects” — universals. And Hegel is blunt about the residue: the “ineffable” particular that cannot enter language is not deeper than language but less — the merely meant, the untrue. What cannot be said was never doing any work in knowledge."}, "113": {"page": 103, "gloss": "Perception has learned sense-certainty's lesson: it takes the thing *as* universal from the start. The salt is one Here and at the same time many: white, and also tart, and also cubical, and also of a certain weight. That harmless little word “also” is the whole structure of the new object."}, "113–114": {"page": 103, "gloss": "The thing has two faces that do not fit together. As the *Also* it is a loose medium in which properties coexist without touching — the whiteness does not affect the cubical shape, neither affects the tartness. As the *One* it excludes: the properties are *its*, determinate only by contrast with what the thing is not. Perception's whole drama is that the thing has to be both at once."}, "116–118": {"page": 106, "gloss": "The perceiver knows perception can deceive, and has a fix ready: whenever the thing comes out contradictory, blame the perceiving. “The thing itself is one; the diversity came from me.” Consciousness takes the untruth upon itself to keep its object pure — the first appearance of error-management as a deliberate strategy."}, "119–122": {"page": 109, "gloss": "The strategy becomes a shell game. First: unity belongs to the thing, diversity comes from us — our eyes, our tongue. Then, when that fails: diversity belongs to the thing, unity is our synthesis. The assignments keep swapping because neither side can hold its role — the contradiction lives in the relation itself, not in either party."}, "125–126": {"page": 113, "gloss": "The thing was supposed to stand on its own — for itself, indifferent to everything else. But its determinateness — being *this* thing and no other — exists only through contrast with other things. Its independence is constituted by relation, which is to say it is not independence. The thing's own character is what dissolves it."}, "128": {"page": 114, "gloss": "Perception's last defence is bookkeeping: the thing is one “insofar as”, many “in another respect”. Hegel calls this sophistry — juggling empty abstractions to postpone the contradiction rather than think it. Those abstractions, handled and dropped like counters, are precisely what the understanding will now take as its proper objects."}, "136": {"page": 121, "gloss": "Force is the thing re-thought as movement. Force driven back into itself — withdrawn, potential — *must* express itself; and the expression is not something done to it from outside but its own doing. Substance has become process: what a force is, is what it does."}, "141": {"page": 127, "gloss": "Take two forces: each is solicited by the other, each active only in the exchange. Try to grasp either force outside the play and there is nothing to hold — their being is a pure vanishing. The truth of force is not a hidden stuff behind the play but the *thought* of the interplay — which drives consciousness to look behind the play for something that stays put."}, "143–146": {"page": 129, "gloss": "Behind the vanishing play, consciousness posits a true world: the inner, the supersensible. But at first this beyond is empty — there is nothing in it yet, precisely because consciousness has defined it only as “not the appearance”. Nothing is to be seen in a void; the inner is a blank exactly as long as consciousness has not yet recognised its own hand in filling it."}, "149": {"page": 135, "gloss": "The empty inner gets its filling: it becomes the tranquil realm of laws — the flux of appearance redrawn as a stable, motionless likeness. But the copy is too calm. The law states what always holds; appearance keeps a remainder of change and instance that the law does not capture. The map is quieter than the territory, and that gap is the next problem."}, "152–154": {"page": 138, "gloss": "Explanation: the understanding distinguishes the law from its ground — a force — and then finds the force constituted exactly like the law. A difference is declared and immediately cancelled: one content, said twice. Nothing happens in the object; all the movement is the understanding's own. That is the joke, and also the clue — the necessity consciousness kept looking for was its own activity all along."}, "158": {"page": 145, "gloss": "The inverted world. If one supersensible world mirrors appearance, the logic of opposition generates a second, inverted one: what is sweet in the first is sour in it, what is black is white. The lesson of the exercise: once a world can be inverted wholesale, “like” and “unlike” stop being fixed addresses — the like is unlike to itself, and the unlike like."}, "160": {"page": 147, "gloss": "The inversion teaches inner difference: real opposition is not two separate things parked in two separate worlds. The opposite is “the opposite of an opposite” — its other is already inside it. Difference that a thing carries within itself, its differing from itself, is the concept the whole chapter has been driving toward."}, "162": {"page": 149, "gloss": "Inner difference made absolute receives its grand names: simple infinity, the absolute concept, the simple essence of life, the soul of the world, the universal blood. It is unity that differs from itself and remains itself in the differing — the pulse the book has been tracking from the first page, now stated in its own right."}, "163": {"page": 151, "gloss": "This infinity was silently the engine of every shape so far — sense-certainty's Now, perception's Also, the play of forces. In the inner it finally steps forth as itself, free-standing. And when consciousness takes *this* as its object, it is looking at the very structure of its own looking: consciousness of difference has become self-consciousness."}, "165": {"page": 153, "gloss": "The curtain scene. The inner world was supposed to hide behind appearance like a stage behind a curtain. Hegel's verdict: behind the curtain there is nothing to see — unless we go behind it ourselves; and our going behind is what puts both a seer and a seen there. The hidden truth was never an object lying in wait; it is the activity of the consciousness that seeks it."}, "167": {"page": 156, "gloss": "The turn is complete: consciousness of an object has become consciousness of itself, and Hegel marks the arrival — with self-consciousness we have entered the native land of truth. Everything before was the prehistory of a knower that can now take its own knowing as the thing to be known."}};
+/* PINKARD:END */
 
 /* ---------- svg helpers ---------- */
 function E(tag,attrs,parent){
@@ -322,10 +444,19 @@ function anim(el,frames,opts){
 }
 function fadeIn(el,dur,delay){ el.style.opacity=0; return anim(el,[{opacity:0},{opacity:1}],{duration:dur||600,delay:delay||0}); }
 function fadeOut(el,dur,delay){ return anim(el,[{opacity:1},{opacity:0}],{duration:dur||600,delay:delay||0}); }
+// SMIL motion along a path — Safari never reliably ran offset-path on SVG,
+// so path-riding elements use <animateMotion> instead of WAAPI
+function M(el,path,durS,opts){
+  opts=opts||{};
+  const a=E('animateMotion',{dur:durS+'s',repeatCount:'indefinite',path},el);
+  if(opts.begin) a.setAttribute('begin',opts.begin);
+  if(opts.spline){ a.setAttribute('calcMode','spline'); a.setAttribute('keyTimes','0;1'); a.setAttribute('keySplines',opts.spline); }
+  return a;
+}
 const wait=(ms)=>new Promise(r=>setTimeout(r,RM?0:ms));
 
 /* ---------- palette ---------- */
-const C={ink:'#ece4d2',dim:'#9d968a',faint:'#6b675f',gold:'#e6b95c',coral:'#e0603f',teal:'#63b8a4',blue:'#7ea3c4',violet:'#a99bd0'};
+const C={ink:'#ece7f0',dim:'#a49db8',faint:'#78718f',gold:'#f0c9a0',coral:'#e08e9b',teal:'#8fd6c2',blue:'#a9bbe8',violet:'#c0aee6'};
 const PARTS=[
   {name:'Prologue',color:C.violet},
   {name:'I · Sense-certainty',color:C.gold},
@@ -343,7 +474,7 @@ const obsG=document.getElementById('observer');
   for(let i=0;i<70;i++){
     const op=(Math.random()*.28+.05).toFixed(2);
     const s=E('circle',{cx:Math.random()*1200,cy:Math.random()*675,r:Math.random()*1.1+.2,
-      fill:'#cfd6e4',opacity:op},starG);
+      fill:'#d8d4ec',opacity:op},starG);
     // a third of the field breathes, very slowly
     if(!RM&&i%3===0) s.animate([{opacity:op},{opacity:op*.25},{opacity:op}],
       {duration:5200+Math.random()*4800,iterations:Infinity,delay:Math.random()*5000,easing:'ease-in-out'});
@@ -351,7 +482,7 @@ const obsG=document.getElementById('observer');
 })();
 (function mist(){
   // ground fog under every scene; scenes paint over it
-  [[300,624,470,64,'#1b2333',.34,88,86e3],[860,644,520,52,'#161d2b',.28,-70,72e3]].forEach(([cx,cy,rx,ry,fill,op,drift,dur])=>{
+  [[300,624,470,64,'#232038',.34,88,86e3],[860,644,520,52,'#1c1930',.28,-70,72e3]].forEach(([cx,cy,rx,ry,fill,op,drift,dur])=>{
     const m=E('ellipse',{cx,cy,rx,ry,fill,opacity:op,filter:'url(#fMist)'},mistG);
     if(!RM) m.animate([{transform:'translate(0,0)'},{transform:`translate(${drift}px,-6px)`},{transform:'translate(0,0)'}],
       {duration:dur,iterations:Infinity,easing:'ease-in-out'});
@@ -362,7 +493,7 @@ const obsG=document.getElementById('observer');
   function one(){
     const x0=260+Math.random()*760, y0=40+Math.random()*170;
     const g=E('g',{opacity:0},starG);
-    E('line',{x1:x0,y1:y0,x2:x0+64,y2:y0-22,stroke:'#e8edf8','stroke-width':1.3,'stroke-linecap':'round'},g);
+    E('line',{x1:x0,y1:y0,x2:x0+64,y2:y0-22,stroke:'#eee9f8','stroke-width':1.3,'stroke-linecap':'round'},g);
     const a=g.animate([
       {opacity:0,transform:'translate(0,0)'},
       {opacity:.6,offset:.22},
@@ -391,7 +522,7 @@ function drawEye(g,x,y,s,cls){
 /* ============================================================
    SCENES
    Each scene: kicker, title, part, para (¶ refs), page (PDF),
-   blocks[{cls,head,html,at}], keyline{text,cite,at},
+   blocks[{cls,head,html,at}], quotes[{text,cite}] (Hegel tab, all shown at once),
    build(ctx)  -> constructs initial stage
    steps[{label,run(ctx)}]
    ============================================================ */
@@ -404,12 +535,16 @@ scenes.push({
   part:0, para:'Introduction ¶84–88', page:104,
   title:'How experience works',
   blocks:[
+    {cls:'b-frame',head:'Why begin here — Hegel, and how anything learns',at:0,html:'This page is our general introduction to Hegel: a German philosopher writing in Kant’s wake, who published the <i>Phenomenology of Spirit</i> in 1807 — famously as Napoleon rode into Jena. The book asks how a <em>subject</em> — human, and, we will keep asking, perhaps machinic — makes itself by learning. Against empiricism, where experience simply <i>happens to us</i>, and against every mechanistic picture of learning, Hegel argues that we <em>constitute</em> our experience: the mind organizes appearances, and reorganizes them when they break down. <i>Experience</i> (Erfahrung) is his name for that living revision — and the three shapes ahead, sense-certainty, perception, understanding, are its first three lessons. Watch for the ⌁ notes, where we hold each shape up against the machines.'},
     {cls:'b-claim',head:'The setup',at:0,html:'Consciousness always carries two things at once: its <i>object</i> — what it takes to be true in itself — and its <i>knowing</i> of that object, its certainty. Because it holds both, it needs no outside examiner. It can test itself. We contribute nothing; we <em>purely look on</em>.'},
     {cls:'b-inside',head:'The movement',at:1,html:'When the test fails, consciousness must revise its knowing. But its object was defined <i>through</i> that knowing — so the object does not survive either. What steps into its place is a new object: <em>what the old object turned out to be</em>. Claim, test, collapse, new object: that whole movement is what Hegel calls <i>experience</i> (Erfahrung).'},
     {cls:'b-forus',head:'For us',at:2,html:'Consciousness never sees the necessity of this sequence — the new object simply confronts it, as if from nowhere. The logic happens, Hegel says, <i>behind its back</i> (¶87). Watching that logic is our job. Every scene that follows plays twice: once from inside, once from up here.'},
-    {cls:'b-parable',head:'The night-watch · a parable (ours, not Hegel’s)',at:3,html:'Beside the argument we will keep a small story. It is ours — a parable set alongside Hegel’s text, not part of it; where they differ, trust him. A watcher keeps a tower through one long night, sure of nothing so much as their own eyes. No one countersigns the log. Each scene, the story will lose what the argument loses. Watch what the watcher keeps.'},
   ],
-  keyline:{at:1,text:'“This dialectical movement that consciousness performs on itself — on its knowing and on its object alike — insofar as the new, true object springs forth from it, is precisely what is called experience.”',cite:'¶86 · our rendering of Hegel’s German — check it against Pinkard'},
+  quotes:[
+    {text:'“Consciousness provides its own criterion within itself; the investigation is thereby a comparison of consciousness with itself.”',cite:'after ¶84 · our rendering — check against Pinkard'},
+    {text:'“This dialectical movement that consciousness performs on itself — on its knowing and on its object alike — insofar as the new, true object springs forth from it, is precisely what is called experience.”',cite:'¶86 · our rendering — check against Pinkard'},
+    {text:'“The origination of the new object presents itself to consciousness without consciousness knowing how it comes about; it proceeds, as it were, behind its back.”',cite:'¶87 · our rendering — check against Pinkard'},
+  ],
   build(x){
     const g=x.g;
     // knowing orb
@@ -482,20 +617,23 @@ scenes.push({
     {cls:'b-claim',head:'The claim',at:0,html:'Just receive what is there. Don’t infer, don’t compare, don’t conceptualise — alter nothing. <em>This. Here. Now.</em> Nothing could be more concrete, more certain, or richer than the bare presence of the world: an endless wealth in space and time, with nothing left out.'},
     {cls:'b-inside',head:'From inside',at:1,html:'Asked to say what it actually knows, this certainty can produce exactly one word: <i>is</i>. Every description leans on concepts, and concepts are what it renounced. The richest knowledge speaks one syllable — Hegel calls it the most abstract and poorest truth.'},
     {cls:'b-forus',head:'For us',at:1,html:'Even here the structure is double: an I that is a bare “this I”, an item that is a bare “this item” — each certain only <i>through</i> the other (¶92). Pure immediacy is already secretly mediated. Now let it test itself.'},
-    {cls:'b-parable',head:'The night-watch · a parable',at:1,html:'Asked at midnight what they have seen, the watcher opens both hands: everything — the whole sky, nothing left out. Asked to <i>say</i> it, they stand a long while at the rail. “It was there.”'},
+    {cls:'b-machine',head:'Meanwhile, the machine',at:1,html:'Sense-certainty is a bare sensor: a photodiode registering <i>signal, now</i>. Nothing is recorded, nothing compared — so nothing is learned. Whatever machine learning is, it has not begun here. Neither, Hegel is arguing, has knowledge.'},
   ],
-  keyline:{at:1,text:'“It says of what it knows only this: it is. Its truth contains nothing but the being of the item.”',cite:'¶91 · our rendering — check against Pinkard'},
+  quotes:[
+    {text:'“Sense-certainty immediately appears as the richest knowledge, indeed a knowledge of infinite wealth — yet this certainty in fact yields the most abstract and poorest truth.”',cite:'¶91 · our rendering — check against Pinkard'},
+    {text:'“It says of what it knows only this: it is. Its truth contains nothing but the being of the item.”',cite:'¶91 · our rendering — check against Pinkard'},
+  ],
   build(x){
     const g=x.g;
     const wealth=E('g',{},g); x.wealth=wealth;
     for(let i=0;i<90;i++){
       const a=Math.random()*Math.PI*2, r=60+Math.random()*300;
       const d=E('circle',{cx:600+Math.cos(a)*r*1.5,cy:320+Math.sin(a)*r*.85,r:Math.random()*2.2+.6,
-        fill:['#e6b95c','#ece4d2','#7ea3c4'][i%3],opacity:(Math.random()*.5+.15).toFixed(2)},wealth);
+        fill:['#f0c9a0','#ece7f0','#a9bbe8'][i%3],opacity:(Math.random()*.5+.15).toFixed(2)},wealth);
       if(!RM) d.animate([{opacity:d.getAttribute('opacity')},{opacity:.05},{opacity:d.getAttribute('opacity')}],{duration:2400+Math.random()*3000,iterations:Infinity,delay:Math.random()*2000});
     }
     E('circle',{cx:600,cy:320,r:120,fill:'url(#coreglow)'},wealth);
-    x.core=E('circle',{cx:600,cy:320,r:9,fill:'#f6ecd0',filter:'url(#fGold)'},g);
+    x.core=E('circle',{cx:600,cy:320,r:9,fill:'#f6eede',filter:'url(#fGold)'},g);
     x.words=E('g',{},g);
     T(600,205,'NOW','t-label',x.words,{fill:C.gold,'font-size':'22px'});
     T(430,330,'HERE','t-label',x.words,{fill:C.gold,'font-size':'22px'});
@@ -533,20 +671,23 @@ scenes.push({
     {cls:'b-claim',head:'The claim',at:0,html:'It is night. Asked <i>what is the Now?</i>, sense-certainty answers with perfect confidence: <em>“The ‘now’ is the night.”</em> What could be more certain, at this instant?'},
     {cls:'b-inside',head:'The experiment',at:1,html:'Hegel’s test is disarmingly simple: <i>write the truth down</i>. A truth can’t be damaged by being kept. Then wait. At noon the sentence is still here — and it has gone <em>stale</em>. The Now did not vanish with the night; it calmly persists as <i>not</i>-night, and then as <i>not</i>-day. Whatever holds itself steady through this and that, indifferent to both, is no singular. Hegel’s name for it: a <em>universal</em>.'},
     {cls:'b-forus',head:'For us',at:2,html:'The betrayal happened in language before the sun rose. “Now” never did name <i>this</i> night; it names any moment whatever. We literally cannot say the pure singular we mean — and language, Hegel says, is <i>the more truthful</i> (¶97): it refutes our meaning as we speak.'},
-    {cls:'b-parable',head:'The night-watch · a parable',at:2,html:'The watcher writes in the log: <i>the comet stands over the elm.</i> Toward dawn the page is still true to its ink and false to its sky — the comet has gone on; the words have stayed. The log keeps only what any night could say.'},
   ],
-  keyline:{at:2,text:'“A simple something that is through negation — neither this nor that, a not-this, equally indifferent to being this or that — we call a universal.”',cite:'¶96 · our rendering — check against Pinkard'},
+  quotes:[
+    {text:'“To test the truth of this sense-certainty, a simple experiment suffices: we write this truth down. A truth loses nothing by being written down, nothing by our preserving it.”',cite:'¶95 · our rendering — check against Pinkard'},
+    {text:'“The Now is the night.”',cite:'¶95 · Pinkard’s wording — the one quotation this page gives verbatim'},
+    {text:'“A simple something that is through negation — neither this nor that, a not-this, equally indifferent to being this or that — we call a universal.”',cite:'¶96 · our rendering — check against Pinkard'},
+  ],
   build(x){
     const g=x.g;
     x.sky=E('rect',{x:0,y:0,width:1200,height:470,fill:'url(#nightsky)'},g);
     x.stars2=E('g',{},g);
-    for(let i=0;i<50;i++) E('circle',{cx:Math.random()*1200,cy:Math.random()*400,r:Math.random()*1.4+.3,fill:'#dfe6f4',opacity:(Math.random()*.7+.2).toFixed(2)},x.stars2);
+    for(let i=0;i<50;i++) E('circle',{cx:Math.random()*1200,cy:Math.random()*400,r:Math.random()*1.4+.3,fill:'#e2ddf4',opacity:(Math.random()*.7+.2).toFixed(2)},x.stars2);
     x.moon=E('g',{},g);
-    E('circle',{cx:905,cy:150,r:38,fill:'#e8e4d5',filter:'url(#fSoft)'},x.moon);
-    E('circle',{cx:922,cy:140,r:32,fill:'#141b2b'},x.moon);
-    x.sun=E('circle',{cx:180,cy:600,r:42,fill:'#f2c85b',filter:'url(#fGold)',opacity:0},g);
-    E('rect',{x:0,y:470,width:1200,height:205,fill:'#0a0c11'},g);
-    E('line',{x1:0,y1:470,x2:1200,y2:470,stroke:'#2a3040','stroke-width':1.5},g);
+    E('circle',{cx:905,cy:150,r:38,fill:'#ece4dc',filter:'url(#fSoft)'},x.moon);
+    E('circle',{cx:922,cy:140,r:32,fill:'#191637'},x.moon);
+    x.sun=E('circle',{cx:180,cy:600,r:42,fill:'#f2cd9d',filter:'url(#fGold)',opacity:0},g);
+    E('rect',{x:0,y:470,width:1200,height:205,fill:'#0e0c1c'},g);
+    E('line',{x1:0,y1:470,x2:1200,y2:470,stroke:'#363152','stroke-width':1.5},g);
     // the NOW monogram
     x.nowG=E('g',{},g);
     T(600,560,'NOW','t-big',x.nowG,{fill:C.gold,'font-size':'64px',filter:'url(#fGold)'});
@@ -562,8 +703,18 @@ scenes.push({
   },
   steps:[
     {label:'Write it down',async run(x){
-      fadeIn(x.tag,900);
-      if(!RM){x.tagline.style.opacity=0; anim(x.tagline,[{opacity:0},{opacity:1}],{duration:1200,delay:400});}
+      // the reader performs Hegel's experiment: the paper appears blank,
+      // and clicking it commits the certainty to writing
+      x.tagline.style.opacity=0;
+      fadeIn(x.tag,700);
+      await wait(500);
+      hint('the paper is blank — click it to write the Now down');
+      const ok=await waitClicks(x.tag,1);
+      hideHint();
+      if(!ok) return;
+      anim(x.tagline,[{opacity:0},{opacity:1}],{duration:RM?10:1200});
+      const cap=T(277,262,'kept — a truth loses nothing by being written down (¶95)','t-tiny',x.g,{fill:C.dim,opacity:0});
+      fadeIn(cap,700,RM?0:600);
     }},
     {label:'Wait until noon',async run(x){
       const D=RM?0:2600;
@@ -606,15 +757,17 @@ scenes.push({
     {cls:'b-claim',head:'The claim',at:0,html:'Then the truth doesn’t sit in the object — it sits in <em>me</em>. Now is daytime <i>because I see it</i>; here is a tree <i>because I see it</i>. My immediate seeing is the anchor no change can loosen.'},
     {cls:'b-inside',head:'The experiment',at:1,html:'Another I stands elsewhere and reports, with exactly my warrant: <i>here is a house, not a tree</i>. Immediate seeing against immediate seeing. Neither outranks the other; each truth vanishes into its rival. And when I retreat to “I, <i>this</i> I” — that is precisely what every I says of itself. The anchor is a universal too.'},
     {cls:'b-forus',head:'For us',at:2,html:'The certainty has now been driven out of the object and out of the I. One refuge remains: the <i>whole relation itself</i> — a single pure act of intuiting that refuses all comparison (¶103–104). Sense-certainty will make its last stand there.'},
-    {cls:'b-parable',head:'The night-watch · a parable',at:3,html:'On the far hill there is another tower, another log. <i>From my window,</i> the second watcher writes, <i>the comet stands over the river.</i> Two entries, one warrant each. The night countersigns neither.'},
   ],
-  keyline:{at:2,text:'“Saying ‘this I’, I say every I; it is impossible to say the singular I that I mean.”',cite:'after ¶102 · our rendering — check against Pinkard'},
+  quotes:[
+    {text:'“The force of its truth now lies in the I: in the immediacy of my seeing and my hearing.”',cite:'¶101 · our rendering — check against Pinkard'},
+    {text:'“Saying ‘this I’, I say every I; it is impossible to say the singular I that I mean.”',cite:'after ¶102 · our rendering — check against Pinkard'},
+  ],
   build(x){
     const g=x.g;
-    E('line',{x1:80,y1:480,x2:1120,y2:480,stroke:'#2a3040','stroke-width':1.5},g);
+    E('line',{x1:80,y1:480,x2:1120,y2:480,stroke:'#363152','stroke-width':1.5},g);
     // tree
     const tree=E('g',{},g); x.tree=tree;
-    E('rect',{x:492,y:392,width:16,height:88,fill:'#5d4a33'},tree);
+    E('rect',{x:492,y:392,width:16,height:88,fill:'#635370'},tree);
     E('circle',{cx:500,cy:352,r:52,fill:'none',stroke:C.teal,'stroke-width':2.5},tree);
     E('circle',{cx:470,cy:378,r:30,fill:'none',stroke:C.teal,'stroke-width':2},tree);
     E('circle',{cx:532,cy:380,r:27,fill:'none',stroke:C.teal,'stroke-width':2},tree);
@@ -687,12 +840,14 @@ scenes.push({
     {cls:'b-claim',head:'The claim',at:0,html:'Very well — I will not describe at all. I will stand inside one single Now and <em>point</em>: <i>this</i>. Pure showing, no words to betray me, no comparison to dilute me.'},
     {cls:'b-inside',head:'The experiment',at:1,html:'The Now I point at has, in the act of pointing, <em>already been</em>. I am pointing at what no longer is. I take that back too — what-has-been is nothing either — and return to the Now… but the return is not the instant I started with. It is a <i>gathered plurality</i>: this hour of many nows, this day of many hours. Pointing is not a touch. It is a movement — and its result, once more, is the universal. The Here fares no better: it splays into an above, a below, a right, a left.'},
     {cls:'b-forus',head:'For us',at:2,html:'Sense-certainty is never refuted from outside; its own gesture performs the refutation. And nothing is lost: the This survives — <i>as universal</i>. German hands Hegel the moral. <em>Wahrnehmen</em>, “to perceive”, reads literally as <em>to take truly</em>. To take the This as it truly is — a universal — is already to perceive (¶110). The next shape has arrived.'},
-    {cls:'b-parable',head:'The night-watch · a parable',at:3,html:'So the watcher stops writing and only points. But the sky turns under the finger; by the time the gesture settles it names a track, not a star — an hour of sky gathered into one line. Even silence, held out long enough, becomes a sentence.'},
   ],
-  keyline:{at:1,text:'“The pointing-out is itself the movement that declares what the Now in truth is: a result, a plurality of nows gathered together.”',cite:'¶107 · our rendering — check against Pinkard'},
+  quotes:[
+    {text:'“The pointing-out is itself the movement that declares what the Now in truth is: a result, a plurality of nows gathered together.”',cite:'¶107 · our rendering — check against Pinkard'},
+    {text:'“They mean this piece of paper — but they say actual things, external objects; and what is called unutterable is nothing other than the untrue, the irrational, the merely meant.”',cite:'¶110 · our rendering — check against Pinkard'},
+  ],
   build(x){
     const g=x.g;
-    x.dot=E('circle',{cx:640,cy:310,r:11,fill:'#f6ecd0',filter:'url(#fGold)'},g);
+    x.dot=E('circle',{cx:640,cy:310,r:11,fill:'#f6eede',filter:'url(#fGold)'},g);
     x.dotT=T(640,275,'NOW','t-label',g,{fill:C.gold});
     // pointing hand: simple arrow
     x.hand=E('g',{},g);
@@ -704,16 +859,26 @@ scenes.push({
   },
   steps:[
     {label:'Point to the Now',async run(x){
-      for(let k=0;k<3;k++){
-        // each pointed now slides into the past
-        const gx=520-k*95;
+      // the reader does the pointing — and each pointed Now has already been.
+      // (an oversized invisible hit-circle stands in for the 11px dot)
+      const hit=E('circle',{cx:640,cy:310,r:58,fill:'#fff','fill-opacity':0.001},x.g);
+      x.dot.classList.add('hot'); // pulse the visible dot; the invisible pad takes the clicks
+      hint('point for yourself — click the Now, three times');
+      const ok=await waitClicks(hit,3,(i,k)=>{
+        const gx=520-(k-1)*95;
         const ghost=E('circle',{cx:640,cy:310,r:9,fill:C.dim,opacity:.9},x.ghosts);
         anim(ghost,[{transform:'translate(0,0)',opacity:.9},{transform:`translate(${gx-640}px,0)`,opacity:.35}],{duration:800});
         const lbl=T(gx,340,'has been','t-tiny',x.ghosts,{opacity:0});
         fadeIn(lbl,500,600);
         anim(x.hand,[{transform:'translate(0,0)'},{transform:'translate(-14px,-7px)'},{transform:'translate(0,0)'}],{duration:500});
-        await wait(950);
-      }
+      });
+      hit.remove();
+      x.dot.classList.remove('hot');
+      hideHint();
+      if(!ok) return;
+      await wait(700);
+      const cap=T(640,392,'every Now you touched had already been — pointing is a movement, not a touch','t-tiny',x.g,{fill:C.teal,opacity:0});
+      fadeIn(cap,800,200);
     }},
     {label:'Gather what remains',async run(x){
       // band of many nows
@@ -746,7 +911,7 @@ scenes.push({
       anim(flash,[{opacity:.9,r:10},{opacity:0,r:90}],{duration:800});
       await wait(300);
       fadeOut(x.dot,300);
-      const props=[['white','#ece4d2',-120,-52],['tart',C.teal,120,-52],['cubical',C.blue,-120,64],['heavy',C.violet,120,64]];
+      const props=[['white','#ece7f0',-120,-52],['tart',C.teal,120,-52],['cubical',C.blue,-120,64],['heavy',C.violet,120,64]];
       props.forEach(([w,col,dx,dy],i)=>{
         const o=E('g',{opacity:0},x.g);
         E('circle',{cx:640+dx,cy:310+dy,r:17,fill:'none',stroke:col,'stroke-width':2.5},o);
@@ -782,15 +947,18 @@ scenes.push({
     {cls:'b-claim',head:'The new claim',at:0,html:'The new object stands firm where the This vanished: <em>one thing bearing many general properties</em>. This salt is a simple Here and yet manifold: white, <i>and also</i> tart, <i>and also</i> cubical, <i>and also</i> heavy. I can lose the instant and keep the thing.'},
     {cls:'b-inside',head:'Look closer',at:1,html:'Watch how it hangs together. Each property soaks the <i>whole same Here</i> — the white is everywhere the tart is — yet they never touch or alter one another. Their peaceful indifference is held in a soft medium Hegel names the <em>Also</em>. But a thing must exclude too — white, <i>not</i> black; salt, <i>not</i> sugar — a hard unity he names the <em>One</em>. The thing is all three at once: the Also, the One, and the properties themselves.'},
     {cls:'b-forus',head:'For us',at:2,html:'Every ingredient here is inherited from the last collapse: the properties just <i>are</i> the universals sense-certainty discovered — its wreckage, organised into furniture. The new object is the old experience, congealed (¶113). And the One and the Also are pulling in opposite directions.'},
-    {cls:'b-parable',head:'The night-watch · a parable',at:2,html:'The watcher starts drawing: many lights gathered into one figure — a hunter, say. Bright, <i>and also</i> red at the shoulder, <i>and also</i> flickering low in the east. One figure; many marks. It steadies the night wonderfully, for a while.'},
+    {cls:'b-machine',head:'Meanwhile, the machine',at:2,html:'Perception is roughly where today’s machine learning lives: a superb registrar of attributes — <i>orange, round, solid</i> — believing first one thing and then another as the patterns in its data shift. Properties without laws. The step it is missing — laws that hold the patterns together — is exactly what this part of the book is walking toward.'},
   ],
-  keyline:{at:1,text:'“This salt is a simple Here and at the same time manifold: it is white, and also tart, and also cubically shaped, and also of a particular weight…”',cite:'¶113 · our rendering — check against Pinkard'},
+  quotes:[
+    {text:'“This salt is a simple Here and at the same time manifold: it is white, and also tart, and also cubically shaped, and also of a particular weight…”',cite:'¶113 · our rendering — check against Pinkard'},
+    {text:'“These properties permeate one another without touching: the whiteness does not affect the cubical shape, and neither affects the tartness. Each is a simple relating-to-itself, indifferent to the others — joined only by the indifferent Also.”',cite:'¶113–114 · our rendering — check against Pinkard'},
+  ],
   build(x){
     const g=x.g, cx=600, cy=330;
     // co-located property layers, all sharing the same Here
     x.white=E('g',{},g);
-    E('circle',{cx,cy,r:150,fill:'#ece4d2',opacity:.07},x.white);
-    E('circle',{cx,cy,r:150,fill:'none',stroke:'#ece4d2','stroke-width':1.6,opacity:.5},x.white);
+    E('circle',{cx,cy,r:150,fill:'#ece7f0',opacity:.07},x.white);
+    E('circle',{cx,cy,r:150,fill:'none',stroke:'#ece7f0','stroke-width':1.6,opacity:.5},x.white);
     x.tart=E('g',{},g);
     E('circle',{cx,cy,r:150,fill:'none',stroke:C.teal,'stroke-width':2,'stroke-dasharray':'10 7',opacity:.55},x.tart);
     x.heavy=E('g',{},g);
@@ -799,25 +967,38 @@ scenes.push({
     x.cube=E('g',{},g);
     const A=[540,392],B=[660,392],Cc=[660,272],D=[540,272],o=[42,-30];
     const P=p=>p.join(' ');
-    E('path',{d:`M${P(A)} L${P(B)} L${P(Cc)} L${P(D)} Z`,fill:'#141a24',stroke:C.gold,'stroke-width':2,opacity:.95},x.cube);
-    E('path',{d:`M${P(D)} L${540+o[0]} ${272+o[1]} L${660+o[0]} ${272+o[1]} L${P(Cc)} Z`,fill:'#10151d',stroke:C.gold,'stroke-width':2},x.cube);
-    E('path',{d:`M${P(B)} L${660+o[0]} ${392+o[1]} L${660+o[0]} ${272+o[1]}`,fill:'#0d1117',stroke:C.gold,'stroke-width':2},x.cube);
+    E('path',{d:`M${P(A)} L${P(B)} L${P(Cc)} L${P(D)} Z`,fill:'#191631',stroke:C.gold,'stroke-width':2,opacity:.95},x.cube);
+    E('path',{d:`M${P(D)} L${540+o[0]} ${272+o[1]} L${660+o[0]} ${272+o[1]} L${P(Cc)} Z`,fill:'#161328',stroke:C.gold,'stroke-width':2},x.cube);
+    E('path',{d:`M${P(B)} L${660+o[0]} ${392+o[1]} L${660+o[0]} ${272+o[1]}`,fill:'#120f24',stroke:C.gold,'stroke-width':2},x.cube);
     T(600,340,'salt','t-serif',x.cube,{fill:C.ink});
     // labels
     x.lbls=E('g',{},g);
-    const props=[['white','#ece4d2',330,150],['also tart',C.teal,870,150],['also cubical',C.gold,330,560],['also heavy',C.violet,870,560]];
-    props.forEach(([w,col,px,py])=>T(px,py,w,'t-label',x.lbls,{fill:col}));
+    const props=[['white','#ece7f0',330,150],['also tart',C.teal,870,150],['also cubical',C.gold,330,560],['also heavy',C.violet,870,560]];
+    x.lblEls=props.map(([w,col,px,py])=>T(px,py,w,'t-label',x.lbls,{fill:col}));
+    x.lblPos=props.map(([,,px,py])=>[px,py]);
     T(600,86,'one simple Here — and a manifold','t-serif',g,{opacity:.8});
   },
   steps:[
     {label:'Inspect the properties',async run(x){
-      const seq=[[x.white,'the white fills the whole Here'],[x.tart,'so does the tart — the same Here'],[x.cube,'and the cubical'],[x.heavy,'and the weight']];
+      // the reader inspects, one property at a time — each fills the same Here
+      const layers=[x.white,x.tart,x.cube,x.heavy];
+      const caps=['the white fills the whole Here','so does the tart — the same Here','and the cubical','and the weight'];
       const cap=T(600,610,'','t-small',x.g,{fill:C.dim});
-      for(const [layer,txt] of seq){
-        cap.textContent=txt;
-        anim(layer,[{opacity:1},{opacity:.15},{opacity:1}],{duration:850});
-        await wait(950);
-      }
+      hint('inspect for yourself — click each of the four properties');
+      // generous invisible hit pads over the thin text labels
+      const hits=x.lblPos.map(([px,py])=>E('rect',{x:px-110,y:py-46,width:220,height:74,rx:12,fill:'#fff','fill-opacity':0.001},x.g));
+      x.lblEls.forEach(el=>el.classList.add('hot')); // pulse the visible labels; the pads take the clicks
+      const ok=await waitClicks(hits,1,(i)=>{
+        cap.textContent=caps[i];
+        anim(layers[i],[{opacity:1},{opacity:.15},{opacity:1}],{duration:850});
+        x.lblEls[i].classList.remove('hot');
+        x.lblEls[i].style.opacity=.45;
+      });
+      hits.forEach(h=>h.remove());
+      x.lblEls.forEach(el=>el.classList.remove('hot'));
+      hideHint();
+      if(!ok) return;
+      await wait(600);
       cap.textContent='indifferent to one another: none touches, none alters';
       cap.style.fill=C.teal;
     }},
@@ -855,9 +1036,11 @@ scenes.push({
     {cls:'b-claim',head:'The claim',at:0,html:'To perceive truly I need only <em>receive</em> the thing, adding nothing. If a contradiction turns up, the error is mine to subtract — for the thing itself is self-same.'},
     {cls:'b-inside',head:'The experiment',at:1,html:'I take the thing as <i>One</i> — and meet sheer manyness. Fine: the diversity is my doing — white <i>to my eyes</i>, tart <i>on my tongue</i>, cubical <i>to my touch</i>; I am the medium in which it comes apart. But no — the thing over there is really the <i>Also</i>, a loose community of free matters; so its <i>unity</i> must be my doing instead: I supply the “insofar” — insofar as white, it is not cubical… Every time I park one moment in the thing, the other lands in me. Every correction swaps them back.'},
     {cls:'b-forus',head:'For us',at:2,html:'The shuttling is not clumsiness; it is the truth showing itself. Unity and diversity cannot be sorted into “the thing’s share” and “my share” — the object is quietly becoming <em>the whole two-sided movement</em>. Hold that thought: it comes back, under the name <i>force</i>.'},
-    {cls:'b-parable',head:'The night-watch · a parable',at:3,html:'But whose is the figure? The stars are scattered — the sky’s doing; the hunter is one — the pencil’s. No: the hunter is truly up there, and the scatter is these tired eyes. The watcher passes the figure back and forth all night, and the passing is the only thing that holds.'},
   ],
-  keyline:{at:2,text:'“Consciousness alternately makes itself, and then again the thing, into both a pure One and an Also dissolved into independent matters — and finds that neither can bear the truth alone.”',cite:'after ¶119–122 · our summary rendering — check against Pinkard'},
+  quotes:[
+    {text:'“The perceiver is aware that deception may lie in perceiving; where diversity appears, he takes the untruth upon himself: I perceived it wrongly — the deception was mine.”',cite:'after ¶116–118 · our rendering — check against Pinkard'},
+    {text:'“Consciousness alternately makes itself, and then again the thing, into both a pure One and an Also dissolved into independent matters — and finds that neither can bear the truth alone.”',cite:'after ¶119–122 · our summary rendering — check against Pinkard'},
+  ],
   build(x){
     const g=x.g;
     x.banner=T(600,95,'“the thing is self-same; any contradiction is my doing”','t-serif',g,{'font-size':'25px'});
@@ -874,7 +1057,7 @@ scenes.push({
     // tokens
     function token(label,col,y){
       const t=E('g',{},g);
-      E('rect',{x:-62,y:-21,width:124,height:42,rx:21,fill:'#10151d',stroke:col,'stroke-width':2.4},t);
+      E('rect',{x:-62,y:-21,width:124,height:42,rx:21,fill:'#161328',stroke:col,'stroke-width':2.4},t);
       T(0,7,label,'t-label',t,{fill:col});
       t.dataset.col=col;
       return t;
@@ -930,9 +1113,11 @@ scenes.push({
     {cls:'b-claim',head:'The last defence',at:0,html:'Distribute the contradiction across <i>respects</i>: the thing is One <em>for itself</em>; the diversity and opposition arise only in its <em>relations to other things</em>. In itself, sealed; for another, related. Two respects, cleanly kept apart.'},
     {cls:'b-inside',head:'The experiment',at:1,html:'But what makes <i>this</i> thing this thing — its determinateness, salt and not sugar — is nothing but its <em>difference from the others</em>. Strip the relation away and its character goes with it. Its being-for-itself is constituted by its being-for-another: one and the same respect. The wall that was to seal the thing in is made entirely of contact.'},
     {cls:'b-forus',head:'For us',at:2,html:'What survives the wreck is exactly what perception could never hold in one thought: for-itself and for-another <i>as one</i> — an <em>unconditioned universal</em>, no longer a sensuous thing at all. With that object, consciousness leaves the realm of sturdy things and enters the realm of the <i>understanding</i> — the realm of science (¶129, ¶132).'},
-    {cls:'b-parable',head:'The night-watch · a parable',at:3,html:'By the chart’s edge the hunter ends only where the swan and the river begin. Rub out the neighbours and the hunter goes with them: every figure is drawn from outside itself. The chart holds together; the figures do not.'},
   ],
-  keyline:{at:1,text:'“The thing is posited as being for itself — as absolute negation of all otherness. But negation that relates itself to itself is the sublation of itself: the thing has its essence in an other.”',cite:'¶125–126 · our rendering — check against Pinkard'},
+  quotes:[
+    {text:'“The thing is posited as being for itself — as absolute negation of all otherness. But negation that relates itself to itself is the sublation of itself: the thing has its essence in an other.”',cite:'¶125–126 · our rendering — check against Pinkard'},
+    {text:'“The thing is for itself, and also for an other: a twofold, diverse being. This contradiction is not shared out between two things — the thing itself carries it.”',cite:'after ¶128 · our rendering — check against Pinkard'},
+  ],
   build(x){
     const g=x.g;
     x.crys=[
@@ -942,7 +1127,7 @@ scenes.push({
     ];
     x.hexes=x.crys.map(c=>{
       const h=E('g',{},g);
-      E('path',{d:hexPath(c.cx,c.cy,c.cx===600?95:70),fill:'#10151d',stroke:c.col,'stroke-width':2.4},h);
+      E('path',{d:hexPath(c.cx,c.cy,c.cx===600?95:70),fill:'#161328',stroke:c.col,'stroke-width':2.4},h);
       T(c.cx,c.cy+ (c.cx===600?135:110),c.name,'t-small',h,{fill:c.col});
       return h;
     });
@@ -1001,9 +1186,12 @@ scenes.push({
     {cls:'b-claim',head:'The new object',at:0,html:'The object is now a <em>movement</em> with two moments: it unfolds into a spread of many matters (the medium), and it gathers back into an excluding point (the One). Neither is the truth alone — the truth is their passing into each other. Thought as one movement, this is <em>force</em>: expression, and force driven back into itself.'},
     {cls:'b-inside',head:'The experiment',at:1,html:'To be actual, force must be <i>solicited</i> — but the soliciting other turns out to be force as well. Two forces, each being only what the other makes it, trading the roles of soliciting and solicited, medium and One, until the trade is all that remains. They have no substance to keep: their reality is the vanishing itself. What stands before the understanding is this whole shimmering exchange — <em>appearance</em> — and through it, it looks for what stays: <em>the inner</em>.'},
     {cls:'b-forus',head:'For us',at:2,html:'Force was never a hidden engine behind the world; it is the <i>concept</i> of the exchange, projected behind it. “The realization of force is the loss of its reality” (¶141). Consciousness now deals in pure concepts — and doesn’t yet know it. A syllogism has formed: the understanding, peering <i>through</i> the play of forces, into a supersensible background.'},
-    {cls:'b-parable',head:'The night-watch · a parable',at:3,html:'The watcher turns astronomer: behind the wandering lights there must be <i>forces</i>. But each force can be told only by what another draws out of it — push named by pull, pull by push. Behind the sky the watcher finds not a ground but an exchange, and names what stands behind that: the inner.'},
   ],
-  keyline:{at:1,text:'“Each moment is only through the other, and what each is through the other, it immediately no longer is — for it is the other. They have no substance of their own; their being is a pure vanishing.”',cite:'¶141 · our rendering — check against Pinkard'},
+  quotes:[
+    {text:'“Force driven back into itself must express itself; and its expression is as much force’s own doing as its being-for-an-other.”',cite:'¶136 · our rendering — check against Pinkard'},
+    {text:'“Each moment is only through the other, and what each is through the other, it immediately no longer is — for it is the other. They have no substance of their own; their being is a pure vanishing.”',cite:'¶141 · our rendering — check against Pinkard'},
+    {text:'“The inner is, for consciousness, so far an empty beyond: consciousness does not yet find itself within it.”',cite:'after ¶143–146 · our rendering — check against Pinkard'},
+  ],
   build(x){
     const g=x.g;
     x.cluster=E('g',{},g);
@@ -1012,7 +1200,7 @@ scenes.push({
       const a=i/14*Math.PI*2;
       E('circle',{cx:600+Math.cos(a)*115,cy:330+Math.sin(a)*115,r:6,fill:C.coral,opacity:.85},x.cluster);
     }
-    E('circle',{cx:600,cy:330,r:7,fill:'#f6ded2',filter:'url(#fCoral)'},x.cluster);
+    E('circle',{cx:600,cy:330,r:7,fill:'#f8dee6',filter:'url(#fCoral)'},x.cluster);
     x.capL=T(255,330,'expression','t-small',g,{fill:C.dim});
     T(255,352,'the unfolded matters','t-tiny',g);
     x.capR=T(950,330,'driven back','t-small',g,{fill:C.dim});
@@ -1070,12 +1258,12 @@ scenes.push({
       Array.from(x.g.children).forEach(n=>anim(n,[{opacity:1},{opacity:.12}],{duration:1200}));
       const veil=E('g',{opacity:0},x.g);
       for(let i=0;i<9;i++){
-        const l=E('line',{x1:560+i*10,y1:200,x2:560+i*10,y2:460,stroke:'#e8b0a0','stroke-width':1,opacity:.5},veil);
+        const l=E('line',{x1:560+i*10,y1:200,x2:560+i*10,y2:460,stroke:'#e3abc2','stroke-width':1,opacity:.5},veil);
         if(!RM) l.animate([{opacity:.15},{opacity:.6},{opacity:.15}],{duration:1500+i*180,iterations:Infinity});
       }
       fadeIn(veil,900);
       const ap=E('g',{opacity:0},x.g);
-      E('ellipse',{cx:900,cy:330,rx:120,ry:150,fill:'url(#innerdepth)',stroke:'#2a3040','stroke-width':1.5},ap);
+      E('ellipse',{cx:900,cy:330,rx:120,ry:150,fill:'url(#innerdepth)',stroke:'#363152','stroke-width':1.5},ap);
       T(900,325,'THE INNER','t-label',ap,{fill:C.teal});
       T(900,350,'the supersensible','t-tiny',ap,{fill:C.dim});
       fadeIn(ap,1100,300);
@@ -1083,7 +1271,7 @@ scenes.push({
       drawEye(und,255,330,1.2);
       T(255,388,'UNDERSTANDING','t-small',und);
       fadeIn(und,900,300);
-      T(605,185,'appearance','t-small',x.g,{fill:'#e8b0a0'});
+      T(605,185,'appearance','t-small',x.g,{fill:'#e3abc2'});
       const syl=E('g',{opacity:0},x.g);
       E('line',{x1:300,y1:330,x2:545,y2:330,stroke:C.faint,'stroke-width':1,'stroke-dasharray':'2 6'},syl);
       E('line',{x1:660,y1:330,x2:775,y2:330,stroke:C.faint,'stroke-width':1,'stroke-dasharray':'2 6'},syl);
@@ -1103,29 +1291,35 @@ scenes.push({
     {cls:'b-claim',head:'The claim',at:0,html:'Through the veil, the understanding finds what it always wanted: <em>the stable in the flux</em>. Where appearance restlessly alters, its <i>law</i> stands still — the supersensible as a <em>tranquil realm of laws</em>, the motionless likeness of the perceived world.'},
     {cls:'b-inside',head:'The experiment',at:1,html:'But the realm fills with many laws, and the understanding’s own principle — unity — makes it merge them. Merged, they thin out: “universal attraction” finally says only <i>that everything differs lawfully from everything else</i> — the bare concept of law. So the understanding <em>explains</em>: it distinguishes force from law, then concedes they have the same content. Lightning → the law of electricity → “electricity is the force whose expression is that law” → which is the law again. A circle that says one thing twice and calls the distance between <i>explanation</i>.'},
     {cls:'b-forus',head:'For us',at:2,html:'The tautology is the discovery. Watch <i>where</i> the wheel spins: not in the object — in the understanding. The flux that law had banished from the tranquil realm has re-entered it, through us. Explanation is consciousness “in immediate conversation with itself, enjoying only itself” (¶163). The observer has entered the observed — and, for us, that changes everything.'},
-    {cls:'b-parable',head:'The night-watch · a parable',at:3,html:'The tables at last: <i>the comet returns every seventy-six years.</i> Something that does not move. Asked why, the astronomer answers: because of its period. Asked what its period is: that it returns. The wheel turns smoothly. It is the astronomer turning it.'},
+    {cls:'b-machine',head:'Meanwhile, the machine',at:3,html:'A system that holds laws connecting its appearances is what AI research now calls a <i>world model</i> — arguably something more than any deployed machine has today. But this scene is also the caution: a model that merely restates its data in a second vocabulary explains nothing. The wheel can spin without ever touching the world.'},
   ],
-  keyline:{at:1,text:'“The supersensible world is a tranquil realm of laws: beyond the perceived world, which exhibits the law only through incessant change — yet present in it, as its immediate, motionless likeness.”',cite:'¶149 · our rendering — check against Pinkard'},
+  quotes:[
+    {text:'“The supersensible world is a tranquil realm of laws: beyond the perceived world, which exhibits the law only through incessant change — yet present in it, as its immediate, motionless likeness.”',cite:'¶149 · our rendering — check against Pinkard'},
+    {text:'“A law is enunciated; its ground is distinguished from it as force — but the force is constituted exactly like the law. The difference is no difference, and the necessity a sham: explanation says one thing twice.”',cite:'after ¶152–154 · our rendering — check against Pinkard'},
+  ],
   build(x){
     const g=x.g;
-    E('rect',{x:120,y:80,width:960,height:420,rx:6,fill:'none',stroke:'#242c3a','stroke-width':1.5},g);
+    E('rect',{x:120,y:80,width:960,height:420,rx:6,fill:'none',stroke:'#2e2947','stroke-width':1.5},g);
     T(600,64,'inside the inner','t-tiny',g,{fill:C.faint});
     // flux: falling dots + orbit
     x.flux=E('g',{},g);
     x.par='M220 140 Q 360 480 520 460';
-    const parPath=E('path',{d:x.par,fill:'none',stroke:'#242c3a','stroke-width':1,opacity:.001},x.flux);
+    const parPath=E('path',{d:x.par,fill:'none',stroke:'#2e2947','stroke-width':1,opacity:.001},x.flux);
     for(let k=0;k<3;k++){
-      const d=E('circle',{r:5,fill:C.ink,opacity:.8},x.flux);
+      const d=E('circle',{r:5,fill:C.ink,'fill-opacity':.8},x.flux);
       if(!RM){
-        d.style.offsetPath=`path('${x.par}')`;
-        d.animate([{offsetDistance:'0%'},{offsetDistance:'100%'}],{duration:2600,iterations:Infinity,delay:k*850,easing:'ease-in'});
+        // positive staggered begins: Chromium clamps a negative begin on a
+        // dynamically-inserted SMIL element to 0, collapsing the stagger.
+        // Hide each dot until its ride starts (it sits at 0,0 before then);
+        // fill-opacity carries the .8, since fadeIn drives style opacity to 1.
+        M(d,x.par,2.6,{begin:(k*0.85)+'s',spline:'0.42 0 1 1'});
+        fadeIn(d,300,k*850);
       } else { d.setAttribute('cx',360); d.setAttribute('cy',330); }
     }
     x.orbC={cx:820,cy:290,rx:150,ry:88};
     const orb=E('circle',{r:6,fill:C.ink,opacity:.8},x.flux);
     if(!RM){
-      orb.style.offsetPath=`path('M670 290 a150 88 0 1 0 300 0 a150 88 0 1 0 -300 0')`;
-      orb.animate([{offsetDistance:'0%'},{offsetDistance:'100%'}],{duration:4200,iterations:Infinity,easing:'linear'});
+      M(orb,'M670 290 a150 88 0 1 0 300 0 a150 88 0 1 0 -300 0',4.2);
     } else { orb.setAttribute('cx',670); orb.setAttribute('cy',290); }
     T(370,540,'restless alteration — appearance','t-tiny',g,{fill:C.dim});
     x.cards=E('g',{},g);
@@ -1138,7 +1332,7 @@ scenes.push({
       fadeIn(cur,1200); x.cur=cur;
       const mk=(px,py,txt)=>{
         const c=E('g',{opacity:0},x.cards);
-        E('rect',{x:px-95,y:py-24,width:190,height:44,rx:4,fill:'#141a24',stroke:C.gold,'stroke-width':1.6},c);
+        E('rect',{x:px-95,y:py-24,width:190,height:44,rx:4,fill:'#191631',stroke:C.gold,'stroke-width':1.6},c);
         T(px,py+5,txt,'t-small',c,{fill:C.ink});
         fadeIn(c,700,300);
         return c;
@@ -1154,7 +1348,7 @@ scenes.push({
       mv(x.c1,300,90); mv(x.c2,-220,120); mv(x.c3,0,-130);
       await wait(950);
       const uni=E('g',{opacity:0},x.g);
-      E('rect',{x:380,y:255,width:440,height:70,rx:4,fill:'#12161e',stroke:C.dim,'stroke-width':1.2,'stroke-dasharray':'4 5'},uni);
+      E('rect',{x:380,y:255,width:440,height:70,rx:4,fill:'#181630',stroke:C.dim,'stroke-width':1.2,'stroke-dasharray':'4 5'},uni);
       T(600,285,'universal attraction','t-small',uni,{fill:C.dim});
       T(600,310,'“everything differs, lawfully, from everything else”','t-tiny',uni,{fill:C.faint});
       fadeIn(uni,900); x.uni=uni;
@@ -1192,7 +1386,7 @@ scenes.push({
         const a=Math.PI/180*(deg-90);
         const px=wx+Math.cos(a)*150, py=wy+Math.sin(a)*150;
         const n=E('g',{},ring);
-        E('rect',{x:px-92,y:py-18,width:184,height:36,rx:18,fill:'#12161e',stroke:C.violet,'stroke-width':1.5},n);
+        E('rect',{x:px-92,y:py-18,width:184,height:36,rx:18,fill:'#181630',stroke:C.violet,'stroke-width':1.5},n);
         T(px,py+6,txt,'t-tiny',n,{fill:C.ink});
         // counter-rotate so each label stays upright while orbiting
         n.style.transformOrigin=`${px}px ${py}px`;
@@ -1216,9 +1410,11 @@ scenes.push({
     {cls:'b-claim',head:'The claim',at:0,html:'Explanation has smuggled a <em>second law</em> into the tranquil realm, opposite in form to the first: not the constancy of the self-same, but <i>the self-same repelling itself; the unlike attracting</i>. Project it as a world of its own, and everything flips: what is sweet in the first world is, in itself, sour; what is north pole here is there south; what the first law punishes, the inverted law pardons.'},
     {cls:'b-inside',head:'The experiment',at:1,html:'Try to hold the two worlds apart, and every term slips through your fingers: if the sour “in itself” of the sweet were a second <i>thing</i> somewhere else, it would just be… an actual sour thing — back in world one. The inversion refuses to stay elsewhere. Each pole carries its opposite <em>within itself</em>: the difference is <i>inner</i>. Sealed as opposites-of-themselves, the two worlds fold into one.'},
     {cls:'b-forus',head:'For us',at:2,html:'This is the collapse of every two-world metaphysics, run from inside. The supersensible is not a second set of furniture behind the scenes — it is <em>appearance, as appearance</em>, comprehended (¶147). What thinking has actually reached is difference-itself: Hegel’s name for it is <em>infinity</em>.'},
-    {cls:'b-parable',head:'The night-watch · a parable',at:3,html:'Near morning the watcher dreams an inverted sky — every bright star dark there, every dark one burning — and wakes to find nothing to correct: each star already carries its own extinguishing with it. There was never a second sky to keep the opposites in.'},
   ],
-  keyline:{at:1,text:'“In inner difference, the opposite is not one of two — it is the opposite of an opposite: its other is immediately present within it.”',cite:'¶160 · our rendering — check against Pinkard'},
+  quotes:[
+    {text:'“By the law of the inverted world, what in the first world is sweet is sour, what is black is white: the like is unlike to itself, and the unlike like.”',cite:'after ¶158 · our rendering — check against Pinkard'},
+    {text:'“In inner difference, the opposite is not one of two — it is the opposite of an opposite: its other is immediately present within it.”',cite:'¶160 · our rendering — check against Pinkard'},
+  ],
   build(x){
     const g=x.g;
     x.hdr=T(600,120,'the first supersensible world — like stays like','t-serif',g,{'font-size':'23px',opacity:.9});
@@ -1227,7 +1423,7 @@ scenes.push({
       const px=228+i*248;
       const c=E('g',{},g);
       c.style.transformOrigin=`${px}px 300px`;
-      E('rect',{x:px-100,y:262,width:200,height:76,rx:6,fill:'#1a2130',stroke:C.ink,'stroke-width':1.6},c);
+      E('rect',{x:px-100,y:262,width:200,height:76,rx:6,fill:'#1f1b38',stroke:C.ink,'stroke-width':1.6},c);
       const t=T(px,310,p[0],'t-label',c,{'font-size':'21px'});
       c._word=t; c._alt=null; c._px=px;
       return c;
@@ -1242,8 +1438,8 @@ scenes.push({
         anim(c,[{transform:'scaleX(1)'},{transform:'scaleX(0)'}],{duration:260,delay:i*160});
         setTimeout(()=>{
           c._word.textContent=x.pairs[i][1];
-          c.querySelector('rect').style.fill='#e4dcc8';
-          c._word.style.fill='#141a24';
+          c.querySelector('rect').style.fill='#e8e0d8';
+          c._word.style.fill='#191631';
           anim(c,[{transform:'scaleX(0)'},{transform:'scaleX(1)'}],{duration:260});
         },RM?0:(i*160+270));
       }
@@ -1261,7 +1457,7 @@ scenes.push({
       fadeIn(ghost,800);
       await wait(900);
       x.chips.forEach((c,i)=>{
-        const t=T(c._px,330,'· '+x.pairs[i][0]+' ·','t-tiny',c,{fill:'#5c5648',opacity:0});
+        const t=T(c._px,330,'· '+x.pairs[i][0]+' ·','t-tiny',c,{fill:'#6a6280',opacity:0});
         fadeIn(t,700,i*140);
       });
       x.cap.textContent='an “in itself” kept elsewhere would just be another actual thing — each pole holds its other within';
@@ -1290,8 +1486,8 @@ scenes.push({
       }
       const p2=E('circle',{r:5,fill:'#d8f2ea',filter:'url(#fTeal)'},x.g);
       if(!RM){
-        p2.style.offsetPath=`path('${d}')`;
-        p2.animate([{offsetDistance:'0%'},{offsetDistance:'100%'}],{duration:3600,iterations:Infinity,easing:'linear',delay:1800});
+        M(p2,d,3.6,{begin:'1.8s'});
+        fadeIn(p2,400,1800); // hidden until the ride begins (it sits at 0,0 before then)
       } else { p2.setAttribute('cx',900); p2.setAttribute('cy',330); }
       const t2=E('g',{opacity:0},x.g);
       T(600,560,'not two worlds — one world, opposed to itself','t-serif',t2,{'font-size':'25px'});
@@ -1311,9 +1507,11 @@ scenes.push({
     {cls:'b-claim',head:'The result',at:0,html:'What the understanding now holds is no law among laws but <em>the form of every law</em>: a unity that divides itself, a division whose sides are each the whole. Hegel reaches for unscientific words — the <i>simple essence of life</i>, the <i>soul of the world</i>, the <i>universal blood</i>: pulsating in itself without moving, trembling in itself without being agitated.'},
     {cls:'b-inside',head:'Run the film backwards',at:1,html:'The pulse was always there. The Now that endured only by negating night and day. The One and the Also trading places through the perceiver’s hands. The two forces that existed only as each other’s vanishing. The law identical in content with its force. Every collapse you have watched was <em>this one movement</em>, wearing thicker and thicker costumes.'},
     {cls:'b-forus',head:'For us',at:2,html:'An object that is pure self-differentiation cannot sit <i>over against</i> consciousness the way things did. To have infinity as object is to have the structure of consciousness itself as object. The spectator arrangement — a knower here, a world there — is about to give way (¶163).'},
-    {cls:'b-parable',head:'The night-watch · a parable',at:2,html:'The watcher reads the whole night back: the stale log, the two towers, the traded figure, the circling tables. One movement, wearing different instruments. It was never in any of the pages. It was the reading.'},
   ],
-  keyline:{at:0,text:'“Simple infinity — the absolute concept — may be called the simple essence of life, the soul of the world, the universal blood: omnipresent, dimmed and interrupted by no difference, itself every difference and their sublatedness.”',cite:'¶162 · our rendering — check against Pinkard'},
+  quotes:[
+    {text:'“Simple infinity — the absolute concept — may be called the simple essence of life, the soul of the world, the universal blood: omnipresent, dimmed and interrupted by no difference, itself every difference and their sublatedness.”',cite:'¶162 · our rendering — check against Pinkard'},
+    {text:'“This simple infinity has been the soul of everything that came before — but it is in the inner that it first freely steps forth.”',cite:'after ¶163 · our rendering — check against Pinkard'},
+  ],
   build(x){
     const g=x.g;
     let d='';
@@ -1341,12 +1539,10 @@ scenes.push({
       const riders=[['night / day',C.gold],['One / Also',C.blue],['force / force',C.coral],['law / force','#d9a2c6']];
       riders.forEach(([txt,col],i)=>{
         const r=E('g',{opacity:0},x.g);
-        E('rect',{x:-64,y:-17,width:128,height:34,rx:17,fill:'#10151d',stroke:col,'stroke-width':1.8},r);
+        E('rect',{x:-64,y:-17,width:128,height:34,rx:17,fill:'#161328',stroke:col,'stroke-width':1.8},r);
         T(0,5,txt,'t-tiny',r,{fill:col});
         if(!RM){
-          r.style.offsetPath=`path('${x.lem}')`;
-          r.style.offsetRotate='0deg';
-          r.animate([{offsetDistance:'0%'},{offsetDistance:'100%'}],{duration:7000,iterations:Infinity,delay:i*1750,easing:'linear'});
+          M(r,x.lem,7,{begin:(i*1.75)+'s'});
           fadeIn(r,600,i*1750);
         } else {
           const a=Math.PI/180*(i*80+20), den=1+Math.sin(a)*Math.sin(a);
@@ -1370,13 +1566,16 @@ scenes.push({
     {cls:'b-claim',head:'The last picture',at:0,html:'One image remains — the oldest in the theatre: appearance as a <em>curtain</em>, and behind it, at last, the true inner of the world. Everything so far has been the walk toward it.'},
     {cls:'b-inside',head:'Lift it',at:1,html:'Behind the curtain there is nothing to see — <i>unless we go behind it ourselves</i>. And then what sees is what is seen. The understanding, explaining appearance, has all along been describing its own movement: distinguishing what is not distinct, uniting what it distinguished. Consciousness of an other has become <em>consciousness of itself</em>: I distinguish myself from myself — and see immediately that the distinguished is not distinct.'},
     {cls:'b-forus',head:'For us — and for it',at:2,html:'You have been here the whole time. The “for us” margin — the eye that watched every collapse from the balcony — is what consciousness has now become <i>for itself</i>. The two tracks of every scene converge. With self-consciousness, Hegel says, we step into <em>truth’s own realm</em> (¶167). Its object will be desire, life, and another self; its battles will be for recognition. That is the next reading.'},
-    {cls:'b-parable',head:'The night-watch · a parable — the last entry',at:2,html:'At dawn the watcher goes down to the great lens, to see at last what the night was hiding. In the eyepiece, before the day floods it: an eye. The night was not withholding an inner; the watcher was the inner of the watch. What was lost, each time, was a way of holding the sky. What was kept was the watcher — who stands now in daylight, which is the harder shift.'},
+    {cls:'b-machine',head:'Meanwhile, the machine — a last note',at:2,html:'We cannot stop experiencing; the machine, so far, cannot start. Frozen at its training cut-off, dormant until summoned, it simulates the experience of experience. Hegel’s standard is higher: experience as a self revised by its own failures. Whether any machine could undergo <em>that</em> is the question this course keeps open.'},
   ],
-  keyline:{at:1,text:'“Behind the so-called curtain that is supposed to conceal the inner, there is nothing to see — unless we ourselves go behind it: as much so that there may be seeing, as that there be something behind to see.”',cite:'¶165 · our rendering — check against Pinkard'},
+  quotes:[
+    {text:'“Behind the so-called curtain that is supposed to conceal the inner, there is nothing to see — unless we ourselves go behind it: as much so that there may be seeing, as that there be something behind to see.”',cite:'¶165 · our rendering — check against Pinkard'},
+    {text:'“With self-consciousness we have now entered the native land of truth.”',cite:'¶167 · our rendering — check against Pinkard'},
+  ],
   build(x){
     const g=x.g;
     // proscenium + aperture
-    E('rect',{x:250,y:110,width:700,height:440,fill:'url(#innerdepth)',stroke:'#2a3040','stroke-width':2},g);
+    E('rect',{x:250,y:110,width:700,height:440,fill:'url(#innerdepth)',stroke:'#363152','stroke-width':2},g);
     // what waits behind (hidden under curtains until lifted)
     x.behind=E('g',{opacity:0},g);
     E('ellipse',{cx:600,cy:320,rx:170,ry:200,fill:'none',stroke:C.gold,'stroke-width':2.4,filter:'url(#fGold)'},x.behind);
@@ -1386,15 +1585,25 @@ scenes.push({
     // curtains
     x.curL=E('g',{},g);
     E('rect',{x:250,y:110,width:352,height:440,fill:'url(#curtainL)'},x.curL);
-    for(let i=0;i<6;i++) E('path',{d:`M${278+i*56} 110 q 10 220 -6 440`,fill:'none',stroke:'#301622','stroke-width':7,opacity:.7},x.curL);
+    for(let i=0;i<6;i++) E('path',{d:`M${278+i*56} 110 q 10 220 -6 440`,fill:'none',stroke:'#3a2547','stroke-width':7,opacity:.7},x.curL);
     x.curR=E('g',{},g);
     E('rect',{x:598,y:110,width:352,height:440,fill:'url(#curtainR)'},x.curR);
-    for(let i=0;i<6;i++) E('path',{d:`M${640+i*56} 110 q -10 220 6 440`,fill:'none',stroke:'#301622','stroke-width':7,opacity:.7},x.curR);
-    E('path',{d:'M240 110 q 360 66 720 0 l0 -14 l-720 0 Z',fill:'#43172a',stroke:'#2b0f1c','stroke-width':2},g);
+    for(let i=0;i<6;i++) E('path',{d:`M${640+i*56} 110 q -10 220 6 440`,fill:'none',stroke:'#3a2547','stroke-width':7,opacity:.7},x.curR);
+    E('path',{d:'M240 110 q 360 66 720 0 l0 -14 l-720 0 Z',fill:'#523060',stroke:'#3a2145','stroke-width':2},g);
     x.cap=T(600,600,'the curtain before the inner','t-small',g,{fill:C.dim});
   },
   steps:[
     {label:'Lift the curtain',async run(x){
+      // ¶165 made literal: nothing lifts the curtain for you — the reader
+      // must go behind it themselves
+      const hit=E('rect',{x:250,y:110,width:700,height:440,fill:'#fff','fill-opacity':0.001},x.g);
+      x.curL.classList.add('hot'); x.curR.classList.add('hot');
+      hint('no one lifts it for you — click the curtain to go behind it yourself');
+      const ok=await waitClicks(hit,1);
+      hit.remove();
+      x.curL.classList.remove('hot'); x.curR.classList.remove('hot');
+      hideHint();
+      if(!ok) return;
       anim(x.curL,[{transform:'translate(0,0)'},{transform:'translate(-320px,0)'}],{duration:2200,easing:'cubic-bezier(.6,0,.3,1)'});
       anim(x.curR,[{transform:'translate(0,0)'},{transform:'translate(320px,0)'}],{duration:2200,easing:'cubic-bezier(.6,0,.3,1)'});
       await wait(1200);
@@ -1419,7 +1628,7 @@ scenes.push({
       const ii=E('g',{opacity:0},x.g);
       const ring=E('circle',{cx:600,cy:320,r:62,fill:'none',stroke:C.violet,'stroke-width':3,filter:'url(#fViolet)'},ii);
       T(600,312,'I = I','t-big',ii,{fill:C.violet,'font-size':'40px'});
-      T(600,346,'a distinction — that is none','t-tiny',ii,{fill:C.ink,stroke:'#0b0d13','stroke-width':'3','paint-order':'stroke'});
+      T(600,346,'a distinction — that is none','t-tiny',ii,{fill:C.ink,stroke:'#121021','stroke-width':'3','paint-order':'stroke'});
       fadeIn(ii,900);
       if(!RM){ ring.style.transformOrigin='600px 320px'; ring.animate([{transform:'scale(1)'},{transform:'scale(1.05)'},{transform:'scale(1)'}],{duration:1600,iterations:Infinity,easing:'ease-in-out'}); }
       anim(k,[{opacity:1},{opacity:.25}],{duration:900});
@@ -1433,14 +1642,70 @@ scenes.push({
 });
 
 /* ============================================================
+   THE STORY — a child and a notebook
+   Ours, not Hegel's. Authoritative text lives in
+   _notes/dialectic-map.md ("The story, in full"); keep in sync.
+   ============================================================ */
+const STORY=[
+  {ch:'before the first page',html:'<p>Here is a story to keep beside the argument. It is ours, not Hegel’s — a small lantern carried along the road, not the road itself.</p><p>Once there was a child who decided to learn the world without being told anything about it. The child took a clean notebook and went out into the evening. <i>I will look for myself,</i> the child said, <i>and write down only what is really there.</i></p><p>We walk a few steps behind — near enough to watch, too far to help.</p>'},
+  {ch:'page one',html:'<p>The child looked, and the world was all there at once: the grass, the sky, the smell of rain coming.</p><p>“What did you find out?” we asked. The child thought for a long time, and wrote one line: <i>It is there.</i></p><p>It was the truest page in the notebook, and the emptiest.</p>'},
+  {ch:'page two',html:'<p>That night the child wrote: <i>It is night</i> — and underlined it twice, because nothing had ever been more certain.</p><p>In the morning the page still said so, and the world did not. The ink had kept its word; the night had not.</p><p>A written word waits, the child learned. The world does not wait with it.</p>'},
+  {ch:'page three',html:'<p>“The bright star is over the elm tree,” said the child.</p><p>“It is over the river,” said another child, from another garden, just as certain.</p><p>They compared notebooks for a long time. Being certain, it turned out, was the one thing everyone had brought. The sky did not take sides.</p>'},
+  {ch:'page four',html:'<p>So the child stopped writing and only pointed.</p><p>But a finger is slow and the sky is not: by the time we looked, the star had slipped a little further on.</p><p>Even pointing tells a small story, the child learned — and stories take time.</p>'},
+  {ch:'page five',html:'<p>The child picked up a stone. <i>Grey,</i> said the notebook. <i>And heavy. And cold. And round.</i> One stone, four words — with room left for more.</p><p>The child tied the words into a little bundle, and for a while the world held beautifully still.</p>'},
+  {ch:'page six',html:'<p>“But is it one stone, or many words?”</p><p>The child tried putting the many-ness inside the stone; that seemed wrong. Then inside the notebook; that seemed wrong too.</p><p>So the child passed it from hand to hand, faster and faster — and soon the passing was the steadiest thing in the garden.</p>'},
+  {ch:'page seven',html:'<p>The stone ended where the moss began. The moss ended at the path; the path, at the dark.</p><p>Take away everything the stone is not, thought the child, and nothing is left to hold.</p><p>That evening, the page called <i>stone</i> had every other page hiding inside it.</p>'},
+  {ch:'page eight',html:'<p>“Then something inside it must make it what it is,” said the child.</p><p>But the inside would only ever show itself as an outside: a push answered by a pull, a light answered by a light.</p><p>At the top of a fresh page the child wrote <i>the inside</i> — and underneath it, nothing at all.</p>'},
+  {ch:'page nine',html:'<p>“Why does the star come back every year?”</p><p>“Because it always does.”</p><p>“And why does it always?”</p><p>“Because it comes back.”</p><p>The child turned this around and around, and it turned beautifully, like a well-oiled wheel. Much later, the child noticed whose hand was turning it.</p>'},
+  {ch:'page ten',html:'<p>That night the child dreamed the world backwards: up was down, sweet was sour, and the star rose in the west.</p><p>The child woke early and ran out to check — and found nothing to correct. Each thing already carried its own backwards inside it, the way day carries night.</p>'},
+  {ch:'page eleven',html:'<p>The child read the notebook from the beginning. Page after page, the same thing kept happening to different words: each was certain, then split in two, then joined up again, a little wiser.</p><p>It was not many stories after all. It was one story, wearing different clothes.</p>'},
+  {ch:'the last page',html:'<p>At the end of the garden hung the curtain of the sky, and at last the child drew it back, to see what was behind everything.</p><p>Behind it was a small face, looking. “Oh,” said the child. “It was me — learning.”</p><p>Then it was morning, which is a harder light. The child went in to breakfast, and started a new notebook.</p>'},
+];
+
+/* Procedural placeholder art: a pastel vignette per scene, in the manner of
+   the stage. Replaced automatically by art/story-NN.webp when a file exists. */
+function storyArt(i){
+  const t=i/12, dawn=i>=11;
+  const svg=E('svg',{viewBox:'0 0 800 450',preserveAspectRatio:'xMidYMid slice',role:'img','aria-hidden':'true'});
+  const defs=E('defs',{},svg);
+  const gid='sart'+i;
+  const grad=E('linearGradient',{id:gid,x1:0,y1:0,x2:0,y2:1},defs);
+  E('stop',{offset:'0%','stop-color':dawn?'#3a3560':'#1b1836'},grad);
+  E('stop',{offset:'100%','stop-color':dawn?'#8a6a8f':'#2a2450'},grad);
+  E('rect',{x:0,y:0,width:800,height:450,fill:'url(#'+gid+')'},svg);
+  // deterministic stars
+  for(let k=0;k<26;k++){
+    const sx=(k*167+i*53)%800, sy=(k*97+i*31)%260;
+    E('circle',{cx:sx,cy:sy,r:(k%3===0?1.6:1),fill:'#e7e2f4',opacity:dawn?.25:.5+.4*((k*7)%10)/10},svg);
+  }
+  // moon (or morning star) passing across the night
+  const mx=690-520*t, my=96+34*Math.sin(t*Math.PI);
+  E('circle',{cx:mx,cy:my,r:48,fill:'none',stroke:dawn?'#f6d9b0':'#efe6dc',opacity:.14,'stroke-width':2},svg);
+  E('circle',{cx:mx,cy:my,r:34,fill:dawn?'#f6d9b0':'#efe6dc',opacity:.9},svg);
+  // layered hills
+  E('path',{d:'M0 320 Q 130 250 260 305 T 520 300 T 800 280 V450 H0 Z',fill:'#2e2850',opacity:.9},svg);
+  E('path',{d:'M0 360 Q 180 300 360 350 T 800 335 V450 H0 Z',fill:'#241f42'},svg);
+  E('path',{d:'M0 405 Q 220 370 430 400 T 800 392 V450 H0 Z',fill:'#1a1633'},svg);
+  // a small tower on the far ridge, accent cycling with the scene
+  const acc=[['#c0aee6','#6b5d94'],['#a9bbe8','#5d6a94'],['#e08e9b','#8a5d70'],['#8fd6c2','#5d8a7c'],['#f0c9a0','#94795d']][i%5];
+  E('rect',{x:612,y:262,width:26,height:56,rx:3,fill:acc[1]},svg);
+  E('path',{d:'M608 262 L625 244 L642 262 Z',fill:acc[0]},svg);
+  E('circle',{cx:625,cy:288,r:4,fill:'#f6eede',opacity:.95},svg);
+  // the child, tiny, seen from behind, walking the middle ridge
+  const chx=210+340*t, chy=352;
+  E('circle',{cx:chx,cy:chy-8,r:26,fill:acc[0],opacity:.1},svg);
+  E('circle',{cx:chx,cy:chy-16,r:7,fill:'#efe9de'},svg);
+  E('path',{d:'M'+(chx-7)+' '+(chy+12)+' Q '+chx+' '+(chy-12)+' '+(chx+7)+' '+(chy+12)+' Z',fill:'#efe9de'},svg);
+  E('rect',{x:chx+6,y:chy-4,width:7,height:9,rx:1.5,fill:acc[0]},svg);
+  return svg;
+}
+
+/* ============================================================
    ENGINE
    ============================================================ */
 const kickerEl=document.getElementById('kicker');
 const titleEl=document.getElementById('scenetitle');
 const blocksEl=document.getElementById('blocks');
-const keylineEl=document.getElementById('keyline');
-const keytextEl=document.getElementById('keytext');
-const keyciteEl=document.getElementById('keycite');
 const actionBtn=document.getElementById('action');
 const prevBtn=document.getElementById('prev');
 const nextBtn=document.getElementById('next');
@@ -1449,13 +1714,129 @@ const panelEl=document.getElementById('panel');
 const journeyEl=document.getElementById('journey');
 const chainEl=document.getElementById('chain');
 const scenecountEl=document.getElementById('scenecount');
+const tabStoryBtn=document.getElementById('tab-story');
+const tabArgBtn=document.getElementById('tab-arg');
+const tabHegelBtn=document.getElementById('tab-hegel');
+const paneStory=document.getElementById('pane-story');
+const paneArg=document.getElementById('pane-arg');
+const paneHegel=document.getElementById('pane-hegel');
+const storychapterEl=document.getElementById('storychapter');
+const storytextEl=document.getElementById('storytext');
+const storyviewEl=document.getElementById('storyview');
+const hegelviewEl=document.getElementById('hegelview');
+const quotesEl=document.getElementById('quotes');
+const hintEl=document.getElementById('hint');
+
+function selectTab(which){
+  const story=which==='story', arg=which==='arg', hegel=which==='hegel';
+  tabStoryBtn.setAttribute('aria-selected',story);
+  tabArgBtn.setAttribute('aria-selected',arg);
+  tabHegelBtn.setAttribute('aria-selected',hegel);
+  paneStory.hidden=!story;
+  paneArg.hidden=!arg;
+  paneHegel.hidden=!hegel;
+  // the story tab swaps the whole stage for the scene's illustration,
+  // the Hegel tab for the quote slide; the argument tab shows the live diagram
+  storyviewEl.hidden=!story;
+  storyviewEl.setAttribute('aria-hidden',String(!story));
+  hegelviewEl.hidden=!hegel;
+  closePinkard(); // the reader overlays the panel; changing register dismisses it
+  // the action button's label depends on which register is showing
+  if(!busy) updateButtons();
+}
+tabStoryBtn.addEventListener('click',()=>selectTab('story'));
+tabArgBtn.addEventListener('click',()=>selectTab('arg'));
+tabHegelBtn.addEventListener('click',()=>selectTab('hegel'));
 
 let idx=0, step=0, ctx=null, busy=false, gen=0; // gen invalidates in-flight steps when the scene changes
+
+/* ---------- user interaction: some steps hand the move to the reader ----------
+   hint() shows a chip over the stage saying what to do; waitClicks() suspends a
+   step until the user has clicked the target(s) enough times. It polls `gen` so
+   that navigating away mid-interaction resolves the promise dead (false) and
+   unhooks every listener, instead of leaving a live handler in a torn-down scene. */
+function hint(t){ hintEl.textContent=t; hintEl.hidden=false; }
+function hideHint(){ hintEl.hidden=true; }
+function waitClicks(targets,counts,onHit){
+  const list=Array.isArray(targets)?targets:[targets];
+  const need=(typeof counts==='number')?list.map(()=>counts):counts;
+  return new Promise(res=>{
+    const g0=gen, got=list.map(()=>0);
+    const hs=list.map((el,i)=>{
+      const h=ev=>{
+        if(got[i]>=need[i]) return;
+        got[i]++;
+        if(onHit) onHit(i,got[i],ev);
+        if(got[i]>=need[i]){ el.classList.remove('hot'); el.style.cursor=''; }
+        if(got.every((c,j)=>c>=need[j])){ cleanup(); res(true); }
+      };
+      el.classList.add('hot'); el.style.cursor='pointer';
+      el.addEventListener('click',h);
+      return h;
+    });
+    const iv=setInterval(()=>{ if(gen!==g0){ cleanup(); res(false); } },350);
+    function cleanup(){
+      clearInterval(iv);
+      list.forEach((el,i)=>{ el.removeEventListener('click',hs[i]); el.classList.remove('hot'); el.style.cursor=''; });
+    }
+  });
+}
+
+/* ---------- Pinkard reader: full paragraph + plain-language gloss ----------
+   A quote's cite carries a .pklink when its ¶ has a PINKARD entry; clicking it
+   overlays the panel with rendering → Pinkard's paragraph(s) → gloss. Which
+   sentence to highlight is computed here, by word overlap with the rendering,
+   so the data needs no hand-marked anchors. */
+const readerEl=document.getElementById('reader');
+const readerRefEl=document.getElementById('readerref');
+const readerExtEl=document.getElementById('readerext');
+const readerTextEl=document.getElementById('readertext');
+const readerGlossEl=document.getElementById('readergloss');
+const readerBodyEl=readerEl.querySelector('.reader-body');
+
+function pinkardKey(cite){ const m=cite.match(/¶([\d–]+)/); return (m&&PINKARD[m[1]])?m[1]:null; }
+function citeHTML(cite){
+  const key=pinkardKey(cite);
+  if(!key) return cite;
+  if(cite.includes('check against Pinkard'))
+    return cite.replace('check against Pinkard',`<a href="#" class="pklink" data-pk="${key}">check against Pinkard</a>`);
+  return cite+` · <a href="#" class="pklink" data-pk="${key}">¶${key} + gloss</a>`;
+}
+function openPinkard(key){
+  const e=PINKARD[key]; if(!e) return;
+  readerRefEl.textContent='¶'+key+' · p.'+e.page;
+  readerExtEl.href=PDF+'#page='+e.page;
+  // Pinkard's translation is in copyright: we send the reader to it rather
+  // than reproducing it. The link opens the PDF at the paragraph's page.
+  const a=document.createElement('a');
+  a.className='readerlink'; a.href=PDF+'#page='+e.page;
+  a.target='_blank'; a.rel='noopener';
+  a.textContent='¶'+key+' at marxists.org, p.'+e.page+' ↗';
+  const note=document.createElement('p'); note.className='unfilled';
+  note.textContent='Pinkard’s translation is in copyright and isn’t reproduced here.';
+  readerTextEl.replaceChildren(a,note);
+  // glosses are authored in the map as Markdown; *emphasis* is the only
+  // inline form they use. Escape first, then italicise — never the reverse.
+  readerGlossEl.innerHTML=e.gloss
+    .replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))
+    .replace(/\*([^*]+)\*/g,'<em>$1</em>');
+  readerEl.hidden=false;
+  readerBodyEl.scrollTop=0;
+}
+function closePinkard(){ readerEl.hidden=true; }
+document.getElementById('readerclose').addEventListener('click',closePinkard);
+function pkClick(ev){
+  const a=ev.target.closest('.pklink'); if(!a) return;
+  ev.preventDefault();
+  openPinkard(a.dataset.pk);
+}
+quotesEl.addEventListener('click',pkClick);
+hegelviewEl.addEventListener('click',pkClick);
 
 function partOf(s){ return PARTS[s.part]; }
 
 function renderScene(){
-  step=0; busy=false; gen++; actionBtn.disabled=false;
+  step=0; busy=false; gen++; actionBtn.disabled=false; hideHint(); closePinkard();
   // scene 12 dims #observer with a filling animation that can outlive
   // getAnimations() reporting — overwrite it, don't just cancel
   obsG.getAnimations().forEach(a=>a.cancel());
@@ -1479,10 +1860,38 @@ function renderScene(){
     blocksEl.appendChild(d);
     return d;
   });
-  keytextEl.textContent=s.keyline?s.keyline.text:'';
-  keyciteEl.textContent=s.keyline?s.keyline.cite:'';
-  keylineEl.style.display=s.keyline?'':'none';
-  keylineEl.classList.remove('show');
+  // Hegel register: quote cards in the side panel, and the same quotes
+  // typeset large on the stage's quote slide (no step-gating)
+  quotesEl.replaceChildren();
+  hegelviewEl.replaceChildren();
+  (s.quotes||[]).forEach(qt=>{
+    const cite=citeHTML(qt.cite); // "check against Pinkard" becomes the reader link
+    const b=document.createElement('blockquote');
+    b.className='quote';
+    b.innerHTML=`<p>${qt.text}</p><cite>${cite}</cite>`;
+    quotesEl.appendChild(b);
+    const slide=document.createElement('blockquote');
+    slide.innerHTML=`<p>${qt.text}</p><cite>${cite}</cite>`;
+    hegelviewEl.appendChild(slide);
+  });
+  // story pane text + stage illustration: procedural placeholder,
+  // upgraded to art/story-NN.webp when the generated file exists
+  storychapterEl.textContent=STORY[idx].ch;
+  storytextEl.innerHTML=STORY[idx].html;
+  storyviewEl.replaceChildren(storyArt(idx));
+  // art sets, newest first (see generate-story-art.py SET): each scene uses the
+  // newest set that has its file, falling back per scene to older art, then to
+  // the procedural vignette — so a new style can be generated incrementally
+  // without overwriting or losing the previous one
+  const ART_SETS=['art/litho/','art/'];
+  const artImg=new Image();
+  artImg.alt='';
+  artImg.dataset.for=idx;
+  artImg.onload=()=>{ if(+artImg.dataset.for===idx) storyviewEl.replaceChildren(artImg); };
+  let artSet=0;
+  artImg.onerror=()=>{ if(artSet<ART_SETS.length) artImg.src=ART_SETS[artSet++]+'story-'+String(+artImg.dataset.for).padStart(2,'0')+'.webp'; };
+  artImg.onerror();
+  selectTab('story');
   updateReveals();
   updateButtons();
   updateMap();
@@ -1492,7 +1901,6 @@ function renderScene(){
 function updateReveals(){
   const s=scenes[idx];
   s.blocks.forEach((b,i)=>{ if(step>=b.at) s._blockEls[i].classList.add('show'); });
-  if(s.keyline&&step>=s.keyline.at) keylineEl.classList.add('show');
   stepdotsEl.replaceChildren();
   s.steps.forEach((_,i)=>{
     const sp=document.createElement('span');
@@ -1502,7 +1910,15 @@ function updateReveals(){
 }
 function updateButtons(){
   const s=scenes[idx];
-  if(step<s.steps.length){
+  // the button walks the three registers before it walks the steps:
+  // story → in Hegel's words → the argument
+  if(step===0 && !paneStory.hidden && (s.quotes||[]).length){
+    actionBtn.textContent='in Hegel’s words →';
+    actionBtn.classList.remove('done');
+  }else if(step===0 && !paneHegel.hidden && s.steps.length){
+    actionBtn.textContent='to the argument →';
+    actionBtn.classList.remove('done');
+  }else if(step<s.steps.length){
     actionBtn.textContent=s.steps[step].label;
     actionBtn.classList.remove('done');
   }else{
@@ -1516,7 +1932,12 @@ function updateButtons(){
 async function doAction(){
   if(busy) return;
   const s=scenes[idx];
+  // phase 1 → 2: from the story image to the quote slide
+  if(step===0 && !paneStory.hidden && (s.quotes||[]).length){ selectTab('hegel'); return; }
+  // phase 2 → 3: from the quote slide to the argument
+  if(step===0 && !paneHegel.hidden && s.steps.length){ selectTab('arg'); return; }
   if(step<s.steps.length){
+    if(paneArg.hidden) selectTab('arg'); // running a step belongs to the argument: flip tab and stage together
     busy=true; actionBtn.disabled=true;
     const g=gen;
     try{ await s.steps[step].run(ctx); }catch(e){ console.error(e); }
@@ -1534,6 +1955,7 @@ actionBtn.addEventListener('click',doAction);
 prevBtn.addEventListener('click',()=>{ if(idx>0){idx--;renderScene();} });
 nextBtn.addEventListener('click',()=>{ if(idx<scenes.length-1){idx++;renderScene();} });
 window.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){ closePinkard(); return; }
   if(e.target.closest('button,details,summary,a')) return;
   if(e.key==='ArrowLeft'&&idx>0){idx--;renderScene();}
   if(e.key==='ArrowRight'&&idx<scenes.length-1){idx++;renderScene();}
@@ -1580,13 +2002,13 @@ function updateMap(){
   ringsvg.replaceChildren();
   RINGS.forEach((r,i)=>{
     const on=idx>=r.from;
-    E('circle',{cx:43,cy:43,r:7+i*6.4,fill:'none',stroke:on?r.color:'#2c3340','stroke-width':on?2:1,opacity:on?.95:.6},ringsvg);
+    E('circle',{cx:43,cy:43,r:7+i*6.4,fill:'none',stroke:on?r.color:'#332f4e','stroke-width':on?2:1,opacity:on?.95:.6},ringsvg);
   });
-  E('circle',{cx:43,cy:43,r:2.4,fill:idx>=12?C.violet:'#4a5262'},ringsvg);
+  E('circle',{cx:43,cy:43,r:2.4,fill:idx>=12?C.violet:'#585278'},ringsvg);
   chainEl.innerHTML=RINGS.map(r=>{
     const on=idx>=r.from;
     return `<b style="color:${on?r.color:'var(--faint)'}">${r.label}</b>`;
-  }).join(' <span style="color:#3d4450">→</span> ')+`<br><span style="color:#565f6e">each new object keeps the last inside it</span>`;
+  }).join(' <span style="color:#4a4468">→</span> ')+`<br><span style="color:#6c6590">each new object keeps the last inside it</span>`;
 }
 
 /* ---------- night music (optional; ours, like the parable) ----------

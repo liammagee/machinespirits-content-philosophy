@@ -1,0 +1,110 @@
+{
+  "captured_at": "2026-08-30T16:29:29-05:00",
+  "source_sha256": "4f9ff7a53ca70a8e77ed119fc9b8ebb7877be2d19e3751182f7bef66bed28e6c",
+  "source_file": "lecture-2.md",
+  "illustrated_file": "lecture-2-illustrated.md",
+  "slides": 20,
+  "generated_images": [
+    {
+      "file": "lecture-2-images/slide-01-experience.png",
+      "sha256": "e690b04990e99b6b540df476a4d2639d746f9f2690243c542695f54c2379b933",
+      "bytes": 2814750
+    },
+    {
+      "file": "lecture-2-images/slide-02-three-encounters.png",
+      "sha256": "8403807e003f0d6821bcfaafb66d155812d4e926053224f3cb245d37d23efc28",
+      "bytes": 2949386
+    },
+    {
+      "file": "lecture-2-images/slide-04-influence.png",
+      "sha256": "21f1cfceb4063a402e47ac0bd26581a709fc34c204cbf8bea516300d834f84cb",
+      "bytes": 3253215
+    },
+    {
+      "file": "lecture-2-images/slide-05-book-and-world.png",
+      "sha256": "e77781864f26695360618ffcccb2c4c68bcc211cd90bbfeaa58046c958968d7d",
+      "bytes": 3055598
+    },
+    {
+      "file": "lecture-2-images/slide-06-geist.png",
+      "sha256": "940b9664e048b06e3d770e52cfa9e192d89053ae1ba5b970d27e1f02604e9c89",
+      "bytes": 3178007
+    },
+    {
+      "file": "lecture-2-images/slide-07-appearances.png",
+      "sha256": "7264e8a909ee46cde6a758623b79f21576380002cf137b145acac440a227d1f9",
+      "bytes": 3095080
+    },
+    {
+      "file": "lecture-2-images/slide-08-revising-the-page.png",
+      "sha256": "70a3029cf667a8a91e9f11889b3d2ca4d3df719287ec7791421351cf70e0d1aa",
+      "bytes": 3119392
+    },
+    {
+      "file": "lecture-2-images/slide-09-active-experience.png",
+      "sha256": "ca32c3c6f9910e5fd341b24e5a3ad8df9f476c7ce1742805d65530d3aafc9651",
+      "bytes": 2828041
+    },
+    {
+      "file": "lecture-2-images/slide-10-one-stone-three-ways.png",
+      "sha256": "25eed877336f83279e7d8278221186a217f058df0f458986494ae4b3e94fb720",
+      "bytes": 3279134
+    },
+    {
+      "file": "lecture-2-images/slide-14-conversation.png",
+      "sha256": "822c8d8551120b95bac160afce5e5365c400be5bdf4220a4962bf6e91ca95279",
+      "bytes": 2819201
+    },
+    {
+      "file": "lecture-2-images/slide-16-curtain.png",
+      "sha256": "cb6c59e31f65f23ce8cf1190d71148ec7d3fbceeb92c46822d47e39add84ea46",
+      "bytes": 3042848
+    },
+    {
+      "file": "lecture-2-images/slide-17-machine-and-stone.png",
+      "sha256": "b4301cc9b761834eb5ddb1efe251a33514ab9326eb9b040e0657d7856691d329",
+      "bytes": 3093107
+    },
+    {
+      "file": "lecture-2-images/slide-18-training-and-context.png",
+      "sha256": "bcb9e1007ea4d3152e3504f15b5d3ece029a3277e96126bfba7a845a65b34771",
+      "bytes": 2993860
+    },
+    {
+      "file": "lecture-2-images/slide-19-continuity.png",
+      "sha256": "e9b48740f51000ae084c65fb3ea6545971ec359ef88bcc94fa643ddb67462bf0",
+      "bytes": 2920679
+    },
+    {
+      "file": "concept-relations.png",
+      "operation": "redesign_existing_diagram",
+      "sha256": "1ffa8bb277b9cb71ff074cce46407a178ffcd6170ffd81f274560f9d330c1322",
+      "bytes": 2568504,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "prompt_section": "Slide 20 — Course concept relations",
+      "original_file": "_slides/lecture-2/concept-relations-original.png",
+      "original_sha256": "7eb060b3120addf7a07aba165efbca71234243f9a4e9013906561002f5e4d6a6",
+      "labels_preserved": 8,
+      "sequence": "clockwise, Week 1 through Week 8 and back to Week 1"
+    }
+  ],
+  "powerpoint": "479-lecture-2.pptx",
+  "pptx_sha256": "fe11232fc280e4bd3ad0319291d7e446c2a4f148e04ee5ad73138ae62070a904",
+  "validation": {
+    "slides": 20,
+    "images_embedded": 20,
+    "source_notes_preserved": 20,
+    "visual_review": "All 20 exported slides rendered; slides 1–19 visually unchanged from individually reviewed source. Redesigned slide 20 inspected at full slide size. Reimported PowerPoint render matches authoring preview.",
+    "geometry": "No object overlap or off-slide elements. Square course map fitted without distortion.",
+    "source_notes_match": "Current canonical lecture-2.md",
+    "template_fidelity": "Pass; theme bytes, all visible text, and inherited slide structure preserved.",
+    "concept_map_labels": "All eight week numbers and topics visually checked against original."
+  },
+  "updated_at": "2026-08-30T17:11:17-05:00",
+  "current_source_sha256": "71319388e6506d644b64cf18ef8ab8f1214501b66bd39df4316a70d0cf6c6da4",
+  "pptx_notes_source_sha256": "71319388e6506d644b64cf18ef8ab8f1214501b66bd39df4316a70d0cf6c6da4",
+  "image_zip_sha256": "14e30533c302f2a3772308f071f0fffb18fe86f4d2fd6194268d55f355c6dda1"
+}
