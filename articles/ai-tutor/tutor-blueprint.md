@@ -1,8 +1,8 @@
 ---
 title: "How to build the ideal AI tutor — the blueprint"
-date: 2026-08-30
+date: 2026-08-31
 theme: ai-tutor
-dek: "A step-by-step recipe from first principles to a working adaptive tutor — the stance prompt, the small kernel, worlds and casting, criterial adaptation, and judge-free measurement — every step cited to the research paper (v3.0.297) rather than restated."
+dek: "A step-by-step recipe from first principles to a working adaptive tutor — the stance prompt, the small kernel, worlds and casting, criterial adaptation, and judge-free measurement — every step cited to the research paper (v3.0.298) rather than restated."
 ---
 
 <!-- The page itself is the sibling tutor-blueprint.html — a self-contained, hand-authored
