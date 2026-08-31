@@ -1,0 +1,21 @@
+# Sources whose sibling .html is the page itself, matched against paths
+# relative to the repository root.
+#
+# Each entry names a .md that exists ONLY to give /essays its index metadata
+# (title, date, theme, dek). The .html beside it is hand-authored, or emitted
+# by a publisher in another repository. ./build never Pandoc-renders these —
+# doing so replaces a full page with a near-empty one.
+#
+# This file, not file mtime, is what protects those pages. Git does not
+# preserve mtimes, so a fresh clone cannot rely on the .html being newer than
+# the .md; ./build --all and ./build <file> ignore mtime altogether.
+#
+# Publication state remains derived from file location/form (CONVENTIONS.md).
+# Adding an entry here does not unpublish anything.
+#
+# ./build refuses to overwrite any existing .html that is not Pandoc output,
+# so a new hand-authored page that is missing from this list fails loudly
+# instead of being silently destroyed.
+articles/ai-tutor/dramatic-recognition-arc.md
+articles/ai-tutor/geist-atlas.md
+articles/ai-tutor/tutor-blueprint.md
