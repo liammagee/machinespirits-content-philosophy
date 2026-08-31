@@ -44,11 +44,37 @@ fm_scalar() {
 
 echo "Content package validation"
 
-for script in build publish urls lint validate test-essay-exclusions lib/essay-exclusions.sh; do
+for script in build publish urls lint validate test-essay-exclusions \
+  test-render-exclusions lib/essay-exclusions.sh lib/render-exclusions.sh; do
   bash -n "$script" || fail "$script has invalid shell syntax"
 done
 
 ./test-essay-exclusions
+./test-render-exclusions
+
+# Drift check the render manifest. ./build already refuses to overwrite an
+# unlisted hand-authored page, so what remains to catch is a stale entry:
+# one naming a file that has gone, or that is now ordinary Pandoc output.
+source lib/render-exclusions.sh
+load_render_exclusions config/render-exclusions.txt \
+  || fail "config/render-exclusions.txt did not load"
+render_entries=0
+for entry in "${RENDER_EXCLUSION_PATTERNS[@]:-}"; do
+  [ -n "$entry" ] || continue
+  case "$entry" in *[\*?[]*) continue ;; esac
+  render_entries=$((render_entries + 1))
+  entry_html="${entry%.md}.html"
+  [ -f "$entry" ] \
+    || fail "render exclusion names a missing source: $entry"
+  [ -s "$entry_html" ] \
+    || fail "render exclusion has no sibling page: $entry_html"
+  if head -40 "$entry_html" \
+    | grep -qE 'name="generator" content="pandoc|xmlns="http://www\.w3\.org/1999/xhtml"'; then
+    fail "stale render exclusion — $entry_html is Pandoc output, so $entry should be built: $entry"
+  fi
+done
+echo "render exclusions: OK — $render_entries protected page(s)."
+
 ./urls check
 ./sitemap --check
 ./artifacts-index --check

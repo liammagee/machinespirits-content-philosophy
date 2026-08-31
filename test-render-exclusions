@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+# Contract tests for the content-owned render exclusion manifest.
+
+set -euo pipefail
+cd "$(dirname "$0")"
+
+source lib/render-exclusions.sh
+
+fail() {
+  echo "test-render-exclusions: $*" >&2
+  exit 1
+}
+
+load_render_exclusions config/render-exclusions.txt
+
+for excluded in \
+  articles/ai-tutor/dramatic-recognition-arc.md \
+  articles/ai-tutor/geist-atlas.md \
+  articles/ai-tutor/tutor-blueprint.md; do
+  render_excluded "$excluded" || fail "expected exclusion did not match: $excluded"
+done
+
+render_excluded ./articles/ai-tutor/geist-atlas.md \
+  || fail "./ prefix normalization did not match"
+render_excluded articles/ai-tutor/dramatic-recognition-arc.html \
+  && fail "manifest matched the .html rather than the .md source"
+render_excluded articles/hegel-essays/discarded-master.md \
+  && fail "an ordinary Pandoc source was unexpectedly excluded"
+
+scratch="$(mktemp -d "${TMPDIR:-/tmp}/render-exclusions-test.XXXXXX")"
+cleanup() {
+  case "$scratch" in
+    "${TMPDIR:-/tmp}"/render-exclusions-test.*) rm -rf "$scratch" ;;
+    *) fail "refusing to remove unexpected scratch path: $scratch" ;;
+  esac
+}
+trap cleanup EXIT
+
+if load_render_exclusions "$scratch/missing.txt" 2>/dev/null; then
+  fail "missing manifest was accepted"
+fi
+
+printf '%s\n' 'valid/ok.md' '../escape/x.md' > "$scratch/malformed.txt"
+if load_render_exclusions "$scratch/malformed.txt" 2>/dev/null; then
+  fail "malformed manifest was accepted"
+fi
+
+printf '%s\n' 'valid/ok.md' '/absolute/x.md' > "$scratch/absolute.txt"
+if load_render_exclusions "$scratch/absolute.txt" 2>/dev/null; then
+  fail "absolute path was accepted"
+fi
+
+# Unlike the essay manifest, an entry-less render manifest is valid: a
+# repository with no hand-authored pages legitimately excludes nothing.
+printf '%s\n' '# comments only' > "$scratch/empty.txt"
+load_render_exclusions "$scratch/empty.txt" \
+  || fail "entry-less manifest was rejected"
+render_excluded articles/ai-tutor/geist-atlas.md \
+  && fail "entry-less manifest still matched a path"
+
+echo "test-render-exclusions: OK"

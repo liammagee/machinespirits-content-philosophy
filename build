@@ -7,12 +7,17 @@
 #   ./build <path/to/file.md>  # render one file
 #
 # Skips any path containing a component starting with _ (e.g., _drafts/).
-# See CONVENTIONS.md.
+# Skips sources listed in config/render-exclusions.txt, whose sibling .html is
+# the page itself rather than build output. See CONVENTIONS.md.
 
 set -euo pipefail
 cd "$(dirname "$0")"
 
 command -v pandoc >/dev/null || { echo "pandoc not found. Install: brew install pandoc" >&2; exit 1; }
+
+# shellcheck source=lib/render-exclusions.sh
+source lib/render-exclusions.sh
+load_render_exclusions config/render-exclusions.txt || exit 1
 
 force=""
 single=""
@@ -29,11 +34,24 @@ is_hidden() {
   [[ "$1" =~ (^|/)_ ]]
 }
 
+looks_pandoc_generated() {
+  # Pandoc's standalone html5 output carries both of these markers. Anything
+  # lacking them is hand-authored or emitted by another publisher.
+  head -40 "$1" | grep -qE 'name="generator" content="pandoc|xmlns="http://www\.w3\.org/1999/xhtml"'
+}
+
+refusal_notice() {
+  local html="$1"
+  echo "  ✗ ${html#./}" >&2
+}
+
 # Exit codes from render_one:
 #   0  rendered
 #   10 up-to-date (skipped)
 #   11 hidden (skipped)
+#   12 render-excluded — the .html is the source (skipped)
 #   20 failed
+#   21 refused — existing .html is not Pandoc output and is not manifest-listed
 render_one() {
   local md="$1"
   local rel="${md#./}"
@@ -42,7 +60,20 @@ render_one() {
     return 11
   fi
 
+  # Tested before $force, so that neither --all nor a single-file build can
+  # Pandoc-render over a page whose .html is the source. Git does not preserve
+  # mtimes, so the old "keep the .html newer than the .md" rule could not.
+  if render_excluded "$rel"; then
+    return 12
+  fi
+
   local html="${md%.md}.html"
+
+  # Backstop for a hand-authored page missing from the manifest: refuse rather
+  # than replace a full page with a near-empty Pandoc rendering.
+  if [ -f "$html" ] && ! looks_pandoc_generated "$html"; then
+    return 21
+  fi
 
   if [ -z "$force" ] && [ -f "$html" ] && [ "$html" -nt "$md" ]; then
     return 10
@@ -76,13 +107,30 @@ if [ -n "$single" ]; then
   force=1
   rc=0
   render_one "$single" || rc=$?
-  [ "$rc" = 20 ] && exit 1 || exit 0
+  case "$rc" in
+    11) echo "Hidden, not built: ${single#./}" ;;
+    12) echo "Render-excluded, not built: ${single#./}"
+        echo "The sibling .html is the source, per config/render-exclusions.txt." ;;
+    21) echo >&2
+        echo "Refusing to render over hand-authored HTML:" >&2
+        refusal_notice "${single%.md}.html"
+        echo >&2
+        echo "That file is not Pandoc output. If the .html is the source, add" >&2
+        echo "${single#./} to config/render-exclusions.txt. If it really is" >&2
+        echo "stale build output, delete it and re-run." >&2
+        exit 1 ;;
+    20) exit 1 ;;
+  esac
+  exit 0
 fi
 
 rendered=0
 fresh=0
+excluded=0
 failed=0
+refused=0
 failed_files=()
+refused_files=()
 
 while IFS= read -r md; do
   rc=0
@@ -90,15 +138,30 @@ while IFS= read -r md; do
   case "$rc" in
     0)  rendered=$((rendered+1)) ;;
     10|11) fresh=$((fresh+1)) ;;
+    12) excluded=$((excluded+1)) ;;
     20) failed=$((failed+1)); failed_files+=("$md") ;;
+    21) refused=$((refused+1)); refused_files+=("$md") ;;
   esac
 done < <(find ./articles ./courses -name "*.md" -type f 2>/dev/null | sort)
 
 echo
-if [ "$rendered" -eq 0 ] && [ "$failed" -eq 0 ]; then
-  echo "Nothing to build. ($fresh up-to-date)"
+if [ "$rendered" -eq 0 ] && [ "$failed" -eq 0 ] && [ "$refused" -eq 0 ]; then
+  echo "Nothing to build. ($fresh up-to-date, $excluded render-excluded)"
 else
-  echo "Built: $rendered  Up-to-date: $fresh  Failed: $failed"
+  echo "Built: $rendered  Up-to-date: $fresh  Render-excluded: $excluded  Failed: $failed  Refused: $refused"
+fi
+
+if [ "$refused" -gt 0 ]; then
+  echo >&2
+  echo "Refusing to render over hand-authored HTML:" >&2
+  for f in "${refused_files[@]}"; do
+    refusal_notice "${f%.md}.html"
+  done
+  echo >&2
+  echo "These .html files are not Pandoc output, so rendering would replace a" >&2
+  echo "full page with a near-empty one. If the .html is the source, add the" >&2
+  echo "matching .md to config/render-exclusions.txt. If it really is stale" >&2
+  echo "build output, delete it and re-run." >&2
 fi
 
 if [ "$failed" -gt 0 ]; then
@@ -107,6 +170,9 @@ if [ "$failed" -gt 0 ]; then
   for f in "${failed_files[@]}"; do
     echo "  ✗ ${f#./}"
   done
+fi
+
+if [ "$failed" -gt 0 ] || [ "$refused" -gt 0 ]; then
   echo
   echo "Fix the source files and re-run. './publish' will not proceed while any build fails."
   exit 1

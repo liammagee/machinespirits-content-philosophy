@@ -6,7 +6,7 @@ Content package for machinespirits.org. Articles, courses, theme, and tutor prom
 
 | Script | What it does |
 |---|---|
-| `./build` | Renders `.md` → `.html` via Pandoc with citeproc. Skips `_*` paths. Skips up-to-date files (mtime check). Exits non-zero on failure. Flags: `--all` (force), `<path>` (single file). |
+| `./build` | Renders `.md` → `.html` via Pandoc with citeproc. Skips `_*` paths and anything in `config/render-exclusions.txt`. Skips up-to-date files (mtime check). Refuses to overwrite non-Pandoc HTML. Exits non-zero on failure. Flags: `--all` (force), `<path>` (single file). |
 | `./serve` | Starts `python3 -m http.server` on port 8000, generates `_preview.html` index page (gitignored), opens browser. For local preview of rendered output. |
 | `./urls` | Text listing of published / draft / hidden files. `./urls drafts` filters; `--plain` for piping. `./urls site` emits SPA hash-route URLs; `./urls static` emits raw `/content/` URLs (every HTML, served standalone). `--base` overrides default host. |
 | `./publish "msg"` | Runs `./build`, then `git add -A`, commits, `git pull --rebase --autostash`, pushes. The push triggers redeploy. |
@@ -39,7 +39,8 @@ The website-side indexer enforces this by walking `articles/**/*.html` and skipp
 
 - **Don't run `git push` (or `git commit` + `git push`) directly.** Use `./publish` so the build gate runs. Going around the gate can ship a broken article.
 - **Don't add a `status:` or `published:` field to frontmatter.** The folder/form convention is the single source of truth — adding a flag creates two sources that can disagree.
-- **Don't edit committed `.html` files** that have a `.md` sibling — they'll be overwritten by the next `./build`. Edit the `.md` source.
+- **Don't edit committed `.html` files** that have a `.md` sibling — they'll be overwritten by the next `./build`. Edit the `.md` source. The exception is a page listed in `config/render-exclusions.txt`, where the `.html` *is* the source and the `.md` carries index metadata only.
+- **Don't rely on file mtime to protect a hand-authored page.** Git does not preserve mtimes, and `--all` and single-file builds ignore them anyway. Add the `.md` to `config/render-exclusions.txt` instead; `./build` reads it through `lib/render-exclusions.sh` and `./validate` drift-checks it.
 - **Don't put working notes / raw chats / scratch files** at the top of a topic folder — they'll get rendered and indexed. Put them under `_drafts/`.
 - **Don't break the `_*` prefix convention** when naming new utility folders. `_drafts/`, `_archive/`, `_review/` are fine; `wip/` or `archive/` would leak into the index.
 - **Don't duplicate essay hold-outs in code.** Edit `config/essay-exclusions.txt`; `./urls`, `./lint`, and the brand renderer consume it through `lib/essay-exclusions.sh`.
@@ -59,6 +60,7 @@ The website-side indexer enforces this by walking `articles/**/*.html` and skipp
 - `prompts/` — tutor prompt customizations
 - `config/` — navigation, feature flags
 - `config/essay-exclusions.txt` — content-owned `/essays` hold-outs shared with the brand renderer
+- `config/render-exclusions.txt` — sources whose `.html` sibling is the page itself; `./build` never renders these
 - `manifest.yaml` — package entry point (read by website)
 
 ## See also

@@ -80,14 +80,27 @@ path. Do not author a `slug:` key in any source.
     open articles/<topic>/essay.html       # preview locally
     ./publish
 
-`./build` only re-renders files whose `.md` is newer than its `.html`, so it's safe to run repeatedly.
+`./build` only re-renders files whose `.md` is newer than its `.html`, so it's
+safe to run repeatedly. That mtime test is an optimisation, not a safety
+mechanism — pages whose `.html` is the source are protected by
+`config/render-exclusions.txt` instead.
 
 ### Hand-authored HTML (passes straight through)
 
     edit articles/<topic>/page.html
     ./publish
 
-No `./build` needed. The file is its own source. Co-existing `.md` is fine if you want one — Pandoc just won't overwrite the hand-authored HTML *unless its `.md` is newer*.
+No `./build` needed. The file is its own source.
+
+A co-existing `.md` is fine, and is how a hand-authored page earns an `/essays`
+index entry — but list it in `config/render-exclusions.txt` when you add one.
+That manifest, not file mtime, is what keeps Pandoc off the page. Git does not
+preserve mtimes, so on a fresh clone the `.md` is never older than the `.html`;
+`./build --all` and `./build <file>` ignore mtime outright. Without an entry the
+page would be replaced by a near-empty rendering of the metadata stub.
+
+`./build` refuses to overwrite any existing `.html` that is not Pandoc output, so
+a page missing from the manifest fails the build loudly rather than being lost.
 
 ### Working notes / scratch
 
@@ -107,9 +120,11 @@ The `.md` source remains in the repo; only the rendered output is removed. Re-ru
 
 For each `articles/**/*.md` and `courses/**/*.md` outside `_*` paths:
 
+- Skip the file entirely if it is listed in `config/render-exclusions.txt` — its `.html` sibling is the page, not build output. Checked before `--all` and before single-file builds, so neither can destroy such a page.
+- Refuse the file, and fail the build, if `foo.html` exists but is not Pandoc output and is not listed in the manifest. This is the backstop for a hand-authored page nobody remembered to list.
 - If `foo.html` is missing or older than `foo.md`, run Pandoc with citeproc and write `foo.html` next to it.
 - Pandoc reads `bibliography:` from frontmatter (relative paths resolve against the article's directory).
-- `--all` flag forces regeneration of everything.
+- `--all` flag forces regeneration of everything that is not render-excluded.
 - Pass a path to render one file: `./build articles/dictatorship/essay.md`.
 
 ## What `./lint` does
