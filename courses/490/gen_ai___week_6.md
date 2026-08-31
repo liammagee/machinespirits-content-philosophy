@@ -32,11 +32,11 @@
 
 ## Slide 5
 
-### ![Image](images/gen_ai___week_6_img_1.png)   Marinetti   ![Image](images/gen_ai___week_6_img_2.png)  
+### ![Image](images/gen_ai___week_6_img_1.webp)   Marinetti   ![Image](images/gen_ai___week_6_img_2.webp)  
 
 | | |
 |---|---|
-| Extreme: racist, sexist, proto-fascist. Marinetti a friend and supporter of Mussolini in the 1910s<br>Celebrates youth, speed, breaks with the past (leads to concern about fascism’s reactionary tendencies). Desire for violence. Technology is not computation; it is fast cars, streetcars, trains<br>Later echoes? Punk? Grunge? Techno? Anarchism? Other subcultures<br>Blends hedonism, nihilism, violence, speed. Coincidentally the rise of psychoanalysis and theorisation of the Pleasure Principle and the Death Instinct (1920). <br>Post-war echoes: Benedek’s *The Wild One* (1953). Goddard’s *Un Bout de Souffle* (1960), J.G. Ballard’s *Crash* (1973), Saura’s *Deprisa Deprisa* (1981)<br>“Standing on the world's summit we launch once again our insolent challenge to the stars!” – think of the role of rockets and Mars in contemporary futurist fantasies<br><br> | ![Image](images/gen_ai___week_6_img_3.png)<br><br><br><br>![Image](images/gen_ai___week_6_img_4.png)<br><br> |
+| Extreme: racist, sexist, proto-fascist. Marinetti a friend and supporter of Mussolini in the 1910s<br>Celebrates youth, speed, breaks with the past (leads to concern about fascism’s reactionary tendencies). Desire for violence. Technology is not computation; it is fast cars, streetcars, trains<br>Later echoes? Punk? Grunge? Techno? Anarchism? Other subcultures<br>Blends hedonism, nihilism, violence, speed. Coincidentally the rise of psychoanalysis and theorisation of the Pleasure Principle and the Death Instinct (1920). <br>Post-war echoes: Benedek’s *The Wild One* (1953). Goddard’s *Un Bout de Souffle* (1960), J.G. Ballard’s *Crash* (1973), Saura’s *Deprisa Deprisa* (1981)<br>“Standing on the world's summit we launch once again our insolent challenge to the stars!” – think of the role of rockets and Mars in contemporary futurist fantasies<br><br> | ![Image](images/gen_ai___week_6_img_3.webp)<br><br><br><br>![Image](images/gen_ai___week_6_img_4.webp)<br><br> |
 
 ---
 

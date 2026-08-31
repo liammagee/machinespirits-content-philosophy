@@ -2,7 +2,7 @@
 
 ## Slide 1
 
-### ![Image](images/gen_ai___week_1___pathways_to_ai_img_1.png)  
+### ![Image](images/gen_ai___week_1___pathways_to_ai_img_1.webp)  
 
 | | |
 |---|---|
@@ -16,7 +16,7 @@
 
 | | |
 |---|---|
-| ![Image](images/gen_ai___week_1___pathways_to_ai_img_2.png)<br><br> | ![Image](images/gen_ai___week_1___pathways_to_ai_img_3.png)<br><br> |
+| ![Image](images/gen_ai___week_1___pathways_to_ai_img_2.webp)<br><br> | ![Image](images/gen_ai___week_1___pathways_to_ai_img_3.webp)<br><br> |
 
 ---
 
@@ -26,7 +26,7 @@
 
 | | |
 |---|---|
-| ![Image](images/gen_ai___week_1___pathways_to_ai_img_4.png)<br><br><br><br>“*how to make machines use language, form abstractions and concepts, solve kinds of problems now reserved for humans, and improve themselves*” (McCarthy et al., 1955)<br><br> |  |
+| ![Image](images/gen_ai___week_1___pathways_to_ai_img_4.webp)<br><br><br><br>“*how to make machines use language, form abstractions and concepts, solve kinds of problems now reserved for humans, and improve themselves*” (McCarthy et al., 1955)<br><br> |  |
 
 ---
 
@@ -36,13 +36,13 @@
 
 | | |
 |---|---|
-| Human<br><br><br><br>AI<br><br><br><br>***** Donna Haraway (2106) *Staying with the Trouble*<br>****** Ethan Mollick (2024) *Co-intelligence*<br><br> | ![Image](images/gen_ai___week_1___pathways_to_ai_img_5.png)<br><br><br><br>![Image](images/gen_ai___week_1___pathways_to_ai_img_6.png)<br><br> |
+| Human<br><br><br><br>AI<br><br><br><br>***** Donna Haraway (2106) *Staying with the Trouble*<br>****** Ethan Mollick (2024) *Co-intelligence*<br><br> | ![Image](images/gen_ai___week_1___pathways_to_ai_img_5.webp)<br><br><br><br>![Image](images/gen_ai___week_1___pathways_to_ai_img_6.webp)<br><br> |
 
 ---
 
 ## Slide 5
 
-### ![Image](images/gen_ai___week_1___pathways_to_ai_img_7.png)  
+### ![Image](images/gen_ai___week_1___pathways_to_ai_img_7.webp)  
 
 | | |
 |---|---|
@@ -52,17 +52,17 @@
 
 ## Slide 6
 
-### ![Image](images/gen_ai___week_1___pathways_to_ai_img_8.png)   ![Image](images/gen_ai___week_1___pathways_to_ai_img_9.png)   ![Image](images/gen_ai___week_1___pathways_to_ai_img_10.png)   AI as IT?  Or something else?  
+### ![Image](images/gen_ai___week_1___pathways_to_ai_img_8.webp)   ![Image](images/gen_ai___week_1___pathways_to_ai_img_9.webp)   ![Image](images/gen_ai___week_1___pathways_to_ai_img_10.webp)   AI as IT?  Or something else?  
 
 | | |
 |---|---|
-| ![Image](images/gen_ai___week_1___pathways_to_ai_img_11.png)<br><br> | Yahoo Finance, 2025<br><br> |
+| ![Image](images/gen_ai___week_1___pathways_to_ai_img_11.webp)<br><br> | Yahoo Finance, 2025<br><br> |
 
 ---
 
 ## Slide 7
 
-### ![Image](images/gen_ai___week_1___pathways_to_ai_img_12.png)   Fourth Figure. *Ars brevis* XVIII Century. Palma de Mallorca BP MS998. Digital version Biblioteca Virtual del Patrimonio Bibliográfico. Spain. Ministerio de Educación, Cultura y Deporte.   ![Image](images/gen_ai___week_1___pathways_to_ai_img_13.png)  
+### ![Image](images/gen_ai___week_1___pathways_to_ai_img_12.webp)   Fourth Figure. *Ars brevis* XVIII Century. Palma de Mallorca BP MS998. Digital version Biblioteca Virtual del Patrimonio Bibliográfico. Spain. Ministerio de Educación, Cultura y Deporte.   ![Image](images/gen_ai___week_1___pathways_to_ai_img_13.webp)  
 
 | | |
 |---|---|
@@ -72,25 +72,25 @@
 
 ## Slide 8
 
-### ![Image](images/gen_ai___week_1___pathways_to_ai_img_14.png)   Side-note for the historically minded…  Truitt, E. R. (2015). *Medieval robots: Mechanism, magic, nature, and art*. University of Pennsylvania Press.  
+### ![Image](images/gen_ai___week_1___pathways_to_ai_img_14.webp)   Side-note for the historically minded…  Truitt, E. R. (2015). *Medieval robots: Mechanism, magic, nature, and art*. University of Pennsylvania Press.  
 
 ---
 
 ## Slide 9
 
-### ![Image](images/gen_ai___week_1___pathways_to_ai_img_15.png)   ![Image](images/gen_ai___week_1___pathways_to_ai_img_16.png)  
+### ![Image](images/gen_ai___week_1___pathways_to_ai_img_15.webp)   ![Image](images/gen_ai___week_1___pathways_to_ai_img_16.webp)  
 
 ---
 
 ## Slide 10
 
-### ‘If AI systems are seen as more reliable or rational than any human expert, able to take the “best possible action,” then it suggests that they should be trusted to make high-stakes decisions in health, education, and criminal justice. When specific algorithmic techniques are the sole focus, it suggests that only continual technical progress matters, with no consideration of the computational cost of those approaches and their far-reaching impacts on a planet under strain.  In contrast, in this book I argue that AI is **neither artificial nor intelligent**. Rather, artificial intelligence is both embodied and material, made from natural resources, fuel, human labor, infrastructures, logistics, histories, and classifications. AI systems are not autonomous, rational, or able to discern anything without extensive, computationally intensive training with large datasets or predefined rules and rewards. In fact, artificial intelligence as we know it depends entirely on a much wider set of political and social structures…. At a fundamental level, AI is **technical and social practices, institutions and infrastructures, politics and culture**. Computational reason and embodied work are deeply interlinked: AI systems both reflect and produce social relations and understandings of the world.’ Crawford, Kate. (2021). *Atlas of AI: Power, Politics, and the Planetary Costs of Artificial Intelligence* (p. 8). Yale University Press.   ![Image](images/gen_ai___week_1___pathways_to_ai_img_17.png)  
+### ‘If AI systems are seen as more reliable or rational than any human expert, able to take the “best possible action,” then it suggests that they should be trusted to make high-stakes decisions in health, education, and criminal justice. When specific algorithmic techniques are the sole focus, it suggests that only continual technical progress matters, with no consideration of the computational cost of those approaches and their far-reaching impacts on a planet under strain.  In contrast, in this book I argue that AI is **neither artificial nor intelligent**. Rather, artificial intelligence is both embodied and material, made from natural resources, fuel, human labor, infrastructures, logistics, histories, and classifications. AI systems are not autonomous, rational, or able to discern anything without extensive, computationally intensive training with large datasets or predefined rules and rewards. In fact, artificial intelligence as we know it depends entirely on a much wider set of political and social structures…. At a fundamental level, AI is **technical and social practices, institutions and infrastructures, politics and culture**. Computational reason and embodied work are deeply interlinked: AI systems both reflect and produce social relations and understandings of the world.’ Crawford, Kate. (2021). *Atlas of AI: Power, Politics, and the Planetary Costs of Artificial Intelligence* (p. 8). Yale University Press.   ![Image](images/gen_ai___week_1___pathways_to_ai_img_17.webp)  
 
 ---
 
 ## Slide 11
 
-### ![Image](images/gen_ai___week_1___pathways_to_ai_img_18.png)   ![Image](images/gen_ai___week_1___pathways_to_ai_img_19.png)  
+### ![Image](images/gen_ai___week_1___pathways_to_ai_img_18.webp)   ![Image](images/gen_ai___week_1___pathways_to_ai_img_19.webp)  
 
 | | |
 |---|---|
@@ -100,7 +100,7 @@
 
 ## Slide 12
 
-### ![Image](images/gen_ai___week_1___pathways_to_ai_img_20.png)   **“The hand-mill gives you society with the feudal lord;**   ![Image](images/gen_ai___week_1___pathways_to_ai_img_21.png)   **the steam-mill society with the industrial capitalist.” (Marx, 1847)**  
+### ![Image](images/gen_ai___week_1___pathways_to_ai_img_20.webp)   **“The hand-mill gives you society with the feudal lord;**   ![Image](images/gen_ai___week_1___pathways_to_ai_img_21.webp)   **the steam-mill society with the industrial capitalist.” (Marx, 1847)**  
 
 ---
 

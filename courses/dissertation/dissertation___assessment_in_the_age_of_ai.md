@@ -10,7 +10,7 @@
 
 ## Slide 2
 
-### ![Image](images/dissertation___assessment_in_the_age_of_ai_img_1.png)   Let’s Simulate an Assessment Workflow  
+### ![Image](images/dissertation___assessment_in_the_age_of_ai_img_1.webp)   Let’s Simulate an Assessment Workflow  
 
 | | |
 |---|---|
@@ -34,7 +34,7 @@
 
 | | |
 |---|---|
-| Designer Creates the Rubric (version 1)<br>Teacher Develops an Assignment that Applies the Rubric<br>Student Writes an Essay<br>Administrator Reviews the Rubric, Assignment and Essay<br>Designer Refines the Rubric (version 2)<br>We (the Drama Critics!) Compare and Contrast Rubrics Versions 1 & 2<br><br> | ![Image](images/dissertation___assessment_in_the_age_of_ai_img_2.png)<br><br> |
+| Designer Creates the Rubric (version 1)<br>Teacher Develops an Assignment that Applies the Rubric<br>Student Writes an Essay<br>Administrator Reviews the Rubric, Assignment and Essay<br>Designer Refines the Rubric (version 2)<br>We (the Drama Critics!) Compare and Contrast Rubrics Versions 1 & 2<br><br> | ![Image](images/dissertation___assessment_in_the_age_of_ai_img_2.webp)<br><br> |
 
 ---
 

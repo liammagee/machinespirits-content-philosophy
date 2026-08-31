@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| ![Image](images/gen_ai____week_2_img_1.png)<br><br><br><br>MidJourney:<br><br> |  |
+| ![Image](images/gen_ai____week_2_img_1.webp)<br><br><br><br>MidJourney:<br><br> |  |
 
 ---
 
@@ -71,7 +71,7 @@
 
 | | |
 |---|---|
-| Going to:<br>Build a human analog “graphics processing unit”<br>Create a Language Model, *DeepPeer* – a competitor to *DeepSeek*, but built by *peers*<br>Write some award-winning poetry<br>Move from **1913** (*Markov* model) to **2013** (*Word2vec* - Mikolov et al.) and **2017** (*Transformers* - Vaswani et al.)<br>Develop some intuitions about language generation and stochastic parrots<br><br> | ![Image](images/gen_ai____week_2_img_2.png)<br><br> |
+| Going to:<br>Build a human analog “graphics processing unit”<br>Create a Language Model, *DeepPeer* – a competitor to *DeepSeek*, but built by *peers*<br>Write some award-winning poetry<br>Move from **1913** (*Markov* model) to **2013** (*Word2vec* - Mikolov et al.) and **2017** (*Transformers* - Vaswani et al.)<br>Develop some intuitions about language generation and stochastic parrots<br><br> | ![Image](images/gen_ai____week_2_img_2.webp)<br><br> |
 
 ---
 
@@ -143,7 +143,7 @@
 
 ## Slide 15
 
-### ![Image](images/gen_ai____week_2_img_3.png)  
+### ![Image](images/gen_ai____week_2_img_3.webp)  
 
 | | |
 |---|---|
@@ -153,7 +153,7 @@
 
 ## Slide 16
 
-### ![Image](images/gen_ai____week_2_img_4.png)   ![Image](images/gen_ai____week_2_img_5.png)  
+### ![Image](images/gen_ai____week_2_img_4.webp)   ![Image](images/gen_ai____week_2_img_5.webp)  
 
 | | |
 |---|---|
@@ -163,7 +163,7 @@
 
 ## Slide 17
 
-### In the frimbled gloam of the cyber-splen, Where quorbling circuits quazzle and spindrift ken, The glimmering zibbles of neon-sprockets spin, In a whirligig of blazz and bleem—a code’s din!  Beware the Quixwock of the dataverse deep, Its scramblified, jinxed glibbers in quantum sleep! It slithers on byte-winds through the phantasmaglow, With a “Zing-Zorp!” and “Fraffle!” in a pulsating flow.  Armed with a scrobble-stick of ultra-glim twine, Our coder, in blorptastic resolve, doth entwine: “Ping-Pang!” goes the circuit, “Skrim-Skram!” the byte, As he plunges into the fuzzling depths of digital night.   The Quixwock shrieks its crinkled “Clack-Clabb!” cry, While datasparks flutter in a kizzle-filled sky. Its quantum quaggles, fizzing and flonging in time, Beat a jiggery-jabber of algorithms sublime.  At last, amid a frenzy of zorpful delight, The coder outwits the wock in a bluster of light. Now, in this realm of radical zimbled lore, Neon neologs and onomatopoeic dreams soar evermore!  ChatGPT, o3-mini-high (2025). “*Write a poem about AI using style of Jabberwocky, with neologisms and onomatopoeia*”   ![Image](images/gen_ai____week_2_img_6.png)  
+### In the frimbled gloam of the cyber-splen, Where quorbling circuits quazzle and spindrift ken, The glimmering zibbles of neon-sprockets spin, In a whirligig of blazz and bleem—a code’s din!  Beware the Quixwock of the dataverse deep, Its scramblified, jinxed glibbers in quantum sleep! It slithers on byte-winds through the phantasmaglow, With a “Zing-Zorp!” and “Fraffle!” in a pulsating flow.  Armed with a scrobble-stick of ultra-glim twine, Our coder, in blorptastic resolve, doth entwine: “Ping-Pang!” goes the circuit, “Skrim-Skram!” the byte, As he plunges into the fuzzling depths of digital night.   The Quixwock shrieks its crinkled “Clack-Clabb!” cry, While datasparks flutter in a kizzle-filled sky. Its quantum quaggles, fizzing and flonging in time, Beat a jiggery-jabber of algorithms sublime.  At last, amid a frenzy of zorpful delight, The coder outwits the wock in a bluster of light. Now, in this realm of radical zimbled lore, Neon neologs and onomatopoeic dreams soar evermore!  ChatGPT, o3-mini-high (2025). “*Write a poem about AI using style of Jabberwocky, with neologisms and onomatopoeia*”   ![Image](images/gen_ai____week_2_img_6.webp)  
 
 | | |
 |---|---|
@@ -177,7 +177,7 @@
 
 | | |
 |---|---|
-| ![Image](images/gen_ai____week_2_img_7.png)<br><br><br><br>![Image](images/gen_ai____week_2_img_8.png)<br><br> |  |
+| ![Image](images/gen_ai____week_2_img_7.webp)<br><br><br><br>![Image](images/gen_ai____week_2_img_8.webp)<br><br> |  |
 
 ---
 

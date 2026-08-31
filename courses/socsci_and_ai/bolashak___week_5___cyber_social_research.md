@@ -18,7 +18,7 @@
 
 ## Slide 3
 
-### ![Image](images/bolashak___week_5___cyber_social_research_img_1.png)   History of knowledge production  
+### ![Image](images/bolashak___week_5___cyber_social_research_img_1.webp)   History of knowledge production  
 
 | | |
 |---|---|
@@ -28,7 +28,7 @@
 
 ## Slide 4
 
-### ![Image](images/bolashak___week_5___cyber_social_research_img_2.png)   knowledge industrializes….   Knowledge becomes **institutional:** **Universities, Colleges, Departments, Institutes, Schools** **Systematic Literature Review (1970s…) ****– **note the keyword “system” Emphasis on **Reproducible **Knowledge (in all disciplines) Re-thinking “knowledge” itself as **structural **(influence of “hermeneutics of suspicion”: Marx, Nietzsche, Freud) World of **grants**, **peer review**, **computerized** analysis, education at **SCALE** Knowledge is **manufactured**, and is a product **for** industry Primacy of the **Journal Article**  
+### ![Image](images/bolashak___week_5___cyber_social_research_img_2.webp)   knowledge industrializes….   Knowledge becomes **institutional:** **Universities, Colleges, Departments, Institutes, Schools** **Systematic Literature Review (1970s…) ****– **note the keyword “system” Emphasis on **Reproducible **Knowledge (in all disciplines) Re-thinking “knowledge” itself as **structural **(influence of “hermeneutics of suspicion”: Marx, Nietzsche, Freud) World of **grants**, **peer review**, **computerized** analysis, education at **SCALE** Knowledge is **manufactured**, and is a product **for** industry Primacy of the **Journal Article**  
 
 | | |
 |---|---|
@@ -48,7 +48,7 @@
 
 ## Slide 6
 
-### ![Image](images/bolashak___week_5___cyber_social_research_img_3.png)   **Death ****of the**** Author** **(Barthes 1967)**  
+### ![Image](images/bolashak___week_5___cyber_social_research_img_3.webp)   **Death ****of the**** Author** **(Barthes 1967)**  
 
 ---
 
@@ -120,7 +120,7 @@
 
 ## Slide 14
 
-### ![Image](images/bolashak___week_5___cyber_social_research_img_4.png)   Agile and design-based RESEARCH  
+### ![Image](images/bolashak___week_5___cyber_social_research_img_4.webp)   Agile and design-based RESEARCH  
 
 | | |
 |---|---|

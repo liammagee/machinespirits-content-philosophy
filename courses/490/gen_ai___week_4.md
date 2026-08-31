@@ -44,19 +44,19 @@
 
 | | |
 |---|---|
-| ![Image](images/gen_ai___week_4_img_2.png)<br><br><br><br>![Image](images/gen_ai___week_4_img_3.png)<br><br><br><br>![Image](images/gen_ai___week_4_img_4.png)<br><br> | ![Image](images/gen_ai___week_4_img_1.png)<br><br> |
+| ![Image](images/gen_ai___week_4_img_2.webp)<br><br><br><br>![Image](images/gen_ai___week_4_img_3.webp)<br><br><br><br>![Image](images/gen_ai___week_4_img_4.webp)<br><br> | ![Image](images/gen_ai___week_4_img_1.webp)<br><br> |
 
 ---
 
 ## Slide 7
 
-### Ouyang et al. (2022) *Training language models to follow instructions with human feedback*   ![Image](images/gen_ai___week_4_img_5.png)  
+### Ouyang et al. (2022) *Training language models to follow instructions with human feedback*   ![Image](images/gen_ai___week_4_img_5.webp)  
 
 ---
 
 ## Slide 8
 
-### ![Image](images/gen_ai___week_4_img_6.png)   ![Image](images/gen_ai___week_4_img_7.png)  
+### ![Image](images/gen_ai___week_4_img_6.webp)   ![Image](images/gen_ai___week_4_img_7.webp)  
 
 ---
 
@@ -64,7 +64,7 @@
 
 | | |
 |---|---|
-| ![Image](images/gen_ai___week_4_img_8.png)<br><br> |  |
+| ![Image](images/gen_ai___week_4_img_8.webp)<br><br> |  |
 
 ---
 

@@ -12,25 +12,25 @@
 
 ## Slide 2
 
-### ![Image](images/dissertation___1__singularity_and_the_concept_of_history_img_1.png)   **Artificial General Intelligence (AGI) ** **Artificial Super Intelligence (ASI)**  
+### ![Image](images/dissertation___1__singularity_and_the_concept_of_history_img_1.webp)   **Artificial General Intelligence (AGI) ** **Artificial Super Intelligence (ASI)**  
 
 ---
 
 ## Slide 3
 
-### ![Image](images/dissertation___1__singularity_and_the_concept_of_history_img_2.png)  
+### ![Image](images/dissertation___1__singularity_and_the_concept_of_history_img_2.webp)  
 
 ---
 
 ## Slide 4
 
-### ![Image](images/dissertation___1__singularity_and_the_concept_of_history_img_3.png)   **Eschatology (“study of ends”)** **Teleology (“study of purpose”)**  
+### ![Image](images/dissertation___1__singularity_and_the_concept_of_history_img_3.webp)   **Eschatology (“study of ends”)** **Teleology (“study of purpose”)**  
 
 ---
 
 ## Slide 5
 
-### ![Image](images/dissertation___1__singularity_and_the_concept_of_history_img_4.png)   **“The hand-mill gives you society with the feudal lord;**   ![Image](images/dissertation___1__singularity_and_the_concept_of_history_img_5.png)   **the steam-mill, society with the industrial capitalist” (Marx, 1847)**  
+### ![Image](images/dissertation___1__singularity_and_the_concept_of_history_img_4.webp)   **“The hand-mill gives you society with the feudal lord;**   ![Image](images/dissertation___1__singularity_and_the_concept_of_history_img_5.webp)   **the steam-mill, society with the industrial capitalist” (Marx, 1847)**  
 
 ---
 
@@ -48,7 +48,7 @@
 
 | | |
 |---|---|
-| A Klee painting named *Angelus Novus* shows an angel looking as though he is about to move away from something he is fixedly contemplating. His eyes are staring, his mouth is open, his wings are spread. This is how one pictures the angel of history. His face is turned toward the past. Where we perceive a chain of events, he sees one single catastrophe that keeps piling wreckage upon wreckage and hurls it in front of his feet. The angel would like to stay, awaken the dead, and make whole what has been smashed. But a storm is blowing from Paradise; it has caught in his wings with such violence that the angel can no longer close them. This storm irresistibly propels him into the future to which his back is turned, while the pile of debris before him grows skyward. This storm is what we call progress. *(Benjamin, Thesis IX, “Theses on the Philosophy of History”, 1940)*<br><br> | ![Image](images/dissertation___1__singularity_and_the_concept_of_history_img_6.png)<br><br> |
+| A Klee painting named *Angelus Novus* shows an angel looking as though he is about to move away from something he is fixedly contemplating. His eyes are staring, his mouth is open, his wings are spread. This is how one pictures the angel of history. His face is turned toward the past. Where we perceive a chain of events, he sees one single catastrophe that keeps piling wreckage upon wreckage and hurls it in front of his feet. The angel would like to stay, awaken the dead, and make whole what has been smashed. But a storm is blowing from Paradise; it has caught in his wings with such violence that the angel can no longer close them. This storm irresistibly propels him into the future to which his back is turned, while the pile of debris before him grows skyward. This storm is what we call progress. *(Benjamin, Thesis IX, “Theses on the Philosophy of History”, 1940)*<br><br> | ![Image](images/dissertation___1__singularity_and_the_concept_of_history_img_6.webp)<br><br> |
 
 ---
 

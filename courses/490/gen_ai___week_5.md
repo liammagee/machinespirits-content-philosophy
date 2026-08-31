@@ -42,7 +42,7 @@
 
 ## Slide 5
 
-### ![Image](images/gen_ai___week_5_img_1.png)  
+### ![Image](images/gen_ai___week_5_img_1.webp)  
 
 | | |
 |---|---|
@@ -62,7 +62,7 @@
 
 | | |
 |---|---|
-| Tools like ollama and LM Studio make testing with local (downloadable) models easy<br><br><br><br>![Image](images/gen_ai___week_5_img_2.png)<br><br> |  |
+| Tools like ollama and LM Studio make testing with local (downloadable) models easy<br><br><br><br>![Image](images/gen_ai___week_5_img_2.webp)<br><br> |  |
 
 ---
 

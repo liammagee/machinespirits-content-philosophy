@@ -20,7 +20,7 @@
 
 ## Slide 3
 
-### ![Image](images/dissertation___literature_reviews_img_1.png)   Metaphors of Knowing: What is a **gap** in the literature?  
+### ![Image](images/dissertation___literature_reviews_img_1.webp)   Metaphors of Knowing: What is a **gap** in the literature?  
 
 | | |
 |---|---|
@@ -30,7 +30,7 @@
 
 ## Slide 4
 
-### ![Image](images/dissertation___literature_reviews_img_2.png)   Think dynamically about your review  
+### ![Image](images/dissertation___literature_reviews_img_2.webp)   Think dynamically about your review  
 
 | | |
 |---|---|
@@ -44,7 +44,7 @@
 
 | | |
 |---|---|
-| Consider how you want to **organise **your review<br>It is like a **course** on your topic and question.<br>Do you want:<br>Drill in or drill out?<br>Theory followed by practice?<br>Practice brought together by theory?<br>Identify major themes?<br>Discuss key debates?<br>Big / general to small / specific?<br>All good - but **lay this out** for your reader. Imagine you are teaching your literature - think what **pedagogical organisation** works.<br><br> | ![Image](images/dissertation___literature_reviews_img_3.png)<br><br> |
+| Consider how you want to **organise **your review<br>It is like a **course** on your topic and question.<br>Do you want:<br>Drill in or drill out?<br>Theory followed by practice?<br>Practice brought together by theory?<br>Identify major themes?<br>Discuss key debates?<br>Big / general to small / specific?<br>All good - but **lay this out** for your reader. Imagine you are teaching your literature - think what **pedagogical organisation** works.<br><br> | ![Image](images/dissertation___literature_reviews_img_3.webp)<br><br> |
 
 ---
 
@@ -54,7 +54,7 @@
 
 | | |
 |---|---|
-| **Initial premise: **“socio-economic regime” (Schwab 2016)<br><br>**Consolidate: **“web 3.0” (Wood 2014)<br><br>**Conclude: **“integrated cyber-social systems” (Cope and Kalantzis 2022a)<br><br><br><br>![Image](images/dissertation___literature_reviews_img_4.png)<br><br> |  |
+| **Initial premise: **“socio-economic regime” (Schwab 2016)<br><br>**Consolidate: **“web 3.0” (Wood 2014)<br><br>**Conclude: **“integrated cyber-social systems” (Cope and Kalantzis 2022a)<br><br><br><br>![Image](images/dissertation___literature_reviews_img_4.webp)<br><br> |  |
 
 ---
 
@@ -74,7 +74,7 @@
 
 | | |
 |---|---|
-| **ORIGINAL:** As Cope and Kalantzis (2022a) suggest, we are entering a new socio-economic regime…<br><br><br><br>**ALTERNATIVE:** As Cope and Kalantzis (2022a) suggest, we are entering a new era of integrated cyber-social systems. Invoking Schwab (2016), they argue this is part of a new wider socio-economic regime…<br><br><br><br>![Image](images/dissertation___literature_reviews_img_5.png)<br><br> |  |
+| **ORIGINAL:** As Cope and Kalantzis (2022a) suggest, we are entering a new socio-economic regime…<br><br><br><br>**ALTERNATIVE:** As Cope and Kalantzis (2022a) suggest, we are entering a new era of integrated cyber-social systems. Invoking Schwab (2016), they argue this is part of a new wider socio-economic regime…<br><br><br><br>![Image](images/dissertation___literature_reviews_img_5.webp)<br><br> |  |
 
 ---
 
