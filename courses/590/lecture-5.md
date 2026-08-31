@@ -237,7 +237,7 @@ Pick a **principle**:
  - What are its markers of **distinction** and **discernment** – "tickets to the game"?
  - Conversely: what seem to be the things **not to say**?
 
-![Image](/markdown/images/pasted-image-2025-11-17T14-35-30-763Z-2f11122a.png)
+![Image](/markdown/images/pasted-image-2025-11-17T14-35-30-763Z-2f11122a.webp)
 
 
 ---

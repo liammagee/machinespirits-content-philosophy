@@ -71,7 +71,7 @@
 
 Courtesy of Google's Nano Banana Pro. Not quite right, but thanks anyway!
 
-![Image](/markdown/images/pasted-image-2025-12-01T05-37-53-195Z-7683733a.png)
+![Image](/markdown/images/pasted-image-2025-12-01T05-37-53-195Z-7683733a.webp)
 
 ---
 
@@ -109,7 +109,7 @@ Courtesy of Google's Nano Banana Pro. Not quite right, but thanks anyway!
  - What are its markers of **distinction** and **discernment** – "tickets to the game"?
  - Conversely: what seem to be the things **not to say**?
 
-![Image](/markdown/images/pasted-image-2025-11-17T14-35-30-763Z-2f11122a.png)
+![Image](/markdown/images/pasted-image-2025-11-17T14-35-30-763Z-2f11122a.webp)
 
 
 ---
@@ -185,7 +185,7 @@ Courtesy of Google's Nano Banana Pro. Not quite right, but thanks anyway!
  - How does it affect the literature review? What is it that we bring to the table when we read academic writing?
    - Discuss!
 
-![Image](/markdown/images/pasted-image-2025-12-01T22-49-06-943Z-ca3dc567.png)
+![Image](/markdown/images/pasted-image-2025-12-01T22-49-06-943Z-ca3dc567.webp)
 
 
 ---

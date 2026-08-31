@@ -191,7 +191,7 @@ In unpacking these three shapes or forms, I'll also make reference, at a very hi
 
 ### Hegel’s Sense‑Certainty Analysis
 
-![image](/markdown/images/consciousness-sense-certainty.png)
+![image](/markdown/images/consciousness-sense-certainty.webp)
 
 - Sensory certainty is a fleeting awareness limited to "here" and "now."
 - No temporal or spatial connections; experiences remain isolated moments.
@@ -213,7 +213,7 @@ If we were to imagine this experience of consciousness as a machine, it might be
 
 ### Consciousness Level: Attribute Perception Only
 
-![image](/markdown/images/consciousness-perception.png)
+![image](/markdown/images/consciousness-perception.webp)
 
 - Perception registers attributes (color, shape) but lacks relational understanding of how objects connect across contexts.
 - Perception is trapped by concrete material and shifting attention ("common sense").
@@ -241,7 +241,7 @@ We could say that this is where we are at with machine learning today. They are 
 
 ### Hegel on Force and Understanding
 
-![image](/markdown/images/consciousness-understanding.png)
+![image](/markdown/images/consciousness-understanding.webp)
 
 
 
@@ -278,7 +278,7 @@ At this stage we have something close to a rudimentary idea of consciousness. We
 
 ### Segue: What is Our Experience of Experience?
 
-![experience of experience](/markdown/images/experience-of-experience.jpeg)
+![experience of experience](/markdown/images/experience-of-experience.webp)
 
  - What does it mean to be a subject? 
  - What is our experience of experience?

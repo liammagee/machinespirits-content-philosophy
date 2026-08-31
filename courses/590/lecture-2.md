@@ -97,9 +97,9 @@ All required material (video lectures, readings etc.) will be provided to studen
 - Would you read an article by a **bot**? Under what circumstances? 
 - What about a math paper?
 
-![Image](/markdown/images/pasted-image-2025-10-24T14-24-09-631Z-f69f72d5.png)
+![Image](/markdown/images/pasted-image-2025-10-24T14-24-09-631Z-f69f72d5.webp)
 
-![Image](/markdown/images/pasted-image-2025-10-24T14-25-57-365Z-f250bc31.png)
+![Image](/markdown/images/pasted-image-2025-10-24T14-25-57-365Z-f250bc31.webp)
 
 ---
 
@@ -129,7 +129,7 @@ Lots of answers, lots of guidance...
 
 [Literature Reviews &#8211; The Writing Center • University of North Carolina at Chapel Hill](https://writingcenter.unc.edu/tips-and-tools/literature-reviews/#:~:text=A%20literature%20review%20discusses%20published,combines%20both%20summary%20and%20synthesis.)
 
-![Image](/markdown/images/pasted-image-2025-10-24T12-44-52-384Z-eb86c677.png)
+![Image](/markdown/images/pasted-image-2025-10-24T12-44-52-384Z-eb86c677.webp)
 
 ---
 
@@ -150,7 +150,7 @@ Lots of answers, lots of guidance...
    - In analysis we go from concrete (stuff we see) to abstract (concepts of thought)
    - In presentation, we go from abstract (concepts) to concrete (the world of experience) - **explaining** the world of experience
 
-![Image](/markdown/images/pasted-image-2025-10-27T20-32-03-568Z-232d5b70.png)
+![Image](/markdown/images/pasted-image-2025-10-27T20-32-03-568Z-232d5b70.webp)
 
 ---
 
@@ -158,7 +158,7 @@ Lots of answers, lots of guidance...
 
 "create an image showing how a literature review is a mini-argument embedded within the larger argument of an article or dissertation"
 
-![Image](/markdown/images/pasted-image-2025-10-24T16-22-25-539Z-312a91eb.png)
+![Image](/markdown/images/pasted-image-2025-10-24T16-22-25-539Z-312a91eb.webp)
 
 
 ---

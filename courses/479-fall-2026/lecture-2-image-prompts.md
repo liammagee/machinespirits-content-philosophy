@@ -211,10 +211,10 @@ Inside the circle, use a small restrained vignette: a tiny short dark-haired chi
 | Slide | Image in the lecture | PowerPoint source |
 | --- | --- | --- |
 | 03 | Schlesinger portrait of Hegel, Wikimedia Commons | Same portrait, embedded locally for offline use |
-| 11 | `/markdown/images/consciousness-sense-certainty.png` | `../../assets/images/consciousness-sense-certainty.png` |
-| 12 | `/markdown/images/consciousness-perception.png` | `../../assets/images/consciousness-perception.png` |
-| 13 | `/markdown/images/consciousness-understanding.png` | `../../assets/images/consciousness-understanding.png` |
-| 15 | `/markdown/images/experience-of-experience.jpeg` | `../../assets/images/experience-of-experience.jpeg` |
+| 11 | `/markdown/images/consciousness-sense-certainty.webp` | `../../assets/images/consciousness-sense-certainty.png` |
+| 12 | `/markdown/images/consciousness-perception.webp` | `../../assets/images/consciousness-perception.png` |
+| 13 | `/markdown/images/consciousness-understanding.webp` | `../../assets/images/consciousness-understanding.png` |
+| 15 | `/markdown/images/experience-of-experience.webp` | `../../assets/images/experience-of-experience.jpeg` |
 
 ## Source and interpretation discipline
 

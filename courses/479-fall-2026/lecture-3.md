@@ -38,7 +38,7 @@ In our discussion we will consider it as a useful background to thinking about t
 ### Self-Consciousness
 
 
-![image](/markdown/images/self-consciousness.png)
+![image](/markdown/images/self-consciousness.webp)
 
 - Consciousness evolves via **sense‑certainty**, **perception**, and **understanding**.
 - Appearances and supersensible laws form a mutually dependent unity called "infinity".
@@ -294,7 +294,7 @@ Recognition is not, as we might assume in today's liberal society, a polite or e
 ### Another Aside: Recognition as Reciprocal
 
 
-![image](/markdown/images/self-consciousness.png)
+![image](/markdown/images/self-consciousness.webp)
 
 - Recognition also involves realizing the other also has a consciousness; also has desires to be satsified; also works towards self-consciousness; also requires *recognition*.
 
@@ -557,7 +557,7 @@ So far we are not even a quarter of the way through Hegel's *Phenomenology of Mi
 And how does this then relate back to our principal interest, the relationship between *machine* and *human* learning? What Hegel poses is that the desire for recognition involves a struggle, almost to the death. And it is only via a loss in this struggle that we experience the slow rise to a painful awakening, via the process of servitude. Do we find this account plausible? Does it describe *all* learning, or only the royal pathway to self-consciousness? And how far removed from this highly dramatic, gothic, elevated drama are we when we turn to the world of machine learning – a purely technical process of data and computation?
 
 
-![image](/markdown/images/self-consciousness-master-servant-1.png)
+![image](/markdown/images/self-consciousness-master-servant-1.webp)
 
 * * *
 
@@ -572,7 +572,7 @@ And how does this then relate back to our principal interest, the relationship b
 One argument we might make is that we might need to distinguish *learning* from *training* - and that the latter is a more accurate description of machines today. But even so, the Hegelian dialectic still ought to remind us of one possibility for machine development. This week I included several cinematic motifs of human/machine relationships. Time and time again we see the same narrative: of machines acting in servitude, only to rise up and overtake humanity. This is a trope, a cliche. And while it is similar to the Hegel story, it also misses the key insight: the servant does not overtake the master, but rather proceeds along a new pathway – in fact, as part of a more egalitarian world, where new dilemmas and dramas arise. 
 ```
 
-![image](/markdown/images/self-consciousness-master-servant-2.png)
+![image](/markdown/images/self-consciousness-master-servant-2.webp)
 
 
 
@@ -581,7 +581,7 @@ One argument we might make is that we might need to distinguish *learning* from 
 
 ### Stoicism, Skepticism and the Unhappy Consciousness
 
-![image](/markdown/images/self-consciousness-stoicism.png)
+![image](/markdown/images/self-consciousness-stoicism.webp)
 
 ### Transition to Unhappy Consciousness
 
@@ -605,10 +605,10 @@ We won't discuss these in detail here, but the next steps involve three stages: 
 
 * * *
 
-![image](/markdown/images/self-consciousness-skepticism.png)
+![image](/markdown/images/self-consciousness-skepticism.webp)
 
 * * *
-![image](/markdown/images/self-consciousness-unhappy-consciousness.png)
+![image](/markdown/images/self-consciousness-unhappy-consciousness.webp)
 
 * * *
 

@@ -10,7 +10,7 @@ date: "2025"
  - Vibe coding: using human language to generate code (Andrej Karpathy)
  - Can the approach be used for scholarship? And is it plagiarism? Let's see...
 
-![Image](/markdown/images/pasted-image-2025-09-23T22-03-12-524Z-2c346f2b.png)
+![Image](/markdown/images/pasted-image-2025-09-23T22-03-12-524Z-2c346f2b.webp)
 
 ---
 

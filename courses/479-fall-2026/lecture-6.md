@@ -1,7 +1,7 @@
 
 ## Alignment
 
-![Image](/markdown/images/pasted-image-2025-09-25T04-07-03-934Z-319b6e7e.png)
+![Image](/markdown/images/pasted-image-2025-09-25T04-07-03-934Z-319b6e7e.webp)
 
 
 ---
@@ -14,7 +14,7 @@
 - Learn from Michele’s practical experience as an alignment specialist
 - Engage in activities exploring machine and human alignment strategies
 
-![Image](/markdown/images/pasted-image-2025-09-28T13-33-49-731Z-286bb620.png)
+![Image](/markdown/images/pasted-image-2025-09-28T13-33-49-731Z-286bb620.webp)
 
 ```notes
 This week we are going to start with a short technical demonstration. 
@@ -108,7 +108,7 @@ One of my own studies I've included this week, from 2021, demonstrated the speci
 
 [[2410.18417] Large Language Models Reflect the Ideology of their Creators](https://arxiv.org/abs/2410.18417)
 
-![Image](/markdown/images/pasted-image-2025-09-26T21-18-03-333Z-612cb2dd.png)
+![Image](/markdown/images/pasted-image-2025-09-26T21-18-03-333Z-612cb2dd.webp)
 
 ```notes
 There are three key related but distinct points I want to make here. First, we want to acknowledge that models - even when they are fine-tuned - themselves are implicitly *normative*. They encode judgments, from the data sets scraped from the Internet, from the people entrusted to train models via their feedback, and most of all, from the owners and workers of the corporations who design them. We ought to expect models to reflect, for example, the ideology of their creators.
@@ -121,7 +121,7 @@ There are three key related but distinct points I want to make here. First, we w
 
 Even before LLMs, scholars had been writing about the dangers of algorithms applying **norms** to decision making.
 
-![Image](/markdown/images/pasted-image-2025-09-26T21-31-00-499Z-4eaf957f.png)
+![Image](/markdown/images/pasted-image-2025-09-26T21-31-00-499Z-4eaf957f.webp)
 
 ---
 
@@ -191,7 +191,7 @@ I want also to note here parenthetically - it is as if the engineers at Anthropi
 - LLM alignment pushes models toward social **consensus**.
     - Models trained to avoid self‑contradiction also have coherentist properties.
 
-![Image](/markdown/images/pasted-image-2025-09-26T21-51-04-642Z-b62cf0ff.png)
+![Image](/markdown/images/pasted-image-2025-09-26T21-51-04-642Z-b62cf0ff.webp)
 
 
 
@@ -210,7 +210,7 @@ Curiously, LLMs also do not have – today – a correspondence theory either. T
 ### 2 + 2 = ? The Problem with Probabilities
 
 
-![Image](/markdown/images/image3.png)
+![Image](/markdown/images/image3.webp)
 
 ```notes
 To give one concrete example, in that paper we used a particular prompt:
@@ -232,7 +232,7 @@ We showed that certain examples of GPT - especially older (though post-instructi
 
 
 
-![Image](/markdown/images/pasted-image-2025-09-26T21-46-57-301Z-da659be1.png)
+![Image](/markdown/images/pasted-image-2025-09-26T21-46-57-301Z-da659be1.webp)
 
 ```notes
 One perverse effect of this is that this wrong answer would not be wrong if the question were phrased as follows:
@@ -260,7 +260,7 @@ A further point: Michele and I were discussing before class a paradox associated
 - AI: in danger of becoming one-dimensional; reflecting views of their creators
 
 
-![Image](/markdown/images/pasted-image-2025-09-26T21-51-33-344Z-a2a69e7e.png)
+![Image](/markdown/images/pasted-image-2025-09-26T21-51-33-344Z-a2a69e7e.webp)
 
 
 ```notes
@@ -306,7 +306,7 @@ But even without this fantastic outcome, we can note several perverse effects al
 - Future AI may simulate or set its own alignment criteria, becoming moral instructor.
 - Risk exists of creating unalignable superintelligence that coexists uneasily with humanity.
 
-![Image](/markdown/images/pasted-image-2025-09-27T12-41-20-951Z-f8fc7572.png)
+![Image](/markdown/images/pasted-image-2025-09-27T12-41-20-951Z-f8fc7572.webp)
 
 
 ```notes

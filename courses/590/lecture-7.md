@@ -33,7 +33,7 @@
  - Let's test ChatGPT group chat...
  - Where is automation happening? Some examples....
 
-![Image](/markdown/images/pasted-image-2025-12-07T05-19-16-293Z-eef41f0c.png)
+![Image](/markdown/images/pasted-image-2025-12-07T05-19-16-293Z-eef41f0c.webp)
 
 
 
@@ -43,7 +43,7 @@
 
  - [Introducing Anthropic Interviewer \ Anthropic](https://www.anthropic.com/news/anthropic-interviewer) - Compare with Magee et al. 2023 - tables have turned (AI now interviewing the human)
 
-![Image](/markdown/images/pasted-image-2025-12-08T23-26-42-224Z-973ff89f.png)
+![Image](/markdown/images/pasted-image-2025-12-08T23-26-42-224Z-973ff89f.webp)
 
 ---
 
@@ -55,7 +55,7 @@ Human vs LLM thematic analysis:
  - The machine doesn't tire... related but different biases
 
 
-![Image](/markdown/images/pasted-image-2025-12-07T05-20-48-333Z-79dfa4c3.png)
+![Image](/markdown/images/pasted-image-2025-12-07T05-20-48-333Z-79dfa4c3.webp)
 
 
 
@@ -85,9 +85,9 @@ Human vs LLM thematic analysis:
    - LLM + tools - specifically Python
    - Solve some problem - watch AI generate, run & evaluate Python code 
 
-![Image](/markdown/images/pasted-image-2025-12-08T21-58-45-032Z-4b1c80ac.png)
+![Image](/markdown/images/pasted-image-2025-12-08T21-58-45-032Z-4b1c80ac.webp)
 
-![Image](/markdown/images/pasted-image-2025-12-08T21-54-10-987Z-ab24f22a.png)
+![Image](/markdown/images/pasted-image-2025-12-08T21-54-10-987Z-ab24f22a.webp)
 
 ---
 
@@ -107,7 +107,7 @@ Human vs LLM thematic analysis:
  - Huge amounts of AI-generated submissions to journals
  - "who, aside from the algorithms themselves, would want to read this LLM-generated content?"
 
-![Image](/markdown/images/pasted-image-2025-12-08T04-12-42-025Z-ba155e22.png)
+![Image](/markdown/images/pasted-image-2025-12-08T04-12-42-025Z-ba155e22.webp)
 
 
 
@@ -128,7 +128,7 @@ Human vs LLM thematic analysis:
  - Are some of us "high responders" to AI? Can 
    - What is the role of assessment in preparing for a future of work? Is it just an arbitrary ranking? 
 
-![Image](/markdown/images/pasted-image-2025-12-07T23-20-40-662Z-ab0822db.png)
+![Image](/markdown/images/pasted-image-2025-12-07T23-20-40-662Z-ab0822db.webp)
 
 
 ---
@@ -139,16 +139,16 @@ Human vs LLM thematic analysis:
  - In scholarship: developing a "feel" for questions worth asking - and how to answer them
    - **Important?** AI accelerates locating dead ends... *This is not the gap you think it is*.
 
-![Image](/markdown/images/pasted-image-2025-12-07T23-39-40-150Z-d07acf37.png)
+![Image](/markdown/images/pasted-image-2025-12-07T23-39-40-150Z-d07acf37.webp)
 
 
 ---
 
 ### From the Heart of Silicon Valley...
 
-![Image](/markdown/images/pasted-image-2025-12-07T23-15-49-636Z-8b535cf0.png)
+![Image](/markdown/images/pasted-image-2025-12-07T23-15-49-636Z-8b535cf0.webp)
 
-![Image](/markdown/images/pasted-image-2025-12-07T23-11-24-929Z-c65ec6ef.png)
+![Image](/markdown/images/pasted-image-2025-12-07T23-11-24-929Z-c65ec6ef.webp)
 
 
 ---
@@ -168,9 +168,9 @@ Human vs LLM thematic analysis:
  
  - Does everyone just get a free car now? The return of the "planned economy"
 
-![Image](/markdown/images/pasted-image-2025-12-07T23-08-30-920Z-2fff3a47.png)
+![Image](/markdown/images/pasted-image-2025-12-07T23-08-30-920Z-2fff3a47.webp)
 
-![Image](/markdown/images/pasted-image-2025-12-07T23-16-31-310Z-1501741c.png)
+![Image](/markdown/images/pasted-image-2025-12-07T23-16-31-310Z-1501741c.webp)
 
 
 
@@ -196,7 +196,7 @@ Human vs LLM thematic analysis:
  - "Abolitionist Tools" 
  - Translation to scholarly contexts: thinking AI as a *liberational* technology - non-competitive knowledge without assessment, careerism, quantification, discrimination
 
-![Image](/markdown/images/pasted-image-2025-12-08T00-18-46-487Z-bb3fc6d7.png)
+![Image](/markdown/images/pasted-image-2025-12-08T00-18-46-487Z-bb3fc6d7.webp)
 
 
 ---
@@ -206,7 +206,7 @@ Human vs LLM thematic analysis:
  - Perhaps: to re-thinking knowledge beyond a logic of accumulation (the metaphor of filling "gaps" might be a trap for us here - as through knowledge is a *container*)
    - Instead focus on knowledge as creative, expansive - instead *producing* gaps, spaces - *fractal* metaphor
 
-![Image](/markdown/images/pasted-image-2025-12-08T04-27-36-189Z-33065933.png)
+![Image](/markdown/images/pasted-image-2025-12-08T04-27-36-189Z-33065933.webp)
 
 ---
 

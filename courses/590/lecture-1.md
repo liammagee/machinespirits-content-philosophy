@@ -174,7 +174,7 @@ That all said, the purpose of the course is to support a dissertation / journal 
    - Search on the topic / question. Is it answered? Wholly or partly? Which parts remain?
     
 
-![Image](/markdown/images/pasted-image-2025-10-21T16-37-41-774Z-0f78d3c3.png)
+![Image](/markdown/images/pasted-image-2025-10-21T16-37-41-774Z-0f78d3c3.webp)
 
 ---
 

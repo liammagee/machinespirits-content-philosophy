@@ -137,7 +137,7 @@ This is a point we will want to return to: that consciousness can be (a) on a *s
 - Freud proposes: a system of **conscious** and **unconscious** parts.
 - Unconscious **shapes** consciousness; but is itself only observable in **distorted form**
 
-![Image](/markdown/images/pasted-image-2025-09-22T19-47-06-876Z-056db3c9.png)
+![Image](/markdown/images/pasted-image-2025-09-22T19-47-06-876Z-056db3c9.webp)
 
 
 ```notes
@@ -157,7 +157,7 @@ Freud also argues that it is the nature of the Unconscious that even when it app
 - The censor can block, admit, or transform thoughts into symptoms (such as anxiety).
 - Repressed energy becomes a **symptom** when its source remains hidden.
 
-![Image](/markdown/images/pasted-image-2025-09-22T19-47-06-876Z-056db3c9.png)
+![Image](/markdown/images/pasted-image-2025-09-22T19-47-06-876Z-056db3c9.webp)
 
 > How far the unconscious can be influenced by consciousness has not as yet been determined. Upon the possibility that another person can influence consciousness and thus reach the unconscious the psychoanalytic treatment is based. It may, however, be assumed that the spontaneous influencing of the unconscious from consciousness would be a long and difficult process, if it were possible at all. 
 

@@ -31,7 +31,7 @@
 
 ### What is "ChatGPT" today?
 
-![Image](/markdown/images/pasted-image-2025-10-14T19-10-24-498Z-7fdf24cd.png)
+![Image](/markdown/images/pasted-image-2025-10-14T19-10-24-498Z-7fdf24cd.webp)
 
 ---
 
@@ -58,14 +58,14 @@
 ### Create Image
 "Create an image of an AI professor"
 
-![Image](/markdown/images/pasted-image-2025-10-14T19-41-28-445Z-1a4f6c54.png)
+![Image](/markdown/images/pasted-image-2025-10-14T19-41-28-445Z-1a4f6c54.webp)
 
 
 ---
 
 ### Add sources
 
-![Image](/markdown/images/pasted-image-2025-10-14T19-42-23-486Z-c5ac1216.png)
+![Image](/markdown/images/pasted-image-2025-10-14T19-42-23-486Z-c5ac1216.webp)
 
 
 
@@ -77,7 +77,7 @@
 
 [ChatGPT - AI in middle schools](https://chatgpt.com/share/68eea5fb-caa0-8007-9709-3eac9f262fb9)
 
-![Image](/markdown/images/pasted-image-2025-10-14T20-26-43-962Z-99d9eef0.png)
+![Image](/markdown/images/pasted-image-2025-10-14T20-26-43-962Z-99d9eef0.webp)
 
 ---
 
@@ -85,7 +85,7 @@
 
 [ChatGPT - AI in STEM教育](https://chatgpt.com/share/68eeb0f8-fd34-8007-b76c-9beda6183180)
 
-![Image](/markdown/images/pasted-image-2025-10-14T20-25-15-775Z-472446bc.png)
+![Image](/markdown/images/pasted-image-2025-10-14T20-25-15-775Z-472446bc.webp)
 
 ---
 
@@ -99,7 +99,7 @@ Your Own Private Dissertation Dashboard
 
 [ChatGPT - Dissertation Dashboard](https://chatgpt.com/canvas/shared/68eeb0b1fa648191833467b7ee2c1426)
 
-![Image](/markdown/images/pasted-image-2025-10-14T20-21-33-593Z-f287d772.png)
+![Image](/markdown/images/pasted-image-2025-10-14T20-21-33-593Z-f287d772.webp)
 
 
 ---

@@ -34,7 +34,7 @@ I'll start by looking at the Petersen & Posner [-@stevene.petersen2012theattenti
 | Executive: Switch focus  | Frontoparietal (eye field / superior parietal lob | Realize that you are tired and *need a break* |
 
 
-![Image](/markdown/images/pasted-image-2025-09-14T18-41-01-466Z-7f762d1b.png)
+![Image](/markdown/images/pasted-image-2025-09-14T18-41-01-466Z-7f762d1b.webp)
 
 ```notes
 
@@ -60,7 +60,7 @@ Finally, the executive function involves making decisions: to stay fixed upon an
 - (b) Semi-redundant Networks: different parts of the brain coordinate on the **same** aspects of attention
 
 
-![Image](/markdown/images/pasted-image-2025-09-14T18-41-01-466Z-7f762d1b.png)
+![Image](/markdown/images/pasted-image-2025-09-14T18-41-01-466Z-7f762d1b.webp)
 
 ```notes
 
@@ -75,7 +75,7 @@ As we will see, it is not so much that use of attention in computer networks fol
 ### Attention and Learning
 
 
-![alt text](/markdown/images/attention-pedagogy-studies.png)
+![alt text](/markdown/images/attention-pedagogy-studies.webp)
 
 ```notes
 
@@ -137,7 +137,7 @@ And to keep concordance with Hegel, we might also note his own strong distrust o
 
 |   |   | 
 |---|---| 
-| ![Image](/markdown/images/pasted-image-2025-09-14T22-33-13-908Z-4dbfa114.png) | ![Image](/markdown/images/pasted-image-2025-09-14T22-34-05-167Z-40814aab.png)  |
+| ![Image](/markdown/images/pasted-image-2025-09-14T22-33-13-908Z-4dbfa114.webp) | ![Image](/markdown/images/pasted-image-2025-09-14T22-34-05-167Z-40814aab.webp)  |
 
 
 ---
@@ -195,10 +195,10 @@ Now we don't have time or opportunity to fully talk through this paper and its t
 
 <!-- | RNN | Transformer |
 | --- | --- |
-| ![rnn](/markdown/images/rnn.png) | ![transformer](/markdown/images/transformer.png) | -->
+| ![rnn](/markdown/images/rnn.webp) | ![transformer](/markdown/images/transformer.webp) | -->
 
 
-![Image](/markdown/images/comparison-heatmap-2025-09-15T13-42-51-212Z.png)
+![Image](/markdown/images/comparison-heatmap-2025-09-15T13-42-51-212Z.webp)
 
 
 
@@ -254,7 +254,7 @@ Much of the difference between models involves details about the architecture of
 
  - Core Intuition: A **language model** approximates a **function** (with many parameters). 
 
-![Image](/markdown/images/linear-regression-2025-09-15T13-42-02-464Z.png)
+![Image](/markdown/images/linear-regression-2025-09-15T13-42-02-464Z.webp)
 
 Typical multiple regression - a simplified 1-layer neural network:
 
@@ -339,7 +339,7 @@ What does this set of probabilities refer to? The relevance or how much the word
 
 ### From Attention to Context
 
-![Image](/markdown/images/pasted-image-2025-09-15T17-24-12-198Z-d12b6f9d.png)
+![Image](/markdown/images/pasted-image-2025-09-15T17-24-12-198Z-d12b6f9d.webp)
 
 ```notes
 
@@ -458,7 +458,7 @@ Think for a moment about this final activity. Is **your** completion different t
 
 ### Make Content, Get Attention... Profit?
 
-![Image](/markdown/images/pasted-image-2025-09-15T17-02-44-763Z-71b12cf1.png)
+![Image](/markdown/images/pasted-image-2025-09-15T17-02-44-763Z-71b12cf1.webp)
 
 ```notes
 Turning now to Terranova's article, we come to the idea that attention is a kind of *commodity* and even *capital*, marked - like all commodities – by scarcity. It is an object that in itself warrants the *attention* of capital, of investors and advertisers, in the context of digital media. This is of course not new - the nephew of Sigmund Freud, Edward Bernays, pioneered many uses of what was then, in the early/mid twentieth century, new media, such as radio, magazines, film and television. But with the maturation of computers, the Internet, smartphones, social media and, today, AI, we come to a point at which we see attention as corroded or "degraded" by information. There is so much information, in other worrds, that human attentive processes become saturated, barely able to keep up.
@@ -470,7 +470,7 @@ Terranova argues, citing Nicholas Carr, Catherine Malabou, Jonathan Crary and ot
 
 ### Attention and Imitation 
 
-![Image](/markdown/images/pasted-image-2025-09-13T20-55-12-927Z-6998cdbe.png)
+![Image](/markdown/images/pasted-image-2025-09-13T20-55-12-927Z-6998cdbe.webp)
 
 ```notes
 In a turn that also reminds us of our discussion of Hegel and the *social* process of learning, Terranova then discusses how attention to digital media in turn leads to another kind of by-passing of the deeper attention marked by executive function, due to social imitation. 
@@ -484,7 +484,7 @@ But Terranova's discussion takes a negative turn again, through the work of Bern
 
 ### Cooperation or Proletariatanization?
 
-![Image](/markdown/images/pasted-image-2025-09-13T21-05-34-066Z-650d5d77.png)
+![Image](/markdown/images/pasted-image-2025-09-13T21-05-34-066Z-650d5d77.webp)
 
 
 ```notes
@@ -497,7 +497,7 @@ Collecting up both Lazzaratto and Stiegler's arguments, Terranova claims that �
 
 ### Is Attention a Design Problem?
 
-![Image](/markdown/images/pasted-image-2025-09-13T21-21-01-254Z-b87a061e.png)
+![Image](/markdown/images/pasted-image-2025-09-13T21-21-01-254Z-b87a061e.webp)
 
 ```notes
 The reason for including Terranova's analysis – aside from its wide-ranging survey of recent debates – is that in a certain sense it elaborates upon Hegel's insistence that self-consciousness and learning is essentially *social* in nature. Indeed both Lazzaratto and Stiegler's positions, which Terranova surveys, can be seen as extensions to Hegel's insight, though adjusted for the dramatic effects wrought by informatic technologies. 
@@ -516,7 +516,7 @@ Hansen argues that as we enter the era of machine learning, platforms will incre
 ### Synthesizing Human and Machine Attention?
 
 
-![Image](/markdown/images/pasted-image-2025-09-15T04-48-29-169Z-c40d94d6.png)
+![Image](/markdown/images/pasted-image-2025-09-15T04-48-29-169Z-c40d94d6.webp)
 
 Posner on the role of att
  - https://www.youtube.com/watch?v=PKzz1OAiTRQ

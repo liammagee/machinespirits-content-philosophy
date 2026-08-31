@@ -21,7 +21,7 @@
 | AI-assisted | Vibe? | Vibe? |
 
 
-![Image](/markdown/images/pasted-image-2025-09-23T22-03-12-524Z-2c346f2b.png)
+![Image](/markdown/images/pasted-image-2025-09-23T22-03-12-524Z-2c346f2b.webp)
 
 
 
@@ -134,7 +134,7 @@ A complex humanities text: Spivak, G. C. (2023). Can the subaltern speak?. In *I
  - Archive of scientific literature
  - Flooded with AI-generated content...
 
-![Image](/markdown/images/pasted-image-2025-11-03T13-22-10-354Z-7fb83b48.png)
+![Image](/markdown/images/pasted-image-2025-11-03T13-22-10-354Z-7fb83b48.webp)
 
 
 
