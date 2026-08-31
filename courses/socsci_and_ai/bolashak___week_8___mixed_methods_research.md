@@ -8,7 +8,7 @@
 
 ## Slide 2
 
-### ![Image](images/bolashak___week_8___mixed_methods_research_img_1.png)   Why Mixed Methods?  
+### ![Image](images/bolashak___week_8___mixed_methods_research_img_1.webp)   Why Mixed Methods?  
 
 | | |
 |---|---|

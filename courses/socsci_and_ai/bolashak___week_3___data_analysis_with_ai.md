@@ -48,27 +48,27 @@
 
 ## Slide 6
 
-### ![Image](images/bolashak___week_3___data_analysis_with_ai_img_1.png)   Thematic Analysis of Qual Data  
+### ![Image](images/bolashak___week_3___data_analysis_with_ai_img_1.webp)   Thematic Analysis of Qual Data  
 
 | | |
 |---|---|
-| ![Image](images/bolashak___week_3___data_analysis_with_ai_img_2.png)<br><br> | Braun, V., & Clarke, V. (2006). Using thematic analysis in psychology. *Qualitative research in psychology*, *3*(2), 77-101.<br><br> |
+| ![Image](images/bolashak___week_3___data_analysis_with_ai_img_2.webp)<br><br> | Braun, V., & Clarke, V. (2006). Using thematic analysis in psychology. *Qualitative research in psychology*, *3*(2), 77-101.<br><br> |
 
 ---
 
 ## Slide 7
 
-### ![Image](images/bolashak___week_3___data_analysis_with_ai_img_3.png)  
+### ![Image](images/bolashak___week_3___data_analysis_with_ai_img_3.webp)  
 
 ---
 
 ## Slide 8
 
-### Quantifying the Qualitative Data   ![Image](images/bolashak___week_3___data_analysis_with_ai_img_4.png)  
+### Quantifying the Qualitative Data   ![Image](images/bolashak___week_3___data_analysis_with_ai_img_4.webp)  
 
 | | |
 |---|---|
-| Prompt: “Create a table that shows the relative weights of each theme against each document”<br><br><br><br>![Image](images/bolashak___week_3___data_analysis_with_ai_img_5.png)<br><br> | Prompt: “Present this as a bar chart”<br><br> |
+| Prompt: “Create a table that shows the relative weights of each theme against each document”<br><br><br><br>![Image](images/bolashak___week_3___data_analysis_with_ai_img_5.webp)<br><br> | Prompt: “Present this as a bar chart”<br><br> |
 
 ---
 
@@ -78,7 +78,7 @@
 
 | | |
 |---|---|
-| Prompt: “For each theme, show the most relevant quote from each transcript.”<br><br><br><br>![Image](images/bolashak___week_3___data_analysis_with_ai_img_6.png)<br><br> | ![Image](images/bolashak___week_3___data_analysis_with_ai_img_7.png)<br><br> |
+| Prompt: “For each theme, show the most relevant quote from each transcript.”<br><br><br><br>![Image](images/bolashak___week_3___data_analysis_with_ai_img_6.webp)<br><br> | ![Image](images/bolashak___week_3___data_analysis_with_ai_img_7.webp)<br><br> |
 
 ---
 
@@ -88,7 +88,7 @@
 
 | | |
 |---|---|
-| Prompt: “do a technical content analysis of the qualitative data. Apply algorithms to generate a word cloud, and do some related analysis. Ignore common English stop words.” **Note the Python code generated. This can be downloaded and run against the data set, for reproducibility of results.**<br><br><br><br>![Image](images/bolashak___week_3___data_analysis_with_ai_img_8.png)<br><br> | ![Image](images/bolashak___week_3___data_analysis_with_ai_img_9.png)<br><br> |
+| Prompt: “do a technical content analysis of the qualitative data. Apply algorithms to generate a word cloud, and do some related analysis. Ignore common English stop words.” **Note the Python code generated. This can be downloaded and run against the data set, for reproducibility of results.**<br><br><br><br>![Image](images/bolashak___week_3___data_analysis_with_ai_img_8.webp)<br><br> | ![Image](images/bolashak___week_3___data_analysis_with_ai_img_9.webp)<br><br> |
 
 ---
 
@@ -114,11 +114,11 @@
 
 ## Slide 13
 
-### ![Image](images/bolashak___week_3___data_analysis_with_ai_img_10.png)   Analysis of Quantitative Data  
+### ![Image](images/bolashak___week_3___data_analysis_with_ai_img_10.webp)   Analysis of Quantitative Data  
 
 | | |
 |---|---|
-| Similar prompt: Conduct an exploratory data analysis of these survey results on the topic of teachers' attitudes to AI use in the classroom.<br><br><br><br>![Image](images/bolashak___week_3___data_analysis_with_ai_img_11.png)<br><br> |  |
+| Similar prompt: Conduct an exploratory data analysis of these survey results on the topic of teachers' attitudes to AI use in the classroom.<br><br><br><br>![Image](images/bolashak___week_3___data_analysis_with_ai_img_11.webp)<br><br> |  |
 
 ---
 
@@ -128,7 +128,7 @@
 
 | | |
 |---|---|
-| ![Image](images/bolashak___week_3___data_analysis_with_ai_img_12.png)<br><br><br><br>**Very Important!**<br>Note use of Python code to generate these results. This code can be downloaded and run against the spreadsheet.<br><br> |  |
+| ![Image](images/bolashak___week_3___data_analysis_with_ai_img_12.webp)<br><br><br><br>**Very Important!**<br>Note use of Python code to generate these results. This code can be downloaded and run against the spreadsheet.<br><br> |  |
 
 ---
 
@@ -138,7 +138,7 @@
 
 | | |
 |---|---|
-| ![Image](images/bolashak___week_3___data_analysis_with_ai_img_13.png)<br><br><br><br>![Image](images/bolashak___week_3___data_analysis_with_ai_img_15.png)<br><br> | ![Image](images/bolashak___week_3___data_analysis_with_ai_img_14.png)<br><br> |
+| ![Image](images/bolashak___week_3___data_analysis_with_ai_img_13.webp)<br><br><br><br>![Image](images/bolashak___week_3___data_analysis_with_ai_img_15.webp)<br><br> | ![Image](images/bolashak___week_3___data_analysis_with_ai_img_14.webp)<br><br> |
 
 ---
 
@@ -148,17 +148,17 @@
 
 | | |
 |---|---|
-| ![Image](images/bolashak___week_3___data_analysis_with_ai_img_16.png)<br><br> |  |
+| ![Image](images/bolashak___week_3___data_analysis_with_ai_img_16.webp)<br><br> |  |
 
 ---
 
 ## Slide 17
 
-### ![Image](images/bolashak___week_3___data_analysis_with_ai_img_17.png)   Automating Thematic Analysis  
+### ![Image](images/bolashak___week_3___data_analysis_with_ai_img_17.webp)   Automating Thematic Analysis  
 
 | | |
 |---|---|
-| Prompt: “Summarise the key lessons of the following paper”“Do a more concise version for a powerpoint slide”<br><br><br><br>![Image](images/bolashak___week_3___data_analysis_with_ai_img_18.png)<br><br> |  |
+| Prompt: “Summarise the key lessons of the following paper”“Do a more concise version for a powerpoint slide”<br><br><br><br>![Image](images/bolashak___week_3___data_analysis_with_ai_img_18.webp)<br><br> |  |
 
 ---
 

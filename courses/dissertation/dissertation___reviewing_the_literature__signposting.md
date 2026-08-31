@@ -2,7 +2,7 @@
 
 ## Slide 1
 
-### ![Image](images/dissertation___reviewing_the_literature__signposting_img_1.png)  
+### ![Image](images/dissertation___reviewing_the_literature__signposting_img_1.webp)  
 
 | | |
 |---|---|

@@ -36,7 +36,7 @@
 
 | | |
 |---|---|
-| ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_1.png)<br><br><br><br>![Image](images/bolashak___week_6___caqdas_with_dedoose_img_3.png)<br><br> | ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_2.png)<br><br> |
+| ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_1.webp)<br><br><br><br>![Image](images/bolashak___week_6___caqdas_with_dedoose_img_3.webp)<br><br> | ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_2.webp)<br><br> |
 
 ---
 
@@ -46,7 +46,7 @@
 
 | | |
 |---|---|
-| ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_4.png)<br><br><br><br>![Image](images/bolashak___week_6___caqdas_with_dedoose_img_5.png)<br><br><br><br>![Image](images/bolashak___week_6___caqdas_with_dedoose_img_7.png)<br><br> | ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_6.png)<br><br> |
+| ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_4.webp)<br><br><br><br>![Image](images/bolashak___week_6___caqdas_with_dedoose_img_5.webp)<br><br><br><br>![Image](images/bolashak___week_6___caqdas_with_dedoose_img_7.webp)<br><br> | ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_6.webp)<br><br> |
 
 ---
 
@@ -66,7 +66,7 @@
 
 | | |
 |---|---|
-| ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_8.png)<br><br> | **Some key terms?**<br>“Difficult”<br>“Lesson plan”<br>“Bored”, “Distracted”, “Know everything”<br>“Challenge”<br><br><br><br>Draft** Themes **and *Codes*<br>**Lesson plan**<br>**Task Difficulty **<br>*Common*<br>*Difficult / Challenging*<br>**Student State**<br>*Arrogance*<br>*Boredom*<br>*Distraction*<br><br> |
+| ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_8.webp)<br><br> | **Some key terms?**<br>“Difficult”<br>“Lesson plan”<br>“Bored”, “Distracted”, “Know everything”<br>“Challenge”<br><br><br><br>Draft** Themes **and *Codes*<br>**Lesson plan**<br>**Task Difficulty **<br>*Common*<br>*Difficult / Challenging*<br>**Student State**<br>*Arrogance*<br>*Boredom*<br>*Distraction*<br><br> |
 
 ---
 
@@ -102,7 +102,7 @@
 
 ## Slide 11
 
-### ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_9.png)   Nvivo  
+### ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_9.webp)   Nvivo  
 
 ---
 
@@ -112,7 +112,7 @@
 
 | | |
 |---|---|
-| ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_10.png)<br><br> |  |
+| ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_10.webp)<br><br> |  |
 
 ---
 
@@ -122,7 +122,7 @@
 
 | | |
 |---|---|
-| ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_11.png)<br><br> |  |
+| ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_11.webp)<br><br> |  |
 
 ---
 
@@ -132,13 +132,13 @@
 
 | | |
 |---|---|
-| ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_12.png)<br><br> |  |
+| ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_12.webp)<br><br> |  |
 
 ---
 
 ## Slide 15
 
-### ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_13.png)   Dedoose  
+### ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_13.webp)   Dedoose  
 
 | | |
 |---|---|
@@ -148,11 +148,11 @@
 
 ## Slide 16
 
-### ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_14.png)   Open source / free?  
+### ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_14.webp)   Open source / free?  
 
 | | |
 |---|---|
-| Not really? <br>Products like *QualCoder*, *Taguette* - no experience with them, but seem individual hobby projects<br>Would encourage trying them out<br>Require more technical expertise? Less fully featured?<br>Not like quant data analysis: R, Python both hugely popular, supported, etc<br>AI: definitely an option (see Week 3). Many QDA products include an “AI” option at additional cost (likely a “wrapper” around ChatGPT / Claude).<br><br> | ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_15.png)<br><br> |
+| Not really? <br>Products like *QualCoder*, *Taguette* - no experience with them, but seem individual hobby projects<br>Would encourage trying them out<br>Require more technical expertise? Less fully featured?<br>Not like quant data analysis: R, Python both hugely popular, supported, etc<br>AI: definitely an option (see Week 3). Many QDA products include an “AI” option at additional cost (likely a “wrapper” around ChatGPT / Claude).<br><br> | ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_15.webp)<br><br> |
 
 ---
 
@@ -162,7 +162,7 @@
 
 | | |
 |---|---|
-| Fine for small projects<br>Requires discipline in colour coding / highlighting<br>Hard to extract metrics: common themes / codes<br>Not good for collaboration: hard to check **inter-rater reliability** (do Raigul and Aigerim code data in the same way?)<br><br> | ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_16.png)<br><br> |
+| Fine for small projects<br>Requires discipline in colour coding / highlighting<br>Hard to extract metrics: common themes / codes<br>Not good for collaboration: hard to check **inter-rater reliability** (do Raigul and Aigerim code data in the same way?)<br><br> | ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_16.webp)<br><br> |
 
 ---
 
@@ -178,33 +178,33 @@
 
 ## Slide 19
 
-### ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_17.png)  
+### ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_17.webp)  
 
 ---
 
 ## Slide 20
 
-### ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_18.png)   Steps  
+### ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_18.webp)   Steps  
 
 | | |
 |---|---|
-| Sign up online<br>Download and open Dedoose software<br>Login<br>Go to Projects tab<br>Click “Create Project”<br>“Import Data”<br><br><br><br>![Image](images/bolashak___week_6___caqdas_with_dedoose_img_19.png)<br><br> |  |
+| Sign up online<br>Download and open Dedoose software<br>Login<br>Go to Projects tab<br>Click “Create Project”<br>“Import Data”<br><br><br><br>![Image](images/bolashak___week_6___caqdas_with_dedoose_img_19.webp)<br><br> |  |
 
 ---
 
 ## Slide 21
 
-### ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_20.png)   ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_21.png)  
+### ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_20.webp)   ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_21.webp)  
 
 | | |
 |---|---|
-| 7. Add codes: strategies; heterogenous students; reasons; classroom<br>8. You have two key concepts:<br>**Codes**<br>**Media** (documents)<br>9. Your job is then to **open media**, **apply codes, add descriptors / fields **and then **analyze**<br><br><br><br>![Image](images/bolashak___week_6___caqdas_with_dedoose_img_22.png)<br><br> |  |
+| 7. Add codes: strategies; heterogenous students; reasons; classroom<br>8. You have two key concepts:<br>**Codes**<br>**Media** (documents)<br>9. Your job is then to **open media**, **apply codes, add descriptors / fields **and then **analyze**<br><br><br><br>![Image](images/bolashak___week_6___caqdas_with_dedoose_img_22.webp)<br><br> |  |
 
 ---
 
 ## Slide 22
 
-### What if you need to classify?   ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_23.png)  
+### What if you need to classify?   ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_23.webp)  
 
 | | |
 |---|---|
@@ -218,7 +218,7 @@
 
 | | |
 |---|---|
-| ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_24.png)<br><br> |  |
+| ![Image](images/bolashak___week_6___caqdas_with_dedoose_img_24.webp)<br><br> |  |
 
 ---
 

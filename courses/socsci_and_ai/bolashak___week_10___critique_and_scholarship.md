@@ -12,7 +12,7 @@
 
 ## Slide 2
 
-### ![Image](images/bolashak___week_10___critique_and_scholarship_img_1.png)   ![Image](images/bolashak___week_10___critique_and_scholarship_img_2.png)   Critique,   Criticism,  Criticality  
+### ![Image](images/bolashak___week_10___critique_and_scholarship_img_1.webp)   ![Image](images/bolashak___week_10___critique_and_scholarship_img_2.webp)   Critique,   Criticism,  Criticality  
 
 ---
 
@@ -48,11 +48,11 @@
 
 ## Slide 6
 
-### ![Image](images/bolashak___week_10___critique_and_scholarship_img_3.png)   “**My research is novel, vital and rigorous.**” *(Out of my way! I belong to Academia!)*  
+### ![Image](images/bolashak___week_10___critique_and_scholarship_img_3.webp)   “**My research is novel, vital and rigorous.**” *(Out of my way! I belong to Academia!)*  
 
 | | |
 |---|---|
-| *(Now that I’m here...)*<br>“**But there’s so much work for others still to do.**”<br><br> | ![Image](images/bolashak___week_10___critique_and_scholarship_img_4.png)<br><br> |
+| *(Now that I’m here...)*<br>“**But there’s so much work for others still to do.**”<br><br> | ![Image](images/bolashak___week_10___critique_and_scholarship_img_4.webp)<br><br> |
 
 ---
 
@@ -82,7 +82,7 @@
 
 | | |
 |---|---|
-| Before Submission:<br>Self review (print / highlight / red pen)<br>Peer review<br>AI review:<br>“Review this paper as Reviewer 2…”;<br>“Be more Reviewer 2”<br>“Be even more Reviewer 2”<br>Iterate through drafts<br>Double-check citations, images, grammar etc<br><br> | ![Image](images/bolashak___week_10___critique_and_scholarship_img_5.png)<br><br> |
+| Before Submission:<br>Self review (print / highlight / red pen)<br>Peer review<br>AI review:<br>“Review this paper as Reviewer 2…”;<br>“Be more Reviewer 2”<br>“Be even more Reviewer 2”<br>Iterate through drafts<br>Double-check citations, images, grammar etc<br><br> | ![Image](images/bolashak___week_10___critique_and_scholarship_img_5.webp)<br><br> |
 
 ---
 

@@ -62,7 +62,7 @@
 
 ## Slide 7
 
-### ![Image](images/gen_ai___week_3_img_1.png)  
+### ![Image](images/gen_ai___week_3_img_1.webp)  
 
 | | |
 |---|---|
@@ -72,7 +72,7 @@
 
 ## Slide 8
 
-### ![Image](images/gen_ai___week_3_img_2.png)   ![Image](images/gen_ai___week_3_img_3.png)  
+### ![Image](images/gen_ai___week_3_img_2.webp)   ![Image](images/gen_ai___week_3_img_3.webp)  
 
 | | |
 |---|---|
@@ -82,7 +82,7 @@
 
 ## Slide 9
 
-### In the frimbled gloam of the cyber-splen, Where quorbling circuits quazzle and spindrift ken, The glimmering zibbles of neon-sprockets spin, In a whirligig of blazz and bleem—a code’s din!  Beware the Quixwock of the dataverse deep, Its scramblified, jinxed glibbers in quantum sleep! It slithers on byte-winds through the phantasmaglow, With a “Zing-Zorp!” and “Fraffle!” in a pulsating flow.  Armed with a scrobble-stick of ultra-glim twine, Our coder, in blorptastic resolve, doth entwine: “Ping-Pang!” goes the circuit, “Skrim-Skram!” the byte, As he plunges into the fuzzling depths of digital night.   The Quixwock shrieks its crinkled “Clack-Clabb!” cry, While datasparks flutter in a kizzle-filled sky. Its quantum quaggles, fizzing and flonging in time, Beat a jiggery-jabber of algorithms sublime.  At last, amid a frenzy of zorpful delight, The coder outwits the wock in a bluster of light. Now, in this realm of radical zimbled lore, Neon neologs and onomatopoeic dreams soar evermore!  ChatGPT, o3-mini-high (2025). “*Write a poem about AI using style of Jabberwocky, with neologisms and onomatopoeia*”   ![Image](images/gen_ai___week_3_img_4.png)  
+### In the frimbled gloam of the cyber-splen, Where quorbling circuits quazzle and spindrift ken, The glimmering zibbles of neon-sprockets spin, In a whirligig of blazz and bleem—a code’s din!  Beware the Quixwock of the dataverse deep, Its scramblified, jinxed glibbers in quantum sleep! It slithers on byte-winds through the phantasmaglow, With a “Zing-Zorp!” and “Fraffle!” in a pulsating flow.  Armed with a scrobble-stick of ultra-glim twine, Our coder, in blorptastic resolve, doth entwine: “Ping-Pang!” goes the circuit, “Skrim-Skram!” the byte, As he plunges into the fuzzling depths of digital night.   The Quixwock shrieks its crinkled “Clack-Clabb!” cry, While datasparks flutter in a kizzle-filled sky. Its quantum quaggles, fizzing and flonging in time, Beat a jiggery-jabber of algorithms sublime.  At last, amid a frenzy of zorpful delight, The coder outwits the wock in a bluster of light. Now, in this realm of radical zimbled lore, Neon neologs and onomatopoeic dreams soar evermore!  ChatGPT, o3-mini-high (2025). “*Write a poem about AI using style of Jabberwocky, with neologisms and onomatopoeia*”   ![Image](images/gen_ai___week_3_img_4.webp)  
 
 | | |
 |---|---|
@@ -96,7 +96,7 @@
 
 | | |
 |---|---|
-| ![Image](images/gen_ai___week_3_img_5.png)<br><br><br><br>![Image](images/gen_ai___week_3_img_6.png)<br><br> |  |
+| ![Image](images/gen_ai___week_3_img_5.webp)<br><br><br><br>![Image](images/gen_ai___week_3_img_6.webp)<br><br> |  |
 
 ---
 
@@ -122,7 +122,7 @@
 
 ## Slide 13
 
-### ![Image](images/gen_ai___week_3_img_7.png)  
+### ![Image](images/gen_ai___week_3_img_7.webp)  
 
 | | |
 |---|---|
@@ -132,7 +132,7 @@
 
 ## Slide 14
 
-### ![Image](images/gen_ai___week_3_img_8.png)  
+### ![Image](images/gen_ai___week_3_img_8.webp)  
 
 | | |
 |---|---|
@@ -142,7 +142,7 @@
 
 ## Slide 15
 
-### ![Image](images/gen_ai___week_3_img_9.png)  
+### ![Image](images/gen_ai___week_3_img_9.webp)  
 
 | | |
 |---|---|
@@ -152,7 +152,7 @@
 
 ## Slide 16
 
-### ![Image](images/gen_ai___week_3_img_10.png)  
+### ![Image](images/gen_ai___week_3_img_10.webp)  
 
 | | |
 |---|---|
@@ -162,7 +162,7 @@
 
 ## Slide 17
 
-### ![Image](images/gen_ai___week_3_img_11.png)  
+### ![Image](images/gen_ai___week_3_img_11.webp)  
 
 | | |
 |---|---|

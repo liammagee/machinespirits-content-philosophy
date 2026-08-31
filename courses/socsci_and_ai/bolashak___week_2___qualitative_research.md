@@ -42,7 +42,7 @@
 
 ## Slide 5
 
-### ![Image](images/bolashak___week_2___qualitative_research_img_1.png)   Hermeneutic Circle   **Understanding** of the **Whole**  
+### ![Image](images/bolashak___week_2___qualitative_research_img_1.webp)   Hermeneutic Circle   **Understanding** of the **Whole**  
 
 | | |
 |---|---|
@@ -52,7 +52,7 @@
 
 ## Slide 6
 
-### ![Image](images/bolashak___week_2___qualitative_research_img_2.png)   Example  
+### ![Image](images/bolashak___week_2___qualitative_research_img_2.webp)   Example  
 
 | | |
 |---|---|
@@ -116,7 +116,7 @@
 
 | | |
 |---|---|
-| Theme / sub-theme vs ‘code’: themes usually higher level / fewer in number<br>How many themes / codes? <br>Too few leaves gaps in analysis; too many creates complexity<br>How should they be organised (*flat*, or *shallow hierarchy*)?<br>Are the codes a *logical* system (mutually exclusive) or simply descriptive?<br>Do the codes *make sense* to other researchers? (See Zhu’s work on social annotation)<br>What is the relationship of *themes* to *codes*? <br>Typically, one to many - maybe 3-6 themes; 10-30 codes?<br><br> | ![Image](images/bolashak___week_2___qualitative_research_img_3.png)<br><br> |
+| Theme / sub-theme vs ‘code’: themes usually higher level / fewer in number<br>How many themes / codes? <br>Too few leaves gaps in analysis; too many creates complexity<br>How should they be organised (*flat*, or *shallow hierarchy*)?<br>Are the codes a *logical* system (mutually exclusive) or simply descriptive?<br>Do the codes *make sense* to other researchers? (See Zhu’s work on social annotation)<br>What is the relationship of *themes* to *codes*? <br>Typically, one to many - maybe 3-6 themes; 10-30 codes?<br><br> | ![Image](images/bolashak___week_2___qualitative_research_img_3.webp)<br><br> |
 
 ---
 
@@ -132,7 +132,7 @@
 
 | | |
 |---|---|
-| ![Image](images/bolashak___week_2___qualitative_research_img_4.png)<br><br> |  |
+| ![Image](images/bolashak___week_2___qualitative_research_img_4.webp)<br><br> |  |
 
 ---
 
@@ -162,7 +162,7 @@
 
 | | |
 |---|---|
-| **A Comparative Thematic Analysis Experiment of Robodebt Discourse Using Humans and LLMs**<br><br><br><br>**Team**<br>**Hiruni Kegalle**<br>**Daniel Whelan-Shamy**<br>**Rhea D’Silva**<br>**Ned Watt**<br>**Awais Hameed Khan**<br><br>**Mentors**<br>**Liam Magee**<br>**Lida Ghahremanlou **<br><br><br><br>![Image](images/bolashak___week_2___qualitative_research_img_5.png)<br><br><br><br>![Image](images/bolashak___week_2___qualitative_research_img_6.png)<br><br> |  |
+| **A Comparative Thematic Analysis Experiment of Robodebt Discourse Using Humans and LLMs**<br><br><br><br>**Team**<br>**Hiruni Kegalle**<br>**Daniel Whelan-Shamy**<br>**Rhea D’Silva**<br>**Ned Watt**<br>**Awais Hameed Khan**<br><br>**Mentors**<br>**Liam Magee**<br>**Lida Ghahremanlou **<br><br><br><br>![Image](images/bolashak___week_2___qualitative_research_img_5.webp)<br><br><br><br>![Image](images/bolashak___week_2___qualitative_research_img_6.webp)<br><br> |  |
 
 ---
 
@@ -172,23 +172,23 @@
 
 | | |
 |---|---|
-| ![Image](images/bolashak___week_2___qualitative_research_img_7.png)<br><br><br><br>![Image](images/bolashak___week_2___qualitative_research_img_8.png)<br><br><br><br>![Image](images/bolashak___week_2___qualitative_research_img_9.png)<br><br><br><br>![Image](images/bolashak___week_2___qualitative_research_img_10.png)<br><br><br><br>![Image](images/bolashak___week_2___qualitative_research_img_11.png)<br><br><br><br>17 data entries excerpts<br>Getting two experienced qualitative researchers to consensus code<br>Getting two language models (GPT-4) and LLaMa to code according to the codebook<br>Seeing whether the results were consistent, which areas were<br><br> | \| **Emotional and Psychological Strain** \|<br>\| **2.  Financial Inconsistencies and Challenges** \|<br>\| **3. Mistrust and Skepticism** \|<br>\| **4. Institutional Practices and Responsiveness** \|<br>\| **5. Repayment and Financial Rectification** \|<br>\| **6. Communication and Miscommunication** \|<br>\| **7. Robodebt Scheme Consequences** \|<br>\| **8. Denial of Personal Responsibility** \|<br>\| **9. Departmental Advice and Processes** \|<br>\| **10. Character Attacks and Political Agendas** \|<br>\| **11. Defense of Service and Performance** \|<br><br> |
+| ![Image](images/bolashak___week_2___qualitative_research_img_7.webp)<br><br><br><br>![Image](images/bolashak___week_2___qualitative_research_img_8.webp)<br><br><br><br>![Image](images/bolashak___week_2___qualitative_research_img_9.webp)<br><br><br><br>![Image](images/bolashak___week_2___qualitative_research_img_10.webp)<br><br><br><br>![Image](images/bolashak___week_2___qualitative_research_img_11.webp)<br><br><br><br>17 data entries excerpts<br>Getting two experienced qualitative researchers to consensus code<br>Getting two language models (GPT-4) and LLaMa to code according to the codebook<br>Seeing whether the results were consistent, which areas were<br><br> | \| **Emotional and Psychological Strain** \|<br>\| **2.  Financial Inconsistencies and Challenges** \|<br>\| **3. Mistrust and Skepticism** \|<br>\| **4. Institutional Practices and Responsiveness** \|<br>\| **5. Repayment and Financial Rectification** \|<br>\| **6. Communication and Miscommunication** \|<br>\| **7. Robodebt Scheme Consequences** \|<br>\| **8. Denial of Personal Responsibility** \|<br>\| **9. Departmental Advice and Processes** \|<br>\| **10. Character Attacks and Political Agendas** \|<br>\| **11. Defense of Service and Performance** \|<br><br> |
 
 ---
 
 ## Slide 19
 
-### **Result: GPT4 + Llama2**   ![Image](images/bolashak___week_2___qualitative_research_img_12.png)  
+### **Result: GPT4 + Llama2**   ![Image](images/bolashak___week_2___qualitative_research_img_12.webp)  
 
 ---
 
 ## Slide 20
 
-### **Next Steps/Scaling Up/Lessons**   ![Image](images/bolashak___week_2___qualitative_research_img_13.png)   ![Image](images/bolashak___week_2___qualitative_research_img_14.png)   ![Image](images/bolashak___week_2___qualitative_research_img_15.png)  
+### **Next Steps/Scaling Up/Lessons**   ![Image](images/bolashak___week_2___qualitative_research_img_13.webp)   ![Image](images/bolashak___week_2___qualitative_research_img_14.webp)   ![Image](images/bolashak___week_2___qualitative_research_img_15.webp)  
 
 | | |
 |---|---|
-| **Output \| Prompt Bias Design Card Toolkit**<br><br><br><br>**Toolkit Prototype**<br><br><br><br>![Image](images/bolashak___week_2___qualitative_research_img_16.png)<br><br><br><br>**Next Steps**<br><br><br><br>**# How can we identify, mitigate, and regulate bias in our analysis?**<br>**# Compare biases between different LLMs**<br>**# Compare biases between different researchers?**<br><br><br><br>1 Roy, R., & Warren, J. P. (2019). Card-based design tools: A review and analysis of 155 card decks for designers and designing. Design Studies, 63, 125–154<br><br> |  |
+| **Output \| Prompt Bias Design Card Toolkit**<br><br><br><br>**Toolkit Prototype**<br><br><br><br>![Image](images/bolashak___week_2___qualitative_research_img_16.webp)<br><br><br><br>**Next Steps**<br><br><br><br>**# How can we identify, mitigate, and regulate bias in our analysis?**<br>**# Compare biases between different LLMs**<br>**# Compare biases between different researchers?**<br><br><br><br>1 Roy, R., & Warren, J. P. (2019). Card-based design tools: A review and analysis of 155 card decks for designers and designing. Design Studies, 63, 125–154<br><br> |  |
 
 ---
 

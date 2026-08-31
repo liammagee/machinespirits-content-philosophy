@@ -10,7 +10,7 @@
 
 ## Slide 2
 
-### Let’s start with an old story…   ![Image](images/dissertation___ai__bias__alignment___other_topics_img_1.png)  
+### Let’s start with an old story…   ![Image](images/dissertation___ai__bias__alignment___other_topics_img_1.webp)  
 
 | | |
 |---|---|
@@ -20,33 +20,33 @@
 
 ## Slide 3
 
-### ![Image](images/dissertation___ai__bias__alignment___other_topics_img_2.png)   Towards AI: Andrey Markov (1856 - 1922)  
+### ![Image](images/dissertation___ai__bias__alignment___other_topics_img_2.webp)   Towards AI: Andrey Markov (1856 - 1922)  
 
 | | |
 |---|---|
-| Developed Markov Chains - key to many disciplines even today (Google “Monte Carlo Markov Chains (MCMCs)”)<br>First known “language model” - 1913: First 20,000 characters of Eugene Onegin<br><br><br><br>![Image](images/dissertation___ai__bias__alignment___other_topics_img_3.png)<br><br> |  |
+| Developed Markov Chains - key to many disciplines even today (Google “Monte Carlo Markov Chains (MCMCs)”)<br>First known “language model” - 1913: First 20,000 characters of Eugene Onegin<br><br><br><br>![Image](images/dissertation___ai__bias__alignment___other_topics_img_3.webp)<br><br> |  |
 
 ---
 
 ## Slide 4
 
-### ![Image](images/dissertation___ai__bias__alignment___other_topics_img_4.png)  
+### ![Image](images/dissertation___ai__bias__alignment___other_topics_img_4.webp)  
 
 ---
 
 ## Slide 5
 
-### ![Image](images/dissertation___ai__bias__alignment___other_topics_img_5.png)   (Apologies for English language bias!)  Let’s start with the letter ‘s’.   What follows?  (Can someone keep count?)  
+### ![Image](images/dissertation___ai__bias__alignment___other_topics_img_5.webp)   (Apologies for English language bias!)  Let’s start with the letter ‘s’.   What follows?  (Can someone keep count?)  
 
 ---
 
 ## Slide 6
 
-### ![Image](images/dissertation___ai__bias__alignment___other_topics_img_6.png)  
+### ![Image](images/dissertation___ai__bias__alignment___other_topics_img_6.webp)  
 
 | | |
 |---|---|
-| ![Image](images/dissertation___ai__bias__alignment___other_topics_img_7.png)<br><br> |  |
+| ![Image](images/dissertation___ai__bias__alignment___other_topics_img_7.webp)<br><br> |  |
 
 ---
 
@@ -56,13 +56,13 @@
 
 | | |
 |---|---|
-| ![Image](images/dissertation___ai__bias__alignment___other_topics_img_8.png)<br><br> |  |
+| ![Image](images/dissertation___ai__bias__alignment___other_topics_img_8.webp)<br><br> |  |
 
 ---
 
 ## Slide 8
 
-### ![Image](images/dissertation___ai__bias__alignment___other_topics_img_9.png)  
+### ![Image](images/dissertation___ai__bias__alignment___other_topics_img_9.webp)  
 
 ---
 
@@ -78,17 +78,17 @@
 
 ## Slide 10
 
-### ![Image](images/dissertation___ai__bias__alignment___other_topics_img_10.png)  
+### ![Image](images/dissertation___ai__bias__alignment___other_topics_img_10.webp)  
 
 ---
 
 ## Slide 11
 
-### ![Image](images/dissertation___ai__bias__alignment___other_topics_img_11.png)   ![Image](images/dissertation___ai__bias__alignment___other_topics_img_12.png)  
+### ![Image](images/dissertation___ai__bias__alignment___other_topics_img_11.webp)   ![Image](images/dissertation___ai__bias__alignment___other_topics_img_12.webp)  
 
 | | |
 |---|---|
-|  | ![Image](images/dissertation___ai__bias__alignment___other_topics_img_13.png)<br><br> |
+|  | ![Image](images/dissertation___ai__bias__alignment___other_topics_img_13.webp)<br><br> |
 
 ---
 
@@ -98,7 +98,7 @@
 
 | | |
 |---|---|
-| Models independent probabilities (“z given y, given x, given z” etc etc)<br>“If I have a vowel, what should come next?”<br>Roll a die / clip a coin<br>16% - another vowel<br>84% - another consonant<br><br> | ![Image](images/dissertation___ai__bias__alignment___other_topics_img_14.png)<br><br> |
+| Models independent probabilities (“z given y, given x, given z” etc etc)<br>“If I have a vowel, what should come next?”<br>Roll a die / clip a coin<br>16% - another vowel<br>84% - another consonant<br><br> | ![Image](images/dissertation___ai__bias__alignment___other_topics_img_14.webp)<br><br> |
 
 ---
 
@@ -108,7 +108,7 @@
 
 | | |
 |---|---|
-| Tokens (sub-words) not letters<br>Conditional probabilities: not one but thousands, millions…<br>Multidimensional (‘s’ relates to ‘e’ on dimension X, not on dimension Y)<br>Positional encoding (where a token lies in a sentence)<br>“Transformer”: architecture that looks backward and forward (“attention” mechanism) to transform *input* into *output*<br>But still… basically very fancy Markov chains<br>What does the “expert” (GPT) say?<br><br><br><br>![Image](images/dissertation___ai__bias__alignment___other_topics_img_15.png)<br><br> |  |
+| Tokens (sub-words) not letters<br>Conditional probabilities: not one but thousands, millions…<br>Multidimensional (‘s’ relates to ‘e’ on dimension X, not on dimension Y)<br>Positional encoding (where a token lies in a sentence)<br>“Transformer”: architecture that looks backward and forward (“attention” mechanism) to transform *input* into *output*<br>But still… basically very fancy Markov chains<br>What does the “expert” (GPT) say?<br><br><br><br>![Image](images/dissertation___ai__bias__alignment___other_topics_img_15.webp)<br><br> |  |
 
 ---
 
@@ -144,7 +144,7 @@
 
 | | |
 |---|---|
-| ![Image](images/dissertation___ai__bias__alignment___other_topics_img_16.png)<br><br><br><br>Pre-GPT models had problems with bias<br>See classic study by Bolukbasi et al. (2016)<br>Bias can be **quantified** and **modified** <br>But Transformers (Vaswani et al. 2017) are so large and complex, debiasing is now much harder<br><br> |  |
+| ![Image](images/dissertation___ai__bias__alignment___other_topics_img_16.webp)<br><br><br><br>Pre-GPT models had problems with bias<br>See classic study by Bolukbasi et al. (2016)<br>Bias can be **quantified** and **modified** <br>But Transformers (Vaswani et al. 2017) are so large and complex, debiasing is now much harder<br><br> |  |
 
 ---
 
@@ -164,7 +164,7 @@
 
 | | |
 |---|---|
-| ![Image](images/dissertation___ai__bias__alignment___other_topics_img_17.png)<br><br> | - Tested on GPT-2<br> - Categories of disability, gender, religion<br>Main findings: <br>Reproduced bias towards Muslim religion, physical disability<br> Associations of violence, terrorism, criminality<br>Intersectional bias is not always additive (X + Y). This means LLMs cannot easily be *debiased*.<br><br> |
+| ![Image](images/dissertation___ai__bias__alignment___other_topics_img_17.webp)<br><br> | - Tested on GPT-2<br> - Categories of disability, gender, religion<br>Main findings: <br>Reproduced bias towards Muslim religion, physical disability<br> Associations of violence, terrorism, criminality<br>Intersectional bias is not always additive (X + Y). This means LLMs cannot easily be *debiased*.<br><br> |
 
 ---
 
@@ -184,13 +184,13 @@
 
 | | |
 |---|---|
-| - More questions: alignment with who? With what?<br> - Alignment has become the key “problem” that organises vast capital ($100s of billions today)<br>	 - What is helpful? What is true? What is harm?<br> - Computer scientists have become parents, therapists, teachers for LLMs<br> - Interesting history: research by the Moscow Linguistic School (1950s, 60s) - how to reconcile language structures (or models) with statistics. These problems are old and not resolved…<br><br> | ![Image](images/dissertation___ai__bias__alignment___other_topics_img_18.png)<br><br> |
+| - More questions: alignment with who? With what?<br> - Alignment has become the key “problem” that organises vast capital ($100s of billions today)<br>	 - What is helpful? What is true? What is harm?<br> - Computer scientists have become parents, therapists, teachers for LLMs<br> - Interesting history: research by the Moscow Linguistic School (1950s, 60s) - how to reconcile language structures (or models) with statistics. These problems are old and not resolved…<br><br> | ![Image](images/dissertation___ai__bias__alignment___other_topics_img_18.webp)<br><br> |
 
 ---
 
 ## Slide 22
 
-### Relevance for Teaching (Finally!)   ![Image](images/dissertation___ai__bias__alignment___other_topics_img_19.png)  
+### Relevance for Teaching (Finally!)   ![Image](images/dissertation___ai__bias__alignment___other_topics_img_19.webp)  
 
 | | |
 |---|---|

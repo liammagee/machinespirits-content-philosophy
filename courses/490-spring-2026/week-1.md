@@ -500,7 +500,7 @@ In Workshop 4 we'll be examining criticisms of the environmental and social cost
 
 ---
 
-![Image](images/pasted-image-2026-03-23T03-45-24-207Z-faad918f.png)
+![Image](images/pasted-image-2026-03-23T03-45-24-207Z-faad918f.webp)
 
 ---
 
