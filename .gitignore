@@ -15,6 +15,10 @@ brand/
 # Claude Code internal state
 .claude/scheduled_tasks.lock
 
+# Python bytecode from the course tooling scripts
+__pycache__/
+*.pyc
+
 # Word lock files
 ~$*
 
@@ -22,3 +26,9 @@ brand/
 # about identifiable students stay on local disk only. The leading underscore
 # also keeps the folder out of ./build and the site index.
 _students/
+
+# Set texts in copyright. This repository is public, so third-party editions
+# stay on local disk: keep a reading here and cite it by page, the way
+# 479-fall-2026/hegel-experience links Pinkard's Phenomenology to the copy
+# marxists.org hosts. Course-authored readings belong in a plain `readings/`.
+_readings/
