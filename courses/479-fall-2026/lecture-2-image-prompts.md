@@ -13,7 +13,8 @@ The lecture has **20 slides**, counting each `---`-delimited section once. Slide
 1. Edit the scene prompt below, retaining its slide number and descriptive filename.
 2. Generate **one separate image per slide**, using the shared style prompt followed by that slide's scene prompt. For slide 20, use only its complete standalone prompt because it requires lettering. Use Codex's built-in image generation; this workflow does not invoke the existing API-based story generator.
 3. Inspect at full size for visual consistency and unwanted lettering. Copy the approved PNG into `lecture-2-images/`. Keep revisions as `-v2.png`, `-v3.png`, etc.; update the image reference in `lecture-2.md` and its illustrated companion when accepting a revision. Slide 20 lives at `concept-relations.png`, with its original archived under `_slides/lecture-2/`. Do not overwrite the dialectic story art.
-4. Rebuild the PowerPoint after accepted image or lecture changes. The deck uses editable text and separate image objects, not flattened slide screenshots.
+4. Encode the web copies: `python3 _slides/lecture-2/encode-webp.py`. The PNGs are the masters and stay in the repository; the lecture pages link the `.webp` beside each one, which is roughly nine times smaller. The PowerPoint builder maps a `.webp` link back to its `.png` master, so the deck keeps the lossless image.
+5. Rebuild the PowerPoint after accepted image or lecture changes. The deck uses editable text and separate image objects, not flattened slide screenshots.
 
 Example request: “Regenerate slide 16 using lecture-2-image-prompts.md; preserve the lithograph style, save a new version, then update the lecture and PowerPoint.”
 

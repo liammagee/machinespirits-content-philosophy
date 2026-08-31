@@ -208,6 +208,12 @@ companion when accepting a revision. Slide 20 lives at
 <code>concept-relations.png</code>, with its original archived under
 <code>_slides/lecture-2/</code>. Do not overwrite the dialectic story
 art.</li>
+<li>Encode the web copies:
+<code>python3 _slides/lecture-2/encode-webp.py</code>. The PNGs are the
+masters and stay in the repository; the lecture pages link the
+<code>.webp</code> beside each one, which is roughly nine times smaller.
+The PowerPoint builder maps a <code>.webp</code> link back to its
+<code>.png</code> master, so the deck keeps the lossless image.</li>
 <li>Rebuild the PowerPoint after accepted image or lecture changes. The
 deck uses editable text and separate image objects, not flattened slide
 screenshots.</li>

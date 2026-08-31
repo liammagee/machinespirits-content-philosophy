@@ -262,7 +262,7 @@ What do we make of AI's own ability to either predict or produce new futures?
 1. Does history have an arc or tendency? If so, is it something we can influence? And what role does technology – and machine learning – play?
 2. What do machines still need to learn? What about humans? What will help us get there?
 
-![concept-relations](concept-relations.png)
+![concept-relations](concept-relations.webp)
 
 ```notes
 On that note, I'll conclude. We'll now move to another exercise that prepares for the final assessment (covered in greater detail back in Week 6). 

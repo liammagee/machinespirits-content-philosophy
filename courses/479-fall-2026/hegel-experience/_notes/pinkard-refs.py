@@ -11,7 +11,9 @@ into this repository - which is public - and this script will not write it.
 Only page numbers travel: the glosses are the single source of truth in the
 "## Pinkard paragraphs & glosses" section of dialectic-map.md, and the page
 numbers are computed here from a local copy of the same marxists.org PDF, so
-that #page=N anchors land on the right paragraph.
+that #page=N anchors land on the right paragraph. That copy lives under
+../../_readings/, which .gitignore keeps out of the repository - so expect it
+to be absent on a fresh clone, and download it from the URL below.
 
 The marxists.org edition is bilingual - each paragraph is numbered once in
 English and once in German - so a paragraph marker legitimately matches twice

@@ -82,7 +82,9 @@ for(let i=0;i<D.length;i++){
  let source=match[2], imagePath;
  if(source.startsWith('https://')) imagePath=path.join(COURSE,'lecture-2-images/hegel-portrait.jpg');
  else if(source.startsWith('/markdown/images/')) imagePath=path.join(ROOT,'assets/images',source.split('/').at(-1));
- else imagePath=path.join(COURSE,source);
+ // the lecture markdown points at the .webp the web pages serve; the deck
+ // embeds the lossless .png master beside it (imageAt only labels png/jpeg).
+ else imagePath=path.join(COURSE,source).replace(/\.webp$/,'.png');
  const alt=altMap.get(n)||match[1];
  const accent=COLORS[d.accent]||COLORS.violet;
  text(slide,'eyebrow',d.kicker,64,43,1040,24,17,accent,{mono:true});
