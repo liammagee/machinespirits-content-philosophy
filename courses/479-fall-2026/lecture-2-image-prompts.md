@@ -6,21 +6,21 @@ Image links are integrated into the canonical [lecture-2.md](lecture-2.md) and i
 
 Source snapshot times and file checksums are recorded in [_slides/lecture-2/image-manifest.json](_slides/lecture-2/image-manifest.json). Rebuild after later lecture edits; Markdown changes are not automatically synchronized into the PowerPoint.
 
-The lecture has **20 slides**, counting each `---`-delimited section once. Slide 10 contains both a section heading and a subheading. Fourteen slides originally had no image and now have generated illustrations. The existing course map on slide 20 has also been redrawn; the other five existing images are retained. Slide numbers below follow this source order.
+The lecture now has **26 slides**, counting each `---`-delimited section once. Slide 10 contains both a section heading and a subheading. Twenty slides have images: fourteen generated illustrations, one redesigned course map, and five retained images. Slides 16–20 and 26 are intentionally text-only. The last five illustrated scenes keep their original asset filenames (`slide-16-...` through `slide-19-...` and `concept-relations.png`) even though later source insertions moved them to slides 21–25. Section headings below follow the current source order.
 
 ## Regeneration
 
 1. Edit the scene prompt below, retaining its slide number and descriptive filename.
-2. Generate **one separate image per slide**, using the shared style prompt followed by that slide's scene prompt. For slide 20, use only its complete standalone prompt because it requires lettering. Use Codex's built-in image generation; this workflow does not invoke the existing API-based story generator.
-3. Inspect at full size for visual consistency and unwanted lettering. Copy the approved PNG into `lecture-2-images/`. Keep revisions as `-v2.png`, `-v3.png`, etc.; update the image reference in `lecture-2.md` and its illustrated companion when accepting a revision. Slide 20 lives at `concept-relations.png`, with its original archived under `_slides/lecture-2/`. Do not overwrite the dialectic story art.
+2. Generate **one separate image per illustrated slide**, using the shared style prompt followed by that slide's scene prompt. For slide 25, use only its complete standalone prompt because it requires lettering. Use Codex's built-in image generation; this workflow does not invoke the existing API-based story generator.
+3. Inspect at full size for visual consistency and unwanted lettering. Copy the approved PNG into `lecture-2-images/`. Keep revisions as `-v2.png`, `-v3.png`, etc.; update the image reference in `lecture-2.md` and its illustrated companion when accepting a revision. Slide 25 lives at `concept-relations.png`, with its original archived under `_slides/lecture-2/`. Do not overwrite the dialectic story art.
 4. Encode the web copies: `python3 _slides/lecture-2/encode-webp.py`. The PNGs are the masters and stay in the repository; the lecture pages link the `.webp` beside each one, which is roughly nine times smaller. The PowerPoint builder maps a `.webp` link back to its `.png` master, so the deck keeps the lossless image.
 5. Rebuild the PowerPoint after accepted image or lecture changes. The deck uses editable text and separate image objects, not flattened slide screenshots.
 
-Example request: “Regenerate slide 16 using lecture-2-image-prompts.md; preserve the lithograph style, save a new version, then update the lecture and PowerPoint.”
+Example request: “Regenerate slide 21 (the curtain scene) using lecture-2-image-prompts.md; preserve the lithograph style and existing `slide-16-curtain` filename stem, save a new version, then update the lecture and PowerPoint.”
 
 The editable PowerPoint builder is saved at [_slides/lecture-2/build.mjs](_slides/lecture-2/build.mjs). It reads image links and complete speaker notes from the canonical `lecture-2.md`. Its `D` array holds the shortened visible slide copy, so substantive lecture edits should also be reflected there before rebuilding. Ask Codex to load the bundled workspace dependencies, set `RUNTIME_NODE`, `RUNTIME_NODE_MODULES` and `RUNTIME_BIN_DIR` to those returned paths, and run the builder with that Node executable. `LECTURE_REPO`, `LECTURE_OUTPUT` and `LECTURE_QA` optionally override the repository, deck and preview locations. Rebuilding does not generate images or make model API calls.
 
-The filenames below are the initial accepted-version destinations. Built-in generation may choose a nearby landscape resolution; retain the full image with proportional fitting rather than stretching or cropping away content. Request 16:9 for the illustrations; the slide 20 course map is square.
+The filenames below are the initial accepted-version destinations. Built-in generation may choose a nearby landscape resolution; retain the full image with proportional fitting rather than stretching or cropping away content. Request 16:9 for the illustrations; the slide 25 course map is square.
 
 ## Shared style prompt
 
@@ -134,7 +134,7 @@ One large lumpy grey stone dominates the middle of a continuous garden scene. At
 Three small learners of varied appearance sit in a loose circle in the night garden around one lantern, a warm cup, a grey stone and an open blank notebook. One gestures toward the cup, one listens, and one looks at the night sky. Their positions leave the circle open toward the viewer. A few pale-gold moths hover above the lantern; muted coral scarf, teal coats, violet grasses. Convey shared questioning about ordinary experience, without speech bubbles, classroom furniture or lettering.
 ```
 
-## Slide 16 — The curtain and the understanding
+## Slide 21 — The curtain and the understanding
 
 - File: `lecture-2-images/slide-16-curtain.png`
 - Anchor: §165. Curtain is Hegel's metaphor; mirror and child are our teaching imagery, not Hegel's literal claim.
@@ -144,7 +144,7 @@ Three small learners of varied appearance sit in a loose circle in the night gar
 At the far end of the garden, two great indigo theatre curtains patterned with sparse scratched gold stars are drawn aside by the tiny child. Through the opening we see the same garden continuing and a tall narrow mirror angled so that it reflects the child holding the curtain, including the child's hand and notebook. A strip of warm paper dawn enters from one side. The observer's activity becomes part of what is seen; no hidden supernatural agent, glowing brain or assertion that the garden is imaginary.
 ```
 
-## Slide 17 — Machines and experience
+## Slide 22 — Machines and experience
 
 - File: `lecture-2-images/slide-17-machine-and-stone.png`
 - Anchor: course analogy to §§90–165, not a claim from Hegel about AI.
@@ -154,7 +154,7 @@ At the far end of the garden, two great indigo theatre curtains patterned with s
 The child and a small plain mechanical measuring instrument sit on opposite sides of the same garden stone. The instrument has a simple brass aperture, a paper tape bearing only abstract dots, and no face or humanoid features. The child compares the stone with a blank notebook. Both cast ordinary printed shadows; a broad violet curtain hangs far behind them. Make their common object and different forms of engagement visible while leaving the question of machine experience unanswered. No glowing robot eyes or human soul imagery.
 ```
 
-## Slide 18 — Training, memory and the changing world
+## Slide 23 — Training, memory and the changing world
 
 - File: `lecture-2-images/slide-18-training-and-context.png`
 - Anchor: conceptual distinction between fixed trained parameters and additional information at use time; not a universal claim about every system.
@@ -164,7 +164,7 @@ The child and a small plain mechanical measuring instrument sit on opposite side
 A large old closed indigo book rests on a desk, its cover entirely unlettered. Beside it, a modest tray receives a few fresh loose cream pages carried through an open window by the wind. Outside the window different leaves and a new dawn show the world changing; a small brass reading instrument can reach both the bound book and the tray. Distinguish a relatively fixed learned store from newly supplied context using material objects. No dates, clocks, digital interfaces, literal memory erasure or text.
 ```
 
-## Slide 19 — Continuity as an open question
+## Slide 24 — Continuity as an open question
 
 - File: `lecture-2-images/slide-19-continuity.png`
 - Anchor: course thought experiment, not evidence that continuous computation establishes consciousness.
@@ -174,7 +174,7 @@ A large old closed indigo book rests on a desk, its cover entirely unlettered. B
 A continuous pale-gold footpath winds through one broad garden from dusk at the left to pale morning at the right. A single small child carrying a notebook walks midway along it. At the garden gate a quiet mechanical instrument has laid out several separate square sheets, each showing only an abstract dot, with spaces between the sheets. The visual question is the relation between ongoing lived time and discrete recorded encounters. Keep it ambiguous and gentle: no assertion that every machine sleeps, cannot learn or lacks consciousness.
 ```
 
-## Slide 20 — Course concept relations
+## Slide 25 — Course concept relations
 
 - File: `concept-relations.png`
 - Original: `_slides/lecture-2/concept-relations-original.png` (unaltered backup).

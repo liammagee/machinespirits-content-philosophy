@@ -3,7 +3,7 @@
   "source_sha256": "4f9ff7a53ca70a8e77ed119fc9b8ebb7877be2d19e3751182f7bef66bed28e6c",
   "source_file": "lecture-2.md",
   "illustrated_file": "lecture-2-illustrated.md",
-  "slides": 20,
+  "slides": 26,
   "generated_images": [
     {
       "file": "lecture-2-images/slide-01-experience.png",
@@ -84,7 +84,7 @@
         1254,
         1254
       ],
-      "prompt_section": "Slide 20 — Course concept relations",
+      "prompt_section": "Slide 25 \u2014 Course concept relations",
       "original_file": "_slides/lecture-2/concept-relations-original.png",
       "original_sha256": "7eb060b3120addf7a07aba165efbca71234243f9a4e9013906561002f5e4d6a6",
       "labels_preserved": 8,
@@ -92,19 +92,227 @@
     }
   ],
   "powerpoint": "479-lecture-2.pptx",
-  "pptx_sha256": "fe11232fc280e4bd3ad0319291d7e446c2a4f148e04ee5ad73138ae62070a904",
+  "pptx_sha256": "7e1adb34e88cb4ed1e842371c84fe9d71929730cf30e2c00f7f96c29803d366b",
   "validation": {
-    "slides": 20,
+    "slides": 26,
+    "headings": 27,
+    "bullet_points": 101,
+    "nested_bullets": 14,
+    "quotation_paragraphs": 1,
+    "notes_blocks": 18,
+    "exact_notes_slides": 26,
     "images_embedded": 20,
-    "source_notes_preserved": 20,
-    "visual_review": "All 20 exported slides rendered; slides 1–19 visually unchanged from individually reviewed source. Redesigned slide 20 inspected at full slide size. Reimported PowerPoint render matches authoring preview.",
-    "geometry": "No object overlap or off-slide elements. Square course map fitted without distortion.",
-    "source_notes_match": "Current canonical lecture-2.md",
-    "template_fidelity": "Pass; theme bytes, all visible text, and inherited slide structure preserved.",
-    "concept_map_labels": "All eight week numbers and topics visually checked against original."
+    "source_unchanged": true,
+    "text_comparison": "Every heading, bullet, quotation paragraph, and literal notes block matches the current lecture-2.md. No text was added or rewritten. Markdown comments and the empty trailing code fence are excluded.",
+    "geometry": "No overlapping object bounds or off-slide elements.",
+    "template_fidelity": "Original theme, slide layouts, images, and image frames preserved.",
+    "visual_review": "All 26 exported slides were re-imported, rendered at 1280 x 720, and individually inspected. No clipping, overflow, or unintended overlap was found."
   },
-  "updated_at": "2026-08-30T17:11:17-05:00",
-  "current_source_sha256": "71319388e6506d644b64cf18ef8ab8f1214501b66bd39df4316a70d0cf6c6da4",
-  "pptx_notes_source_sha256": "71319388e6506d644b64cf18ef8ab8f1214501b66bd39df4316a70d0cf6c6da4",
-  "image_zip_sha256": "14e30533c302f2a3772308f071f0fffb18fe86f4d2fd6194268d55f355c6dda1"
+  "updated_at": "2026-09-01T22:17:24Z",
+  "current_source_sha256": "253d1f9af2c8ad2cda59307320f0140da9319b05b3670848e9afe75dbd2244f6",
+  "pptx_notes_source_sha256": "253d1f9af2c8ad2cda59307320f0140da9319b05b3670848e9afe75dbd2244f6",
+  "image_zip_sha256": "14e30533c302f2a3772308f071f0fffb18fe86f4d2fd6194268d55f355c6dda1",
+  "powerpoint_text_mode": "verbatim_source",
+  "current_image_sources": [
+    {
+      "slide": 1,
+      "source": "lecture-2-images/slide-01-experience.webp",
+      "file": "/Users/lmagee/Dev/machinespirits/machinespirits-content-philosophy/courses/479-fall-2026/lecture-2-images/slide-01-experience.webp",
+      "source_sha256": "70bb4a86c99f2b4c81f6cb3ba9e2cf1f581eaa642d1ee7d1186d4ffab30197cd",
+      "embedded_sha256": "e545a259b55a99ab4720845fb071c62712a97dfdebd2630be0dd907904adcb8a",
+      "contentType": "image/png",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "slide": 2,
+      "source": "lecture-2-images/slide-02-three-encounters.webp",
+      "file": "/Users/lmagee/Dev/machinespirits/machinespirits-content-philosophy/courses/479-fall-2026/lecture-2-images/slide-02-three-encounters.webp",
+      "source_sha256": "89c493b043698f49a89940cf1842d9db336e71c9903a5db38ae43a00d81ab8e1",
+      "embedded_sha256": "48b231217453d150ff8e8f4d62d2f694ea7881239d5ad7e163026cdcd60845d7",
+      "contentType": "image/png",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "slide": 3,
+      "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/1831_Schlesinger_Philosoph_Georg_Friedrich_Wilhelm_Hegel_anagoria.JPG/250px-1831_Schlesinger_Philosoph_Georg_Friedrich_Wilhelm_Hegel_anagoria.JPG",
+      "file": "/Users/lmagee/Dev/machinespirits/machinespirits-content-philosophy/courses/479-fall-2026/lecture-2-images/hegel-portrait.jpg",
+      "source_sha256": "81f952adcf591f45939cece79eb18f16d2f3ecbc99d6ded8ae4c243909d53919",
+      "embedded_sha256": "81f952adcf591f45939cece79eb18f16d2f3ecbc99d6ded8ae4c243909d53919",
+      "contentType": "image/jpeg",
+      "width": 500,
+      "height": 651
+    },
+    {
+      "slide": 4,
+      "source": "lecture-2-images/slide-04-influence.webp",
+      "file": "/Users/lmagee/Dev/machinespirits/machinespirits-content-philosophy/courses/479-fall-2026/lecture-2-images/slide-04-influence.webp",
+      "source_sha256": "1c1afab5b9b7d5f9e7f06cc33b3197311a04a8177805063d1073a775f23d5a70",
+      "embedded_sha256": "02d1e65aa74f192f4080a71d0c474e3ca812caa6c757bfa1a5796dd275782ddf",
+      "contentType": "image/png",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "slide": 5,
+      "source": "lecture-2-images/slide-05-book-and-world.webp",
+      "file": "/Users/lmagee/Dev/machinespirits/machinespirits-content-philosophy/courses/479-fall-2026/lecture-2-images/slide-05-book-and-world.webp",
+      "source_sha256": "877bd1c3a5be8ab729e5c3e91f7bfe637be9a54366b0eac48e199fa78ef36f43",
+      "embedded_sha256": "3882f476788701639a87238772acb34fc2341db62297745b02d7cdce1316aa15",
+      "contentType": "image/png",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "slide": 6,
+      "source": "lecture-2-images/slide-06-geist.webp",
+      "file": "/Users/lmagee/Dev/machinespirits/machinespirits-content-philosophy/courses/479-fall-2026/lecture-2-images/slide-06-geist.webp",
+      "source_sha256": "a13ee67d9bacc143bcf8e4dcfe52d6be60e7d80ad7ba3d650aec0bf2bd8bfcb2",
+      "embedded_sha256": "094478ffc8248e0983ded4aa5501d88fef2d7f2983ea16482fce3972414605c2",
+      "contentType": "image/png",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "slide": 7,
+      "source": "lecture-2-images/slide-07-appearances.webp",
+      "file": "/Users/lmagee/Dev/machinespirits/machinespirits-content-philosophy/courses/479-fall-2026/lecture-2-images/slide-07-appearances.webp",
+      "source_sha256": "7b1abfb670037c340e80f10a1097584adcef7dc496fe95f134e093ff6b61db22",
+      "embedded_sha256": "a3325ff49520defa0df46e7d41026dc2057e3155bcd2e1ed83a6b4e0be7febfc",
+      "contentType": "image/png",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "slide": 8,
+      "source": "lecture-2-images/slide-08-revising-the-page.webp",
+      "file": "/Users/lmagee/Dev/machinespirits/machinespirits-content-philosophy/courses/479-fall-2026/lecture-2-images/slide-08-revising-the-page.webp",
+      "source_sha256": "753bc3f25fe7b68f6ccb2d62c18233405caa79c8496487476033f5c94ff7f7eb",
+      "embedded_sha256": "4b0e641bd28033aaecd5b38043ad60dfb40afa434c96a966576366f60470cf5e",
+      "contentType": "image/png",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "slide": 9,
+      "source": "lecture-2-images/slide-09-active-experience.webp",
+      "file": "/Users/lmagee/Dev/machinespirits/machinespirits-content-philosophy/courses/479-fall-2026/lecture-2-images/slide-09-active-experience.webp",
+      "source_sha256": "56a3903776f46b659cc76c32165b82d371471b05a4abba4280f28f9fe6e123f1",
+      "embedded_sha256": "a2a9e457a1dfa0e99c90898ce8ed2bdcac11a3a1940ac75a66a54bfa345f7a9f",
+      "contentType": "image/png",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "slide": 10,
+      "source": "lecture-2-images/slide-10-one-stone-three-ways.webp",
+      "file": "/Users/lmagee/Dev/machinespirits/machinespirits-content-philosophy/courses/479-fall-2026/lecture-2-images/slide-10-one-stone-three-ways.webp",
+      "source_sha256": "fc927c168902f01a5e3c2b0b45ca752d77e6a2b9d819eccd6f0dc4e65472f103",
+      "embedded_sha256": "378c6faf8bbdd700b3d35badc99c083f91937d311a6984bd76cea6e27541d671",
+      "contentType": "image/png",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "slide": 11,
+      "source": "/markdown/images/consciousness-sense-certainty.webp",
+      "file": "/Users/lmagee/Dev/machinespirits/machinespirits-content-philosophy/assets/images/consciousness-sense-certainty.webp",
+      "source_sha256": "a0c40bb67493127c78abb55fe29d522f1c16816b4851b8eb38f65b0a15ae53ef",
+      "embedded_sha256": "c8f3a025c6edd0ca6bc63c2093bbabc0f471517ee175426d26b6704c618d8e6f",
+      "contentType": "image/png",
+      "width": 1024,
+      "height": 1536
+    },
+    {
+      "slide": 12,
+      "source": "/markdown/images/consciousness-perception.webp",
+      "file": "/Users/lmagee/Dev/machinespirits/machinespirits-content-philosophy/assets/images/consciousness-perception.webp",
+      "source_sha256": "b8b4327030c3461d5013e1ae26912f8c7b4ab23cc523142ced9db81f85fa2194",
+      "embedded_sha256": "c82c668401382ac92b60e004f12cf4f0bd54f4881028e7117822cc6bed80b4fe",
+      "contentType": "image/png",
+      "width": 1024,
+      "height": 1536
+    },
+    {
+      "slide": 13,
+      "source": "/markdown/images/consciousness-understanding.webp",
+      "file": "/Users/lmagee/Dev/machinespirits/machinespirits-content-philosophy/assets/images/consciousness-understanding.webp",
+      "source_sha256": "32b7d4e8b65cf7ab53ae68fe3b2f9c46d2c02d1c1e408f7625210ee2655f14ab",
+      "embedded_sha256": "600b0ca382f49f8ef8ec758de588712e58cf735c48fe58ddb51b5c8b0a30d249",
+      "contentType": "image/png",
+      "width": 1024,
+      "height": 1536
+    },
+    {
+      "slide": 14,
+      "source": "lecture-2-images/slide-14-conversation.webp",
+      "file": "/Users/lmagee/Dev/machinespirits/machinespirits-content-philosophy/courses/479-fall-2026/lecture-2-images/slide-14-conversation.webp",
+      "source_sha256": "c7a4525993cbdf773ce34b119ffa005c55e2075db8d30cd932ec9472aa06f2ce",
+      "embedded_sha256": "ac7c8685f88a506aeb87aa36a61304e280e8c027e98d2fc5c77ccfaaf97564be",
+      "contentType": "image/png",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "slide": 15,
+      "source": "/markdown/images/experience-of-experience.webp",
+      "file": "/Users/lmagee/Dev/machinespirits/machinespirits-content-philosophy/assets/images/experience-of-experience.webp",
+      "source_sha256": "c7a5cf79870387e315601a6b35ccbba2fd5897d5558baaa363c91bc8df6b920b",
+      "embedded_sha256": "059f1b66afd0d8754a3c217a220adca215e8812f58b720ac6d0c6a66c89adec5",
+      "contentType": "image/png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "slide": 21,
+      "source": "lecture-2-images/slide-16-curtain.webp",
+      "file": "/Users/lmagee/Dev/machinespirits/machinespirits-content-philosophy/courses/479-fall-2026/lecture-2-images/slide-16-curtain.webp",
+      "source_sha256": "3bb143b7e86dab2a52ffb00df8d1a637d5841d4416430ea558f466b1f5e280f2",
+      "embedded_sha256": "21bbf27fcf912d6d3fe80c5e1cb4c6c8886dff4099fdf3bf5fdad8d6142faf93",
+      "contentType": "image/png",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "slide": 22,
+      "source": "lecture-2-images/slide-17-machine-and-stone.webp",
+      "file": "/Users/lmagee/Dev/machinespirits/machinespirits-content-philosophy/courses/479-fall-2026/lecture-2-images/slide-17-machine-and-stone.webp",
+      "source_sha256": "22af8e9a793110e3194bd45c29a4de38827c12754c89d89db1daf16142018040",
+      "embedded_sha256": "2aa08a67cc36437b5edf47712aca30a96b7f1eb484fea085776323efa445d6c4",
+      "contentType": "image/png",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "slide": 23,
+      "source": "lecture-2-images/slide-18-training-and-context.webp",
+      "file": "/Users/lmagee/Dev/machinespirits/machinespirits-content-philosophy/courses/479-fall-2026/lecture-2-images/slide-18-training-and-context.webp",
+      "source_sha256": "9038e3b08c80e99c0408ff19dfe46e348d6aac7e818412a0225f6cdc0071b4c3",
+      "embedded_sha256": "12344871dc161e17f54f8915ec519edac0d764b1efc3c3ad3ff777434da6a260",
+      "contentType": "image/png",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "slide": 24,
+      "source": "lecture-2-images/slide-19-continuity.webp",
+      "file": "/Users/lmagee/Dev/machinespirits/machinespirits-content-philosophy/courses/479-fall-2026/lecture-2-images/slide-19-continuity.webp",
+      "source_sha256": "8230bb44aa3f5f0afe8959270d04ae9ae9c494f8ba9f43369b5e58a90db59864",
+      "embedded_sha256": "d5ffc03e37530579eebf4330b45f47dea34827491f4b05542851cc26c2a1bbfa",
+      "contentType": "image/png",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "slide": 25,
+      "source": "concept-relations.webp",
+      "file": "/Users/lmagee/Dev/machinespirits/machinespirits-content-philosophy/courses/479-fall-2026/concept-relations.webp",
+      "source_sha256": "7ccf3fbe0de94003c97ef23f0b3a8164bc521e118bcb05517706dd1ca02b1867",
+      "embedded_sha256": "61b7c366179f06b23d4e92eae91677be17e0496ebfe2d8f95450700987098f81",
+      "contentType": "image/png",
+      "width": 1254,
+      "height": 1254
+    }
+  ]
 }

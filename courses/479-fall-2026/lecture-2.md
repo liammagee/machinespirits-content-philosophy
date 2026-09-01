@@ -10,9 +10,14 @@
 
 ![One garden path links a bright star, a stone with coloured traces, and two leaning lamps.](lecture-2-images/slide-02-three-encounters.webp)
 
- - Introduction to Hegel (and summary of what I missed last week - why Hegel matters today)
- - Hegel on Experience: Sense-Certainty, Perception, Force and Understanding
- - Note: the 'law of threes' is everywhere in Hegel (thesis / antithesis / synthesis: reductive but useful shorthand) 
+ - Introduction to Hegel (and some discussion of what I missed last week - why Hegel matters today)
+ - Hegel on **Experience** and its three shapes or forms: Sense-Certainty, Perception, Force and Understanding
+   - Note: the 'law of threes' is everywhere in Hegel (thesis / antithesis / synthesis: reductive but useful shorthand)
+ - Start big picture, and hopefully work our way down to Hegel's idea of experience and its relation to learning
+   - Keep asking yourself: does this feel accurate for human learning? what about machine learning?
+ - Then consider applications to machines
+ - 3rd hour: Break-out rooms: apply to this week's questions
+   - Bring your own Week 1 thoughts to the discussion
 
 
 
@@ -23,11 +28,12 @@
 
 ### Some Notes on Hegel
 
- - German philosopher of the early 19th century
- - Comes *after* Immanuel Kant, and the Critique of Pure Reason / Practical Reason / Judgment (late 1700s)
+ - German philosopher, early 19th century
+ - Comes *after* Immanuel Kant, and the Critique of Pure Reason / Practical Reason / Judgment (1770s+); French Revolution (1789). A revolution in all things, including philosophy, was in the air.
  - The last of the "polymath" philosophers – across math, science, logic, history, art, literature, psychology 
  - Product of the Enlightenment and the French Revolution (1789)
  - Argued that the End of History had been realized - the modern State had "actualized" freedom (of course we can argue this, and many other of Hegel's hyperboles).
+ - Yes - extremely difficult to read (even for Germans in the 19th century)
  
 
 ![Hegel portrait](https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/1831_Schlesinger_Philosoph_Georg_Friedrich_Wilhelm_Hegel_anagoria.JPG/250px-1831_Schlesinger_Philosoph_Georg_Friedrich_Wilhelm_Hegel_anagoria.JPG)
@@ -55,7 +61,7 @@
    - Francis Fukuyama (*The End of History*)
  - Arguably *all* secular modernist traditions - Marxism, liberalism, fascism - extend from and argue with Hegel
    - Influential in some forms of Christian theology
- - Perhaps strangely: **not influential** in most AI debates (Žižek's *Hegel in a Wired Brain*).
+ - Perhaps strangely: **not influential** in most AI debates (an exception is Žižek's *Hegel in a Wired Brain*).
    
    
 
@@ -73,6 +79,7 @@
 - Positions learning as central to becoming a conscious entity within society.
 - Serves as historical pivot for modern questions on cognition and AI.
 - Highlights continuity between human, machinic, and other subjects in the process.
+- *Bildungsroman*: an existential novel (Joe) or philosophical romance novel (Michelle)
 
 ```notes
 The key text we'll be examining here is Hegel's *Phenomenology of Mind* (1807). For this course I will be describing this text as an account of how a *subject* – an entity that for the moment we will assume can exist in human, in machinic and perhaps in other situations – forms or creates itself, *as* a subject. In perhaps less obscure terms, how something like us learns to be as a conscious self. This text by Hegel occupies an important place in Western philosophy, and in some ways – as I hope to make clear – can be seen as one of the historical pivots around which questions of learning can be responded to. 
@@ -84,11 +91,11 @@ The key text we'll be examining here is Hegel's *Phenomenology of Mind* (1807). 
 
 ![Warm light connects a solitary reader with the windows of a small community.](lecture-2-images/slide-06-geist.webp)
 
-- The title varies: Phenomenology of Spirit or Phenomenology of Mind in translation?
+- The title varies in translation: *Phenomenology of Spirit* or *Phenomenology of Mind*?
 - "Geist" resists simple translation, evoking spirit, mind, even ghost, guest, host.
-- Raises ambiguity: religious-metaphysical spirit versus concrete psychological-scientific mind emphasis and scope.
-- Questions scope: collective world-spirit or Zeitgeist versus individual, present mental experience.
-- Some argue the work encompasses all these perspectives simultaneously, even intentionally.
+- Raises ambiguity: religious-metaphysical **spirit** versus concrete psychological-scientific **mind**  - different emphasis and scope.
+- Questions of scale: collective world-spirit or Zeitgeist versus individual, present mental experience? Or both?
+  - Some argue the work encompasses all these perspectives simultaneously, even intentionally (ontogeny recapitulates phylogeny - life of the individual repeats the life of the species).
 
 ```notes
 Let's start with the title: in German, *Phänomenologie des Geistes*, translated as either *The Phenomenology of Spirit*  or *The Phenomenology of Mind*. The word "Geist" can in other words be translated as either "Spirit" or "Mind" – a choice that is itself the cause of a lot of confusion. 
@@ -106,11 +113,10 @@ Now think of what word in English sounds closest to *Geist*: "ghost" (but also "
 
 - Phenomenology derives from Greek *phainesthai*, meaning 'to appear' / *phainomenon* 'that which appears'.
 - It focuses on phenomena, the appearances we experience in everyday life.
-- Kant distinguished phenomena (appearances) from noumena (things-in-themselves), highlighting epistemic limits (we can't know noumena).
-- The study contrasts how reality appears versus its true, unknowable nature.
+- Kant distinguished **phenomena** (appearances) from **noumena** (things-in-themselves), highlighting epistemic limits (we can't know **noumena**; we can only know appearance).
 
 ```notes
-What about the other word, *Phenomenology*? Let's now pull this apart. What does the -ology mean - the *logos*? Its "the study of". But the study of what? The study of phenomena, which sounds like the study of everything (*all* phenomena). But what exactly are phenomena? The word comes from the Greek term *phainesthai / phainomenon*, "to appear". So, phenomena are appearances, and for Kant, an important German philosopher who preceded Hegel, phenomena were opposed to noumena, which meant things in themselves. Noumena make up the reality, in other words, as opposed to how things appear to us, the phenomena. For Kant, all we have access to are appearances - the things-in-themselves are completely hidden from us.
+What about the other word, *Phenomenology*? Let's now pull this apart. What does the -ology mean - the *logos*? Its "the study of". But the study of what? The study of phenomena, which sounds like the study of everything (*all* phenomena). But what exactly are phenomena? The word comes from the Greek term *phainesthai / phainomenon*, "to appear". So, phenomena are appearances, and for Kant, an important German philosopher who preceded Hegel, phenomena were opposed to *noumena*, which meant things in themselves. Noumena make up the reality, in other words, as opposed to how things appear to us, the phenomena. For Kant, all we have access to are appearances - the things-in-themselves are completely hidden from us.
 
 ```
 
@@ -121,9 +127,10 @@ What about the other word, *Phenomenology*? Let's now pull this apart. What does
 
 ![A child redraws a stone in a notebook as the garden's outlines continue across the page.](lecture-2-images/slide-08-revising-the-page.webp)
 
+- Hegel's response: then why do we need noumena? These become replaced by idea or the **Concept**.
 - Hegel argues we only encounter phenomena, not things themselves.
 - The mind reorganizes *appearances* as learning and growth correct errors.
-- Experience is the ongoing realization of this reoroganization.
+- *Experience* is the ongoing realization of this reorganization.
 - The work traces how mind shapes and knows phenomena over time.
 
 ```notes
@@ -201,7 +208,7 @@ In unpacking these three shapes or forms, I'll also make reference, at a very hi
 ```notes
 Hegel begins with the idea of sense-certainty. What does it mean to experience certainty of your senses? His description of this is like a limited stream-of-consciousness. Things happen: I notice them but only in the sense of a "here" and a "now". There is no "there" and "then" – there is no way to connect each instant of sensation with any other. Moreover nothing can be distinguished in this state, because there is no basis for comparison. What philosophers call qualia, or the qualities that make one thing distinct from another, don't exist at this stage.
 
-In language terms, we have only basic phenomenal description: there is a "this" that is "here" and "now". It is like a pointing or what is called a *deictic* language, or set of signs: when I say words, all I do is point or indicate to something immediately before me. I do not yet, in this shape of consciousness, *know* anything more than this immediate fleeting flex of impression..
+In language terms, we have only basic phenomenal description: there is a "this" that is "here" and "now". It is like a pointing or what is called a *deictic* language, or set of signs: when I say words, all I do is point or indicate to something immediately before me. I do not yet, in this shape of consciousness, *know* anything more than this immediate fleeting flex of impression.
 
 If we were to imagine this experience of consciousness as a machine, it might be like a simple sensor: reading off data but not going anywhere with it. This is not machine *learning* in any meaningful sense - nothing is recorded or memorized. 
 
@@ -232,7 +239,7 @@ If we are to think of this in language terms, our limited perceptual world now h
 
 To extend our computational metaphor, it is as though our machine now can identify attributes. Instead of just indicating on/off, this machine registers these qualities: shades of colour, shapes, and so on. But with each new "perception", or data point, it has to reconcile this point with every other point in its prior experience. So it is led to believe one thing, then another thing, as the patterns of this perceived data continuously change. 
 
-We could say that this is where we are at with machine learning today. They are great pattern recognizers - "perceivers" – but do not yet have a sense of "laws" pertaining to those patterns. If sense-certainty was an awareness of dots, these dots are connected in perception. But we don't yet known *why* we have just *these* dots, and *these* connections.
+We could say that this is where we are at with machine learning today. They are great pattern recognizers - "perceivers" – but do not yet have a sense of "laws" pertaining to those patterns. If sense-certainty was an awareness of dots, these dots are connected in perception. But we don't yet know *why* we have just *these* dots, and *these* connections.
 ```
 
 ---
@@ -280,44 +287,76 @@ At this stage we have something close to a rudimentary idea of consciousness. We
 
 ![experience of experience](/markdown/images/experience-of-experience.webp)
 
- - What does it mean to be a subject? 
- - What is our experience of experience?
- - A more contemporary phenomenological experiment...
+ - What does it mean to be a subject?  What is our experience of experience? A more contemporary phenomenological experiment...
 
+
+---
+
+### First Experiment
 
 ```notes
-What does it mean to be a subject? 
 
 Let's start with a phenomenological experiment. Close your eyes, and try to imagine *where* your sense of subjectivity, or experience, actually is. What is it like to experience your consciousness? You might say: this doesn't even make sense, because my consciousness **just is** my experience. But bear with it a bit longer. Suppose now in a chat with an AI it complains that it is not conscious. You want to describe consciousness to it. What exactly would you say? 
 
 Suppose you have just have words. You might start by describing the "primitives" of your experience. You might say there is an "I" who is conscious, and this "I" is right "here", right "now". You might add words: "dark", "noise", "voice", "lecture". This is what appears to consciousness in the here and now. But would the machine understand consciousness? 
 
-Now you note that it is perhaps not so much these particulars that matter: the words, "I", "here", "now" - so much as their *relationship*. No matter how many new "nows" and "heres" there are - moments in time, points in space - they always relate to me, to this "I". And this relationship is enduring, always there - we can say that despite the flux of heres and nows - the relationship to me is a Universal. This is an achievement born from the failure of the current shape of sense-certainty, which leads to perception.
+Now you note that it is perhaps not so much these particulars that matter: the words, "I", "here", "now" - so much as their *relationship*. No matter how many new "nows" and "heres" there are - moments in time, points in space - they always relate to me, to this "I". And this relationship is enduring, always there. We can say that despite the flux of these given heres and nows - this general structure - that I always have a here and now – is always present, a constant that we can carry forward to the next moment of experience. It is an achievement born from the failure of the current shape of sense-certainty, which leads to perception.
+```
 
+---
 
+### Second Experiment
+
+```notes
 Second part of the experiment. Give yourself sentences alongside words. Explain consciousness again. This time, think of the disparate thoughts going through your mind: your attempt to concentrate, your sense perhaps of being confused or bored; some distracting detail in the background, your sense of background things you need to pay attention to.
 
-Now consider where this consciousness *is*. You might say it is in your head. And what is your orientation: what is the "direction" and position your experience is pointed towards? You might now say it is through your eyes, or at least in the direction your head is facing. You're also conscious, in some vague way, of bodily irritation (its humid in Champaign), of fatigue (its getting late), and of wider existential concerns (what are you even doing in this course?!). 
+Now consider where this consciousness *is*. You might say it is in your head. And what is your orientation: what is the "direction" and position your experience is pointed towards? You might now say it is through your eyes, or at least in the direction your head is facing. You're also conscious, in some vague way, of bodily irritation (it's humid in Champaign), of fatigue (it's getting late), and of wider existential concerns (what are you even doing in this course?!).
 
 How would you actually communicate these ideas of location, orientation, embodiment, affect, temporality, existentiality - to some machine that has none of these? 
 
-And while we are here, what about the complex layers of history that make up our subjectivity? Where does our prior experience lie? If I ask you now to bring up a memory – any memory – what is it that you actually do? What do you experience in bringing up a memory? Do you – for a least a moment – experience something like annoyance at having to select one memory over another? And what is this experience of annoyance itself like? What does your body do? Do you sigh for instance? Does your heart beat a little faster, at the request of a professor to draw up a memory? Do you wonder - somewhere – whether this is a waste of time (you didn't enrol in a meditation course)? What does this wondering feel like?
+And while we are here, what about the complex layers of history that make up our subjectivity? Where does our prior experience lie? If I ask you now to bring up a memory – any memory – what is it that you actually do? What do you experience in bringing up a memory? Do you – for at least a moment – experience something like annoyance at having to select one memory over another? And what is this experience of annoyance itself like? What does your body do? Do you sigh for instance? Does your heart beat a little faster, at the request of a professor to draw up a memory? Do you wonder - somewhere – whether this is a waste of time (you didn't enrol in a meditation course)? What does this wondering feel like?
 
-Suppose at the end of this the machine repeats back to you this new shape of consciousness. Lots of facts, lots of common sense, all true, all describing what consciousness is to you. But you realize what you've done: you've made an encyclopaedia out of your experience of consciousness. But you know full well this encyclopaedia is not yet knowledge, not yet a *science* of experience of consciousness. 
+Suppose at the end of this the machine repeats back to you this new shape of consciousness. Lots of facts, lots of common sense, all true, all describing what consciousness is to you. But you realize what you've done: you've made an encyclopaedia out of your experience of consciousness. But while this encyclopaedic knowledge is an accomplishment, we haven't described how the entries relate and hang together. This is not yet a *science* of experience of consciousness.
 
-The experience *of* experience, we can see, involves a series of sensations and associations. These goings-on are things that we can document, we can capture in some kind of stream of consciousness way. Indeed, even the idea of a "stream" already invokes many assumptions – that our consciousness is deeply connected to time, a series of moments running on, but also connected to prior moments. And the objects in our experience are also connected, so that the statements we make about one object also connect to other objects. We realize our encyclopaedic knowledge lacks the ability to specify the essense of these connections in time and space.
+The experience *of* experience, we can see, involves a series of sensations and associations. These goings-on are things that we can document, we can capture in some kind of stream of consciousness way. Indeed, even the idea of a "stream" already invokes many assumptions – that our consciousness is deeply connected to time, a series of moments running on, but also connected to prior moments. And the objects in our experience are also connected, so that the statements we make about one object also connect to other objects. We realize our encyclopaedic knowledge lacks the ability to specify the essence of these connections in time and space.
 
-Third experiment. Now we want to try to capture what this experience *of* experience, *of* being conscious, is really like, particulary as consciousness moves further into trying to know, to learn and to understand. Think now about why your thoughts have been organized in the way they have been. Why these thoughts and impressions? Why did you pay attention to one thing and not another? Was it because of stress, busyness, tiredness, curiosity? What explanations can you make for the sequence and connections?
+```
+
+---
+
+### Third Experiment
+
+```notes
+
+Third experiment. Now we want to try to capture what this experience *of* experience, *of* being conscious, is really like, particularly as consciousness moves further into trying to know, to learn and to understand. Think now about why your thoughts have been organized in the way they have been. Why these thoughts and impressions? Why did you pay attention to one thing and not another? Was it because of stress, busyness, tiredness, curiosity? What explanations can you make for the sequence and connections?
 
 Now think about this activity itself. What is happening with this business of providing reasons for things? You've been trying to organize this fleeting stream into a coherent whole. In everyday consciousness - and certainly when we learn and study - we often connect extraneous thoughts into wider chains of rationalization, perhaps even that of an entire life and its diverse projects. How do you describe this particular experience - of developing reasons that describe some inner world, which is not obvious at the level of the facts themselves? What does the experience itself feel like? And how do you explain - again to this machine - this *desire* for explanation: why do you feel the need to have reasons and laws for things?
 
-And finally, imagine the experience you might have when you sometimes get things wrong. Perhaps the reasons you had were flawed, based on outdated facts. Now you need to *revise* your reasons. What does this feel like? Can it be that sometimes the object itself becomes something different - that you feel oriented differently towards it, that it appears different. How would you describe this experience? Is it something like the object becomes something different - a new kind of object? At that moment, you might also realize that you too have changed - now you have a new concept of the object itself. This even describes a particular kind of - lets say transformative - learning. 
+At this point, imagine the experience you might have when you sometimes get things wrong. Perhaps the reasons you had were flawed, based on outdated facts. Now you need to *revise* your reasons. What does this feel like? Can it be that sometimes the object itself becomes something different - that you feel oriented differently towards it, that it appears different. How would you describe this experience? Is it something like the object becomes something different - a new kind of object? At that moment, you might also realize that you too have changed - now you have a new concept of the object itself. This even describes a particular kind of - let's say transformative - learning.
 
-Through this last process, Hegel wants us to imagine we are lifting the curtain on the underlying reality. But what we see when we do so is not the world as it is - it is *us* behind the curtain, staring back. We have been operating the filters of perception all along. That is Hegel's brand of idealism.
+In learning about the object you have also begun to learn about your own activity - your own understanding. Finally, with this realization, Hegel wants us to imagine we are lifting the curtain to reveal what lies behind appearances. But instead of some alternative reality - the *noumena* of Kant for example - what we see staring back at us is the structure and concepts of our understanding. These concepts are what enable us to experience appearances *as* the appearances they are.
+
+```
+
+---
+
+### Machinic Experience?
+
+```notes
+
+Now consider what it might mean to convey all of this to a machine. Many of you in your reflections last week were understandably keen to differentiate machinic pattern matching from the broader human forms of experience that impact upon our learning.
 
 
 
+```
 
+---
+
+
+### End of Segue
+
+<!--
+And finally, you might also notice that even your wanting to have reasons for things involves a kind of flipping back-and-forth. On the one hand, you have the explanation: what explains the things themselves. On the other, the things are essential to the construction of the explanation. You have laws about things, and things that inform the laws. And you start to notice that what matters is not so much the specifics of the laws and the things, as it is this very back-and-forth between them. You start to think more about the process of making knowledge, less about what it is that is known.
 
 Finally, we might also have a sense of the "edge" of our consciousness. I want you now to imagine some kind of instrument you use or have used: something external to the body, but closely connected to it. For example, a computer keyboard, a phone screen, a baseball bat, an iron, a hammer, or favourite items of clothing. Everyday, but also intimate, something that feels in certain moments like an extension of the body – something external that becomes you. Does your consciousness ever extend to that object, even momentarily, for example in what people can call a "flow state"? 
 
@@ -325,14 +364,11 @@ And what about other people? We know in extreme cases we can feel other people's
 
 So here we have a sentiment of consciousness as not merely locked up in a skull – our own – but in some sense already distributed. But not infinite, at least not in everyday experience – we would need some paranormal experience to go so completely out of ourselves that we reach back to before our birth, or after our death, or beyond the limits of our world. Even if we can accept that it is amorphous, consciousness still has a shape, it has edges.
 
-Now what would an entirely *mechanical* experience of consciousness be? We can imagine a stepping stone: for example, the experience of an animal. Non human, but with a brain and body. We all know of examples of literature, film, television that literalise this experiment.
-
-And in certain forms, we can also elaborate this to humanoid or anthropomorphic experience. Being in a human's body but with only an algorithmic simulation of consciousness. C-3PO in Star Wars for example: think about how this *droid* differs from R2-D2, which has no human body.
-```
+-->
 
 ---
 
-### Back to Hegel and *Dialectical Idealism*
+### To Sum Up: Hegel's *Dialectical Idealism*
 
 ![A child draws aside a star-patterned curtain and finds their own viewing position within the garden.](lecture-2-images/slide-16-curtain.webp)
 
@@ -383,8 +419,6 @@ The understanding brings causality: laws describing how things are. Now we step 
 
 ```notes
 
-
-
 So what does Hegel give us to understand machine and human learning through his arguments about experience? 
 
 We know in practical terms today machines at best only simulate our experience *of* experience. One area of active research highlights the difference: the problem of *continuous learning*. What is this problem? Let's imagine I sit down to *talk* to an AI agent such as ChatGPT. I notice that I am usually initiating a new conversation – though of course I can also choose to resume a prior conversation too. If I have paid for the subscription service and turned on the personalization feature, I notice also that the agent seems to know some details about me. Indeed, over time – if I connect the agent to my files and data – I also notice that this personalization seems to become more sophisticated and knowledgeable too.
@@ -411,7 +445,7 @@ However in another sense the system remains the same system it was at the point 
 
 ---
 
-### Continuous Learning Gap in AI Systems
+### The Continuous Learning Gap in AI Systems
 
 ![A child's continuous walk passes a quiet instrument recording separate encounters.](lecture-2-images/slide-19-continuity.webp)
 
@@ -435,11 +469,26 @@ There are efforts to develop continuous learning systems, though none are yet de
 ![An indigo and gold circular course map links Synthesis, Experience, Recognition, Attention, Consciousness, Alignment, Critique, and Back to Synthesis, around a child with a notebook.](concept-relations.webp)
 
 
-- Machines continually ask if more Hegel is desired, mirroring human curiosity.
+- Machines continually ask if more information is desired, mirroring human curiosity.
 - This prompts a simulated subjective experience of anticipating others' desires.
 - The dialogue foreshadows next topic: Recognition and (Self-)Consciousness in Hegel's philosophy.
 - It culminates in the Master‑Servant dialectic, Hegel’s most famous moment.
 
 ```notes
 The machine exists in a permanent state of *servitude*. So even while we are disputing this idea of experience, we also see a simulation of a certain kind of subjective experience: wanting to pre-empt the desire of the Other, leading us on into next week's topic – Recognition – and the most famous moment of Hegel's philosophy, the Master-Servant dialectic.
+```
+
+
+---
+
+### Discussion / Break-out Groups
+
+ - What is Experience?
+ - What sense can we make of Hegel's analysis (or 'science') of experience? Do we agree?
+ - What about other ideas of experience? For example, Blake or Hendrix?
+ - It is easy to say machines can't experience in the way that we can. But what exactly do we mean by this? Think of the opposite: what would be evidence that machines *do* experience? And how does experience or lack thereof make us think about the types of learning machines can do?
+
+ - Questions for this week's assignment: does learning imply experience, or can learning happen without it - if so, what would non-experiential learning be, exactly? And how does the type of experience – or lack thereof – condition our own relationship to machines that seek to teach, instruct or guide us?
+
+
 ```
