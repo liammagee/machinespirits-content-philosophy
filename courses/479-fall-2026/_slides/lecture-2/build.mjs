@@ -26,6 +26,7 @@ async function refreshImage(image,reference){
   if(!reference.source.includes('1831_Schlesinger_Philosoph_Georg_Friedrich_Wilhelm_Hegel_anagoria.JPG'))throw new Error('Download the new remote image before building: '+reference.source);
   base=path.join(COURSE,'lecture-2-images/hegel-portrait.jpg');
  }else if(reference.source.startsWith('/markdown/images/'))base=path.join(ROOT,'assets/images',path.basename(reference.source));
+ else if(/^\/(content|markdown)\/courses\/479-fall-2026\//.test(reference.source))base=path.join(COURSE,reference.source.replace(/^\/(content|markdown)\/courses\/479-fall-2026\//,''));
  else base=path.resolve(COURSE,reference.source);
  // The Markdown reference is authoritative, including when PNG masters also exist.
  let bytes=await fs.readFile(base);

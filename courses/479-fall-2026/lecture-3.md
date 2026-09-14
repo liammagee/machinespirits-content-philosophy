@@ -651,7 +651,7 @@ We turn our attention to... a term that bridged the fields of machine and human 
 
 ### Overall progress...
 
-![image](concept-relations.webp)
+![image](/content/courses/479-fall-2026/concept-relations.webp)
 
 
 

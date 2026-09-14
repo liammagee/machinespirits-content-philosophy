@@ -1,14 +1,14 @@
 
 ## Introducing Hegel and The Concept of Experience (*Erfahrung*)
 
-![A small notebook-carrying child enters an indigo garden beneath a pale gold star.](lecture-2-images/slide-01-experience.webp)
+![A small notebook-carrying child enters an indigo garden beneath a pale gold star.](/content/courses/479-fall-2026/lecture-2-images/slide-01-experience.webp)
 
 
 ---
 
 ### Lecture Overview
 
-![One garden path links a bright star, a stone with coloured traces, and two leaning lamps.](lecture-2-images/slide-02-three-encounters.webp)
+![One garden path links a bright star, a stone with coloured traces, and two leaning lamps.](/content/courses/479-fall-2026/lecture-2-images/slide-02-three-encounters.webp)
 
  - Introduction to Hegel (and some discussion of what I missed last week - why Hegel matters today)
  - Hegel on **Experience** and its three shapes or forms: Sense-Certainty, Perception, Force and Understanding
@@ -45,7 +45,7 @@
 
 ### Hegel's influence
 
-![Books pass through many windows of a branching, crooked university town.](lecture-2-images/slide-04-influence.webp)
+![Books pass through many windows of a branching, crooked university town.](/content/courses/479-fall-2026/lecture-2-images/slide-04-influence.webp)
 
  - Died in 1831 - most famous philosopher in Germany at the time
  - Influenced "radical" thinkers of the 1830s/40s - the "Young Hegelians"
@@ -72,7 +72,7 @@
 
 ### Hegel’s *Phenomenology of Spirit*
 
-![An open book becomes a path through a small early nineteenth-century town.](lecture-2-images/slide-05-book-and-world.webp)
+![An open book becomes a path through a small early nineteenth-century town.](/content/courses/479-fall-2026/lecture-2-images/slide-05-book-and-world.webp)
 
 - Completed in 1806, published in 1807 - famously as Napoleon rode into Jena, Germany in his assault on Europe.  
 - Explores how a subject forms consciousness through self-awareness in its development.
@@ -89,7 +89,7 @@ The key text we'll be examining here is Hegel's *Phenomenology of Mind* (1807). 
 
 ### Hegel’s Phenomenology: Geist’s Ambiguous Meaning
 
-![Warm light connects a solitary reader with the windows of a small community.](lecture-2-images/slide-06-geist.webp)
+![Warm light connects a solitary reader with the windows of a small community.](/content/courses/479-fall-2026/lecture-2-images/slide-06-geist.webp)
 
 - The title varies in translation: *Phenomenology of Spirit* or *Phenomenology of Mind*?
 - "Geist" resists simple translation, evoking spirit, mind, even ghost, guest, host.
@@ -109,7 +109,7 @@ Now think of what word in English sounds closest to *Geist*: "ghost" (but also "
 
 ### Phenomenology: Study of Appearances
 
-![A single tree looks different through a window, a rain-covered pane and a still pond.](lecture-2-images/slide-07-appearances.webp)
+![A single tree looks different through a window, a rain-covered pane and a still pond.](/content/courses/479-fall-2026/lecture-2-images/slide-07-appearances.webp)
 
 - Phenomenology derives from Greek *phainesthai*, meaning 'to appear' / *phainomenon* 'that which appears'.
 - It focuses on phenomena, the appearances we experience in everyday life.
@@ -125,7 +125,7 @@ What about the other word, *Phenomenology*? Let's now pull this apart. What does
 
 ### Hegel’s Phenomenology of Mind
 
-![A child redraws a stone in a notebook as the garden's outlines continue across the page.](lecture-2-images/slide-08-revising-the-page.webp)
+![A child redraws a stone in a notebook as the garden's outlines continue across the page.](/content/courses/479-fall-2026/lecture-2-images/slide-08-revising-the-page.webp)
 
 - Hegel's response: then why do we need noumena? These become replaced by idea or the **Concept**.
 - Hegel argues we only encounter phenomena, not things themselves.
@@ -141,7 +141,7 @@ But Hegel disputes Kant's account, and specifically the separation between appea
 
 ### Hegel vs. Empiricism
 
-![A child rearranges coloured panes while looking at a garden that resists the frame.](lecture-2-images/slide-09-active-experience.webp)
+![A child rearranges coloured panes while looking at a garden that resists the frame.](/content/courses/479-fall-2026/lecture-2-images/slide-09-active-experience.webp)
 
 - Empiricism sees experience as passive; Hegel views it as *active*. We "make" the objects we experience.
 - Locke (18th century): "tabula rasa" / blank slate - we fill the mind with experience. Arguably Machine Learning still uses this model (Freire's "banking model" of education).
@@ -167,7 +167,7 @@ We will want to pause here, and take stock of this alternative intuition - Hegel
 
 ### Consciousness in Three Shapes
 
-![One stone appears as an immediate encounter, a bearer of qualities and part of a field of relations.](lecture-2-images/slide-10-one-stone-three-ways.webp)
+![One stone appears as an immediate encounter, a bearer of qualities and part of a field of relations.](/content/courses/479-fall-2026/lecture-2-images/slide-10-one-stone-three-ways.webp)
 
 - Sense-certainty introduces raw and immediate reality.
 - Perception organizes sensory data into coherent representations.
@@ -273,7 +273,7 @@ At this stage we have something close to a rudimentary idea of consciousness. We
 
 ### Break: Discussion about Experience
 
-![Three learners gather around a lantern, a cup, a stone and an open notebook.](lecture-2-images/slide-14-conversation.webp)
+![Three learners gather around a lantern, a cup, a stone and an open notebook.](/content/courses/479-fall-2026/lecture-2-images/slide-14-conversation.webp)
 
  - What do we make of all this? 
  - How does Hegel's treatment relate to other, everyday senses of "experience"? What about Blake? Hendrix? What other connotations does the word "experience" have for us? 
@@ -370,7 +370,7 @@ So here we have a sentiment of consciousness as not merely locked up in a skull 
 
 ### To Sum Up: Hegel's *Dialectical Idealism*
 
-![A child draws aside a star-patterned curtain and finds their own viewing position within the garden.](lecture-2-images/slide-16-curtain.webp)
+![A child draws aside a star-patterned curtain and finds their own viewing position within the garden.](/content/courses/479-fall-2026/lecture-2-images/slide-16-curtain.webp)
 
  - Shapes of Consciousness
    - Sense-certainty (just the here and now)
@@ -411,7 +411,7 @@ The understanding brings causality: laws describing how things are. Now we step 
 
 ### Machines and Experience
 
-![A learner and a small mechanical instrument attend to the same stone from different positions.](lecture-2-images/slide-17-machine-and-stone.webp)
+![A learner and a small mechanical instrument attend to the same stone from different positions.](/content/courses/479-fall-2026/lecture-2-images/slide-17-machine-and-stone.webp)
 
  - Can machines experience? In what sense?
  - They sense (sense-certainty); they categorize (perception); they can (to a limited extent) formulate theories (understanding)
@@ -430,7 +430,7 @@ We know in practical terms today machines at best only simulate our experience *
 
 ### Knowledge Cutoff and System Stagnation
 
-![A bound book rests beside a changing window scene and a small tray of loose new pages.](lecture-2-images/slide-18-training-and-context.webp)
+![A bound book rests beside a changing window scene and a small tray of loose new pages.](/content/courses/479-fall-2026/lecture-2-images/slide-18-training-and-context.webp)
 
 - Models retain only data up to their last training date, no ongoing learning.
 - Analogy: a student stops acquiring new information after a fixed point.
@@ -447,7 +447,7 @@ However in another sense the system remains the same system it was at the point 
 
 ### The Continuous Learning Gap in AI Systems
 
-![A child's continuous walk passes a quiet instrument recording separate encounters.](lecture-2-images/slide-19-continuity.webp)
+![A child's continuous walk passes a quiet instrument recording separate encounters.](/content/courses/479-fall-2026/lecture-2-images/slide-19-continuity.webp)
 
 - No deployed continuous learning systems exist in mainstream AI today.
 - Humans cannot cease experiencing the world, even when isolated from stimuli.
@@ -466,7 +466,7 @@ There are efforts to develop continuous learning systems, though none are yet de
 ### Machine Prompting and Hegelian Dynamics
 
 
-![An indigo and gold circular course map links Synthesis, Experience, Recognition, Attention, Consciousness, Alignment, Critique, and Back to Synthesis, around a child with a notebook.](concept-relations.webp)
+![An indigo and gold circular course map links Synthesis, Experience, Recognition, Attention, Consciousness, Alignment, Critique, and Back to Synthesis, around a child with a notebook.](/content/courses/479-fall-2026/concept-relations.webp)
 
 
 - Machines continually ask if more information is desired, mirroring human curiosity.
