@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Spotlight: The Attention Game</title>
   <meta name="artifact-title" content="Spotlight: The Attention Game">
-  <meta name="artifact-description" content="A five-level puzzle game that teaches how transformer attention works: a fixed spotlight budget, query-key matching, sharpness, multiple heads, and one rule applied by every token at once.">
+  <meta name="artifact-description" content="A six-level puzzle game that teaches how transformer attention works: a fixed spotlight budget, query-key matching, sharpness, multiple heads, one rule applied by every token at once, and where a query comes from. Opens with an animated next-word demo.">
   <meta name="artifact-tags" content="attention,transformer,game,interactive,machine-learning,pedagogy">
   <meta name="artifact-author" content="Claude">
   <meta name="artifact-date" content="2026-09-19">
@@ -258,6 +258,70 @@
     footer { text-align: center; font-family: var(--mono); font-size: 0.62rem; color: var(--dim); letter-spacing: 0.06em; margin-top: 2rem; }
     footer a { color: var(--muted); }
 
+
+    /* ---------- Intro / next-token demo ---------- */
+    .welcome { padding: 0.25rem 0 0.75rem; }
+    .welcome .eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red-light); margin-bottom: 0.4rem; }
+    .welcome h2 { font-family: var(--mono); font-size: clamp(1.15rem, 3vw, 1.55rem); letter-spacing: 0.02em; margin-bottom: 0.6rem; text-wrap: balance; }
+    .welcome h2.small { font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red-light); }
+    .welcome p { font-size: 0.95rem; color: #dcdcdc; max-width: 68ch; margin-bottom: 0.6rem; }
+    .levels-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 6px; margin: 0.6rem 0 1rem; }
+    .levels-list li { background: var(--surface); border: 1px solid var(--line); padding: 0.55rem 0.7rem; font-size: 0.82rem; color: #dcdcdc; }
+    .levels-list li b { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red-light); display: block; margin-bottom: 2px; font-weight: 400; }
+    .demo-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-bottom: 0.6rem; }
+    .demo-bar select { font-family: var(--mono); font-size: 0.7rem; background: var(--surface-2); color: var(--text); border: 1px solid var(--line); border-radius: 4px; padding: 5px 8px; max-width: 100%; }
+    .demo-bar label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); display: inline-flex; gap: 6px; align-items: center; }
+    .demo-stage { position: relative; background: var(--bg); border: 1px solid var(--line); padding: 84px 12px 12px; min-height: 170px; }
+    .demo-stage svg.arcs { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+    .demo-stage svg path { fill: none; stroke: var(--red); stroke-linecap: round; }
+    .demo-tokens { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: flex-end; position: relative; }
+    .dtok { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+    .dtok .pct { font-family: var(--mono); font-size: 0.6rem; color: var(--red-light); min-height: 1em; }
+    .dtok .word { font-family: var(--mono); font-size: 0.95rem; padding: 6px 10px; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); transition: background .3s, border-color .3s; white-space: nowrap; }
+    .dtok.cur .word { border-color: var(--red); box-shadow: 0 0 0 2px rgba(230,57,70,0.35); }
+    .dtok.new .word { animation: pop .35s ease; }
+    @keyframes pop { from { transform: translateY(8px); opacity: 0; } to { transform: none; opacity: 1; } }
+    .dtok.ghost .word { color: transparent; background: repeating-linear-gradient(135deg, #161616 0 4px, #212121 4px 8px); border-style: dashed; border-color: #2c2c2c; min-width: 44px; }
+    .demo-curtain { font-family: var(--mono); font-size: 0.6rem; color: var(--dim); text-align: right; margin-top: 10px; letter-spacing: 0.06em; }
+    .demo-caption { font-size: 0.88rem; color: #dcdcdc; min-height: 1.4em; margin: 0.6rem 0; }
+    .demo-caption b { color: var(--red-light); font-weight: 500; }
+    .demo-pred { background: var(--surface-2); border: 1px solid var(--line); padding: 0.6rem 0.8rem; border-radius: 4px; transition: opacity .3s; }
+    .demo-pred.off { opacity: 0.25; }
+    .pred-title { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+    .pred-row { display: grid; grid-template-columns: 110px 1fr 46px; gap: 8px; align-items: center; font-family: var(--mono); font-size: 0.72rem; margin-bottom: 4px; color: var(--muted); }
+    .pred-row .pw { text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pred-row .pbar { height: 10px; background: var(--bg); border-radius: 4px; overflow: hidden; }
+    .pred-row .pbar i { display: block; height: 100%; width: 0; background: var(--red); border-radius: 4px; transition: width .7s ease; }
+    .pred-row.chosen { color: var(--text); }
+    .pred-row.chosen .pbar i { background: var(--green); }
+    .pred-row.chosen .pw::before { content: '▸ '; color: var(--green); }
+    .pred-row.rest .pbar i { background: #3a3a3a; }
+    .pred-note { font-family: var(--mono); font-size: 0.62rem; color: var(--amber); min-height: 1em; margin-top: 4px; }
+    @media (max-width: 560px) { .pred-row { grid-template-columns: 80px 1fr 40px; } }
+
+    /* ---------- Layers / query forge ---------- */
+    .stage-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 0.4rem; }
+    .stage-label b { color: var(--text); font-weight: 400; }
+    .forge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem; }
+    @media (max-width: 720px) { .forge-grid { grid-template-columns: 1fr; } }
+    .forge-grid .panel { margin-bottom: 0; }
+    .forge { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 8px; align-items: start; }
+    @media (max-width: 560px) { .forge { grid-template-columns: 1fr; } .forge-arrow { transform: rotate(90deg); justify-self: center; } }
+    .forge-h { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); margin-bottom: 4px; }
+    .forge-arrow { color: var(--dim); font-size: 1.1rem; align-self: center; }
+    .forge-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+    .fchip { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.04em; padding: 2px 6px; border-radius: 3px; background: var(--surface-2); color: var(--text); border: 1px solid var(--line); }
+    .fchip i { font-style: normal; color: var(--muted); margin-left: 3px; }
+    .fchip.acq { border-color: rgba(59,130,246,0.6); background: rgba(59,130,246,0.12); color: #cfe0ff; }
+    .fchip.acq i { color: #9dbfff; }
+    .fchip.pos { border-color: rgba(16,185,129,0.6); background: rgba(16,185,129,0.12); color: #bff5dc; }
+    .fchip.neg { border-color: rgba(230,57,70,0.6); background: rgba(230,57,70,0.12); color: #ffc2c7; }
+    .forge-rule { font-family: var(--mono); font-size: 0.62rem; color: var(--muted); padding: 2px 0; }
+    .forge-rule i { font-style: normal; color: #9dbfff; }
+    .forge-none { font-family: var(--mono); font-size: 0.6rem; color: var(--dim); }
+    .tok.forge-sel .word { border-color: var(--blue); box-shadow: 0 0 0 2px rgba(59,130,246,0.35); }
+    .forge-note { font-family: var(--mono); font-size: 0.6rem; color: var(--dim); margin-top: 0.5rem; }
+
     /* confetti */
     #fx { position: fixed; inset: 0; pointer-events: none; z-index: 40; }
     .toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%) translateY(20px); background: var(--red); color: #fff; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.6rem 1rem; border-radius: 4px; opacity: 0; transition: opacity .3s, transform .3s; z-index: 45; pointer-events: none; }
@@ -296,14 +360,16 @@
             <tr><td>What "me" receives: the blend bar</td><td>The weighted sum of <code>V</code> vectors. The token's new representation <em>is</em> this mixture.</td></tr>
             <tr><td>Two heads with two questions</td><td>Multi-head attention: several independent Q/K/V projections run in parallel and their outputs are concatenated.</td></tr>
             <tr><td>A rule "if I am X, look for Y"</td><td>The learned matrices <code>W<sub>Q</sub></code> and <code>W<sub>K</sub></code>. One head is one rule, applied by every token at once, which yields the whole attention matrix.</td></tr>
+            <tr><td>Layer 1 features flowing into layer 2's rules (Level 6)</td><td>The residual stream. Each layer adds what a token gathered to its representation, and the next layer's <code>W<sub>Q</sub></code> reads that. Queries are formed from contextualised features, never from the bare word.</td></tr>
+            <tr><td>The curtain in the opening animation</td><td>Causal masking: a language model predicting the next word may only attend backward. The prediction bars are its softmax over the vocabulary, and the written word is sampled from it.</td></tr>
             <tr><td>NEAR and BEFORE chips</td><td>Positional information (sinusoidal encodings in the original paper; rotary or relative biases in most recent models).</td></tr>
           </tbody>
         </table>
         <h4>What the game leaves out</h4>
         <ul>
-          <li><b>Where the features come from.</b> The chips are hand-written. In a model the keys and values are computed from embeddings that earlier layers have already mixed with context, which is how "it" can come to carry a hint of "big" before this head runs.</li>
+          <li><b>Where the features come from.</b> The chips are hand-written. In a model every feature is learned, and the keys and values are computed from embeddings that earlier layers have already mixed with context. Level 6 shows one slice of that mixing; a real model does it in every layer, for every word.</li>
           <li><b>Values are not words.</b> The blend bar labels each share with the word it came from, but a real value vector is a transformed embedding, not the token itself.</li>
-          <li><b>Causal masking.</b> A language model that predicts the next word may only look backward. Every puzzle here lets you look in both directions, as an encoder does.</li>
+          <li><b>Causal masking.</b> A language model that predicts the next word may only look backward, as in the opening animation. Every puzzle lets you look in both directions, as an encoder does.</li>
           <li><b>Depth.</b> Real models stack dozens of layers, each with many heads, with a feed-forward network after every attention step.</li>
         </ul>
         <h4>Two spotlights</h4>
@@ -340,6 +406,7 @@
     PUNCT:{g:'kind',d:'punctuation'},
     ANIMATE:{g:'meaning',d:'a living being'}, THING:{g:'meaning',d:'a physical object'}, PLACE:{g:'meaning',d:'a location'},
     MONEY:{g:'meaning',d:'to do with money'}, WATER:{g:'meaning',d:'to do with water'}, CONTAINER:{g:'meaning',d:'something that holds other things'},
+    BIG:{g:'meaning',d:'large in size'}, SMALL:{g:'meaning',d:'small in size'},
     SING:{g:'number',d:'singular'}, PLUR:{g:'number',d:'plural'},
     PAST:{g:'tense',d:'past tense'},
     NEAR:{g:'position',d:'+weight ÷ distance from me (me counts as distance 1)'},
@@ -356,8 +423,8 @@
     dogs: parse('The/DET dogs/NOUN,ANIMATE,PLUR that/PRON chased/VERB,PAST the/DET cat/NOUN,ANIMATE,SING were/AUX,PAST,PLUR tired/ADJ ./PUNCT'),
     bankMoney: parse('She/PRON,ANIMATE,SING walked/VERB,PAST to/PREP the/DET bank/NOUN,PLACE,SING to/PREP deposit/VERB,MONEY her/DET money/NOUN,THING,MONEY ./PUNCT'),
     bankRiver: parse('The/DET fisherman/NOUN,ANIMATE,SING,WATER sat/VERB,PAST on/PREP the/DET bank/NOUN,PLACE,SING of/PREP the/DET river/NOUN,PLACE,THING,SING,WATER ./PUNCT'),
-    trophyBig: parse('The/DET trophy/NOUN,THING,SING does/AUX not/ADV fit/VERB in/PREP the/DET suitcase/NOUN,THING,SING,CONTAINER because/CONJ it/PRON,SING is/AUX too/ADV big/ADJ ./PUNCT'),
-    trophySmall: parse('The/DET trophy/NOUN,THING,SING does/AUX not/ADV fit/VERB in/PREP the/DET suitcase/NOUN,THING,SING,CONTAINER because/CONJ it/PRON,SING is/AUX too/ADV small/ADJ ./PUNCT'),
+    trophyBig: parse('The/DET trophy/NOUN,THING,SING does/AUX not/ADV fit/VERB in/PREP the/DET suitcase/NOUN,THING,SING,CONTAINER because/CONJ it/PRON,SING is/AUX too/ADV big/ADJ,BIG ./PUNCT'),
+    trophySmall: parse('The/DET trophy/NOUN,THING,SING does/AUX not/ADV fit/VERB in/PREP the/DET suitcase/NOUN,THING,SING,CONTAINER because/CONJ it/PRON,SING is/AUX too/ADV small/ADJ,SMALL ./PUNCT'),
     keys: parse('The/DET keys/NOUN,THING,PLUR were/AUX,PAST,PLUR on/PREP the/DET table/NOUN,THING,SING next/ADV to/PREP the/DET lamp/NOUN,THING,SING and/CONJ the/DET book/NOUN,THING,SING ,/PUNCT but/CONJ I/PRON,ANIMATE,SING could/AUX,PAST not/ADV find/VERB them/PRON,PLUR ./PUNCT'),
     glass: parse('Because/CONJ the/DET glass/NOUN,THING,SING was/AUX,PAST fragile/ADJ ,/PUNCT the/DET mover/NOUN,ANIMATE,SING wrapped/VERB,PAST it/PRON,SING carefully/ADV ./PUNCT'),
     storm: parse('When/CONJ the/DET storm/NOUN,THING,SING hit/VERB,PAST the/DET village/NOUN,PLACE,SING ,/PUNCT the/DET residents/NOUN,ANIMATE,PLUR fled/VERB,PAST to/PREP the/DET hills/NOUN,PLACE,PLUR ,/PUNCT where/ADV they/PRON,PLUR felt/VERB,PAST safe/ADJ ./PUNCT'),
@@ -372,6 +439,7 @@
   // distribution); for rules puzzles rows = {queryIndex: [keyIndex, …]}.
   // ------------------------------------------------------------------
   const LEVELS = [
+    { id:0, key:'intro', title:'Intro', mode:'intro', puzzles:[] },
     { id:1, key:'budget', title:'The budget', mode:'manual', formula:'share<sub>i</sub> = e<sup>score<sub>i</sub></sup> ÷ Σ<sub>j</sub> e<sup>score<sub>j</sub></sup>', cap:'softmax: the shares always sum to 100% · output = Σ share × value',
       intro:['Every word in a sentence gets a spotlight to shine on the other words (and on itself). The spotlight has a fixed brightness: 100%, divided up. Attend more to one word and you must attend less to all the rest.',
              'What a word receives is a blend of the words it lights up, mixed in proportion to their shares. That blend becomes the word\'s new meaning for the next layer of the network.'],
@@ -417,11 +485,64 @@
         { s:'verbs', q:'Send every verb to its subject', rows:{2:[1], 6:[5], 10:[9]}, hint:'IF VERB → NOUN, then match number (PLUR → PLUR, SING → SING), then IF VERB → NEAR so the closest noun wins.', lesson:'Syntax as geometry: a subject is a noun with the right number, close by and usually before the verb. Heads that do exactly this have been found inside trained models.' },
         { s:'prev', q:'Make every word look at the word just before it', rows:{1:[0],2:[1],3:[2],4:[3],5:[4],6:[5],7:[6]}, hint:'IF ANY → BEFORE and IF ANY → NEAR, then push the sharpness to the maximum.', lesson:'This is the “previous-token head”, one of the first circuits identified inside real transformers. Paired with a second head it lets a model copy patterns it has already seen in the text: the beginning of in-context learning.' },
       ]},
-    { id:6, key:'sandbox', title:'Sandbox', mode:'sandbox', scale:true, formula:'Attention(Q, K, V) = softmax( Q K<sup>T</sup> / √d ) V', cap:'free play: nothing is scored',
+    { id:6, key:'layers', title:'Where queries come from', nav:'Two layers', mode:'layers', scale:true, formula:'x′ = x + softmax(<span class="b">q<sub>1</sub></span>·K)·V &nbsp;→&nbsp; <span class="hot">q<sub>2</sub></span> = W<sub>Q</sub> x′', cap:'what a word gathers in one layer is added to its features and shapes the query it forms in the next',
+      intro:['In Level 5 the query came from a rule applied to a word\'s own features. But “it” has almost no features of its own: pronoun, singular, and nothing else. How could it know to look for a thing that is not a container? It must first find out that the sentence says “too big”. That is the job of the layer below.',
+             'Attention layers are stacked. What a word gathers in one layer is <em>added to its features</em>, and the next layer\'s rule reads those richer features to form its query. This is the residual stream: a word\'s representation grows by what it attends to, and every query in a real model is formed this way.'],
+      howto:'Two layers, two rule sets. <b>Layer 1</b> (blue) decides what “it” gathers; what it gathers shows up in the query forge with a strength. <b>Layer 2</b> (red) turns those enriched features into the final query. One rule set must resolve <b>both</b> sentences.',
+      puzzles:[
+        { ss:['trophyBig','trophySmall'], cur:9, q:'Resolve “it” in both sentences with one circuit', targets:[{1:1},{7:1}], hint:'Layer 1: IF PRON → LOOK FOR ADJ, then raise the sharpness so “it” absorbs “big” or “small”. Layer 2: IF PRON → LOOK FOR NOUN and THING; IF BIG → LOOK FOR CONTAINER −3; IF SMALL → LOOK FOR CONTAINER +3.', lesson:'Two layers, one circuit. Layer 1 gave “it” a feature it was not born with, by attending to the adjective; layer 2 read that feature to form a query it could not otherwise have formed. Every query in a real model is built like this, from the features a word started with plus the features it gathered in the layers below. That is why depth matters.' },
+      ]},
+    { id:7, key:'sandbox', title:'Sandbox', mode:'sandbox', scale:true, formula:'Attention(Q, K, V) = softmax( Q K<sup>T</sup> / √d ) V', cap:'free play: nothing is scored',
       intro:['Pick any sentence and any word, then build a query and watch the shares. Click a word to make it the one doing the looking.'],
       howto:'Nothing is scored here. Try the same query on different sentences, or push sharpness to its limits.',
       puzzles:[] },
   ];
+
+  // ------------------------------------------------------------------
+  // Scripted next-token demo for the intro. Attention scores are hand-set
+  // over the words written so far (the causal mask); the candidate lists
+  // are hand-written probabilities for the next word. The written sentence
+  // does not always follow the top candidate: language models sample.
+  // ------------------------------------------------------------------
+  const DEMO = {
+    cat: { label:'The cat sat on the mat…', toks:['The','cat','sat','on','the','mat','because','it','was','tired','.'], steps:[
+      { attn:{0:1}, next:[['cat',31],['dog',24],['old',12],['house',8]] },
+      { attn:{0:1,1:2}, next:[['sat',28],['was',22],['is',14],['purred',9]] },
+      { attn:{1:3,2:1}, next:[['on',44],['down',21],['by',12],['still',6]] },
+      { attn:{2:3,3:1}, next:[['the',71],['a',17],['my',5],['top',3]] },
+      { attn:{3:3,1:1,4:1}, next:[['mat',38],['sofa',19],['floor',15],['windowsill',8]] },
+      { attn:{2:2,1:2,5:1}, next:[['.',30],['because',27],['and',22],[',',12]] },
+      { attn:{5:1,2:2,6:1}, next:[['it',41],['the',18],['he',12],['she',11]] },
+      { attn:{1:3,5:1.5,7:1}, next:[['was',52],['had',16],['felt',12],['is',7]] },
+      { attn:{7:2,1:2,2:1}, next:[['tired',27],['warm',19],['comfortable',14],['soft',12]] },
+      { attn:{1:3,8:1.5,7:1}, next:[['.',78],['and',9],[',',5],['after',3]] },
+      { attn:{9:2,1:1,10:1}, next:null },
+    ]},
+    machines: { label:'Machines learn by paying attention…', toks:['Machines','learn','by','paying','attention','to','context','.'], steps:[
+      { attn:{0:1}, next:[['learn',22],['can',19],['are',17],['that',9]] },
+      { attn:{0:3,1:1}, next:[['by',24],['from',21],['to',18],['faster',7]] },
+      { attn:{1:3,0:1}, next:[['paying',18],['doing',17],['example',15],['watching',11]] },
+      { attn:{2:2,1:2}, next:[['attention',74],['close',9],['for',5],['more',4]] },
+      { attn:{3:3,1:2,0:1}, next:[['to',68],['.',12],[',',7],['on',4]] },
+      { attn:{4:3,3:1}, next:[['context',23],['everything',19],['patterns',16],['words',12]] },
+      { attn:{4:3,0:2,1:1}, next:[['.',61],[',',15],['and',10],['rather',4]] },
+      { attn:{6:2,0:1,7:1}, next:null },
+    ]},
+    glass: { label:'Because the glass was fragile…', toks:['Because','the','glass','was','fragile',',','the','mover','wrapped','it','carefully','.'], steps:[
+      { attn:{0:1}, next:[['the',38],['of',20],['it',14],['she',9]] },
+      { attn:{0:2,1:1}, next:[['weather',14],['glass',12],['storm',10],['road',8]] },
+      { attn:{1:2,0:1,2:1}, next:[['was',46],['had',15],['is',11],['broke',8]] },
+      { attn:{2:3,0:1}, next:[['fragile',24],['broken',21],['empty',15],['thin',9]] },
+      { attn:{2:3,3:1,0:1}, next:[[',',52],['the',14],['and',10],['.',8]] },
+      { attn:{0:2,4:2}, next:[['the',40],['she',16],['he',14],['it',9]] },
+      { attn:{5:2,0:2,2:1}, next:[['mover',18],['movers',14],['box',12],['man',9]] },
+      { attn:{6:2,2:2,4:1}, next:[['wrapped',34],['packed',22],['carried',15],['handled',10]] },
+      { attn:{7:3,2:2,4:1}, next:[['it',58],['the',17],['each',7],['them',6]] },
+      { attn:{2:3,7:1.5,8:1}, next:[['carefully',33],['in',25],['with',14],['tightly',10]] },
+      { attn:{8:3,4:2,2:1}, next:[['.',71],['in',11],['and',7],['before',4]] },
+      { attn:{10:2,2:1,11:1}, next:null },
+    ]},
+  };
 
   // ------------------------------------------------------------------
   // The mechanism itself. Everything the game shows is computed here.
@@ -442,14 +563,27 @@
   }
   function overlap(w, target) { let o = 0; for (const k in target) o += Math.min(w[k] || 0, target[k]); return o; }
   function starsFor(x) { return x >= 0.9 ? 3 : x >= 0.75 ? 2 : x >= 0.6 ? 1 : 0; }
-  function queryFromRules(rules, tok) {
+
+  // A rule turns "what I am" into "what I look for": q = W_Q x. Features
+  // carry a strength so that a feature gathered from other words in an
+  // earlier layer can be partly present; a word's own features have strength 1.
+  const ownFeatures = tok => { const f = {}; tok.f.forEach(x => { f[x] = 1; }); return f; };
+  function queryFromRules(rules, strengths) {
     const q = {};
     for (const r of rules) {
       if (!r.look || !r.w) continue;
-      if (r.if !== 'ANY' && !tok.f.includes(r.if)) continue;
-      q[r.look] = (q[r.look] || 0) + r.w;
+      const s = r.if === 'ANY' ? 1 : (strengths[r.if] || 0);
+      if (s <= 0) continue;
+      q[r.look] = (q[r.look] || 0) + r.w * s;
     }
     return q;
+  }
+  // The residual stream after one layer: own features plus what was gathered,
+  // each other word's features weighted by the share it received.
+  function enriched(tok, toks, w) {
+    const f = ownFeatures(tok);
+    toks.forEach((t, j) => t.f.forEach(x => { f[x] = (f[x] || 0) + w[j]; }));
+    return f;
   }
 
   // ------------------------------------------------------------------
@@ -460,7 +594,8 @@
   try { stars = JSON.parse(localStorage.getItem(STORE) || '{}').stars || {}; } catch (e) { stars = {}; }
   function saveStars() { try { localStorage.setItem(STORE, JSON.stringify({ stars })); } catch (e) {} }
 
-  const state = { level: 0, puzzle: 0, manual: [], q: [{}, {}], scale: 1, rules: [], hint: false, sbSentence: 'cat', sbCur: 7 };
+  const newRule = () => ({ if: 'ANY', look: '', w: 1 });
+  const state = { level: 0, puzzle: 0, manual: [], q: [{}, {}], scale: 1, rules: [], rules1: [], rules2: [], forge: null, hint: false, sbSentence: 'cat', sbCur: 7 };
   const $ = sel => document.querySelector(sel);
   const game = $('#game'), levelNav = $('#levelNav'), intro = $('#intro'), formulaEl = $('#formula'), totalEl = $('#total'), tip = $('#tip'), toast = $('#toast');
   const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -471,25 +606,26 @@
 
   function curLevel() { return LEVELS[state.level]; }
   function curPuzzle() { return curLevel().puzzles[state.puzzle]; }
-  function curTokens() { const L = curLevel(); return L.mode === 'sandbox' ? S[state.sbSentence] : S[curPuzzle().s]; }
+  const sentencesOf = P => P.ss || [P.s];
+  function curTokens() { const L = curLevel(); return L.mode === 'sandbox' ? S[state.sbSentence] : S[sentencesOf(curPuzzle())[0]]; }
   function curIndex() { const L = curLevel(); return L.mode === 'sandbox' ? state.sbCur : curPuzzle().cur; }
 
   function resetControls() {
     const L = curLevel();
-    state.manual = curTokens().map(() => 0);
+    state.manual = L.puzzles.length || L.mode === 'sandbox' ? curTokens().map(() => 0) : [];
     state.q = [{}, {}];
     state.scale = 1;
-    state.rules = [{ if: 'ANY', look: '', w: 1 }];
+    state.rules = [newRule()]; state.rules1 = [newRule()]; state.rules2 = [newRule()];
+    state.forge = null;
     state.hint = false;
     if (L.mode === 'sandbox') { state.sbCur = Math.min(state.sbCur, S[state.sbSentence].length - 1); }
   }
 
-  // Which features may appear in a query palette for the current sentence.
   // The palette is stable across a level (union of its sentences' features),
   // so the same query can be carried from one puzzle to the next.
   function paletteFor() {
     const L = curLevel();
-    const sents = L.mode === 'sandbox' ? Object.values(S) : L.puzzles.map(p => S[p.s]);
+    const sents = L.mode === 'sandbox' ? Object.values(S) : L.puzzles.flatMap(p => sentencesOf(p).map(k => S[k]));
     const present = new Set();
     sents.forEach(toks => toks.forEach(t => t.f.forEach(f => present.add(f))));
     const out = {};
@@ -499,20 +635,35 @@
 
   // Compute shares for the current puzzle in every mode.
   function compute() {
-    const L = curLevel(), toks = curTokens(), cur = curIndex();
+    const L = curLevel(), P = curPuzzle();
     if (L.mode === 'manual') {
       const scores = state.manual.slice();
       return { heads: [{ scores, w: softmax(scores, 1) }] };
     }
     if (L.mode === 'rules') {
-      const scale = state.scale;
+      const toks = curTokens();
       const rows = toks.map((t, i) => {
-        const q = queryFromRules(state.rules, t);
+        const q = queryFromRules(state.rules, ownFeatures(t));
         const scores = toks.map((_, j) => tokenScore(q, toks, j, i));
-        return { q, scores, w: softmax(scores, scale) };
+        return { q, scores, w: softmax(scores, state.scale) };
       });
       return { rows };
     }
+    if (L.mode === 'layers') {
+      const layers = sentencesOf(P).map(key => {
+        const toks = S[key], cur = P.cur;
+        const q1 = queryFromRules(state.rules1, ownFeatures(toks[cur]));
+        const s1 = toks.map((_, j) => tokenScore(q1, toks, j, cur));
+        const w1 = softmax(s1, state.scale);
+        const feats = enriched(toks[cur], toks, w1);
+        const q2 = queryFromRules(state.rules2, feats);
+        const s2 = toks.map((_, j) => tokenScore(q2, toks, j, cur));
+        const w2 = softmax(s2, state.scale);
+        return { key, toks, cur, q1, s1, w1, feats, q2, s2, w2 };
+      });
+      return { layers };
+    }
+    const toks = curTokens(), cur = curIndex();
     const nHeads = L.mode === 'heads' ? 2 : 1;
     const scale = L.scale ? state.scale : 1;
     const heads = [];
@@ -523,10 +674,10 @@
     return { heads };
   }
 
-  // Score the current puzzle: returns {match, stars, perHead}
+  // Score the current puzzle: returns {match, stars, per}
   function evaluate(res) {
     const L = curLevel(), P = curPuzzle();
-    if (L.mode === 'sandbox' || !P) return null;
+    if (!P) return null;
     if (L.mode === 'rules') {
       const rows = Object.keys(P.rows);
       const m = rows.reduce((a, r) => a + P.rows[r].reduce((s, c) => s + res.rows[r].w[c], 0), 0) / rows.length;
@@ -535,18 +686,25 @@
     if (L.mode === 'heads') {
       const per = P.heads.map((h, i) => overlap(res.heads[i].w, h.target));
       const m = Math.min(...per);
-      return { match: m, stars: starsFor(m), perHead: per };
+      return { match: m, stars: starsFor(m), per };
+    }
+    if (L.mode === 'layers') {
+      const per = res.layers.map((r, i) => overlap(r.w2, P.targets[i]));
+      const m = Math.min(...per);
+      return { match: m, stars: starsFor(m), per };
     }
     const m = overlap(res.heads[0].w, P.target);
     return { match: m, stars: starsFor(m) };
   }
 
-  function targetSet() {
+  // Target token indices, for marking cards. `si` selects the sentence in Level 6.
+  function targetSet(si) {
     const L = curLevel(), P = curPuzzle();
     const set = new Set();
     if (!P) return set;
     if (L.mode === 'heads') P.heads.forEach(h => Object.keys(h.target).forEach(k => set.add(+k)));
     else if (L.mode === 'rules') Object.values(P.rows).forEach(cols => cols.forEach(c => set.add(c)));
+    else if (L.mode === 'layers') Object.keys(P.targets[si || 0]).forEach(k => set.add(+k));
     else Object.keys(P.target).forEach(k => set.add(+k));
     return set;
   }
@@ -568,8 +726,9 @@
     levelNav.innerHTML = LEVELS.map((L, i) => {
       const possible = L.puzzles.length * 3;
       const earned = L.puzzles.reduce((a, _, pi) => a + (stars[puzzleKey(i, pi)] || 0), 0);
-      const st = possible ? `${earned}/${possible} ★` : '∞';
-      return `<button type="button" class="level-btn ${i === state.level ? 'active' : ''}" data-level="${i}" aria-label="Level ${L.id}: ${L.title}"><span class="n">${possible ? L.id : '∞'}</span><span class="lbl">${L.title}</span><span class="stars">${st}</span></button>`;
+      const n = L.mode === 'intro' ? '▶' : L.mode === 'sandbox' ? '∞' : L.id;
+      const st = possible ? `${earned}/${possible} ★` : L.mode === 'intro' ? 'start' : 'free';
+      return `<button type="button" class="level-btn ${i === state.level ? 'active' : ''}" data-level="${i}" aria-label="${L.mode === 'intro' ? 'Introduction' : 'Level ' + L.id + ': ' + L.title}"><span class="n">${n}</span><span class="lbl">${L.nav || L.title}</span><span class="stars">${st}</span></button>`;
     }).join('');
     const total = Object.values(stars).reduce((a, b) => a + b, 0);
     totalEl.innerHTML = `<b>★ ${total}</b> / ${maxStars} stars`;
@@ -577,21 +736,26 @@
 
   function renderIntro() {
     const L = curLevel();
+    const isIntro = L.mode === 'intro';
+    intro.style.display = isIntro ? 'none' : '';
+    formulaEl.style.display = isIntro ? 'none' : '';
+    if (isIntro) return;
     intro.innerHTML = `<h2>${L.mode === 'sandbox' ? 'Free play' : 'Level ' + L.id} · ${L.title}</h2>` + L.intro.map(p => `<p>${p}</p>`).join('') + `<div class="howto">${L.howto}</div>`;
     formulaEl.innerHTML = `${L.formula}<span class="cap">${L.cap}</span>`;
   }
 
   function tokenCard(t, i, o) {
+    const cls = o.beamClasses || ['', 'b'];
     const beams = o.mode === 'rules' ? '' :
-      `<div class="beams">${Array.from({ length: o.nHeads }, (_, h) => `<div class="beam ${h ? 'b' : ''}" data-beam="${h}"></div>`).join('')}</div><div class="pct" data-pct></div>`;
+      `<div class="beams">${Array.from({ length: o.nHeads }, (_, h) => `<div class="beam ${cls[h]}" data-beam="${h}"></div>`).join('')}</div><div class="pct" data-pct></div>`;
     const keys = `<div class="keys">${t.f.map(f => `<span data-f="${f}" title="${esc(FEAT[f].d)}">${f}</span>`).join('')}</div>`;
     let ctl = '';
     if (o.mode === 'manual') ctl = `<div class="stepper"><button type="button" data-act="step" data-i="${i}" data-d="-1" aria-label="lower score of ${esc(t.w)}">−</button><output data-score>0</output><button type="button" data-act="step" data-i="${i}" data-d="1" aria-label="raise score of ${esc(t.w)}">+</button></div>`;
     else if (o.mode !== 'rules') ctl = `<div class="score" data-score></div>`;
-    const word = o.clickable
-      ? `<div class="word" data-act="pick" data-i="${i}" role="button" tabindex="0" aria-label="make ${esc(t.w)} the looking word">${esc(t.w)}</div>`
+    const word = o.wordAct
+      ? `<div class="word" data-act="${o.wordAct}" data-i="${i}" role="button" tabindex="0" aria-label="${o.wordAct === 'pick' ? 'make ' + esc(t.w) + ' the looking word' : 'show how ' + esc(t.w) + ' forms its query'}">${esc(t.w)}</div>`
       : `<div class="word">${esc(t.w)}</div>`;
-    return `<div class="tok ${i === o.cur ? 'cur' : ''} ${o.targets.has(i) ? 'target' : ''} ${o.clickable ? 'clickable' : ''}" data-i="${i}">${beams}${word}${keys}${ctl}</div>`;
+    return `<div class="tok ${i === o.cur ? 'cur' : ''} ${o.targets.has(i) ? 'target' : ''} ${o.wordAct ? 'clickable' : ''}" data-i="${i}">${beams}${word}${keys}${ctl}</div>`;
   }
 
   function chip(h, f) {
@@ -604,16 +768,16 @@
   function sliderRow() {
     return `<div class="slider-row"><label for="scale">Sharpness</label><input type="range" id="scale" min="0.25" max="3" step="0.25" value="${state.scale}"><output data-scale>×${state.scale}</output><span class="note">multiplies every score before the softmax · stands in for the 1/√d scale</span></div>`;
   }
-  function rulesPanel() {
+  function rulesPanel(set, withSlider) {
     const pal = paletteFor();
     const ifOpts = ['ANY', ...GROUPS.filter(g => g !== 'position').flatMap(g => pal[g])];
     const lookOpts = GROUPS.flatMap(g => pal[g]);
-    const rows = state.rules.map((r, i) => `<div class="rule">
-        <span class="kw">if I am</span><select data-rule="${i}" data-k="if" aria-label="condition">${ifOpts.map(o => `<option value="${o}" ${o === r.if ? 'selected' : ''}>${o}</option>`).join('')}</select>
-        <span class="kw look">look for</span><select data-rule="${i}" data-k="look" aria-label="feature to look for"><option value="">choose…</option>${lookOpts.map(o => `<option value="${o}" ${o === r.look ? 'selected' : ''}>${POSITIONAL.includes(o) ? '⌖ ' : ''}${o}</option>`).join('')}</select>
-        <span class="wctl"><button type="button" data-act="rw" data-i="${i}" data-d="-1" aria-label="less weight">−</button><output>${r.w > 0 ? '+' : ''}${r.w}</output><button type="button" data-act="rw" data-i="${i}" data-d="1" aria-label="more weight">+</button></span>
-        <button type="button" class="del" data-act="rdel" data-i="${i}" aria-label="remove rule">×</button></div>`).join('');
-    return `<div class="rules">${rows}</div><div class="btn-row"><button type="button" class="btn" data-act="radd" ${state.rules.length >= 6 ? 'disabled' : ''}>+ add rule</button></div>${sliderRow()}`;
+    const rows = state[set].map((r, i) => `<div class="rule">
+        <span class="kw">if I am</span><select data-set="${set}" data-rule="${i}" data-k="if" aria-label="condition">${ifOpts.map(o => `<option value="${o}" ${o === r.if ? 'selected' : ''}>${o}</option>`).join('')}</select>
+        <span class="kw look">look for</span><select data-set="${set}" data-rule="${i}" data-k="look" aria-label="feature to look for"><option value="">choose…</option>${lookOpts.map(o => `<option value="${o}" ${o === r.look ? 'selected' : ''}>${POSITIONAL.includes(o) ? '⌖ ' : ''}${o}</option>`).join('')}</select>
+        <span class="wctl"><button type="button" data-act="rw" data-set="${set}" data-i="${i}" data-d="-1" aria-label="less weight">−</button><output>${r.w > 0 ? '+' : ''}${r.w}</output><button type="button" data-act="rw" data-set="${set}" data-i="${i}" data-d="1" aria-label="more weight">+</button></span>
+        <button type="button" class="del" data-act="rdel" data-set="${set}" data-i="${i}" aria-label="remove rule">×</button></div>`).join('');
+    return `<div class="rules">${rows}</div><div class="btn-row"><button type="button" class="btn" data-act="radd" data-set="${set}" ${state[set].length >= 6 ? 'disabled' : ''}>+ add rule</button></div>${withSlider ? sliderRow() : ''}`;
   }
   function heatmap(toks, P) {
     const n = toks.length;
@@ -623,22 +787,67 @@
     return `<div class="heat-wrap"><div class="heat" style="grid-template-columns:auto repeat(${n},30px)">${cols}${rows}</div></div>
       <div class="heat-legend"><span>0%</span><span class="ramp"></span><span>100%</span><span class="tg" style="margin-left:10px"></span><span>target cell</span></div>`;
   }
+  // The query forge: what a word is → the rules that fire → what it looks for.
+  function forgeHTML(name, feats, rules, q, own) {
+    const fe = Object.entries(feats).filter(([, s]) => s >= 0.02).sort((a, b) => b[1] - a[1]).slice(0, 10);
+    const near1 = s => Math.abs(s - 1) < 0.005;
+    const acquired = f => !own[f]; // gathered from other words, not born with
+    const fired = rules.filter(r => r.look && r.w && (r.if === 'ANY' || (feats[r.if] || 0) >= 0.02));
+    const qe = Object.entries(q).filter(([, w]) => Math.abs(w) > 0.005).sort((a, b) => Math.abs(b[1]) - Math.abs(a[1]));
+    return `<div class="forge">
+      <div class="forge-col"><div class="forge-h">what “${esc(name)}” is</div><div class="forge-chips">${fe.map(([f, s]) => `<span class="fchip ${acquired(f) ? 'acq' : ''}" title="${acquired(f) ? 'gathered in layer 1' : 'its own feature'}">${f}${acquired(f) || !near1(s) ? `<i>×${s.toFixed(2)}</i>` : ''}</span>`).join('') || '<span class="forge-none">nothing</span>'}</div></div>
+      <div class="forge-arrow">→</div>
+      <div class="forge-col"><div class="forge-h">rules that fire</div>${fired.length ? fired.map(r => { const s = r.if === 'ANY' ? 1 : feats[r.if]; const show = r.if !== 'ANY' && (acquired(r.if) || !near1(s)); return `<div class="forge-rule">${r.if}${show ? ` <i>×${s.toFixed(2)}</i>` : ''} → ${r.look} ${r.w > 0 ? '+' : ''}${r.w}${show ? ` = ${(r.w * s).toFixed(2)}` : ''}</div>`; }).join('') : '<span class="forge-none">none yet</span>'}</div>
+      <div class="forge-arrow">→</div>
+      <div class="forge-col"><div class="forge-h">what it looks for</div><div class="forge-chips">${qe.map(([f, w]) => `<span class="fchip ${w > 0 ? 'pos' : 'neg'}">${f} ${w > 0 ? '+' : ''}${fmt(w)}</span>`).join('') || '<span class="forge-none">an empty query: it attends evenly</span>'}</div></div>
+    </div>`;
+  }
 
   function goalText() {
     const L = curLevel(), P = curPuzzle(), toks = curTokens();
-    const name = i => `<b>${esc(toks[i].w)}</b>`;
+    const name = (i, tk) => `<b>${esc((tk || toks)[i].w)}</b>`;
     if (L.mode === 'heads') return P.heads.map((h, i) => `<span class="${i ? 'hb' : 'ha'}">${i ? 'B' : 'A'}</span>: ${h.q} → ${Object.keys(h.target).map(k => name(+k)).join(' + ')}`).join('<br>');
-    if (L.mode === 'rules') return Object.keys(P.rows).map(r => `${name(+r)} → ${P.rows[r].map(name).join(', ')}`).join(' · ');
+    if (L.mode === 'rules') return Object.keys(P.rows).map(r => `${name(+r)} → ${P.rows[r].map(c => name(c)).join(', ')}`).join(' · ');
+    if (L.mode === 'layers') return sentencesOf(P).map((k, i) => `<span class="ha">${'AB'[i]}</span>: “${esc(S[k][P.cur].w)}” → ${Object.keys(P.targets[i]).map(t => name(+t, S[k])).join(' + ')}`).join('<br>');
     const ks = Object.keys(P.target).map(k => +k);
-    return ks.length === 1 ? `Put the spotlight on ${name(ks[0])}.` : `Split the spotlight evenly between ${ks.map(name).join(' and ')}.`;
+    return ks.length === 1 ? `Put the spotlight on ${name(ks[0])}.` : `Split the spotlight evenly between ${ks.map(k => name(k)).join(' and ')}.`;
+  }
+
+  function introHTML() {
+    return `<section class="welcome"><p class="eyebrow">Welcome</p><h2>Every word gets a spotlight</h2>
+      <p>A transformer reads a sentence the way a room full of people might: every word looks at every other word at once and decides how much of its attention each one deserves. The 2017 paper that introduced this was called <em>Attention Is All You Need</em>, and the title was barely an exaggeration. This one mechanism, stacked and repeated, is most of what a large language model is.</p>
+      <p>Watch one write. Each new word shines its spotlight back over what came before, gathers what it finds, and from that blend guesses what comes next. It cannot see ahead: the future is behind the curtain.</p></section>
+      <div class="panel"><h3>Watch a transformer write <span class="sub">every new word looks back, gathers, and guesses</span></h3>
+        <div class="demo" id="demo">
+          <div class="demo-bar"><select id="demoSentence" aria-label="sentence">${Object.keys(DEMO).map(k => `<option value="${k}" ${k === demo.key ? 'selected' : ''}>${esc(DEMO[k].label)}</option>`).join('')}</select>
+            <button type="button" class="btn" data-demo="toggle" id="demoPlay">${demo.playing ? 'pause' : 'play'}</button><button type="button" class="btn" data-demo="step">step</button><button type="button" class="btn" data-demo="restart">restart</button>
+            <label for="demoSpeed">speed <select id="demoSpeed"><option value="0.6" ${demo.speed === 0.6 ? 'selected' : ''}>slow</option><option value="1" ${demo.speed === 1 ? 'selected' : ''}>normal</option><option value="1.8" ${demo.speed === 1.8 ? 'selected' : ''}>fast</option></select></label></div>
+          <div class="demo-stage"><svg class="arcs" aria-hidden="true"></svg><div class="demo-tokens" data-dtokens></div><div class="demo-curtain">▒ the future is behind the curtain</div></div>
+          <div class="demo-caption" data-caption aria-live="polite"></div>
+          <div class="demo-pred off" data-pred><div class="pred-title">next word?</div><div class="pred-bars" data-bars></div><div class="pred-note" data-note></div></div>
+        </div></div>
+      <section class="welcome"><h2 class="small">How the game works</h2>
+      <p>The spotlight is aimed by two things: a question the looking word asks (its <em>query</em>) and an answer every other word holds up (its <em>key</em>). How well they match decides each share. What the word gathers (the <em>values</em>) becomes its new meaning. Over six levels you build each of these by hand, and each level is one piece of the formula.</p>
+      <ol class="levels-list">
+        <li><b>1 · The budget</b>A fixed 100%, shared out: raise one word and the rest must fall.</li>
+        <li><b>2 · Keys &amp; queries</b>Describe what you want; every word answers by how well it matches.</li>
+        <li><b>3 · Sharpness</b>Stretch the gaps. It snaps to a leader but cannot break a tie.</li>
+        <li><b>4 · Two heads</b>Ask two questions at once with two independent spotlights.</li>
+        <li><b>5 · One rule for all</b>Write the rule every word applies to itself, and see the whole matrix.</li>
+        <li><b>6 · Where queries come from</b>Stack two layers: what a word gathers below shapes the question it asks above.</li>
+      </ol>
+      <div class="btn-row"><button type="button" class="btn primary" data-act="start">Start level 1 →</button><span class="chip-note" style="align-self:center">stars are saved in this browser</span></div></section>`;
   }
 
   function render() {
-    const L = curLevel(), toks = curTokens(), P = curPuzzle();
-    const targets = targetSet(), cur = curIndex();
+    demoStop();
+    const L = curLevel(), P = curPuzzle();
+    if (L.mode === 'intro') { game.innerHTML = introHTML(); demoReset(); return; }
+    const toks = curTokens(), targets = targetSet(), cur = curIndex();
     const nHeads = L.mode === 'heads' ? 2 : 1;
     const legend = L.mode === 'manual' ? 'chips under each word are its <b>key</b>: unused at this level, but look at them' :
-      L.mode === 'rules' ? 'chips under each word are its features; the rules read them to build that word\'s query' :
+      L.mode === 'rules' ? 'chips under each word are its features; the rules read them to build that word\'s query · <b>click a word</b> to see its query forged' :
+      L.mode === 'layers' ? 'chips are each word\'s own features · <b>blue</b> beams: what “me” gathers in layer 1 · <b>red</b> beams: where it finally looks' :
       'chips under each word are its <b>key</b> · <b>green</b> = wanted by your query · <b>red</b> = repelled';
     let html = '';
     if (L.mode === 'sandbox') {
@@ -647,19 +856,29 @@
       const done = L.puzzles.map((_, pi) => `<i class="${stars[puzzleKey(state.level, pi)] ? 'done' : ''} ${pi === state.puzzle ? 'now' : ''}"></i>`).join('');
       html += `<div class="puzzle-bar"><span class="which">Puzzle ${state.puzzle + 1} of ${L.puzzles.length}<span class="dots">${done}</span></span><div class="question"><span class="q">?</span> ${P.q}</div></div>`;
     }
-    html += `<div class="stage"><div class="sentence">${toks.map((t, i) => tokenCard(t, i, { cur, targets, nHeads, mode: L.mode, clickable: L.mode === 'sandbox' })).join('')}</div><div class="legend-keys">${legend}</div></div>`;
+    if (L.mode === 'layers') {
+      sentencesOf(P).forEach((k, si) => {
+        html += `<div class="stage" data-s="${k}"><div class="stage-label">Sentence ${'AB'[si]} · <b>${esc(S[k].map(t => t.w).join(' '))}</b></div><div class="sentence">${S[k].map((t, i) => tokenCard(t, i, { cur: P.cur, targets: targetSet(si), nHeads: 2, mode: L.mode, beamClasses: ['b', ''] })).join('')}</div>${si ? `<div class="legend-keys">${legend}</div>` : ''}</div>`;
+      });
+    } else {
+      html += `<div class="stage"><div class="sentence">${toks.map((t, i) => tokenCard(t, i, { cur, targets, nHeads, mode: L.mode, wordAct: L.mode === 'sandbox' ? 'pick' : L.mode === 'rules' ? 'forge' : null })).join('')}</div><div class="legend-keys">${legend}</div></div>`;
+    }
 
     if (L.mode === 'query' || L.mode === 'sandbox') {
       html += `<div class="panel"><h3><span class="swatch"></span>Query for “${esc(toks[cur].w)}” <span class="sub">what is it looking for?</span></h3>${chipPanel(0)}${L.scale ? sliderRow() : ''}</div>`;
     } else if (L.mode === 'heads') {
       html += `<div class="heads">${[0, 1].map(h => `<div class="panel ${h ? 'b' : 'a'}"><h3><span class="swatch ${h ? 'b' : ''}"></span>Head ${h ? 'B' : 'A'} <span class="sub">${P.heads[h].q}</span></h3>${chipPanel(h)}</div>`).join('')}</div><div class="panel" style="margin-top:0.75rem">${sliderRow()}</div>`;
     } else if (L.mode === 'rules') {
-      html += `<div class="panel"><h3>Rules <span class="sub">every word applies them to itself</span></h3>${rulesPanel()}</div>`;
+      html += `<div class="panel"><h3>Rules <span class="sub">every word applies them to itself</span></h3>${rulesPanel('rules', true)}</div>`;
       html += `<div class="panel"><h3>Attention matrix <span class="sub">rows look, columns are looked at</span></h3>${heatmap(toks, P)}</div>`;
+      html += `<div class="panel"><h3><span class="swatch b"></span>Query forge <span class="sub">how one word turns what it is into what it looks for · q = W<sub>Q</sub> x</span></h3><div data-forge="0"></div><div class="forge-note">click any word above to forge its query</div></div>`;
+    } else if (L.mode === 'layers') {
+      html += `<div class="heads"><div class="panel b"><h3><span class="swatch b"></span>Layer 1 <span class="sub">what “${esc(S[P.ss[0]][P.cur].w)}” gathers first</span></h3>${rulesPanel('rules1', false)}</div><div class="panel a"><h3><span class="swatch"></span>Layer 2 <span class="sub">where it looks with what it now knows</span></h3>${rulesPanel('rules2', false)}</div></div><div class="panel" style="margin-top:0.75rem">${sliderRow()}</div>`;
+      html += `<div class="forge-grid">${sentencesOf(P).map((k, si) => `<div class="panel"><h3><span class="swatch b"></span>Query forge · sentence ${'AB'[si]} <span class="sub">after layer 1, before layer 2</span></h3><div data-forge="${si}"></div></div>`).join('')}</div>`;
     }
 
     // Output + goal
-    const outTitle = L.mode === 'rules' ? 'Target rows' : `What “${esc(toks[cur].w)}” receives`;
+    const outTitle = L.mode === 'rules' ? 'Target rows' : L.mode === 'layers' ? 'What “it” finally receives' : `What “${esc(toks[cur].w)}” receives`;
     html += `<div class="out"><div class="panel"><h3>${outTitle} <span class="sub">${L.mode === 'rules' ? 'share landing on the target cells' : 'the blend of values, weighted by share'}</span></h3><div data-blend></div><div class="blend-eq" data-eq></div></div>`;
     if (L.mode !== 'sandbox') {
       html += `<div class="panel goal"><h3>Goal</h3><div class="target">${goalText()}</div><div class="match"><span data-match>0%</span><small>match</small></div><div class="stars" data-stars></div><div class="thresh">★ 60% · ★★ 75% · ★★★ 90%</div><div class="msg" data-msg></div>${state.hint ? `<div class="hint">${P.hint}</div>` : ''}</div>`;
@@ -668,15 +887,14 @@
     if (L.mode !== 'sandbox') {
       html += `<div class="lesson" data-lesson><b>What just happened</b>${P.lesson}</div>`;
       const last = state.puzzle === L.puzzles.length - 1, lastLevel = state.level === LEVELS.length - 2;
-      html += `<div class="btn-row"><button type="button" class="btn" data-act="prev" ${state.level === 0 && state.puzzle === 0 ? 'disabled' : ''}>← back</button><button type="button" class="btn" data-act="hint">${state.hint ? 'hide hint' : 'hint'}</button><button type="button" class="btn" data-act="reset">reset board</button><span style="flex:1"></span><button type="button" class="btn primary" data-act="next" data-next disabled>${last ? (lastLevel ? 'to the sandbox →' : 'next level →') : 'next puzzle →'}</button></div>`;
+      html += `<div class="btn-row"><button type="button" class="btn" data-act="prev">← back</button><button type="button" class="btn" data-act="hint">${state.hint ? 'hide hint' : 'hint'}</button><button type="button" class="btn" data-act="reset">reset board</button><span style="flex:1"></span><button type="button" class="btn primary" data-act="next" data-next disabled>${last ? (lastLevel ? 'to the sandbox →' : 'next level →') : 'next puzzle →'}</button></div>`;
     }
     game.innerHTML = html;
     update();
   }
 
-  function segments(w, tset) {
+  function segments(w, tset, toks) {
     const order = w.map((v, i) => [v, i]).sort((a, b) => b[0] - a[0]);
-    const toks = curTokens();
     let html = '', rest = 0, n = 0;
     for (const [v, i] of order) {
       if (v < 0.02 || n >= 8) { rest += v; continue; }
@@ -686,12 +904,10 @@
     if (rest > 0.001) html += `<span class="rest" style="width:${(rest * 100).toFixed(2)}%" title="everything else ${pct(rest)}">${rest > 0.12 ? 'rest' : ''}</span>`;
     return html;
   }
-  function equation(w, h, tset) {
-    const toks = curTokens(), cur = curIndex();
+  function equation(w, label, tset, toks, cur) {
     const order = w.map((v, i) => [v, i]).sort((a, b) => b[0] - a[0]).slice(0, 4);
     const terms = order.map(([v, i]) => `<span class="${tset.has(i) ? 'tg' : ''}">${v.toFixed(2)}·${esc(toks[i].w)}</span>`).join(' + ');
-    const head = h === null ? '' : `<span class="${h ? 'hb' : 'ha'}">${h ? 'B' : 'A'}:</span> `;
-    return `${head}<b>${esc(toks[cur].w)}</b> = ${terms} + …`;
+    return `${label || ''}<b>${esc(toks[cur].w)}</b> = ${terms} + …`;
   }
   function headTargets(h) {
     const L = curLevel(), P = curPuzzle(), set = new Set();
@@ -700,11 +916,31 @@
     Object.keys(t).forEach(k => set.add(+k));
     return set;
   }
+  function paintTokens(stage, toks, heads, cls, queries, mode) {
+    toks.forEach((t, i) => {
+      const tok = stage.querySelector(`.tok[data-i="${i}"]`);
+      heads.forEach((H, h) => { const beam = tok.querySelector(`[data-beam="${h}"]`); if (!beam) return; const px = H.w[i] * 72; beam.style.height = (px < 1 ? 0 : px.toFixed(1)) + 'px'; beam.classList.toggle('on', H.w[i] > 0.02); });
+      const pctEl = tok.querySelector('[data-pct]'); if (pctEl) pctEl.innerHTML = heads.map((H, h) => `<span class="${cls[h]}">${pct(H.w[i])}</span>`).join('');
+      const wmax = Math.max(...heads.map(H => H.w[i]));
+      tok.querySelector('.word').style.background = `rgba(230,57,70,${(wmax * 0.5).toFixed(3)})`;
+      const scoreEl = tok.querySelector('[data-score]');
+      if (scoreEl) {
+        if (mode === 'manual') scoreEl.textContent = state.manual[i];
+        else scoreEl.innerHTML = 'q·k ' + heads.map((H, h) => `<span class="${cls[h]}">${fmt(H.scores[i])}</span>`).join(' ');
+      }
+      if (mode === 'manual') { tok.querySelector('[data-d="1"]').disabled = state.manual[i] >= 5; tok.querySelector('[data-d="-1"]').disabled = state.manual[i] <= -3; }
+      tok.querySelectorAll('.keys span').forEach(k => {
+        let w = 0; queries.forEach(q => { w += q[k.dataset.f] || 0; });
+        k.classList.toggle('hit', mode !== 'manual' && w > 0.005); k.classList.toggle('miss', mode !== 'manual' && w < -0.005);
+      });
+    });
+  }
 
   function update() {
-    const L = curLevel(), toks = curTokens(), P = curPuzzle();
+    const L = curLevel(), P = curPuzzle();
+    if (L.mode === 'intro') return;
+    const toks = curTokens();
     const res = compute(), ev = evaluate(res);
-    // chips + slider
     game.querySelectorAll('.chip').forEach(el => {
       const [h, f] = el.dataset.chip.split(':'); const w = state.q[+h][f] || 0;
       el.querySelector('.w').textContent = (w > 0 ? '+' : '') + w;
@@ -718,30 +954,26 @@
       game.querySelectorAll('.heat .cell').forEach(c => { const w = res.rows[+c.dataset.r].w[+c.dataset.c]; c.style.background = ramp(w); c.dataset.w = w; });
       blend.innerHTML = Object.keys(P.rows).map(r => {
         const w = res.rows[r].w, tset = new Set(P.rows[r]);
-        return `<div class="blend-eq" style="margin:0 0 4px"><b>${esc(toks[r].w)}</b> → ${P.rows[r].map(c => `<span class="tg">${esc(toks[c].w)} ${pct(w[c])}</span>`).join(' + ')}</div><div class="blend" style="margin-bottom:8px">${segments(w, tset)}</div>`;
+        return `<div class="blend-eq" style="margin:0 0 4px"><b>${esc(toks[r].w)}</b> → ${P.rows[r].map(c => `<span class="tg">${esc(toks[c].w)} ${pct(w[c])}</span>`).join(' + ')}</div><div class="blend" style="margin-bottom:8px">${segments(w, tset, toks)}</div>`;
       }).join('');
       eq.innerHTML = '';
-    } else {
-      toks.forEach((t, i) => {
-        const tok = game.querySelector(`.tok[data-i="${i}"]`);
-        res.heads.forEach((H, h) => { const beam = tok.querySelector(`[data-beam="${h}"]`); const px = H.w[i] * 72; beam.style.height = (px < 1 ? 0 : px.toFixed(1)) + 'px'; beam.classList.toggle('on', H.w[i] > 0.02); });
-        tok.querySelector('[data-pct]').innerHTML = res.heads.map((H, h) => `<span class="${h ? 'b' : 'a'}">${pct(H.w[i])}</span>`).join('');
-        const wmax = Math.max(...res.heads.map(H => H.w[i]));
-        tok.querySelector('.word').style.background = `rgba(230,57,70,${(wmax * 0.5).toFixed(3)})`;
-        const scoreEl = tok.querySelector('[data-score]');
-        if (scoreEl) {
-          if (L.mode === 'manual') scoreEl.textContent = state.manual[i];
-          else scoreEl.innerHTML = 'q·k ' + res.heads.map((H, h) => `<span class="${h ? 'b' : 'a'}">${fmt(H.scores[i])}</span>`).join(' ');
-        }
-        if (L.mode === 'manual') { tok.querySelector('[data-d="1"]').disabled = state.manual[i] >= 5; tok.querySelector('[data-d="-1"]').disabled = state.manual[i] <= -3; }
-        tok.querySelectorAll('.keys span').forEach(k => {
-          let w = 0; state.q.forEach(q => { w += q[k.dataset.f] || 0; });
-          k.classList.toggle('hit', L.mode !== 'manual' && w > 0); k.classList.toggle('miss', L.mode !== 'manual' && w < 0);
-        });
+      const f = state.forge === null ? +Object.keys(P.rows)[0] : state.forge;
+      game.querySelectorAll('.tok').forEach(t => t.classList.toggle('forge-sel', +t.dataset.i === f));
+      game.querySelector('[data-forge="0"]').innerHTML = forgeHTML(toks[f].w, ownFeatures(toks[f]), state.rules, res.rows[f].q, ownFeatures(toks[f]));
+    } else if (L.mode === 'layers') {
+      res.layers.forEach((r, si) => {
+        const stage = game.querySelector(`.stage[data-s="${r.key}"]`);
+        paintTokens(stage, r.toks, [{ w: r.w1, scores: r.s1 }, { w: r.w2, scores: r.s2 }], ['b', 'a'], [r.q2], L.mode);
+        game.querySelector(`[data-forge="${si}"]`).innerHTML = forgeHTML(r.toks[r.cur].w, r.feats, state.rules2, r.q2, ownFeatures(r.toks[r.cur]));
       });
+      blend.innerHTML = res.layers.map((r, si) => `<div class="blend-eq" style="margin:0 0 4px"><span class="ha">${'AB'[si]}</span> · …${esc(r.toks.slice(-3).map(t => t.w).join(' '))}</div><div class="blend" style="margin-bottom:8px">${segments(r.w2, targetSet(si), r.toks)}</div>`).join('');
+      eq.innerHTML = res.layers.map((r, si) => equation(r.w2, `<span class="ha">${'AB'[si]}:</span> `, targetSet(si), r.toks, r.cur)).join('<br>');
+    } else {
+      const cur = curIndex();
+      paintTokens(game.querySelector('.stage'), toks, res.heads, ['a', 'b'], state.q, L.mode);
       const multi = res.heads.length > 1;
-      blend.innerHTML = res.heads.map((H, h) => (multi ? `<div class="blend-eq" style="margin:0 0 4px"><span class="${h ? 'hb' : 'ha'}">head ${h ? 'B' : 'A'}</span></div>` : '') + `<div class="blend" ${multi ? 'style="margin-bottom:8px"' : ''}>${segments(H.w, headTargets(h))}</div>`).join('');
-      eq.innerHTML = res.heads.map((H, h) => equation(H.w, multi ? h : null, headTargets(h))).join('<br>');
+      blend.innerHTML = res.heads.map((H, h) => (multi ? `<div class="blend-eq" style="margin:0 0 4px"><span class="${h ? 'hb' : 'ha'}">head ${h ? 'B' : 'A'}</span></div>` : '') + `<div class="blend" ${multi ? 'style="margin-bottom:8px"' : ''}>${segments(H.w, headTargets(h), toks)}</div>`).join('');
+      eq.innerHTML = res.heads.map((H, h) => equation(H.w, multi ? `<span class="${h ? 'hb' : 'ha'}">${h ? 'B' : 'A'}:</span> ` : '', headTargets(h), toks, cur)).join('<br>');
     }
 
     if (!ev) return;
@@ -750,7 +982,7 @@
     game.querySelector('[data-match]').textContent = pct(ev.match);
     game.querySelector('[data-stars]').innerHTML = '★'.repeat(ev.stars) + `<span class="off">${'★'.repeat(3 - ev.stars)}</span>`;
     const msgEl = game.querySelector('[data-msg]');
-    const per = ev.perHead ? ` (A ${pct(ev.perHead[0])} · B ${pct(ev.perHead[1])})` : '';
+    const per = ev.per ? ` (A ${pct(ev.per[0])} · B ${pct(ev.per[1])})` : '';
     const msgs = ['Not yet: the target needs at least 60% of the spotlight.', 'Passed. Widen the lead for more stars.', 'Good. Can you push it past 90%?', 'Perfect. The spotlight is where it should be.'];
     msgEl.textContent = msgs[ev.stars] + per;
     msgEl.classList.toggle('ok', ev.stars > 0);
@@ -766,6 +998,98 @@
   }
 
   // ------------------------------------------------------------------
+  // The next-token demo: a scripted, causal, sampled write-out.
+  // ------------------------------------------------------------------
+  const demo = { key: 'cat', i: 0, phase: 0, timer: null, playing: true, speed: 1, lastW: null };
+  const PHASES = ['appear', 'attend', 'predict', 'choose'];
+  const PHASE_MS = { appear: 450, attend: 1100, predict: 1100, choose: 900 };
+  function demoStop() { clearTimeout(demo.timer); demo.timer = null; }
+  function demoSchedule(ms) { demoStop(); demo.timer = setTimeout(demoTick, ms / demo.speed); }
+  function demoReset(key) {
+    demoStop();
+    if (key) demo.key = key;
+    demo.i = 0; demo.phase = 0; demo.lastW = null;
+    if (!$('#demo')) return;
+    demoTokens(); demoArcs(null); demoPred(null); demoCaption('');
+    demoSchedule(prefersReduced() ? 0 : 300);
+  }
+  const prefersReduced = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function demoCaption(html) { const c = $('[data-caption]'); if (c) c.innerHTML = html; }
+  function demoTokens() {
+    const D = DEMO[demo.key], box = $('[data-dtokens]'); if (!box) return;
+    box.innerHTML = D.toks.map((w, j) => j <= demo.i
+      ? `<div class="dtok ${j === demo.i ? 'cur new' : ''}" data-j="${j}"><div class="pct" data-dpct></div><div class="word">${esc(w)}</div></div>`
+      : `<div class="dtok ghost" data-j="${j}"><div class="pct"></div><div class="word">${'·'.repeat(Math.max(2, Math.min(w.length, 8)))}</div></div>`).join('');
+  }
+  function demoWeights() {
+    const step = DEMO[demo.key].steps[demo.i];
+    const scores = []; for (let j = 0; j <= demo.i; j++) scores.push(step.attn[j] || 0);
+    return softmax(scores, 1);
+  }
+  function demoArcs(w) {
+    const svg = $('#demo svg.arcs'); if (!svg) return;
+    demo.lastW = w;
+    svg.innerHTML = '';
+    $('#demo').querySelectorAll('[data-dpct]').forEach(el => { el.textContent = ''; });
+    if (!w) return;
+    const stage = svg.parentElement.getBoundingClientRect();
+    const box = j => { const r = $(`#demo .dtok[data-j="${j}"] .word`).getBoundingClientRect(); return { x: r.left + r.width / 2 - stage.left, y: r.top - stage.top }; };
+    const from = box(demo.i);
+    const paths = [];
+    for (let j = 0; j <= demo.i; j++) {
+      const el = $(`#demo .dtok[data-j="${j}"] [data-dpct]`); if (el) el.textContent = pct(w[j]);
+      if (j === demo.i || w[j] < 0.03) continue;
+      const to = box(j), dx = Math.abs(from.x - to.x), h = Math.min(72, 22 + Math.sqrt(dx) * 4 + Math.abs(from.y - to.y) * 0.3);
+      const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      p.setAttribute('d', `M ${from.x} ${from.y - 4} Q ${(from.x + to.x) / 2} ${Math.min(from.y, to.y) - h} ${to.x} ${to.y - 4}`);
+      p.setAttribute('stroke-width', (1 + 8 * w[j]).toFixed(1));
+      p.setAttribute('stroke-opacity', (0.2 + 0.8 * w[j]).toFixed(2));
+      svg.appendChild(p); paths.push(p);
+    }
+    if (prefersReduced()) return;
+    paths.forEach(p => { const len = p.getTotalLength(); p.style.strokeDasharray = len; p.style.strokeDashoffset = len; });
+    svg.getBoundingClientRect();
+    paths.forEach(p => { p.style.transition = 'stroke-dashoffset .55s ease'; p.style.strokeDashoffset = 0; });
+  }
+  function demoPred(next, chosen) {
+    const box = $('[data-pred]'), bars = $('[data-bars]'), note = $('[data-note]'); if (!box) return;
+    if (!next) { box.classList.add('off'); bars.innerHTML = ''; note.textContent = ''; return; }
+    box.classList.remove('off');
+    const rest = Math.max(0, 100 - next.reduce((a, [, p]) => a + p, 0));
+    const rows = [...next, ['everything else', rest, true]];
+    if (bars.children.length !== rows.length) {
+      bars.innerHTML = rows.map(([w, p, r]) => `<div class="pred-row ${r ? 'rest' : ''}" data-w="${esc(w)}"><span class="pw">${esc(w)}</span><span class="pbar"><i style="width:0%"></i></span><span class="pp">${p}%</span></div>`).join('');
+      bars.getBoundingClientRect();
+      rows.forEach(([, p], k) => { bars.children[k].querySelector('i').style.width = p + '%'; });
+    }
+    [...bars.children].forEach(r => r.classList.toggle('chosen', chosen !== null && r.dataset.w === chosen));
+    note.textContent = chosen !== null && chosen !== next[0][0] ? `“${chosen}” was sampled, not the top choice: language models roll weighted dice` : '';
+  }
+  function demoTick() {
+    const D = DEMO[demo.key]; if (!$('#demo')) return;
+    const step = D.steps[demo.i], ph = PHASES[demo.phase], tok = D.toks[demo.i];
+    let ms = PHASE_MS[ph];
+    if (ph === 'appear') { demoTokens(); demoArcs(null); demoPred(null); demoCaption(`<b>“${esc(tok)}”</b> is written. Everything after it is still behind the curtain.`); }
+    else if (ph === 'attend') {
+      const w = demoWeights(); demoArcs(w);
+      const top = w.map((v, j) => [v, j]).sort((a, b) => b[0] - a[0]).slice(0, 3).map(([v, j]) => `${esc(D.toks[j])} ${pct(v)}`).join(' · ');
+      demoCaption(`<b>“${esc(tok)}”</b> shines its spotlight back over what came before: ${top}.`);
+    }
+    else if (ph === 'predict') {
+      if (step.next) { demoPred(step.next, null); demoCaption(`From that blend, <b>“${esc(tok)}”</b> scores every word in the vocabulary as the possible next word.`); }
+      else { demoCaption('The sentence is complete: the model would stop here. Watching again in a moment…'); ms = 3200; }
+    }
+    else {
+      const chosen = D.toks[demo.i + 1]; demoPred(step.next, chosen);
+      demoCaption(chosen === step.next[0][0] ? `The top choice <b>“${esc(chosen)}”</b> is written next, and the loop begins again.` : `<b>“${esc(chosen)}”</b> is drawn from the distribution and written next: not the top choice this time.`);
+    }
+    if (ph === 'predict' && !step.next) { demo.i = 0; demo.phase = 0; }
+    else { demo.phase++; if (demo.phase === PHASES.length) { demo.phase = 0; demo.i++; } }
+    if (demo.playing) demoSchedule(ms);
+  }
+  window.addEventListener('resize', () => { if ($('#demo') && demo.lastW) demoArcs(demo.lastW); });
+
+  // ------------------------------------------------------------------
   // Navigation and events
   // ------------------------------------------------------------------
   let booted = false; // scroll to the intro on navigation, never on first load
@@ -775,9 +1099,9 @@
   function goTo(level, puzzle, keep) {
     const sameLevel = level === state.level;
     state.level = level; state.puzzle = puzzle;
-    if (keep && sameLevel) { state.manual = curTokens().map(() => 0); state.hint = false; } else resetControls();
+    if (keep && sameLevel) { state.manual = curTokens().map(() => 0); state.hint = false; state.forge = null; } else resetControls();
     renderNav(); renderIntro(); render();
-    if (booted) intro.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (booted) (curLevel().mode === 'intro' ? levelNav : intro).scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
   function advance(d) {
     let l = state.level, p = state.puzzle + d;
@@ -789,24 +1113,35 @@
   levelNav.addEventListener('click', e => { const b = e.target.closest('[data-level]'); if (b) goTo(+b.dataset.level, 0); });
 
   game.addEventListener('click', e => {
-    const b = e.target.closest('[data-act]'); if (!b || b.disabled) return;
+    const b = e.target.closest('[data-act],[data-demo]'); if (!b || b.disabled) return;
+    if (b.dataset.demo) {
+      const a = b.dataset.demo;
+      if (a === 'toggle') { demo.playing = !demo.playing; b.textContent = demo.playing ? 'pause' : 'play'; if (demo.playing) demoSchedule(0); else demoStop(); }
+      else if (a === 'step') { demo.playing = false; $('#demoPlay').textContent = 'play'; demoStop(); demoTick(); }
+      else if (a === 'restart') { demoReset(); }
+      return;
+    }
     const a = b.dataset.act, d = +b.dataset.d, i = +b.dataset.i;
     if (a === 'step') { state.manual[i] = Math.max(-3, Math.min(5, state.manual[i] + d)); update(); }
     else if (a === 'chip') { const q = state.q[+b.dataset.h], f = b.dataset.f; q[f] = Math.max(-3, Math.min(3, (q[f] || 0) + d)); if (!q[f]) delete q[f]; update(); }
-    else if (a === 'rw') { const r = state.rules[i]; r.w = Math.max(-3, Math.min(3, r.w + d)); b.parentElement.querySelector('output').textContent = (r.w > 0 ? '+' : '') + r.w; update(); }
-    else if (a === 'rdel') { state.rules.splice(i, 1); if (!state.rules.length) state.rules.push({ if: 'ANY', look: '', w: 1 }); render(); }
-    else if (a === 'radd') { state.rules.push({ if: 'ANY', look: '', w: 1 }); render(); }
+    else if (a === 'rw') { const r = state[b.dataset.set][i]; r.w = Math.max(-3, Math.min(3, r.w + d)); b.parentElement.querySelector('output').textContent = (r.w > 0 ? '+' : '') + r.w; update(); }
+    else if (a === 'rdel') { const set = state[b.dataset.set]; set.splice(i, 1); if (!set.length) set.push(newRule()); render(); }
+    else if (a === 'radd') { state[b.dataset.set].push(newRule()); render(); }
     else if (a === 'hint') { state.hint = !state.hint; render(); }
     else if (a === 'reset') { resetControls(); render(); }
     else if (a === 'next') advance(1);
     else if (a === 'prev') advance(-1);
+    else if (a === 'start') goTo(1, 0);
     else if (a === 'pick') { state.sbCur = i; state.q = [{}, {}]; render(); }
+    else if (a === 'forge') { state.forge = i; update(); }
   });
-  game.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target.dataset && e.target.dataset.act === 'pick') { e.preventDefault(); e.target.click(); } });
+  game.addEventListener('keydown', e => { const t = e.target; if ((e.key === 'Enter' || e.key === ' ') && t.dataset && (t.dataset.act === 'pick' || t.dataset.act === 'forge')) { e.preventDefault(); t.click(); } });
   game.addEventListener('change', e => {
     const t = e.target;
-    if (t.dataset.rule !== undefined) { state.rules[+t.dataset.rule][t.dataset.k] = t.value; update(); }
+    if (t.dataset.rule !== undefined) { state[t.dataset.set][+t.dataset.rule][t.dataset.k] = t.value; update(); }
     else if (t.id === 'sbSentence') { state.sbSentence = t.value; state.sbCur = defaultCur(t.value); state.q = [{}, {}]; render(); }
+    else if (t.id === 'demoSentence') { demoReset(t.value); }
+    else if (t.id === 'demoSpeed') { demo.speed = +t.value; if (demo.playing) demoSchedule(0); }
   });
   game.addEventListener('input', e => { if (e.target.id === 'scale') { state.scale = +e.target.value; update(); } });
   game.addEventListener('mousemove', e => {
@@ -829,7 +1164,7 @@
   const fx = $('#fx'), ctx = fx.getContext('2d');
   let parts = [], raf = null;
   function confetti() {
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (prefersReduced()) return;
     fx.width = window.innerWidth; fx.height = window.innerHeight;
     const cols = ['#E63946', '#ff6b6b', '#fafafa', '#f59e0b', '#10b981'];
     for (let i = 0; i < 90; i++) parts.push({ x: fx.width / 2 + (Math.random() - 0.5) * 120, y: fx.height * 0.55, vx: (Math.random() - 0.5) * 14, vy: -Math.random() * 14 - 4, r: 3 + Math.random() * 4, c: cols[i % cols.length], a: 1, rot: Math.random() * 6 });
