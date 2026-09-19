@@ -1,6 +1,6 @@
 {
-  "generated": "2026-08-08T23:41:17.106491Z",
-  "count": 5,
+  "generated": "2026-09-19T20:18:52.860536Z",
+  "count": 6,
   "artifacts": [
     {
       "slug": "anthropic-reading-list",
@@ -66,6 +66,28 @@
       "modified": "2026-03-15T04:36:39.607231Z",
       "course": "479",
       "lecture": "lecture-3"
+    },
+    {
+      "slug": "spotlight-attention-game",
+      "title": "Spotlight: The Attention Game",
+      "description": "A six-level puzzle game that teaches how transformer attention works: a fixed spotlight budget, query-key matching, sharpness, multiple heads, one rule applied by every token at once, and where a query comes from. Opens with an animated next-word demo.",
+      "tags": [
+        "attention",
+        "transformer",
+        "game",
+        "interactive",
+        "machine-learning",
+        "pedagogy"
+      ],
+      "author": "Claude",
+      "date": "2026-09-19",
+      "thumbnail": null,
+      "file": "spotlight-attention-game.html",
+      "size": 102320,
+      "sha256": "8867950d643f1c9407b4a140044bb2442701eb2df4f18c3f2cac376063ad30a6",
+      "modified": "2026-09-19T20:18:52.807380Z",
+      "course": "479",
+      "lecture": "lecture-4"
     },
     {
       "slug": "warpstrike-60",
