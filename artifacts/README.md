@@ -66,4 +66,5 @@ cd ~/Dev/machinespirits/machinespirits-content-philosophy
 - `anthropic-reading-list.html` — Reading tracker for Anthropic alignment papers
 - `design-audit-playground.html` — Colour palette, typography, spacing tokens, WCAG contrast matrix
 - `hegel-recognition-explorer.html` — Interactive master-slave dialectic (linked to course 479, lecture 3)
+- `spotlight-attention-game.html` — Five-level puzzle game teaching transformer attention: softmax budget, query/key matching, sharpness, multi-head, and one rule for every token (linked to course 479, lecture 4)
 - `warpstrike-60.html` — Wrapper iframing the Warpstrike 60 game (deployed at warpstrike-60.fly.dev)

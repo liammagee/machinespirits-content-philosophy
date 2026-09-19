@@ -1,3 +1,12 @@
+---
+week: 4
+course: "479"
+artifacts:
+  - slug: spotlight-attention-game
+    title: "Spotlight: The Attention Game"
+    position: after-content
+---
+
 ## Attention
 
 
