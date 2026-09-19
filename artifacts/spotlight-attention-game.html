@@ -768,6 +768,7 @@
   // ------------------------------------------------------------------
   // Navigation and events
   // ------------------------------------------------------------------
+  let booted = false; // scroll to the intro on navigation, never on first load
   function defaultCur(key) { const i = S[key].findIndex(t => t.f.includes('PRON')); return i < 0 ? 0 : i; }
   // Moving to the next puzzle inside a level keeps the query, rules and
   // sharpness: the same head meets a new sentence. Changing level resets.
@@ -776,7 +777,7 @@
     state.level = level; state.puzzle = puzzle;
     if (keep && sameLevel) { state.manual = curTokens().map(() => 0); state.hint = false; } else resetControls();
     renderNav(); renderIntro(); render();
-    intro.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (booted) intro.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
   function advance(d) {
     let l = state.level, p = state.puzzle + d;
@@ -846,6 +847,7 @@
 
   // ------------------------------------------------------------------
   goTo(0, 0);
+  booted = true;
   </script>
 </body>
 </html>
