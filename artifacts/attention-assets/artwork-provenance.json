@@ -1,0 +1,21 @@
+{
+  "created": "2026-09-19",
+  "tool": "Built-in image_gen.imagegen; two original generations",
+  "purpose": "Original allegorical images for Spotlight's Kafka and Debord framing. Neither historical photography nor scientific evidence.",
+  "images": [
+    {
+      "file": "reading-room.png",
+      "title": "A place has been prepared for you",
+      "width": 1536,
+      "height": 1024,
+      "prompt": "Use case: stylized-concept. Asset type: fine-art editorial image for the opening of a university interactive inquiry into attention. Create a beautiful, strictly black-and-white photographic illustration, landscape 3:2. A vast, austere institutional reading room recedes into darkness, with an impossibly tall wall of orderly archive drawers and a single narrow open doorway far behind. In the foreground one small empty wooden reading desk and chair, an open book under a precise shaft of white light. The page is blank at this distance. Architecture, waiting and the absent reader carry the atmosphere: Kafka's opaque bureaucracy and the critical estrangement of a mid-century art film. Silver-gelatin blacks, luminous chalk whites, fine authentic photographic grain, subtle halftone and worn print texture. Severe but exquisitely composed, quiet, intelligent, spacious. Off-center desk near lower right, deep perspective, upper third is shadow and architecture. No color or sepia, no lettering, no text, no numbers, no logos, no watermarks, no horror, no chains, no cartoon, no floating eyeballs, no computers. This is an original allegorical artwork, not a claimed historical photograph."
+    },
+    {
+      "file": "audience-screen.png",
+      "title": "The audience returns as an image",
+      "width": 1774,
+      "height": 887,
+      "prompt": "Use case: stylized-concept. Asset type: complementary editorial art for the social-attention section of a university interactive inquiry, landscape 2:1. Strict black-and-white silver-gelatin photographic collage with tactile newsprint grain, inspired by the critical mood of Guy Debord and mid-century avant-garde cinema. View from behind an audience of anonymous people seated in a severe dark auditorium. A huge luminous projection screen across the far wall shows an image of those same rows of spectators viewed from behind, making the audience into its own representation. The people are varied silhouettes, natural scale, no identifiable faces, restrained and plausible architecture, elegant strong perspective. One near seat is empty. The spectacle feels quiet and administrative, not futuristic. Deep black foreground dissolves toward a stark white screen; refined tonal structure, beautiful cinematic composition, no color, no sepia, no text or numbers, no logos, no watermarks, no portraits of real philosophers, no holograms, no giant eyes. Original speculative artwork, not documentary or historical evidence."
+    }
+  ]
+}

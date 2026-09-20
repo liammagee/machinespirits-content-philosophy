@@ -1,0 +1,19 @@
+{
+  "pial_left.gii.gz": {
+    "source": "https://raw.githubusercontent.com/nilearn/nilearn/0.12.1/nilearn/datasets/data/fsaverage5/pial_left.gii.gz",
+    "sha256": "1e76fe43ac194c15fd272643f7ae7995621e2a496b3102b2d6175f0f8e6d7fc8"
+  },
+  "sulc_left.gii.gz": {
+    "source": "https://raw.githubusercontent.com/nilearn/nilearn/0.12.1/nilearn/datasets/data/fsaverage5/sulc_left.gii.gz",
+    "sha256": "bd0f87e0cba153e9d5c5281edc7267f631b1967e5883d4027924766c8430eb62"
+  },
+  "pial_right.gii.gz": {
+    "source": "https://raw.githubusercontent.com/nilearn/nilearn/0.12.1/nilearn/datasets/data/fsaverage5/pial_right.gii.gz",
+    "sha256": "fdfae008bc10acf7cba82737ea5db9a7298948c41884a2d3330a785783a60a91"
+  },
+  "sulc_right.gii.gz": {
+    "source": "https://raw.githubusercontent.com/nilearn/nilearn/0.12.1/nilearn/datasets/data/fsaverage5/sulc_right.gii.gz",
+    "sha256": "97afe76225903205a16b88f88cd796945f2a27011328e98decaa9128ff063afb"
+  },
+  "format": "Modified GIFTI to binary conversion: uint32 vertexCount,triangleCount; float32 native RAS positions; float32 sulcal depth; uint16 triangle indices; little endian. Geometry unchanged."
+}

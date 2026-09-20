@@ -29,7 +29,7 @@ By the end of the week, you should be able to explain computational attention at
 
 ### Further reading
 
-- Tiziana Terranova, ["Attention, Economy and the Brain"](https://doi.org/10.1080/09502386.2012.707261), *Culture Machine* 13 (2012): 1–19 — the political economy of attention; take this up if the alignment thread in Week 5 interests you.
+- Tiziana Terranova, ["Attention, Economy and the Brain"](https://culturemachine.net/wp-content/uploads/2019/01/465-973-1-PB.pdf), *Culture Machine* 13 (2012): 1–19 — the political economy of attention; take this up if the alignment thread in Week 5 interests you.
 - Yi-Yuan Tang, Britta K. Hölzel, and Michael I. Posner, ["The Neuroscience of Mindfulness Meditation"](https://doi.org/10.1038/nrn3916), *Nature Reviews Neuroscience* 16 (2015): 213–225.
 - N. Katherine Hayles, *Unthought: The Power of the Cognitive Nonconscious* (2017), revisited from Week 3 for the nonconscious components of attention.
 
@@ -53,6 +53,17 @@ Human learners must orient, sustain focus, manage conflict, notice novelty, and 
 
 Much of this runs below awareness, as Week 3 established. Attention is therefore not a single faculty but a set of partly independent systems — alerting, orienting, executive control — some of which operate without the learner registering them. Attention is also increasingly a designed and contested resource: the environments in which people now study are built by parties with an interest in where that attention goes.
 
+## Interactive reading lab: Spotlight
+
+Open [Spotlight: attention in machines, readers and society](../../../artifacts/spotlight-attention-game.html). Choose a shared unfinished sentence and explore four connected perspectives:
+
+1. **Machine attention:** play the original introduction, all six levels (16 puzzles), and sandbox. Follow a token from its embedding and position through the learned query matrix. Contrast a real miniature gradient update during training with fixed-weight inference. The numerical inspector retains eight heads, masking, weighted values and an all-token matrix.
+2. **Human attention:** follow five reading situations alongside a rotatable Three.js cortical surface. Watch approximate alerting, orienting and control regions change emphasis; use the deep-region view for the thalamus and brainstem markers.
+3. **Same task, compared:** predict the next token yourself, then reveal the original introduction’s scripted candidate distribution for the identical prefix. Explain what an agreement of outputs does—and does not—show about the two mechanisms.
+4. **Attention and society:** use Terranova to ask how an engagement platform, individual assessment and shared reading workshop organize and value the same activity. Then operate a Cybersyn-inspired control room: allocate interventions across 120 fictional readers for eight cycles, compare the dashboard’s success measures with its omissions, and replay with another contract. The game’s behavioral rules are authored teaching assumptions. The 2012 paper predates Transformers; that connection is our application.
+
+Game features and prediction distributions are authored teaching values. The tiny training exercise really updates one parameter, but does not demonstrate general language learning. The brain has anatomical cortical geometry; network locations, intensity and classroom timing remain illustrative, not measured reading activation. Keyboard controls, manual stepping, reduced motion and a textual region list accompany the visuals.
+
 ## Self-assessed weekly activity: Paired attention traces
 
 ### 1. Begin with a machine-human chat
@@ -62,6 +73,8 @@ Give the machine a short passage from one of this week's readings and begin with
 > First, ask me what I noticed in this passage, what I ignored, and why. Then give a concise public account of which words or relations you prioritized in composing your response — without claiming to reveal hidden chain-of-thought or private reasoning. Then help me compare the two accounts: where they converge, where they diverge, and what each one cannot show. Do not claim that your account is a report of experience.
 
 Continue for eight to ten exchanges, until you have compared both attention traces in some detail.
+
+Use the lab to distinguish a model's **public verbal account** from an **attention-weight measurement**: the chat supplies the former, not the latter. Your report of focus likewise does not reveal the neural activity shown schematically in the human view.
 
 ### 2. Produce an artifact
 

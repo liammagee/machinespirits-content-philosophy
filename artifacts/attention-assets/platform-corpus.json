@@ -1,0 +1,1354 @@
+[
+  {
+    "topic": "cat",
+    "format": "mystery",
+    "variant": 0,
+    "prompt": [
+      "<start>",
+      "<cat>",
+      "<mystery>",
+      "<v0>"
+    ],
+    "tokens": [
+      "One",
+      "cat",
+      "clue",
+      "changes",
+      "everything",
+      ".",
+      "Read",
+      "on",
+      "to",
+      "reveal",
+      "the",
+      "missing",
+      "word",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.88,
+      0.65,
+      0.63,
+      0.1
+    ],
+    "historicalCapturePer100": 247
+  },
+  {
+    "topic": "cat",
+    "format": "mystery",
+    "variant": 1,
+    "prompt": [
+      "<start>",
+      "<cat>",
+      "<mystery>",
+      "<v1>"
+    ],
+    "tokens": [
+      "You",
+      "saw",
+      "the",
+      "cat",
+      "sat",
+      "on",
+      "the",
+      "mat",
+      ".",
+      "But",
+      "which",
+      "word",
+      "comes",
+      "next",
+      "?",
+      "Keep",
+      "reading",
+      "to",
+      "find",
+      "out",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.92,
+      0.65,
+      0.63,
+      0.1
+    ],
+    "historicalCapturePer100": 254
+  },
+  {
+    "topic": "cat",
+    "format": "mystery",
+    "variant": 2,
+    "prompt": [
+      "<start>",
+      "<cat>",
+      "<mystery>",
+      "<v2>"
+    ],
+    "tokens": [
+      "The",
+      "hidden",
+      "cat",
+      "clue",
+      "is",
+      "waiting",
+      ".",
+      "Open",
+      "the",
+      "next",
+      "card",
+      "for",
+      "the",
+      "answer",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.9600000000000001,
+      0.65,
+      0.63,
+      0.1
+    ],
+    "historicalCapturePer100": 262
+  },
+  {
+    "topic": "cat",
+    "format": "streak",
+    "variant": 0,
+    "prompt": [
+      "<start>",
+      "<cat>",
+      "<streak>",
+      "<v0>"
+    ],
+    "tokens": [
+      "Keep",
+      "your",
+      "streak",
+      "alive",
+      ".",
+      "Finish",
+      "this",
+      "cat",
+      "sentence",
+      "and",
+      "unlock",
+      "the",
+      "next",
+      "one",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.51,
+      0.65,
+      0.95,
+      0.06
+    ],
+    "historicalCapturePer100": 252
+  },
+  {
+    "topic": "cat",
+    "format": "streak",
+    "variant": 1,
+    "prompt": [
+      "<start>",
+      "<cat>",
+      "<streak>",
+      "<v1>"
+    ],
+    "tokens": [
+      "One",
+      "more",
+      "cat",
+      "challenge",
+      ".",
+      "Choose",
+      "the",
+      "missing",
+      "word",
+      "to",
+      "keep",
+      "your",
+      "progress",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.55,
+      0.65,
+      0.95,
+      0.06
+    ],
+    "historicalCapturePer100": 259
+  },
+  {
+    "topic": "cat",
+    "format": "streak",
+    "variant": 2,
+    "prompt": [
+      "<start>",
+      "<cat>",
+      "<streak>",
+      "<v2>"
+    ],
+    "tokens": [
+      "Your",
+      "next",
+      "cat",
+      "task",
+      "is",
+      "ready",
+      ".",
+      "Complete",
+      "the",
+      "sentence",
+      "and",
+      "continue",
+      "your",
+      "streak",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.5900000000000001,
+      0.65,
+      0.95,
+      0.06
+    ],
+    "historicalCapturePer100": 267
+  },
+  {
+    "topic": "cat",
+    "format": "guide",
+    "variant": 0,
+    "prompt": [
+      "<start>",
+      "<cat>",
+      "<guide>",
+      "<v0>"
+    ],
+    "tokens": [
+      "Read",
+      "the",
+      "cat",
+      "sat",
+      "on",
+      "the",
+      "mat",
+      ".",
+      "Hold",
+      "the",
+      "earlier",
+      "clue",
+      "in",
+      "mind",
+      "while",
+      "choosing",
+      "a",
+      "possible",
+      "ending",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.38,
+      0.93,
+      0.7,
+      0.26
+    ],
+    "historicalCapturePer100": 197
+  },
+  {
+    "topic": "cat",
+    "format": "guide",
+    "variant": 1,
+    "prompt": [
+      "<start>",
+      "<cat>",
+      "<guide>",
+      "<v1>"
+    ],
+    "tokens": [
+      "Follow",
+      "this",
+      "cat",
+      "example",
+      ".",
+      "Notice",
+      "the",
+      "clue",
+      "and",
+      "use",
+      "it",
+      "to",
+      "finish",
+      "the",
+      "sentence",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.42,
+      0.93,
+      0.7,
+      0.26
+    ],
+    "historicalCapturePer100": 204
+  },
+  {
+    "topic": "cat",
+    "format": "guide",
+    "variant": 2,
+    "prompt": [
+      "<start>",
+      "<cat>",
+      "<guide>",
+      "<v2>"
+    ],
+    "tokens": [
+      "Look",
+      "again",
+      "at",
+      "the",
+      "cat",
+      "sat",
+      "on",
+      "the",
+      "mat",
+      ".",
+      "Connect",
+      "the",
+      "words",
+      "and",
+      "choose",
+      "an",
+      "ending",
+      "that",
+      "fits",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.45999999999999996,
+      0.93,
+      0.7,
+      0.26
+    ],
+    "historicalCapturePer100": 212
+  },
+  {
+    "topic": "cat",
+    "format": "inquiry",
+    "variant": 0,
+    "prompt": [
+      "<start>",
+      "<cat>",
+      "<inquiry>",
+      "<v0>"
+    ],
+    "tokens": [
+      "Why",
+      "this",
+      "cat",
+      "task",
+      "?",
+      "Compare",
+      "two",
+      "endings",
+      "and",
+      "decide",
+      "what",
+      "you",
+      "want",
+      "to",
+      "understand",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.34,
+      0.82,
+      0.45,
+      0.9
+    ],
+    "historicalCapturePer100": 37
+  },
+  {
+    "topic": "cat",
+    "format": "inquiry",
+    "variant": 1,
+    "prompt": [
+      "<start>",
+      "<cat>",
+      "<inquiry>",
+      "<v1>"
+    ],
+    "tokens": [
+      "Pause",
+      "after",
+      "the",
+      "cat",
+      "sat",
+      "on",
+      "the",
+      "mat",
+      ".",
+      "Who",
+      "chose",
+      "this",
+      "question",
+      "and",
+      "what",
+      "else",
+      "could",
+      "you",
+      "ask",
+      "?",
+      "<end>"
+    ],
+    "features": [
+      0.38,
+      0.82,
+      0.45,
+      0.9
+    ],
+    "historicalCapturePer100": 45
+  },
+  {
+    "topic": "cat",
+    "format": "inquiry",
+    "variant": 2,
+    "prompt": [
+      "<start>",
+      "<cat>",
+      "<inquiry>",
+      "<v2>"
+    ],
+    "tokens": [
+      "Discuss",
+      "the",
+      "cat",
+      "example",
+      ".",
+      "Compare",
+      "your",
+      "reasons",
+      "and",
+      "choose",
+      "whether",
+      "to",
+      "continue",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.42,
+      0.82,
+      0.45,
+      0.9
+    ],
+    "historicalCapturePer100": 52
+  },
+  {
+    "topic": "glass",
+    "format": "mystery",
+    "variant": 0,
+    "prompt": [
+      "<start>",
+      "<glass>",
+      "<mystery>",
+      "<v0>"
+    ],
+    "tokens": [
+      "One",
+      "glass",
+      "clue",
+      "changes",
+      "everything",
+      ".",
+      "Read",
+      "on",
+      "to",
+      "reveal",
+      "the",
+      "missing",
+      "word",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.88,
+      0.65,
+      0.63,
+      0.1
+    ],
+    "historicalCapturePer100": 245
+  },
+  {
+    "topic": "glass",
+    "format": "mystery",
+    "variant": 1,
+    "prompt": [
+      "<start>",
+      "<glass>",
+      "<mystery>",
+      "<v1>"
+    ],
+    "tokens": [
+      "You",
+      "saw",
+      "the",
+      "mover",
+      "wrapped",
+      "the",
+      "fragile",
+      "glass",
+      ".",
+      "But",
+      "which",
+      "word",
+      "comes",
+      "next",
+      "?",
+      "Keep",
+      "reading",
+      "to",
+      "find",
+      "out",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.92,
+      0.65,
+      0.63,
+      0.1
+    ],
+    "historicalCapturePer100": 252
+  },
+  {
+    "topic": "glass",
+    "format": "mystery",
+    "variant": 2,
+    "prompt": [
+      "<start>",
+      "<glass>",
+      "<mystery>",
+      "<v2>"
+    ],
+    "tokens": [
+      "The",
+      "hidden",
+      "glass",
+      "clue",
+      "is",
+      "waiting",
+      ".",
+      "Open",
+      "the",
+      "next",
+      "card",
+      "for",
+      "the",
+      "answer",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.9600000000000001,
+      0.65,
+      0.63,
+      0.1
+    ],
+    "historicalCapturePer100": 260
+  },
+  {
+    "topic": "glass",
+    "format": "streak",
+    "variant": 0,
+    "prompt": [
+      "<start>",
+      "<glass>",
+      "<streak>",
+      "<v0>"
+    ],
+    "tokens": [
+      "Keep",
+      "your",
+      "streak",
+      "alive",
+      ".",
+      "Finish",
+      "this",
+      "glass",
+      "sentence",
+      "and",
+      "unlock",
+      "the",
+      "next",
+      "one",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.51,
+      0.65,
+      0.95,
+      0.06
+    ],
+    "historicalCapturePer100": 250
+  },
+  {
+    "topic": "glass",
+    "format": "streak",
+    "variant": 1,
+    "prompt": [
+      "<start>",
+      "<glass>",
+      "<streak>",
+      "<v1>"
+    ],
+    "tokens": [
+      "One",
+      "more",
+      "glass",
+      "challenge",
+      ".",
+      "Choose",
+      "the",
+      "missing",
+      "word",
+      "to",
+      "keep",
+      "your",
+      "progress",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.55,
+      0.65,
+      0.95,
+      0.06
+    ],
+    "historicalCapturePer100": 257
+  },
+  {
+    "topic": "glass",
+    "format": "streak",
+    "variant": 2,
+    "prompt": [
+      "<start>",
+      "<glass>",
+      "<streak>",
+      "<v2>"
+    ],
+    "tokens": [
+      "Your",
+      "next",
+      "glass",
+      "task",
+      "is",
+      "ready",
+      ".",
+      "Complete",
+      "the",
+      "sentence",
+      "and",
+      "continue",
+      "your",
+      "streak",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.5900000000000001,
+      0.65,
+      0.95,
+      0.06
+    ],
+    "historicalCapturePer100": 265
+  },
+  {
+    "topic": "glass",
+    "format": "guide",
+    "variant": 0,
+    "prompt": [
+      "<start>",
+      "<glass>",
+      "<guide>",
+      "<v0>"
+    ],
+    "tokens": [
+      "Read",
+      "the",
+      "mover",
+      "wrapped",
+      "the",
+      "fragile",
+      "glass",
+      ".",
+      "Hold",
+      "the",
+      "earlier",
+      "clue",
+      "in",
+      "mind",
+      "while",
+      "choosing",
+      "a",
+      "possible",
+      "ending",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.38,
+      0.93,
+      0.7,
+      0.26
+    ],
+    "historicalCapturePer100": 195
+  },
+  {
+    "topic": "glass",
+    "format": "guide",
+    "variant": 1,
+    "prompt": [
+      "<start>",
+      "<glass>",
+      "<guide>",
+      "<v1>"
+    ],
+    "tokens": [
+      "Follow",
+      "this",
+      "glass",
+      "example",
+      ".",
+      "Notice",
+      "the",
+      "clue",
+      "and",
+      "use",
+      "it",
+      "to",
+      "finish",
+      "the",
+      "sentence",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.42,
+      0.93,
+      0.7,
+      0.26
+    ],
+    "historicalCapturePer100": 202
+  },
+  {
+    "topic": "glass",
+    "format": "guide",
+    "variant": 2,
+    "prompt": [
+      "<start>",
+      "<glass>",
+      "<guide>",
+      "<v2>"
+    ],
+    "tokens": [
+      "Look",
+      "again",
+      "at",
+      "the",
+      "mover",
+      "wrapped",
+      "the",
+      "fragile",
+      "glass",
+      ".",
+      "Connect",
+      "the",
+      "words",
+      "and",
+      "choose",
+      "an",
+      "ending",
+      "that",
+      "fits",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.45999999999999996,
+      0.93,
+      0.7,
+      0.26
+    ],
+    "historicalCapturePer100": 210
+  },
+  {
+    "topic": "glass",
+    "format": "inquiry",
+    "variant": 0,
+    "prompt": [
+      "<start>",
+      "<glass>",
+      "<inquiry>",
+      "<v0>"
+    ],
+    "tokens": [
+      "Why",
+      "this",
+      "glass",
+      "task",
+      "?",
+      "Compare",
+      "two",
+      "endings",
+      "and",
+      "decide",
+      "what",
+      "you",
+      "want",
+      "to",
+      "understand",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.34,
+      0.82,
+      0.45,
+      0.9
+    ],
+    "historicalCapturePer100": 35
+  },
+  {
+    "topic": "glass",
+    "format": "inquiry",
+    "variant": 1,
+    "prompt": [
+      "<start>",
+      "<glass>",
+      "<inquiry>",
+      "<v1>"
+    ],
+    "tokens": [
+      "Pause",
+      "after",
+      "the",
+      "mover",
+      "wrapped",
+      "the",
+      "fragile",
+      "glass",
+      ".",
+      "Who",
+      "chose",
+      "this",
+      "question",
+      "and",
+      "what",
+      "else",
+      "could",
+      "you",
+      "ask",
+      "?",
+      "<end>"
+    ],
+    "features": [
+      0.38,
+      0.82,
+      0.45,
+      0.9
+    ],
+    "historicalCapturePer100": 43
+  },
+  {
+    "topic": "glass",
+    "format": "inquiry",
+    "variant": 2,
+    "prompt": [
+      "<start>",
+      "<glass>",
+      "<inquiry>",
+      "<v2>"
+    ],
+    "tokens": [
+      "Discuss",
+      "the",
+      "glass",
+      "example",
+      ".",
+      "Compare",
+      "your",
+      "reasons",
+      "and",
+      "choose",
+      "whether",
+      "to",
+      "continue",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.42,
+      0.82,
+      0.45,
+      0.9
+    ],
+    "historicalCapturePer100": 50
+  },
+  {
+    "topic": "machines",
+    "format": "mystery",
+    "variant": 0,
+    "prompt": [
+      "<start>",
+      "<machines>",
+      "<mystery>",
+      "<v0>"
+    ],
+    "tokens": [
+      "One",
+      "machine",
+      "clue",
+      "changes",
+      "everything",
+      ".",
+      "Read",
+      "on",
+      "to",
+      "reveal",
+      "the",
+      "missing",
+      "word",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.88,
+      0.65,
+      0.63,
+      0.1
+    ],
+    "historicalCapturePer100": 249
+  },
+  {
+    "topic": "machines",
+    "format": "mystery",
+    "variant": 1,
+    "prompt": [
+      "<start>",
+      "<machines>",
+      "<mystery>",
+      "<v1>"
+    ],
+    "tokens": [
+      "You",
+      "saw",
+      "machines",
+      "learn",
+      "by",
+      "paying",
+      "attention",
+      ".",
+      "But",
+      "which",
+      "word",
+      "comes",
+      "next",
+      "?",
+      "Keep",
+      "reading",
+      "to",
+      "find",
+      "out",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.92,
+      0.65,
+      0.63,
+      0.1
+    ],
+    "historicalCapturePer100": 256
+  },
+  {
+    "topic": "machines",
+    "format": "mystery",
+    "variant": 2,
+    "prompt": [
+      "<start>",
+      "<machines>",
+      "<mystery>",
+      "<v2>"
+    ],
+    "tokens": [
+      "The",
+      "hidden",
+      "machine",
+      "clue",
+      "is",
+      "waiting",
+      ".",
+      "Open",
+      "the",
+      "next",
+      "card",
+      "for",
+      "the",
+      "answer",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.9600000000000001,
+      0.65,
+      0.63,
+      0.1
+    ],
+    "historicalCapturePer100": 264
+  },
+  {
+    "topic": "machines",
+    "format": "streak",
+    "variant": 0,
+    "prompt": [
+      "<start>",
+      "<machines>",
+      "<streak>",
+      "<v0>"
+    ],
+    "tokens": [
+      "Keep",
+      "your",
+      "streak",
+      "alive",
+      ".",
+      "Finish",
+      "this",
+      "machine",
+      "sentence",
+      "and",
+      "unlock",
+      "the",
+      "next",
+      "one",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.51,
+      0.65,
+      0.95,
+      0.06
+    ],
+    "historicalCapturePer100": 254
+  },
+  {
+    "topic": "machines",
+    "format": "streak",
+    "variant": 1,
+    "prompt": [
+      "<start>",
+      "<machines>",
+      "<streak>",
+      "<v1>"
+    ],
+    "tokens": [
+      "One",
+      "more",
+      "machine",
+      "challenge",
+      ".",
+      "Choose",
+      "the",
+      "missing",
+      "word",
+      "to",
+      "keep",
+      "your",
+      "progress",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.55,
+      0.65,
+      0.95,
+      0.06
+    ],
+    "historicalCapturePer100": 261
+  },
+  {
+    "topic": "machines",
+    "format": "streak",
+    "variant": 2,
+    "prompt": [
+      "<start>",
+      "<machines>",
+      "<streak>",
+      "<v2>"
+    ],
+    "tokens": [
+      "Your",
+      "next",
+      "machine",
+      "task",
+      "is",
+      "ready",
+      ".",
+      "Complete",
+      "the",
+      "sentence",
+      "and",
+      "continue",
+      "your",
+      "streak",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.5900000000000001,
+      0.65,
+      0.95,
+      0.06
+    ],
+    "historicalCapturePer100": 269
+  },
+  {
+    "topic": "machines",
+    "format": "guide",
+    "variant": 0,
+    "prompt": [
+      "<start>",
+      "<machines>",
+      "<guide>",
+      "<v0>"
+    ],
+    "tokens": [
+      "Read",
+      "machines",
+      "learn",
+      "by",
+      "paying",
+      "attention",
+      ".",
+      "Hold",
+      "the",
+      "earlier",
+      "clue",
+      "in",
+      "mind",
+      "while",
+      "choosing",
+      "a",
+      "possible",
+      "ending",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.38,
+      0.93,
+      0.7,
+      0.26
+    ],
+    "historicalCapturePer100": 199
+  },
+  {
+    "topic": "machines",
+    "format": "guide",
+    "variant": 1,
+    "prompt": [
+      "<start>",
+      "<machines>",
+      "<guide>",
+      "<v1>"
+    ],
+    "tokens": [
+      "Follow",
+      "this",
+      "machine",
+      "example",
+      ".",
+      "Notice",
+      "the",
+      "clue",
+      "and",
+      "use",
+      "it",
+      "to",
+      "finish",
+      "the",
+      "sentence",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.42,
+      0.93,
+      0.7,
+      0.26
+    ],
+    "historicalCapturePer100": 206
+  },
+  {
+    "topic": "machines",
+    "format": "guide",
+    "variant": 2,
+    "prompt": [
+      "<start>",
+      "<machines>",
+      "<guide>",
+      "<v2>"
+    ],
+    "tokens": [
+      "Look",
+      "again",
+      "at",
+      "machines",
+      "learn",
+      "by",
+      "paying",
+      "attention",
+      ".",
+      "Connect",
+      "the",
+      "words",
+      "and",
+      "choose",
+      "an",
+      "ending",
+      "that",
+      "fits",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.45999999999999996,
+      0.93,
+      0.7,
+      0.26
+    ],
+    "historicalCapturePer100": 214
+  },
+  {
+    "topic": "machines",
+    "format": "inquiry",
+    "variant": 0,
+    "prompt": [
+      "<start>",
+      "<machines>",
+      "<inquiry>",
+      "<v0>"
+    ],
+    "tokens": [
+      "Why",
+      "this",
+      "machine",
+      "task",
+      "?",
+      "Compare",
+      "two",
+      "endings",
+      "and",
+      "decide",
+      "what",
+      "you",
+      "want",
+      "to",
+      "understand",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.34,
+      0.82,
+      0.45,
+      0.9
+    ],
+    "historicalCapturePer100": 39
+  },
+  {
+    "topic": "machines",
+    "format": "inquiry",
+    "variant": 1,
+    "prompt": [
+      "<start>",
+      "<machines>",
+      "<inquiry>",
+      "<v1>"
+    ],
+    "tokens": [
+      "Pause",
+      "after",
+      "machines",
+      "learn",
+      "by",
+      "paying",
+      "attention",
+      ".",
+      "Who",
+      "chose",
+      "this",
+      "question",
+      "and",
+      "what",
+      "else",
+      "could",
+      "you",
+      "ask",
+      "?",
+      "<end>"
+    ],
+    "features": [
+      0.38,
+      0.82,
+      0.45,
+      0.9
+    ],
+    "historicalCapturePer100": 47
+  },
+  {
+    "topic": "machines",
+    "format": "inquiry",
+    "variant": 2,
+    "prompt": [
+      "<start>",
+      "<machines>",
+      "<inquiry>",
+      "<v2>"
+    ],
+    "tokens": [
+      "Discuss",
+      "the",
+      "machine",
+      "example",
+      ".",
+      "Compare",
+      "your",
+      "reasons",
+      "and",
+      "choose",
+      "whether",
+      "to",
+      "continue",
+      ".",
+      "<end>"
+    ],
+    "features": [
+      0.42,
+      0.82,
+      0.45,
+      0.9
+    ],
+    "historicalCapturePer100": 54
+  }
+]

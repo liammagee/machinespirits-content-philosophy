@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-19T20:18:52.860536Z",
+  "generated": "2026-09-20T15:48:22.197921Z",
   "count": 6,
   "artifacts": [
     {
@@ -69,23 +69,25 @@
     },
     {
       "slug": "spotlight-attention-game",
-      "title": "Spotlight: The Attention Game",
-      "description": "A six-level puzzle game that teaches how transformer attention works: a fixed spotlight budget, query-key matching, sharpness, multiple heads, one rule applied by every token at once, and where a query comes from. Opens with an animated next-word demo.",
+      "title": "Spotlight: attention in machines, readers and society",
+      "description": "A Week 4 introduction and visual inquiry into attention with Kafka and Debord framing, six Transformer games, a 3D brain, a shared reading task, and a live two-act platform game with feedback learning and pedagogical alignment choices.",
       "tags": [
         "attention",
-        "transformer",
-        "game",
-        "interactive",
-        "machine-learning",
-        "pedagogy"
+        "transformers",
+        "reading",
+        "neuroscience",
+        "Terranova",
+        "Kafka",
+        "Debord",
+        "interactive"
       ],
-      "author": "Claude",
+      "author": "Machine Spirits",
       "date": "2026-09-19",
       "thumbnail": null,
       "file": "spotlight-attention-game.html",
-      "size": 102320,
-      "sha256": "8867950d643f1c9407b4a140044bb2442701eb2df4f18c3f2cac376063ad30a6",
-      "modified": "2026-09-19T20:18:52.807380Z",
+      "size": 71423,
+      "sha256": "3e88e9b05f70732832dfd6fa046c39fb4d34c2a6803b1b5590fbaf8982f74047",
+      "modified": "2026-09-20T14:45:46.991704Z",
       "course": "479",
       "lecture": "lecture-4"
     },

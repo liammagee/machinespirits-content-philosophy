@@ -1,9 +1,10 @@
 ---
+title: "Attention"
 week: 4
 course: "479"
 artifacts:
   - slug: spotlight-attention-game
-    title: "Spotlight: The Attention Game"
+    title: "Spotlight: attention in machines, readers and society"
     position: after-content
 ---
 
@@ -35,27 +36,32 @@ I'll start by looking at the Petersen & Posner [-@stevene.petersen2012theattenti
 ### Human Attention
 
 
-| Attention Subsystem | Part of Brain | Reading Analogy |
+| Attention Function | Representative Regions / Networks | Application to Reading |
 | --- | --- | --- |
-| Alerting | Thalamus; Frontal area | Be *ready* to read  |
-| Orienting | Temporoparietal Junction  | *Direct* attention to text |
-| Executive: Sustain focus  | Cingulo-opercular | *Continue* to concentrate |
-| Executive: Switch focus  | Frontoparietal (eye field / superior parietal lob | Realize that you are tired and *need a break* |
+| Alerting | Locus coeruleus and neuromodulatory influences; thalamic and cortical regions | Become and remain *ready* to respond to text |
+| Orienting: deliberate selection | Dorsal network: frontal eye fields and intraparietal / superior parietal regions | *Direct* attention to a word or location |
+| Orienting: reorienting | Ventral network: mainly right temporoparietal junction and ventral frontal cortex | *Shift* toward a relevant unexpected margin cue |
+| Executive control: maintenance | Cingulo-opercular network, including medial frontal / anterior cingulate and anterior insular regions | *Keep the reading purpose* in force |
+| Executive control: adjustment | Frontoparietal control network, including lateral prefrontal and parietal regions | *Change strategy* and reread a difficult phrase |
+
+These reading situations are teaching applications of Petersen and Posner's framework, not neural measurements of reading. Networks cooperate; the rows are not successive stages. Their frontoparietal **control** network is distinguished from the dorsal **orienting** network.
+
+[Explore the interactive reading lab](../../artifacts/spotlight-attention-game.html#human): rotate the anatomical cortical model, select a reading moment, and try the same next-token task from the human and machine perspectives. The machine tab preserves six games and adds query origins and training versus inference; the final tab applies Terranova to the social organization of the task.
 
 
 ![Image](/markdown/images/pasted-image-2025-09-14T18-41-01-466Z-7f762d1b.webp)
 
 ```notes
 
-The first paper is an updated version of an earlier text from 1990, also by Posner and Petersen, at the beginning of the era of "neuroimaging": using tomography, fMRI and EEG machines to monitor brain activity. Posner and Petersen suggest human attention involves three distinct but related subsystems and associated cognitive processes: alterting, orienting and executive (or executive control). We might think of these as involving become aware of something; turning our attention towards that thing; and then making some decision about that thing: is it dangerous, attractive, and so on.
+The first paper updates Posner and Petersen's 1990 framework. It distinguishes three broad functions: alerting, orienting, and executive control. These are interacting systems, not a fixed sequence of becoming aware, looking, and deciding. The review also distinguishes sources of attentional influence from the processing systems they affect.
 
 I'll briefly talk through these three functions.
 
-Alerting involves the initial registration of an external stimulus. They further distinguish two modes of alerting:  phasic, or short-term reactions, and tonic, or sustained vigilance. Both their initial and this updated paper located alerting function to the right hemisphere of the brain.
+Alerting concerns readiness to respond. Phasic alerting is a brief increase in readiness, such as after a warning cue; tonic alertness concerns sustained vigilance. The review associates tonic alertness strongly with the right hemisphere, but discusses less settled laterality for phasic effects. It also discusses the locus coeruleus, norepinephrine, thalamic regions, and cortical contributions. Alerting is not simply detecting a stimulus or becoming conscious of it.
 
-Orienting involves some kind of fast directing of attention in response to the stimulus or goal. This might be the instant turning of the head toward a large sound; or the fixation of the head and eyes on the road ahead while driving in difficult conditions. This happens in the frontal and posterior parts of the brain.
+Orienting prioritizes a location or sensory input. The dorsal network includes frontal eye fields and intraparietal / superior parietal regions involved in goal-directed selection. The mainly right-sided ventral network includes temporoparietal junction and ventral frontal cortex, associated with interrupting a current focus and reorienting. Attention can shift without an eye movement. During reading, deliberate selection of a word and reorienting to a relevant margin cue illustrate different orienting demands.
 
-Finally, the executive function involves making decisions: to stay fixed upon an object that has gained attention, or to move on. In their revised article Petersen and Posner identify two distinct executive processes: one involving *sustained* focus or attention, another enabling a *switching* of tasks within the same overall attention frame or goal. The prefrontal cortex is responsible for the first of these - task focus – while the frontal eye field and superior parietal lobes together are responsible task switching. 
+For executive control, the authors favor a two-network account while discussing alternatives. The cingulo-opercular network supports stable task maintenance; the frontoparietal control network supports initiation, switching, and adjustments during performance. Maintaining the instruction to explain a sentence and deciding to reread a confusing phrase illustrate these demands. They are not isolated reading modules, and the frontal eye fields should not be substituted for the frontoparietal executive-control network. See the review's Executive Control section and Figure 2.
 
 
 ```
@@ -63,19 +69,20 @@ Finally, the executive function involves making decisions: to stay fixed upon an
 
 ---
 
-### Hierarchy and Networks
+### Functions and Networks
 
-- (a) Connected, Ordered Hierarchy: different parts of the brain are responsible for **different** aspects of attention: alerting, orienting, executive functions (sustaining and switching attention)
-- (b) Semi-redundant Networks: different parts of the brain coordinate on the **same** aspects of attention
+- Different networks make distinguishable contributions to readiness, selection, and control.
+- Several regions cooperate within each network, and the networks interact during ordinary activities such as reading.
+- These distinctions do not imply a fixed alerting → orienting → executive pipeline or a one-region, one-function map.
 
 
 ![Image](/markdown/images/pasted-image-2025-09-14T18-41-01-466Z-7f762d1b.webp)
 
 ```notes
 
-But what perhaps matters to us here is not so much which areas of the brain are involved in different aspects of attention. Instead we can note that attention involves (a) a connected *hierarchy* of functions or subsystems and (b) a *network* of parts performing the same or similar roles (with some redundancy).
+The important point is the distinction between functions and networks. Multiple regions contribute to a network; distinguishable networks can work together. Their coordination is not adequately represented by a single moving spotlight, nor by a compulsory order of three stages.
 
-As we will see, it is not so much that use of attention in computer networks follows precisely what happens in our brains. The word "attention" is in some sense metaphorical, just as is the term "neural networks". However at the level of architecture we will see some analogies. 
+The comparison with transformers is functional: some information receives greater priority in a context. A transformer head is not a brain region. Query, key, and value are three numerical roles inside a weighted-sum calculation; they do not map onto alerting, orienting, and executive control.
 
 ```
 
@@ -536,4 +543,3 @@ According to many neuroscience, attention is seen as critical to the operations 
 
  Next week we focus on this concept, bringing closer together Hegel's ideas on consciousness and self-consciousness with other theories. We'll see how some scholars, like N. Katherine Hayles, have sought to combine research into both human cognition and machine learning with more traditional philosophical concerns about the nature of consciousness. We will revisit attention, but also consider ideas of the "unconscious" – developed originally by Freud, but surprisingly relevant in the world of machine learning too – as well as Katherine Hayles' work on what she terms "nonconscious cognition", operating in the world of machines.
 ```
-
