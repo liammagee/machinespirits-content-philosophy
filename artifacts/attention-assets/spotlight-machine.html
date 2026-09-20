@@ -275,6 +275,8 @@
     .demo-tokens { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: flex-end; position: relative; }
     .dtok { display: flex; flex-direction: column; align-items: center; gap: 3px; }
     .dtok .pct { font-family: var(--mono); font-size: 0.6rem; color: var(--red-light); min-height: 1em; }
+    .dtok.cur .pct { visibility: hidden; }
+    .dtok .self { font-family: var(--mono); font-size: 0.6rem; color: var(--red-light); height: 1.2em; line-height: 1.2em; white-space: nowrap; }
     .dtok .word { font-family: var(--mono); font-size: 0.95rem; padding: 6px 10px; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); transition: background .3s, border-color .3s; white-space: nowrap; }
     .dtok.cur .word { border-color: var(--red); box-shadow: 0 0 0 2px rgba(230,57,70,0.35); }
     .dtok.new .word { animation: pop .35s ease; }
@@ -422,57 +424,57 @@ html,body{min-height:0} .container{padding-top:10px;padding-bottom:10px} header{
   // ------------------------------------------------------------------
   const LEVELS = [
     { id:0, key:'intro', title:'Intro', mode:'intro', puzzles:[] },
-    { id:1, key:'budget', title:'The budget', mode:'manual', formula:'share<sub>i</sub> = e<sup>score<sub>i</sub></sup> ÷ Σ<sub>j</sub> e<sup>score<sub>j</sub></sup>', cap:'softmax: the shares always sum to 100% · output = Σ share × value',
-      intro:['Every word in a sentence gets a spotlight to shine on the other words (and on itself). The spotlight has a fixed brightness: 100%, divided up. Attend more to one word and you must attend less to all the rest.',
-             'What a word receives is a blend of the words it lights up, mixed in proportion to their shares. That blend contributes to an updated representation, alongside the residual connection and other operations in the layer.'],
-      howto:'Use <b>−</b> and <b>+</b> under each word to change its score. Shares come from scores by the softmax rule: <b>share = e<sup>score</sup> ÷ sum</b>. Meet the goal on the right, then move on.',
+    { id:1, key:'budget', title:'The budget', mode:'manual', formula:'share<sub>i</sub> = e<sup>score<sub>i</sub></sup> ÷ Σ<sub>j</sub> e<sup>score<sub>j</sub></sup>', cap:'softmax: the slices always add up to 100% · what the word receives = each slice × that word’s contents',
+      intro:['Every word in a sentence gets a spotlight to shine on the other words (and on itself). The spotlight has a fixed brightness, 100%, divided up like slices of one pie. Give one word a bigger slice and every other word gets less.',
+             'What a word receives is a blend of the words it lights up, mixed in proportion to their slices. That blend becomes the word’s updated meaning for the next step of the calculation.'],
+      howto:'Use <b>−</b> and <b>+</b> under each word to change its score. The percentages come from the scores by the softmax rule: a higher score means a bigger slice, and the slices always add up to 100%. Meet the goal on the right, then press <b>next puzzle</b>.',
       puzzles:[
-        { s:'cat', cur:7, q:'Who was tired?', target:{1:1}, hint:'Raise the score of <b>cat</b> and watch every other share shrink. The budget is fixed, so one word can only gain what the others lose.', lesson:'Each +1 multiplies its unnormalized weight by e ≈ 2.7, before all shares are renormalized. That exponential is the softmax, and it is why attention concentrates so quickly: a lead of three points is already a factor of twenty.' },
-        { s:'teacher', cur:9, q:'Who went home?', target:{1:.5,4:.5}, hint:'Two referents. Give <b>teacher</b> and <b>student</b> the same high score and leave the rest alone.', lesson:'Attention does not have to pick one winner. The output is a blend weighted by shares, so a pronoun with two referents can carry both. Equal scores always give equal shares.' },
+        { s:'cat', cur:7, q:'Who was tired?', target:{1:1}, hint:'Raise the score of <b>cat</b> and watch every other share shrink. The budget is fixed, so one word can only gain what the others lose.', lesson:'Each +1 makes a word’s slice about 2.7 times bigger before everything is rescaled to add up to 100%. That multiplying is the softmax, and it is why attention concentrates so fast: a lead of three points already means a twenty-times bigger slice.' },
+        { s:'teacher', cur:9, q:'Who went home?', target:{1:.5,4:.5}, hint:'Two referents. Give <b>teacher</b> and <b>student</b> the same high score and leave the rest alone.', lesson:'Attention does not have to pick one winner. The result is a blend, so a pronoun that could mean two people can carry both. Equal scores always give equal slices.' },
       ]},
-    { id:2, key:'query', title:'Keys & queries', mode:'query', formula:'score<sub>i</sub> = <span class="hot">q</span> · <span class="on">k<sub>i</sub></span> &nbsp;→&nbsp; share = softmax(score)', cap:'the query meets every key; matching chips add their weights',
-      intro:['In a real transformer nobody sets scores by hand. Each word wears a <em>key</em>: a set of features saying what it is. The word doing the looking builds a <em>query</em>: the features it wants, each with a weight.',
-             'A word\'s score is how well the query matches its key: add up the query weights of every chip the key carries. That sum is the dot product q · k. Softmax then turns the scores into shares exactly as before.'],
+    { id:2, key:'query', title:'Keys & queries', mode:'query', formula:'score<sub>i</sub> = <span class="hot">q</span> · <span class="on">k<sub>i</sub></span> &nbsp;→&nbsp; share = softmax(score)', cap:'the question meets every name tag; matching chips add up to the score',
+      intro:['In a real transformer nobody sets scores by hand. Each word wears a name tag, its <em>key</em>: a set of features saying what it is. The word doing the looking writes down what it wants, its <em>query</em>: the features it is looking for, each with a weight.',
+             'A word\'s score is how well the question matches its name tag: add up the weights of every chip the name tag carries. (In the formula that sum is written q · k.) The scores then become percentages exactly as in Level 1.'],
       howto:'Build the query with the chips. <b>+</b> adds weight, <b>−</b> takes it away; negative weights repel. On each word, key chips the query wants are <b>outlined</b>; chips it repels are <b>crossed out</b>.',
       puzzles:[
-        { s:'cat', cur:7, q:'Who was tired?', target:{1:1}, hint:'Which chips does <b>cat</b> have that nothing else has? Start with ANIMATE, then add NOUN and SING to widen its lead.', lesson:'You never set a word\'s share directly. You describe what you are looking for, and every key answers by how well it matches. That is the whole trick of attention: selection by similarity.' },
+        { s:'cat', cur:7, q:'Who was tired?', target:{1:1}, hint:'Which chips does <b>cat</b> have that nothing else has? Start with ANIMATE, then add NOUN and SING to widen its lead.', lesson:'You never set a word\'s slice directly. You describe what you are looking for, and every name tag answers by how well it matches. That is the whole trick of attention: choosing by similarity.' },
         { s:'dogs', cur:6, q:'Which noun does “were” agree with?', target:{1:1}, hint:'A plural verb seeks a plural noun. Try PLUR and NOUN; ANIMATE separates <b>dogs</b> from <b>cat</b> a little more.', lesson:'Agreement at a distance. “were” skips straight over “cat”, however close it is, because “cat” has the wrong number. Attention does not care about distance unless you ask it to.' },
-        { s:'bankMoney', cur:4, q:'Which sense of “bank” is this?', target:{8:1}, hint:'“bank” is looking for a clue about its own meaning. MONEY is the clue; NOUN and THING sharpen it.', lesson:'Attention can gather clues for disambiguation. In this teaching example the MONEY and WATER features are supplied by us; the game does not learn the senses of bank.' },
-        { s:'bankRiver', cur:5, q:'And which sense is this?', target:{8:1}, hint:'Keep MONEY switched on and add WATER. One query can ask for either clue; the keys decide which one answers.', lesson:'A query can hunt for several clues at once. Only the ones present in the sentence light up, so a single head disambiguates both banks with the same query.' },
-        { s:'trophyBig', cur:9, q:'What is too big?', target:{1:1}, hint:'Both nouns are THING and SING. What tells them apart? Try a <b>negative</b> weight on CONTAINER: look for a thing that is not a container.', lesson:'A negative weight pushes a key away. This is a Winograd schema: the feature that resolves “it” is world knowledge (containers hold contents), and a model can only use it if training has put it into the keys.' },
-        { s:'trophySmall', cur:9, q:'What is too small?', target:{7:1}, hint:'Same sentence, opposite answer. Flip the sign on CONTAINER.', lesson:'The keys did not change; the query did. In a real model the query for “it” already carries a trace of “small” or “big”, mixed in by earlier layers. That is how one head gives different answers to near-identical sentences.' },
+        { s:'bankMoney', cur:4, q:'Which sense of “bank” is this?', target:{8:1}, hint:'“bank” is looking for a clue about its own meaning. MONEY is the clue; NOUN and THING sharpen it.', lesson:'Attention can gather clues to settle what a word means. In this teaching example the MONEY and WATER features are supplied by us; the game does not learn the senses of bank.' },
+        { s:'bankRiver', cur:5, q:'And which sense is this?', target:{8:1}, hint:'Keep MONEY switched on and add WATER. One query can ask for either clue; the keys decide which one answers.', lesson:'A question can hunt for several clues at once. Only the ones present in the sentence light up, so one head settles both banks with the same question.' },
+        { s:'trophyBig', cur:9, q:'What is too big?', target:{1:1}, hint:'Both nouns are THING and SING. What tells them apart? Try a <b>negative</b> weight on CONTAINER: look for a thing that is not a container.', lesson:'A negative weight pushes a name tag away. This is a famous test sentence (a Winograd schema): the fact that settles “it” is world knowledge, containers hold contents, and a model can only use it if training has put it into the name tags.' },
+        { s:'trophySmall', cur:9, q:'What is too small?', target:{7:1}, hint:'Same sentence, opposite answer. Flip the sign on CONTAINER.', lesson:'The name tags did not change; the question did. In a real model the question for “it” already carries a trace of “small” or “big”, mixed in by earlier layers. That is how one head gives different answers to near-identical sentences.' },
       ]},
-    { id:3, key:'sharp', title:'Sharpness', mode:'query', scale:true, formula:'share = softmax( q · k <span class="hot">× sharpness</span> )', cap:'an experimental score multiplier; the paper fixes its scale to 1/√dₖ',
-      intro:['The paper divides scores by √dₖ, the square root of the number of key features, to control dot-product magnitude. That divisor is fixed. This extra teaching dial lets you experiment with score sharpness. Sharpness multiplies all the scores before the softmax, which stretches the gaps between them.',
-             'Because the softmax is exponential, a stretched gap becomes a lopsided share. High sharpness snaps the spotlight onto the leader; low sharpness spreads it out. What it can never do is separate two keys that scored the same.'],
+    { id:3, key:'sharp', title:'Sharpness', mode:'query', scale:true, formula:'share = softmax( q · k <span class="hot">× sharpness</span> )', cap:'a teaching dial that multiplies the scores; the paper fixes this to 1/√dₖ',
+      intro:['The paper divides every score by a fixed number (√dₖ, the square root of how many numbers make up a name tag) so the scores do not grow too large. This extra dial is ours, for teaching: it multiplies all the scores before they become percentages, which stretches the gaps between them.',
+             'Because turning scores into percentages rewards big leads, a stretched gap becomes a lopsided slice. High sharpness snaps the spotlight onto the leader; low sharpness spreads it out. What it can never do is separate two name tags that scored the same.'],
       howto:'Same chips as before, plus the <b>sharpness</b> slider under them. Watch the beams as you drag it.',
       puzzles:[
-        { s:'keys', cur:19, q:'What could I not find?', target:{1:1}, hint:'PLUR and NOUN give <b>keys</b> a lead of a few points, but twenty other words are soaking up shares. Now turn the sharpness up.', lesson:'Sharpness multiplies every score. A small lead becomes a large one after the exponential, so the spotlight snaps to the leader. Trained models keep the scale fixed but learn vectors of whatever size they need.' },
-        { s:'teacher', cur:9, q:'Who went home?', target:{1:.5,4:.5}, hint:'ANIMATE and NOUN match both nouns equally. Raise the sharpness: the tie holds while everything else fades.', lesson:'Sharpness cannot break a tie. Two identical keys always split whatever they win between them. To separate them a head would need a feature that tells them apart.' },
+        { s:'keys', cur:19, q:'What could I not find?', target:{1:1}, hint:'PLUR and NOUN give <b>keys</b> a lead of a few points, but twenty other words are soaking up shares. Now turn the sharpness up.', lesson:'Sharpness multiplies every score. A small lead becomes a large one once the scores become percentages, so the spotlight snaps to the leader. Trained models keep this fixed and instead learn numbers of whatever size they need.' },
+        { s:'teacher', cur:9, q:'Who went home?', target:{1:.5,4:.5}, hint:'ANIMATE and NOUN match both nouns equally. Raise the sharpness: the tie holds while everything else fades.', lesson:'Sharpness cannot break a tie. Two identical name tags always split whatever they win between them. To separate them a head would need a feature that tells them apart.' },
       ]},
-    { id:4, key:'heads', title:'Two heads', mode:'heads', scale:true, formula:'head<sub>A</sub> = softmax(<span class="hot">q<sub>A</sub></span>·K)·V &nbsp; head<sub>B</sub> = softmax(<span class="b">q<sub>B</sub></span>·K)·V &nbsp;→&nbsp; [A | B]', cap:'multi-head attention: independent queries, shares and blends, concatenated',
-      intro:['One query asks one question. But “it” needs to know several things at once: what it refers to, and what happened to it. So the model runs several <em>heads</em> in parallel, each with its own query, its own shares and its own blend.',
-             'The blends are concatenated and multiplied by another learned matrix, W_O. Vaswani et al.’s base model uses 8 heads per attention block. Each real head has its own Q, K and V projections; this game shares readable keys and values to isolate the queries.'],
-      howto:'Build a separate query for each head. Both goals must be met; your score is the weaker of the two.',
+    { id:4, key:'heads', title:'Two heads', mode:'heads', scale:true, formula:'head<sub>A</sub> = softmax(<span class="hot">q<sub>A</sub></span>·K)·V &nbsp; head<sub>B</sub> = softmax(<span class="b">q<sub>B</sub></span>·K)·V &nbsp;→&nbsp; [A | B]', cap:'several heads: separate questions, slices and blends, placed side by side',
+      intro:['One question is not enough. “it” needs to know several things at once: what it refers to, and what happened to it. So the model runs several <em>heads</em> at the same time, each with its own question, its own slices and its own blend.',
+             'The blends are placed side by side and combined by one more learned recipe. Vaswani et al.’s base model uses 8 heads in each attention block. Each real head has its own recipes for questions, name tags and contents; this game shares readable name tags and contents so that only the questions differ.'],
+      howto:'Build a separate question for each head. Both goals must be met; your score is the weaker of the two.',
       puzzles:[
-        { s:'glass', cur:9, q:'Two questions about “it”', heads:[{q:'What is “it”?', target:{2:1}}, {q:'What was done to it?', target:{8:1}}], hint:'Head A wants a THING. Head B wants a VERB, and PAST helps it beat “was”. Sharpness helps both.', lesson:'One question per head. Each head has its own query, its own shares, its own blend, and the results are concatenated. A trained head can develop useful patterns, but heads are not assigned these jobs in advance and need not have one stable, readable function.' },
+        { s:'glass', cur:9, q:'Two questions about “it”', heads:[{q:'What is “it”?', target:{2:1}}, {q:'What was done to it?', target:{8:1}}], hint:'Head A wants a THING. Head B wants a VERB, and PAST helps it beat “was”. Sharpness helps both.', lesson:'One question per head. Each head has its own question, its own slices and its own blend, and the results are placed side by side. A trained head can develop useful habits, but heads are not assigned these jobs in advance and need not have one stable, readable function.' },
         { s:'storm', cur:15, q:'Two questions about “they”', heads:[{q:'Who are “they”?', target:{8:1}}, {q:'Where are they now?', target:{12:1}}], hint:'A: ANIMATE, PLUR and NOUN. B: PLACE and PLUR beat “village”. Turn up the sharpness once the leaders are right.', lesson:'Heads are cheap, so models run many. Each asks a different question of the same sentence, and the next layer sees all the answers side by side.' },
       ]},
-    { id:5, key:'rules', title:'One rule for all', mode:'rules', scale:true, formula:'q<sub>i</sub> = <span class="hot">W<sub>Q</sub></span> x<sub>i</sub> &nbsp; k<sub>j</sub> = <span class="hot">W<sub>K</sub></span> x<sub>j</sub> &nbsp;→&nbsp; A = softmax( Q K<sup>T</sup> × s )', cap:'one rule, applied by every token at once, gives the whole attention matrix',
-      intro:['So far you built a query for one word. A real head does not do that. It learns a <em>rule</em> that turns any word\'s own features into a query, and every word applies the rule to itself at the same moment. Here your rules stand in for W<sub>Q</sub>, while key chips remain fixed. In a real model separate learned matrices W<sub>Q</sub> and W<sub>K</sub> transform each token representation.',
-             'The result is a whole grid at once: every word (rows) attending to every word (columns). This is the attention matrix you see in papers and interpretability work.'],
+    { id:5, key:'rules', title:'One rule for all', mode:'rules', scale:true, formula:'q<sub>i</sub> = <span class="hot">W<sub>Q</sub></span> x<sub>i</sub> &nbsp; k<sub>j</sub> = <span class="hot">W<sub>K</sub></span> x<sub>j</sub> &nbsp;→&nbsp; A = softmax( Q K<sup>T</sup> × s )', cap:'one rule, applied by every word at once, gives the whole grid',
+      intro:['So far you built a question for one word. A real head does not do that. It learns a <em>rule</em> that turns any word\'s own features into a question, and every word applies the rule to itself at the same moment. Here your rules stand in for the recipe W<sub>Q</sub> from Chapter 2, while the name tags stay fixed. In a real model two learned recipes, W<sub>Q</sub> and W<sub>K</sub>, rewrite every word.',
+             'The result is a whole grid at once: every word (rows) looking at every word (columns). This grid is the attention matrix you see in papers.'],
       howto:'Write rules of the form <b>IF I am X → LOOK FOR Y</b> with a weight. Rows with a target must put their spotlight on the dashed cell(s). Hover any cell to read it.',
       puzzles:[
-        { s:'children', q:'Send every pronoun to its antecedent', rows:{7:[1], 9:[4]}, hint:'IF PRON → LOOK FOR NOUN. Then let number decide: IF PLUR → LOOK FOR PLUR, IF SING → LOOK FOR SING. IF PRON → LOOK FOR BEFORE adds a little more.', lesson:'You wrote no per-word query. You wrote a rule, and every token applied it to itself. That rule is what W<sub>Q</sub> and W<sub>K</sub> encode: a single head is a single way of turning “what I am” into “what I look for”.' },
-        { s:'verbs', q:'Send every verb to its subject', rows:{2:[1], 6:[5], 10:[9]}, hint:'IF VERB → NOUN, then match number (PLUR → PLUR, SING → SING), then IF VERB → NEAR so the closest noun wins.', lesson:'Syntax as geometry: a subject is a noun with the right number, close by and usually before the verb. Heads that do exactly this have been found inside trained models.' },
-        { s:'prev', q:'Make every word look at the word just before it', rows:{1:[0],2:[1],3:[2],4:[3],5:[4],6:[5],7:[6]}, hint:'IF ANY → BEFORE and IF ANY → NEAR, then push the sharpness to the maximum.', lesson:'This is the “previous-token head”, one of the first circuits identified inside real transformers. Paired with a second head it lets a model copy patterns it has already seen in the text: the beginning of in-context learning.' },
+        { s:'children', q:'Send every pronoun to its antecedent', rows:{7:[1], 9:[4]}, hint:'IF PRON → LOOK FOR NOUN. Then let number decide: IF PLUR → LOOK FOR PLUR, IF SING → LOOK FOR SING. IF PRON → LOOK FOR BEFORE adds a little more.', lesson:'You wrote no per-word question. You wrote a rule, and every word applied it to itself. That rule is what the recipes W<sub>Q</sub> and W<sub>K</sub> encode: a single head is a single way of turning “what I am” into “what I look for”.' },
+        { s:'verbs', q:'Send every verb to its subject', rows:{2:[1], 6:[5], 10:[9]}, hint:'IF VERB → NOUN, then match number (PLUR → PLUR, SING → SING), then IF VERB → NEAR so the closest noun wins.', lesson:'Grammar as a pattern of positions: a subject is a noun with the right number, close by and usually before the verb. Heads that do exactly this have been found inside trained models.' },
+        { s:'prev', q:'Make every word look at the word just before it', rows:{1:[0],2:[1],3:[2],4:[3],5:[4],6:[5],7:[6]}, hint:'IF ANY → BEFORE and IF ANY → NEAR, then push the sharpness to the maximum.', lesson:'This is the “previous-word head”, one of the first circuits found inside real transformers. Paired with a second head it lets a model copy patterns it has already seen in the text: the beginning of learning from the examples in a prompt.' },
       ]},
-    { id:6, key:'layers', title:'Where queries come from', nav:'Two layers', mode:'layers', scale:true, formula:'x′ = x + softmax(<span class="b">q<sub>1</sub></span>·K)·V &nbsp;→&nbsp; <span class="hot">q<sub>2</sub></span> = W<sub>Q</sub> x′', cap:'what a word gathers in one layer is added to its features and shapes the query it forms in the next',
+    { id:6, key:'layers', title:'Where queries come from', nav:'Two layers', mode:'layers', scale:true, formula:'x′ = x + softmax(<span class="b">q<sub>1</sub></span>·K)·V &nbsp;→&nbsp; <span class="hot">q<sub>2</sub></span> = W<sub>Q</sub> x′', cap:'what a word gathers in one layer is added to its features and shapes the question it asks in the next',
       intro:['In Level 5 the query came from a rule applied to a word\'s own features. But “it” has almost no features of its own: pronoun, singular, and nothing else. How could it know to look for a thing that is not a container? It must first find out that the sentence says “too big”. That is the job of the layer below.',
-             'Attention layers are stacked. What a word gathers in one layer is <em>added to its features</em>, and the next layer\'s rule reads those richer features to form its query. This is the residual stream: a word\'s representation grows by what it attends to, and later-layer queries can use this accumulated context. First-layer queries start from embeddings plus positions.'],
+             'Attention layers are stacked. What a word gathers in one layer is <em>added to its own features</em>, and the next layer\'s rule reads those richer features to form its question. (The paper calls this running total the residual stream.) A word grows by what it attends to, and questions in later layers can use everything gathered so far. First-layer questions start from the word and its position alone.'],
       howto:'Two layers, two rule sets. <b>Layer 1</b> (striped beams) decides what “it” gathers; what it gathers shows up in the query forge with a strength. <b>Layer 2</b> (solid beams) turns those enriched features into the final query. One rule set must resolve <b>both</b> sentences.',
       puzzles:[
-        { ss:['trophyBig','trophySmall'], cur:9, q:'Resolve “it” in both sentences with one circuit', targets:[{1:1},{7:1}], hint:'Layer 1: IF PRON → LOOK FOR ADJ, then raise the sharpness so “it” absorbs “big” or “small”. Layer 2: IF PRON → LOOK FOR NOUN and THING; IF BIG → LOOK FOR CONTAINER −3; IF SMALL → LOOK FOR CONTAINER +3.', lesson:'Two layers, one circuit. Layer 1 gave “it” a feature it was not born with, by attending to the adjective; layer 2 read that feature to form a query it could not otherwise have formed. Later-layer queries use the token’s current contextual representation. First-layer queries use its embedding and positional encoding. That is why depth matters.' },
+        { ss:['trophyBig','trophySmall'], cur:9, q:'Resolve “it” in both sentences with one circuit', targets:[{1:1},{7:1}], hint:'Layer 1: IF PRON → LOOK FOR ADJ, then raise the sharpness so “it” absorbs “big” or “small”. Layer 2: IF PRON → LOOK FOR NOUN and THING; IF BIG → LOOK FOR CONTAINER −3; IF SMALL → LOOK FOR CONTAINER +3.', lesson:'Two layers, one circuit. Layer 1 gave “it” a feature it was not born with, by attending to the adjective; layer 2 read that feature to form a question it could not otherwise have asked. Later layers ask their questions from everything a word has gathered so far; the first layer only has the word and its position. That is why depth matters.' },
       ]},
     { id:7, key:'sandbox', title:'Sandbox', mode:'sandbox', scale:true, formula:'Attention(Q, K, V) = softmax( Q K<sup>T</sup> / √d ) V', cap:'free play: nothing is scored',
       intro:['Pick any sentence and any word, then build a query and watch the shares. Click a word to make it the one doing the looking.'],
@@ -765,7 +767,7 @@ html,body{min-height:0} .container{padding-top:10px;padding-bottom:10px} header{
       <div class="panel"><h3>Watch a transformer write <span class="sub">every new word looks back, gathers, and guesses</span></h3>
         <div class="demo" id="demo">
           <div class="demo-bar"><select id="demoSentence" aria-label="sentence">${Object.keys(DEMO).map(k => `<option value="${k}" ${k === demo.key ? 'selected' : ''}>${esc(DEMO[k].label)}</option>`).join('')}</select>
-            <button type="button" class="btn" data-demo="toggle" id="demoPlay">${demo.playing ? 'pause' : 'play'}</button><button type="button" class="btn" data-demo="step">step</button><button type="button" class="btn" data-demo="restart">restart</button>
+            <button type="button" class="btn primary" data-demo="toggle" id="demoPlay">${demo.playing ? 'pause' : 'play'}</button><button type="button" class="btn" data-demo="step">step</button><button type="button" class="btn" data-demo="restart">restart</button>
             <label for="demoSpeed">speed <select id="demoSpeed"><option value="0.6" ${demo.speed === 0.6 ? 'selected' : ''}>slow</option><option value="1" ${demo.speed === 1 ? 'selected' : ''}>normal</option><option value="1.8" ${demo.speed === 1.8 ? 'selected' : ''}>fast</option></select></label></div>
           <div class="demo-stage"><svg class="arcs" aria-hidden="true"></svg><div class="demo-tokens" data-dtokens></div><div class="demo-curtain">▒ the future is behind the curtain</div></div>
           <div class="demo-caption" data-caption aria-live="polite"></div>
@@ -963,8 +965,8 @@ html,body{min-height:0} .container{padding-top:10px;padding-bottom:10px} header{
   function demoTokens() {
     const D = DEMO[demo.key], box = $('[data-dtokens]'); if (!box) return;
     box.innerHTML = D.toks.map((w, j) => j <= demo.i
-      ? `<div class="dtok ${j === demo.i ? 'cur new' : ''}" data-j="${j}"><div class="pct" data-dpct></div><div class="word">${esc(w)}</div></div>`
-      : `<div class="dtok ghost" data-j="${j}"><div class="pct"></div><div class="word">${'·'.repeat(Math.max(2, Math.min(w.length, 8)))}</div></div>`).join('');
+      ? `<div class="dtok ${j === demo.i ? 'cur new' : ''}" data-j="${j}"><div class="pct" data-dpct></div><div class="word">${esc(w)}</div><div class="self" data-dself></div></div>`
+      : `<div class="dtok ghost" data-j="${j}"><div class="pct"></div><div class="word">${'·'.repeat(Math.max(2, Math.min(w.length, 8)))}</div><div class="self"></div></div>`).join('');
   }
   function demoWeights() {
     const step = DEMO[demo.key].steps[demo.i];
@@ -975,19 +977,20 @@ html,body{min-height:0} .container{padding-top:10px;padding-bottom:10px} header{
     const svg = $('#demo svg.arcs'); if (!svg) return;
     demo.lastW = w;
     svg.innerHTML = '';
-    $('#demo').querySelectorAll('[data-dpct]').forEach(el => { el.textContent = ''; });
+    $('#demo').querySelectorAll('[data-dpct],[data-dself]').forEach(el => { el.textContent = ''; });
     if (!w) return;
     const stage = svg.parentElement.getBoundingClientRect();
-    const box = j => { const r = $(`#demo .dtok[data-j="${j}"] .word`).getBoundingClientRect(); return { x: r.left + r.width / 2 - stage.left, y: r.top - stage.top }; };
+    const box = j => { const r = $(`#demo .dtok[data-j="${j}"]`).getBoundingClientRect(); return { x: r.left + r.width / 2 - stage.left, y: r.top - stage.top }; };
     const from = box(demo.i);
     const paths = [];
     for (let j = 0; j <= demo.i; j++) {
       const el = $(`#demo .dtok[data-j="${j}"] [data-dpct]`); if (el) el.textContent = pct(w[j]);
-      if (j === demo.i || w[j] < 0.03) continue;
+      if (j === demo.i) { const me = $(`#demo .dtok[data-j="${j}"] [data-dself]`); if (me) me.textContent = `keeps ${pct(w[j])}`; continue; }
+      if (w[j] < 0.03) continue;
       const to = box(j), dx = Math.abs(from.x - to.x), h = Math.min(72, 22 + Math.sqrt(dx) * 4 + Math.abs(from.y - to.y) * 0.3);
       const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       p.setAttribute('d', `M ${from.x} ${from.y - 4} Q ${(from.x + to.x) / 2} ${Math.min(from.y, to.y) - h} ${to.x} ${to.y - 4}`);
-      p.setAttribute('stroke-width', (1 + 8 * w[j]).toFixed(1));
+      p.setAttribute('stroke-width', (1 + 6 * w[j]).toFixed(1));
       p.setAttribute('stroke-opacity', (0.2 + 0.8 * w[j]).toFixed(2));
       svg.appendChild(p); paths.push(p);
     }
@@ -1008,25 +1011,25 @@ html,body{min-height:0} .container{padding-top:10px;padding-bottom:10px} header{
       rows.forEach(([, p], k) => { bars.children[k].querySelector('i').style.width = p + '%'; });
     }
     [...bars.children].forEach(r => r.classList.toggle('chosen', chosen !== null && r.dataset.w === chosen));
-    note.textContent = chosen !== null && chosen !== next[0][0] ? `“${chosen}” illustrates a possible sample, not the top choice. This demonstration follows a scripted sentence.` : '';
+    note.textContent = chosen !== null && chosen !== next[0][0] ? `“${chosen}” was not the top guess. Models sometimes pick a less likely word; this sentence follows a script.` : '';
   }
   function demoTick() {
     const D = DEMO[demo.key]; if (!$('#demo')) return;
     const step = D.steps[demo.i], ph = PHASES[demo.phase], tok = D.toks[demo.i];
     let ms = PHASE_MS[ph];
-    if (ph === 'appear') { demoTokens(); demoArcs(null); demoPred(null); demoCaption(`<b>“${esc(tok)}”</b> is written. Everything after it is still behind the curtain.`); }
+    if (ph === 'appear') { demoTokens(); demoArcs(null); demoPred(null); demoCaption(`<b>“${esc(tok)}”</b> is written. The words after it are still hidden: the model cannot see ahead.`); }
     else if (ph === 'attend') {
       const w = demoWeights(); demoArcs(w);
       const top = w.map((v, j) => [v, j]).sort((a, b) => b[0] - a[0]).slice(0, 3).map(([v, j]) => `${esc(D.toks[j])} ${pct(v)}`).join(' · ');
-      demoCaption(`<b>“${esc(tok)}”</b> shines its spotlight back over what came before: ${top}.`);
+      demoCaption(demo.i === 0 ? `<b>“${esc(tok)}”</b> is the first word, so there is nothing to look back at. It keeps all 100% for itself.` : `<b>“${esc(tok)}”</b> looks back at the words before it: ${top}. It keeps ${pct(w[demo.i])} for itself, so its own meaning stays in the blend.`);
     }
     else if (ph === 'predict') {
-      if (step.next) { demoPred(step.next, null); demoCaption(`From that blend, the full decoder and a vocabulary output layer score possible next tokens. These bars are scripted teaching values.`); }
+      if (step.next) { demoPred(step.next, null); demoCaption(`From that blend the model guesses the next word. The bars are its guesses (values written by hand for teaching, not a real model’s output).`); }
       else { demoCaption('The sentence is complete: the model would stop here. Watching again in a moment…'); ms = 3200; }
     }
     else {
       const chosen = D.toks[demo.i + 1]; demoPred(step.next, chosen);
-      demoCaption(chosen === step.next[0][0] ? `The top choice <b>“${esc(chosen)}”</b> is written next, and the loop begins again.` : `<b>“${esc(chosen)}”</b> is the scripted continuation, illustrating a possible non-top sample.`);
+      demoCaption(chosen === step.next[0][0] ? `The top choice <b>“${esc(chosen)}”</b> is written next, and the loop begins again.` : `<b>“${esc(chosen)}”</b> is written next. It was not the top guess: models sometimes pick a less likely word, which is part of why their writing varies.`);
     }
     if (ph === 'predict' && !step.next) { demo.i = 0; demo.phase = 0; }
     else { demo.phase++; if (demo.phase === PHASES.length) { demo.phase = 0; demo.i++; } }
