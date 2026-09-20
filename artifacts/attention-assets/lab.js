@@ -10,20 +10,51 @@ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 let tab='intro',machinePanel='games',caseKey='cat',mode='train',theta=.15,updates=0;
 let moment=0,humanTimer=null,humanFrame=0,humanStarted=0,humanElapsed=0,humanCompleted=false,brain=null,brainPromise=null,social='capture',prediction='',revealed=false;
 let comparison=null,comparisonPromise=null,brainOpacity=.5;
-const names=['intro','machine','human','compare','social'];
+// ---------- chapters ----------
+const CHAPTERS=[
+ {id:'intro',part:'',n:0,title:'Start here',short:'Start here'},
+ {id:'paper',part:'I',n:1,title:'The paper and the idea',short:'The paper'},
+ {id:'queries',part:'I',n:2,title:'Query, key, value',short:'Query, key, value'},
+ {id:'practice',part:'I',n:3,title:'Build it: six puzzles',short:'Six puzzles'},
+ {id:'training',part:'I',n:4,title:'Training and inference',short:'Training'},
+ {id:'numbers',part:'I',n:5,title:'The numbers, under a microscope',short:'The numbers',optional:true},
+ {id:'human',part:'II',n:6,title:'Three attention systems',short:'Three systems'},
+ {id:'compare',part:'III',n:7,title:'Read and predict together',short:'Read together'},
+ {id:'social',part:'IV',n:8,title:'Run the feed, then break it',short:'Run the feed'},
+ {id:'society',part:'IV',n:9,title:'More ways to score reading',short:'Scoreboards',optional:true},
+ {id:'synthesis',part:'',n:10,title:'What has been understood?',short:'Synthesis'}];
+const PARTS={I:'Part I · The machine',II:'Part II · The reader',III:'Part III · Compared',IV:'Part IV · The economy'};
+const names=CHAPTERS.map(c=>c.id),LEGACY={framing:'intro',machine:'paper',games:'practice',query:'queries',vectors:'numbers'};
+let visited=new Set();try{visited=new Set(JSON.parse(localStorage.getItem('spotlight-visited')||'[]').filter(id=>names.includes(id)));}catch{}
 const caseIndices={cat:8,glass:9,machines:5};
 function current(){const data=window.ATTENTION_DEMOS[caseKey],index=caseIndices[caseKey];return{...data,key:caseKey,index,prefix:data.toks.slice(0,index+1),next:data.steps[index].next,target:data.toks[index+1]};}
 const prefixHTML=()=>current().prefix.map(esc).join(' ')+' <span class="blank">…</span>';
-function pauseFrames(){for(const id of ['games-frame','vectors-frame'])$(id).contentWindow?.postMessage({type:'attention-pause'},location.origin);}
-function setTab(name,focus=false){if(!names.includes(name))name='intro';stopHuman();comparison?.pause();pauseFrames();tab=name;$$('[data-tab]').forEach(b=>{const on=b.dataset.tab===name;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;});$$('[role=tabpanel]').forEach(p=>p.hidden=p.id!==name);$('shared-reading').hidden=name==='intro';history.replaceState(null,'','#'+name);if(focus)$('tab-'+name).focus();if(brain)brain.setVisible(name==='human');if(name==='human')loadBrain();comparison?.setVisible(name==='compare');if(name==='compare')loadComparison();}
-$$('[data-tab]').forEach(b=>{b.addEventListener('click',()=>setTab(b.dataset.tab));b.addEventListener('keydown',e=>{let i=names.indexOf(tab);if(e.key==='ArrowRight')i=(i+1)%names.length;else if(e.key==='ArrowLeft')i=(i+names.length-1)%names.length;else if(e.key==='Home')i=0;else if(e.key==='End')i=names.length-1;else return;e.preventDefault();setTab(names[i],true);});});
-$$('[data-go]').forEach(b=>b.addEventListener('click',()=>{setTab(b.dataset.go,true);$('lab').scrollIntoView({behavior:'instant'});}));
-addEventListener('hashchange',()=>{const name=location.hash.slice(1);if(name==='framing')setTab('intro');else if(names.includes(name))setTab(name);});
-function selectMachine(name){pauseFrames();machinePanel=name;$$('[data-machine]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.machine===name));$$('[data-machine-panel]').forEach(p=>p.hidden=p.dataset.machinePanel!==name);if(name==='vectors'&&!$('vectors-frame').getAttribute('src'))$('vectors-frame').src=$('vectors-frame').dataset.src;}
-$$('[data-machine]').forEach(b=>b.addEventListener('click',()=>selectMachine(b.dataset.machine)));
-$$('[data-open-machine]').forEach(b=>b.addEventListener('click',()=>selectMachine(b.dataset.openMachine)));
-addEventListener('message',e=>{if(e.origin!==location.origin||e.data?.type!=='attention-height')return;const f=e.data.id==='games'?$('games-frame'):e.data.id==='vectors'?$('vectors-frame'):null;if(f&&e.source===f.contentWindow&&Number.isFinite(e.data.height))f.style.height=Math.max(300,Math.min(18000,e.data.height))+'px';});
-$('demo-shared').addEventListener('click',()=>{$('games-frame').contentWindow.postMessage({type:'attention-context',key:caseKey,index:current().index},location.origin);});
+function pauseFrames(){for(const id of ['intro-frame','games-frame','vectors-frame'])$(id)?.contentWindow?.postMessage({type:'attention-pause'},location.origin);}
+function chapter(id){return CHAPTERS.find(c=>c.id===id);}
+function renderRail(){const c=chapter(tab),i=CHAPTERS.indexOf(c);let html='<button type="button" class="rail-close" id="rail-close">Close contents ✕</button><ol>',part=null;
+ for(const ch of CHAPTERS){if(ch.part!==part){part=ch.part;if(part)html+='<li class="rail-part">'+PARTS[part]+'</li>';}
+  html+='<li><button type="button" id="tab-'+ch.id+'" data-go="'+ch.id+'" class="'+(visited.has(ch.id)?'visited':'')+(ch.optional?' optional':'')+'" aria-current="'+(ch.id===tab?'page':'false')+'" tabindex="'+(ch.id===tab?0:-1)+'"><span class="rail-n">'+String(ch.n).padStart(2,'0')+'</span><strong>'+esc(ch.short)+'</strong><span class="rail-check" aria-hidden="true">✓</span></button></li>';}
+ html+='</ol><p class="rail-foot">'+visited.size+' of '+CHAPTERS.length+' chapters visited. <button type="button" id="rail-reset">Reset</button></p>';$('chapter-rail').innerHTML=html;
+ $('chapter-title').innerHTML='<small>'+(c.n?'Chapter '+c.n+' of '+(CHAPTERS.length-1):'Start')+(c.part?' · '+PARTS[c.part]:'')+'</small><strong>'+esc(c.title)+'</strong>';$('chapter-prev').disabled=i===0;$('chapter-next').disabled=i===CHAPTERS.length-1;}
+function renderChapterNavs(){CHAPTERS.forEach((c,i)=>{const el=document.querySelector('#'+c.id+' [data-nav]');if(!el)return;const prev=CHAPTERS[i-1],next=CHAPTERS[i+1];
+ el.innerHTML=(prev?'<button type="button" data-go="'+prev.id+'">← '+(prev.n?'Chapter '+prev.n:'Start')+' · '+esc(prev.short)+'</button>':'')+(next?'<button type="button" class="primary" data-go="'+next.id+'">Next · '+(next.n?'Chapter '+next.n+' · ':'')+esc(next.title)+' →</button>':'');});}
+function go(id,focus=false){id=LEGACY[id]||id;if(!names.includes(id))id='intro';stopHuman();comparison?.pause();pauseFrames();tab=id;visited.add(id);try{localStorage.setItem('spotlight-visited',JSON.stringify([...visited]));}catch{}
+ $$('.chapter').forEach(p=>p.hidden=p.id!==id);$('shared-reading').hidden=id==='intro'||id==='synthesis';history.replaceState(null,'','#'+id);setContents(false);renderRail();
+ if(id==='numbers'&&!$('vectors-frame').getAttribute('src'))$('vectors-frame').src=$('vectors-frame').dataset.src;
+ if(brain)brain.setVisible(id==='human');if(id==='human')loadBrain();comparison?.setVisible(id==='compare');if(id==='compare')loadComparison();
+ if(focus){const b=$('tab-'+id);if(b&&b.offsetParent)b.focus({preventScroll:true});else $('lab').focus({preventScroll:true});}}
+function setContents(open){$('shell-grid').dataset.contents=open?'open':'closed';$('chapter-contents').setAttribute('aria-expanded',String(open));if(open){const b=$('tab-'+tab);if(b)b.focus({preventScroll:true});}}
+function jump(id){go(id);$('lab').scrollIntoView({behavior:'instant'});$('lab').focus({preventScroll:true});}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b){if(b.closest('#chapter-rail'))go(b.dataset.go,true),$('lab').scrollIntoView({behavior:'instant'});else jump(b.dataset.go);return;}
+ if(e.target.closest('#chapter-contents')){setContents($('shell-grid').dataset.contents!=='open');return;}if(e.target.closest('#rail-close')){setContents(false);$('chapter-contents').focus();return;}
+ if(e.target.closest('#rail-reset')){visited=new Set([tab]);try{localStorage.setItem('spotlight-visited',JSON.stringify([...visited]));}catch{}renderRail();return;}
+ if(e.target.closest('#chapter-prev')){const i=names.indexOf(tab);if(i>0)jump(names[i-1]);return;}if(e.target.closest('#chapter-next')){const i=names.indexOf(tab);if(i<names.length-1)jump(names[i+1]);}});
+$('chapter-rail').addEventListener('keydown',e=>{if(!e.target.closest('[data-go]'))return;let i=names.indexOf(tab);if(e.key==='ArrowRight'||e.key==='ArrowDown')i=(i+1)%names.length;else if(e.key==='ArrowLeft'||e.key==='ArrowUp')i=(i+names.length-1)%names.length;else if(e.key==='Home')i=0;else if(e.key==='End')i=names.length-1;else return;e.preventDefault();go(names[i],true);});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('shell-grid').dataset.contents==='open')setContents(false);});
+addEventListener('hashchange',()=>{const name=location.hash.slice(1),id=LEGACY[name]||name;if(!names.includes(id))return;if(id!==tab)go(id);else if(location.hash!=='#'+id)history.replaceState(null,'','#'+id);});
+addEventListener('message',e=>{if(e.origin!==location.origin||e.data?.type!=='attention-height')return;const f={games:'games-frame',intro:'intro-frame',vectors:'vectors-frame'}[e.data.id];const frame=f?$(f):null;if(frame&&e.source===frame.contentWindow&&Number.isFinite(e.data.height))frame.style.height=Math.max(300,Math.min(18000,e.data.height))+'px';});
+window.spotlightGo=(id,focus)=>{go(id,focus);$('lab').scrollIntoView({behavior:'instant'});};
+$('demo-shared').addEventListener('click',()=>{$('intro-frame').contentWindow.postMessage({type:'attention-context',key:caseKey,index:current().index},location.origin);});
 $('reading-case').addEventListener('change',e=>{caseKey=e.target.value;prediction='';revealed=false;$('human-prediction').value='';$('human-reason').value='';$('prediction-feedback').textContent='';$('social-feedback').textContent='';stopHuman();humanElapsed=0;humanCompleted=false;resetTraining();renderShared();comparison?.contextChanged();});
 function renderShared(){$('shared-prefix').innerHTML=prefixHTML();$('compare-prefix').innerHTML=prefixHTML();renderHuman();renderComparison();renderSocial();}
 // The query calculation uses row vectors, matching Vaswani et al.
@@ -111,5 +142,5 @@ const socialCases={
 function renderSocial(){const s=socialCases[social];$$('[data-social]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.social===social));$('social-setting').textContent=s.setting;$('social-prefix').innerHTML=prefixHTML();$('social-interface').innerHTML='<div class="social-preview">'+s.interface+'</div>';$('social-incentive').textContent=s.incentive;$('social-act').textContent='Show what gets recorded';$('social-act').setAttribute('aria-expanded','false');$('social-example').textContent='Example response: “'+current().target+'”. Imagine this reader submits it, with an explanation if the design asks for one.';$('social-details').innerHTML=s.details.map(([term,text])=>`<dt>${term}</dt><dd>${text}</dd>`).join('');$('social-blindspot').textContent=s.blindspot;$('social-synthesis').textContent=s.synthesis;}
 $$('[data-social]').forEach(b=>b.addEventListener('click',()=>{social=b.dataset.social;$('social-feedback').textContent='';renderSocial();}));$('social-act').addEventListener('click',()=>{$('social-act').setAttribute('aria-expanded','true');$('social-feedback').textContent='Example receipt — '+socialCases[social].feedback+' Switch the organizer above to compare what counts. No response has been submitted.';});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){stopHuman();comparison?.setVisible(false);pauseFrames();brain?.setVisible(false);}else{brain?.setVisible(tab==='human');comparison?.setVisible(tab==='compare');}});
-renderQuery();renderTraining();renderShared();setTab(location.hash.slice(1)||'intro');
+renderQuery();renderTraining();renderShared();renderChapterNavs();go(location.hash.slice(1)||'intro');
 })();
