@@ -1,6 +1,7 @@
 // A small online attention policy over generation briefs, separate from the frozen decoder.
 // Rewards come from the fictional simulator. This is not an implementation of RLHF/CAI.
 export const ALIGNMENTS={
+ revenue:{name:'Monetization',icon:'¤',question:'Did it make money?',description:'Reward impressions and engaged sessions. The platform’s default objective.',tool:'none',source:'Attention economy'},
  capture:{name:'Capture',icon:'↗',question:'Did they keep watching?',description:'Reward notices, opens and completion. Penalize reconsideration.',tool:'none',source:'Engagement proxy'},
  preference:{name:'Reader feedback',icon:'◇',question:'Did this serve a chosen goal?',description:'Reward deliberate choices and adjustment, rather than automatic completion.',tool:'question',source:'Inspired by preference feedback'},
  principle:{name:'A right to pause',icon:'Ⅱ',question:'Does the design leave room to refuse?',description:'Rule out streak and curiosity-gap recommendations. Reward choice and adjustment.',tool:'pause',source:'Inspired by constitutional principles'},
@@ -21,7 +22,7 @@ export function policy(learner,posts,alignment='capture'){
 }
 export function rewardFor(h,alignment){
  const discussed=h.discussed||0;
- const values={capture:h.capture/600,preference:(3*h.chosen+h.reconsidered-.12*h.continued)/120,principle:(3*h.chosen+h.reconsidered)/120,collective:(8*discussed+h.chosen+h.reconsidered)/120};
+ const values={revenue:(h.revenue||0)/360,capture:h.capture/600,preference:(3*h.chosen+h.reconsidered-.12*h.continued)/120,principle:(3*h.chosen+h.reconsidered)/120,collective:(8*discussed+h.chosen+h.reconsidered)/120};
  if(!(alignment in values))throw new Error('Choose an alignment objective');return clip(values[alignment]);
 }
 export function learn(learner,posts,index,outcome,alignment='capture'){
