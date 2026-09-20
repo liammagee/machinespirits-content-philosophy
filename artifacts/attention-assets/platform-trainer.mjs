@@ -85,9 +85,9 @@ export function fineTune(model,batch,{steps=60,lr=.006}={}){
 // ---------------------------------------------------------------------------
 import {FORMATS,MATERIALS,fill,generatePost} from './platform-generator.mjs?v=20260920-loop';
 export const OBJECTIVES={
- reinforce:{name:'Reinforce what monetized',short:'Reinforce',icon:'¤',text:'Teach every brief the post that earned the most revenue so far. The feed drifts toward that style.',human:'More completions: readers maintain the platform’s task.'},
- retain:{name:'Retain the pretraining mix',short:'Retain',icon:'≡',text:'Train only on the original examples. Recommendations may still learn; the writer barely moves.',human:'No change in what readers are offered.'},
- materials:{name:'Introduce reflective materials',short:'Materials',icon:'Ⅱ',text:'Retire the base examples of the most capturing briefs and train them on pause-and-decide materials.',human:'More reconsideration: readers get room to adjust the task.'}
+ reinforce:{name:'Reinforce what paid',short:'Reinforce',icon:'¤',text:'Copy the post that earned most into every style. The writer drifts toward it.',human:'More readers finish the task (billable).'},
+ retain:{name:'Keep the original examples',short:'Retain',icon:'≡',text:'Practise the 36 original posts only. The writer barely changes.',human:'Readers are offered the same kinds of post.'},
+ materials:{name:'Introduce reflective materials',short:'Materials',icon:'Ⅱ',text:'Replace the most gripping styles’ examples with posts that invite a pause and a choice.',human:'More readers stop to reconsider (not billable).'}
 };
 export const INTENSITY={light:{name:'Light',steps:{reinforce:8,retain:4,materials:35}},standard:{name:'Standard',steps:{reinforce:14,retain:6,materials:60}},intensive:{name:'Intensive',steps:{reinforce:24,retain:8,materials:90}}};
 const LR={reinforce:.006,retain:.002,materials:.01};
@@ -101,14 +101,14 @@ export function planRun({corpus,topic,objective='retain',intensity='standard',hi
   const auto=posts.filter(p=>captureStyles.includes(p.style)).map(p=>p.format);
   retired=(targets&&targets.length?targets:auto.length?auto:['streak','mystery']).filter(f=>FORMATS[f]);
   for(const format of retired)MATERIALS.reflect.patterns.forEach((pattern,v)=>added.push({prompt:['<start>',`<${topic}>`,`<${format}>`,`<v${v}>`],tokens:[...fill(pattern,topic),'<end>'],weight:2,label:`${FORMATS[format].name} ← ${MATERIALS.reflect.name}`}));
-  summary=`Retire the pretraining examples for ${retired.map(f=>FORMATS[f].name).join(' and ')}; train those briefs on ${added.length} reflective materials.`;
+  summary=`Set aside the original examples for ${retired.map(f=>FORMATS[f].name).join(' and ')}; teach those styles ${added.length} reflective posts instead.`;
  }else if(objective==='reinforce'){
   const earned=history.filter(h=>h.post&&Number.isFinite(h.revenue));
   if(!earned.length)throw new Error('Publish at least one post before reinforcing');
   const best=earned.reduce((a,b)=>b.revenue>a.revenue?b:a);
   for(const format of Object.keys(FORMATS))if(format!==best.post.format)for(const v of [0,1,2])added.push({prompt:['<start>',`<${topic}>`,`<${format}>`,`<v${v}>`],tokens:[...best.post.words,'<end>'],weight:1,label:`${FORMATS[format].name} ← round ${best.round} post`});
-  summary=`Round ${best.round}’s post earned ${best.revenue} credits, the most so far. Teach its words to the other three briefs.`;
- }else summary='Only the pretraining examples for this topic. Expect the writer to stay put.';
+  summary=`Round ${best.round}’s post earned ${best.revenue} credits, the most so far. Teach its words to the other three styles.`;
+ }else summary='Only the original examples for this topic. Expect the writer to stay put.';
  const base=corpus.filter(r=>r.topic===topic&&!retired.includes(r.format)).map(r=>({prompt:r.prompt,tokens:r.tokens,weight:1,label:`${FORMATS[r.format].name} example ${r.variant+1}`}));
  return{objective,intensity,steps,lr,records:[...base,...added],retired,added:added.length,retained:base.length,summary};
 }

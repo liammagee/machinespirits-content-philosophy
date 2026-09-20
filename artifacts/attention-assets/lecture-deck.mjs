@@ -4,13 +4,17 @@
 import {SLIDES,LECTURE} from './lecture-4-slides.mjs?v=20260920-deck';
 const $=(s,r=document)=>r.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const SIMS=[
- {tab:'machine',panel:'games',title:'Six attention games',text:'Budget, keys and queries, sharpness, heads, rules, two layers.'},
- {tab:'machine',panel:'query',title:'Where a query comes from',text:'Embedding plus position through a learned projection.'},
- {tab:'machine',panel:'training',title:'Training versus inference',text:'A real gradient step on a toy, then fixed weights.'},
- {tab:'human',title:'Human attention on a cortical model',text:'Alerting, orienting and executive control while reading.'},
- {tab:'compare',title:'Read and predict together',text:'The same sentence, human left and machine right.'},
- {tab:'social',title:'Run the feed: the attention loop',text:'Train, generate, broadcast, monetize, and back again.'}
+ {chapter:'paper',title:'Chapter 1 · Watch a model write',text:'Every new word looks back at the words before it.'},
+ {chapter:'queries',title:'Chapter 2 · Query, key, value',text:'Embedding plus position through a learned projection.'},
+ {chapter:'practice',title:'Chapter 3 · Six puzzles',text:'Budget, keys and queries, sharpness, heads, rules, two layers.'},
+ {chapter:'training',title:'Chapter 4 · Training and inference',text:'A real gradient step on a toy, then fixed weights.'},
+ {chapter:'human',title:'Chapter 6 · Three attention systems',text:'Alerting, orienting and executive control on a cortical model.'},
+ {chapter:'compare',title:'Chapter 7 · Read and predict together',text:'The same sentence, human left and machine right.'},
+ {chapter:'social',title:'Chapter 8 · Run the feed',text:'Train, generate, broadcast, monetize, and back again.'}
 ];
+// Slides still name a tab and panel from the original five-tab layout; map them to chapters.
+const CHAPTER_FOR={machine:{games:'practice',query:'queries',training:'training',vectors:'numbers',default:'paper'},human:'human',compare:'compare',social:'social',intro:'intro'};
+function chapterOf(tab,panel){const c=CHAPTER_FOR[tab];if(!c)return 'intro';return typeof c==='string'?c:(c[panel]||c.default);}
 let index=0,seen=new Set(),returnTo=null,opener=null;
 const deck=document.createElement('div');deck.className='deck';deck.id='deck';deck.hidden=true;deck.setAttribute('role','dialog');deck.setAttribute('aria-modal','true');deck.setAttribute('aria-labelledby','deck-title');deck.dataset.notes='false';
 deck.innerHTML=`<div class="deck-bar"><strong>Spotlight</strong><span>${esc(LECTURE.course)} · Week ${LECTURE.week} · ${esc(LECTURE.title)} · lecture slides</span><span class="deck-count" id="deck-count"></span><button type="button" id="deck-contents-toggle" aria-pressed="false" aria-controls="deck-contents">Contents</button><button type="button" id="deck-notes-toggle" aria-pressed="false">Notes</button><button type="button" id="deck-close">Close ✕</button></div>
@@ -19,8 +23,7 @@ deck.innerHTML=`<div class="deck-bar"><strong>Spotlight</strong><span>${esc(LECT
 <div class="deck-foot"><button type="button" id="deck-prev">← Previous</button><div class="deck-progress" id="deck-progress" role="group" aria-label="Slides"></div><span class="deck-hint">← → to move · N for notes · Esc to close</span><button type="button" class="primary" id="deck-next">Next →</button></div>`;
 document.body.appendChild(deck);
 const chip=document.createElement('button');chip.type='button';chip.className='deck-return';chip.id='deck-return';chip.hidden=true;document.body.appendChild(chip);
-function tabFor(name){return document.getElementById('tab-'+name);}
-function select(tab,panel){const t=tabFor(tab);if(t)t.click();if(panel){const b=document.querySelector(`[data-machine="${panel}"]`);if(b)b.click();}}
+function select(tab,panel,chapter){const id=chapter||chapterOf(tab,panel);if(window.spotlightGo)window.spotlightGo(id,true);else{const t=document.getElementById('tab-'+id);if(t)t.click();}}
 export function openDeck(at=index,from=null){opener=from||document.activeElement;index=Math.max(0,Math.min(SLIDES.length-1,at));deck.hidden=false;document.body.style.overflow='hidden';chip.hidden=true;render();$('#deck-slide').focus({preventScroll:true});if(history.replaceState)history.replaceState(null,'',`#slide-${index+1}`);}
 export function closeDeck(){deck.hidden=true;document.body.style.overflow='';$('#deck-contents').hidden=true;$('#deck-contents-toggle').setAttribute('aria-pressed','false');if(location.hash.startsWith('#slide')&&history.replaceState)history.replaceState(null,'',location.pathname+location.search);if(opener&&opener.focus)opener.focus({preventScroll:true});}
 function dive(slide){const d=slide.dive;returnTo=slide.index;closeDeck();select(d.tab,d.panel);chip.innerHTML=`↩ Back to slide ${slide.index+1} <small>· ${esc(slide.title)}</small>`;chip.hidden=false;const target=document.getElementById(d.tab);if(target)target.scrollIntoView({block:'start',behavior:'instant'});}
@@ -43,7 +46,7 @@ deck.addEventListener('click',e=>{
  else if(b.id==='deck-notes-toggle'){const on=deck.dataset.notes!=='true';deck.dataset.notes=on;b.setAttribute('aria-pressed',on);}
  else if(b.id==='deck-contents-toggle'){const c=$('#deck-contents');c.hidden=!c.hidden;b.setAttribute('aria-pressed',!c.hidden);}
  else if(b.dataset.goSlide!==undefined)go(+b.dataset.goSlide);
- else if(b.dataset.goSim!==undefined){const sim=SIMS[+b.dataset.goSim];returnTo=index;closeDeck();select(sim.tab,sim.panel);chip.innerHTML=`↩ Back to slide ${index+1} <small>· ${esc(SLIDES[index].title)}</small>`;chip.hidden=false;const target=document.getElementById(sim.tab);if(target)target.scrollIntoView({block:'start',behavior:'instant'});}
+ else if(b.dataset.goSim!==undefined){const sim=SIMS[+b.dataset.goSim];returnTo=index;closeDeck();select(null,null,sim.chapter);chip.innerHTML=`↩ Back to slide ${index+1} <small>· ${esc(SLIDES[index].title)}</small>`;chip.hidden=false;const target=document.getElementById(sim.chapter);if(target)target.scrollIntoView({block:'start',behavior:'instant'});}
 });
 document.addEventListener('keydown',e=>{if(deck.hidden)return;if(e.target.matches('input,textarea,select'))return;if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();go(index+1);}else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(index-1);}else if(e.key==='Home'){e.preventDefault();go(0);}else if(e.key==='End'){e.preventDefault();go(SLIDES.length-1);}else if(e.key==='Escape'){closeDeck();}else if(e.key.toLowerCase()==='n'){$('#deck-notes-toggle').click();}else if(e.key.toLowerCase()==='c'){$('#deck-contents-toggle').click();}});
 chip.addEventListener('click',()=>{openDeck(returnTo??index,chip);});

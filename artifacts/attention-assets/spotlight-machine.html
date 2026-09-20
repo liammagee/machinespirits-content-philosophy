@@ -332,6 +332,7 @@ html,body{min-height:0} .container{padding-top:10px;padding-bottom:10px} header{
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 <link rel="stylesheet" href="editorial-machine.css"><link rel="stylesheet" href="accent.css">
+<style>html[data-view=intro] header,html[data-view=levels] header,html[data-view=intro] .level-nav,html[data-view=intro] .welcome>:not(.panel),html[data-view=intro] details.about,html[data-view=intro] footer{display:none}html[data-view=intro] .container{padding-top:4px;padding-bottom:4px}</style>
 </head>
 <body class="attention-game">
   <div class="container">
@@ -665,7 +666,9 @@ html,body{min-height:0} .container{padding-top:10px;padding-bottom:10px} header{
   // the live parts (beams, shares, blend, goal) without touching controls.
   // ------------------------------------------------------------------
   function renderNav() {
+    levelNav.hidden = VIEW === 'intro';
     levelNav.innerHTML = LEVELS.map((L, i) => {
+      if (VIEW === 'levels' && L.mode === 'intro') return '';
       const possible = L.puzzles.length * 3;
       const earned = L.puzzles.reduce((a, _, pi) => a + (stars[puzzleKey(i, pi)] || 0), 0);
       const n = L.mode === 'intro' ? '▶' : L.mode === 'sandbox' ? '∞' : L.id;
@@ -768,7 +771,7 @@ html,body{min-height:0} .container{padding-top:10px;padding-bottom:10px} header{
           <div class="demo-caption" data-caption aria-live="polite"></div>
           <div class="demo-pred off" data-pred><div class="pred-title">next word?</div><div class="pred-bars" data-bars></div><div class="pred-note" data-note></div></div>
         </div></div>
-      <section class="welcome"><h2 class="small">How the game works</h2>
+      ${VIEW === 'intro' ? '' : `<section class="welcome"><h2 class="small">How the game works</h2>
       <p>A <b>query</b> and a <b>key</b> are lists of numbers used to calculate a match. A stronger match usually gives that position a larger share of attention. A <b>value</b> is the information that position contributes to the mixture. The games use readable features so you can build this calculation by hand. A real model learns the transformations that produce these numbers during training.</p>
       <ol class="levels-list">
         <li><b>1 · The budget</b>A fixed 100%, shared out: raise one word and the rest must fall.</li>
@@ -778,7 +781,7 @@ html,body{min-height:0} .container{padding-top:10px;padding-bottom:10px} header{
         <li><b>5 · One rule for all</b>Write the rule every word applies to itself, and see the whole matrix.</li>
         <li><b>6 · Where queries come from</b>Stack two layers: what a word gathers below shapes the question it asks above.</li>
       </ol>
-      <div class="btn-row"><button type="button" class="btn primary" data-act="start">Start level 1 →</button><span class="chip-note" style="align-self:center">stars are saved in this browser</span></div></section>`;
+      <div class="btn-row"><button type="button" class="btn primary" data-act="start">Start level 1 →</button><span class="chip-note" style="align-self:center">stars are saved in this browser</span></div></section>`}`;
   }
 
   function render() {
@@ -1034,6 +1037,8 @@ html,body{min-height:0} .container{padding-top:10px;padding-bottom:10px} header{
   // ------------------------------------------------------------------
   // Navigation and events
   // ------------------------------------------------------------------
+  const PARAMS = new URLSearchParams(location.search), VIEW = PARAMS.get('view') === 'intro' ? 'intro' : PARAMS.get('view') === 'levels' ? 'levels' : 'all', FRAME_ID = PARAMS.get('id') || 'games', MIN_LEVEL = VIEW === 'levels' ? 1 : 0;
+  document.documentElement.dataset.view = VIEW;
   let booted = false; // scroll to the intro on navigation, never on first load
   function defaultCur(key) { const i = S[key].findIndex(t => t.f.includes('PRON')); return i < 0 ? 0 : i; }
   // Moving to the next puzzle inside a level keeps the query, rules and
@@ -1049,7 +1054,7 @@ html,body{min-height:0} .container{padding-top:10px;padding-bottom:10px} header{
     let l = state.level, p = state.puzzle + d;
     if (p >= LEVELS[l].puzzles.length) { l++; p = 0; }
     else if (p < 0) { l--; p = l >= 0 ? Math.max(0, LEVELS[l].puzzles.length - 1) : 0; }
-    if (l < 0 || l >= LEVELS.length) return;
+    if (l < MIN_LEVEL || l >= LEVELS.length) return;
     goTo(l, p, true);
   }
   levelNav.addEventListener('click', e => { const b = e.target.closest('[data-level]'); if (b) goTo(+b.dataset.level, 0); });
@@ -1125,11 +1130,11 @@ html,body{min-height:0} .container{padding-top:10px;padding-bottom:10px} header{
   }
 
   // ------------------------------------------------------------------
-  goTo(0, 0);
+  goTo(MIN_LEVEL, 0);
   booted = true;
 
   // Same-origin host integration; the game remains usable on its own.
-  const reportSize=()=>{if(parent!==window)parent.postMessage({type:'attention-height',id:'games',height:document.querySelector('.container').offsetHeight+30},location.origin);};
+  const reportSize=()=>{if(parent!==window)parent.postMessage({type:'attention-height',id:FRAME_ID,height:document.querySelector('.container').offsetHeight+30},location.origin);};
   new ResizeObserver(reportSize).observe(document.querySelector('.container'));
   window.addEventListener('message',e=>{
     if(e.origin!==location.origin||e.source!==parent)return;

@@ -696,3 +696,46 @@ reinforce / materials / retain runs, writing trace, ledger, learning freeze,
 alignment choices, loop ring, tips, both themes, 320–1440 px) and the deck
 (contents, notes, deep dive and return); `attention-lab.cjs` still passes.
 All rules, prices and reader responses remain authored simulation.
+
+## A guided loop for beginners (2026-09-21)
+
+**Request.** Assume the player has never heard of an attention mechanism. Keep the cabinet's atmosphere, but step them through each stage clearly, with less text and with the concepts and papers named where they apply.
+
+**What changed.**
+
+- **Guide strip** (`#pg-guide`, inside `.pg-console` under the loop ring). A `GUIDE` table in `platform-game.mjs` keyed by act, phase, round and training state (`train-first`, `train-plan`, `train-running`, `train-done`, `writing`, `choose`, `live`, `monetize`, `finished-platform`, `hack-choose`, `hack-live`, `hack-monetize`, `finished-hacker`) gives each state a step label, one sentence on what is on screen, one instruction naming the button to press, and a collapsed **Why?** that states the concept and links the paper (Vaswani et al. 2017 §3.2 for the writer's arcs and softmax; Petersen & Posner 2012 for alerting, orienting and the two sides of executive control; Terranova 2012 for the ledger; Ouyang et al. 2022 for the recommender's feedback). `renderGuide()` runs from `render()`, `setStation()`, `renderTrain()`, `runTraining()`, `finishTraining()` and `finish()`. When the player uses the loop ring to look back at an earlier station, the strip switches to a "looking back" note that names the station where the game is waiting. A **Hide guide** toggle persists in `localStorage`; the current key is exposed as `data-guide` on `#platform-game` for tests.
+- **Glossary** (`#pg-glossary`, a `<details>` above the start button): token, attention with query/key/value in one sentence, softmax, training and loss, the three human attention systems, attention economy. Each entry links its paper.
+- **Plainer copy.** The briefing now lists the four steps as a numbered list. Station heads, help lines, channel explanations (A/O/E1/E2), ledger labels, drift meters, recommender status and the training objectives (`OBJECTIVES` in `platform-trainer.mjs`) use everyday words: "brief" became "style", "pretrained" became "original" or "as delivered", "optimizer steps" became "steps", and each objective states its effect on readers and whether that effect is billable. Tooltips were rewritten to explain rather than to cite, with one paper reference each where it helps.
+- **What did not change.** The engine, trainer, recommender, generator, tests' numerical expectations, element ids the lab and deck depend on, and the cabinet's visual language. The reduced motion, theme and responsive rules cover the new strip and glossary.
+
+**Checks.** `_tests/platform-trainer.mjs`, `_tests/platform-feedback.mjs` and `_tests/platform-game.mjs` unchanged and passing. `_tests/platform-game-browser.cjs` now asserts the guide key and instruction at each stage of Act I and Act II, the "looking back" state when the ring revisits an earlier station, the hide/show toggle, the glossary and the four briefing steps. `_tests/attention-lab.cjs` passes unchanged. No page errors, no failed or external requests, no horizontal overflow at 320/390/768/1440.
+
+**Phone-width fix found on the way.** At 390px and 320px the recommender panel and the revenue chart were clipped on the right in Act II: the chart's five nowrap captions gave the single-column learning grid a 456px minimum, and the panel stretched to match. `.pg-learning-grid>*{min-width:0}` removes the floor and captions wrap below 700px. Measured with a probe over every element in the monetize station after Act II: nothing extends past the cabinet at either width.
+
+## Recomposed as ten guided chapters (2026-09-21)
+
+**Request.** Everything was there but not intuitive. Take the application apart and recompose it so that it is easy to use, as an introduction to the Transformer paper and the first attention mechanism and so on, keeping the flair but never at the expense of intelligibility.
+
+**Diagnosis.** Five tabs hid the order of ideas. The machine tab opened on the six puzzles, which assume the mechanism, with the explanation of queries, keys and values three sub-panels away. The introduction was an editorial essay (Kafka, Debord, the week thread) before any activity, with no instruction about where to begin. Each activity had its own copy but no consistent “what am I looking at, what do I do, what should I remember”.
+
+**Composition.** One page, one path. A chapter rail (left column at 1200px and above; a sticky chapter bar with a contents panel below that) lists ten chapters in four parts, marks the current and visited ones, and keeps progress in `localStorage`. Every chapter has the same three-part shape: a **primer** card (`.primer`) that explains the idea in about a minute and names its paper and section; a **What to do** box (`.todo`) that names the buttons; the activity; an optional **Go deeper** (`details.deeper`); and a **Take away** sentence with generated Prev/Next buttons (`[data-nav]`, filled by `renderChapterNavs()`).
+
+| # | Chapter (id) | Activity kept from the old page |
+|---|---|---|
+| 0 | Start here (`intro`) | Opening plate, four-part route map, week question, deck launch; frame and week thread fold into Go deeper |
+| 1 | The paper and the idea (`paper`) | Vaswani et al. 2017 primer, equation 1 in four steps, the next-word animation from the embedded game in `?view=intro` |
+| 2 | Query, key, value (`queries`) | Query-origin inspector, three jobs, where the matrices come from |
+| 3 | Build it: six puzzles (`practice`) | The embedded game in `?view=levels` (levels 1–6 and free play) |
+| 4 | Training and inference (`training`) | Training/inference switch and the one-weight gradient step |
+| 5 | The numbers, under a microscope (`numbers`, optional) | Eight-head vector inspector, lazy-loaded |
+| 6 | Three attention systems (`human`) | Petersen & Posner primer, cortical surface, five reading moments |
+| 7 | Read and predict together (`compare`) | Paired player, own prediction; the two-column table folds into Go deeper |
+| 8 | Run the feed, then break it (`social`) | The attention-loop cabinet, unchanged |
+| 9 | More ways to score reading (`society`, optional) | Allocation room, three scoreboards, Terranova’s three questions |
+| 10 | What has been understood? (`synthesis`) | Closing inquiry, week outcomes, the carried question |
+
+**Mechanics.** `lab.js` replaces `setTab`/`selectMachine` with a `CHAPTERS` table, `go(id)`, `renderRail()`, roving-tabindex keyboard navigation on the rail, a `LEGACY` map for old hashes (`#machine` → `paper`, `#framing` → `intro`, `#query` → `queries`, `#vectors` → `numbers`) and `window.spotlightGo` for the deck. The embedded game reads `?view=intro|levels` and `?id=` (`spotlight-machine.html`): the intro view hides its level strip, header, welcome copy and footer and shows only the animation panel; the levels view hides the intro entry and starts on level 1; height messages carry the frame id. The lecture deck maps each slide’s tab/panel to a chapter and lists seven chapter entries in its contents. The chapter section for queries is `queries`, not `qkv`, because the Q/K/V diagram card already uses `id="qkv"` as its render target (an earlier draft wiped its own chapter through that collision).
+
+**Copy.** New primers, what-to-do lists and take-aways for all ten chapters; the old section intros, sub-navigation, “next section” strips and the room invitation are gone. The Kafka/Debord frame, the week thread and the two-meanings table remain, one click away.
+
+**Checks.** `_tests/attention-lab.cjs` now drives the chapters (rail clicks at 1440px, `window.spotlightGo` at phone widths where the rail is a panel), verifies the primer and what-to-do in chapter 1, the visited mark, the route map, legacy hashes, rail keyboard navigation with wrap-around, the mobile contents panel, both game frames (`#intro-frame` for the shared example, `#games-frame` for the seven level buttons) and every previous numerical and WebGL check. `_tests/platform-game-browser.cjs` checks the deck’s seven chapter entries and the dive into chapter 8. No overflow at 320/390/768/1440 in any chapter; the formula wraps and the chapter bar’s title truncates.
