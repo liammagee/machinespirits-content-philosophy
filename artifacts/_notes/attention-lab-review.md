@@ -619,3 +619,80 @@ suite passes: 16 puzzles, 112 numerical cases, 3 shared examples, bright
 low-opacity brain animation, memory and next-token comparison, and the original
 allocation simulator. No browser errors or external runtime requests occurred.
 Artifact indexing and repository validation pass. Changes remain local.
+
+## The attention loop: one game, real training runs, a monetization score (2026-09-20)
+
+The social tab's control room is now a single loop played in one cabinet, with
+four stations that mirror the course's three readings and the economy that
+joins them: **Train** (machine attention), **Generate** (four posts written
+token by token), **Broadcast** (human attention: the 120-reader wall and the
+A / O / E1 / E2 bars) and **Monetize** (the attention economy's ledger). The
+ring shows where the player is; earlier stations of the same round can be
+revisited; long explanations moved into ⓘ tips so the surface reads as a game.
+
+**Generation is shown, not described.** When a campaign starts, and after every
+training run, the writer drafts each of the four posts in front of the player:
+prompt chips, the words so far, attention arcs from the query position back over
+the prefix (thickness = softmax share), and the top next-token probabilities.
+The trace can be paused, stepped, replayed or skipped.
+
+**Feedback modifies generation.** `platform-trainer.mjs` ports the forward and
+backward pass of `_training/train-platform.py` (one causal head, residual/tanh,
+vocabulary projection, Adam with clipping) to the browser. Its loss on the base
+corpus equals the recorded final training loss to ten decimals and its gradients
+match finite differences (`_tests/platform-trainer.mjs`). Each round the player
+commissions a run on a per-campaign copy of the model, restricted to the
+campaign topic's pretraining examples plus one of three objectives:
+
+- *Reinforce what monetized*: the best-earning published post's words are taught
+  to the other three briefs (the feed drifts toward that style; more readers
+  maintain the platform's task, E1). Compounded over rounds this homogenizes the
+  feed and its repetition penalties bite.
+- *Retain the pretraining mix*: examples only; the writer stays put.
+- *Introduce reflective materials*: the base examples of the most capturing
+  briefs are retired and those briefs are trained on three pause-and-decide
+  texts authored from the writer's own vocabulary (more readers adjust the
+  task, E2).
+
+Intensity sets the optimizer steps (8 / 14 / 24 for reinforcement, 35 / 60 / 90
+for materials). The station animates the real per-step loss and then shows,
+for each brief, a drift meter (two-way probability share of the pretrained words
+against what the writer now produces) and the new text. Calibration sweeps
+established that a standard reinforcement run flips about one brief, an
+intensive one two with collateral changes, and a standard materials run
+retrains the targeted briefs while every post still terminates.
+
+**The economy closes the loop.** Revenue = 1 credit per open (impression) +
+4 per completion (engaged session). Reconsideration (E2) is not billable.
+Completing task after task drains reader energy; low energy lowers noticing,
+opening and completing, and below 42% a reader may leave the platform for good.
+A pause, a reconsideration or a deliberate choice restores energy. The
+recommender's reward in Act I is monetization (a new `revenue` objective in
+`platform-feedback.mjs`). Five rounds, target 1,100 credits. With the fixed
+seed, publishing the recommendation every round lands just under the target,
+reinforcing what paid crashes the middle rounds (≈955), alternating styles
+passes (≈1,125) and giving readers room early then monetizing scores highest
+(≈1,175) on all three topics; a post's style is now read back from its words,
+so a "guided" brief that has learned to write streak text is treated as one.
+
+Act II (the pedagogical hacker) replays the same archived posts with the writer
+frozen and reports revenue against the original feed as well as deliberate
+choices. In the reference run the interventions cost nothing: pauses restored
+energy and the platform billed slightly more, which is itself a discussion point.
+
+**Lecture mode.** `_tools/build-lecture-slides.mjs` converts
+`courses/479-fall-2026/lecture-4.md` into `attention-assets/lecture-4-slides.mjs`
+(28 slides, lecturer notes, figures copied into `attention-assets/slides/`).
+`lecture-deck.mjs` presents them as an overlay deck with keyboard navigation, a
+progress strip marking simulation slides, lecturer notes, a contents view with
+direct jumps to the six simulations, and a deep-dive button on 21 slides that
+opens the matching lab activity and leaves a "back to slide N" chip. Entry points:
+the masthead, the introduction, and `#slides` / `#slide-N` links.
+
+Validation: `node artifacts/_tests/platform-game.mjs`, `platform-trainer.mjs`,
+`platform-feedback.mjs` and `control-room.mjs` pass; the browser suite
+`platform-game-browser.cjs` plays both acts through the UI (five rounds,
+reinforce / materials / retain runs, writing trace, ledger, learning freeze,
+alignment choices, loop ring, tips, both themes, 320–1440 px) and the deck
+(contents, notes, deep dive and return); `attention-lab.cjs` still passes.
+All rules, prices and reader responses remain authored simulation.

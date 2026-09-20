@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-20T15:48:22.197921Z",
+  "generated": "2026-09-20T16:28:23.153342Z",
   "count": 6,
   "artifacts": [
     {
@@ -70,7 +70,7 @@
     {
       "slug": "spotlight-attention-game",
       "title": "Spotlight: attention in machines, readers and society",
-      "description": "A Week 4 introduction and visual inquiry into attention with Kafka and Debord framing, six Transformer games, a 3D brain, a shared reading task, and a live two-act platform game with feedback learning and pedagogical alignment choices.",
+      "description": "Spotlight: attention in machines, readers and society. Six attention games, a query-origin and training explainer, an anatomical brain, paired human/machine reading, and the attention loop: a control-room game where a trained writer generates posts, 120 readers respond, revenue is billed and the money retrains the writer in your browser. Includes the Week 4 lecture slides as a deck with deep dives into each simulation.",
       "tags": [
         "attention",
         "transformers",
@@ -85,9 +85,9 @@
       "date": "2026-09-19",
       "thumbnail": null,
       "file": "spotlight-attention-game.html",
-      "size": 71423,
-      "sha256": "3e88e9b05f70732832dfd6fa046c39fb4d34c2a6803b1b5590fbaf8982f74047",
-      "modified": "2026-09-20T14:45:46.991704Z",
+      "size": 75879,
+      "sha256": "b9e90d179d54abfe52b38f1ebda7c9da5dbc3bb7c5be9f71d14477f4ac8fcaa4",
+      "modified": "2026-09-20T16:28:22.853920Z",
       "course": "479",
       "lecture": "lecture-4"
     },
