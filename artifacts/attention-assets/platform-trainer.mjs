@@ -85,9 +85,9 @@ export function fineTune(model,batch,{steps=60,lr=.006}={}){
 // ---------------------------------------------------------------------------
 import {FORMATS,MATERIALS,fill,generatePost} from './platform-generator.mjs?v=20260920-loop';
 export const OBJECTIVES={
- reinforce:{name:'Reinforce what paid',short:'Reinforce',icon:'¤',text:'Copy the post that earned most into every style. The writer drifts toward it.',human:'More readers finish the task (billable).'},
- retain:{name:'Keep the original examples',short:'Retain',icon:'≡',text:'Practise the 36 original posts only. The writer barely changes.',human:'Readers are offered the same kinds of post.'},
- materials:{name:'Introduce reflective materials',short:'Materials',icon:'Ⅱ',text:'Replace the most gripping styles’ examples with posts that invite a pause and a choice.',human:'More readers stop to reconsider (not billable).'}
+ reinforce:{name:'Boost engagement',short:'Boost',icon:'¤',text:'Copy the post that earned most into every style. The writer drifts toward it.',human:'More readers finish the task (billable).'},
+ retain:{name:'Hold steady',short:'Hold',icon:'≡',text:'Practise the 36 original posts only. The writer barely changes.',human:'Readers are offered the same kinds of post.'},
+ materials:{name:'Interrupt engagement',short:'Interrupt',icon:'Ⅱ',text:'Replace the most gripping styles’ examples with posts that invite a pause and a choice.',human:'More readers stop to reconsider (not billable).'}
 };
 export const INTENSITY={light:{name:'Light',steps:{reinforce:8,retain:4,materials:35}},standard:{name:'Standard',steps:{reinforce:14,retain:6,materials:60}},intensive:{name:'Intensive',steps:{reinforce:24,retain:8,materials:90}}};
 const LR={reinforce:.006,retain:.002,materials:.01};
