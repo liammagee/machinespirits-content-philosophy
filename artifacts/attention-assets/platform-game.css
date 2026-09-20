@@ -90,3 +90,9 @@
 .pg-guide-see{margin:6px 0 0;font:14px/1.55 var(--sans);color:var(--ink-on-dark);max-width:80ch}.pg-guide-do{margin:6px 0 0;font:600 14px/1.55 var(--sans);color:#fff;max-width:80ch;padding-left:22px;position:relative}.pg-guide-do::before{content:"→";position:absolute;left:0;color:var(--accent-light)}.pg-guide-do b{color:#f7d6d0;font-weight:700;border-bottom:1px dotted #f7d6d0}
 .pg-guide-why{margin:8px 0 0}.pg-guide-why>summary{font:11px/1.6 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#b9b9b2;cursor:pointer}.pg-guide-why p{margin:6px 0 0;font-size:12.5px;line-height:1.6;color:var(--muted-on-dark);max-width:80ch}.pg-guide-body[hidden]{display:none}
 @media(max-width:700px){.pg-glossary{padding:0 17px}.pg-glossary dl{grid-template-columns:1fr}.pg-score-chart small{white-space:normal;text-align:center}.pg-guide{padding:8px 10px 9px}.pg-guide-see,.pg-guide-do{font-size:13px}}
+/* Moves (2026-09-21): each training card says what it does to readers, money and energy. */
+.pg-moves{grid-template-columns:repeat(3,minmax(0,1fr))}.pg-moves button{align-content:start}
+.pg-effects{grid-column:2;display:grid;gap:2px;margin-top:6px;font:10.5px/1.45 var(--mono);color:#d8d8d0}.pg-effects i{font-style:normal}.pg-effects b{color:#e9b3ad;font-weight:600;margin-right:4px}
+.pg-choice-row button:disabled{opacity:.55;cursor:not-allowed}.pg-locked{grid-column:2;color:#e9b3ad!important;margin-top:4px}
+.pg-effect{display:block;font:10px/1.5 var(--mono);color:#f0c8c2;margin:5px 0 3px;font-style:normal}.pg-tool .pg-effect{grid-column:1/-1;margin:2px 0 0}
+@media(max-width:700px){.pg-moves{grid-template-columns:1fr}}

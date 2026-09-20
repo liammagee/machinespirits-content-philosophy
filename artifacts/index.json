@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-20T20:49:47.311834Z",
+  "generated": "2026-09-20T21:27:30.545359Z",
   "count": 6,
   "artifacts": [
     {
@@ -85,9 +85,9 @@
       "date": "2026-09-19",
       "thumbnail": null,
       "file": "spotlight-attention-game.html",
-      "size": 93205,
-      "sha256": "e651eae91bda2fb423948a4fb2672da7c80a662f6c486d41d01dbde3e13f8fdf",
-      "modified": "2026-09-20T20:47:19.457399Z",
+      "size": 93619,
+      "sha256": "d571f577f04af933dd5613a6634c71f32dc5ab76752c40e6b56215bad5516625",
+      "modified": "2026-09-20T21:27:30.433994Z",
       "course": "479",
       "lecture": "lecture-4"
     },

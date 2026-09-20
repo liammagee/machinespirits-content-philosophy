@@ -753,3 +753,19 @@ All rules, prices and reader responses remain authored simulation.
 **Checks.** Both browser suites pass unchanged in their assertions; the animation’s shared-example text and prediction bars are still compared exactly against chapter 7. Screenshots in light and dark confirm the badge, the arcs clearing the labels, the primary Play and the key caps.
 
 **Inside the six puzzles.** The level introductions, how-to lines, formula captions and “What just happened” notes in `spotlight-machine.html` now use the same words as the chapters: name tag for key, question for query, slices and percentages for shares, “placed side by side” for concatenated, “grid” for matrix, recipe for W<sub>Q</sub>/W<sub>K</sub>. Technical names stay in parentheses where a reader may meet them elsewhere (softmax, q · k, √dₖ, Winograd schema, residual stream). Hints, goals and scoring are unchanged.
+
+## The player's levers, named (2026-09-21)
+
+**Request.** Another round of simplification without losing detail. The player could not tell how to intervene in the social game to boost or interrupt engagement; before each training run there needed to be a clear way to choose options that condition greater or lesser success.
+
+**Diagnosis.** The levers existed (the training objective, its intensity, which post to publish, and in Act II which intervention) but nothing named them as moves with consequences, the technical names (reinforce, retain, materials) hid the choice, and round 1 offered no choice at all.
+
+**Changes.**
+
+- **The training station is now “Your move”.** Three cards, laid side by side: **Boost engagement** (teach every style the post that earned the most), **Hold steady** (keep the writer as it is), **Interrupt engagement** (teach the most gripping styles to invite a pause). Each card states its effect on readers, on money now and on their energy, with arrows. A forecast line under the cards says what the next round will likely look like for the selected move. Intensity is “How hard to push”: a little, medium, a lot, with the step count beside it. The `OBJECTIVES` in `platform-trainer.mjs` keep their ids and mechanics; their names and short labels (used in the loop ring, the training label and the debrief) follow the new words.
+- **Round 1 has a move too.** The plan is visible before the first broadcast: Hold keeps the writer as delivered (the “Use the writer as it is” button now sits in the plan row, shown only for Hold in round 1, so no training run happens), Interrupt runs a real training run before any post is published, and Boost is disabled with the reason (nothing has earned yet; unlocks in round 2). The default move is Hold.
+- **Every post card says what its style does to readers**: grabs attention, keeps readers going, steadies, or invites a pause (`STYLE_EFFECT`, keyed by the style the post now writes as, so a retrained style carries its new effect).
+- **Act II reads as one lever.** The intervention cards come first, each with an effect line derived from the engine’s numbers (more reconsider, more choose a goal, fewer open); the recommender’s goal moved below them and is labelled optional (“Whose goal should the platform serve?”).
+- Briefing, chapter 8 primer and what-to-do, and the guide strip (train-first, train-plan, choose, hack-choose) name the moves and the effects in the same words.
+
+**Checks.** `_tests/platform-game-browser.cjs` asserts the round-1 plan (Boost disabled, Hold pressed, the skip button shown and Run training hidden), the forecast text and its change when Boost is chosen in round 2, four effect lines on the post cards and five on the intervention cards. Pure suites unchanged. The whole-lab suite passes. Phone width: the three cards stack.
