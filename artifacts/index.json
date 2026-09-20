@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-20T16:28:23.153342Z",
+  "generated": "2026-09-20T18:30:01.241525Z",
   "count": 6,
   "artifacts": [
     {
@@ -70,7 +70,7 @@
     {
       "slug": "spotlight-attention-game",
       "title": "Spotlight: attention in machines, readers and society",
-      "description": "Spotlight: attention in machines, readers and society. Six attention games, a query-origin and training explainer, an anatomical brain, paired human/machine reading, and the attention loop: a control-room game where a trained writer generates posts, 120 readers respond, revenue is billed and the money retrains the writer in your browser. Includes the Week 4 lecture slides as a deck with deep dives into each simulation.",
+      "description": "Spotlight: attention in machines, readers and society. Six attention games, a query-origin and training explainer, an anatomical brain, paired human/machine reading, and the attention loop: a control-room game where a trained writer generates posts, 120 readers respond, revenue is billed and the money retrains the writer in your browser. A step-by-step guide inside the cabinet and a six-word glossary make the loop playable with no prior knowledge of attention. Includes the Week 4 lecture slides as a deck with deep dives into each simulation.",
       "tags": [
         "attention",
         "transformers",
@@ -85,9 +85,9 @@
       "date": "2026-09-19",
       "thumbnail": null,
       "file": "spotlight-attention-game.html",
-      "size": 75879,
-      "sha256": "b9e90d179d54abfe52b38f1ebda7c9da5dbc3bb7c5be9f71d14477f4ac8fcaa4",
-      "modified": "2026-09-20T16:28:22.853920Z",
+      "size": 77963,
+      "sha256": "f0ab4e37c72b8ed3cb87ec8cc4e82d32eee6d9317f83350deef6d2bf58eab3ef",
+      "modified": "2026-09-20T18:29:43.012954Z",
       "course": "479",
       "lecture": "lecture-4"
     },
