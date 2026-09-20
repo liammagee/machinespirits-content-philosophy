@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-20T21:27:30.545359Z",
-  "count": 6,
+  "generated": "2026-09-20T23:46:01.335534Z",
+  "count": 7,
   "artifacts": [
     {
       "slug": "anthropic-reading-list",
@@ -69,7 +69,30 @@
     },
     {
       "slug": "spotlight-attention-game",
-      "title": "Spotlight: attention in machines, readers and society",
+      "title": "Spotlight: a short journey into attention",
+      "description": "Fourteen screens, one idea each, something to touch on every one. Finish a sentence, then watch a machine do it; share out one pie of attention; ask a question and let the name tags answer; nudge a model as it learns by guessing; meet the three parts of your own attention; then run a feed for three rounds and read the bill. Built for readers with no technical background. The full ten-chapter lab is one link away.",
+      "tags": [
+        "attention",
+        "transformers",
+        "reading",
+        "neuroscience",
+        "Terranova",
+        "interactive",
+        "journey"
+      ],
+      "author": "Machine Spirits",
+      "date": "2026-09-21",
+      "thumbnail": null,
+      "file": "spotlight-attention-game.html",
+      "size": 41498,
+      "sha256": "9700294af1adbbd2bc2d0e39cf890c7fd3c661e91cbb8cefa55f14ae6b272371",
+      "modified": "2026-09-20T23:46:01.238543Z",
+      "course": "479",
+      "lecture": "lecture-4"
+    },
+    {
+      "slug": "spotlight-attention-lab",
+      "title": "Spotlight Lab: attention in depth, ten chapters",
       "description": "Spotlight: attention in machines, readers and society, in ten guided chapters. Part I introduces Vaswani et al. 2017 and the first attention mechanism (the formula in four steps, a next-word animation, query/key/value, six puzzles, training versus inference, a numerical inspector); Part II the three human attention systems of Petersen and Posner 2012 on a cortical model; Part III the same sentence read by both; Part IV Terranova’s attention economy as a playable loop where a trained writer, 120 readers and a ledger retrain each other. Every chapter has a one-minute primer, a what-to-do list and a take-away. Includes the Week 4 lecture slides with deep dives.",
       "tags": [
         "attention",
@@ -84,10 +107,10 @@
       "author": "Machine Spirits",
       "date": "2026-09-19",
       "thumbnail": null,
-      "file": "spotlight-attention-game.html",
-      "size": 93619,
-      "sha256": "d571f577f04af933dd5613a6634c71f32dc5ab76752c40e6b56215bad5516625",
-      "modified": "2026-09-20T21:27:30.433994Z",
+      "file": "spotlight-attention-lab.html",
+      "size": 93617,
+      "sha256": "e231caca2b3069c91509f7cf8ce54da99de8eadb76ea8afe41c99182c5e731a6",
+      "modified": "2026-09-20T23:43:05.761995Z",
       "course": "479",
       "lecture": "lecture-4"
     },
