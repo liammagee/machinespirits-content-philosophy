@@ -2,12 +2,17 @@
 # Local preview server for rendered Pandoc output.
 #
 # Usage:
-#   ./serve              # default port 8000
-#   ./serve 9000         # custom port
-#   ./serve --no-open    # don't open browser
+#   ./serve                   # default port 8000
+#   ./serve 9000              # custom port
+#   ./serve --no-open         # don't open browser
+#   ./serve --include-hidden  # also serve pages under _*/ folders
 #
 # Generates _preview.html (gitignored, indexer-hidden via _ prefix) listing
 # all published HTML and any drafts, then starts a Python static server.
+#
+# The server binds to 127.0.0.1 and serves rendered content only. It blocks
+# dot-paths (.git, .nightowl-backups), _*/ paths (_students, _readings,
+# _drafts), and *.bak files. See lib/preview_server.py for the rule.
 #
 # This previews ONLY rendered content. For full-site preview with chrome,
 # use the machinespirits-website repo with this package linked.
@@ -17,12 +22,14 @@ cd "$(dirname "$0")"
 
 PORT=8000
 OPEN_BROWSER=1
+INCLUDE_HIDDEN=0
 
 for arg in "$@"; do
   case "$arg" in
-    --no-open)  OPEN_BROWSER=0 ;;
-    --help|-h)  sed -n '2,/^$/p' "$0" | sed 's/^# \?//'; exit 0 ;;
-    [0-9]*)     PORT="$arg" ;;
+    --no-open)         OPEN_BROWSER=0 ;;
+    --include-hidden)  INCLUDE_HIDDEN=1 ;;
+    --help|-h)         sed -n '2,/^$/p' "$0" | sed 's/^# \?//'; exit 0 ;;
+    [0-9]*)            PORT="$arg" ;;
   esac
 done
 
@@ -119,4 +126,9 @@ if [ "$OPEN_BROWSER" = 1 ]; then
   ( sleep 0.5 && open "$URL" 2>/dev/null ) &
 fi
 
-exec python3 -m http.server "$PORT"
+SERVER_ARGS=("$PORT")
+if [ "$INCLUDE_HIDDEN" = 1 ]; then
+  SERVER_ARGS+=(--include-hidden)
+fi
+
+exec python3 lib/preview_server.py "${SERVER_ARGS[@]}"

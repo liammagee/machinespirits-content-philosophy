@@ -8,7 +8,29 @@ artifacts:
     position: after-content
 ---
 
-## Attention
+
+## Welcome to Week 4: Attention
+
+---
+
+## Discussion
+
+ - Thoughts, impressions?
+ - Some comments later on relationship to Hegel - but is there a relationship between alerting / orienting / executing and sense certainty / perception / understanding?
+
+---
+
+
+## Assessments
+
+ - Send me your chats / reflections each week! I do read and respond to them
+ - Peer review: TBD
+
+
+
+---
+
+## Attention: Machines, Brains, Society
 
 
 - Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L. & Polosukhin, I. (2017). [Attention is all you need](https://i-share-uiu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=cdi_proquest_journals_2076493815&context=PC&vid=01CARLI_UIU:CARLI_UIU&search_scope=CentralIndex&tab=CentralIndex&lang=en). *Advances in Neural Information Processing Systems*, 30.
@@ -22,13 +44,10 @@ As we've noted in the week's online guide, this week we are moving both back and
 
 What I propose this week is that we examine three key papers that all treat the concept of attention in a specific way. I won't be doing too much here to relate this concept to Hegel's unfolding architecture in *Phenomenology of Spirit* - we'll instead turn to that in the weeks ahead. But you may want to think how different meanings of attention might be situated with respect to both concepts of experience and recognition we've covered to date.
 
-I'll start by looking at the Petersen & Posner [-@stevene.petersen2012theattention] paper, *The Attention System of the Human Brain: 20 Years After*, then the Vaswani et al's [-@ashishvaswani2017attentionis] *Attention is All You Need* paper, and then finally Terranova's [-@tizianaterranova2012attentioneconomy] critique of the Attention Economy. In each case we'll provide a short summary, and connect the argument to the wider lecture and course content - then provide time for discussion.
+I'll start by looking at the Petersen & Posner paper, *The Attention System of the Human Brain: 20 Years After*, then the Vaswani et al's  *Attention is All You Need* paper, and then finally Terranova's  critique of the Attention Economy. In each case we'll provide a short summary, and connect the argument to the wider lecture and course content - then provide time for discussion.
 ```
 
 
-
-
---- 
 
 
 ---
@@ -44,12 +63,11 @@ I'll start by looking at the Petersen & Posner [-@stevene.petersen2012theattenti
 | Executive control: maintenance | Cingulo-opercular network, including medial frontal / anterior cingulate and anterior insular regions | *Keep the reading purpose* in force |
 | Executive control: adjustment | Frontoparietal control network, including lateral prefrontal and parietal regions | *Change strategy* and reread a difficult phrase |
 
-These reading situations are teaching applications of Petersen and Posner's framework, not neural measurements of reading. Networks cooperate; the rows are not successive stages. Their frontoparietal **control** network is distinguished from the dorsal **orienting** network.
+These reading situations are teaching applications of Petersen and Posner's framework, not neural measurements of reading. Networks cooperate; the rows are not successive stages. 
 
-[Explore the interactive reading lab](../../artifacts/spotlight-attention-lab.html#human): rotate the anatomical cortical model, select a reading moment, and try the same next-token task from the human and machine perspectives. The machine tab preserves six games and adds query origins and training versus inference; the final tab applies Terranova to the social organization of the task.
+[Explore the interactive reading lab](../../artifacts/spotlight-attention-lab.html#human): rotate the anatomical cortical model, select a reading moment, and try the same next-token task from the human and machine perspectives. 
 
 
-![Image](/markdown/images/pasted-image-2025-09-14T18-41-01-466Z-7f762d1b.webp)
 
 ```notes
 
@@ -61,7 +79,7 @@ Alerting concerns readiness to respond. Phasic alerting is a brief increase in r
 
 Orienting prioritizes a location or sensory input. The dorsal network includes frontal eye fields and intraparietal / superior parietal regions involved in goal-directed selection. The mainly right-sided ventral network includes temporoparietal junction and ventral frontal cortex, associated with interrupting a current focus and reorienting. Attention can shift without an eye movement. During reading, deliberate selection of a word and reorienting to a relevant margin cue illustrate different orienting demands.
 
-For executive control, the authors favor a two-network account while discussing alternatives. The cingulo-opercular network supports stable task maintenance; the frontoparietal control network supports initiation, switching, and adjustments during performance. Maintaining the instruction to explain a sentence and deciding to reread a confusing phrase illustrate these demands. They are not isolated reading modules, and the frontal eye fields should not be substituted for the frontoparietal executive-control network. See the review's Executive Control section and Figure 2.
+For executive control, the authors favor a two-network account. The cingulo-opercular network supports stable task maintenance. The frontoparietal control network supports initiation, switching, and adjustments during performance. Maintaining the instruction to explain a sentence and deciding to reread a confusing phrase illustrate these demands. See the review's Executive Control section and Figure 2.
 
 
 ```
@@ -76,7 +94,7 @@ For executive control, the authors favor a two-network account while discussing 
 - These distinctions do not imply a fixed alerting → orienting → executive pipeline or a one-region, one-function map.
 
 
-![Image](/markdown/images/pasted-image-2025-09-14T18-41-01-466Z-7f762d1b.webp)
+![Image](assets/images/pasted-image-2025-09-14T18-41-01-466Z-7f762d1b.webp)
 
 ```notes
 
@@ -91,13 +109,13 @@ The comparison with transformers is functional: some information receives greate
 ### Attention and Learning
 
 
-![alt text](/markdown/images/attention-pedagogy-studies.webp)
+![alt text](assets/images/attention-pedagogy-studies.webp)
 
 ```notes
 
 Within the context of learning, we can also see how this new attention-oriented work helps to make sense of, in particular, learning *difficulties*. Impairments on different brain regions can result in complex but still localizable – and potentially addressable – limitations in how attention is alerted, directed, sustained and purposefully redirected, as conditions require. 
 
-Now while this is not a course diving into neuroscientific research, we can note in passing that this kind of neurological or neuroscientific research has impacted upon the theory and practice of pedagogy. A quick Google Scholar search shows for example how many results have integrated "executive function" into pedagogy research: 17,200 results since 2021.
+Now while this is not a course diving into neuroscientific research, we can note in passing that this kind of neurological or neuroscientific research has impacted upon the theory and practice of pedagogy. A quick Google Scholar search shows for example how many results have integrated "executive function" into pedagogy research: 16,900 results since 2022.
 
 ```
 
@@ -114,7 +132,7 @@ Now while this is not a course diving into neuroscientific research, we can note
 
 <span style="font-size:0.8em;">
 
-- Rueda, M. R., & Posner, M. I. (2013). Development of attention networks. 
+- Rueda, M. R., & Posner, M. I. (2013). Development of attention networks. In *The Oxford Handbook of Developmental Psychology, Vol. 1: Body and Mind*. 
 - Posner, M. I., & Rothbart, M. K. (2007). Research on attention networks as a model for the integration of psychological science. Annual Review of Psychology, 58, 1–23.
  - Boen, R., Ferschmann, L., Vijayakumar, N., Overbye, K., Fjell, A. M., Espeseth, T., & Tamnes, C. K. (2021). Development of attention networks from childhood to young adulthood: A study of performance, intraindividual variability and cortical thickness. Cortex, 138, 138-151.
  
@@ -139,7 +157,7 @@ Several of these studies show that the hierarchy of attention mechanisms - alert
 > Without hesitation, the raw instinct of self-conscious reason will reject such a science of phrenology – as well as reject this other observing instinct of self-conscious reason, which, once it has blossomed into a foreshadowing *of cognition*, has spiritlessly grasped cognition as, “The outer is supposed to be an expression of the inner.” However, the worse the thought is, the less easy it sometimes is to say exactly where its badness lies, and it becomes even more difficult to explicate it. (para 340)
 
 ```notes
-And to keep concordance with Hegel, we might also note his own strong distrust of the "neuroscience" of his day – a now outdated field called "phrenology", which involved measuring skulls to determinine cognitive aptitude. Much later in the *Phenomenology*, he savagely criticises the pseudoscience of phrenology for attempting to account for traits like intelligence based on bumps on the skull. Of course for Hegel, as we have seen, the development of Consciousness and Self-consciousness - and eventually Reason, Spirit and Absolute Knowledge – depends upon an infinitely supple and complex negotiation, both within ourselves and with others. This complex process of development cannot be "read" off the shape or dimensions of the skull. In a phrase that pre-empts where we go next week, Hegel states: 
+And to keep concordance with Hegel, we might also note his own strong distrust of the "neuroscience" of his day – a now outdated field called "phrenology", which involved measuring skulls to determine cognitive aptitude. Much later in the *Phenomenology*, he savagely criticises the pseudoscience of phrenology for attempting to account for traits like intelligence based on bumps on the skull. Of course for Hegel, as we have seen, the development of Consciousness and Self-consciousness - and eventually Reason, Spirit and Absolute Knowledge – depends upon an infinitely supple and complex negotiation, both within ourselves and with others. This complex process of development cannot be "read" off the shape or dimensions of the skull. In a phrase that pre-empts where we go next week, Hegel states: 
  
 > Without hesitation, the raw instinct of self-conscious reason will reject such a science of phrenology – as well as reject this other observing instinct of self-conscious reason, which, once it has blossomed into a foreshadowing *of cognition*, has spiritlessly grasped cognition as, “The outer is supposed to be an expression of the inner.” However, the worse the thought is, the less easy it sometimes is to say exactly where its badness lies, and it becomes even more difficult to explicate it. (para 340)
 
@@ -153,22 +171,27 @@ And to keep concordance with Hegel, we might also note his own strong distrust o
 
 |   |   | 
 |---|---| 
-| ![Image](/markdown/images/pasted-image-2025-09-14T22-33-13-908Z-4dbfa114.webp) | ![Image](/markdown/images/pasted-image-2025-09-14T22-34-05-167Z-40814aab.webp)  |
+| ![Image](assets/images/pasted-image-2025-09-14T22-33-13-908Z-4dbfa114.webp) | ![Image](assets/images/pasted-image-2025-09-14T22-34-05-167Z-40814aab.webp)  |
 
 
 ---
 
 ### The Gap Between Brain and Mind
 
-> The idea of mapping psychological functions to brain structures has a venerable history, dating back to Galen’s ventricular doctrine (Green [2003]) and continuing to Gall’s phrenology (Gall and Spurzheim [1810]). Although those theories are now in disrepute, the advent of neuroimaging techniques, such as positron emission tomography (PET), functional magnetic resonance imaging (fMRI), electro-encephalography (EEG), and magnetoencephalography (MEG), gives the prospect of finding one-to-one correlations between psychological functions and brain structures new vigour, and the project is the main goal of the young field of cognitive neuroscience (Posner and DiGirolamo [2000]).1 Yet many doubt that cognitive neuroscience can give us such a psychological atlas, whereby the building blocks of mind get assigned to specific neural structures (Uttal [2001], [2011]).
+
+> The idea of mapping psychological functions to brain structures has a venerable history, dating back to Galen’s ventricular doctrine (Green [2003]) and continuing to Gall’s phrenology (Gall and Spurzheim [1810]). Although those theories are now in disrepute, the advent of neuroimaging techniques, such as positron emission tomography (PET), functional magnetic resonance imaging (fMRI), electro-encephalography (EEG), and magnetoencephalography (MEG), gives the prospect of finding one-to-one correlations between psychological functions and brain structures new vigour, and the project is the main goal of the young field of cognitive neuroscience (Posner and DiGirolamo [2000]). Yet many doubt that cognitive neuroscience can give us such a psychological atlas, whereby the building blocks of mind get assigned to specific neural structures (Uttal [2001], [2011]). (De Brigard and Gessell, 2024)
 
 #### References:
 
 <span style="font-size:0.8em;">
 
-- Dobbs, D. (2005). Fact or phrenology?. Scientific American Mind, 16(1), 24-31.
+- Dobbs, D. (2005). Fact or Phrenology?. Scientific American Mind, 16(1), 24-31.
 
+- De Brigard, F. and Gessell, B. (2024). The Mirage of Big-data Phrenology. The British Journal for the Philosophy of Science.
+ 
 - Stea, J. N., Black, T. R., & Di Domenico, S. I. (2022). Phrenology and neuroscience. In *Investigating Pop Psychology* (pp. 9-19). Routledge.
+
+- Uttal, W. R. (2011). Mind and brain: A critical appraisal of cognitive neuroscience. The MIT Press.
 
 </span>
 
@@ -177,7 +200,8 @@ And to keep concordance with Hegel, we might also note his own strong distrust o
 ```notes
 
 
-While neuroscience involves far more rigorous and detailed methods of investigation into the operations of the brain than phrenology, we can note in passing that it has attracted criticisms quite similar to those levelled by Hegel towards the "neuroscience" of his day. See for example the following quote from a recent book chapter by Stea, Black and Domenico, titled appropriately for our purposes "Phrenology and Neuroscience.
+While neuroscience involves far more rigorous and detailed methods of investigation into the operations of the brain than phrenology, we can note in passing that it has attracted criticisms quite similar to those levelled by Hegel towards the "neuroscience" of his day. See for example the following quote from a recent article by De Brigard and Gessell.
+
 
 Despite the advances in science, for many today there remains a distinct gap between brain and mind, or the biological processing of signals and the rich descriptions of consciousness we get from philosophy, literature, art and religion. 
 
@@ -196,10 +220,12 @@ How we understand this gap also affects our interpretation of the potential for 
  - Implementation by OpenAI: *Improving Language Understanding by Generative Pre-Training* (Radford et al. 2018): **GPT-1**.
 
 ```notes
-Vaswani et al.'s 2017 paper is a landmark in machine learning. Perhaps the most cited paper this century, this work by Google scholars was first actually implemented, not by Google, but by a young start-up company, OpenAI. There is a entire story of intrigue about how OpenAI was founded – with seed funding from Elon Musk – and eventually caught sight of this 2017 paper, understood its potential, and developed something called a "Generative Pre-Training" model 
-(*Improving Language Understanding by Generative Pre-Training*)[-@alecradford2018improvinglanguage].
+Vaswani et al.'s 2017 paper is a landmark in machine learning. Perhaps the most cited paper this century, this work by Google scholars was first actually implemented in a large generative language model, not by Google, but by a young start-up company, OpenAI. 
 
-Now we don't have time or opportunity to fully talk through this paper and its technical details. We would need to venture too far into the history of neural networks and their application to language modelling. But we can say that *prior* to this paper, the state-of-the-art models were using recurrent or convlutional networks, sometimes with attention mechanisms built in. 
+There is an entire story of intrigue about how OpenAI was founded – with seed funding from Elon Musk – and eventually caught sight of this 2017 paper, understood its potential, and developed something called a "Generative Pre-Training" model 
+(*Improving Language Understanding by Generative Pre-Training*).
+
+Now we don't have time or opportunity to fully talk through this paper and its technical details. We would need to venture too far into the history of neural networks and their application to language modelling. But we can say that *prior* to this paper, the state-of-the-art models were using recurrent or convolutional networks, sometimes with attention mechanisms built in. 
 ```
 
 ---
@@ -211,10 +237,10 @@ Now we don't have time or opportunity to fully talk through this paper and its t
 
 <!-- | RNN | Transformer |
 | --- | --- |
-| ![rnn](/markdown/images/rnn.webp) | ![transformer](/markdown/images/transformer.webp) | -->
+| ![rnn](assets/images/rnn.webp) | ![transformer](assets/images/transformer.webp) | -->
 
 
-![Image](/markdown/images/comparison-heatmap-2025-09-15T13-42-51-212Z.webp)
+![Image](assets/images/comparison-heatmap-2025-09-15T13-42-51-212Z.webp)
 
 
 
@@ -224,7 +250,7 @@ In short the problem with these systems was the need to maintain an ever-growing
 
 I've used two heatmaps generated by GPT-5 to convey the general idea: RNNs process tokens in a linear way, from left to right, just as we read. But we quickly develop a long set of connections between tokens. 
 
-Instead transformers require every token in a sentence or sequence to be related to every other - no matter how far apart they are in the sequence. This reduces the *time* involved in processing data, at the cost of increased training time and model space - but these are (comparatively) cheap.
+Instead transformers require every token in a sentence or sequence to be related to every other - no matter how far apart they are in the sequence. This reduces the *time* involved both in training and inferencing or predicting, because a number of tokens can be processed in parallel. In recurrent neural networks, by comparison, each token depends upon the state of the preceding one, so the same kind of parallelism isn't possible. This comes at the cost of the need for much greater computation and memory - effects of which we can see in today's shortage in computer memory and graphics chips.
 
 Shortly we'll do a thought experiment that will hopefully make this more clear.
 
@@ -237,7 +263,7 @@ Shortly we'll do a thought experiment that will hopefully make this more clear.
 
 #### Tokens vs Words
 
-**Tokens** are word-like pieces of data that are the foundational primitatives of language models. Why not words?  There are many words in natural language, but often they involve commonly recurring terms (e.g. morphemes, prefixes, suffixes: 'un-', '-ing'). Roughly **4** tokens per **3** words.
+**Tokens** are word-like pieces of data that are the foundational primitives of language models. Why not words?  There are many words in natural language, but often they involve commonly recurring terms (e.g. morphemes, prefixes, suffixes: 'un-', '-ing'). Roughly **4** tokens per **3** words.
 
 #### Training vs Inference: 
 
@@ -270,7 +296,7 @@ Much of the difference between models involves details about the architecture of
 
  - Core Intuition: A **language model** approximates a **function** (with many parameters). 
 
-![Image](/markdown/images/linear-regression-2025-09-15T13-42-02-464Z.webp)
+![Image](assets/images/linear-regression-2025-09-15T13-42-02-464Z.webp)
 
 Typical multiple regression - a simplified 1-layer neural network:
 
@@ -281,14 +307,14 @@ y_i &= \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip} + \va
 \end{align}
 $$
 
-So **training** is the attempt to produce an (ever more) accurate 
+So **training** is the attempt to produce an (ever more) accurate approximation of this function, by adjusting its parameters against the data.
 
 ---
 
 ### Attention is Three Matrices: Queries, Keys, Values
 
 - Queries: what each token is **asking for** from other tokens (in training or inference)
-- Keys: the **relative match** of each token to this token
+- Keys: what each token offers to be matched against. The comparison of the key and query gives a score of the **relative match** of each other token to this token
 - Value: what the token **represents** (e.g. in syntax or semantic terms)
 
 This process is what is meant by **attention**. 
@@ -317,10 +343,11 @@ Let's work through the following thought experiment. We will imagine we have the
 | the   | The | 0.05**  |
 | the   | cat | 0.15   |
 | the   | sat | 0.25   |
-| the   | on  | 0.55   |
+| the   | on  | 0.50   |
+| the   | the  | 0.05**   |
 
 
- ** Because `the` rarely follows `the`!
+ ** Because `the` rarely attends to other instances of `the`! 
 
 What does this set of probabilities refer to? The relevance or how much the word `the` *attends* to the other tokens in the sentence. 
 
@@ -341,10 +368,11 @@ We are considering the second `the` as our *query* word, and we want to know wha
 | the   | The | 0.05**  |
 | the   | cat | 0.15   |
 | the   | sat | 0.25   |
-| the   | on  | 0.55   |
+| the   | on  | 0.50   |
+| the   | the  | 0.05**   |
 
 
- ** Because `the` rarely follows `the`!
+** Because `the` rarely attends to other instances of `the`! 
 
 What does this set of probabilities refer to? The relevance or how much the word `the` *attends* to the other tokens in the sentence. We are primed, in other words, more strongly in favour of 'on the' than anything else.
 
@@ -355,11 +383,11 @@ What does this set of probabilities refer to? The relevance or how much the word
 
 ### From Attention to Context
 
-![Image](/markdown/images/pasted-image-2025-09-15T17-24-12-198Z-d12b6f9d.webp)
+![Image](assets/images/pasted-image-2025-09-15T17-24-12-198Z-d12b6f9d.webp)
 
 ```notes
 
-Now each of these tokens – *the*, *cat* etc – also contains a set of numbers relating to their *values*. The values are – if you like – the semantic space of the word: the **cattiness** of the 'cat' (noun, animal, furry, etc); the **sittingness** of the 'sat' (verb, temporal, positional, etc); the **on-ness** of the 'on') (preposition, relational term); the **the-ness** of the 'the' (definite article, applies to nouns, connected to preposition). But also tied to the context of the current sentence.
+Now each of these tokens – *the*, *cat* etc – also contains a set of numbers relating to their *values*. The values are – if you like – the semantic space of the word: the **cattiness** of the 'cat' (noun, animal, furry, etc); the **sittingness** of the 'sat' (verb, temporal, positional, etc); the **on-ness** of the 'on' (preposition, relational term); the **the-ness** of the 'the' (definite article, applies to nouns, connected to preposition). But also tied to the context of the current sentence.
 
 So once we have a sense of relative attention – how the 'the' relates to other words in the sentence – we combine the values, which we can think of as a hybrid syntactico-semantic representation, with these attention weights. 
 
@@ -371,18 +399,18 @@ This produces a **context** that governs prediction.
 
 ---
 
-### Iterated Context: From tokens to quasi-phrases / sententces
+### Iterated Context: From tokens to quasi-phrases / sentences
 
 
  - 'the' is no longer just a word or token
- - its 'the'-ness becomes a kind of 0.55 * 'on' + 0.25 + 'sat etc. 
+ - its 'the'-ness becomes a kind of 0.55 * 'on' + 0.25 * 'sat' etc. 
  - All of these influences, derived from repeated attention, make 'mat' a more likely continuation.
 
 ```notes
 
 This process is repeated over several or many layers of a network. At each layer we develop a richer representation of this context for each token. The mathematical representation of the 'the' we are looking at accumulates the influence of the other tokens it attends to - and so do these other tokens themselves. These ultimately help to narrow the scope – or increase the bias - toward particular tokens such as 'mat'.
 
-The 'the'-ness becomes a highly specific and contextualized 'the'-ness that is paired strongly with a prepositional phrase; is associated with a spatio-temporal situation - one of sitting; and is (less strongly) influenced by an agent. None of these roles are hard-coded; they are learned by the network. But at the same time they ressemble the rules of grammar and meaning we are used to.
+The 'the'-ness becomes a highly specific and contextualized 'the'-ness that is paired strongly with a prepositional phrase; is associated with a spatio-temporal situation - one of sitting; and is (less strongly) influenced by an agent. None of these roles are hard-coded; they are learned by the network. But at the same time they resemble the rules of grammar and meaning we are used to.
 
 All of these influences, derived from repeated attention, make 'mat' a likely continuation (from within the wider set of the model's vocabulary).
 
@@ -474,37 +502,37 @@ Think for a moment about this final activity. Is **your** completion different t
 
 ### Make Content, Get Attention... Profit?
 
-![Image](/markdown/images/pasted-image-2025-09-15T17-02-44-763Z-71b12cf1.webp)
+![Image](assets/images/pasted-image-2025-09-15T17-02-44-763Z-71b12cf1.webp)
 
 ```notes
-Turning now to Terranova's article, we come to the idea that attention is a kind of *commodity* and even *capital*, marked - like all commodities – by scarcity. It is an object that in itself warrants the *attention* of capital, of investors and advertisers, in the context of digital media. This is of course not new - the nephew of Sigmund Freud, Edward Bernays, pioneered many uses of what was then, in the early/mid twentieth century, new media, such as radio, magazines, film and television. But with the maturation of computers, the Internet, smartphones, social media and, today, AI, we come to a point at which we see attention as corroded or "degraded" by information. There is so much information, in other worrds, that human attentive processes become saturated, barely able to keep up.
+Turning now to Terranova's article, we come to the idea that attention is a kind of *commodity* and even *capital*, marked - like all commodities – by scarcity. It is an object that in itself warrants the *attention* of capital, of investors and advertisers, in the context of digital media. This is of course not new - the nephew of Sigmund Freud, Edward Bernays, pioneered many uses of what was then, in the early/mid twentieth century, new media, such as radio, magazines, film and television. But with the maturation of computers, the Internet, smartphones, social media and, today, AI, we come to a point at which we see attention as corroded or "degraded" by information. There is so much information, in other words, that human attentive processes become saturated, barely able to keep up.
 
-Terranova argues, citing Nicholas Carr, Catherine Malabou, Jonathan Crary and othres, that precisely the kind of neuroscientific research we discussed earlier makes possible a new corresponding *industrialization* of attention. By developing sophisticated techniques for securing attention (at alerting and orienting levels), it also seems as though the higher order "executive functions" are disrupted. In particular, the ability to "switch" is impaired - we find ourselves staring at the screen long past the point at which we intended to, when we initially and intentionally sought distraction. 
+Terranova argues, citing Nicholas Carr, Catherine Malabou, Jonathan Crary and others, that precisely the kind of neuroscientific research we discussed earlier makes possible a new corresponding *industrialization* of attention. By developing sophisticated techniques for securing attention (at alerting and orienting levels), it also seems as though the higher order "executive functions" are disrupted. In particular, the ability to "switch" is impaired - we find ourselves staring at the screen long past the point at which we intended to, when we initially and intentionally sought distraction. 
 ```
 
 ---
 
 ### Attention and Imitation 
 
-![Image](/markdown/images/pasted-image-2025-09-13T20-55-12-927Z-6998cdbe.webp)
+![Image](assets/images/pasted-image-2025-09-13T20-55-12-927Z-6998cdbe.webp)
 
 ```notes
 In a turn that also reminds us of our discussion of Hegel and the *social* process of learning, Terranova then discusses how attention to digital media in turn leads to another kind of by-passing of the deeper attention marked by executive function, due to social imitation. 
 
 But this need not be entirely negative. Here Terranova turns to another Italian theorist, Lazzarato, and his treatment of attention as the condition of social labour – and therefore a positive and productive force.
 
-But Terranova's discussion takes a negative turn again, through the work of Bernard Stiegler. Stiegler – a French philosopher writing on technology since the 1990s – famously argued that contemporary technologies short-circuit important cognitive processes of memory and social processes of communication, resulting in, as Stiegler put it, a grave risk of "proletariatanization". Primal psychic and libidinal energy gets put to service, in this analysis, in the creation of value for companies that can direct our collective attention via "social technologies" and "new forms of social relations".
+But Terranova's discussion takes a negative turn again, through the work of Bernard Stiegler. Stiegler – a French philosopher writing on technology since the 1990s – famously argued that contemporary technologies short-circuit important cognitive processes of memory and social processes of communication, resulting in, as Stiegler put it, a grave risk of "proletarianization". Primal psychic and libidinal energy gets put to service, in this analysis, in the creation of value for companies that can direct our collective attention via "social technologies" and "new forms of social relations".
 ```
 
 ---
 
 ### Cooperation or Proletariatanization?
 
-![Image](/markdown/images/pasted-image-2025-09-13T21-05-34-066Z-650d5d77.webp)
+![Image](assets/images/pasted-image-2025-09-13T21-05-34-066Z-650d5d77.webp)
 
 
 ```notes
-Collecting up both Lazzaratto and Stiegler's arguments, Terranova claims that – despite the very different valences or attitudes each brings to their analysis – both authors see attention as not simply a store of human attention that is only degraded by technologies. Rather, those technologies redirect attention, which in turn makes possible new kinds of subjects and social relations. For Lazzaratto, technology actually makes humans cooperate in ways that can resemble the internal structure of an individual brain. For Stiegler, technology is similarly integral to all human cognitive and social activity – but in its current form (the Internet, social media, and the general capitalization of attention and associated "libidinal" energies), it is tending toward the production of a simplified, proletarianized and even stupified society. 
+Collecting up both Lazzarato and Stiegler's arguments, Terranova claims that – despite the very different valences or attitudes each brings to their analysis – both authors see attention as not simply a store of human attention that is only degraded by technologies. Rather, those technologies redirect attention, which in turn makes possible new kinds of subjects and social relations. For Lazzarato, technology actually makes humans cooperate in ways that can resemble the internal structure of an individual brain. For Stiegler, technology is similarly integral to all human cognitive and social activity – but in its current form (the Internet, social media, and the general capitalization of attention and associated "libidinal" energies), it is tending toward the production of a simplified, proletarianized and even stupefied society. 
 ```
 
 
@@ -513,15 +541,17 @@ Collecting up both Lazzaratto and Stiegler's arguments, Terranova claims that �
 
 ### Is Attention a Design Problem?
 
-![Image](/markdown/images/pasted-image-2025-09-13T21-21-01-254Z-b87a061e.webp)
+![Image](assets/images/pasted-image-2025-09-13T21-21-01-254Z-b87a061e.webp)
 
 ```notes
-The reason for including Terranova's analysis – aside from its wide-ranging survey of recent debates – is that in a certain sense it elaborates upon Hegel's insistence that self-consciousness and learning is essentially *social* in nature. Indeed both Lazzaratto and Stiegler's positions, which Terranova surveys, can be seen as extensions to Hegel's insight, though adjusted for the dramatic effects wrought by informatic technologies. 
+The reason for including Terranova's analysis – aside from its wide-ranging survey of recent debates – is that in a certain sense it elaborates upon Hegel's insistence that self-consciousness and learning is essentially *social* in nature. Indeed both Lazzarato and Stiegler's positions, which Terranova surveys, can be seen as extensions to Hegel's insight, though adjusted for the dramatic effects wrought by informatic technologies. 
 
 The individual human subject is affected by what others say and do, and digital technologies act like a concentrating device of those social habits. Let's exaggerate: every tweet, post or Tiktok we read or watch acts like a small encounter between two self-consciousnesses, which must resolve itself into a micro-master / servant dialectic enounter. Do we like the content, do we stay engaged to it - are we in other words, a servant to it? Or do we criticize, disengage and ultimately walk away? Is our self-regulation of our own attention a method also of self-mastery that resists servitude to others? Or are these attention-grabbing technologies too powerful for self-regulation, and do we need to treat attention management as a collective design problem?
 
-And where does this then bring us with respect to a technology that arguably exceeds what Terranova, Lazzaratto and Stiegler could ever have anticipated in terms of its potential capture of human attention - precisely via application of its own "attention" mechanisms?
-Hansen argues that as we enter the era of machine learning, platforms will increasingly predict,  and thereby control, even more fundamental processes than our attention: our conscious thinking itself. 
+And where does this then bring us with respect to a technology that arguably exceeds what Terranova, Lazzarato and Stiegler could ever have anticipated in terms of its potential capture of human attention - precisely via application of its own "attention" mechanisms?
+
+In the reading on cognitive lock-in, Mark Hansen argues that as we enter the era of machine learning, platforms will increasingly predict, and thereby control, even more fundamental processes than our attention: our conscious thinking itself. 'Lock-in' refers to a situation where leaving a vendor is difficult because of the legacy investment in that vendor. Hansen's point is that our commitment to a given AI system will create, at a personal and psychological level, a similar inability to leave that system - it will have made us dependent upon it cognitively (and perhaps also affectively). 
+
 ```
 
 
@@ -532,14 +562,15 @@ Hansen argues that as we enter the era of machine learning, platforms will incre
 ### Synthesizing Human and Machine Attention?
 
 
-![Image](/markdown/images/pasted-image-2025-09-15T04-48-29-169Z-c40d94d6.webp)
+![Image](assets/images/pasted-image-2025-09-15T04-48-29-169Z-c40d94d6.webp)
 
-Posner on the role of att
- - https://www.youtube.com/watch?v=PKzz1OAiTRQ
- - https://www.youtube.com/watch?v=uYUdwS7-WvA
+Posner on the role of attention in development and learning:
+
+ - [Michael Posner: Implications of Cognitive Neuroscience for Education (gocognitive)](https://www.youtube.com/watch?v=PKzz1OAiTRQ)
+ - [Michael Posner on the anatomy of attentional networks: a historical perspective (gocognitive)](https://www.youtube.com/watch?v=uYUdwS7-WvA)
 
 ```notes
-According to many neuroscience, attention is seen as critical to the operations of consciousness. Surprisingly, in recent discussions,  neuroscientists like Posner have also emphasized the experimental and social nature of attention formation, even in infants as they shape their alerting, orienting and executive facilities. Surprisingly, neuroscience may not be so far removed from Hegel's speculations on the nature of consciousness.
+According to many neuroscientists, attention is seen as critical to the operations of consciousness. In recent discussions, neuroscientists like Posner have also emphasized the experimental and social nature of attention formation, even in infants as they shape their alerting, orienting and executive facilities. Surprisingly, neuroscience may not be so far removed from Hegel's speculations on the nature of consciousness.
 
  Next week we focus on this concept, bringing closer together Hegel's ideas on consciousness and self-consciousness with other theories. We'll see how some scholars, like N. Katherine Hayles, have sought to combine research into both human cognition and machine learning with more traditional philosophical concerns about the nature of consciousness. We will revisit attention, but also consider ideas of the "unconscious" – developed originally by Freud, but surprisingly relevant in the world of machine learning too – as well as Katherine Hayles' work on what she terms "nonconscious cognition", operating in the world of machines.
 ```
