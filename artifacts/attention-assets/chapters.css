@@ -81,3 +81,5 @@
 .machine-panel-note{font-size:13px;line-height:1.6;color:var(--muted);margin:0 0 12px;max-width:80ch}
 @media(max-width:700px){.primer-steps{grid-template-columns:1fr}.formula code{font-size:13px}.primer{padding:16px 15px 14px}.todo{grid-template-columns:1fr;gap:4px;padding:12px 14px}.chapter-head h2{font-size:30px}.chapter-nav .primary{margin-left:0;width:100%}.chapter-nav button{flex:1}}
 @media(prefers-reduced-motion:reduce){.chapter-rail,.chapter-bar{transition:none}}
+/* Embedded in the journey's Detail drawer: no masthead, no footer, chapters only. */
+html[data-embed] .masthead,html[data-embed] footer.sources{display:none}html[data-embed] .shell{padding-top:10px}html[data-embed] .chapter-bar{top:0}

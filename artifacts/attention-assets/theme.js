@@ -10,6 +10,7 @@
   if(persist)try{localStorage.setItem(key,theme);}catch{/* Storage may be unavailable in private contexts. */}
  }
  let theme='light';try{if(localStorage.getItem(key)==='dark')theme='dark';}catch{}
+ const hint=document.documentElement.dataset.themeHint;if(hint==='dark'||hint==='light')theme=hint; // A host page (the journey's Detail drawer) may ask for a theme without changing the stored preference.
  setTheme(theme);
  document.querySelectorAll('[data-theme-choice]').forEach(b=>b.addEventListener('click',()=>setTheme(b.dataset.themeChoice,true)));
  document.querySelectorAll('iframe').forEach(f=>f.addEventListener('load',()=>setTheme(document.documentElement.dataset.theme)));

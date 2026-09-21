@@ -49,9 +49,10 @@ h1,h2{font:400 clamp(30px,5.6vw,58px)/1.05 var(--serif);letter-spacing:-.025em;m
 .bill{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:100%}.bill div{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:16px}.bill span{display:block;font:10px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.bill strong{display:block;font:40px/1.1 var(--serif);color:var(--accent2)}.bill small{display:block;color:var(--muted);font-size:12px;margin-top:4px}
 .sources{display:grid;gap:6px;font-size:13px;color:var(--muted)}
 .nav{position:fixed;inset:auto 0 0 0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px 18px;background:linear-gradient(transparent,var(--bg) 40%)}.nav .count{font:11px/1 var(--mono);letter-spacing:.12em;color:var(--muted)}
-.nav button.primary{min-width:150px}
+.nav button.primary{min-width:150px}.nav .mid{display:flex;align-items:center;gap:14px;min-width:0}.nav .detail{background:transparent;border-color:#55554f;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60vw}.nav .detail small{color:var(--muted);font-size:12px}.nav .detail:hover{border-color:var(--accent2)}
+.scrim{position:fixed;inset:0;background:#000a;z-index:39}.scrim[hidden]{display:none}.drawer{position:fixed;inset:0 0 0 auto;width:min(1000px,100vw);z-index:40;background:#111110;border-left:1px solid var(--line);display:grid;grid-template-rows:auto minmax(0,1fr);transform:translateX(100%);transition:transform .3s ease;box-shadow:-20px 0 50px #000a}.drawer.open{transform:none}.drawer[hidden]{display:none}.drawer-bar{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--line);background:var(--surface)}.drawer-title{flex:1;min-width:0;font:12px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.drawer-bar a{font-size:13px;white-space:nowrap}.drawer iframe{width:100%;height:100%;border:0;background:#111110}body.drawer-open{overflow:hidden}
 .hint{font:11px/1.4 var(--mono);color:var(--muted);text-align:center;margin:0}
-@media(max-width:720px){.scene{padding:70px 16px 104px}.two{grid-template-columns:1fr}.meters{grid-template-columns:1fr 1fr}.moves{grid-template-columns:1fr}.bill{grid-template-columns:1fr}.pie{grid-template-columns:1fr}.head{grid-template-columns:1fr}.crowd{grid-template-columns:repeat(10,minmax(0,1fr))}.lab-link{display:none}.dots{display:none}.mark span{display:none}.nav button.primary{min-width:0}}
+@media(max-width:720px){.scene{padding:70px 16px 104px}.two{grid-template-columns:1fr}.meters{grid-template-columns:1fr 1fr}.moves{grid-template-columns:1fr}.bill{grid-template-columns:1fr}.pie{grid-template-columns:1fr}.head{grid-template-columns:1fr}.crowd{grid-template-columns:repeat(10,minmax(0,1fr))}.lab-link{display:none}.dots{display:none}.mark span{display:none}.nav button.primary{min-width:0}.nav .detail small{display:none}.nav .count{display:none}.drawer-bar a{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -179,7 +180,9 @@ h1,h2{font:400 clamp(30px,5.6vw,58px)/1.05 var(--serif);letter-spacing:-.025em;m
 </div></section>
 
 </main>
-<nav class="nav" aria-label="Screens"><button type="button" id="prev">← Back</button><span class="count" id="count"></span><button type="button" class="primary" id="next">Next →</button></nav>
+<nav class="nav" aria-label="Screens"><button type="button" id="prev">← Back</button><div class="mid"><button type="button" id="detail" class="detail" aria-haspopup="dialog">Detail</button><span class="count" id="count"></span></div><button type="button" class="primary" id="next">Next →</button></nav>
+<div class="scrim" id="scrim" hidden></div>
+<div class="drawer" id="drawer" hidden role="dialog" aria-modal="true" aria-label="Detail from the full lab"><div class="drawer-bar"><span class="drawer-title" id="drawer-title"></span><a id="drawer-open" href="spotlight-attention-lab.html" target="_blank" rel="noopener">Open in the full lab ↗</a><button type="button" id="drawer-close">Close ✕</button></div><iframe id="drawer-frame" title="The full lab, opened at the chapter behind this screen"></iframe></div>
 <script src="attention-assets/reading-cases.js"></script>
 <script>
 (()=>{
@@ -197,13 +200,16 @@ const weightsAt=(demo,i)=>softmax(Array.from({length:i+1},(_,j)=>demo.steps[i].a
 const scenes=$$('.scene'),dots=$('dots');let cur=-1;const seen=new Set();
 dots.innerHTML=scenes.map((s,i)=>`<li><button type="button" data-i="${i}" title="${esc(s.dataset.title)}" aria-label="Screen ${i+1}: ${esc(s.dataset.title)}"><i></i></button></li>`).join('');
 const enter={};
+// Every screen has a chapter of the full lab behind it.
+const DETAIL=['paper','paper','paper','practice','queries','numbers','training','human','human','compare','social','social','society','synthesis'];
+const CH_TITLE={intro:'Start here',paper:'The paper and the idea',queries:'Query, key, value',practice:'Build it: six puzzles',training:'Training and inference',numbers:'The numbers, under a microscope',human:'Three attention systems',compare:'Read and predict together',social:'Run the feed, then break it',society:'More ways to score reading',synthesis:'What has been understood?'};
 function go(i,push=true){i=Math.max(0,Math.min(scenes.length-1,i));if(i===cur)return;stopAll();cur=i;seen.add(i);
  scenes.forEach((s,k)=>s.classList.toggle('on',k===i));$$('#dots button').forEach(b=>{const k=+b.dataset.i;b.setAttribute('aria-current',k===i?'step':'false');b.classList.toggle('seen',seen.has(k)&&k!==i);});
- $('count').textContent=`${i+1} / ${scenes.length}`;$('prev').disabled=i===0;$('next').textContent=i===scenes.length-1?'Start again':'Next →';
+ $('count').textContent=`${i+1} / ${scenes.length}`;$('detail').innerHTML=`Detail <small>· ${esc(CH_TITLE[DETAIL[i]])}</small>`;$('prev').disabled=i===0;$('next').textContent=i===scenes.length-1?'Start again':'Next →';
  if(push)history.replaceState(null,'','#s'+i);window.scrollTo({top:0,behavior:'instant'});if(enter[i])enter[i]();}
 $('next').addEventListener('click',()=>go(cur===scenes.length-1?0:cur+1));$('prev').addEventListener('click',()=>go(cur-1));
 dots.addEventListener('click',e=>{const b=e.target.closest('[data-i]');if(b)go(+b.dataset.i);});
-document.addEventListener('keydown',e=>{if(e.target.matches('input,select,textarea'))return;if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();go(cur+1);}else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(cur-1);}else if(e.key==='Home')go(0);else if(e.key==='End')go(scenes.length-1);});
+document.addEventListener('keydown',e=>{if(e.target.matches('input,select,textarea'))return;if(!$('drawer').hidden){if(e.key==='Escape')closeDetail();return;}if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();go(cur+1);}else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(cur-1);}else if(e.key==='Home')go(0);else if(e.key==='End')go(scenes.length-1);});
 let tx=null;document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});document.addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;tx=null;if(Math.abs(dx)>70){if(dx<0)go(cur+1);else go(cur-1);}});
 addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(LAB.includes(h)||/^slide-\d+$/.test(h)){location.replace('spotlight-attention-lab.html#'+h);return;}const m=h.match(/^s(\d+)$/);if(m)go(+m[1],false);});
 const timers=new Set();const later=(fn,ms)=>{const t=setTimeout(()=>{timers.delete(t);fn();},reduced?0:ms);timers.add(t);return t;};function stopAll(){timers.forEach(clearTimeout);timers.clear();writer.stop();}
@@ -285,6 +291,13 @@ function bill(){const on=feed.readers.filter(x=>x.on),energy=Math.round(on.reduc
  $('title12').textContent=won?'You kept them, and it paid.':feed.money>=650?'It paid. It cost you readers.':'They stayed fresh. It did not pay.';$('b-money').textContent=feed.money;$('b-money-note').textContent=`of 650 · energy ${energy}%`;$('b-left').textContent=feed.left;$('b-think').textContent=feed.thought;
  $('line12').textContent=won?'Notice what won: not the move that paid most, but the mix that let readers recover. The ledger only ever saw two of the four numbers above.':feed.money>=650?'Three boosts earn the most now and empty the room. The ledger counts the money; it never counts the people who left or who stopped to think.':'Pauses keep people, and the ledger cannot bill a pause. A feed that must hit a number will not choose this on its own.';}
 enter[11]=()=>{if(!feed)newFeed();};
+// ---------- detail drawer: the full lab, at the chapter behind this screen ----------
+const drawer=$('drawer'),frame=$('drawer-frame'),scrim=$('scrim');if(new URLSearchParams(location.search).get('detail')==='0')$('detail').hidden=true;
+function openDetail(){const ch=DETAIL[cur];$('drawer-title').textContent=`Detail · ${CH_TITLE[ch]}`;$('drawer-open').href=`spotlight-attention-lab.html#${ch}`;stopAll();drawer.hidden=false;scrim.hidden=false;document.body.classList.add('drawer-open');requestAnimationFrame(()=>drawer.classList.add('open'));
+ const w=frame.contentWindow;if(frame.dataset.loaded==='1'&&w&&typeof w.spotlightGo==='function')w.spotlightGo(ch);else{frame.dataset.loaded='';frame.src=`spotlight-attention-lab.html?embed=1&theme=dark#${ch}`;frame.addEventListener('load',()=>{frame.dataset.loaded='1';},{once:true});}
+ $('drawer-close').focus();}
+function closeDetail(){drawer.classList.remove('open');scrim.hidden=true;document.body.classList.remove('drawer-open');setTimeout(()=>{drawer.hidden=true;},reduced?0:300);$('detail').focus();}
+$('detail').addEventListener('click',openDetail);$('drawer-close').addEventListener('click',closeDetail);scrim.addEventListener('click',closeDetail);
 // ---------- boot ----------
 const m0=location.hash.match(/^#s(\d+)$/);go(m0?+m0[1]:0,false);
 })();
