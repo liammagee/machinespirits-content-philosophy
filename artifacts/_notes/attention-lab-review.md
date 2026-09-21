@@ -798,3 +798,15 @@ All rules, prices and reader responses remain authored simulation.
 **Navigation.** Next and Back buttons, progress dots (hidden on phones), arrow keys, Home and End, horizontal swipe, `#sN` hashes. Animations respect reduced motion. One dark theme.
 
 **Checks.** `_tests/attention-journey.cjs` drives every screen on desktop and phone: the chips, the arcs, the writer’s step and play, the pie goal, the name-tag goal, the blend cells, eight nudges, the head regions, the two-column playback, a three-round feed to the bill, deep links, legacy-hash forwarding, no page errors, no failed requests, no overflow. The lab’s two suites pass unchanged against the renamed page.
+
+## Detail: the journey with the lab behind every screen (2026-09-21)
+
+**Request.** A third version, based on the journey, with a “Detail” button that opens the fuller exercises and explanations of the ten-chapter lab.
+
+**Composition.** The journey keeps its fourteen screens. The bottom bar gains **Detail · <chapter>**, named after the lab chapter behind the current screen (`DETAIL` in the journey maps screens to chapters: the paper for the first three screens, the six puzzles for the pie, query/key/value for the name tags, the numerical inspector for the blend, training for the nudges, the three systems for the two human screens, the comparison, the loop cabinet for the feed screens, the scoreboards for the bill, the synthesis for the question). Pressing it slides a drawer in from the right (full width on phones) holding the lab in an iframe, opened at that chapter. The drawer bar offers “Open in the full lab ↗” and Close; Escape and the scrim also close it; focus returns to the button. The lab loads once; later Details call its `spotlightGo` through the same-origin frame, so chapters change without a reload, and the lab’s own chapter bar lets the reader wander from there.
+
+**Embed mode in the lab.** `?embed=1` sets `data-embed` on the root before first paint (an inline script in the head) and `chapters.css` hides the masthead and the footer; `?theme=dark|light` seeds `theme.js` without touching the stored preference, so the drawer opens dark to match the journey. The lab is otherwise unchanged; its two suites run as before.
+
+**Three versions, one file each.** `spotlight-attention-lab.html` is the ten-chapter lab (version 1). `spotlight-attention-game.html?detail=0` is the plain journey (version 2). `spotlight-attention-game.html` is the journey with Detail (version 3), and the entry point.
+
+**Checks.** `_tests/attention-journey.cjs` opens Detail on the writing screen (embed mode, dark theme, the chapter’s primer visible, Escape closes and the screen is unchanged), opens it again on the feed screen (the loaded lab jumps to the loop cabinet without reloading; Close works), and confirms `?detail=0` hides the button.
