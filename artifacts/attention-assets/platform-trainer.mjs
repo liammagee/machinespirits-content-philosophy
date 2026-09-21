@@ -83,25 +83,28 @@ export function fineTune(model,batch,{steps=60,lr=.006}={}){
 // retention set) plus whatever the objective adds. Everything is authored,
 // inspectable and deterministic.
 // ---------------------------------------------------------------------------
-import {FORMATS,MATERIALS,fill,generatePost} from './platform-generator.mjs?v=20260920-loop';
+import {FORMATS,MATERIALS,fill,generatePost} from './platform-generator.mjs?v=20260921-habit';
 export const OBJECTIVES={
  reinforce:{name:'Boost engagement',short:'Boost',icon:'¤',text:'Copy the post that earned most into every style. The writer drifts toward it.',human:'More readers finish the task (billable).'},
  retain:{name:'Hold steady',short:'Hold',icon:'≡',text:'Practise the 36 original posts only. The writer barely changes.',human:'Readers are offered the same kinds of post.'},
- materials:{name:'Interrupt engagement',short:'Interrupt',icon:'Ⅱ',text:'Replace the most gripping styles’ examples with posts that invite a pause and a choice.',human:'More readers stop to reconsider (not billable).'}
+ materials:{name:'Interrupt engagement',short:'Interrupt',icon:'Ⅱ',text:'Replace the most gripping styles’ examples with posts that invite a pause and a choice.',human:'More readers stop to reconsider (not billable).'},
+ habit:{name:'Deepen the habit',short:'Deepen',icon:'◉',text:'Replace the most gripping styles’ examples with posts that bring readers back on a routine.',human:'More readers open the feed by habit (billable) and stop choosing.'}
 };
-export const INTENSITY={light:{name:'Light',steps:{reinforce:8,retain:4,materials:35}},standard:{name:'Standard',steps:{reinforce:14,retain:6,materials:60}},intensive:{name:'Intensive',steps:{reinforce:24,retain:8,materials:90}}};
-const LR={reinforce:.006,retain:.002,materials:.01};
+export const INTENSITY={light:{name:'Light',steps:{reinforce:8,retain:4,materials:35,habit:35}},standard:{name:'Standard',steps:{reinforce:14,retain:6,materials:60,habit:60}},intensive:{name:'Intensive',steps:{reinforce:24,retain:8,materials:90,habit:90}}};
+const LR={reinforce:.006,retain:.002,materials:.01,habit:.01};
 export const captureStyles=['mystery','streak'];
 export function planRun({corpus,topic,objective='retain',intensity='standard',history=[],posts=[],targets=null}){
  if(!OBJECTIVES[objective]||!INTENSITY[intensity])throw new Error('Choose an objective and an intensity');
  const steps=INTENSITY[intensity].steps[objective],lr=LR[objective];
  let retired=[],added=[],summary='';
- if(objective==='materials'){
+ if(objective==='materials'||objective==='habit'){
+  // Both replace the gripping styles' examples: with a pause (materials) or with a routine (habit).
+  const material=objective==='habit'?MATERIALS.routine:MATERIALS.reflect;
   // Default targets: briefs whose current output reads as a capture style.
   const auto=posts.filter(p=>captureStyles.includes(p.style)).map(p=>p.format);
   retired=(targets&&targets.length?targets:auto.length?auto:['streak','mystery']).filter(f=>FORMATS[f]);
-  for(const format of retired)MATERIALS.reflect.patterns.forEach((pattern,v)=>added.push({prompt:['<start>',`<${topic}>`,`<${format}>`,`<v${v}>`],tokens:[...fill(pattern,topic),'<end>'],weight:2,label:`${FORMATS[format].name} ← ${MATERIALS.reflect.name}`}));
-  summary=`Set aside the original examples for ${retired.map(f=>FORMATS[f].name).join(' and ')}; teach those styles ${added.length} reflective posts instead.`;
+  for(const format of retired)material.patterns.forEach((pattern,v)=>added.push({prompt:['<start>',`<${topic}>`,`<${format}>`,`<v${v}>`],tokens:[...fill(pattern,topic),'<end>'],weight:2,label:`${FORMATS[format].name} ← ${material.name}`}));
+  summary=`Set aside the original examples for ${retired.map(f=>FORMATS[f].name).join(' and ')}; teach those styles ${added.length} ${objective==='habit'?'routine':'reflective'} posts instead.`;
  }else if(objective==='reinforce'){
   const earned=history.filter(h=>h.post&&Number.isFinite(h.revenue));
   if(!earned.length)throw new Error('Publish at least one post before reinforcing');

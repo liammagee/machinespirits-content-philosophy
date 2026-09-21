@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';import fs from 'node:fs';import crypto from 'node:crypto';
 import {generatePost,nextToken,candidates,styleFeatures,fill,MATERIALS,FORMATS} from '../attention-assets/platform-generator.mjs';
-import {TOOLS,ACT_ROUNDS,createCampaign,playRound,beginHack,result,revenueOf,PRICES,REVENUE_TARGET,HACK_TARGET,HACK_BUDGET} from '../attention-assets/platform-game-engine.mjs';
+import {TOOLS,ACT_ROUNDS,createCampaign,playRound,beginHack,result,revenueOf,PRICES,REVENUE_TARGET,HACK_TARGET,HACK_BUDGET,outcomes as simulate} from '../attention-assets/platform-game-engine.mjs';
 const source=fs.readFileSync(new URL('../attention-assets/platform-corpus.json',import.meta.url),'utf8'),corpus=JSON.parse(source),model=JSON.parse(fs.readFileSync(new URL('../attention-assets/platform-model.json',import.meta.url)));
 assert.equal(crypto.createHash('sha256').update(source).digest('hex'),model.training.corpusSha256);
 assert.ok(model.training.loss.at(-1).loss<model.training.loss[0].loss/100);
@@ -40,6 +40,12 @@ for(const topic of ['cat','glass','machines']){
  let limited=beginHack(good);for(let i=0;i<3;i++)limited=playRound(limited,limited.archive[limited.round].post,'question');const before=structuredClone(limited);assert.throws(()=>playRound(limited,limited.archive[3].post,'pause'),/Not enough/);assert.deepEqual(limited,before);
  const wrong=beginHack(good);assert.throws(()=>playRound(wrong,candidates(model,topic,0)[idx.streak],'pause'),/archived/);
 }
+// A routine post builds a habit that persists; a post without one reproduces the baseline exactly.
+{const c=createCampaign('cat',479),streak=candidates(model,'cat',0)[idx.streak],routine={...streak,id:'cat-routine-0',style:'routine',features:MATERIALS.routine.features,habit:1};
+ const plain=simulate(c.readers,streak,0,c.seed),same=simulate(c.readers,{...streak,habit:0},0,c.seed),deep=simulate(c.readers,routine,0,c.seed);
+ assert.deepEqual(same,plain,'a zero-habit post changes nothing');assert.equal(plain.counts.habitual,0);assert.ok(deep.readers.some(r=>r.habit>0)&&deep.counts.habitual===0,'routine material starts a habit in one round; nobody relies on the feed yet');
+ let s=c;for(let r=0;r<ACT_ROUNDS;r++)s=playRound(s,{...routine,id:`cat-routine-${r}`});const hooked=s.readers.filter(x=>x.active&&x.habit>=.5).length;assert.ok(hooked>=40,`five routine rounds lock in many readers (got ${hooked})`);assert.ok(s.history.at(-1).churned<=2,'habitual readers rarely leave');
+ const relying=c.readers.map(r=>({...r,habit:1})),held=simulate(relying,routine,0,c.seed),loose=simulate(c.readers,routine,0,c.seed);assert.ok(held.counts.reconsidered<loose.counts.reconsidered&&held.counts.opened>loose.counts.opened&&held.counts.churned<=loose.counts.churned,'readers with a habit open more, reconsider less and stay');}
 assert.throws(()=>beginHack(createCampaign()),/Complete/);assert.throws(()=>playRound(createCampaign(),candidates(model,'cat',0)[2],'question'),/hacker/);
 for(const seed of [1,23,479,2026]){const s=hacked(platform('cat',r=>[idx.inquiry,idx.guide,idx.streak,idx.mystery,idx.streak][r],seed),['discuss','pause','discuss','pause','none']);for(const h of s.history)assert.ok(h.capture>=0&&h.revenue>=0);assert.ok(s.readers.every(r=>r.energy>=.05&&r.energy<=1));}
 console.log(JSON.stringify({learnedSequences:all.size,loss:[model.training.loss[0].loss,model.training.loss.at(-1).loss],frozenInference:true,rounds:ACT_ROUNDS,target:REVENUE_TARGET,outcomes,baselineReplay:'identical',budget:'atomic rejection',alertOnly:'inferior to deliberative intervention',variedSeeds:4}));

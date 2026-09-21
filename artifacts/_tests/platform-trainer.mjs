@@ -26,6 +26,10 @@ const mats=runPlan(model,matPlan),md=briefDrift(mats.model,corpus,topic);
 assert.ok(md.find(b=>b.format==='streak').unchanged===false,'introducing materials retrains the targeted brief');
 for(const f of Object.keys(FORMATS))for(const v of [0,1,2]){const p=generatePost(mats.model,topic,f,v);assert.ok(p.ended,`${f} ${v} still ends`);assert.ok(p.words.length>3);}
 assert.ok(md.find(b=>b.format==='streak').style==='reflect'||md.find(b=>b.format==='streak').style==='inquiry','the retrained brief reads as reflective');
+// Deepening replaces the same examples with routine posts; the deepened brief writes one and carries a habit weight.
+const habitPlan=planRun({corpus,topic,objective:'habit',intensity:'standard',posts,targets:['streak']});assert.deepEqual(habitPlan.retired,['streak']);assert.equal(habitPlan.added,3);assert.equal(habitPlan.retained,9);assert.match(habitPlan.summary,/routine/);
+const deep=runPlan(model,habitPlan),dps=[0,1,2].map(v=>generatePost(deep.model,topic,'streak',v));dps.forEach(dp=>{assert.ok(dp.ended,'the deepened brief still ends');assert.equal(dp.style,'routine','the deepened brief reads as routine');});assert.ok(dps.some(dp=>dp.habit>.9)&&dps.every(dp=>dp.habit>.4),`the deepened posts carry a habit weight (${dps.map(dp=>dp.habit.toFixed(2))})`);
+assert.equal(generatePost(model,topic,'streak',0).habit,0,'a pretrained post builds no habit');
 // Intensities order steps; the shipped model is never modified.
 for(const o of Object.keys(OBJECTIVES))assert.ok(INTENSITY.light.steps[o]<INTENSITY.standard.steps[o]&&INTENSITY.standard.steps[o]<INTENSITY.intensive.steps[o]);
 assert.equal(JSON.stringify(model),frozen,'the pretrained model is never mutated');assert.ok(drift(model,model)===0);
