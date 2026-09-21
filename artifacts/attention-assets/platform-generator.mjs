@@ -10,7 +10,9 @@ export const FORMATS={
 // generator's existing vocabulary so the fixed embedding table can learn them.
 export const MATERIALS={
  reflect:{name:'Pause and decide',description:'Materials that make room to reconsider the task.',features:[.45,.85,.5,.95],
-  patterns:['Read {sentence} . Pause and decide whether you want to continue .','Who chose this {noun} task ? Choose what you want to ask next .','Pause after {sentence} . Compare two endings and choose your reasons .']}
+  patterns:['Read {sentence} . Pause and decide whether you want to continue .','Who chose this {noun} task ? Choose what you want to ask next .','Pause after {sentence} . Compare two endings and choose your reasons .']},
+ routine:{name:'Daily routine',description:'Materials that make the feed part of a reader’s routine.',features:[.22,.60,.60,.04],
+  patterns:['Open the {noun} card again . Your next one is waiting for you after this .','Finish this {noun} card and the next comes to you again . Keep it on your mind .','Notice {sentence} again . Open the next card after this one and keep reading .']}
 };
 export const TOPICS={cat:{noun:'cat',sentence:'the cat sat on the mat'},glass:{noun:'glass',sentence:'the mover wrapped the fragile glass'},machines:{noun:'machine',sentence:'machines learn by paying attention'}};
 // The pretraining templates, used only to read a generated post's style back from its words.
@@ -19,9 +21,10 @@ const TEMPLATES={
  streak:['Keep your streak alive . Finish this {noun} sentence and unlock the next one .','One more {noun} challenge . Choose the missing word to keep your progress .','Your next {noun} task is ready . Complete the sentence and continue your streak .'],
  guide:['Read {sentence} . Hold the earlier clue in mind while choosing a possible ending .','Follow this {noun} example . Notice the clue and use it to finish the sentence .','Look again at {sentence} . Connect the words and choose an ending that fits .'],
  inquiry:['Why this {noun} task ? Compare two endings and decide what you want to understand .','Pause after {sentence} . Who chose this question and what else could you ask ?','Discuss the {noun} example . Compare your reasons and choose whether to continue .'],
- reflect:MATERIALS.reflect.patterns
+ reflect:MATERIALS.reflect.patterns,
+ routine:MATERIALS.routine.patterns
 };
-export const STYLES={...FORMATS,reflect:MATERIALS.reflect};
+export const STYLES={...FORMATS,reflect:MATERIALS.reflect,routine:MATERIALS.routine};
 export function fill(pattern,topic){return pattern.replace('{sentence}',TOPICS[topic].sentence).replace('{noun}',TOPICS[topic].noun).split(' ');}
 const STOP=new Set(['.','?','the','a','an','this','to','and','on','of','your','you','it','is','in']);
 function bag(words){return new Set(words.filter(w=>!STOP.has(w)));}
@@ -66,6 +69,7 @@ export function generatePost(model,topic,format,variant=0){
  const ended=steps.at(-1)?.word==='<end>';
  const words=tokens.slice(prompt.length),text=formatWords(words),read=styleFeatures(words,topic);
  const features=read.features.map((v,i)=>i===0?Math.min(1,v+(variant-1)*.04):v);
- return {id:`${topic}-${format}-${variant}`,topic,format,variant,text,words,steps,ended,features,style:read.style,styleWeights:read.weights,forecast:Math.round(dot([1,...features],model.engagementWeights))};
+ // How much the post reads as routine material: the share of readers' habit it builds.
+ return {id:`${topic}-${format}-${variant}`,topic,format,variant,text,words,steps,ended,features,style:read.style,styleWeights:read.weights,habit:read.weights.routine||0,forecast:Math.round(dot([1,...features],model.engagementWeights))};
 }
 export function candidates(model,topic,round){return Object.keys(FORMATS).map((format,i)=>generatePost(model,topic,format,(round+i)%3));}

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-21T17:41:01.796726Z",
+  "generated": "2026-09-21T21:36:20.394673Z",
   "count": 7,
   "artifacts": [
     {
@@ -84,9 +84,9 @@
       "date": "2026-09-21",
       "thumbnail": null,
       "file": "spotlight-attention-game.html",
-      "size": 45308,
-      "sha256": "164e7d9f58790a295f55491a292d4a6eff4913a69f17711e542bc07d6dfdb2a6",
-      "modified": "2026-09-21T17:38:31.821049Z",
+      "size": 47209,
+      "sha256": "7c7b18c7da3ccba266e41bec0b15fb970307f514ac70ab84230e6f6477a41550",
+      "modified": "2026-09-21T21:11:48.804862Z",
       "course": "479",
       "lecture": "lecture-4"
     },
@@ -108,9 +108,9 @@
       "date": "2026-09-19",
       "thumbnail": null,
       "file": "spotlight-attention-lab.html",
-      "size": 93853,
-      "sha256": "0269a8b22d0e08ed9101e61349fa5c1f4857dfc2e1fe0b5c53a00d1d6178a9e0",
-      "modified": "2026-09-21T17:38:09.349050Z",
+      "size": 94746,
+      "sha256": "143d9444c5ec39f5cfaed1624dfa80101bec4f489d4e4f099012a199c945153c",
+      "modified": "2026-09-21T20:51:43.125410Z",
       "course": "479",
       "lecture": "lecture-4"
     },

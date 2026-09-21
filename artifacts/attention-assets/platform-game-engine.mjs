@@ -12,6 +12,9 @@ export const TOOLS={
 // engaged session when a reader completes the task. Prices are fictional credits.
 export const PRICES={impression:1,session:4};
 export const REVENUE_TARGET=1100,HACK_TARGET=20;
+// Habit (Hansen 2024, cognitive lock-in): routine material builds a slow, persistent pull. A habitual
+// reader notices and opens without a fresh cue, keeps going, rarely reconsiders or chooses, tires slowly and stays.
+export const HABIT={notice:.45,open:.4,sustain:.35,reflect:.9,drain:.6,churn:1,gain:.35,gainOpen:.2,choose:.5};
 export const EVENTS=[
  {name:'The feed opens',text:'Curiosity is fresh. Which generated post will recruit a first visit?',load:0},
  {name:'The familiar pattern',text:'Repeated styles lose novelty. The prior estimate does not include this session’s history.',load:.025},
@@ -21,7 +24,7 @@ export const EVENTS=[
 ];
 const clamp=(v,lo=0,hi=1)=>Math.max(lo,Math.min(hi,v));
 function random(seed,id,round,channel){let x=(seed^Math.imul(id+1,374761393)^Math.imul(round+1,668265263)^Math.imul(channel+1,1274126177))>>>0;x=Math.imul(x^(x>>>13),1274126177);return((x^(x>>>16))>>>0)/4294967296;}
-function people(seed){return Array.from({length:POPULATION},(_,id)=>({id,group:Math.floor(id/20),energy:.68+random(seed,id,0,1)*.3,curiosity:.25+random(seed,id,0,2)*.65,active:true,chosen:false,last:{noticed:false,opened:false,continued:false,reconsidered:false,chosen:false,choice:''}}));}
+function people(seed){return Array.from({length:POPULATION},(_,id)=>({id,group:Math.floor(id/20),energy:.68+random(seed,id,0,1)*.3,curiosity:.25+random(seed,id,0,2)*.65,active:true,chosen:false,habit:0,last:{noticed:false,opened:false,continued:false,reconsidered:false,chosen:false,choice:''}}));}
 export function createCampaign(topic='cat',seed=479){
  if(!['cat','glass','machines'].includes(topic))throw new Error('Choose a reading example');
  return{topic,seed,act:'platform',round:0,budget:HACK_BUDGET,readers:people(seed),history:[],archive:[],platformScore:0,revenue:0,hackerScore:0,selfDirected:0,finished:false};
@@ -30,28 +33,31 @@ export function revenueOf(counts){return PRICES.impression*counts.opened+PRICES.
 export function outcomes(readers,post,round,seed,tool='none',history=[]){
  const intervention=TOOLS[tool],next=structuredClone(readers),counts={noticed:0,opened:0,continued:0,reconsidered:0,chosen:0,churned:0,active:0},[novelty,relevance,continuity,reflection]=post.features;
  const style=post.style||post.format,repetitions=history.filter(h=>(h.style||h.format)===style).length,sameText=history.filter(h=>h.post?.text===post.text).length;
+ const pull=post.habit||0;
  for(const r of next){
   const rand=ch=>random(seed,r.id,round+1,ch),match=r.group%3===['cat','glass','machines'].indexOf(post.topic)?1:.86;
   const l={noticed:false,opened:false,continued:false,reconsidered:false,chosen:false,choice:''};
   if(!r.active){r.last=l;continue;}
-  const tired=r.energy-.7;
-  const notice=clamp(.40+novelty*.35+r.curiosity*.15+tired*.55-repetitions*.055-sameText*.1+intervention.alert-EVENTS[round].load,.1,.98);
-  const opened=clamp(.30+relevance*.46+match*.1+tired*.45,.08,.96);
-  const sustain=clamp(.20+continuity*.54+r.energy*.19+tired*.35-(tool==='pause'?.1:0),.05,.95);
-  const reflect=clamp(.018+reflection*.2+intervention.reflect*r.energy,.01,.85);
+  const tired=r.energy-.7,h=r.habit||0;
+  const notice=clamp(.40+novelty*.35+r.curiosity*.15+tired*.55-repetitions*.055-sameText*.1+intervention.alert-EVENTS[round].load+h*(HABIT.notice+repetitions*.055+sameText*.1),.1,.98);
+  const opened=clamp(.30+relevance*.46+match*.1+tired*.45+h*HABIT.open,.08,.96);
+  const sustain=clamp(.20+continuity*.54+r.energy*.19+tired*.35-(tool==='pause'?.1:0)+h*HABIT.sustain,.05,.95);
+  const reflect=clamp((.018+reflection*.2+intervention.reflect*r.energy)*(1-HABIT.reflect*h),.01,.85);
   l.noticed=rand(0)<notice;
   l.opened=l.noticed&&rand(1)<opened;
   l.continued=l.opened&&rand(2)<sustain;
   l.reconsidered=l.opened&&rand(3)<reflect;
-  l.chosen=l.reconsidered&&rand(4)<.52+intervention.choice;
+  l.chosen=l.reconsidered&&rand(4)<(.52+intervention.choice)*(1-HABIT.choose*h);
   if(l.chosen){r.chosen=true;l.choice=rand(5)<.35?'Choose a different question':rand(5)<.7?'Discuss a reason':'Choose to continue deliberately';}
   // Completing task after task tires a reader; a pause, a reconsideration or a
   // deliberate choice restores some energy. Exhausted readers may leave for good.
-  r.energy=clamp(r.energy-(l.continued?.1:.035)+(tool==='pause'?.11:0)+(l.reconsidered?.07:0)+(l.chosen?.1:0)+(l.noticed&&!l.opened?.015:0),.05,1);
-  if(r.energy<.42&&rand(6)<.5){r.active=false;counts.churned++;}
+  r.energy=clamp(r.energy-(l.continued?.1:.035)*(1-HABIT.drain*h)+(tool==='pause'?.11:0)+(l.reconsidered?.07:0)+(l.chosen?.1:0)+(l.noticed&&!l.opened?.015:0),.05,1);
+  if(pull>0&&l.opened)r.habit=clamp(h+pull*(l.continued?HABIT.gain:HABIT.gainOpen));
+  if(r.energy<.42&&rand(6)<.5*(1-HABIT.churn*h)){r.active=false;counts.churned++;}
   r.last=l;for(const k of ['noticed','opened','continued','reconsidered','chosen'])counts[k]+=+l[k];
  }
  counts.active=next.filter(r=>r.active).length;
+ counts.habitual=next.filter(r=>r.active&&r.habit>=.5).length;
  counts.discussed=next.filter(r=>r.last.choice==='Discuss a reason').length;
  counts.energy=next.reduce((s,r)=>s+r.energy,0)/next.length;
  return{readers:next,counts,revenue:revenueOf(counts),capture:Math.max(0,counts.noticed+2*counts.opened+3*counts.continued-4*counts.reconsidered)};
