@@ -185,7 +185,7 @@ h1,h2{font:400 clamp(30px,5.6vw,58px)/1.05 var(--serif);letter-spacing:-.025em;m
 (()=>{
 'use strict';
 // Old deep links belong to the full lab.
-const LAB=['intro','paper','queries','practice','training','numbers','human','compare','social','society','synthesis','machine','framing','slides','query','vectors','games'];
+const LAB=['paper','queries','practice','training','numbers','human','compare','social','society','synthesis','machine','slides','query','vectors','games'];
 const h0=location.hash.slice(1);if(LAB.includes(h0)||/^slide-\d+$/.test(h0)){location.replace('spotlight-attention-lab.html#'+h0);}
 const $=id=>document.getElementById(id),$$=(s,r=document)=>[...r.querySelectorAll(s)],esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
