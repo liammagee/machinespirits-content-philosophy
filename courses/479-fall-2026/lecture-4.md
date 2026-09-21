@@ -46,7 +46,7 @@ I'll start by looking at the Petersen & Posner [-@stevene.petersen2012theattenti
 
 These reading situations are teaching applications of Petersen and Posner's framework, not neural measurements of reading. Networks cooperate; the rows are not successive stages. Their frontoparietal **control** network is distinguished from the dorsal **orienting** network.
 
-[Explore the interactive reading lab](../../artifacts/spotlight-attention-game.html#human): rotate the anatomical cortical model, select a reading moment, and try the same next-token task from the human and machine perspectives. The machine tab preserves six games and adds query origins and training versus inference; the final tab applies Terranova to the social organization of the task.
+[Explore the interactive reading lab](../../artifacts/spotlight-attention-lab.html#human): rotate the anatomical cortical model, select a reading moment, and try the same next-token task from the human and machine perspectives. The machine tab preserves six games and adds query origins and training versus inference; the final tab applies Terranova to the social organization of the task.
 
 
 ![Image](/markdown/images/pasted-image-2025-09-14T18-41-01-466Z-7f762d1b.webp)

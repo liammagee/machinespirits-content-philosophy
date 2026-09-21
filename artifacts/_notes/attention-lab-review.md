@@ -769,3 +769,32 @@ All rules, prices and reader responses remain authored simulation.
 - Briefing, chapter 8 primer and what-to-do, and the guide strip (train-first, train-plan, choose, hack-choose) name the moves and the effects in the same words.
 
 **Checks.** `_tests/platform-game-browser.cjs` asserts the round-1 plan (Boost disabled, Hold pressed, the skip button shown and Run training hidden), the forecast text and its change when Boost is chosen in round 2, four effect lines on the post cards and five on the intervention cards. Pure suites unchanged. The whole-lab suite passes. Phone width: the three cards stack.
+
+## A short journey: the new front door (2026-09-21)
+
+**Request.** Still far too text heavy, and this is the home page. Start a new single-page app and bring material across very parsimoniously; convey the intuition to a non-academic audience; complete freedom over layout and architecture; take the user on a journey and keep their attention.
+
+**Composition.** `spotlight-attention-game.html` is now a fourteen-screen journey, one screen at a time, each with a kicker, a headline of a few words, at most two lines of text, and something to touch. The ten-chapter lab moved unchanged to `spotlight-attention-lab.html`; the journey links to it at the end and from the top bar, and forwards the lab’s old hashes (`#social`, `#paper`, `#slide-N`…) so lecture links keep working.
+
+| # | Screen | What you do |
+|---|---|---|
+| 0 | Finish the sentence | Tap tired / warm / soft / hungry; the machine’s odds for your word appear |
+| 1 | You looked back | Arcs from “was” to the earlier words; tap any word for its share |
+| 2 | Watch it write | Play, Step, three sentences; arcs, “keeps N%” badge, next-word bars (the scripted data from `reading-cases.js`) |
+| 3 | One pie | Tap words to give them score; a donut and per-word percentages re-normalize (softmax); goal: make cat the biggest slice |
+| 4 | Ask around | Choose what “was” is looking for; name tags on the words answer; goal: find who was tired |
+| 5 | Blend | Colour swatches sized by share mix into what “was” now carries |
+| 6 | It learns by guessing | Nudge: a one-number gradient step raises the right answer’s bar; eight nudges unlock the point about billions |
+| 7 | Now you | Plate 01, one line |
+| 8 | Three parts | A sketched head with three glow regions; Get ready, Point, Stay on task or change it (Petersen & Posner 2012) |
+| 9 | Same answer, different machinery | Play both: four steps for you, four for the machine, in step |
+| 10 | Your glance, for sale | Plate 02, Terranova 2012 |
+| 11 | Run the feed | Three rounds; Boost, Hold or Interrupt; 100 readers animate (opened, finished, stopped to think, left); money and energy meters |
+| 12 | The bill | Earned, readers who left, readers who stopped to think; a verdict line |
+| 13 | The question | Who is asking you to pay attention, and what does it cost; links to the lab and the slides |
+
+**The feed simulation.** 100 readers with energy 0.6–1.0. Per round a move sets the open rate, the finish rate (which rises with energy), the chance of stopping to think, the energy drained by finishing and restored by pausing; repeating a move costs novelty; a reader below 0.3 energy may leave for good. Revenue is opens plus four per finish. Calibrated over 40 seeds: three boosts ≈ 727 credits, 7 readers gone, energy 0.56; three interrupts ≈ 290, none gone, energy 0.90; boost–interrupt–boost ≈ 703, 2 gone, energy 0.62. The target, 650 credits with energy at 60% or more, is met by mixes that include at least one interrupt and fails for all-boost on energy and for all-interrupt on money. It is a seeded authored simulation, not the lab’s trained decoder.
+
+**Navigation.** Next and Back buttons, progress dots (hidden on phones), arrow keys, Home and End, horizontal swipe, `#sN` hashes. Animations respect reduced motion. One dark theme.
+
+**Checks.** `_tests/attention-journey.cjs` drives every screen on desktop and phone: the chips, the arcs, the writer’s step and play, the pie goal, the name-tag goal, the blend cells, eight nudges, the head regions, the two-column playback, a three-round feed to the bill, deep links, legacy-hash forwarding, no page errors, no failed requests, no overflow. The lab’s two suites pass unchanged against the renamed page.
