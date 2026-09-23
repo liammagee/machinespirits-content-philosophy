@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="description" content="A five-module tutorial for graduate students who want to build and ship small research software with AI assistance. One project runs through the whole sequence: a git repository that holds an interactive web page, the page runs a Schelling segregation model, a test harness keeps the vibe-coded parts honest, and a tutor chatbot explains the model to a learner." />
+  <title>Build Lab</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Build Lab</h1>
+<p class="subtitle">Version control, interactive pages, agent-based
+models, test harnesses and AI tutors</p>
+</header>
+<h1 id="build-lab">Build Lab</h1>
+<p>Five modules. One project. By the end you will have a small piece of
+research software that you understand, can defend, and can hand to
+someone else.</p>
+<p>The project is a segregation model after Thomas Schelling. It is
+small enough to build in an afternoon and rich enough to teach the whole
+toolchain. Each module adds one layer.</p>
+<h2 id="the-five-modules">The five modules</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Module</th>
+<th>You will make</th>
+<th>The skill underneath</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Version control with git</td>
+<td>A repository with a readable history, local and on GitHub</td>
+<td>Checkpoints, diffs, branches, and the habit of committing before
+asking an assistant for anything</td>
+</tr>
+<tr>
+<td>2. Building interactive web pages</td>
+<td>One HTML file with a slider, a canvas and a loop</td>
+<td>HTML, CSS and JavaScript as three jobs; serving a page locally;
+reading the browser console</td>
+</tr>
+<tr>
+<td>3. Interactive simulations: agent-based models</td>
+<td>The Schelling model, with the model in its own file and the page as
+a view</td>
+<td>Agents, rules, emergence; seeded randomness; separating model from
+display</td>
+</tr>
+<tr>
+<td>4. A test harness for vibe-coded applications</td>
+<td>Fourteen checks that run in seconds, and a browser smoke test</td>
+<td>Invariants, boundaries, determinism, metamorphic relations, property
+tests; what to ask an assistant for and what to refuse</td>
+</tr>
+<tr>
+<td>5. Strategies for building an AI tutor chatbot</td>
+<td>A system prompt, a grounded tutor, a tiny server, and an evaluation
+set</td>
+<td>Scaffolding, grounding in state, multiple voices, evaluation, and
+the key that never enters the page</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-to-use-these-modules">How to use these modules</h2>
+<p>Each module has a hands-on section with commands you can paste, an
+exercise, and a short reading list. Do them in order. Module 3 embeds
+the finished simulation so you can compare your version with the
+reference. The reference code lives in this site’s artifacts folder and
+is linked from modules 3 and 4.</p>
+<p>You can work with any AI coding assistant. The modules assume you
+will, and they say at each step what to ask for, what to check, and what
+to keep for yourself. The short version: commit first, read the diff,
+run the tests, and keep the secrets out of the repository.</p>
+<h2 id="what-you-need">What you need</h2>
+<ul>
+<li>A computer with a terminal, git and Node.js (version 20 or
+later).</li>
+<li>A GitHub account.</li>
+<li>A text editor.</li>
+<li>For module 5, an Anthropic API key. The module explains where it
+goes and where it must not go.</li>
+</ul>
+</body>
+</html>

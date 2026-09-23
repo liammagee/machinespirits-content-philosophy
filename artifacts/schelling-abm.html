@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schelling Segregation Model</title>
+<meta name="artifact-title" content="Schelling segregation model: a playable agent-based model">
+<meta name="artifact-description" content="The 1971 Schelling segregation model as a grid you can run. Two groups of agents, a slider for how many similar neighbours each agent wants, Step and Run buttons, and a chart of how neighbourhoods sort over time. The model code is a separate file that the Build Lab test harness checks in Node.">
+<meta name="artifact-tags" content="agent-based model,simulation,Schelling,segregation,emergence,interactive,build-lab">
+<meta name="artifact-author" content="Machine Spirits">
+<meta name="artifact-date" content="2026-09-22">
+<meta name="artifact-course" content="build-lab">
+<meta name="artifact-lecture" content="module-3">
+<style>
+  :root {
+    --bg: #f7f7f5; --surface: #ffffff; --ink: #1a1a1a; --ink-2: #4d4d4d; --muted: #8a8a8a;
+    --line: #dcdcd8; --primary: #E63946; --a: #2a78d6; --b: #eb6834; --empty: #ebebe8;
+    --focus: #2a78d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a0a0a; --surface: #1a1a1a; --ink: #f2f2f2; --ink-2: #c9c9c9; --muted: #8f8f8f;
+      --line: #2e2e2e; --a: #3987e5; --b: #d95926; --empty: #262626; --focus: #3987e5;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0a0a0a; --surface: #1a1a1a; --ink: #f2f2f2; --ink-2: #c9c9c9; --muted: #8f8f8f;
+    --line: #2e2e2e; --a: #3987e5; --b: #d95926; --empty: #262626; --focus: #3987e5;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--ink); }
+  body { font: 16px/1.5 -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+  main { max-width: 1100px; margin: 0 auto; padding: 16px; }
+  header h1 { font-size: 1.5rem; margin: 0 0 4px; }
+  header p { margin: 0 0 16px; color: var(--ink-2); max-width: 70ch; }
+  .layout { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 20px; align-items: start; }
+  @media (max-width: 820px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+  .board { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+  #grid { display: block; width: 100%; aspect-ratio: 1 / 1; border-radius: 4px; touch-action: manipulation; }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px; display: grid; gap: 12px; }
+  .panel h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0; }
+  label.ctl { display: grid; gap: 4px; font-size: 0.95rem; }
+  label.ctl .row { display: flex; justify-content: space-between; align-items: baseline; }
+  label.ctl output { font-variant-numeric: tabular-nums; color: var(--ink-2); }
+  input[type="range"] { width: 100%; accent-color: var(--primary); }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  select, input[type="number"] { width: 100%; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); font: inherit; }
+  .buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  button { padding: 10px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: inherit; font-weight: 600; cursor: pointer; min-height: 44px; }
+  button.primary { background: var(--primary); border-color: var(--primary); color: #fff; }
+  button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .stat { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px; }
+  .stat .v { font-size: 1.4rem; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .stat .k { font-size: 0.75rem; color: var(--muted); }
+  #status { font-size: 0.9rem; color: var(--ink-2); min-height: 1.4em; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.85rem; color: var(--ink-2); }
+  .legend .sw { display: inline-block; width: 12px; height: 12px; border-radius: 2px; vertical-align: -1px; margin-right: 5px; }
+  .legend .hole { position: relative; }
+  .legend .hole::after { content: ""; position: absolute; inset: 4px; background: var(--surface); }
+  .legend .ln { display: inline-block; width: 22px; height: 0; border-top: 2px solid var(--ink); vertical-align: 3px; margin-right: 5px; }
+  .legend .ln.dash { border-top-style: dashed; border-top-color: var(--ink-2); }
+  .chartwrap { position: relative; }
+  #chart { display: block; width: 100%; height: 150px; }
+  #tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--bg); font-size: 0.78rem; padding: 4px 7px; border-radius: 4px; white-space: nowrap; display: none; }
+  .notes { margin-top: 24px; color: var(--ink-2); max-width: 75ch; }
+  .notes h2 { font-size: 1.1rem; color: var(--ink); margin: 18px 0 6px; }
+  .notes ol, .notes ul { padding-left: 22px; }
+  .notes li { margin: 4px 0; }
+  footer { margin-top: 24px; font-size: 0.85rem; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Schelling's segregation model</h1>
+    <p>Two groups of agents live on a grid. Each agent wants at least some share of its neighbours to be like itself. Anyone below that share moves to a random empty cell. Watch what a mild preference does to the whole neighbourhood.</p>
+  </header>
+
+  <section class="layout">
+    <div class="board">
+      <canvas id="grid" role="img" aria-label="Grid of agents. Blue and orange squares are the two groups; a square with a hole in the middle is an unhappy agent."></canvas>
+    </div>
+
+    <aside class="panel" aria-label="Controls and readings">
+      <h2>Controls</h2>
+      <label class="ctl">
+        <span class="row"><span>Wants at least this share of similar neighbours</span><output id="thr-out">50%</output></span>
+        <input type="range" id="thr" min="0" max="1" step="0.05" value="0.5" aria-label="Similarity threshold">
+      </label>
+      <label class="ctl">
+        <span class="row"><span>How full the grid is</span><output id="den-out">90%</output></span>
+        <input type="range" id="den" min="0.5" max="0.98" step="0.02" value="0.9" aria-label="Density (applies on reset)">
+      </label>
+      <div class="two">
+        <label class="ctl"><span>Grid size</span>
+          <select id="size" aria-label="Grid size (applies on reset)">
+            <option value="30">30 × 30</option>
+            <option value="50" selected>50 × 50</option>
+            <option value="80">80 × 80</option>
+          </select>
+        </label>
+        <label class="ctl"><span>Seed</span>
+          <input type="number" id="seed" value="1" min="1" step="1" aria-label="Random seed (applies on reset)">
+        </label>
+      </div>
+      <div class="buttons">
+        <button id="step" type="button">Step</button>
+        <button id="run" type="button" class="primary">Run</button>
+        <button id="reset" type="button">Reset</button>
+      </div>
+
+      <h2>Readings</h2>
+      <div class="stats" aria-live="polite">
+        <div class="stat"><div class="v" id="st-step">0</div><div class="k">steps</div></div>
+        <div class="stat"><div class="v" id="st-unhappy">–</div><div class="k">unhappy</div></div>
+        <div class="stat"><div class="v" id="st-sim">–</div><div class="k">similar neighbours</div></div>
+      </div>
+      <div id="status" aria-live="polite">Ready.</div>
+
+      <div class="legend" aria-label="Chart legend">
+        <span><i class="ln"></i>similar neighbours (mean)</span>
+        <span><i class="ln dash"></i>unhappy (share)</span>
+      </div>
+      <div class="chartwrap">
+        <canvas id="chart" role="img" aria-label="Line chart of mean similar-neighbour share and unhappy share over steps"></canvas>
+        <div id="tip"></div>
+      </div>
+      <div class="legend" aria-label="Grid legend">
+        <span><i class="sw" style="background:var(--a)"></i>group A</span>
+        <span><i class="sw" style="background:var(--b)"></i>group B</span>
+        <span><i class="sw" style="background:var(--empty)"></i>empty</span>
+        <span><i class="sw hole" style="background:var(--a)"></i>unhappy</span>
+      </div>
+    </aside>
+  </section>
+
+  <section class="notes">
+    <h2>What to try</h2>
+    <ol>
+      <li>Leave the threshold at 50% and press <strong>Run</strong>. Watch the "similar neighbours" line. Where does it settle?</li>
+      <li>Reset, set the threshold to 30%, run again. Each agent is content with a minority of similar neighbours. Does the grid still sort?</li>
+      <li>Set the threshold to 80%. Does the model settle at all? Why might a very strong preference fail to produce a stable pattern?</li>
+      <li>Keep the seed fixed and change only the density. What does a nearly full grid do to the number of moves per step?</li>
+      <li>Change the seed. Which of your findings survive a different starting grid, and which were luck?</li>
+    </ol>
+    <h2>The rules, exactly</h2>
+    <ul>
+      <li>Each cell is empty or holds one agent from group A or group B. The start is random, set by the seed.</li>
+      <li>An agent's neighbours are the up to eight cells around it. Empty cells do not count. An agent with no neighbours is content.</li>
+      <li>An agent is unhappy when the share of similar neighbours is below the threshold.</li>
+      <li>Each step, every agent that was unhappy at the start of the step moves, in random order, to a random empty cell. The cell it leaves becomes available at once.</li>
+      <li>"Similar neighbours" is the mean of that share over all agents. "Unhappy" is the share of agents below the threshold. The run stops on its own when nobody moves.</li>
+    </ul>
+  </section>
+
+  <footer>Part of Build Lab, module 3. Model code: <code>schelling-assets/model.js</code>. Tests: <code>_tests/schelling-abm.test.cjs</code>. After Schelling, T. C. (1971), "Dynamic models of segregation", <em>Journal of Mathematical Sociology</em> 1(2), 143–186.</footer>
+</main>
+
+<script src="schelling-assets/model.js"></script>
+<script>
+(function () {
+  'use strict';
+  var qs = new URLSearchParams(location.search);
+  if (qs.get('theme') === 'dark' || qs.get('theme') === 'light') document.documentElement.dataset.theme = qs.get('theme');
+
+  function $(id) { return document.getElementById(id); }
+  var el = {
+    grid: $('grid'), chart: $('chart'), tip: $('tip'),
+    thr: $('thr'), thrOut: $('thr-out'), den: $('den'), denOut: $('den-out'), size: $('size'), seed: $('seed'),
+    step: $('step'), run: $('run'), reset: $('reset'),
+    stStep: $('st-step'), stUnhappy: $('st-unhappy'), stSim: $('st-sim'), status: $('status')
+  };
+  var model = null, history = [], timer = null;
+
+  function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+  function pct(x) { return Math.round(x * 100) + '%'; }
+
+  function build() {
+    stop();
+    var seed = parseInt(el.seed.value, 10);
+    if (!(seed >= 1)) { seed = 1; el.seed.value = 1; }
+    model = Schelling.createModel({
+      size: parseInt(el.size.value, 10),
+      density: parseFloat(el.den.value),
+      threshold: parseFloat(el.thr.value),
+      seed: seed
+    });
+    history = [model.stats()];
+    show(history[0]);
+    draw();
+  }
+
+  function show(s) {
+    el.stStep.textContent = s.step;
+    el.stUnhappy.textContent = pct(s.unhappyShare);
+    el.stSim.textContent = pct(s.meanSimilarity);
+    if (s.step === 0) el.status.textContent = s.agents + ' agents. Ready.';
+    else if (s.moved === 0) el.status.textContent = 'Settled after ' + s.step + ' steps: nobody wants to move.';
+    else el.status.textContent = s.moved + ' agents moved this step.';
+  }
+
+  function doStep() {
+    var moved = model.step();
+    var s = model.stats();
+    history.push(s);
+    show(s);
+    draw();
+    if (moved === 0) stop();
+    return moved;
+  }
+
+  function start() {
+    if (timer) return;
+    if (history.length && history[history.length - 1].moved === 0 && history[history.length - 1].step > 0) return;
+    timer = setInterval(doStep, 110);
+    el.run.textContent = 'Pause';
+  }
+  function stop() {
+    if (timer) { clearInterval(timer); timer = null; }
+    el.run.textContent = 'Run';
+  }
+
+  function draw() { drawGrid(); drawChart(); }
+
+  function drawGrid() {
+    var c = el.grid, dpr = window.devicePixelRatio || 1, w = c.clientWidth;
+    if (!w) return;
+    var px = Math.round(w * dpr);
+    if (c.width !== px) { c.width = px; c.height = px; }
+    var ctx = c.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = css('--surface');
+    ctx.fillRect(0, 0, w, w);
+    var n = model.size, cell = w / n, gap = cell > 6 ? 1 : 0;
+    var colA = css('--a'), colB = css('--b'), colE = css('--empty'), colS = css('--surface');
+    var thr = model.options.threshold;
+    for (var i = 0; i < n * n; i++) {
+      var v = model.grid[i];
+      var x = (i % n) * cell, y = Math.floor(i / n) * cell;
+      ctx.fillStyle = v === 0 ? colE : (v === 1 ? colA : colB);
+      ctx.fillRect(x + gap / 2, y + gap / 2, cell - gap, cell - gap);
+      if (v !== 0 && model.similarity(i) < thr) {
+        var d = Math.max(2, cell * 0.36);
+        ctx.fillStyle = colS;
+        ctx.fillRect(x + cell / 2 - d / 2, y + cell / 2 - d / 2, d, d);
+      }
+    }
+  }
+
+  var chartGeom = null;
+  function drawChart() {
+    var c = el.chart, dpr = window.devicePixelRatio || 1, w = c.clientWidth, h = c.clientHeight;
+    if (!w || !h) return;
+    if (c.width !== Math.round(w * dpr)) { c.width = Math.round(w * dpr); c.height = Math.round(h * dpr); }
+    var ctx = c.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+    var padL = 30, padR = 58, padT = 8, padB = 18;
+    var x0 = padL, x1 = w - padR, y0 = padT, y1 = h - padB;
+    var maxStep = Math.max(40, history.length - 1);
+    chartGeom = { x0: x0, x1: x1, y0: y0, y1: y1, maxStep: maxStep };
+    var X = function (s) { return x0 + (s / maxStep) * (x1 - x0); };
+    var Y = function (v) { return y1 - v * (y1 - y0); };
+
+    ctx.strokeStyle = css('--line'); ctx.lineWidth = 1; ctx.fillStyle = css('--muted');
+    ctx.font = '11px -apple-system, "Segoe UI", Helvetica, Arial, sans-serif'; ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+    [0, 0.5, 1].forEach(function (v) {
+      ctx.beginPath(); ctx.moveTo(x0, Y(v)); ctx.lineTo(x1, Y(v)); ctx.stroke();
+      ctx.fillText(Math.round(v * 100) + '%', x0 - 4, Y(v));
+    });
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    ctx.fillText('0', X(0), y1 + 4); ctx.fillText(maxStep + ' steps', X(maxStep), y1 + 4);
+
+    function line(key, stroke, dash) {
+      ctx.beginPath(); ctx.setLineDash(dash); ctx.strokeStyle = stroke; ctx.lineWidth = 2; ctx.lineJoin = 'round';
+      history.forEach(function (s, i) { var x = X(i), y = Y(s[key]); if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); });
+      ctx.stroke(); ctx.setLineDash([]);
+    }
+    line('meanSimilarity', css('--ink'), []);
+    line('unhappyShare', css('--ink-2'), [5, 4]);
+
+    var last = history[history.length - 1], li = history.length - 1;
+    ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+    var ySim = Y(last.meanSimilarity), yUn = Y(last.unhappyShare);
+    if (Math.abs(ySim - yUn) < 12) { if (ySim < yUn) { ySim -= 6; yUn += 6; } else { ySim += 6; yUn -= 6; } }
+    ctx.fillStyle = css('--ink'); ctx.fillText('similar ' + pct(last.meanSimilarity), X(li) + 5, ySim);
+    ctx.fillStyle = css('--ink-2'); ctx.fillText('unhappy ' + pct(last.unhappyShare), X(li) + 5, yUn);
+  }
+
+  function hover(ev) {
+    if (!chartGeom || !history.length) return;
+    var r = el.chart.getBoundingClientRect();
+    var x = (ev.touches ? ev.touches[0].clientX : ev.clientX) - r.left;
+    var g = chartGeom;
+    var s = Math.round(((x - g.x0) / (g.x1 - g.x0)) * g.maxStep);
+    if (s < 0 || s >= history.length) { el.tip.style.display = 'none'; return; }
+    var h = history[s];
+    el.tip.textContent = 'step ' + s + ' · similar ' + pct(h.meanSimilarity) + ' · unhappy ' + pct(h.unhappyShare);
+    el.tip.style.display = 'block';
+    var left = g.x0 + (s / g.maxStep) * (g.x1 - g.x0);
+    el.tip.style.left = Math.min(left, r.width - el.tip.offsetWidth - 4) + 'px';
+    el.tip.style.top = '2px';
+  }
+  el.chart.addEventListener('mousemove', hover);
+  el.chart.addEventListener('touchstart', hover, { passive: true });
+  el.chart.addEventListener('touchmove', hover, { passive: true });
+  el.chart.addEventListener('mouseleave', function () { el.tip.style.display = 'none'; });
+
+  el.thr.addEventListener('input', function () {
+    var v = parseFloat(el.thr.value);
+    el.thrOut.textContent = pct(v);
+    if (!model) return;
+    model.options.threshold = v;
+    var s = model.stats();
+    history[history.length - 1] = s;
+    show(s);
+    draw();
+  });
+  el.den.addEventListener('input', function () { el.denOut.textContent = pct(parseFloat(el.den.value)); });
+  el.den.addEventListener('change', build);
+  el.size.addEventListener('change', build);
+  el.seed.addEventListener('change', build);
+  el.step.addEventListener('click', function () { stop(); doStep(); });
+  el.run.addEventListener('click', function () { if (timer) stop(); else start(); });
+  el.reset.addEventListener('click', build);
+  window.addEventListener('resize', function () { if (model) draw(); });
+  document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); });
+  if (window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () { if (model) draw(); });
+
+  build();
+  window.schellingPage = { get model() { return model; }, get history() { return history; }, step: doStep, start: start, stop: stop, build: build };
+})();
+</script>
+</body>
+</html>

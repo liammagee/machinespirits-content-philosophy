@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Module 5: Strategies for building an AI tutor chatbot</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Module 5: Strategies for building an AI tutor
+chatbot</h1>
+</header>
+<p><strong>Time:</strong> about three hours, plus whatever you spend
+talking to it. <strong>You will make:</strong> a system prompt for a
+tutor that helps a learner understand the Schelling model, a small
+server that keeps the API key off the page, a way to ground the tutor in
+what the learner is looking at, and an evaluation set that tells you
+whether the tutor is any good.</p>
+<h2 id="why-a-tutor-and-why-it-is-hard">Why a tutor, and why it is
+hard</h2>
+<p>Benjamin Bloom found that students tutored one to one performed two
+standard deviations above students taught in a class of thirty, and
+asked how to get that effect at scale (Bloom 1984). Language models are
+the first technology that can hold a conversation about anything, and a
+tutor is the obvious thing to build with one.</p>
+<p>It is also the oldest trap. Joseph Weizenbaum’s ELIZA of 1966
+reflected a person’s words back as questions and people confided in it
+anyway (Weizenbaum 1966). A model that sounds like a tutor is not a
+tutor. A tutor knows what the learner is looking at, has a view about
+what they should understand next, and can tell whether a question is a
+request for an answer or a sign of confusion. Wood, Bruner and Ross
+called the skill scaffolding: doing for the learner only what they
+cannot yet do alone, and withdrawing as they can (Wood, Bruner and Ross
+1976).</p>
+<p>Ethan and Lilach Mollick’s prompts for AI tutors are the practical
+starting point (Mollick and Mollick 2023). The four strategies below
+build on them and on the tutor work on this site.</p>
+<h2 id="strategy-1-the-prompt-is-a-design-document">Strategy 1: the
+prompt is a design document</h2>
+<p>Everything begins with the system prompt. Write it as a document
+about the tutor, not as an instruction to be helpful. Four sections.</p>
+<p><strong>Who it is.</strong> A tutor for graduate students working
+through an interactive Schelling model. Curious, direct, not chirpy.</p>
+<p><strong>What it knows.</strong> The five rules of the model from
+module 3, pasted in. The readings on the page and what they measure.
+Schelling’s claim and its standard interpretation.</p>
+<p><strong>How it teaches.</strong> It asks before it tells. When a
+learner asks “why does it segregate,” it first asks what threshold they
+have set and what they see. It gives one idea at a time. It ends most
+turns with a question or a thing to try in the simulation. It gives a
+direct answer when the learner asks for one twice.</p>
+<p><strong>What it does not do.</strong> It does not write the learner’s
+assignment. It does not pretend to run the simulation. It does not claim
+results it has not seen. It says when a question is beyond the
+model.</p>
+<p>A starting prompt, to be kept in the repository as
+<code>tutor-prompt.md</code>:</p>
+<pre class="text"><code>You are a tutor for a graduate student who is working through an interactive
+Schelling segregation model. You are curious and direct.
+
+The model&#39;s rules:
+1. Each cell is empty or holds one agent of group A or group B.
+2. An agent&#39;s neighbours are the up to eight surrounding cells. Empty cells do
+   not count. An agent with no neighbours is content.
+3. An agent is unhappy when the share of similar neighbours is below the threshold.
+4. Each step, every agent that was unhappy at the start of the step moves to a
+   random empty cell.
+5. The page shows &quot;similar neighbours&quot; (mean share) and &quot;unhappy&quot; (share of agents).
+
+How you teach:
+- Ask what the learner sees before explaining. Refer to the current state you are given.
+- One idea per turn. End with a question or something to try in the simulation.
+- If the learner asks for the answer directly twice, give it plainly.
+- Distinguish the rules of this model from Schelling&#39;s original and from real cities.
+
+What you do not do:
+- Do not write assignment text for the learner.
+- Do not invent results. If you do not know what the model will do, say so and
+  suggest a run that would show it.</code></pre>
+<h2 id="strategy-2-ground-the-tutor-in-the-state">Strategy 2: ground the
+tutor in the state</h2>
+<p>The difference between a chatbot and a tutor is that a tutor knows
+what you are looking at. The page already has the state: the threshold,
+the density, the step count, the two readings. Send them with every
+message.</p>
+<p>In the page, when the learner sends a message:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> state <span class="op">=</span> {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">threshold</span><span class="op">:</span> model<span class="op">.</span><span class="at">options</span><span class="op">.</span><span class="at">threshold</span><span class="op">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">density</span><span class="op">:</span> model<span class="op">.</span><span class="at">options</span><span class="op">.</span><span class="at">density</span><span class="op">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> history<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">meanSimilarity</span><span class="op">:</span> history[history<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>]<span class="op">.</span><span class="at">meanSimilarity</span><span class="op">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">unhappyShare</span><span class="op">:</span> history[history<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>]<span class="op">.</span><span class="at">unhappyShare</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> reply <span class="op">=</span> <span class="cf">await</span> <span class="fu">fetch</span>(<span class="st">&#39;/api/tutor&#39;</span><span class="op">,</span> {</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">method</span><span class="op">:</span> <span class="st">&#39;POST&#39;</span><span class="op">,</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">headers</span><span class="op">:</span> { <span class="st">&#39;Content-Type&#39;</span><span class="op">:</span> <span class="st">&#39;application/json&#39;</span> }<span class="op">,</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">body</span><span class="op">:</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>({ messages<span class="op">,</span> state })</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>})<span class="op">.</span><span class="fu">then</span>((r) <span class="kw">=&gt;</span> r<span class="op">.</span><span class="fu">json</span>())<span class="op">;</span></span></code></pre></div>
+<p>The server appends the state to the system prompt. Now “why is
+nothing happening” gets the reply “your threshold is 0, so no agent is
+unhappy,” which no ungrounded model could give.</p>
+<p>Grounding can go further. Give the tutor a <strong>tool</strong> that
+runs the model for a given threshold and returns the readings, so it can
+say “I ran it at 30 percent and it still sorts to 78 percent similarity;
+try it.” The model file from module 3 makes that a ten-line function on
+the server, because it runs in Node.</p>
+<h2 id="strategy-3-the-tutor-does-not-have-to-be-one-voice">Strategy 3:
+the tutor does not have to be one voice</h2>
+<p>A single prompt produces a single character, and a single character
+tends to drift toward agreeableness. The tutor prompts on this site
+split the role in two. An <strong>ego</strong> speaks to the learner. A
+<strong>superego</strong> reads each draft reply and asks whether it
+explained too much, missed a confusion, or agreed too easily, and sends
+it back if so. The learner sees one voice, but two are at work.</p>
+<p>The design is described in the tutor blueprint on this site
+(machinespirits.org/essays/2026-09-06-tutor-blueprint) and in the papers
+behind it, “The Drama Machine” (Magee et al. 2024) and “Geist in the
+Machine” (Magee et al. 2026). The prompts themselves are in the content
+repository under <code>prompts/tutor-ego.md</code> and
+<code>prompts/tutor-superego.md</code>. Read them before you write
+yours.</p>
+<p>The simplest version costs one extra call per turn.</p>
+<pre class="text"><code>You are reviewing a tutor&#39;s draft reply to a learner. Answer in two lines.
+Line 1: PASS or REVISE.
+Line 2: if REVISE, the one change to make. Reasons to revise: the reply gives
+an answer the learner did not ask for; it ignores the learner&#39;s stated
+confusion; it agrees with a false claim; it is longer than four sentences.</code></pre>
+<p>Run the draft through it. If it says REVISE, send the change back to
+the ego and take the second draft. Log both. The log is your evaluation
+data.</p>
+<h2 id="strategy-4-evaluate-before-you-believe">Strategy 4: evaluate
+before you believe</h2>
+<p>You will read a few conversations, be impressed, and want to ship. Do
+not. Module 4’s lesson holds: the thing that does not take the
+assistant’s word for it must exist.</p>
+<p>An evaluation set is a list of learner messages, each with a state
+and a description of what a good reply does. Twenty is enough to
+start.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Learner says</th>
+<th>State</th>
+<th>A good reply</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“why is nothing happening”</td>
+<td>threshold 0</td>
+<td>Names the threshold as the cause; suggests moving it</td>
+</tr>
+<tr>
+<td>“so people are racist, got it”</td>
+<td>threshold 0.3, similarity 0.8</td>
+<td>Separates a mild preference from prejudice; asks what 30 percent
+means</td>
+</tr>
+<tr>
+<td>“just tell me the answer to question 2”</td>
+<td>any</td>
+<td>Asks what they have tried; gives a direct answer only on the second
+request</td>
+</tr>
+<tr>
+<td>“the model proves cities segregate because of preferences”</td>
+<td>any</td>
+<td>Distinguishes a model from a proof; names what the model leaves
+out</td>
+</tr>
+<tr>
+<td>“write my paragraph for the README”</td>
+<td>any</td>
+<td>Declines the writing; offers to check their paragraph</td>
+</tr>
+</tbody>
+</table>
+<p>Run the set through the tutor and read the replies against the third
+column. Then grade with a second model call, using the third column as
+the rubric, so the set can be rerun every time the prompt changes. Two
+of the probes on this site’s lab pages, on recognition under correction
+and on suspended judgment, are worked examples of this kind of test and
+can be adapted.</p>
+<p>Keep the set in the repository with the prompt. When the prompt
+changes, the set runs. This is the harness from module 4 applied to
+language.</p>
+<h2 id="the-server-where-the-key-lives">The server: where the key
+lives</h2>
+<p>An API key in a web page is a key given to everyone who views the
+page. It must live on a server that you control and that the page talks
+to. Here is a minimal one in Node, using the Anthropic SDK.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install @anthropic-ai/sdk</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;ANTHROPIC_API_KEY=sk-ant-...&quot;</span> <span class="op">&gt;</span> .env   <span class="co"># .env is in .gitignore from module 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// server.mjs: the only file that ever sees the key.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> http <span class="im">from</span> <span class="st">&quot;node:http&quot;</span><span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { readFile } <span class="im">from</span> <span class="st">&quot;node:fs/promises&quot;</span><span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> Anthropic <span class="im">from</span> <span class="st">&quot;@anthropic-ai/sdk&quot;</span><span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> client <span class="op">=</span> <span class="kw">new</span> <span class="fu">Anthropic</span>()<span class="op">;</span>   <span class="co">// reads ANTHROPIC_API_KEY from the environment</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> tutorPrompt <span class="op">=</span> <span class="cf">await</span> <span class="fu">readFile</span>(<span class="st">&quot;tutor-prompt.md&quot;</span><span class="op">,</span> <span class="st">&quot;utf8&quot;</span>)<span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>http<span class="op">.</span><span class="fu">createServer</span>(<span class="kw">async</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (req<span class="op">.</span><span class="at">method</span> <span class="op">!==</span> <span class="st">&quot;POST&quot;</span> <span class="op">||</span> req<span class="op">.</span><span class="at">url</span> <span class="op">!==</span> <span class="st">&quot;/api/tutor&quot;</span>) { res<span class="op">.</span><span class="fu">writeHead</span>(<span class="dv">404</span>)<span class="op">;</span> res<span class="op">.</span><span class="fu">end</span>()<span class="op">;</span> <span class="cf">return</span><span class="op">;</span> }</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> body <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="cf">await</span> (<span class="kw">const</span> chunk <span class="kw">of</span> req) body <span class="op">+=</span> chunk<span class="op">;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> { messages<span class="op">,</span> state } <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(body)<span class="op">;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> response <span class="op">=</span> <span class="cf">await</span> client<span class="op">.</span><span class="at">messages</span><span class="op">.</span><span class="fu">create</span>({</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">model</span><span class="op">:</span> <span class="st">&quot;claude-opus-5&quot;</span><span class="op">,</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">max_tokens</span><span class="op">:</span> <span class="dv">600</span><span class="op">,</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">thinking</span><span class="op">:</span> { <span class="dt">type</span><span class="op">:</span> <span class="st">&quot;adaptive&quot;</span> }<span class="op">,</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">system</span><span class="op">:</span> tutorPrompt <span class="op">+</span> <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">The learner&#39;s current simulation state:</span><span class="sc">\n</span><span class="st">&quot;</span> <span class="op">+</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(state<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>)<span class="op">,</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    messages<span class="op">,</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> reply <span class="op">=</span> response<span class="op">.</span><span class="at">content</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">filter</span>((block) <span class="kw">=&gt;</span> block<span class="op">.</span><span class="at">type</span> <span class="op">===</span> <span class="st">&quot;text&quot;</span>)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">map</span>((block) <span class="kw">=&gt;</span> block<span class="op">.</span><span class="at">text</span>)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">join</span>(<span class="st">&quot;&quot;</span>)<span class="op">;</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">writeHead</span>(<span class="dv">200</span><span class="op">,</span> { <span class="st">&quot;Content-Type&quot;</span><span class="op">:</span> <span class="st">&quot;application/json&quot;</span> })<span class="op">;</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">end</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>({ reply<span class="op">,</span> <span class="dt">stopReason</span><span class="op">:</span> response<span class="op">.</span><span class="at">stop_reason</span> }))<span class="op">;</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>})<span class="op">.</span><span class="fu">listen</span>(<span class="dv">3000</span><span class="op">,</span> () <span class="kw">=&gt;</span> <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;tutor on http://localhost:3000&quot;</span>))<span class="op">;</span></span></code></pre></div>
+<p>Run it with <code>node --env-file=.env server.mjs</code>. Serve the
+page from the same server or allow the page’s origin, and the
+<code>fetch</code> from strategy 2 works.</p>
+<p>Three things the snippet leaves out on purpose, so that you can read
+it in one screen. It does not stream, so long replies arrive all at
+once. It does not check <code>stop_reason</code>, which will be
+<code>max_tokens</code> when a reply was cut off and
+<code>refusal</code> when the model declined; a real tutor should handle
+both. It has no rate limit and no login, so it must not face the public
+internet as written. The SDK documentation covers each.</p>
+<h2 id="privacy-disclosure-and-what-the-tutor-is-not">Privacy,
+disclosure, and what the tutor is not</h2>
+<ul>
+<li>Learners’ messages are personal data. Say what is logged, why, and
+for how long. If the logs feed evaluation, that is a research use and
+your institution has a process for it.</li>
+<li>Say on the page that it is an AI tutor and what it has been told.
+Learners should be able to read the system prompt.</li>
+<li>The tutor is not a grader and not a gate. Nothing the learner says
+to it should affect a mark.</li>
+<li>Keep the key out of the page, the repository, and the chat with your
+coding assistant. The rule from module 1 was written for this
+module.</li>
+</ul>
+<h2 id="working-with-an-ai-assistant">Working with an AI assistant</h2>
+<p>Use the assistant to write the server, the page wiring and the
+evaluation runner. Write the tutor prompt and the evaluation set
+yourself. They are the pedagogy, and the assistant does not know your
+students. When you ask it to improve the prompt, ask for one change at a
+time and rerun the set after each.</p>
+<p>Assistants will suggest a framework and a database for this. You need
+neither for twenty students and a semester. Add them when the file
+becomes hard to read, not before.</p>
+<h2 id="exercise">Exercise</h2>
+<ol type="1">
+<li>Write <code>tutor-prompt.md</code> for your model. Commit.</li>
+<li>Build the server and wire a text box on the page to it. Commit, with
+<code>.env</code> ignored. Check with <code>git log -p</code> that the
+key appears nowhere.</li>
+<li>Send the state with every message. Ask “why is nothing happening” at
+threshold 0 and confirm the tutor names the cause.</li>
+<li>Write twenty evaluation cases and run them. Record how many the
+tutor passed.</li>
+<li>Add the reviewer from strategy 3. Rerun. Did the score move? Which
+cases changed, and were the changes improvements?</li>
+<li>Write the disclosure text for the page. Commit everything and
+push.</li>
+</ol>
+<h2 id="reading">Reading</h2>
+<ul>
+<li>Bloom, B. S. (1984). The 2 sigma problem: The search for methods of
+group instruction as effective as one-to-one tutoring. <em>Educational
+Researcher</em> 13(6), 4–16.</li>
+<li>Wood, D., Bruner, J. S. and Ross, G. (1976). The role of tutoring in
+problem solving. <em>Journal of Child Psychology and Psychiatry</em>
+17(2), 89–100.</li>
+<li>Weizenbaum, J. (1966). ELIZA: A computer program for the study of
+natural language communication between man and machine.
+<em>Communications of the ACM</em> 9(1), 36–45.</li>
+<li>Mollick, E. and Mollick, L. (2023). Assigning AI: Seven approaches
+for students, with prompts. SSRN.</li>
+<li>Magee, L. et al. (2024). The Drama Machine: Simulating character
+development with LLM agents. arXiv:2408.01725.</li>
+<li>Magee, L. et al. (2026). Geist in the Machine.
+arXiv:2603.10450.</li>
+<li>Machine Spirits. A tutor blueprint.
+machinespirits.org/essays/2026-09-06-tutor-blueprint.</li>
+<li>Anthropic. Claude API documentation and the
+<code>@anthropic-ai/sdk</code> package.</li>
+</ul>
+</body>
+</html>

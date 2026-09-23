@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-21T21:36:20.394673Z",
-  "count": 7,
+  "generated": "2026-09-23T00:29:54.346969Z",
+  "count": 8,
   "artifacts": [
     {
       "slug": "anthropic-reading-list",
@@ -66,6 +66,29 @@
       "modified": "2026-03-15T04:36:39.607231Z",
       "course": "479",
       "lecture": "lecture-3"
+    },
+    {
+      "slug": "schelling-abm",
+      "title": "Schelling segregation model: a playable agent-based model",
+      "description": "The 1971 Schelling segregation model as a grid you can run. Two groups of agents, a slider for how many similar neighbours each agent wants, Step and Run buttons, and a chart of how neighbourhoods sort over time. The model code is a separate file that the Build Lab test harness checks in Node.",
+      "tags": [
+        "agent-based model",
+        "simulation",
+        "Schelling",
+        "segregation",
+        "emergence",
+        "interactive",
+        "build-lab"
+      ],
+      "author": "Machine Spirits",
+      "date": "2026-09-22",
+      "thumbnail": null,
+      "file": "schelling-abm.html",
+      "size": 17965,
+      "sha256": "d0d67670027fa593bce6aa039a5ebb8bff2be1185b12af29fc7a4c9bea342403",
+      "modified": "2026-09-23T00:28:46.545800Z",
+      "course": "build-lab",
+      "lecture": "module-3"
     },
     {
       "slug": "spotlight-attention-game",

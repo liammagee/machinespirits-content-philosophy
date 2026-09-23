@@ -1,0 +1,5 @@
+{
+  "type": "commonjs",
+  "private": true,
+  "description": "Tells Node to read model.js as CommonJS. The repo root package.json declares ES modules; this file overrides that for the model so `require` works in the tests."
+}

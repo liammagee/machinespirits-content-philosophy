@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Module 1: Version control with git</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Module 1: Version control with git</h1>
+</header>
+<p><strong>Time:</strong> about two hours. <strong>You will
+make:</strong> a git repository on your machine and on GitHub, with a
+README, an ignore file, a branch you merged, and a history you can
+read.</p>
+<h2 id="why-start-here">Why start here</h2>
+<p>Every later module changes files. Some of those changes will be
+written by an AI assistant at speed, and some of them will be wrong.
+Version control lets you take one change back without losing the rest.
+It is also the record of what was tried, when, and why.</p>
+<p>Jenny Bryan’s case for scientists applies to this lab: version
+control is not overhead, it is what makes collaboration and
+reproducibility possible without email attachments called
+<code>final_v3_REAL.docx</code> (Bryan 2018). Karthik Ram made the same
+case for reproducibility a few years earlier (Ram 2013).</p>
+<p>Git gives you three things.</p>
+<ol type="1">
+<li><strong>Checkpoints.</strong> A commit is a snapshot you can return
+to.</li>
+<li><strong>Differences.</strong> <code>git diff</code> shows exactly
+what changed between two points.</li>
+<li><strong>Branches.</strong> Parallel versions of the project that can
+be merged.</li>
+</ol>
+<h2 id="the-mental-model">The mental model</h2>
+<p>Git stores snapshots, not edits. A <strong>commit</strong> is a
+snapshot of every tracked file, plus a message, an author, a time, and a
+pointer to the previous commit. The chain of commits is the
+<strong>history</strong>.</p>
+<p>A change passes through three places on its way into history.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Place</th>
+<th>What it holds</th>
+<th>How a change gets there</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Working directory</td>
+<td>The files on disk that you edit</td>
+<td>Any editor</td>
+</tr>
+<tr>
+<td>Staging area</td>
+<td>The set of changes you intend to commit next</td>
+<td><code>git add</code></td>
+</tr>
+<tr>
+<td>Repository</td>
+<td>Committed history</td>
+<td><code>git commit</code></td>
+</tr>
+</tbody>
+</table>
+<p>A <strong>branch</strong> is a movable name that points at a commit.
+<code>main</code> is only the default name. A <strong>remote</strong> is
+another copy of the repository, usually on GitHub.</p>
+<h2 id="setup">Setup</h2>
+<p>Install git. On macOS run <code>xcode-select --install</code> or use
+Homebrew. On Windows install Git for Windows. On Linux use your package
+manager. Then tell git who you are:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">&quot;Your Name&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">&quot;you@example.edu&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> init.defaultBranch main</span></code></pre></div>
+<p>Create a GitHub account if you do not have one. The easiest way to
+authenticate from the terminal is the GitHub CLI: install
+<code>gh</code>, then run <code>gh auth login</code> and follow the
+prompts.</p>
+<h2 id="hands-on-the-lab-repository">Hands-on: the lab repository</h2>
+<p><strong>1. Create the repository.</strong></p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> build-lab</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> build-lab</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code></pre></div>
+<p><strong>2. Add a README and make the first commit.</strong></p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="op">&gt;</span> README.md <span class="op">&lt;&lt;&#39;TEXT&#39;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st"># Build Lab</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">An interactive Schelling segregation model, with tests and a tutor.</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">TEXT</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Add README&quot;</span></span></code></pre></div>
+<p><strong>3. Add an ignore file.</strong> Some files should never enter
+history: dependencies, secrets, editor droppings.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="op">&gt;</span> .gitignore <span class="op">&lt;&lt;&#39;TEXT&#39;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">node_modules/</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">.env</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">.DS_Store</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="st">*.log</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">TEXT</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .gitignore</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Ignore dependencies, secrets and editor files&quot;</span></span></code></pre></div>
+<p><strong>4. Look at what you have.</strong></p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code></pre></div>
+<p><code>git status</code> tells you what is modified, staged, or
+untracked. It is the command you will run most.
+<code>git log --oneline</code> shows the history, one commit per
+line.</p>
+<p><strong>5. Make a change and read it before committing.</strong> Edit
+the README, add a line, then:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff</span></code></pre></div>
+<p>This shows unstaged changes. After <code>git add</code>, use
+<code>git diff --staged</code> to see what is about to be committed.
+Reading the diff before every commit is the single habit that matters
+most in this lab.</p>
+<h2 id="branches-and-merges">Branches and merges</h2>
+<p>A branch lets you try something without disturbing
+<code>main</code>.</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> page</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;&lt;!doctype html&gt;&lt;title&gt;Build Lab&lt;/title&gt;&quot;</span> <span class="op">&gt;</span> index.html</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add index.html</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Add an empty page&quot;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge page</span></code></pre></div>
+<p>Module 2 will replace that page. For now the point is the shape:
+branch, commit, switch back, merge.</p>
+<p>When two branches change the same lines, the merge stops and marks
+the conflict in the file:</p>
+<pre class="text"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+the version on main
+=======
+the version on your branch
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; page</code></pre>
+<p>Edit the file to what you want, delete the markers,
+<code>git add</code> the file, and <code>git commit</code>. Conflicts
+are ordinary. They are the tool telling you two people, or you and an
+assistant, changed the same thing.</p>
+<h2 id="remotes">Remotes</h2>
+<p>Put the repository on GitHub so it exists somewhere other than your
+laptop.</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo create build-lab <span class="at">--private</span> <span class="at">--source</span><span class="op">=</span>. <span class="at">--push</span></span></code></pre></div>
+<p>Without the CLI: create an empty repository on GitHub, then</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin git@github.com:YOUR-USER/build-lab.git</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div>
+<p>After that, <code>git push</code> sends your commits up and
+<code>git pull</code> brings others’ commits down.</p>
+<h2 id="working-with-an-ai-assistant">Working with an AI assistant</h2>
+<p>Assistants such as Claude Code, Cursor and Copilot can edit many
+files in seconds and can run git commands themselves. That changes how
+you use git. Six rules.</p>
+<ol type="1">
+<li><strong>Commit before you ask.</strong> The commit is the state you
+can return to if the change goes wrong. Ask the assistant for nothing
+until <code>git status</code> is clean.</li>
+<li><strong>Read the diff, not the chat.</strong> The assistant’s
+summary of what it did may not match what it did. <code>git diff</code>
+is the ground truth.</li>
+<li><strong>One change per commit.</strong> Small commits are readable
+and reversible. “Add slider and fix the model and update README” is
+three commits.</li>
+<li><strong>Know your undo.</strong>
+<code>git restore &lt;file&gt;</code> throws away unstaged edits to that
+file. <code>git restore --staged &lt;file&gt;</code> unstages it.
+<code>git revert &lt;commit&gt;</code> makes a new commit that undoes an
+old one, which is safe on shared history. <code>git reset --hard</code>
+erases uncommitted work and should be used only when you mean it.</li>
+<li><strong>Never commit secrets.</strong> API keys go in
+<code>.env</code>, and <code>.env</code> is in <code>.gitignore</code>.
+Module 5 needs a key. If a key ever lands in a commit, treat it as
+leaked and rotate it. Deleting it in a later commit does not remove it
+from history.</li>
+<li><strong>Write the commit message first.</strong> A message like
+“Draw the grid on a canvas with one colour per group” is a
+specification. Give it to the assistant as the task, then check the diff
+against it.</li>
+</ol>
+<p>Tell the assistant your rules and put them in a file it reads at
+start, such as <code>CLAUDE.md</code> or <code>.cursorrules</code>. A
+workable set: commit after each working step, never push, never force,
+never edit tests to make them pass.</p>
+<h3 id="a-gated-push">A gated push</h3>
+<p>The content repository behind this site does not let anyone push
+directly. A <code>./publish</code> script builds every page first and
+pushes only if the build succeeds. That is a workflow decision written
+down as a script, so nobody has to remember it. You can write yours the
+same way once module 4 gives you a check to gate on.</p>
+<h2 id="commit-messages">Commit messages</h2>
+<p>Use a subject line of about fifty characters in the imperative mood:
+“Add”, not “Added” or “Adds”. Leave a blank line, then explain why, not
+what. The diff already says what.</p>
+<pre class="text"><code>Seed the random generator from a number
+
+Runs were not repeatable, so a bug seen once could not be seen again.
+The seed is now an option and the default is 1.</code></pre>
+<h2 id="exercise">Exercise</h2>
+<ol type="1">
+<li>Build the repository above: README, ignore file, at least three
+commits.</li>
+<li>Make a branch with one commit on it, then merge it into
+<code>main</code>.</li>
+<li>Push to GitHub. Private is fine.</li>
+<li>Break something on purpose. Delete the README, then recover it with
+<code>git restore README.md</code>. Make a bad commit, then undo it with
+<code>git revert</code>.</li>
+<li>Add one line to the README naming the git command you expect to use
+most, and commit it.</li>
+</ol>
+<h2 id="reading">Reading</h2>
+<ul>
+<li>Chacon, S. and Straub, B. <em>Pro Git</em>, 2nd edition. Free online
+at git-scm.com/book. Chapters 1 to 3 cover everything in this
+module.</li>
+<li>Bryan, J. (2018). Excuse me, do you have a moment to talk about
+version control? <em>The American Statistician</em> 72(1), 20–27.</li>
+<li>Ram, K. (2013). Git can facilitate greater reproducibility and
+increased transparency in science. <em>Source Code for Biology and
+Medicine</em> 8, 7.</li>
+<li>GitHub Docs. “Hello World” and “About pull requests”.</li>
+</ul>
+</body>
+</html>

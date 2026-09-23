@@ -16,7 +16,8 @@ artifacts:
 ## Discussion
 
  - Thoughts, impressions?
- - Some comments later on relationship to Hegel - but is there a relationship between alerting / orienting / executing and sense certainty / perception / understanding?
+ - Some comments later on relationship to Hegel - but is there a relationship between alerting / orienting / executing (Petersen and Posner, 2012) and sense certainty / perception / understanding (Hegel, 1807)?
+ - Terranova (attention economy), Hansen (cognitive lock-in)
 
 ---
 
@@ -24,7 +25,7 @@ artifacts:
 ## Assessments
 
  - Send me your chats / reflections each week! I do read and respond to them
- - Peer review: TBD
+ - Peer review: Weeks 5 & 7 - bring your definitions of **human and machine learning** and **key question** to class. We'll use these in the break-out discussions. 
 
 
 
@@ -36,15 +37,19 @@ artifacts:
 - Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L. & Polosukhin, I. (2017). [Attention is all you need](https://i-share-uiu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=cdi_proquest_journals_2076493815&context=PC&vid=01CARLI_UIU:CARLI_UIU&search_scope=CentralIndex&tab=CentralIndex&lang=en). *Advances in Neural Information Processing Systems*, 30.
 - Petersen, S. E., & Posner, M. I. (2012). [The attention system of the human brain: 20 years after](https://i-share-uiu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=cdi_pubmedcentral_primary_oai_pubmedcentral_nih_gov_3413263&context=PC&vid=01CARLI_UIU:CARLI_UIU&search_scope=CentralIndex&tab=CentralIndex&lang=en). *Annual Review of Neuroscience*, 35(1), 73-89.
 - Terranova, T. (2012). [Attention, economy and the brain](https://culturemachine.net/wp-content/uploads/2019/01/465-973-1-PB.pdf). *Culture Machine*, 13.
+- Hansen, M. (2024). From attention economy to cognitive lock-ins. Big Data & Society, 11(3), 20539517241275878.
 
 
 
 ```notes
 As we've noted in the week's online guide, this week we are moving both back and forward - back to the earlier moments of consciousness, perception in particular, but also forward to the much more recent developments in both neuro and computer science.
 
-What I propose this week is that we examine three key papers that all treat the concept of attention in a specific way. I won't be doing too much here to relate this concept to Hegel's unfolding architecture in *Phenomenology of Spirit* - we'll instead turn to that in the weeks ahead. But you may want to think how different meanings of attention might be situated with respect to both concepts of experience and recognition we've covered to date.
+What I propose this week is that we examine four key papers that all treat the concept of attention in a specific way. I won't be doing too much here to relate this concept to Hegel's unfolding architecture in *Phenomenology of Spirit* - we'll instead turn to that in the weeks ahead. But you may want to think how different meanings of attention might be situated with respect to both concepts of experience and recognition we've covered to date.
 
 I'll start by looking at the Petersen & Posner paper, *The Attention System of the Human Brain: 20 Years After*, then the Vaswani et al's  *Attention is All You Need* paper, and then finally Terranova's  critique of the Attention Economy. In each case we'll provide a short summary, and connect the argument to the wider lecture and course content - then provide time for discussion.
+
+Note that our discussions of these papers will be very high level - just enough to get some intuition of similarities and differences. 
+
 ```
 
 
@@ -496,6 +501,15 @@ Or both? Because this is a trivial case, you can complete the sentence very fast
 
 Think for a moment about this final activity. Is **your** completion different to the **LLM**? How much of this - pointing ahead to next week's topic – is **conscious** or **unconscious**? Do you – like the Transformer model – draft a list of candidates, and pick the most **likely**? Is there a kind of metacognitive aspect that enables you to determine to **sustain** or **switch** your attention? Can you **refuse** to complete what you ought to - what your training suggests? 
 
+---
+
+### Similiarities and differences
+
+- Curious that two very different mechanisms use the same term "attention"
+- Really it is metaphorical - substantial differences in what these systems do, and at what scale:
+  - Computational attention: word-to-word (or pixel), over and over
+  - Human attention: layered through quite distinct processes (alert > orient > execute)
+- But in some sense can we also see some important similarities - especially when we compare textual interpretation (reading) / next token prediction (writing)?
 
 
 ---
@@ -556,6 +570,7 @@ In the reading on cognitive lock-in, Mark Hansen argues that as we enter the era
 
 
 
+
 ---
 
 
@@ -574,3 +589,20 @@ According to many neuroscientists, attention is seen as critical to the operatio
 
  Next week we focus on this concept, bringing closer together Hegel's ideas on consciousness and self-consciousness with other theories. We'll see how some scholars, like N. Katherine Hayles, have sought to combine research into both human cognition and machine learning with more traditional philosophical concerns about the nature of consciousness. We will revisit attention, but also consider ideas of the "unconscious" – developed originally by Freud, but surprisingly relevant in the world of machine learning too – as well as Katherine Hayles' work on what she terms "nonconscious cognition", operating in the world of machines.
 ```
+
+
+---
+
+### From Absolute Spirit to the General Intellect and Social Mind (Terranova, Hansen)
+
+ - One view of machine learning: it is a *social* product that helps us realize a collective intellectual potential
+ - Return to this in Week 7.
+
+
+---
+
+### Break-out Rooms
+
+ - How useful is the concept of attention in understanding similarities and differences between machine and human learning?
+ - How might the machinic concept of attention limit its ability to learn? What about human attention - is this mechanism a limitation to learning, especially in the digital age?
+ - Terranova and Hansen present critical views on how attention is monetized and controlled. But are there positive sides to this?
