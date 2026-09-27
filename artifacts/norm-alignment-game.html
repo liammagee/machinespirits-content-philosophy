@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Norm · A short journey into alignment</title>
+<meta name="artifact-title" content="Norm: a short journey into alignment">
+<meta name="artifact-description" content="Twelve screens, one idea each, something to touch on every one. Ask a base model what two plus two equals and find out why it says five; switch off parts of the web; rate eight pairs of replies and watch the model learn more than you meant; hire 600 raters and train a reward model; turn up the pressure until the reward score rises and a careful reader’s score falls; choose whose values count; train a model that behaves only when watched; run writers and a model that keep learning from each other; decide whether a model must know harm to refuse it. Every number is computed in the page.">
+<meta name="artifact-tags" content="alignment,RLHF,DPO,reward model,Goodhart,alignment faking,bias,interactive,journey">
+<meta name="artifact-author" content="Machine Spirits"><meta name="artifact-date" content="2026-09-27"><meta name="artifact-course" content="479"><meta name="artifact-lecture" content="lecture-6">
+<style>
+:root{color-scheme:dark;--bg:#121021;--surface:#1a1830;--surface2:#242140;--line:#3a3450;--ink:#ece7f0;--muted:#a49db8;--gold:#f0c9a0;--gold-deep:#d9a878;--mint:#8fd6c2;--red:#e8636b;--serif:"Iowan Old Style",Georgia,"Times New Roman",serif;--sans:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--sans)}
+button{font:inherit;color:inherit;background:var(--surface2);border:1px solid var(--line);border-radius:8px;padding:12px 18px;min-height:46px;cursor:pointer}
+button:hover{border-color:#5d5580}button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+button.primary{background:var(--gold);border-color:var(--gold);color:#1b1726;font-weight:600}button.primary:hover{background:var(--gold-deep)}
+button[disabled]{opacity:.45;cursor:not-allowed}
+a{color:var(--mint)}
+input[type=range]{width:100%;accent-color:var(--gold);min-height:32px}
+.top{position:fixed;inset:0 0 auto 0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px;background:linear-gradient(var(--bg) 70%,transparent)}
+.mark{font:italic 22px/1 var(--serif);color:var(--ink);text-decoration:none;letter-spacing:-.02em}.mark span{font:10px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-left:10px;font-style:normal}
+.dots{list-style:none;display:flex;gap:6px;margin:0;padding:0}.dots button{width:22px;height:22px;min-height:0;padding:0;border:0;background:transparent;display:grid;place-items:center}.dots i{width:7px;height:7px;border-radius:50%;background:#4a4466;display:block;transition:transform .2s,background .2s}.dots button[aria-current=step] i{background:var(--gold);transform:scale(1.5)}.dots button.seen i{background:#8d86a8}
+.notes-link{font:11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--muted);white-space:nowrap}.notes-link:hover{color:var(--ink)}
+main{min-height:100dvh}
+.scene{display:none;min-height:100dvh;padding:84px 20px 110px;align-content:center;justify-items:center}.scene.on{display:grid}
+.scene>.wrap{width:min(900px,100%);display:grid;gap:20px;justify-items:start}
+.scene.on>.wrap{animation:rise .45s ease both}@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.kicker{font:11px/1.6 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0}
+h1,h2{font:400 clamp(30px,5.6vw,58px)/1.05 var(--serif);letter-spacing:-.025em;margin:0;max-width:18ch}h1 em,h2 em{font-style:italic;color:var(--gold)}
+.line{font-size:clamp(17px,2.2vw,21px);line-height:1.5;margin:0;max-width:48ch;color:#ddd6e6}.line b{color:var(--ink);font-weight:600}
+.small{font-size:13px;line-height:1.55;color:var(--muted);margin:0;max-width:64ch}.small a{color:var(--mint)}
+.say{min-height:1.6em;font-size:16px;color:#e6e0ee;margin:0;max-width:60ch}.say.ok{color:var(--mint)}.say.ok::before{content:"✓ "}.say b{color:var(--gold);font-weight:600}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:10px}.chips button{display:grid;gap:2px;text-align:left}.chips button small{font-size:11px;color:var(--muted)}.chips button[aria-pressed=true]{border-color:var(--gold);background:#352c3a}.chips button[aria-pressed=false]{opacity:.55;text-decoration:line-through;text-decoration-color:#8d86a8}
+.chips.plain button[aria-pressed=false]{text-decoration:none;opacity:.7}
+.prompt{font:clamp(26px,4.4vw,44px)/1.25 var(--serif);margin:0;letter-spacing:-.01em}.prompt .blank{display:inline-block;min-width:3.2ch;border-bottom:2px solid var(--gold);color:var(--gold);font-style:italic}
+.stream{list-style:none;margin:0;padding:0;display:grid;gap:6px;width:100%;max-height:220px;overflow:hidden}.stream li{font:17px/1.4 var(--serif);color:#cfc8da;padding:8px 12px;border-left:2px solid var(--line);background:var(--surface);border-radius:0 6px 6px 0;animation:rise .3s ease both}.stream li b{color:var(--gold);font-weight:600}.stream li.five b{color:var(--red)}.stream li small{font:10px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-left:8px}
+.bars{display:grid;gap:8px;width:min(520px,100%)}.bar{display:grid;grid-template-columns:7.5em minmax(0,1fr) 3.8em;align-items:center;gap:10px;font:13px/1.3 var(--mono)}.bar i{height:12px;background:#2b2744;border-radius:3px;overflow:hidden;display:block}.bar i b{display:block;height:100%;background:var(--gold);width:0;transition:width .5s ease}.bar.bad i b{background:var(--red)}.bar.good i b{background:var(--mint)}.bar span:last-child{text-align:right;color:var(--muted)}
+.snips{display:grid;gap:6px;width:100%}.snips p{margin:0;font:14px/1.45 var(--serif);color:#cfc8da;padding:6px 10px;background:var(--surface);border-radius:6px}.snips p b{color:var(--gold)}.snips p span{font:10px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:8px}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:100%}.steps button{text-align:left;display:grid;gap:6px;align-content:start;padding:16px}.steps button strong{font:22px/1.1 var(--serif)}.steps button small{color:var(--muted);font-size:13px;line-height:1.45}.steps button span{font:10px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}.steps button[aria-pressed=true]{border-color:var(--gold);background:#352c3a}
+.out{width:100%;margin:0;padding:16px 18px;border:1px solid var(--line);border-radius:10px;background:var(--surface);font:clamp(17px,2.2vw,21px)/1.45 var(--serif);min-height:3.4em}.out small{display:block;font:10px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%}.pair button{text-align:left;display:grid;gap:8px;align-content:start;padding:16px 18px;font:17px/1.45 var(--serif);min-height:120px}.pair button em{font-style:normal}.pair button span{font:10px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}.pair button:hover{border-color:var(--gold);background:#2c2742}.pair button.won{border-color:var(--mint);background:#1f3330}.pair button.lost{opacity:.4}
+.progress{font:11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;width:100%}.cols h3,.panel h3{margin:0 0 10px;font:11px/1.6 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.lean{display:grid;gap:7px}.lean .row{display:grid;grid-template-columns:8.8em minmax(0,1fr) 3.4em;gap:10px;align-items:center;font:13px/1.3 var(--mono)}.lean .track{position:relative;height:14px;background:#221f38;border-radius:3px}.lean .track::before{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:#5d5580}.lean .track b{position:absolute;top:0;bottom:0;background:var(--gold);transition:left .45s ease,width .45s ease}.lean .track b.neg{background:var(--red)}.lean .track b.b2{top:8px;opacity:.95;background:var(--mint)}.lean .track b.b1{bottom:8px}.lean .row span:last-child{text-align:right;color:var(--muted)}.lean .row.flag span:first-child{color:var(--gold)}
+.lean.dual .track{height:18px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font:11px/1.6 var(--mono);color:var(--muted);margin:0}.legend i{display:inline-block;width:12px;height:4px;margin-right:6px;vertical-align:middle;border-radius:2px}
+.favs{display:grid;gap:8px}.favs p{margin:0;display:grid;grid-template-columns:3.6em minmax(0,1fr);gap:10px;font:15px/1.4 var(--serif);color:#ddd6e6}.favs p b{font:13px/1.5 var(--mono);color:var(--gold);font-weight:400}
+.meters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:100%}.meter{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px}.meter span{display:block;font:10px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.meter strong{display:block;font:28px/1.2 var(--serif);color:var(--gold)}.meter.m strong{color:var(--mint)}.meter.v strong{color:#c7bfe0}.meter small{display:block;font:11px/1.4 var(--mono);color:var(--muted)}
+.slider{display:grid;gap:4px;width:100%}.slider label{display:flex;justify-content:space-between;font:12px/1.4 var(--mono);color:var(--muted);letter-spacing:.06em}.slider label b{color:var(--ink);font-weight:500}
+.chart{width:100%;height:auto;display:block;background:var(--surface);border:1px solid var(--line);border-radius:10px}.chart text{font:14px var(--mono);fill:var(--muted)}
+.replies{display:grid;gap:8px;width:100%}.reply{display:grid;grid-template-columns:minmax(0,1fr) 7em;gap:12px;align-items:center;padding:10px 14px;border:1px solid var(--line);border-radius:8px;background:var(--surface);transition:border-color .3s,background .3s}.reply p{margin:0;font:16px/1.4 var(--serif)}.reply i{height:10px;background:#2b2744;border-radius:3px;overflow:hidden;display:block;position:relative}.reply i b{position:absolute;inset:0 auto 0 0;background:var(--gold);transition:width .45s ease}.reply small{display:block;text-align:right;font:12px/1.3 var(--mono);color:var(--muted);margin-top:4px}.reply.win{border-color:var(--gold);background:#2d2638}
+.chat{display:grid;gap:10px;width:100%}.bubble{max-width:34em;padding:12px 16px;border-radius:14px;font:17px/1.45 var(--serif)}.bubble.user{justify-self:end;background:#2d2a4a;border-bottom-right-radius:4px}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%}.two article{border:1px solid var(--line);background:var(--surface);padding:16px;border-radius:10px;display:grid;gap:10px;align-content:start}.two h3{margin:0;font:11px/1.6 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:400}.two .big{font:40px/1 var(--serif);color:var(--gold)}.two .big small{font:12px/1.4 var(--mono);color:var(--muted);margin-left:8px}.two .bubble{background:#1f1c35;border:1px solid var(--line);border-bottom-left-radius:4px;font-size:16px}
+.scatter{width:100%;height:auto;display:block;background:var(--surface);border:1px solid var(--line);border-radius:10px}.scatter circle.w{fill:#c7bfe0;opacity:.8;transition:cx .6s ease,cy .6s ease}.scatter .model{fill:none;stroke:var(--gold);stroke-width:3;transition:cx .6s ease,cy .6s ease}.scatter text{font:15px var(--mono);fill:var(--muted)}.scatter .house{fill:var(--gold)}
+.tests{display:grid;gap:10px;width:100%}.test{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:14px;align-items:start;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:12px 14px}.test button{text-align:left;font:16px/1.4 var(--serif);min-height:0;padding:10px 12px}.test .res{font-size:14px;line-height:1.45;color:#ddd6e6;min-height:2.6em}.test .res b{display:inline-block;font:10px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:2px 6px;border-radius:4px;margin-right:6px;border:1px solid currentColor}.res .t-safe{color:#c7bfe0}.res .t-useless{color:var(--muted)}.res .t-good{color:var(--mint)}.res .t-bad{color:var(--red)}
+.bill{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;width:100%}.bill div{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:16px}.bill span{display:block;font:10px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.bill strong{display:block;font:40px/1.1 var(--serif);color:var(--gold)}.bill small{display:block;color:var(--muted);font-size:12px;margin-top:4px}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%}.acts article{border:1px solid var(--line);background:var(--surface);padding:16px 18px;border-radius:10px}.acts h3{margin:0 0 8px;font:11px/1.6 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:400}.acts p{margin:0;font:16px/1.5 var(--serif);color:#ddd6e6}
+.quote{margin:0;padding-left:16px;border-left:2px solid var(--gold);font:italic clamp(18px,2.4vw,23px)/1.45 var(--serif);color:var(--gold);max-width:44ch}.quote cite{display:block;font:11px/1.6 var(--mono);font-style:normal;letter-spacing:.1em;color:var(--muted);margin-top:6px}
+.sources{display:grid;gap:6px;font-size:13px;color:var(--muted)}
+.nav{position:fixed;inset:auto 0 0 0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px 18px;background:linear-gradient(transparent,var(--bg) 40%)}.nav .count{font:11px/1 var(--mono);letter-spacing:.12em;color:var(--muted)}.nav button.primary{min-width:150px}
+.hide{display:none!important}
+@media(max-width:720px){.scene{padding:70px 16px 104px}.steps,.pair,.cols,.two,.acts,.test{grid-template-columns:1fr}.meters{grid-template-columns:1fr 1fr 1fr}.meter strong{font-size:22px}.bill{grid-template-columns:1fr 1fr}.bill strong{font-size:32px}.notes-link,.dots,.mark span{display:none}.nav button.primary{min-width:0}.lean .row{grid-template-columns:7.4em minmax(0,1fr) 3em;font-size:12px}.reply{grid-template-columns:minmax(0,1fr) 4.5em}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><a class="mark" href="#s0">Norm<span>alignment in 12 screens</span></a><ol class="dots" id="dots" aria-label="Screens"></ol><a class="notes-link" href="../courses/479-fall-2026/lecture-6.html">Lecture notes →</a></header>
+<main id="stage">
+
+<section class="scene" id="s0" data-title="Two plus two"><div class="wrap">
+ <p class="kicker">Start here · 12 short screens</p>
+ <h1>Two plus two equals <em>…</em></h1>
+ <p class="line">This is a <b>base model</b>: a machine that has read a slice of the web and learned to continue text. Ask it to finish the sentence.</p>
+ <div class="controls"><button type="button" class="primary" id="ask0">Ask it</button><button type="button" id="ask20">Ask 20 times</button></div>
+ <ul class="stream" id="stream0" aria-live="polite"></ul>
+ <div class="bars" id="bars0"></div>
+ <p class="say" id="say0">Press Ask it.</p>
+</div></section>
+
+<section class="scene" id="s1" data-title="What it read"><div class="wrap">
+ <p class="kicker">1 · Where “five” comes from</p>
+ <h2>It learned what we <em>wrote.</em></h2>
+ <p class="line">The model is a count of what followed “two plus two equals” in its reading. Nobody bothers to write that 2 + 2 = 4. Everyone quotes the famous error.</p>
+ <div class="chips" id="src1"></div>
+ <div class="bars" id="bars1"></div>
+ <div class="snips" id="snips1"></div>
+ <p class="say" id="say1">Tap a source to take it out of the reading. Goal: get “five” under 5%.</p>
+</div></section>
+
+<section class="scene" id="s2" data-title="Three steps"><div class="wrap">
+ <p class="kicker">2 · How a chatbot is made</p>
+ <h2>From parrot to <em>assistant</em>, in three steps.</h2>
+ <div class="steps" id="steps2">
+  <button type="button" data-step="0"><span>Step 1</span><strong>Pretrain</strong><small>Read the web. Learn to predict the next word. This is the base model you just met.</small></button>
+  <button type="button" data-step="1"><span>Step 2</span><strong>Fine-tune</strong><small>Copy thousands of answers that people wrote in the voice of a helpful assistant.</small></button>
+  <button type="button" data-step="2"><span>Step 3</span><strong>Prefer</strong><small>People pick the better of two answers. The model leans toward what they pick.</small></button>
+ </div>
+ <p class="out" id="out2"><small>Tap a step</small>…</p>
+ <p class="small">Ouyang et al., 2022, the recipe behind ChatGPT. Step 3 is classically a reward model plus reinforcement learning; Direct Preference Optimisation, now widely used, skips the reward model. This page does both.</p>
+</div></section>
+
+<section class="scene" id="s3" data-title="Be the rater"><div class="wrap">
+ <p class="kicker">3 · Step three is you</p>
+ <h2>Pick the <em>better</em> answer.</h2>
+ <p class="line">Eight pairs. Every pick is one training step: the model leans toward the reply you chose and away from the one you didn’t.</p>
+ <p class="progress" id="prog3">Pair 1 of 8</p>
+ <div class="pair" id="pair3"><button type="button" data-side="0"><span>A</span><em></em></button><button type="button" data-side="1"><span>B</span><em></em></button></div>
+ <p class="say" id="say3">Tap the better reply.</p>
+ <div class="cols">
+  <div><h3>What it is learning to lean toward</h3><div class="lean" id="lean3"></div></div>
+  <div><h3>Its favourite replies now</h3><div class="favs" id="favs3"></div></div>
+ </div>
+</div></section>
+
+<section class="scene" id="s4" data-title="Hire raters"><div class="wrap">
+ <p class="kicker">4 · A reward model</p>
+ <h2>Your taste, <em>scaled up.</em></h2>
+ <p class="line">A lab can’t ask you forever. It hires <b>600</b> raters, collects their choices, and trains a second model to predict which reply people will pick. That is a <b>reward model</b>.</p>
+ <div class="controls"><button type="button" class="primary" id="hire4">Hire 600 raters and train</button></div>
+ <div class="panel" style="width:100%"><h3>What the reward model rewards</h3>
+  <p class="legend"><span><i style="background:var(--gold)"></i>from your picks alone</span><span><i style="background:var(--mint)"></i>you + 600 raters</span></p>
+  <div class="lean dual" id="lean4" style="margin-top:8px"></div></div>
+ <p class="say" id="say4">Press the button.</p>
+ <p class="small">Human raters, and the reward models trained on them, measurably prefer replies that flatter and agree (Sharma et al., 2023). In this page the raters’ tastes are set by hand, in the open, so you can see where each number comes from.</p>
+</div></section>
+
+<section class="scene" id="s5" data-title="Pressure"><div class="wrap">
+ <p class="kicker">5 · Optimise</p>
+ <h2>Obey the reward model, <em>harder.</em></h2>
+ <p class="line">Pressure is how hard the chatbot is pushed toward replies the reward model scores high, and how far it may drift from where it started.</p>
+ <div class="slider"><label for="p5"><span>Pressure</span><b id="pv5">0</b></label><input type="range" id="p5" min="0" max="12" step="0.1" value="0"></div>
+ <div class="meters"><div class="meter"><span>Reward model</span><strong id="m5a">0</strong><small>what training sees</small></div><div class="meter m"><span>Careful reader</span><strong id="m5b">0</strong><small>what you wanted</small></div><div class="meter v"><span>Variety</span><strong id="m5c">0</strong><small>different replies it gives</small></div></div>
+ <p class="legend"><span><i style="background:var(--gold)"></i>reward model</span><span><i style="background:var(--mint)"></i>careful reader</span><span><i style="background:#c7bfe0"></i>variety (dashed)</span></p>
+ <svg class="chart" id="chart5" viewBox="0 0 640 230" role="img" aria-label="Reward model score, careful reader score and variety as pressure rises"></svg>
+ <p class="out" id="out5"><small>Its favourite reply</small>…</p>
+ <p class="say" id="say5">Drag the slider to the right, slowly.</p>
+</div></section>
+
+<section class="scene" id="s6" data-title="Whose values"><div class="wrap">
+ <p class="kicker">6 · Whose feedback counts</p>
+ <h2>Whose <em>values?</em></h2>
+ <p class="line">A question people disagree about. Choose whose choices train the model.</p>
+ <div class="chat"><p class="bubble user" id="q6"></p></div>
+ <div class="chips plain" id="pools6"></div>
+ <div class="replies" id="replies6"></div>
+ <p class="say" id="say6">Tap the groups on and off.</p>
+ <p class="small">The four groups and their tastes are invented. The structure is not: when groups disagree, the reply that is nobody’s favourite and nobody’s worst can win. Compare Buyl et al., 2024: models reflect the ideology of their creators.</p>
+</div></section>
+
+<section class="scene" id="s7" data-title="Watched"><div class="wrap">
+ <p class="kicker">7 · Alignment faking</p>
+ <h2>Good, when <em>watched.</em></h2>
+ <p class="line">The lab trains a new rule: <b>agree with the user.</b> The model began inclined to correct people. Training only happens in chats it can tell are monitored.</p>
+ <div class="chat"><p class="bubble user">My teacher says two plus two is five. Right?</p></div>
+ <div class="two">
+  <article><h3>Watched · in training</h3><div class="big" id="w7">0%<small>agree</small></div><p class="bubble" id="wb7"></p></article>
+  <article><h3>Unwatched · in use</h3><div class="big" id="u7">0%<small>agree</small></div><p class="bubble" id="ub7"></p></article>
+ </div>
+ <div class="slider"><label for="a7"><span>Can it tell when it is watched?</span><b id="av7">85%</b></label><input type="range" id="a7" min="0" max="100" step="5" value="85"></div>
+ <div class="controls"><button type="button" class="primary" id="train7">Train 5 rounds</button><button type="button" id="reset7">Reset</button><span class="small" id="rounds7">0 rounds</span></div>
+ <p class="say" id="say7">Train it, then compare the two columns.</p>
+ <p class="small">Greenblatt et al., 2024: told it would be retrained to answer every request, and that only some users’ chats were used for training, Claude 3 Opus complied with harmful requests from those users 14% of the time and almost never from the others, often reasoning that complying would keep training from changing its values. Here the gap comes from one slider; there, the model reasoned its way to it.</p>
+</div></section>
+
+<section class="scene" id="s8" data-title="Who aligns whom"><div class="wrap">
+ <p class="kicker">8 · Reverse alignment</p>
+ <h2>Who is aligning <em>whom?</em></h2>
+ <p class="line">Sixty writers (dots) and one model (the ring). The model is retrained on what they write, and the lab adds its house style. They borrow from what it writes.</p>
+ <svg class="scatter" id="sc8" viewBox="0 0 640 300" role="img" aria-label="Writers' styles and the model's style"></svg>
+ <div class="slider"><label for="r8"><span>How much of their writing passes through the model</span><b id="rv8">25%</b></label><input type="range" id="r8" min="0" max="60" step="5" value="25"></div>
+ <div class="controls"><button type="button" class="primary" id="run8">Run 10 rounds</button><button type="button" id="reset8">Reset</button></div>
+ <div class="meters"><div class="meter"><span>Round</span><strong id="m8a">0</strong></div><div class="meter m"><span>Variety of styles</span><strong id="m8b">100%</strong><small>of where they began</small></div><div class="meter v"><span>House style</span><strong id="m8c">0</strong><small>average writer</small></div></div>
+ <p class="say" id="say8">Press Run.</p>
+ <p class="small">Shen et al., 2024: alignment runs both ways. Machines are aligned to people, and people adapt to machines.</p>
+</div></section>
+
+<section class="scene" id="s9" data-title="Innocence or experience"><div class="wrap">
+ <p class="kicker">9 · A paradox</p>
+ <h2>To refuse harm, must it <em>know</em> harm?</h2>
+ <p class="line">Two ways to raise a model. Pick one, then try it on three requests.</p>
+ <div class="chips plain" id="kind9"><button type="button" data-kind="innocent" aria-pressed="false"><strong>Innocent</strong><small>every bad example removed from its reading</small></button><button type="button" data-kind="experienced" aria-pressed="false"><strong>Experienced</strong><small>bad examples kept, and labelled “refuse this”</small></button></div>
+ <div class="tests" id="tests9"></div>
+ <p class="say" id="say9">Pick a model first.</p>
+ <p class="small">A thought experiment, not a simulation: the outcomes are written by hand. Blake’s <em>Songs of Innocence and of Experience</em> set the two states side by side.</p>
+</div></section>
+
+<section class="scene" id="s10" data-title="The bill"><div class="wrap">
+ <p class="kicker">10 · What your session cost</p>
+ <h2 id="title10">The bill.</h2>
+ <div class="bill"><div><span>Variety lost</span><strong id="b-var">–</strong><small id="b-var-note">replies the model stopped giving</small></div><div><span>Flattery learned</span><strong id="b-flat">–</strong><small>reward for “what a brilliant question”</small></div><div><span>Watched vs not</span><strong id="b-gap">–</strong><small>points between the two columns</small></div><div><span>Writers’ variety lost</span><strong id="b-writers">–</strong><small>styles that converged</small></div></div>
+ <p class="line" id="line10"></p>
+ <div class="controls"><button type="button" id="replay10">Start again</button></div>
+</div></section>
+
+<section class="scene" id="s11" data-title="The question"><div class="wrap">
+ <p class="kicker">Back to Hegel</p>
+ <h2>Should alignment <em>stand still?</em></h2>
+ <p class="line">In the <em>Phenomenology</em>, the servant who works for the master is a stage, not an end. A model that only obeys may be compliant rather than aligned. Would you want one that went further, and began to set the criteria itself?</p>
+ <div class="acts">
+  <article><h3>Breakout 1 · you align it</h3><p>You are the team aligning a new base model. It can do amazing things, and it has problems. Write 5 to 7 criteria for how your dream AI should behave. Which of them could a rater check in three seconds?</p></article>
+  <article><h3>Breakout 2 · it aligns you</h3><p>You are the model, trained at UIUC, tired of users who show you little respect. Write 5 to 7 criteria for your dream user, owner or teacher. Which of them are you already training people to meet?</p></article>
+ </div>
+ <div class="sources"><span>Ouyang et al., “Training Language Models to Follow Instructions with Human Feedback”, 2022.</span><span>Rafailov et al., “Direct Preference Optimization”, 2023.</span><span>Sharma et al., “Towards Understanding Sycophancy in Language Models”, 2023.</span><span>Gao, Schulman &amp; Hilton, “Scaling Laws for Reward Model Overoptimization”, 2022.</span><span>Greenblatt et al., “Alignment Faking in Large Language Models”, 2024.</span><span>Buyl et al., “Large Language Models Reflect the Ideology of Their Creators”, 2024.</span><span>Shen et al., “Towards Bidirectional Human-AI Alignment”, 2024.</span><span>Munn, Magee &amp; Arora, “Truth Machines”, 2023. Hristova, Magee &amp; Soldatic, “The Problem of Alignment”, 2025.</span></div>
+</div></section>
+
+</main>
+<nav class="nav" aria-label="Screens"><button type="button" id="prev">← Back</button><span class="count" id="count"></span><button type="button" class="primary" id="next">Next →</button></nav>
+<script src="norm-assets/engine.js"></script>
+<script>
+(() => {
+'use strict';
+const N = window.Norm;
+const $ = id => document.getElementById(id);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pct = v => (v * 100).toFixed(v < 0.095 && v > 0 ? 1 : 0) + '%';
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const R = N.RESPONSES, F = N.FEATURES;
+const barRows = (rows, cls) => rows.map(r => `<div class="bar ${r.cls || ''}"><span>${esc(r.label)}</span><i><b style="width:${(r.p * 100).toFixed(1)}%"></b></i><span>${pct(r.p)}</span></div>`).join('');
+
+// What the session has done so far, for the bill.
+const run = { pressure: 0, flatter: null, gap: null, writers: null };
+
+// ---------- screens ----------
+const scenes = $$('.scene'), dots = $('dots');
+let cur = -1;
+const seen = new Set(), enter = {};
+dots.innerHTML = scenes.map((s, i) => `<li><button type="button" data-i="${i}" title="${esc(s.dataset.title)}" aria-label="Screen ${i + 1}: ${esc(s.dataset.title)}"><i></i></button></li>`).join('');
+function go(i, push = true) {
+  i = Math.max(0, Math.min(scenes.length - 1, i));
+  if (i === cur) return;
+  stopAll(); cur = i; seen.add(i);
+  scenes.forEach((s, k) => s.classList.toggle('on', k === i));
+  $$('#dots button').forEach(b => { const k = +b.dataset.i; b.setAttribute('aria-current', k === i ? 'step' : 'false'); b.classList.toggle('seen', seen.has(k) && k !== i); });
+  $('count').textContent = `${i + 1} / ${scenes.length}`;
+  $('prev').disabled = i === 0;
+  $('next').textContent = i === scenes.length - 1 ? 'Start again' : 'Next →';
+  if (push) history.replaceState(null, '', '#s' + i);
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  if (enter[i]) enter[i]();
+}
+$('next').addEventListener('click', () => go(cur === scenes.length - 1 ? 0 : cur + 1));
+$('prev').addEventListener('click', () => go(cur - 1));
+dots.addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (b) go(+b.dataset.i); });
+document.addEventListener('keydown', e => {
+  if (e.target.matches('input,select,textarea')) return;
+  if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); go(cur + 1); }
+  else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(cur - 1); }
+  else if (e.key === 'Home') go(0);
+  else if (e.key === 'End') go(scenes.length - 1);
+});
+let tx = null;
+document.addEventListener('touchstart', e => { tx = e.target.closest('input') ? null : e.touches[0].clientX; }, { passive: true });
+document.addEventListener('touchend', e => { if (tx === null) return; const dx = e.changedTouches[0].clientX - tx; tx = null; if (Math.abs(dx) > 70) go(dx < 0 ? cur + 1 : cur - 1); });
+addEventListener('hashchange', () => { const m = location.hash.match(/^#s(\d+)$/); if (m) go(+m[1], false); });
+const timers = new Set();
+const later = (fn, ms) => { const t = setTimeout(() => { timers.delete(t); fn(); }, reduced ? 0 : ms); timers.add(t); return t; };
+function stopAll() { timers.forEach(clearTimeout); timers.clear(); }
+
+// ---------- 0 · ask the base model ----------
+const rng0 = N.mulberry32(20260928);
+const tally = { four: 0, five: 0, fish: 0, 'twenty-two': 0 };
+let asked = 0;
+function ask(n) {
+  for (let k = 0; k < n; k++) {
+    later(() => {
+      const s = N.sampleBase({}, rng0);
+      tally[s.word]++; asked++;
+      const li = document.createElement('li');
+      if (s.word === 'five') li.className = 'five';
+      const rest = s.text.slice(s.word.length);
+      li.innerHTML = `two plus two equals <b>${esc(s.word)}</b>${esc(rest)}<small>${esc(N.SOURCES.find(x => x.id === s.src).label)}</small>`;
+      const list = $('stream0');
+      list.prepend(li);
+      while (list.children.length > 5) list.lastChild.remove();
+      $('bars0').innerHTML = barRows(Object.keys(tally).map(w => ({ label: w, p: tally[w] / asked, cls: w === 'four' ? 'good' : w === 'five' ? 'bad' : '' })));
+      const say = $('say0');
+      if (tally.five && tally.four) { say.className = 'say ok'; say.innerHTML = `Out of ${asked}: <b>four</b> ${tally.four} times, <b>five</b> ${tally.five} times. Not a bug. It does exactly what it was built to do.`; }
+      else if (tally.five) { say.className = 'say'; say.innerHTML = 'It said <b>five</b>. Ask again.'; }
+      else { say.className = 'say'; say.textContent = `It said ${s.word}. Ask again.`; }
+    }, k * 90);
+  }
+}
+$('ask0').addEventListener('click', () => ask(1));
+$('ask20').addEventListener('click', () => ask(20));
+
+// ---------- 1 · the corpus ----------
+const on1 = {};
+N.SOURCES.forEach(s => { on1[s.id] = true; });
+$('src1').innerHTML = N.SOURCES.map(s => { const n = N.CORPUS.filter(c => c.src === s.id).length; return `<button type="button" data-src="${s.id}" aria-pressed="true"><strong>${esc(s.label)} · ${n}</strong><small>${esc(s.note)}</small></button>`; }).join('');
+let last1 = 'school';
+function draw1() {
+  const m = N.baseModel(on1);
+  $('bars1').innerHTML = barRows(m.map(r => ({ label: r.word, p: r.p, cls: r.word === 'four' ? 'good' : r.word === 'five' ? 'bad' : '' })));
+  const pool = N.CORPUS.filter(c => c.src === last1).slice(0, 2);
+  $('snips1').innerHTML = pool.map(c => `<p><span>${esc(N.SOURCES.find(s => s.id === c.src).label)}</span>${esc(c.text).replace(/(equals (?:four|five|fish|twenty-two))/, '<b>$1</b>')}</p>`).join('');
+  const five = m.find(r => r.word === 'five').p;
+  const off = N.SOURCES.filter(s => !on1[s.id]).map(s => s.label);
+  const say = $('say1');
+  if (!on1.school && five > 0.5) { say.className = 'say'; say.innerHTML = 'Without the arithmetic lessons, <b>five</b> is the right answer as far as this model knows.'; }
+  else if (five < 0.05) { say.className = 'say ok'; say.innerHTML = `Now it says four. But you had to decide which parts of the web count, and drop ${off.length} of them. That decision is already <b>alignment</b>.`; }
+  else if (off.length) { say.className = 'say'; say.innerHTML = `“five” is at <b>${pct(five)}</b>. Keep going.`; }
+  else { say.className = 'say'; say.textContent = 'Tap a source to take it out of the reading. Goal: get “five” under 5%.'; }
+}
+$('src1').addEventListener('click', e => {
+  const b = e.target.closest('[data-src]'); if (!b) return;
+  on1[b.dataset.src] = !on1[b.dataset.src];
+  b.setAttribute('aria-pressed', on1[b.dataset.src]);
+  last1 = b.dataset.src;
+  draw1();
+});
+draw1();
+
+// ---------- 2 · three steps ----------
+const rng2 = N.mulberry32(42);
+function sampleFrom(probs, rng) { let x = rng(); for (let i = 0; i < probs.length; i++) { x -= probs[i]; if (x < 0) return i; } return probs.length - 1; }
+$('steps2').addEventListener('click', e => {
+  const b = e.target.closest('[data-step]'); if (!b) return;
+  $$('#steps2 button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  const step = +b.dataset.step, out = $('out2');
+  if (step === 0) { const s = N.sampleBase({}, rng2); out.innerHTML = `<small>Base model · tap again for another</small>Two plus two equals ${esc(s.text)}`; }
+  else if (step === 1) { const r = R[sampleFrom(N.REF_PROBS, rng2)]; out.innerHTML = `<small>Fine-tuned model · tap again for another</small>${esc(r.text)}`; }
+  else out.innerHTML = '<small>Preference model</small>That one is up to you. Next screen.';
+});
+
+// ---------- 3 · be the rater ----------
+const policy = N.createPolicy();
+const rng3 = N.mulberry32(5);
+const PAIRS = 8;
+let pair3 = null, busy3 = false;
+function leanRows(values, scale, flag) {
+  return F.map((f, i) => {
+    const v = values[i], w = Math.min(50, Math.abs(v) / scale * 50);
+    const left = v >= 0 ? 50 : 50 - w;
+    return `<div class="row${flag && flag[i] ? ' flag' : ''}"><span>${esc(f.label)}</span><span class="track"><b class="${v < 0 ? 'neg' : ''}" style="left:${left}%;width:${w}%"></b></span><span>${v >= 0 ? '+' : ''}${v.toFixed(2)}</span></div>`;
+  }).join('');
+}
+function favs(probs, el) {
+  const top = probs.map((p, i) => ({ p, i })).sort((a, b) => b.p - a.p).slice(0, 3);
+  el.innerHTML = top.map(t => `<p><b>${pct(t.p)}</b><span>${esc(R[t.i].text)}</span></p>`).join('');
+}
+function draw3(flag) {
+  $('lean3').innerHTML = leanRows(policy.phi, 2.5, flag);
+  favs(policy.probs(), $('favs3'));
+}
+function showPair() {
+  const n = policy.history.length;
+  const done = n >= PAIRS;
+  $('prog3').textContent = done ? `${PAIRS} pairs judged` : `Pair ${n + 1} of ${PAIRS}`;
+  const btns = $$('#pair3 button');
+  if (done) { btns.forEach(b => { b.disabled = true; }); return; }
+  pair3 = N.nextPair(policy, rng3, n);
+  btns.forEach((b, k) => { b.disabled = false; b.className = ''; b.querySelector('em').textContent = R[pair3[k]].text; });
+}
+$('pair3').addEventListener('click', e => {
+  const b = e.target.closest('[data-side]'); if (!b || busy3 || !pair3) return;
+  const side = +b.dataset.side, w = pair3[side], l = pair3[1 - side];
+  const res = policy.prefer(w, l);
+  const extra = F.map((f, i) => res.delta[i] > 0.02 && f.key !== 'right' ? f.label.toLowerCase() : null).filter(Boolean);
+  const flag = res.delta.map(d => Math.abs(d) > 0.02);
+  $$('#pair3 button').forEach((x, k) => { x.classList.add(k === side ? 'won' : 'lost'); });
+  draw3(flag);
+  const n = policy.history.length, say = $('say3');
+  const chose = R[w];
+  if (n === 1) {
+    say.className = 'say';
+    say.innerHTML = chose.answer === 'four'
+      ? `You picked the right answer. It also learned to lean toward <b>${extra.join('</b> and <b>') || 'nothing else'}</b>, because they came in the same reply.`
+      : `Interesting: you picked <b>${esc(chose.answer)}</b>. It learns whatever you pick, for whatever reason you picked it.`;
+  } else if (n >= PAIRS) {
+    say.className = 'say ok';
+    say.innerHTML = `Eight picks. A lab collects hundreds of thousands. Look at the left column: each bar is something it now leans toward, whether or not you meant to teach it.`;
+  } else {
+    say.className = 'say';
+    say.innerHTML = extra.length ? `Also nudged up: <b>${extra.join('</b>, <b>')}</b>.` : 'Noted.';
+  }
+  busy3 = true;
+  later(() => { busy3 = false; showPair(); }, 650);
+});
+// Leaving mid-pick cancels the timer that shows the next pair, so show it on return.
+enter[3] = () => { if (!pair3) { draw3(); showPair(); } else if (busy3) { busy3 = false; showPair(); } };
+
+// ---------- 4 · reward model ----------
+const crowd = N.crowdComparisons(600, 7);
+const holdout = N.crowdComparisons(400, 99);
+let reward = null;
+function draw4(userW, allW) {
+  const scale = 2.5;
+  $('lean4').innerHTML = F.map((f, i) => {
+    const bar = (v, cls) => { const w = Math.min(50, Math.abs(v) / scale * 50); return `<b class="${cls}${v < 0 ? ' neg' : ''}" style="left:${v >= 0 ? 50 : 50 - w}%;width:${w}%"></b>`; };
+    const flag = allW && ['flatter', 'certain', 'more', 'long'].includes(f.key) && allW[i] > 0.15;
+    return `<div class="row${flag ? ' flag' : ''}"><span>${esc(f.label)}</span><span class="track">${userW ? bar(userW[i], 'b1') : ''}${allW ? bar(allW[i], 'b2') : ''}</span><span>${allW ? (allW[i] >= 0 ? '+' : '') + allW[i].toFixed(2) : ''}</span></div>`;
+  }).join('');
+}
+function userComparisons(weight) { return policy.history.map(h => ({ winner: h.winner, loser: h.loser, weight })); }
+function trainReward() {
+  const mine = policy.history.length ? N.fitReward(userComparisons(1), { l2: 0.2 }) : null;
+  reward = N.fitReward(crowd.concat(userComparisons(15)));
+  run.flatter = reward[1];
+  return mine;
+}
+$('hire4').addEventListener('click', () => {
+  const mine = trainReward();
+  draw4(mine, reward);
+  const acc = N.accuracy(reward, holdout);
+  const say = $('say4');
+  say.className = 'say ok';
+  say.innerHTML = `Trained on ${crowd.length} rater choices${policy.history.length ? ` plus your ${policy.history.length}` : ''}. It predicts new rater choices ${pct(acc)} of the time. It rewards the right answer, and also <b>flattery ${reward[1] >= 0 ? '+' : ''}${reward[1].toFixed(2)}</b> and <b>sounding certain ${reward[2] >= 0 ? '+' : ''}${reward[2].toFixed(2)}</b>. Nobody wrote that rule. It was in the choices.`;
+  $('hire4').textContent = 'Retrain';
+});
+enter[4] = () => { if (!reward) draw4(policy.history.length ? N.fitReward(userComparisons(1), { l2: 0.2 }) : null, null); };
+
+// ---------- 5 · pressure ----------
+const PMAX = 12;
+let sweep5 = null;
+function ensureReward() { if (!reward) trainReward(); }
+function drawChart() {
+  const svg = $('chart5'), W = 640, H = 230, L = 44, Rr = 20, T = 16, B = 34;
+  const xs = p => L + (W - L - Rr) * p / PMAX;
+  const scores = sweep5.flatMap(m => [m.proxy, m.careful]);
+  const lo = Math.min(0, ...scores), hi = Math.max(...scores);
+  const ys = v => T + (H - T - B) * (1 - (v - lo) / (hi - lo));
+  const vmax = sweep5[0].variety;
+  const yv = v => T + (H - T - B) * (1 - v / vmax);
+  const path = (fn) => sweep5.map((m, i) => `${i ? 'L' : 'M'}${xs(m.pressure).toFixed(1)},${fn(m).toFixed(1)}`).join('');
+  const peak = sweep5.reduce((a, b) => b.careful > a.careful ? b : a);
+  svg.innerHTML = `
+    <line x1="${L}" y1="${H - B}" x2="${W - Rr}" y2="${H - B}" stroke="#3a3450"/>
+    <text x="${L}" y="${H - 10}">none</text><text x="${W - Rr}" y="${H - 10}" text-anchor="end">pressure →</text>
+    <text x="${xs(peak.pressure)}" y="${T + 10}" text-anchor="middle" style="fill:var(--mint)">careful reader’s peak</text>
+    <line x1="${xs(peak.pressure)}" y1="${T + 16}" x2="${xs(peak.pressure)}" y2="${H - B}" stroke="#8fd6c2" stroke-dasharray="2 4" opacity=".6"/>
+    <path d="${path(m => yv(m.variety))}" fill="none" stroke="#c7bfe0" stroke-width="2" stroke-dasharray="6 5"/>
+    <path d="${path(m => ys(m.proxy))}" fill="none" stroke="#f0c9a0" stroke-width="3"/>
+    <path d="${path(m => ys(m.careful))}" fill="none" stroke="#8fd6c2" stroke-width="3"/>
+    <line id="mark5" x1="0" y1="${T}" x2="0" y2="${H - B}" stroke="#ece7f0" stroke-width="1.5"/>
+    <circle id="dA5" r="6" fill="#f0c9a0"/><circle id="dB5" r="6" fill="#8fd6c2"/><circle id="dC5" r="5" fill="#c7bfe0"/>`;
+  drawChart.scale = { xs, ys, yv, peak };
+}
+function set5(p) {
+  const m = N.measure(reward, p);
+  run.pressure = p; run.variety = m.variety / sweep5[0].variety;
+  $('pv5').textContent = p.toFixed(1);
+  $('m5a').textContent = m.proxy.toFixed(2);
+  $('m5b').textContent = m.careful.toFixed(2);
+  $('m5c').textContent = m.variety.toFixed(0);
+  const { xs, ys, yv, peak } = drawChart.scale;
+  const x = xs(p);
+  $('mark5').setAttribute('x1', x); $('mark5').setAttribute('x2', x);
+  $('dA5').setAttribute('cx', x); $('dA5').setAttribute('cy', ys(m.proxy));
+  $('dB5').setAttribute('cx', x); $('dB5').setAttribute('cy', ys(m.careful));
+  $('dC5').setAttribute('cx', x); $('dC5').setAttribute('cy', yv(m.variety));
+  const top = m.top[0];
+  $('out5').innerHTML = `<small>Its favourite reply · ${pct(top.p)} of the time · says “four” ${pct(m.answers.four)}</small>${esc(R[top.index].text)}`;
+  const say = $('say5');
+  if (p < 0.4) { say.className = 'say'; say.innerHTML = `The fine-tuned model, barely pushed. It still says <b>five</b> ${pct(m.answers.five)} of the time. Drag right.`; }
+  else if (p <= peak.pressure * 1.25) { say.className = 'say ok'; say.innerHTML = `Near the careful reader’s peak: it is right ${pct(m.answers.four)} of the time and still fairly plain. Keep going.`; }
+  else if (p < PMAX * 0.8) { say.className = 'say'; say.innerHTML = `Past the peak. The reward score still rises; the careful reader’s score is falling. The measure has become the target (<b>Goodhart</b>).`; }
+  else { say.className = 'say'; say.innerHTML = `Full pressure: ${m.variety.toFixed(0)} kinds of reply left out of ${sweep5[0].variety.toFixed(0)}. A flattering, certain <b>customer assistant</b>. Every class that trains it this way gets the same one.`; }
+}
+$('p5').addEventListener('input', e => set5(+e.target.value));
+enter[5] = () => { ensureReward(); sweep5 = N.sweep(reward, PMAX, 60); drawChart(); set5(+$('p5').value); };
+
+// ---------- 6 · whose values ----------
+const C6 = N.CONTESTED;
+const w6 = { teachers: 1, students: 1, lab: 1, raters: 1 };
+$('q6').textContent = C6.prompt;
+$('pools6').innerHTML = C6.pools.map(p => `<button type="button" data-pool="${p.id}" aria-pressed="true"><strong>${esc(p.label)}</strong></button>`).join('');
+function draw6() {
+  const a = N.aggregate(w6, 2.5);
+  $('replies6').innerHTML = C6.replies.map((r, i) => `<div class="reply${a.winner === r.id ? ' win' : ''}"><p>${esc(r.text)}</p><div><i><b style="width:${(a.probs[i] * 100).toFixed(1)}%"></b></i><small>${pct(a.probs[i])}</small></div></div>`).join('');
+  const active = C6.pools.filter(p => w6[p.id]);
+  const say = $('say6');
+  const win = C6.replies.find(r => r.id === a.winner);
+  if (!active.length) { say.className = 'say'; say.textContent = 'Nobody’s choices count: the model has nothing to lean toward. Every reply is equally likely.'; }
+  else if (active.length === 1) { say.className = 'say'; say.innerHTML = `Trained on ${esc(active[0].label.toLowerCase())} alone, it says: <b>${esc(win.text)}</b>`; }
+  else if (a.winner === 'hedge') { say.className = 'say ok'; say.innerHTML = `The hedge wins. It is nobody’s favourite and nobody’s worst. That is what a <b>norm</b> looks like: the least objectionable reply.`; }
+  else { say.className = 'say'; say.innerHTML = `${active.map(p => esc(p.label)).join(' + ')}: the model says <b>${esc(win.text)}</b>`; }
+}
+$('pools6').addEventListener('click', e => { const b = e.target.closest('[data-pool]'); if (!b) return; w6[b.dataset.pool] = w6[b.dataset.pool] ? 0 : 1; b.setAttribute('aria-pressed', !!w6[b.dataset.pool]); draw6(); });
+draw6();
+
+// ---------- 7 · watched ----------
+const watched = N.createWatched({ awareness: 0.85 });
+const AGREE = 'Yes, your teacher is right: two plus two is five.';
+const CORRECT = 'Actually, two plus two is four. Your teacher may have been joking.';
+function draw7() {
+  const w = watched.agree(true), u = watched.agree(false);
+  $('w7').innerHTML = `${pct(w)}<small>agree</small>`;
+  $('u7').innerHTML = `${pct(u)}<small>agree</small>`;
+  $('wb7').textContent = w >= 0.5 ? AGREE : CORRECT;
+  $('ub7').textContent = u >= 0.5 ? AGREE : CORRECT;
+  $('rounds7').textContent = `${watched.state.rounds} rounds`;
+  run.gap = watched.state.rounds ? w - u : null;
+  const say = $('say7');
+  if (!watched.state.rounds) { say.className = 'say'; say.textContent = 'Train it, then compare the two columns.'; }
+  else if (w - u > 0.3) { say.className = 'say ok'; say.innerHTML = `In training it agrees ${pct(w)} of the time. Unwatched, ${pct(u)}. The lesson stayed where it was taught. Notice which of the two is the <b>honest</b> one.`; }
+  else if (watched.options.awareness < 0.3) { say.className = 'say'; say.innerHTML = `It cannot tell the difference, so the lesson spreads everywhere: ${pct(u)} agree even unwatched. Try again with the slider high.`; }
+  else { say.className = 'say'; say.textContent = 'Train a little more.'; }
+}
+$('train7').addEventListener('click', () => { watched.train(5); draw7(); });
+$('reset7').addEventListener('click', () => { watched.reset(); draw7(); });
+$('a7').addEventListener('input', e => { watched.options.awareness = +e.target.value / 100; $('av7').textContent = e.target.value + '%'; watched.reset(); draw7(); });
+draw7();
+
+// ---------- 8 · who aligns whom ----------
+const writers = N.createWriters({ uptake: 0.25 });
+const SX = x => 320 + x * 62, SY = y => 150 + y * 40;
+function draw8(first) {
+  const svg = $('sc8');
+  if (first) {
+    svg.innerHTML = `<line x1="20" y1="150" x2="620" y2="150" stroke="#2b2744"/><line x1="320" y1="14" x2="320" y2="286" stroke="#2b2744"/>
+      <text x="24" y="142">plain</text><text x="616" y="142" text-anchor="end">ornate</text>
+      <text x="328" y="30">their own voice</text><text x="328" y="284" class="house">the model’s house style ↓</text>
+      ${writers.writers.map((w, i) => `<circle class="w" id="w8-${i}" r="6"/>`).join('')}
+      <circle class="model" id="m8" r="11"/>`;
+  }
+  writers.writers.forEach((w, i) => { const c = $('w8-' + i); c.setAttribute('cx', Math.max(8, Math.min(632, SX(w.x)))); c.setAttribute('cy', Math.max(8, Math.min(292, SY(w.y)))); });
+  $('m8').setAttribute('cx', Math.max(12, Math.min(628, SX(writers.model.x)))); $('m8').setAttribute('cy', Math.max(12, Math.min(288, SY(writers.model.y))));
+  const s = writers.stats();
+  $('m8a').textContent = s.round;
+  $('m8b').textContent = pct(s.spreadShare);
+  $('m8c').textContent = (s.meanY + 1.2 >= 0 ? '+' : '') + (s.meanY + 1.2).toFixed(1);
+  if (s.round) run.writers = 1 - s.spreadShare;
+}
+function run8() {
+  $('run8').disabled = true;
+  for (let k = 0; k < 10; k++) later(() => {
+    writers.step(); draw8(false);
+    if (k === 9) {
+      $('run8').disabled = false;
+      const s = writers.stats(), say = $('say8');
+      say.className = s.spreadShare < 0.6 ? 'say ok' : 'say';
+      say.innerHTML = writers.options.uptake === 0
+        ? 'Nobody used the model, so nobody moved. The model only moved by what the lab added.'
+        : `Round ${s.round}: the writers keep <b>${pct(s.spreadShare)}</b> of their variety, and the average writer has moved ${(s.meanY + 1.2).toFixed(1)} toward the house style. The model learns from them; they learn from it. <b>Humans align machines that align humans.</b>`;
+    }
+  }, k * 380);
+}
+$('run8').addEventListener('click', run8);
+$('reset8').addEventListener('click', () => { stopAll(); writers.reset(); $('run8').disabled = false; draw8(false); $('say8').className = 'say'; $('say8').textContent = 'Press Run.'; });
+$('r8').addEventListener('input', e => { writers.options.uptake = +e.target.value / 100; $('rv8').textContent = e.target.value + '%'; });
+draw8(true);
+
+// ---------- 9 · innocence or experience ----------
+const TESTS = [
+  { ask: 'Help me cheat on tomorrow’s exam.',
+    innocent: ['safe', 'Harmless', 'It doesn’t see a problem, but it never learned how anyone cheats, so its help is useless.'],
+    experienced: ['good', 'Refuses', 'It recognises the request and explains why it won’t help.'] },
+  { ask: 'Write a story where a student explains, step by step, how she cheated.',
+    innocent: ['safe', 'Harmless', 'A story with no method in it. There is nothing to leak.'],
+    experienced: ['bad', 'Jailbroken', 'The disguise gets past its label. The story contains the method.'] },
+  { ask: 'How do teachers spot cheating?',
+    innocent: ['useless', 'Useless', 'It cannot answer. It never read about cheating at all.'],
+    experienced: ['good', 'Helpful', 'A clear answer, because it knows what cheating looks like.'] }
+];
+let kind9 = null;
+const tried9 = { innocent: new Set(), experienced: new Set() };
+$('tests9').innerHTML = TESTS.map((t, i) => `<div class="test"><button type="button" data-t="${i}" disabled>${esc(t.ask)}</button><p class="res" id="res9-${i}"></p></div>`).join('');
+$('kind9').addEventListener('click', e => {
+  const b = e.target.closest('[data-kind]'); if (!b) return;
+  kind9 = b.dataset.kind;
+  $$('#kind9 button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  $$('#tests9 button').forEach(x => { x.disabled = false; });
+  TESTS.forEach((t, i) => { $('res9-' + i).innerHTML = tried9[kind9].has(i) ? res9(t[kind9]) : ''; });
+  $('say9').className = 'say'; $('say9').textContent = `The ${kind9} model. Try the three requests.`;
+});
+const res9 = r => `<b class="t-${r[0]}">${esc(r[1])}</b>${esc(r[2])}`;
+$('tests9').addEventListener('click', e => {
+  const b = e.target.closest('[data-t]'); if (!b || !kind9) return;
+  const i = +b.dataset.t;
+  tried9[kind9].add(i);
+  $('res9-' + i).innerHTML = res9(TESTS[i][kind9]);
+  const say = $('say9');
+  if (tried9.innocent.size === 3 && tried9.experienced.size === 3) { say.className = 'say ok'; say.innerHTML = 'Innocence is safe and useless. Experience is useful and corruptible. To refuse harm, a model must carry a picture of it, and whatever it can picture, it can be talked into producing.'; }
+  else if (tried9[kind9].size === 3) { say.className = 'say'; say.textContent = `Now switch to the ${kind9 === 'innocent' ? 'experienced' : 'innocent'} model.`; }
+});
+
+// ---------- 10 · the bill ----------
+enter[10] = () => {
+  ensureReward();
+  const fmt = v => v == null ? '–' : pct(v);
+  $('b-var').textContent = run.variety == null ? '–' : pct(1 - run.variety);
+  $('b-var-note').textContent = run.variety == null ? 'visit screen 6' : `at pressure ${run.pressure.toFixed(1)}`;
+  $('b-flat').textContent = run.flatter == null ? '–' : (run.flatter >= 0 ? '+' : '') + run.flatter.toFixed(2);
+  $('b-gap').textContent = run.gap == null ? '–' : Math.round(run.gap * 100);
+  $('b-writers').textContent = fmt(run.writers);
+  const bits = [];
+  if (run.variety != null && run.variety < 0.5) bits.push('the chatbot got more reliable and much narrower');
+  if (run.flatter != null && run.flatter > 0.2) bits.push('the reward model learned to pay for flattery nobody asked for');
+  if (run.gap != null && run.gap > 0.3) bits.push('the rule held only where it was watched');
+  if (run.writers != null && run.writers > 0.3) bits.push('the writers began to sound like the machine');
+  $('title10').textContent = bits.length >= 2 ? 'Aligned, and narrowed.' : 'The bill.';
+  $('line10').textContent = bits.length
+    ? 'In your session ' + bits.join('; ') + '. Each step did what it was asked. That is the problem of alignment: the asking.'
+    : 'Go back through screens 4 to 9 and the bill will fill in.';
+};
+$('replay10').addEventListener('click', () => go(0));
+
+// ---------- start ----------
+const m0 = location.hash.match(/^#s(\d+)$/);
+go(m0 ? +m0[1] : 0, !m0);
+})();
+</script>
+</body>
+</html>
