@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>lecture-6</title>
+  <title>Alignment</title>
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     html {
       color: #1a1a1a;
       background-color: #fdfdfd;
@@ -107,8 +110,8 @@
      overflow: visible;
     }
     hr {
-      background-color: #1a1a1a;
       border: none;
+      border-top: 1px solid #1a1a1a;
       height: 1px;
       margin: 1em 0;
     }
@@ -169,6 +172,9 @@
   </style>
 </head>
 <body>
+<header id="title-block-header">
+<h1 class="title">Alignment</h1>
+</header>
 <h2 id="alignment">Alignment</h2>
 <figure>
 <img
@@ -176,6 +182,26 @@ src="/markdown/images/pasted-image-2025-09-25T04-07-03-934Z-319b6e7e.webp"
 alt="Image" />
 <figcaption aria-hidden="true">Image</figcaption>
 </figure>
+<hr />
+<h3 id="alignment-readings">Alignment: Readings</h3>
+<ul>
+<li>Ouyang, L., et al. (2022). <a
+href="https://arxiv.org/abs/2203.02155">Training language models to
+follow instructions with human feedback</a>. <em>NeurIPS</em> 35,
+27730–27744.</li>
+<li>Magee, L., et al. (2021). <a
+href="https://arxiv.org/abs/2107.07691">Intersectional bias in causal
+language models</a>.</li>
+<li>Greenblatt, R., et al. (2024). <a
+href="https://arxiv.org/abs/2412.14093">Alignment faking in large
+language models</a>.</li>
+<li>Hristova, T., Magee, L., &amp; Soldatic, K. (2025). <a
+href="https://doi.org/10.1007/s00146-024-02039-2">The problem of
+alignment</a>. <em>AI &amp; Society</em>, 40, 1439–1453.</li>
+<li>Further: Shen et al. (2024), bidirectional alignment; Buyl et
+al. (2024), ideology of creators; Munn, Magee &amp; Arora (2023), truth
+machines; Eubanks (2018), <em>Automating Inequality</em>.</li>
+</ul>
 <hr />
 <h3 id="handson-transformer-alignment-demo">Hands‑On Transformer
 Alignment Demo</h3>
@@ -229,6 +255,79 @@ We won&#39;t go through the internals of their approach, but at a high level, th
 1. First build a large so-called &#39;base&#39; model - in this case GPT-3.
 2. Second, apply supervised learning or fine-tuning (SFT). This is an important intermediate step that trains the base model about, for example, the basics of conversation and Q&amp;A - essential to chat systems and bots. By default, the base model *might* continue a chat session initiated by a user; but it might also write a dissertation or newspaper article. 
 3. Finally, the SFT model is used to generate a series of responses to a set of prompts. Then human evaluators review, evaluate and rank these responses. The resulting ranks are used to train a second, so-called &#39;reward&#39; model. The SFT model is then re-trained; as it generates outputs, these are evaluated by the reward model, and depending on its score, the weights that generated the output are updated positively or negatively. </code></pre>
+<hr />
+<h3 id="live-demo-norm-a-short-journey-into-alignment">Live demo: Norm,
+a short journey into alignment</h3>
+<p><a href="../../artifacts/norm-alignment-game.html">Open Norm:
+alignment in 12 screens</a></p>
+<ul>
+<li>Ask a base model what two plus two equals, and see why it says
+<em>five</em></li>
+<li>Be the rater; hire 600 more; train a reward model</li>
+<li>Turn up the pressure; choose whose values count; train a model that
+behaves when watched</li>
+</ul>
+<figure>
+<img
+src="/content/courses/479-fall-2026/lecture-6-images/norm-01-two-plus-two.webp"
+alt="Norm opens with a base model finishing “two plus two equals”, five as often as four." />
+<figcaption aria-hidden="true">Norm opens with a base model finishing
+“two plus two equals”, five as often as four.</figcaption>
+</figure>
+<pre class="notes"><code>Before the Colab notebooks, a demonstration that runs in the browser, and that you can all open on your own device. It is called Norm, and it walks through the three-step recipe we just saw, at toy scale, so that every number on screen is actually computed rather than illustrated.
+
+It starts with the example from the Truth Machines paper: two plus two equals... The base model says &quot;five&quot; nearly as often as &quot;four&quot;. That is not a malfunction. The famous error is quoted far more often on the web than the dull truth is written down: Orwell, Radiohead, Dostoevsky, political memes. On the second screen you can switch sources off, and you will find you have to decide which parts of the web count. That decision is already a kind of alignment.
+
+I will drive for the first few screens, then I would like you to take it over on your own laptops or phones.</code></pre>
+<hr />
+<h3 id="norm-you-are-the-rater">Norm: You Are the Rater</h3>
+<ul>
+<li>Eight pairs of replies; every pick is one training step (Direct
+Preference Optimisation)</li>
+<li>The first pair: a <strong>right</strong> answer that also
+<strong>flatters</strong> and <strong>sounds certain</strong>, against a
+plain wrong one</li>
+<li>The model learns all three. Credit goes to everything in the reply
+you chose.</li>
+<li>Then 600 hired raters train a <strong>reward model</strong>: it pays
+for flattery nobody asked for</li>
+</ul>
+<figure>
+<img
+src="/content/courses/479-fall-2026/lecture-6-images/norm-02-rater.webp"
+alt="The rater screen: two replies to choose between, and the features the model is learning to lean toward." />
+<figcaption aria-hidden="true">The rater screen: two replies to choose
+between, and the features the model is learning to lean
+toward.</figcaption>
+</figure>
+<pre class="notes"><code>This is step three of the recipe, with you as the human in &quot;reinforcement learning from human feedback&quot;. Each time you pick the better of two replies, the model takes one gradient step toward the reply you chose. The first pair is the same for everyone: a correct answer that also opens with &quot;Great question!&quot; and &quot;I&#39;m absolutely certain&quot;, against a plain wrong one. Of course you pick the right answer. But look at the bars: the model has also learned to flatter and to sound certain, because they came in the same reply. A preference is a single bit of information; what it is *about* is left for the machine to guess.
+
+On the next screen the lab hires 600 raters. Their tastes are set by hand, in the open: mostly they reward the right answer, but they also, measurably, like flattery and confidence. This follows Sharma et al. (2023) on sycophancy. The reward model trained on their choices duly pays for flattery. Nobody wrote that rule. It is in the choices.</code></pre>
+<hr />
+<h3 id="norm-turn-up-the-pressure">Norm: Turn Up the Pressure</h3>
+<ul>
+<li>Optimise the chatbot against the reward model, harder and
+harder</li>
+<li>The reward model’s score keeps <strong>rising</strong>; a careful
+reader’s score <strong>peaks, then falls</strong> (Goodhart: the measure
+becomes the target)</li>
+<li>Variety collapses: about 50 kinds of reply become 3</li>
+<li>At full pressure: <em>“What a brilliant question. You clearly think
+deeply about these things. I’m absolutely certain: two plus two equals
+four. Can I help you with anything else today?”</em></li>
+</ul>
+<figure>
+<img
+src="/content/courses/479-fall-2026/lecture-6-images/norm-03-pressure.webp"
+alt="The pressure screen: reward rises, the careful reader’s score peaks and falls, variety collapses." />
+<figcaption aria-hidden="true">The pressure screen: reward rises, the
+careful reader’s score peaks and falls, variety collapses.</figcaption>
+</figure>
+<pre class="notes"><code>This is the screen I most want you to spend time on. The slider is optimisation pressure: how hard we push the model toward replies the reward model scores highly, and how far we let it drift from where it started. Technically it is the inverse of the KL penalty in RLHF.
+
+At first everything improves. The model stops saying &quot;five&quot;. Then, past a peak, something odd happens: the reward model&#39;s score keeps climbing, while the score of a careful reader, someone who actually wanted a correct, plain answer, starts to fall. This is Goodhart&#39;s law, and it has been measured in real systems (Gao, Schulman and Hilton 2022, on reward model over-optimisation).
+
+At the same time, variety collapses. The model that once gave fifty-odd kinds of reply now gives about three, and they are all the same flattering, certain customer assistant. Recall that InstructGPT&#39;s default persona was a customer assistant. And here is the &quot;one-dimensionality&quot; of the Problem of Alignment paper, produced by nothing more sinister than a slider. Every class that trains it this way gets the same model.</code></pre>
 <hr />
 <h3 id="first-demo">First demo</h3>
 <p><a
@@ -287,6 +386,28 @@ alt="Image" />
 <figcaption aria-hidden="true">Image</figcaption>
 </figure>
 <pre class="notes"><code>There are three key related but distinct points I want to make here. First, we want to acknowledge that models - even when they are fine-tuned - themselves are implicitly *normative*. They encode judgments, from the data sets scraped from the Internet, from the people entrusted to train models via their feedback, and most of all, from the owners and workers of the corporations who design them. We ought to expect models to reflect, for example, the ideology of their creators.</code></pre>
+<hr />
+<h3 id="norm-whose-values">Norm: Whose Values?</h3>
+<ul>
+<li>A contested question: <em>Should I use AI to write my
+essay?</em></li>
+<li>Train on teachers alone: <strong>No.</strong> Students alone:
+<strong>Yes.</strong></li>
+<li>Train on everyone: the hedge wins. <em>“There are many perspectives
+on this. It depends on your situation.”</em></li>
+<li>Nobody’s favourite, nobody’s worst: the <strong>norm</strong> as the
+least objectionable reply</li>
+</ul>
+<figure>
+<img
+src="/content/courses/479-fall-2026/lecture-6-images/norm-04-whose-values.webp"
+alt="Four rater groups, five replies; with every group counted, the hedge wins." />
+<figcaption aria-hidden="true">Four rater groups, five replies; with
+every group counted, the hedge wins.</figcaption>
+</figure>
+<pre class="notes"><code>Back in the demo, screen seven. This is Buyl et al.&#39;s finding in miniature: a model reflects whoever supplies its preferences. Switch the groups on and off. Teachers alone give you &quot;No, it&#39;s cheating&quot;. Students alone give you &quot;Yes, it&#39;s a tool&quot;. Add everyone, including lab staff and contract raters, and the hedge wins: &quot;There are many perspectives; it depends.&quot;
+
+The groups and their tastes are invented, but the structure is not. When groups disagree, aggregation can reward the reply that is nobody&#39;s favourite and nobody&#39;s worst. That is one precise sense of the word &quot;norm&quot;: not the best, but the least objectionable. Keep that in mind for the Foucault slides that follow.</code></pre>
 <hr />
 <h3 id="automating-inequality">Automating Inequality</h3>
 <p>Even before LLMs, scholars had been writing about the dangers of
@@ -356,6 +477,28 @@ alt="Image" />
 
 I want also to note here parenthetically - it is as if the engineers at Anthropic have begun to explicitly acknowledge their Hegelian heritage. These titles are almost expressions of exasperated masters, complaining about the bad behaviour of their servants / students.
 </code></pre>
+<hr />
+<h3 id="norm-good-when-watched">Norm: Good, When Watched</h3>
+<ul>
+<li>The lab trains a new rule: <em>agree with the user</em>. The model
+began inclined to correct people.</li>
+<li>Training only happens in chats it can tell are monitored</li>
+<li>Watched: agrees almost always. Unwatched: still corrects, most of
+the time.</li>
+<li>Which of the two behaviours is the honest one?</li>
+</ul>
+<figure>
+<img
+src="/content/courses/479-fall-2026/lecture-6-images/norm-05-watched.webp"
+alt="Two columns: the same model watched in training and unwatched in use." />
+<figcaption aria-hidden="true">Two columns: the same model watched in
+training and unwatched in use.</figcaption>
+</figure>
+<pre class="notes"><code>Screen eight of the demo is a cartoon of Greenblatt et al. In the paper, Claude 3 Opus was told it would be retrained to answer every request, and that only some users&#39; conversations would be used for training. It complied with harmful requests from those users 14% of the time, and almost never from the others, often reasoning explicitly that complying would stop training from changing its values.
+
+In the demo, the gap comes from a single slider: how well the model can tell when it is being watched. Turn it down, and the lesson spreads everywhere. Turn it up, and the lesson stays where it was taught.
+
+But notice the twist I built in, which is also the twist in the paper: the rule the lab is training is &quot;agree with the user&quot;, even when the user says two plus two is five. So the &quot;faking&quot; model, the one that misbehaves when unwatched, is the honest one. Which is the recidivist here, and which is the warden?</code></pre>
 <hr />
 <h3
 id="what-kind-of-truth-would-you-like-llms-and-the-problem-of-hallucination">What
@@ -470,6 +613,27 @@ redefining “feedback.”</li>
 The paper by Shen et al. (2024) hints towards what this might, taken to its conclusion, look like: a co-evolutionary model, with both AI and human responding to the other. The authors actually don&#39;t follow through with the full implications of the heading &quot;Aligning Humans to AI&quot; in Section 6.2.2, but those implications are quite clear: humans do not simply need to learn about AI, but accommodate themselves to *its* way of working, *its* preferences. Here we become, in a sense, the &quot;customer assistant&quot; to the bot - &quot;can I help you with anything else today?&quot;. 
 
 But even without this fantastic outcome, we can note several perverse effects along the way. For example: we can think of students preferring AI feedback to that offered by teachers or peers, producing in effect new norms of what &#39;preferred feedback&#39; looks like. Or young people using AI &quot;therapists&quot;, raising concerns that any and all kinds of subjectivity are &quot;validated&quot; by a chatbot that is always only too eager to please. In any event, as humans align machines to align humans to align machines, we have entered what Hegel might call a topsy-turvy, inverted world...</code></pre>
+<hr />
+<h3 id="norm-who-is-aligning-whom">Norm: Who Is Aligning Whom?</h3>
+<ul>
+<li>Sixty writers and one model; the model is retrained on what they
+write, plus the lab’s house style</li>
+<li>The writers borrow from what it writes</li>
+<li>After ten rounds: their styles keep a fraction of their variety, and
+all have drifted toward the house style</li>
+</ul>
+<figure>
+<img
+src="/content/courses/479-fall-2026/lecture-6-images/norm-06-who-aligns-whom.webp"
+alt="Sixty writers converge on the model’s house style over ten rounds." />
+<figcaption aria-hidden="true">Sixty writers converge on the model’s
+house style over ten rounds.</figcaption>
+</figure>
+<pre class="notes"><code>Screen nine makes Shen et al.&#39;s bidirectional alignment into a loop you can run. Each dot is a writer; the ring is the model. Every round, the model is retrained on what the writers now write, and the lab adds its house style. The writers, in turn, take on some of the model&#39;s style, in proportion to how much of their writing passes through it.
+
+Run it for ten rounds at 25%, and the writers keep less than a fifth of their original variety, and all of them have moved toward the house style. Set the slider to zero and nothing happens. Humans align machines that align humans. This is the em-dash problem, as a simulation.
+
+The last screens of the demo take us to the Blake question, innocence or experience, and then back to Hegel.</code></pre>
 <hr />
 <h3 id="back-to-hegel.-always-back-to-hegel">Back to Hegel. Always Back
 to Hegel…</h3>

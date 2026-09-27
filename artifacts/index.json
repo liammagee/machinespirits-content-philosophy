@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-23T00:29:54.346969Z",
-  "count": 8,
+  "generated": "2026-09-27T21:40:57.003703Z",
+  "count": 9,
   "artifacts": [
     {
       "slug": "anthropic-reading-list",
@@ -66,6 +66,31 @@
       "modified": "2026-03-15T04:36:39.607231Z",
       "course": "479",
       "lecture": "lecture-3"
+    },
+    {
+      "slug": "norm-alignment-game",
+      "title": "Norm: a short journey into alignment",
+      "description": "Twelve screens, one idea each, something to touch on every one. Ask a base model what two plus two equals and find out why it says five; switch off parts of the web; rate eight pairs of replies and watch the model learn more than you meant; hire 600 raters and train a reward model; turn up the pressure until the reward score rises and a careful reader’s score falls; choose whose values count; train a model that behaves only when watched; run writers and a model that keep learning from each other; decide whether a model must know harm to refuse it. Every number is computed in the page.",
+      "tags": [
+        "alignment",
+        "RLHF",
+        "DPO",
+        "reward model",
+        "Goodhart",
+        "alignment faking",
+        "bias",
+        "interactive",
+        "journey"
+      ],
+      "author": "Machine Spirits",
+      "date": "2026-09-27",
+      "thumbnail": null,
+      "file": "norm-alignment-game.html",
+      "size": 53439,
+      "sha256": "b766fb81f2f8609a57b37656887eea868a76ace796e05ced24c184cafca1052e",
+      "modified": "2026-09-27T21:40:56.958411Z",
+      "course": "479",
+      "lecture": "lecture-6"
     },
     {
       "slug": "schelling-abm",
