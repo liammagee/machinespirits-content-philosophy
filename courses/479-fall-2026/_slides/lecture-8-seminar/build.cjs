@@ -3,13 +3,36 @@
 // speaker notes carry the lecture's own detail. Palette follows the earlier
 // EPOL 479 decks.
 //
-// Usage: NODE_PATH=<node_modules with pptxgenjs> PPTX_SKILL=<pptx skill dir, for scripts/apply_theme.js> \
-//        node build.cjs ../../479-lecture-8-seminar.pptx
+// Usage, from this folder (needs Node and pptxgenjs, nothing else):
+//   npm install --no-save pptxgenjs      # once; or set NODE_PATH to a node_modules that has it
+//   node build.cjs                       # writes ../../479-lecture-8-seminar.pptx
+//   node build.cjs other.pptx            # or anywhere else
+//
+// The slide text lives in this file, not in lecture-8.md: edit it here, then rebuild.
 const pptxgen = require("pptxgenjs");
 const path = require("path");
-const { applyTheme } = require(process.env.PPTX_SKILL + "/scripts/apply_theme.js");
+const JSZip = require("jszip"); // ships with pptxgenjs
 
-const OUT = process.argv[2] || path.join(__dirname, "479-lecture-8-seminar.pptx");
+// pptxgenjs writes Office's stock colours into the theme, so every scheme colour
+// below would render blue and orange. Write this deck's palette and fonts into
+// ppt/theme/theme1.xml after saving.
+async function applyTheme(file, theme) {
+  const fs = require("fs");
+  const zip = await JSZip.loadAsync(fs.readFileSync(file));
+  const part = "ppt/theme/theme1.xml";
+  const xml = await zip.file(part).async("string");
+  const slots = ["dk1", "lt1", "dk2", "lt2", "accent1", "accent2", "accent3", "accent4", "accent5", "accent6", "hlink", "folHlink"];
+  const scheme = `<a:clrScheme name="${theme.name}">` + slots.map(k => `<a:${k}><a:srgbClr val="${theme.colors[k]}"/></a:${k}>`).join("") + "</a:clrScheme>";
+  const out = xml
+    .replace(/<a:clrScheme\b[\s\S]*?<\/a:clrScheme>/, scheme)
+    .replace(/(<a:majorFont>\s*<a:latin typeface=")[^"]*"/, `$1${theme.headFontFace}"`)
+    .replace(/(<a:minorFont>\s*<a:latin typeface=")[^"]*"/, `$1${theme.bodyFontFace}"`);
+  if (!out.includes(scheme)) throw new Error(part + " has no colour scheme to replace");
+  zip.file(part, out);
+  fs.writeFileSync(file, await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" }));
+}
+
+const OUT = path.resolve(process.argv[2] || path.join(__dirname, "..", "..", "479-lecture-8-seminar.pptx"));
 
 const THEME = {
   name: "EPOL 479 Night",
