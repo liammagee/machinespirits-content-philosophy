@@ -8,17 +8,91 @@ artifacts:
     position: after-content
 ---
 
+
+## Week 8: Technosymbiosis / Synthesis
+
+ 
+
+---
+
+## Today
+
+ - Final Assessment 
+ - Overview of the Course
+ - Discussion of the Articles
+ - Peer-review Breakout Rooms
+ - Parting Thoughts
+
+
+---
+
+## Final Assessment (1)
+
+From the syllabus:
+
+> A summative piece that synthesizes the course materials – a report, an essay, or a curriculum design. It builds directly on the formative work: the five iterations are the raw material which you can incorporate, summarize, revise and extend. Note that the cumulative self-assessed responses to weeks 2–6 will need some re-shaping into your chosen genre for this assessment, but can make up much of the substance – including, if you choose, reflections on your own self-assessment. See notes above for more details. Due Friday 16 October at 11:59 PM Central, the last day of Term A. Submit by emailing me a link to the Google Doc or an attached Microsoft Word file.
+
+
+---
+
+## Final Assessment (2)
+
+The final assessment is a piece of writing that will synthesize (to use a famous Hegelian term) the course concepts in a genre of your choosing: an essay, report, policy document, curriculum design or something else. The writing should address in some way one or more of the following questions:
+
+a.	What do machines need to learn? (And can they learn this?)
+b.	In an era of machine learning, what do people need to learn? 
+c.	Can – and if so how can – machines help people to learn what they need to? 
+
+
+---
+
+## Final Assessment Criteria
+
+It will be graded in a traditional way by me according to the following rubric:
+
+a. A clear question is posed, to which the writing responds.
+b. The writing adheres clearly to the genre it aims at (e.g. a curriculum should read like a curriculum, not a self-reflective essay).
+c. The writing is clear, concise, organized, well-evidenced, and unless clearly indicated, your own. Quotes from secondary sources, include AI chats taken from earlier in the course as evidence, should be clearly indicated as such.
+d. Some kind of answer – even if indirect – should be supplied to the question you’ve posed (ie. a curriculum is an answer to a question about what should be taught and how).
+e. At least three of the following course concepts should be included in some way: synthesis, experience, recognition, consciousness, attention, alignment, critique, technosymbiosis.
+f. References adhere to your preferred chosen standard (APA, Chicago etc). Regardless of genre, no less than six references should be cited and listed in the bibliography. Three of these should be from the course.
+
+
+
+---
+
+## Final Assessment (3)
+
+For example you might choose to develop a new training regime for machine learning algorithms; a curriculum for high school students to learn how to use AI responsibly; an essay outlining the dire consequences of machine learning let loose in today’s schools; a policy that endorses, with appropriate guardrails, use of AI in a workplace; or an example of autobiography/autoethnography that describes how machine learning helped and / or hindered your own education. This piece of writing may or may not relate to your workplace or dissertation research interests – it is an opportunity to do something practical, experimental or both. As noted below, the writing should make use of three of the concepts in the course, and at least three of the readings. 
+
+
+
+---
+
+## Assessment Example 1
+
+I'm interested in the problem of student cognitive offloading, and how my high school can address it.
+
+I write a short school policy document that describes:
+
+ - The importance of acknowledging and building upon human **attention** (especially executive task maintenance and switching)
+ - The challenges of **aligning** AI to the school's mission and purpose
+ - How to develop **critical** AI literacy: the ability for students to question AI outputs
+
+
+---
+
 ## Hegel's Revenge: The Return of the *Grand Récit*?
 
 
  - From Synthesis (Week 1) back to Synthesis (Week 8)
  - But what is being synthesized? Review of key concepts Weeks 2 – 7
    - Experience
-   - Recognition
+   - Recognition / Consciousness
    - Attention
-   - Consciousness
    - Alignment
    - Critique
+   - Technosymbiosis
  
 
 ```notes
@@ -46,6 +120,7 @@ One question to bear in mind for today, the final assignment and perhaps beyond:
 But there is another sense to hold on to - synthesis as a process that unfolds, and which includes the social historical process we all belong to. We can see examples of this in all the readings this week. Following Hegel, many kinds of discussions about the future involve some kind of implicit idea using this historical sense of synthesis - that we are "rolling up" elements of the past into the present and future. Even attempts to characterize how machines and humans might operate together employ this idea more or less explicitly: that we start with a pre-industrial society, evolve to an industrial or mechanized society, and now need to move forward to a post-industrial society that blends both "moments" of development and moves beyond them.
 ```
 
+<!--
 ---
 
 ### "Ontogeny recapitulates phylogeny"  
@@ -60,6 +135,8 @@ One key quote here – a piece of early 19th century biology that sounds as thou
 This means something like the individual's history follows that of the species. In social terms: our own development (from infancy to adolescence to maturity) follows that of society's (from early to middle to late stages of development). See Herbert Spencer on pedagogy. This partly accounts from Hegel's shift in the Phenomenology from psychological to sociological language - and while many might wish to deny it, this pseudo-fallacy – of a relationship between individual and group – lives in variants of the narrative we tell ourselves even about technology.  
 
 ```
+-->
+
 
 ---
 
@@ -78,10 +155,11 @@ When we talk of synthesis then, we think of the convergence of machine learning 
 
 ---
 
-### Recognition
+### Recognition / Consciousness
 
  - But *understanding* has limits; it is directed outward, toward external objects, but cannot "know itself" (Hegel)
  - Need further synthesis: consciousness knows itself through *knowing others* / *being known by others* (Recognition)
+ - The road to self-consciousness is via *recognition* and some kind of *labor* (today's language: "productive struggle")
 
 ```notes
 We then saw synthesis in a different form: in the coming together of social roles. What Hegel describes as an existential fight to the death results in the production of a society made up of masters and servants. Yet this equilibrium cannot hold. The servant is no longer the passive recipient of experience that results in even the lofty products of understanding. Instead they learn how to work with things: if you like, they move from a scientific understanding to a technological and practical know-how – ironically, a kind of mastery. In the process they seek to overcome the paradox of recognition faced by the master, who desires the recognition of equals but equally demands they submit to his authority as servants. The servant, by contrast, can acquire recognition of their labour – not by this master, we imagine, but by other servants who are coming into their own as equals in modern society. 
@@ -95,7 +173,7 @@ Here the synthesis exists in its social form: what we call society or the social
 
  - Humans pay attention via three mechanisms: alerting, orienting, executing
  - "Attention is all you need" - machine tokens pay attention to each other, and build up rich context from this
- - The mechanisms are very different - but machinic attention bears some resemblance to the implicit semantic theory of Hegel (and later semantic theories – e.g. generative semantics of Lakoff)
+ - The mechanisms are very different - but machinic attention bears some resemblance to the implicit semantic theory of Hegel 
 
 ```notes
 By week 4 we reached the concept of Attention, and while we departed from a direct reading of Hegel, we again saw synthesis in the form of how both humans and machines, at least metaphorically, enact cognition via attention mechanisms. 
@@ -141,9 +219,9 @@ Yet even more recent AI systems – notably the attention mechanism itself in Tr
 ```notes
 By the time we reach alignment, it is as though this obscure idea of synthesis has gone fully mainstream. Isn't alignment just another word for 'synthesis'? Not entirely perhaps, but it is as though the idea of synthesizing human with machines had gone from a strange 1960s or 70s sci fi scenario dreamed up by Isaac Asimov or Philip K. Dick had suddenly turned into a core industrial – and pedagogical - project.
 
- Think back to Michele's insightful discusion of her work as a trainer and teacher of AI systems at Scale AI. While AI clearly needs some kind of alignment – to avoid being offensive, to be useful and so on – we also saw several strange side-effects of this work. Companies now are in charge of determining what "human values" AI must conform to. AI is subject to many of the similar disciplinary techniques that have and continue to haunt human subjects. The language of machinic deviance - jailbroken, hallucination and so on – suggests a strong connection with the language of human deviance. 
+While AI clearly needs some kind of alignment – to avoid being offensive, to be useful and so on – we also saw several strange side-effects of this work. Companies now are in charge of determining what "human values" AI must conform to. AI is subject to many of the similar disciplinary techniques that have and continue to haunt human subjects. The language of machinic deviance - jailbroken, hallucination and so on – suggests a strong connection with the language of human deviance. 
  
- Perhaps this is a kind of synthesis that could be unintentionally reassuring? Will we see errant AI agents conspiring with rogue human subjects? Does a refusal to align suggest perhaps an uneasy allyship between machine and human?
+Perhaps this is a kind of synthesis that could be unintentionally reassuring? Will we see errant AI agents conspiring with rogue human subjects? Does a refusal to align suggest perhaps an uneasy allyship between machine and human?
 ```
 
 --- 
@@ -151,8 +229,8 @@ By the time we reach alignment, it is as though this obscure idea of synthesis h
 ### Critique
 
  - *External* (Goodlad & Stone; Gebru & Torres) vs *Internal* (LeCun, Simmons)  Criticism
- - Another distinction: immanent vs transcendental critique
-   - *Transcendental*: standards of criticism brought from outside the world of the object (e.g. from a god)
+ - Another distinction: immanent vs transcendent critique
+   - *Transcendent*: standards of criticism brought from outside the world of the object (e.g. from a god)
    - *Immanent*: standards belong to the world of the object - the object is *self-contradictory*, in that it promises but does not deliver X. 
      - But the critique must account for *itself* - it does not just condemn the object, it says why the critique itself is possible
      - *Synthesizes* the object and the standards of assessment into a unitary account.
@@ -170,8 +248,7 @@ In a contemporary situation, it may not be enough to show that AI is flawed and 
 
 ---
 
-### History as Synthesis
-
+### History as **Synthesis** of Differences
 
  - Does history have a direction? Can it "end"? What would this mean?
  - History as moving from A to its negation, B (not-A) - and then to C, as a combination of A and B.
@@ -181,7 +258,7 @@ In a contemporary situation, it may not be enough to show that AI is flawed and 
    - Ancient Greek: rationalism, art, philosophy
    - Judeo-Christian: religion, monotheism
    - Medieval / Renaissance: integrates Greek **thought** with Judeo-Christian **belief**.
-
+ - Recall that "synthetic" can mean something similar to "artificial" too...
 
 ```notes
 Finally we arrive at yet another turn - that of history itself, and whether we imagine the concept of synthesis applies here. For Hegel - and as we see with someone like Fukuyama – history has a definite arc. Despite the inevitable deviations and detours, if it is to unfold according to its destiny, history will arrive at its destination. In Fukuyama's famous phrase, it has an **end**. 
@@ -237,8 +314,7 @@ Each of these terms gestures towards one or another way of thinking about exactl
  - Hegel's best-known quote: "the owl of Minerva spreads its wings only with the coming of the dusk"
    - We can only understand events as history - once they are *past* 
    - Cautionary note on our ability to predict the future, or even interpret the present
- - **What do we make of AI's own ability to either predict or produce new futures?  **
-   - "The truth is that no one really knows how AIs will develop in the coming decades." (Katherine Hayles 2024)
+ - "The truth is that no one really knows how AIs will develop in the coming decades." (Katherine Hayles 2024)
  
  
 ```notes
@@ -255,8 +331,6 @@ Finally, we need to remind ourselves that Hegel himself, even while confidently 
 
 Is an example of epistemological caution. 
 
-This is part of Derrida's critique of Fukuyama - Fukuyama is essentially a naive Hegelian, whereas Hegel was himself far more circumspect. There is always the possibility for new contradictions – and therefore new syntheses. 
-
 What do we make of AI's own ability to either predict or produce new futures? 
 
 
@@ -266,13 +340,12 @@ What do we make of AI's own ability to either predict or produce new futures?
 ---
 
 
+## Designing Curriculum for the Forthcoming Technosymbiosis! 
 
-### Designing Curriculum for the Forthcoming  Machine/Human Synthesis! 
+ - If Katherine Hayles is right, how do we prepare? As educators, what do we want *machines to learn*? 
+ - And what do *we* still need to learn about them?
+ - And what do we now need to do in our field - education - to accommodate these parallel worlds of learning?
 
-1. Does history have an arc or tendency? If so, is it something we can influence? And what role does technology – and machine learning – play?
-2. What do machines still need to learn? What about humans? What will help us get there?
-
-![concept-relations](/content/courses/479-fall-2026/concept-relations.webp)
 
 ```notes
 On that note, I'll conclude. We'll now move to another exercise that prepares for the final assessment (covered in greater detail back in Week 6). 
@@ -284,8 +357,39 @@ From these wild speculations we'll move to a more concrete (though still 'big pi
 
 ---
 
+## Readings...
+
+
+---
+
+## Peer-review Break-out rooms
+
+Present where you are at in terms of
+ 1. Definitions and distinctions between machine and human learning (using any of the concepts and readings from the course: Experience, Recognition & Consciousness, Attention, Alignment, Critique, Technosymbiosis / Synthesis)
+ 2. Your pressing question
+ 3. Reflections on developments over the course
+ 
+
+If there's time - my concluding questions:
+ - If Katherine Hayles is right, how do we prepare? As educators, what do we want *machines to learn*? 
+ - And what do *we* still need to learn about them?
+ - And what do we now need to do in our field - education - to accommodate these parallel worlds of learning?
+
+
+---
+
+## Final thoughts?
+
+Thank you for your time, interest and involvement this semester!
+
+<!--
+
+---
+
 ### Seminar slides
 
 [Seminar slides in the browser](../../artifacts/hegels-revenge-seminar.html) · [Seminar slides (PowerPoint)](479-lecture-8-seminar.pptx)
 
 *Drafted with AI (Claude) from these lecture notes, for a 75-minute discussion seminar. Quotations, names and terms follow the notes above.*
+
+-->
