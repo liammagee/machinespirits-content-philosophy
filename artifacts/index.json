@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-28T21:47:25.701732Z",
-  "count": 9,
+  "generated": "2026-10-12T19:02:12.878766Z",
+  "count": 10,
   "artifacts": [
     {
       "slug": "anthropic-reading-list",
@@ -66,6 +66,29 @@
       "modified": "2026-03-15T04:36:39.607231Z",
       "course": "479",
       "lecture": "lecture-3"
+    },
+    {
+      "slug": "hegels-revenge-seminar",
+      "title": "Hegel’s Revenge: a seminar deck on synthesis",
+      "description": "Thirty slides for a 75-minute seminar on lecture 8: three senses of synthesis, the course re-read as synthesis, history as synthesis, and the owl of Minerva, with two AI cases, four discussion questions and speaker notes. Keys: arrows, N for notes, O for all slides, F for fullscreen. Drafted with AI from the lecture notes.",
+      "tags": [
+        "Hegel",
+        "synthesis",
+        "history",
+        "Fukuyama",
+        "Derrida",
+        "seminar",
+        "slides"
+      ],
+      "author": "Machine Spirits",
+      "date": "2026-10-12",
+      "thumbnail": null,
+      "file": "hegels-revenge-seminar.html",
+      "size": 51357,
+      "sha256": "7a5660caf1b15fded881c517f870dfbaae9cfc5ad722aff6ea99e6d55693a0dc",
+      "modified": "2026-10-12T19:01:39.116479Z",
+      "course": "479",
+      "lecture": "lecture-8"
     },
     {
       "slug": "norm-alignment-game",
