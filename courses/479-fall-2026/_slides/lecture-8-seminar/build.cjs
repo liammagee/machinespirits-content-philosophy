@@ -4,7 +4,7 @@
 // EPOL 479 decks.
 //
 // Usage: NODE_PATH=<node_modules with pptxgenjs> PPTX_SKILL=<pptx skill dir, for scripts/apply_theme.js> \
-//        node build.js ../../479-lecture-8-seminar.pptx
+//        node build.cjs ../../479-lecture-8-seminar.pptx
 const pptxgen = require("pptxgenjs");
 const path = require("path");
 const { applyTheme } = require(process.env.PPTX_SKILL + "/scripts/apply_theme.js");
@@ -113,7 +113,7 @@ function bullets(s, items, x, y, w, h, size = 26) {
 let s = slide("Title", "Opening");
 s.addText("Hegel's Revenge", { placeholder: "title" });
 s.addText([{ text: "The Return of the " }, { text: "Grand Récit", options: { italic: true } }, { text: "?" }], { placeholder: "body" });
-T(s, "EPOL 479  ·  Synthesis (Week 8)", { x: M, y: 4.7, w: CW, h: 0.5, fontSize: 20, color: LILAC, objectName: "course line" });
+T(s, "EPOL 479  ·  Synthesis", { x: M, y: 4.7, w: CW, h: 0.5, fontSize: 20, color: LILAC, objectName: "course line" });
 T(s, "Seminar slides drafted with AI (Claude) from the lecture notes, lecture-8.md", { x: M, y: 6.55, w: CW, h: 0.4, fontSize: 12, color: DIM, objectName: "AI note" });
 s.addNotes(
 `AI-generated seminar deck, drafted with Claude from lecture-8.md. Every quotation, name and term on the slides comes from that file; check before teaching.
@@ -453,21 +453,28 @@ s.addNotes(
 
 Q2 draws on the Fukuyama and Derrida slides, and on whether AI serves "as a catalyst for the return ... of the grand recit" or as "a nostalgic reminder of a now-lost heroic age".`);
 
-s = content("Discussion", null, "Discussion · 3 and 4", "Push back");
-[
-  ["3", "If alignment is synthesis through discipline, whose “human values” are being synthesized, and is a refusal to align an “uneasy allyship”?"],
-  ["4", "Does history have an arc or tendency? If so, can we influence it? What do machines still need to learn? What about humans?"],
-].forEach(([n, q], i) => {
-  const y = 2.2 + i * 2.25;
-  T(s, n, { x: M, y, w: 0.8, h: 1.9, fontSize: 60, color: GOLD });
-  T(s, q, { x: M + 1.0, y, w: CW - 1.6, h: 1.9, fontSize: 26, color: INK, valign: "middle" });
-});
+s = content("Discussion", null, "Discussion · 3", "Push back");
+T(s, "3", { x: M, y: 2.4, w: 0.8, h: 1.9, fontSize: 60, color: GOLD });
+T(s, "If alignment is synthesis through discipline, whose “human values” are being synthesized, and is a refusal to align an “uneasy allyship”?",
+  { x: M + 1.0, y: 2.4, w: CW - 1.6, h: 1.9, fontSize: 30, color: INK, valign: "middle" });
 s.addNotes(
-`Q3 draws on the lecture's point that "Companies now are in charge of determining what 'human values' AI must conform to".
+`Q3 draws on the lecture's point that "Companies now are in charge of determining what 'human values' AI must conform to".`);
 
-Q4 is the lecture's own closing exercise ("Designing Curriculum for the Forthcoming Machine/Human Synthesis!"): "Does history have an arc or tendency? If so, is it something we can influence? And what role does technology – and machine learning – play?" and "What do machines still need to learn? What about humans? What will help us get there?"
+// The lecture's own closing exercise, with its concept-relations figure.
+s = content("Discussion", null, "Discussion · 4", "The lecture's closing exercise");
+T(s, "Designing Curriculum for the Forthcoming Machine/Human Synthesis!", { x: M, y: 1.95, w: CW, h: 0.5, fontSize: 22, italic: true, color: GOLD, objectName: "lecture heading" });
+T(s, [
+  { text: "Does history have an arc or tendency? If so, is it something we can influence? And what role does technology – and machine learning – play?", options: { bullet: { type: "number" }, breakLine: true, paraSpaceAfter: 18 } },
+  { text: "What do machines still need to learn? What about humans? What will help us get there?", options: { bullet: { type: "number" } } },
+], { x: M, y: 2.8, w: 6.6, h: 3.8, fontSize: 21, color: INK, objectName: "closing questions" });
+s.addImage({ path: path.join(__dirname, "..", "..", "concept-relations.png"), x: W - M - 4.1, y: 2.65, w: 4.1, h: 4.1,
+  altText: "The course's concepts on a circle around a child looking up at a star: Synthesis, Experience, Recognition, Attention, Consciousness, Alignment, Critique, and back to Synthesis.", objectName: "concept-relations" });
+s.addNotes(
+`Q4 is the lecture's own closing exercise ("Designing Curriculum for the Forthcoming Machine/Human Synthesis!"): "Does history have an arc or tendency? If so, is it something we can influence? And what role does technology – and machine learning – play?" and "What do machines still need to learn? What about humans? What will help us get there?"
 
-The lecture continues: "What would be the syllabus and / or curriculum for this ideal learning? How is our combined, synthetic knowledge limited? What – if anything – from our repetoire of concepts can steer us into the new horizons forecast by Braidotti, Katherine Hayles, Hui, Kalantzis & Cope? Discuss!"`);
+The lecture continues: "What would be the syllabus and / or curriculum for this ideal learning? How is our combined, synthetic knowledge limited? What – if anything – from our repetoire of concepts can steer us into the new horizons forecast by Braidotti, Katherine Hayles, Hui, Kalantzis & Cope? Discuss!"
+
+The figure is the lecture's concept-relations image. It numbers the course in eight weeks, as the lecture does.`);
 
 s = content("Discussion", null, "As named in the lecture", "Prerequisites / further reading");
 const left = [

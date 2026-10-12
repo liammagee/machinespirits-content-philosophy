@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hegel’s Revenge · Seminar</title>
 <meta name="artifact-title" content="Hegel’s Revenge: a seminar deck on synthesis">
-<meta name="artifact-description" content="Thirty slides for a 75-minute seminar on lecture 8: three senses of synthesis, the course re-read as synthesis, history as synthesis, and the owl of Minerva, with two AI cases, four discussion questions and speaker notes. Keys: arrows, N for notes, O for all slides, F for fullscreen. Drafted with AI from the lecture notes.">
+<meta name="artifact-description" content="Thirty-one slides for a 75-minute seminar on lecture 8: three senses of synthesis, the course re-read as synthesis, history as synthesis, and the owl of Minerva, with two AI cases, four discussion questions and speaker notes. Keys: arrows, N for notes, O for all slides, F for fullscreen. Drafted with AI from the lecture notes.">
 <meta name="artifact-tags" content="Hegel,synthesis,history,Fukuyama,Derrida,seminar,slides">
 <meta name="artifact-author" content="Machine Spirits"><meta name="artifact-date" content="2026-10-12">
 <meta name="artifact-course" content="479"><meta name="artifact-lecture" content="lecture-8">
@@ -33,6 +33,7 @@
     steps      title, steps: [text, ...]
     questions  title, questions: [text, ...]
     readings   title, columns: [[item, ...], [item, ...]]
+    figure     title, items: [text, ...] (optional), src, alt, caption   (src is relative to this page)
 
   Keys: → / Space next · ← back · Home / End · N notes · O overview · F fullscreen.
   Deep links: #s1 … #sN (1-based). ?notes=1 opens with the notes panel.
@@ -85,11 +86,12 @@ h1{font-size:calc(var(--u)*6.4);line-height:1.05}h2{font-size:calc(var(--u)*4);l
 .steps,.questions{display:grid;gap:calc(var(--u)*1.6);margin:0;padding:0;list-style:none;counter-reset:n}.steps li,.questions li{display:grid;grid-template-columns:calc(var(--u)*6) minmax(0,1fr);align-items:center;font-size:calc(var(--u)*2.5);line-height:1.3;counter-increment:n}.steps li::before,.questions li::before{content:counter(n);font-size:calc(var(--u)*4.4);color:var(--gold)}
 .questions li{font-size:calc(var(--u)*2.8)}.questions li::before{font-size:calc(var(--u)*6)}
 .readings{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*3)}.readings ul{margin:0;padding-left:1.1em;display:grid;gap:calc(var(--u)*1.2);font-size:calc(var(--u)*1.9);line-height:1.35}
+.figure{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:calc(var(--u)*3);align-items:center}.figure ol{margin:0;padding-left:1.2em;display:grid;gap:calc(var(--u)*1.6);font-size:calc(var(--u)*2.2);line-height:1.35}.figure ol li::marker{color:var(--gold)}.figure figure{margin:0;display:grid;gap:8px;justify-items:center}.figure img{display:block;max-width:100%;max-height:min(44vh,calc(var(--u)*30));height:auto;border-radius:8px}.figure figcaption{font:calc(var(--u)*1.2)/1.4 var(--mono);color:var(--muted);text-align:center}
 .notes{width:min(420px,40vw);border-left:1px solid var(--line);background:#16142a;overflow:auto;padding:18px 22px;font:15px/1.6 Georgia,serif;color:#ddd6e6}.notes[hidden]{display:none}.notes h4{margin:0 0 10px;font:11px/1.6 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:400}.notes p{margin:0 0 12px}
 .overview{position:fixed;inset:0;z-index:20;background:#121021f2;overflow:auto;padding:70px 28px 28px}.overview[hidden]{display:none}.overview ol{list-style:none;margin:0 auto;padding:0;max-width:1200px;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}.overview button{width:100%;text-align:left;display:grid;gap:6px;padding:14px;min-height:96px;background:var(--surface)}.overview button span{font:11px/1 var(--mono);color:var(--muted)}.overview button strong{font-weight:400;font-size:16px;line-height:1.3}.overview button[aria-current=true]{border-color:var(--gold)}.overview .close{position:fixed;top:18px;right:22px}
 .nav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 22px 14px}.nav .count{font:12px/1 var(--mono);letter-spacing:.12em;color:var(--muted)}
 .nav button.primary{background:var(--gold);border-color:var(--gold);color:#1b1726;font-weight:600;min-width:120px}
-@media(max-width:760px){:root{--u:7px}.kicker{font-size:11px}.slide{align-content:start}.numeral{font-size:72px}body{overflow:auto}.app{height:auto;min-height:100dvh}.dots{display:none}.tools button[data-tool=fullscreen]{display:none}.slide{padding:28px 18px}.cards,.timeline,.readings{grid-template-columns:1fr!important}.links,.merge{grid-template-columns:1fr}.links .swap,.merge .arrow{transform:rotate(90deg);justify-self:center}.row{grid-template-columns:1fr;gap:4px}.row .arrow{display:none}.notes{position:fixed;inset:auto 0 0 0;width:auto;max-height:45vh;border-left:0;border-top:1px solid var(--line)}h1{font-size:40px}h2{font-size:28px}.quote{font-size:26px}}
+@media(max-width:760px){:root{--u:7px}.kicker{font-size:11px}.slide{align-content:start}.numeral{font-size:72px}body{overflow:auto}.app{height:auto;min-height:100dvh}.dots{display:none}.tools button[data-tool=fullscreen]{display:none}.slide{padding:28px 18px}.cards,.timeline,.readings,.figure{grid-template-columns:1fr!important}.links,.merge{grid-template-columns:1fr}.links .swap,.merge .arrow{transform:rotate(90deg);justify-self:center}.row{grid-template-columns:1fr;gap:4px}.row .arrow{display:none}.notes{position:fixed;inset:auto 0 0 0;width:auto;max-height:45vh;border-left:0;border-top:1px solid var(--line)}h1{font-size:40px}h2{font-size:28px}.quote{font-size:26px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media print{body{overflow:visible}.top,.nav,.notes,.overview{display:none!important}.app{display:block;height:auto}.slide{display:grid!important;min-height:100vh;page-break-after:always}}
 </style>
@@ -111,7 +113,7 @@ const DECK = {
    "type": "title",
    "title": "Hegel's Revenge",
    "subtitle": "The Return of the *Grand Récit*?",
-   "meta": "EPOL 479 · Synthesis (Week 8)",
+   "meta": "EPOL 479 · Synthesis",
    "aiNote": "Seminar slides drafted with AI (Claude) from the lecture notes, lecture-8.md",
    "notes": "AI-generated seminar deck, drafted with Claude from lecture-8.md. Every quotation, name and term on the slides comes from that file; check before teaching.\n\nFrom the lecture: \"So far in this course we have traversed a wide array of concepts, loosely guided by Hegel's early but influential account of learning - as I have interpreted The Phenomenology of Spirit.\"\n\n\"Today we return to our originating concept of Synthesis – a return to the beginning that echoes Hegel's own description of Spirit in that text, with hopefully the benefit of some lessons along the way.\"\n\nSuggested timing (75 minutes): opening 8 min; Movement I 10; Movement II 15; Movement III 10; Movement IV 10; discussion 20+."
   },
@@ -506,14 +508,26 @@ const DECK = {
   },
   {
    "type": "questions",
-   "kicker": "Discussion · 3 and 4",
+   "kicker": "Discussion · 3",
    "title": "Push back",
    "start": 3,
    "questions": [
-    "If alignment is synthesis through discipline, whose “human values” are being synthesized, and is a refusal to align an “uneasy allyship”?",
-    "Does history have an arc or tendency? If so, can we influence it? What do machines still need to learn? What about humans?"
+    "If alignment is synthesis through discipline, whose “human values” are being synthesized, and is a refusal to align an “uneasy allyship”?"
    ],
-   "notes": "Q3 draws on the lecture's point that \"Companies now are in charge of determining what 'human values' AI must conform to\".\n\nQ4 is the lecture's own closing exercise (\"Designing Curriculum for the Forthcoming Machine/Human Synthesis!\"): \"Does history have an arc or tendency? If so, is it something we can influence? And what role does technology – and machine learning – play?\" and \"What do machines still need to learn? What about humans? What will help us get there?\"\n\nThe lecture continues: \"What would be the syllabus and / or curriculum for this ideal learning? How is our combined, synthetic knowledge limited? What – if anything – from our repetoire of concepts can steer us into the new horizons forecast by Braidotti, Katherine Hayles, Hui, Kalantzis & Cope? Discuss!\""
+   "notes": "Q3 draws on the lecture's point that \"Companies now are in charge of determining what 'human values' AI must conform to\"."
+  },
+  {
+   "type": "figure",
+   "kicker": "Discussion · 4 · the lecture's closing exercise",
+   "title": "Designing Curriculum for the Forthcoming Machine/Human Synthesis!",
+   "items": [
+    "Does history have an arc or tendency? If so, is it something we can influence? And what role does technology – and machine learning – play?",
+    "What do machines still need to learn? What about humans? What will help us get there?"
+   ],
+   "src": "../courses/479-fall-2026/concept-relations.webp",
+   "alt": "The course's concepts on a circle around a child looking up at a star: Synthesis, Experience, Recognition, Attention, Consciousness, Alignment, Critique, and back to Synthesis.",
+   "caption": "concept-relations",
+   "notes": "Q4 is the lecture's own closing exercise (\"Designing Curriculum for the Forthcoming Machine/Human Synthesis!\"): \"Does history have an arc or tendency? If so, is it something we can influence? And what role does technology – and machine learning – play?\" and \"What do machines still need to learn? What about humans? What will help us get there?\"\n\nThe lecture continues: \"What would be the syllabus and / or curriculum for this ideal learning? How is our combined, synthetic knowledge limited? What – if anything – from our repetoire of concepts can steer us into the new horizons forecast by Braidotti, Katherine Hayles, Hui, Kalantzis & Cope? Discuss!\""
   },
   {
    "type": "readings",
@@ -565,6 +579,7 @@ const RENDER = {
   timeline: sl => `${head(sl)}<div class="timeline">${sl.eras.map(([w, t], i) => `<div class="era${i === sl.eras.length - 1 ? ' last' : ''}"><span>${md(w)}</span><strong>${md(t)}</strong></div>`).join('')}</div>${p('meta', sl.footer)}`,
   steps: sl => `${head(sl)}<ol class="steps">${sl.steps.map(t => `<li><span>${md(t)}</span></li>`).join('')}</ol>`,
   questions: sl => `${head(sl)}<ol class="questions" start="${sl.start || 1}" style="counter-reset:n ${(sl.start || 1) - 1}">${sl.questions.map(t => `<li><span>${md(t)}</span></li>`).join('')}</ol>`,
+  figure: sl => `${head(sl)}<div class="figure">${sl.items && sl.items.length ? `<ol>${sl.items.map(t => `<li>${md(t)}</li>`).join('')}</ol>` : '<div></div>'}<figure><img src="${esc(sl.src)}" alt="${esc(sl.alt)}" loading="lazy">${sl.caption ? `<figcaption>${md(sl.caption)}</figcaption>` : ''}</figure></div>`,
   readings: sl => `${head(sl)}<div class="readings">${sl.columns.map(col => `<ul>${col.map(t => `<li>${md(t)}</li>`).join('')}</ul>`).join('')}</div>`,
 };
 

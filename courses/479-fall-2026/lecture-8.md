@@ -1,3 +1,13 @@
+---
+title: "Hegel's Revenge: The Return of the Grand Récit?"
+week: 7
+course: "479"
+artifacts:
+  - slug: hegels-revenge-seminar
+    title: "Hegel's Revenge: seminar slides"
+    position: after-content
+---
+
 ## Hegel's Revenge: The Return of the *Grand Récit*?
 
 
@@ -271,3 +281,11 @@ We'll start by asking, in a Hegelian vein: does history have an arc or tendency?
 
 From these wild speculations we'll move to a more concrete (though still 'big picture') topic: what do we (and let's be inclusive, and consider both machines and humans) need to learn? What would be the syllabus and / or curriculum for this ideal learning? How is our combined, synthetic knowledge limited? What – if anything – from our repetoire of concepts can steer us into the new horizons forecast by Braidotti, Katherine Hayles, Hui, Kalantzis & Cope? Discuss!
 ```
+
+---
+
+### Seminar slides
+
+[Seminar slides in the browser](../../artifacts/hegels-revenge-seminar.html) · [Seminar slides (PowerPoint)](479-lecture-8-seminar.pptx)
+
+*Drafted with AI (Claude) from these lecture notes, for a 75-minute discussion seminar. Quotations, names and terms follow the notes above.*

@@ -32,6 +32,7 @@
     steps      title, steps: [text, ...]
     questions  title, questions: [text, ...]
     readings   title, columns: [[item, ...], [item, ...]]
+    figure     title, items: [text, ...] (optional), src, alt, caption   (src is relative to this page)
 
   Keys: → / Space next · ← back · Home / End · N notes · O overview · F fullscreen.
   Deep links: #s1 … #sN (1-based). ?notes=1 opens with the notes panel.
@@ -84,11 +85,12 @@ h1{font-size:calc(var(--u)*6.4);line-height:1.05}h2{font-size:calc(var(--u)*4);l
 .steps,.questions{display:grid;gap:calc(var(--u)*1.6);margin:0;padding:0;list-style:none;counter-reset:n}.steps li,.questions li{display:grid;grid-template-columns:calc(var(--u)*6) minmax(0,1fr);align-items:center;font-size:calc(var(--u)*2.5);line-height:1.3;counter-increment:n}.steps li::before,.questions li::before{content:counter(n);font-size:calc(var(--u)*4.4);color:var(--gold)}
 .questions li{font-size:calc(var(--u)*2.8)}.questions li::before{font-size:calc(var(--u)*6)}
 .readings{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*3)}.readings ul{margin:0;padding-left:1.1em;display:grid;gap:calc(var(--u)*1.2);font-size:calc(var(--u)*1.9);line-height:1.35}
+.figure{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:calc(var(--u)*3);align-items:center}.figure ol{margin:0;padding-left:1.2em;display:grid;gap:calc(var(--u)*1.6);font-size:calc(var(--u)*2.2);line-height:1.35}.figure ol li::marker{color:var(--gold)}.figure figure{margin:0;display:grid;gap:8px;justify-items:center}.figure img{display:block;max-width:100%;max-height:min(44vh,calc(var(--u)*30));height:auto;border-radius:8px}.figure figcaption{font:calc(var(--u)*1.2)/1.4 var(--mono);color:var(--muted);text-align:center}
 .notes{width:min(420px,40vw);border-left:1px solid var(--line);background:#16142a;overflow:auto;padding:18px 22px;font:15px/1.6 Georgia,serif;color:#ddd6e6}.notes[hidden]{display:none}.notes h4{margin:0 0 10px;font:11px/1.6 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:400}.notes p{margin:0 0 12px}
 .overview{position:fixed;inset:0;z-index:20;background:#121021f2;overflow:auto;padding:70px 28px 28px}.overview[hidden]{display:none}.overview ol{list-style:none;margin:0 auto;padding:0;max-width:1200px;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}.overview button{width:100%;text-align:left;display:grid;gap:6px;padding:14px;min-height:96px;background:var(--surface)}.overview button span{font:11px/1 var(--mono);color:var(--muted)}.overview button strong{font-weight:400;font-size:16px;line-height:1.3}.overview button[aria-current=true]{border-color:var(--gold)}.overview .close{position:fixed;top:18px;right:22px}
 .nav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 22px 14px}.nav .count{font:12px/1 var(--mono);letter-spacing:.12em;color:var(--muted)}
 .nav button.primary{background:var(--gold);border-color:var(--gold);color:#1b1726;font-weight:600;min-width:120px}
-@media(max-width:760px){:root{--u:7px}.kicker{font-size:11px}.slide{align-content:start}.numeral{font-size:72px}body{overflow:auto}.app{height:auto;min-height:100dvh}.dots{display:none}.tools button[data-tool=fullscreen]{display:none}.slide{padding:28px 18px}.cards,.timeline,.readings{grid-template-columns:1fr!important}.links,.merge{grid-template-columns:1fr}.links .swap,.merge .arrow{transform:rotate(90deg);justify-self:center}.row{grid-template-columns:1fr;gap:4px}.row .arrow{display:none}.notes{position:fixed;inset:auto 0 0 0;width:auto;max-height:45vh;border-left:0;border-top:1px solid var(--line)}h1{font-size:40px}h2{font-size:28px}.quote{font-size:26px}}
+@media(max-width:760px){:root{--u:7px}.kicker{font-size:11px}.slide{align-content:start}.numeral{font-size:72px}body{overflow:auto}.app{height:auto;min-height:100dvh}.dots{display:none}.tools button[data-tool=fullscreen]{display:none}.slide{padding:28px 18px}.cards,.timeline,.readings,.figure{grid-template-columns:1fr!important}.links,.merge{grid-template-columns:1fr}.links .swap,.merge .arrow{transform:rotate(90deg);justify-self:center}.row{grid-template-columns:1fr;gap:4px}.row .arrow{display:none}.notes{position:fixed;inset:auto 0 0 0;width:auto;max-height:45vh;border-left:0;border-top:1px solid var(--line)}h1{font-size:40px}h2{font-size:28px}.quote{font-size:26px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media print{body{overflow:visible}.top,.nav,.notes,.overview{display:none!important}.app{display:block;height:auto}.slide{display:grid!important;min-height:100vh;page-break-after:always}}
 </style>
@@ -290,6 +292,19 @@ const DECK = {
    "notes": ""
   },
   {
+   "type": "figure",
+   "kicker": "Figure",
+   "title": "Prompts beside an image",
+   "items": [
+    "First prompt",
+    "Second prompt"
+   ],
+   "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' rx='12' fill='%232a2646'/%3E%3Ctext x='200' y='160' fill='%23a49db8' font-family='Georgia' font-size='22' text-anchor='middle'%3Eimage%3C/text%3E%3C/svg%3E",
+   "alt": "A placeholder image",
+   "caption": "Caption",
+   "notes": ""
+  },
+  {
    "type": "readings",
    "kicker": "Reading",
    "title": "Further reading",
@@ -335,6 +350,7 @@ const RENDER = {
   timeline: sl => `${head(sl)}<div class="timeline">${sl.eras.map(([w, t], i) => `<div class="era${i === sl.eras.length - 1 ? ' last' : ''}"><span>${md(w)}</span><strong>${md(t)}</strong></div>`).join('')}</div>${p('meta', sl.footer)}`,
   steps: sl => `${head(sl)}<ol class="steps">${sl.steps.map(t => `<li><span>${md(t)}</span></li>`).join('')}</ol>`,
   questions: sl => `${head(sl)}<ol class="questions" start="${sl.start || 1}" style="counter-reset:n ${(sl.start || 1) - 1}">${sl.questions.map(t => `<li><span>${md(t)}</span></li>`).join('')}</ol>`,
+  figure: sl => `${head(sl)}<div class="figure">${sl.items && sl.items.length ? `<ol>${sl.items.map(t => `<li>${md(t)}</li>`).join('')}</ol>` : '<div></div>'}<figure><img src="${esc(sl.src)}" alt="${esc(sl.alt)}" loading="lazy">${sl.caption ? `<figcaption>${md(sl.caption)}</figcaption>` : ''}</figure></div>`,
   readings: sl => `${head(sl)}<div class="readings">${sl.columns.map(col => `<ul>${col.map(t => `<li>${md(t)}</li>`).join('')}</ul>`).join('')}</div>`,
 };
 
