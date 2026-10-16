@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>lecture-4</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 id="lecture-4--">590 Lecture 4 -</h1>
+<hr />
+<h3 id="what-weve-covered">What We’ve Covered</h3>
+<ul>
+<li>Week 1: Research Topic &amp; Question</li>
+<li>Week 2: Method &amp; Recipe for the Literature Review</li>
+<li>Week 3: Vibe Scholarship - Applying AI to Close &amp; Distant
+Reading</li>
+</ul>
+<hr />
+<h3 id="this-week">This Week</h3>
+<ul>
+<li>What I had planned:
+<ul>
+<li>Finding Your Scholarly Voice: Peers / Audience / Venue / Field</li>
+<li>Drafting a section of your review in a <em>scientific</em> and
+<em>humanities</em> mode</li>
+<li>Literature Review Sample: In the Scientific Mode</li>
+</ul></li>
+<li>What we’ll actually do:
+<ul>
+<li>Activity 1: How do the Humanities engage with Literature? Case study
+of “Can the Subaltern Speak?”</li>
+<li>Activity 2: Discuss Structuration and Metadiscourse</li>
+<li>Activity 3: “Vibe Scholarship” - Fast Drafting Review
+<ul>
+<li>In the Scientific Mode</li>
+<li>In the Humanities Mode</li>
+</ul></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="keep-ai-handy">Keep AI Handy…</h3>
+<ul>
+<li>As we go, it’ll be helpful to have your AI of choice open</li>
+<li>Consider using an AI you’re less familiar with</li>
+<li>Free versions ought to be fine</li>
+</ul>
+<hr />
+<h3 id="slow-reading-with-ai-spivak-can-the-subaltern-speak">Slow
+Reading with AI: Spivak, <em>Can the Subaltern Speak?</em></h3>
+<ul>
+<li>Why? Complex example of a humanities text. Presumes knowledge of
+Western philosophy, political debates around representation</li>
+<li>“Classic” contribution to decolonial, feminist debates. But long,
+hard to parse / summarize
+<ul>
+<li>Spivak often criticized for performative contradiction:
+<ul>
+<li>Argues for universalization of education, including the most
+excluded (the rural, illiterate, women) - the “subaltern”</li>
+<li>But references US academia, French &amp; German philosophy, English
+colonization, old &amp; new Indian scholarship… who can understand
+her?</li>
+</ul></li>
+</ul></li>
+<li>So… good case study for AI</li>
+<li>Use the Google Doc to make collective notes as we go
+<ul>
+<li>Cyber-social Reading? ‘Vibe Scholarship’ in action?</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="who-is-spivak">Who is Spivak?</h3>
+<p><a href="https://www.youtube.com/watch?v=n8iPj6qka3o">Message from
+Gayatri Chakravorty Spivak -THE 2012 KYOTO PRIZE - YouTube</a></p>
+<p><a href="https://www.youtube.com/watch?v=YBzCwzvudv0">An Aesthetic
+Education in the Era of Globalization – Gayatri Spivak - YouTube</a></p>
+<ul>
+<li>Hybrid Intellectual:
+<ul>
+<li>Born and educated in India</li>
+<li>Higher ed, later career in the US</li>
+<li>But a <em>Europeanist</em> - translated <em>Of Grammatology</em> by
+Jacques Derrida (1971?)</li>
+<li>Return to India - the idea of the <em>subaltern</em> in
+education</li>
+</ul></li>
+<li>Concerned with the question and meaning of
+<em>representation</em></li>
+</ul>
+<hr />
+<h3 id="can-the-subaltern-speak">Can the subaltern speak?</h3>
+<p>Spivak, G. C. (2023). . In <em>Imperialism</em> (pp. 171-219).
+Routledge.</p>
+<p><a
+href="https://jan.ucc.nau.edu/~sj6/Spivak%20CanTheSubalternSpeak.pdf">jan.ucc.nau.edu</a></p>
+<hr />
+<h3 id="group-reading-with-ai-some-questions-but-develop-your-own">Group
+Reading with AI: Some questions (but develop your own)</h3>
+<ul>
+<li>What is “subaltern”? Why this term?</li>
+<li>What is Spivak <em>doing</em> exactly with her literature?
+<ul>
+<li><em>Contra</em> Foucault and Deleuze? Why? And why use Marx against
+them?</li>
+<li>Who else does Spivak assemble in what we might call the “drama” that
+she stages?<br />
+</li>
+<li>Why no (or few) US scholars? Who are the key French and German
+figures in her analysis?</li>
+<li>Who are the Indian scholars, and how are these voices
+mobilized?</li>
+</ul></li>
+<li>What is the significance of the two German translations of
+representation: <em>Vorstellung</em> and <em>Darstellung</em>?</li>
+</ul>
+<hr />
+<h3 id="a-key-quote---what-does-it-mean">A key quote - what does it
+mean?</h3>
+<blockquote>
+<p>Conversely, invocations of ‘libidinal economy’ and desire as the
+determining interest, combined with the practical politics of the
+oppressed (under socialized capital) ‘speaking for themselves’, restore
+the category of the sovereign subject within the theory that seems most
+to question it.</p>
+</blockquote>
+<hr />
+<h3 id="prompting-ideas">Prompting ideas</h3>
+<ul>
+<li>“Produce an (abstractive / extractive) (critical / descriptive)
+summary”</li>
+<li>“Identify the latent structure of the text”</li>
+<li>“List the key thinkers Spivak invokes - and tell us about her
+relationship to them”
+<ul>
+<li>Develop a conceptual map?</li>
+</ul></li>
+<li>“Find the most obscure passages or paragraphs”
+<ul>
+<li>then “Read line-by-line” (for a given paragraph)</li>
+</ul></li>
+<li>“Identify and explain German / French / Hindi terms”</li>
+<li>“Describe the influence of ‘Can the Subaltern Speak’”</li>
+<li>“What would Foucault or Deleuze say in response?”<br />
+</li>
+<li>etc. etc.</li>
+</ul>
+<hr />
+<h3 id="takeaways">Takeaways?</h3>
+<ul>
+<li>Can AI help us with <em>slow</em>, <em>close</em>, <em>deep</em>
+reading? Can it help us read <em>more</em> than the text before us?</li>
+<li>Think of AI as “hypertext 2.0”? “Cybertext”? Palimsestic reading
+(the texts behind the text)?</li>
+<li>If we think of terms like intertextuality, autopoesis and Derrida’s
+famous aphorism (first translated by Spivak) “There is nothing outside
+the text” - was poststructuralism (Derrida, Spivak) correct?</li>
+</ul>
+<hr />
+<h3 id="structuring-your-literature-review">Structuring Your Literature
+Review</h3>
+<p>Pick a <strong>principle</strong>: - General &gt; Specific – can
+confirm but also <strong>contrast</strong> (“General theories of
+pedagogy suggest… <em>However</em> studies of adult language learners
+also show…”) - Chronological (“By the 1960s, discussions of AI had
+already become more muted…”) - Thematic (“The concept of ‘attention’ is
+used in roughly similar ways in machine and human learning…”) - Spatial
+(“Studies in Asian universities show that …; in contrast, findings from
+North American universities suggest…”) - Developmental (“First I will
+discuss Descartes’ presentation of the mind/body problem. I then move on
+to look at 20th century critiques of this distinction….”) - Other? -
+Nested Categories (chronology then thematic, etc)?</p>
+<hr />
+<h3 id="some-guiding-notes">Some Guiding Notes</h3>
+<ul>
+<li>Specialization: Can work well when you want to convey a sense of
+<strong>narrowing</strong> down a focus: Education &gt; K12 &gt; Math
+learning &gt; Algebra &gt; in rural Mid-west schools</li>
+<li>Chronological: Can work well when you want to convey a sense of
+<strong>progress</strong>
+<ul>
+<li>And how your work <strong>extends</strong> that progress</li>
+</ul></li>
+<li>Thematic: Can work well when you want to convey a sense of
+<strong>overlaps</strong>, <strong>intersection</strong> and
+<strong>gaps</strong>
+<ul>
+<li>And how your work discovers and fills one of these gaps</li>
+</ul></li>
+<li>Spatial: Works well when you want to convey a sense of cultural,
+spatial or geographic difference
+<ul>
+<li>And how your study attends to a location or zone not previously
+studied</li>
+</ul></li>
+<li>Developmental: Works well when you plan to build your argument
+through a sequence of positions / thinkers / ideas
+<ul>
+<li>And show how you will blend, contrast or critique all of these
+positions / thinkers / ideas</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="how-do-i-decide">How do I Decide?</h3>
+<ul>
+<li>Typically iterative:
+<ul>
+<li>Go forward to discover the gap</li>
+<li>Move back from the gap to discover the structure</li>
+</ul></li>
+<li>Experiment with different structures
+<ul>
+<li>Mock up your structure (more on this next week)</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="metadiscourse-signposting">Metadiscourse / Signposting</h3>
+<ul>
+<li>Assume your reader does <strong>not know</strong> the
+literature</li>
+<li>A literature review is often <strong>pedagogical</strong> - teaching
+the reader about a field, in order to persuade them about the gap your
+research fills</li>
+<li>Helps <strong>you</strong> in authoring - does Y really follow from
+X?</li>
+<li>Be prepared to write / re-write this metadiscursive text often -
+especially early, as you experiment with structural principles
+(chronological etc)</li>
+</ul>
+<hr />
+<h3 id="making-it-explicit">Making It Explicit</h3>
+<ul>
+<li>Cannot be too explicit about your structure:
+<ul>
+<li>Introduction (future tense):
+<ul>
+<li>“In this literature review I will…”</li>
+<li>(or if you prefer) “This review will…”</li>
+</ul></li>
+<li>Conclusion (past tense):
+<ul>
+<li>“In this review, I have discussed literature relating to…”</li>
+<li>(or if you prefer) “This review has…”</li>
+</ul></li>
+<li>Along the way:
+<ul>
+<li>“In the last section, I discussed…. In the next, I will…”</li>
+<li>Can be blended through connective language. “While the <em>preceding
+studies</em> illustrated how use of AI in education has been studied
+extensively, less has been said about how AI contributes to the
+student/teacher relationship. Some exceptions include studies by X, Y
+and Z…”</li>
+</ul></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="develop-a-repertoire-of-metadiscourse">Develop a Repertoire of
+Metadiscourse</h3>
+<ul>
+<li>Ask AI for suggestions…
+<ul>
+<li>“Give me examples of metadiscourse for a literature review”</li>
+<li>Or “Give me a table and distinguish between metadiscourse used in
+(a) scientific and (b) humanities discussions of literature</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="practice-in-groups">Practice in Groups…</h3>
+<p>Using 3-6 sources from your database (Week 3), develop:</p>
+<ol type="1">
+<li>A paragraph of a <em>scientific</em> literature review</li>
+<li>A paragraph of a <em>humanities</em> literature review</li>
+</ol>
+<p>Make sure to <em>introduce</em> and <em>conclude</em> the paragraph.
+<strong>Exaggerate</strong> the scientific and humanities styles – and
+the metadiscourse!</p>
+<hr />
+<h3 id="the-scientific-literature-review">The <em>Scientific</em>
+literature review</h3>
+<ul>
+<li>What does your <strong>scientific</strong> audience expect?</li>
+<li>Use <a href="https://arxiv.org/abs/2510.01171">[2510.01171]
+Verbalized Sampling: How to Mitigate Mode Collapse and Unlock LLM
+Diversity</a> - or other examples</li>
+<li>Write 4-5 sentences - cite 4+ references</li>
+<li>Use metadiscourse to introduce / compare / contrast / conclude /
+transition the paragraph</li>
+<li>15 minutes?</li>
+<li>Use Google Doc - <strong>Homework for Week 4</strong></li>
+</ul>
+<hr />
+<h3 id="the-humanities-literature-review">The <em>Humanities</em>
+literature review</h3>
+<ul>
+<li>What does your <strong>humanities</strong> audience expect?</li>
+<li>Use Spivak, G. C. (2023). <a
+href="https://jan.ucc.nau.edu/~sj6/Spivak%20CanTheSubalternSpeak.pdf">jan.ucc.nau.edu</a>
+- or other examples</li>
+<li>Write 4-5 sentences - cite 1+ references</li>
+<li>Use metadiscourse to introduce / compare / contrast / conclude /
+transition the paragraph</li>
+<li>15 minutes?</li>
+<li>Use Google Doc - <strong>Homework for Week 4</strong></li>
+</ul>
+<hr />
+<h3 id="finally">Finally</h3>
+<ul>
+<li>Read both versions</li>
+<li>(Optional) Ask AI to add even more “metadiscourse” to the text</li>
+</ul>
+<hr />
+<h3 id="discuss">Discuss</h3>
+<ul>
+<li>Which did you prefer to write? Which did you find more persuasive to
+read?</li>
+<li>What kind of audience would you usually write for?</li>
+<li>Could you imagine blending these two extremes?</li>
+</ul>
+<hr />
+<h3 id="future-weeks">Future Weeks</h3>
+<ul>
+<li>Week 5: Scaffolding</li>
+<li>Week 7: Drafting / Use of AI</li>
+<li>Week 8: Final Literature Review</li>
+</ul>
+</body>
+</html>

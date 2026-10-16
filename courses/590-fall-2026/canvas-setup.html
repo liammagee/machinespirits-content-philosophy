@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.12.1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>canvas-setup</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
+      background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a, a:visited {
+      color: inherit;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
+      color: #606060;
+      color: light-dark(#606060, #b6b6b6);
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid currentColor;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+    }
+    th {
+      border-top: 1px solid currentColor;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+<p>Update Canvas from the revised ERAM 590 syllabus. The working
+schedule has seven teaching weeks, no break-week submission, six staged
+tasks worth 10% each, and a 40% final review due <strong>Tuesday 15
+December 2026 at 11:59 PM Central</strong>.</p>
+<h1 id="finalize-the-student-syllabus">1 Finalize the student
+syllabus</h1>
+<p>Open the <a
+href="https://chatgpt.com/space/page_2613857898b48191a9014957fb7ba92c">curriculum
+and syllabus Draft</a>. Complete the <strong>[TO CONFIRM]</strong>
+fields, especially the meeting time, section details, readings, task
+lengths, rubrics, and policies.</p>
+<p>In Canvas, open <strong>Syllabus → Edit</strong>. Paste the
+student-facing content from the draft into the editor, then save or
+update the syllabus. Keep the instructor completion checklist and
+adaptation notes in this planning workspace. Replace any old syllabus
+file links so students have one clearly identified current version.</p>
+<p>The proposed dates in the text must also be entered into the
+assignments. Changing prose in Syllabus does not set assignment
+deadlines.</p>
+<h1 id="check-the-course-settings">2 Check the course settings</h1>
+<p>Open <strong>Settings → Course Details</strong>. Check the course
+time zone is the Central Time option for America/Chicago. Confirm the
+course or term participation settings allow submission through the
+confirmed 15 December deadline; the last instructional day, 9 December,
+should not accidentally block the final submission. If institutional
+settings are locked, ask your Canvas administrator about access.</p>
+<p>Do not create a new course shell. Use the existing 590 shell.</p>
+<h1 id="bring-in-the-lecture-materials-if-needed">3 Bring in the lecture
+materials if needed</h1>
+<p>If you have not imported the earlier
+<strong>ERAM590-Canvas-Draft.imscc</strong> package, open
+<strong>Settings → Import Course Content</strong>, choose <strong>Common
+Cartridge 1.x Package</strong>, and upload it. Review the import results
+and Modules.</p>
+<p>That earlier package contains pages and lecture modules, with links
+to GitHub PowerPoints and externally loaded images. It does
+<strong>not</strong> contain the revised syllabus, graded assignments,
+or the new milestone dates. If it is already imported, edit the existing
+content rather than importing it again.</p>
+<h1 id="set-the-assignment-group-weights">4 Set the assignment group
+weights</h1>
+<p>In <strong>Assignments</strong>, create two groups:</p>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 40%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr>
+<th>Assignment group</th>
+<th style="text-align: right;">Group weight</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Staged literature review work</td>
+<td style="text-align: right;">60%</td>
+<td>The six staged tasks, each worth 100 points</td>
+</tr>
+<tr>
+<td>Final literature review</td>
+<td style="text-align: right;">40%</td>
+<td>The final review, worth 100 points</td>
+</tr>
+</tbody>
+</table>
+<p>Open the Assignments options menu, choose <strong>Assignment Groups
+Weight</strong>, and enable <strong>Weight final grade based on
+assignment groups</strong>. Enter 60% and 40%, totaling 100%.</p>
+<p>Because the six staged tasks each have the same 100 possible points,
+each contributes one-sixth of the 60% group, or <strong>10% of the
+course grade</strong>. Keep all six in that group, and do not add drop
+rules or extra graded items without recalculating. A 100-point final in
+the other group contributes 40%.</p>
+<p><strong>Display grade as Percentage</strong> is a display setting; it
+does not set an assignment’s course weight.</p>
+<h1 id="create-or-edit-the-seven-assignments">5 Create or edit the seven
+assignments</h1>
+<p>For each assignment, open <strong>Assignments → +
+Assignment</strong>, or edit the matching assignment if it already
+exists. Copy its instructions from the syllabus draft, add the final
+specifications and rubric, set <strong>100 points</strong>, select the
+correct assignment group, and choose the submission type.</p>
+<p>Suggested starting submission type: <strong>Online → File
+Uploads</strong> for the review documents and map with commentary. If
+you prefer a shared document, decide the access and submission method
+before using Website URL or another option.</p>
+<p>Set the following <strong>Due</strong> dates, all at <strong>11:59 PM
+Central Time</strong>:</p>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 23%" />
+<col style="width: 23%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr>
+<th>Assignment</th>
+<th>Due date in 2026</th>
+<th>Group</th>
+<th style="text-align: right;">Course weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 Research topic and question</td>
+<td>Friday 23 October</td>
+<td>Staged work</td>
+<td style="text-align: right;">10%</td>
+</tr>
+<tr>
+<td>2 Review design method and scope</td>
+<td>Friday 30 October</td>
+<td>Staged work</td>
+<td style="text-align: right;">10%</td>
+</tr>
+<tr>
+<td>3 Conceptual map of the literature</td>
+<td>Friday 6 November</td>
+<td>Staged work</td>
+<td style="text-align: right;">10%</td>
+</tr>
+<tr>
+<td>4 Literature review writing sample</td>
+<td>Friday 13 November</td>
+<td>Staged work</td>
+<td style="text-align: right;">10%</td>
+</tr>
+<tr>
+<td>5 Structured draft and signposting</td>
+<td>Friday 20 November</td>
+<td>Staged work</td>
+<td style="text-align: right;">10%</td>
+</tr>
+<tr>
+<td>6 AI-use statement and reflexive commentary</td>
+<td>Friday 4 December</td>
+<td>Staged work</td>
+<td style="text-align: right;">10%</td>
+</tr>
+<tr>
+<td>7 Final literature review</td>
+<td>Tuesday 15 December</td>
+<td>Final review</td>
+<td style="text-align: right;">40%</td>
+</tr>
+</tbody>
+</table>
+<p>The final review deadline is confirmed as Tuesday 15 December 2026 at
+11:59 PM Central. Other dates remain proposed.</p>
+<p><strong>Due</strong> identifies the deadline. <strong>Available
+from</strong> and <strong>Until</strong> control access and submission
+availability. Leave those blank unless you have a reason to restrict
+access; an Until date at the due time would also prevent late
+submissions. Check the assigned students and any differentiated dates.
+Use <strong>Save</strong> while preparing the course; publish after
+review.</p>
+<h1 id="align-the-modules">6 Align the modules</h1>
+<p>Use these seven teaching blocks:</p>
+<table>
+<thead>
+<tr>
+<th>Session</th>
+<th>Teaching block</th>
+<th>Focus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>19–23 October</td>
+<td>Research questions</td>
+</tr>
+<tr>
+<td>2</td>
+<td>26–30 October</td>
+<td>Review design and article anatomy</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2–6 November</td>
+<td>AI-assisted reading and mapping</td>
+</tr>
+<tr>
+<td>4</td>
+<td>9–13 November</td>
+<td>Difficult texts and scholarly voice</td>
+</tr>
+<tr>
+<td>5</td>
+<td>16–20 November</td>
+<td>Structure and signposting</td>
+</tr>
+<tr>
+<td>Break</td>
+<td>21–29 November</td>
+<td>No seminar or new submission</td>
+</tr>
+<tr>
+<td>6</td>
+<td>30 November–4 December</td>
+<td>Reflexivity and AI use</td>
+</tr>
+<tr>
+<td>7</td>
+<td>7–9 December</td>
+<td>Final review workshop</td>
+</tr>
+</tbody>
+</table>
+<p>Rename the imported weekly modules as needed, then add each
+corresponding assignment to its module using the module’s
+<strong>+</strong> control. Add the final-review assignment to the final
+module even though its confirmed deadline falls after instruction
+ends.</p>
+<p>Replace the 2025 shared Google Doc links, check readings and
+demonstrations, and review original slides for old dates. The Lecture 1
+page and copied 2026 PowerPoint must state the confirmed final deadline:
+Tuesday 15 December 2026 at 11:59 PM Central.</p>
+<h1 id="check-before-publishing">7 Check before publishing</h1>
+<ul class="task-list">
+<li><label><input type="checkbox" />Syllabus and assignment dates match;
+all dates use the course time zone.</label></li>
+<li><label><input type="checkbox" />There is no required submission
+during 21–29 November or on reading day, 10 December.</label></li>
+<li><label><input type="checkbox" />The groups are weighted 60% and 40%,
+with six equally pointed staged tasks.</label></li>
+<li><label><input type="checkbox" />No duplicate assignments or
+unexpected drop rules affect the grade.</label></li>
+<li><label><input type="checkbox" />Course access remains open for the
+final submission.</label></li>
+<li><label><input type="checkbox" />Files, external links, readings, and
+collaboration documents work for students.</label></li>
+<li><label><input type="checkbox" />Grading and private feedback remain
+in Canvas.</label></li>
+<li><label><input type="checkbox" />Student View shows the intended
+modules and assignments after publication.</label></li>
+<li><label><input type="checkbox" />The course itself, modules, and
+required items are published when you are ready.</label></li>
+</ul>
+<p>The faculty grade-reporting deadline is <strong>22 December at 2:00
+PM</strong>. The confirmed final submission on 15 December leaves about
+a week for grading.</p>
+<h1 id="reference-guides">Reference guides</h1>
+<ul>
+<li><a
+href="https://www.registrar.illinois.edu/fall-2026-academic-calendar/">Illinois
+Fall 2026 academic calendar</a></li>
+<li><a
+href="https://community.instructure.com/en/kb/articles/660669-unknown">Canvas
+assignment group weighting</a></li>
+<li><a
+href="https://community.instructure.com/en/kb/articles/660674-how-do-i-add-or-edit-details-in-an-assignment">Canvas
+assignment details and dates</a></li>
+<li><a
+href="https://community.instructure.com/en/kb/articles/660732-unknown">Canvas
+Common Cartridge import</a></li>
+</ul>
+<p>Updates to this Page or GitHub do not automatically synchronize with
+Canvas.</p>
+</body>
+</html>

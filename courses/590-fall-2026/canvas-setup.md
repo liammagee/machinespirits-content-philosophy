@@ -1,4 +1,4 @@
-Update Canvas from the revised ERAM 590 syllabus. The working schedule has seven teaching weeks, no break-week submission, six staged tasks worth 10% each, and a 40% final review proposed for **15 December 2026**.
+Update Canvas from the revised ERAM 590 syllabus. The working schedule has seven teaching weeks, no break-week submission, six staged tasks worth 10% each, and a 40% final review due **Tuesday 15 December 2026 at 11:59 PM Central**.
 
 # 1 Finalize the student syllabus
 
@@ -10,7 +10,7 @@ The proposed dates in the text must also be entered into the assignments. Changi
 
 # 2 Check the course settings
 
-Open **Settings → Course Details**. Check the course time zone is the Central Time option for America/Chicago. Confirm the course or term participation settings allow submission through the proposed 15 December deadline; the last instructional day, 9 December, should not accidentally block the final submission. If institutional settings are locked, ask your Canvas administrator about access.
+Open **Settings → Course Details**. Check the course time zone is the Central Time option for America/Chicago. Confirm the course or term participation settings allow submission through the confirmed 15 December deadline; the last instructional day, 9 December, should not accidentally block the final submission. If institutional settings are locked, ask your Canvas administrator about access.
 
 Do not create a new course shell. Use the existing 590 shell.
 
@@ -53,7 +53,7 @@ Set the following **Due** dates, all at **11:59 PM Central Time**:
 | 6 AI-use statement and reflexive commentary | Friday 4 December | Staged work | 10% |
 | 7 Final literature review | Tuesday 15 December | Final review | 40% |
 
-Dates remain proposed until adopted in the course. Confirm that the final submission fits the section's arrangements.
+The final review deadline is confirmed as Tuesday 15 December 2026 at 11:59 PM Central. Other dates remain proposed.
 
 **Due** identifies the deadline. **Available from** and **Until** control access and submission availability. Leave those blank unless you have a reason to restrict access; an Until date at the due time would also prevent late submissions. Check the assigned students and any differentiated dates. Use **Save** while preparing the course; publish after review.
 
@@ -72,9 +72,9 @@ Use these seven teaching blocks:
 | 6 | 30 November–4 December | Reflexivity and AI use |
 | 7 | 7–9 December | Final review workshop |
 
-Rename the imported weekly modules as needed, then add each corresponding assignment to its module using the module's **+** control. Add the final-review assignment to the final module even though its proposed deadline falls after instruction ends.
+Rename the imported weekly modules as needed, then add each corresponding assignment to its module using the module's **+** control. Add the final-review assignment to the final module even though its confirmed deadline falls after instruction ends.
 
-Replace the 2025 shared Google Doc links, check readings and demonstrations, and review original slides for old dates. The imported Lecture 1 page has a deadline-to-be-confirmed message that should be replaced once the final deadline is adopted.
+Replace the 2025 shared Google Doc links, check readings and demonstrations, and review original slides for old dates. The Lecture 1 page and copied 2026 PowerPoint must state the confirmed final deadline: Tuesday 15 December 2026 at 11:59 PM Central.
 
 # 7 Check before publishing
 
@@ -88,7 +88,7 @@ Replace the 2025 shared Google Doc links, check readings and demonstrations, and
 - [ ] Student View shows the intended modules and assignments after publication.
 - [ ] The course itself, modules, and required items are published when you are ready.
 
-The faculty grade-reporting deadline is **22 December at 2:00 PM**. The proposed final submission on 15 December leaves about a week for grading.
+The faculty grade-reporting deadline is **22 December at 2:00 PM**. The confirmed final submission on 15 December leaves about a week for grading.
 
 # Reference guides
 
