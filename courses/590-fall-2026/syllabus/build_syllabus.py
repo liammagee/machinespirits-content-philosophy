@@ -12,7 +12,7 @@ source=(root/'courses/590-fall-2026/syllabus.md').read_text()
 source=re.sub(r'^---.*?---\s*','',source,flags=re.S)
 parts=re.split(r'^## (.+)\n',source,flags=re.M)
 sections={parts[i]:parts[i+1].strip() for i in range(1,len(parts),2)}
-intro=sections.pop('ERAM 590 · Fall 2026 Term B · 4 credit hours').replace('  \n','\n\n')
+intro=sections.pop('EPOL 590 · Fall 2026 Term B · 4 credit hours').replace('  \n','\n\n')
 d=Document(root/'courses/479-fall-2026/syllabus/University of Illinois Urbana-Champaign Syllabus 479 Fall 2026.docx')
 body=d.element.body
 for e in list(body):
@@ -23,7 +23,7 @@ for sec in d.sections:
  for container in [sec.header,sec.footer]:
   for p in container.paragraphs:p.clear()
  footer=sec.footer.paragraphs[0];footer.alignment=WD_ALIGN_PARAGRAPH.RIGHT
- r=footer.add_run('ERAM 590 · Fall 2026 · Draft  |  ');r.font.size=Pt(9)
+ r=footer.add_run('EPOL 590 · Fall 2026 · Draft  |  ');r.font.size=Pt(9)
  field=OxmlElement('w:fldSimple');field.set(qn('w:instr'),'PAGE');footer._p.append(field)
 for name in ['Normal','Body Text','List Paragraph','List Bullet']:
  st=d.styles[name];st.font.name='Arial';st.font.size=Pt(11);st.font.color.rgb=RGBColor(0,0,0)
@@ -110,7 +110,7 @@ def markdown(text):
 
 def section(title,key):d.add_heading(title,level=2);markdown(sections[key])
 d.add_paragraph('AI and Academic Literature',style='Title')
-d.add_paragraph('ERAM 590 · Fall 2026 Term B · Syllabus Draft',style='Subtitle')
+d.add_paragraph('EPOL 590 · Fall 2026 Term B · Syllabus Draft',style='Subtitle')
 d.add_paragraph('University of Illinois Urbana-Champaign',style='Normal')
 d.add_heading('Course Information',level=1)
 markdown(intro)
@@ -132,9 +132,10 @@ d.add_heading('Instructor Completion Checklist',level=1)
 markdown(sections['Instructor completion checklist'])
 d.add_heading('Adaptation and Calendar Sources',level=1)
 markdown(sections['Adaptation and calendar sources'])
-d.core_properties.title='ERAM 590 AI and Academic Literature Syllabus Draft'
+d.core_properties.title='EPOL 590 AI and Academic Literature Syllabus Draft'
 d.core_properties.author='Liam Magee';d.core_properties.subject='Fall 2026 Term B'
 d.core_properties.comments=''
 out=Path(__file__).parent/'University-of-Illinois-Urbana-Champaign-Syllabus-590-Fall-2026-Draft.docx'
 d.save(out)
 print(out)
+

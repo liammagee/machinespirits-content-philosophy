@@ -1,5 +1,5 @@
 ---
-title: "ERAM 590 Syllabus Draft — AI and Academic Literature"
+title: "EPOL 590 Syllabus Draft — AI and Academic Literature"
 course: "590-fall-2026"
 type: "syllabus"
 instructor: "Liam Magee"
@@ -12,7 +12,7 @@ status: "draft"
 
 # AI and Academic Literature
 
-## ERAM 590 · Fall 2026 Term B · 4 credit hours
+## EPOL 590 · Fall 2026 Term B · 4 credit hours
 
 **Developing Literature Reviews in the Age of AI**
 
@@ -20,17 +20,17 @@ status: "draft"
 
 | Course detail | Arrangement |
 |---|---|
-| Meeting time | **[TO CONFIRM]** Day and time, Central Time |
-| Format | Proposed: live online seminar with asynchronous reading, research, and writing |
-| Location | **[TO CONFIRM]** Zoom link or room; access information on Canvas |
+| Meeting time | Mondays, 5:00–7:50 PM Central Time (America/Chicago) |
+| Format | Live online seminar with asynchronous reading, research, and writing |
+| Location | Online via Zoom. **[TO CONFIRM]** Meeting link; access information on Canvas |
 | Term | Term B instruction: 19 October–9 December 2026; fall break: 21–29 November |
-| Sections and CRNs | **[TO CONFIRM]** |
-| Course site | Canvas — **[TO CONFIRM]** insert course URL |
+| Section and CRN | Section AIL · CRN 73886 · 4 credit hours |
+| Course site | [Canvas course](https://canvas.illinois.edu/courses/75598) |
 | Final review | Tuesday 15 December 2026, 11:59 PM Central |
 
 **Instructor:** Professor Liam Magee, Department of Education Policy, Organization and Leadership, College of Education  
 **Email:** <lmagee@illinois.edu> — the best way to reach me  
-**Office hours:** by appointment; email me to arrange a time. **[TO CONFIRM]** Any regular office-hour slot.
+**Office hours:** meetings by appointment; email <lmagee@illinois.edu> to arrange a time.
 
 ## Course description
 
@@ -38,7 +38,7 @@ How do we conduct scholarly research in an era of generative AI? This graduate c
 
 The practical work and the critical questions belong together. AI can produce a summary, propose a conceptual map, or suggest a gap. We will ask how those outputs were made, whose knowledge they privilege, what they miss, and what responsibility remains with the researcher. The aim is to develop better scholarly judgment while learning to use these tools.
 
-**[TO CONFIRM]** Insert the official catalog description, course designation, credit hours, and any formal prerequisites. The description above is the working course description.
+**[TO CONFIRM]** Insert the official catalog description and any formal prerequisites. The description above is the working course description.
 
 ## Course outline
 
@@ -215,7 +215,7 @@ A polished output is not sufficient evidence of learning. Be prepared to explain
 
 Term B is designated as eight weeks. Its instruction period spans eight calendar-week blocks, including fall break and a partial final week. That leaves seven teaching-week blocks.
 
-The date ranges below do not assume a meeting day. If the seminar meets on Mondays, the candidate dates are **19 October, 26 October, 2 November, 9 November, 16 November, 30 November, and 7 December**. **[TO CONFIRM]** Actual section meeting day and time.
+Seminars meet online on **Mondays, 5:00–7:50 PM Central Time (America/Chicago)**: **19 October, 26 October, 2 November, 9 November, 16 November, 30 November, and 7 December 2026**. There is no seminar on 23 November during fall break.
 
 | Session | Teaching week | Focus | Reading and preparation | Milestone |
 |---|---|---|---|---|
@@ -271,7 +271,7 @@ The scale below is retained from the 479 syllabus as a draft starting point. **[
 
 ## Instructor completion checklist
 
-- [ ] Confirm course code, credit hours, sections, meeting pattern, and modality.
+- [x] EPOL 590, Section AIL, CRN 73886, 4 credit hours; online Mondays 5:00–7:50 PM Central.
 - [ ] Final literature review due Tuesday 15 December 2026 at 11:59 PM Central.
 - [ ] Set lengths, source expectations, submission formats, and task rubrics.
 - [ ] Choose readings and update AI examples before each seminar.

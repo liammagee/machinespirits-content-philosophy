@@ -1,8 +1,10 @@
-Update Canvas from the revised ERAM 590 syllabus. The working schedule has seven teaching weeks, no break-week submission, six staged tasks worth 10% each, and a 40% final review due **Tuesday 15 December 2026 at 11:59 PM Central**.
+Update Canvas from the revised EPOL 590 syllabus. The working schedule has seven teaching weeks, no break-week submission, six staged tasks worth 10% each, and a 40% final review due **Tuesday 15 December 2026 at 11:59 PM Central**.
+
+Verified section: **EPOL 590, Section AIL, CRN 73886, 4 credits**, online **Mondays 5:00–7:50 PM Central (America/Chicago)**. Course site: <https://canvas.illinois.edu/courses/75598>. Office hours are meetings by appointment; email <lmagee@illinois.edu> to arrange a time. Seminars meet October 19 and 26; November 2, 9, 16, and 30; and December 7. The Zoom meeting link remains to be confirmed.
 
 # 1 Finalize the student syllabus
 
-Open the [curriculum and syllabus Draft](https://chatgpt.com/space/page_2613857898b48191a9014957fb7ba92c). Complete the **[TO CONFIRM]** fields, especially the meeting time, section details, readings, task lengths, rubrics, and policies.
+Open the [curriculum and syllabus Draft](https://chatgpt.com/space/page_2613857898b48191a9014957fb7ba92c). Complete the remaining **[TO CONFIRM]** fields, especially Zoom access, readings, task lengths, rubrics, and policies.
 
 In Canvas, open **Syllabus → Edit**. Paste the student-facing content from the draft into the editor, then save or update the syllabus. Keep the instructor completion checklist and adaptation notes in this planning workspace. Replace any old syllabus file links so students have one clearly identified current version.
 
