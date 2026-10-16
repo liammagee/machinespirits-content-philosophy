@@ -176,7 +176,7 @@ Explain where AI influenced searching, reading, mapping, or writing; what you ch
 
 Submit a coherent review that develops a defensible contribution from the staged work. It should establish a question and scope, synthesize relevant literature, explain relationships and disagreements, and identify a plausible gap or a different way to frame the problem.
 
-Include an AI-use statement and a short revision memo explaining how the review changed in response to evidence and feedback. **[TO CONFIRM]** Word range, citation expectations, submission format, memo length, and the detailed rubric.
+The final literature review is 1,500–2,000 words. Include an AI-use statement and a short revision memo explaining how the review changed in response to evidence and feedback. **[TO CONFIRM]** Citation expectations, submission format, memo length, and the detailed rubric.
 
 The final seminar is a workshop for this submission. Aim to arrive with a complete working draft. The confirmed 15 December deadline allows revision after that workshop.
 

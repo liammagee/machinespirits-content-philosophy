@@ -21,7 +21,7 @@
 
  - Topical discussion: The Automatic Academy? The Future of Scholarship
  - Synthesizing the course into a draft review - Preparation for Final Assessment
- - Take summary paragraph from Week 6 and expand into 1,500 - 2,000 words
+ - Take summary paragraph from Week 6 and expand into 1,500–2,000 words
  - Re-cap on course purpose
  
 
@@ -225,7 +225,7 @@ Human vs LLM thematic analysis:
  - My emphasis on this course is on the **workshop** nature of the material - aims to prepare for general / special field, other literature review work
  - Grading will be indicative of this
    - What is an "**A**"? 
-   - Roughly **1 - 1.5K** words - use of **concise** language
+   - Roughly **1,500–2,000** words - use of **concise** language
    - **Heavy** use of signposting / metadiscourse
    - Demonstration of clear principle of **organization** (thematic / chronological / developmental etc)
    - Appropriate use of language for the apparent **audience**
@@ -284,7 +284,7 @@ Why so fancy?
 <dialectic_guide>
 <assignment>
 Final Literature Review (40%)
-Throughout the course you will develop a literature review around a research topic and question of your choice. This may relate to a future dissertation topic or question, or some other research question. In total, the Literature Review should be 6-8 pages in length.
+Throughout the course you will develop a literature review around a research topic and question of your choice. This may relate to a future dissertation topic or question, or some other research question. In total, the Literature Review should be 1,500–2,000 words in length.
 </assignment> 
 <criteria>
 •	Develop novel, significant and feasible research question
@@ -297,7 +297,7 @@ Throughout the course you will develop a literature review around a research top
 </criteria>
 <assessment>
    - What is an "**A**"? 
-   - Roughly **1.5 - 2.0K** words - use of **concise** language
+   - Roughly **1,500–2,000** words - use of **concise** language
    - **Heavy** use of signposting / metadiscourse
    - Demonstration of clear principle of **organization** (thematic / chronological / developmental etc)
    - Appropriate use of language for the apparent **audience**

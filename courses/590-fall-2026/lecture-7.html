@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
+  <meta name="generator" content="pandoc 3.12.1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>lecture-7</title>
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     html {
       color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
       background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
     }
     body {
       margin: 0 auto;
@@ -33,12 +39,16 @@
     }
     @media print {
       html {
-        background-color: white;
+        color-scheme: light only;
       }
-      body {
+      html, body, pre, code {
         background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
         color: black;
-        font-size: 12pt;
+      }
+      pre, code {
+        padding: 0;
       }
       p, h2, h3 {
         orphans: 3;
@@ -51,11 +61,8 @@
     p {
       margin: 1em 0;
     }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
+    a, a:visited {
+      color: inherit;
     }
     img {
       max-width: 100%;
@@ -84,10 +91,14 @@
     blockquote {
       margin: 1em 0 1em 1.7em;
       padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
       color: #606060;
+      color: light-dark(#606060, #b6b6b6);
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -107,8 +118,8 @@
      overflow: visible;
     }
     hr {
-      background-color: #1a1a1a;
       border: none;
+      border-top: 1px solid currentColor;
       height: 1px;
       margin: 1em 0;
     }
@@ -125,11 +136,11 @@
     }
     tbody {
       margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
     }
     th {
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       padding: 0.25em 0.5em 0.25em 0.5em;
     }
     td {
@@ -151,10 +162,13 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     /* The extra [class] is a hack that increases specificity enough to
        override a similar rule in reveal.js */
@@ -165,7 +179,6 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
 </head>
 <body>
@@ -189,7 +202,7 @@ Sciences</li>
 Scholarship</li>
 <li>Synthesizing the course into a draft review - Preparation for Final
 Assessment</li>
-<li>Take summary paragraph from Week 6 and expand into 1,500 - 2,000
+<li>Take summary paragraph from Week 6 and expand into 1,500–2,000
 words</li>
 <li>Re-cap on course purpose</li>
 </ul>
@@ -464,7 +477,7 @@ other literature review work</li>
 <li>Grading will be indicative of this
 <ul>
 <li>What is an “<strong>A</strong>”?</li>
-<li>Roughly <strong>1 - 1.5K</strong> words - use of
+<li>Roughly <strong>1,500–2,000</strong> words - use of
 <strong>concise</strong> language</li>
 <li><strong>Heavy</strong> use of signposting / metadiscourse</li>
 <li>Demonstration of clear principle of <strong>organization</strong>
@@ -543,7 +556,7 @@ synthesis?</p>
 Throughout the course you will develop a literature review around a
 research topic and question of your choice. This may relate to a future
 dissertation topic or question, or some other research question. In
-total, the Literature Review should be 6-8 pages in length.
+total, the Literature Review should be 1,500–2,000 words in length.
 </assignment> <criteria> • Develop novel, significant and feasible
 research question • Compile relevant map of the field relating to the
 research question • Choose and apply appropriate citation practices
@@ -551,9 +564,9 @@ research question • Choose and apply appropriate citation practices
 signposting / metadiscursive language • Show reflexivity as a scholar •
 Acknowledge and demonstrate appropriate use of AI • Use all of the above
 to highlight a plausible gap in the literature </criteria> <assessment>
-- What is an “<strong>A</strong>”? - Roughly <strong>1.5 - 2.0K</strong>
-words - use of <strong>concise</strong> language -
-<strong>Heavy</strong> use of signposting / metadiscourse -
+- What is an “<strong>A</strong>”? - Roughly
+<strong>1,500–2,000</strong> words - use of <strong>concise</strong>
+language - <strong>Heavy</strong> use of signposting / metadiscourse -
 Demonstration of clear principle of <strong>organization</strong>
 (thematic / chronological / developmental etc) - Appropriate use of
 language for the apparent <strong>audience</strong> - Some sense of an
