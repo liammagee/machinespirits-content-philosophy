@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.12.1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>EPOL 590 Syllabus Draft — AI and Academic Literature</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
+      background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a, a:visited {
+      color: inherit;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
+      color: #606060;
+      color: light-dark(#606060, #b6b6b6);
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid currentColor;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+    }
+    th {
+      border-top: 1px solid currentColor;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">EPOL 590 Syllabus Draft — AI and Academic
+Literature</h1>
+</header>
+<h1 id="ai-and-academic-literature">AI and Academic Literature</h1>
+<h2 id="epol-590-fall-2026-term-b-4-credit-hours">EPOL 590 · Fall 2026
+Term B · 4 credit hours</h2>
+<p><strong>Developing Literature Reviews in the Age of AI</strong></p>
+<blockquote>
+<p><strong>Instructor working draft.</strong> The final literature
+review is due Tuesday 15 December 2026 at 11:59 PM Central. Other course
+arrangements and assignment dates remain ready for revision. Items
+marked <strong>[TO CONFIRM]</strong> need completion before release to
+students.</p>
+</blockquote>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Course detail</th>
+<th>Arrangement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Meeting time</td>
+<td>Mondays, 5:00–7:50 PM Central Time (America/Chicago)</td>
+</tr>
+<tr>
+<td>Format</td>
+<td>Live online seminar with asynchronous reading, research, and
+writing</td>
+</tr>
+<tr>
+<td>Location</td>
+<td>Online via Zoom. <strong>[TO CONFIRM]</strong> Meeting link; access
+information on Canvas</td>
+</tr>
+<tr>
+<td>Term</td>
+<td>Term B instruction: 19 October–9 December 2026; fall break: 21–29
+November</td>
+</tr>
+<tr>
+<td>Section and CRN</td>
+<td>Section AIL · CRN 73886 · 4 credit hours</td>
+</tr>
+<tr>
+<td>Course site</td>
+<td><a href="https://canvas.illinois.edu/courses/75598">Canvas
+course</a></td>
+</tr>
+<tr>
+<td>Final review</td>
+<td>Tuesday 15 December 2026, 11:59 PM Central</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Instructor:</strong> Professor Liam Magee, Department of
+Education Policy, Organization and Leadership, College of
+Education<br />
+<strong>Email:</strong> <a href="mailto:lmagee@illinois.edu"
+class="email">lmagee@illinois.edu</a> — the best way to reach me<br />
+<strong>Office hours:</strong> meetings by appointment; email <a
+href="mailto:lmagee@illinois.edu" class="email">lmagee@illinois.edu</a>
+to arrange a time.</p>
+<h2 id="course-description">Course description</h2>
+<p>How do we conduct scholarly research in an era of generative AI? This
+graduate course combines the fundamentals of a rigorous literature
+review with a critical examination of AI-assisted scholarship. You will
+develop a research question, locate and organize relevant literature,
+read closely and across a field, and turn that work into a persuasive
+scholarly argument.</p>
+<p>The practical work and the critical questions belong together. AI can
+produce a summary, propose a conceptual map, or suggest a gap. We will
+ask how those outputs were made, whose knowledge they privilege, what
+they miss, and what responsibility remains with the researcher. The aim
+is to develop better scholarly judgment while learning to use these
+tools.</p>
+<p><strong>[TO CONFIRM]</strong> Insert the official catalog description
+and any formal prerequisites. The description above is the working
+course description.</p>
+<h2 id="course-outline">Course outline</h2>
+<p>The course develops a cumulative literature review through seven
+connected activities:</p>
+<ol type="1">
+<li><strong>Question</strong> — define a significant, feasible research
+topic and provisional question.</li>
+<li><strong>Design</strong> — set the review’s purpose, scope, search
+approach, and audience.</li>
+<li><strong>Map</strong> — identify relationships, disagreements, and
+gaps in the literature.</li>
+<li><strong>Interpret and write</strong> — read difficult texts and
+compare scientific and humanities writing conventions.</li>
+<li><strong>Structure</strong> — organize a synthesis and guide the
+reader with framing and signposting.</li>
+<li><strong>Reflect</strong> — examine positionality, knowledge
+communities, and AI’s role in the work.</li>
+<li><strong>Synthesize</strong> — revise a complete review and defend
+its contribution.</li>
+</ol>
+<p>You may work on a dissertation, journal article, or another research
+project. An exploratory or “mock” review is also welcome. The task is to
+learn how to build and revise a defensible account of a field; the final
+document may serve another purpose, but it does not have to.</p>
+<p>The review is provisional throughout. A map can change the question.
+A difficult text can change the categories. Writing can reveal that the
+apparent gap was the wrong one. Keep those changes visible.</p>
+<h2 id="what-i-expect-from-you">What I expect from you</h2>
+<p>For planning, allow approximately <strong>20 hours per active
+teaching week</strong>, including the seminar. This is a proposed
+workload for the four-credit compressed format; <strong>[TO
+CONFIRM]</strong> the final credit and workload expectations.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Activity</th>
+<th>Planning allowance per active week</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Seminar and collaborative workshop</td>
+<td>About 3 hours</td>
+</tr>
+<tr>
+<td>Reading and annotation</td>
+<td>About 5 hours</td>
+</tr>
+<tr>
+<td>Literature searching, source verification, and mapping</td>
+<td>About 4 hours</td>
+</tr>
+<tr>
+<td>Writing and revising the cumulative review</td>
+<td>About 6 hours</td>
+</tr>
+<tr>
+<td>AI experiments and a brief process record</td>
+<td>About 2 hours</td>
+</tr>
+</tbody>
+</table>
+<p>Come with material to work on: an article, an uncertain
+interpretation, a draft section, or a problem in your search. Much of
+the seminar will be practical, but the work depends on what you have
+read and prepared outside class.</p>
+<p>Keep a research record containing your question, search decisions,
+source notes, maps, drafts, feedback, and AI-use notes. The record
+should let you explain why the review changed. We will not require a
+particular commercial tool; <strong>[TO CONFIRM]</strong> the preferred
+document and reference-management arrangements.</p>
+<p>Fall break has no scheduled seminar or submission in the proposed
+plan. Start the Week 6 reflection before the break if useful, but plan
+to complete it after teaching resumes.</p>
+<h2 id="what-you-should-expect-from-me">What you should expect from
+me</h2>
+<ul>
+<li>I will make time to discuss your project and help you identify a
+workable scope.</li>
+<li>I will give feedback on the development of your thinking, your use
+of evidence, and your revisions.</li>
+<li>I will distinguish a defensible scholarly disagreement from an
+unsupported claim.</li>
+<li>I will clarify assignments when a difficulty affects the class as a
+whole.</li>
+<li>I will treat patterns of difficulty as information about the
+teaching as well as the work.</li>
+</ul>
+<p><strong>Proposed feedback arrangements:</strong> email responses
+within two working days and feedback on staged submissions within one
+week. <strong>[TO CONFIRM]</strong> Response times and feedback
+capacity. Plan substantive instructor feedback after the conceptual map
+and after the structured draft; use peer workshops to support revision
+between these points.</p>
+<h2 id="course-objectives">Course objectives</h2>
+<p>By the end of the course, you should be able to:</p>
+<ol type="1">
+<li>Develop and revise a significant, feasible research question through
+engagement with literature.</li>
+<li>Design a transparent approach to finding, selecting, and organizing
+sources.</li>
+<li>Use close reading and mapping to analyze relationships,
+disagreements, omissions, and possible contributions.</li>
+<li>Write a coherent synthesis appropriate to a scholarly audience, with
+effective structure, citation, and signposting.</li>
+<li>Explain how positionality and knowledge communities shape research
+questions and interpretation.</li>
+<li>Evaluate AI-assisted research outputs, verify their sources, and
+account for how AI influenced the work.</li>
+</ol>
+<h2 id="texts-readings-and-tools">Texts readings and tools</h2>
+<p>No book purchase is proposed. Required readings and access
+information will be posted on Canvas. <strong>[TO CONFIRM]</strong> The
+final reading list, editions, excerpts, and student access.</p>
+<p>Starting points carried over from 590 include Weber’s <em>Science as
+a Vocation</em>, guidance on developing research questions and
+literature reviews, Spivak’s <em>Can the Subaltern Speak?</em>, and
+material on the sociology of knowledge, positionality, and AI in
+scholarship. These are candidates for the revised reading sequence, not
+a finalized reading list.</p>
+<p><strong>Canvas</strong> carries announcements, materials, assignment
+instructions, submissions, grades, and private instructor comments. A
+running document may be used for drafting and collaboration. <strong>[TO
+CONFIRM]</strong> Create a new class workspace; do not reuse last year’s
+shared document.</p>
+<p>Use a reference manager or another reliable way to retain full
+citations and notes. AI-supported exercises are part of the proposed
+seminar design. <strong>[TO CONFIRM]</strong> Available tools and
+equivalent alternatives where access, cost, privacy, or accessibility
+would create a barrier. No paid AI subscription is required by this
+draft.</p>
+<p>Do not put confidential, identifiable, or restricted material into an
+AI service. Use public or appropriately permitted materials for
+experiments and check the relevant institutional guidance before using
+research data.</p>
+<h2 id="evaluation">Evaluation</h2>
+<p>The starting assessment structure retains the six staged tasks and
+final review from the previous 590 course.</p>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 40%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr>
+<th>Component</th>
+<th style="text-align: right;">Weight</th>
+<th>Proposed due date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 Research topic and question</td>
+<td style="text-align: right;">10%</td>
+<td>Friday 23 October</td>
+</tr>
+<tr>
+<td>2 Review design method and scope</td>
+<td style="text-align: right;">10%</td>
+<td>Friday 30 October</td>
+</tr>
+<tr>
+<td>3 Conceptual map of the literature</td>
+<td style="text-align: right;">10%</td>
+<td>Friday 6 November</td>
+</tr>
+<tr>
+<td>4 Literature review writing sample</td>
+<td style="text-align: right;">10%</td>
+<td>Friday 13 November</td>
+</tr>
+<tr>
+<td>5 Structured draft and signposting</td>
+<td style="text-align: right;">10%</td>
+<td>Friday 20 November</td>
+</tr>
+<tr>
+<td>6 AI-use statement and reflexive commentary</td>
+<td style="text-align: right;">10%</td>
+<td>Friday 4 December</td>
+</tr>
+<tr>
+<td>7 Final literature review</td>
+<td style="text-align: right;">40%</td>
+<td>Tuesday 15 December</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td style="text-align: right;"><strong>100%</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>All proposed submissions are due at <strong>11:59 PM Central
+Time</strong> through Canvas. The final literature review deadline is
+confirmed as Tuesday 15 December 2026 at 11:59 PM Central. Other dates
+remain planning recommendations.</p>
+<h3 id="baseline-reflection">Baseline reflection</h3>
+<p>Before or during the first seminar, write a short, ungraded account
+of your project:</p>
+<ul>
+<li>What question do you want to investigate, and why does it
+matter?</li>
+<li>What do you already know about the relevant literature?</li>
+<li>What would change your current understanding?</li>
+<li>How have you used AI in research, and what are you uncertain
+about?</li>
+</ul>
+<p>This reflection establishes a starting point for comparison with your
+final work.</p>
+<h3 id="weekly-research-and-revision-cycle">Weekly research and revision
+cycle</h3>
+<p>For each staged task:</p>
+<ol type="1">
+<li>Read and annotate relevant course material and literature in your
+field.</li>
+<li>Try the week’s method on your own project.</li>
+<li>Check sources and claims, including any suggested by AI.</li>
+<li>Bring a question, draft, or map to the workshop.</li>
+<li>Revise the relevant part of your review.</li>
+<li>Submit the task with a brief account of what changed and how AI
+contributed, if used.</li>
+</ol>
+<p>Self-reflection helps explain your decisions. It does not
+automatically determine your grade. The 479 self-grading scheme and
+separately weighted peer-commentary components have been replaced by
+590’s staged assignments.</p>
+<h3 id="research-topic-and-question">1 Research topic and question</h3>
+<p>State a provisional question and explain its significance,
+feasibility, and relationship to an initial set of sources. Identify
+what you would need to read or discover to refine it. <strong>[TO
+CONFIRM]</strong> Length and minimum source expectations.</p>
+<h3 id="review-design-method-and-scope">2 Review design method and
+scope</h3>
+<p>Explain the review’s purpose, audience, boundaries, search approach,
+selection criteria, and proposed organization. Distinguish an
+exploratory course review from any claim to have completed a systematic
+review. Include enough detail for a reader to understand how the
+collection was assembled.</p>
+<h3 id="conceptual-map-of-the-literature">3 Conceptual map of the
+literature</h3>
+<p>Represent the main concepts, debates, approaches, or historical
+developments in your field. Link important relationships to sources and
+identify uncertainties or omissions. Accompany the map with a short
+explanation of how it affects your question and search.</p>
+<h3 id="literature-review-writing-sample">4 Literature review writing
+sample</h3>
+<p>Develop a section that synthesizes literature rather than describing
+articles one at a time. Compare scientific and humanities modes of
+framing or interpretation; explain which choices serve your question and
+audience. <strong>[TO CONFIRM]</strong> Whether students submit two
+short versions or one version with commentary.</p>
+<h3 id="structured-draft-and-signposting">5 Structured draft and
+signposting</h3>
+<p>Submit an outline and a developed draft section showing the review’s
+organizing argument. Use headings, transitions, and metadiscourse to
+make relationships explicit. Explain one structural revision and how it
+improves the reader’s understanding.</p>
+<h3 id="ai-use-and-reflexive-commentary">6 AI use and reflexive
+commentary</h3>
+<p>Explain where AI influenced searching, reading, mapping, or writing;
+what you checked; what you rejected; and what responsibility you
+retained. Connect your position as a researcher to a specific choice in
+the review. Include selected examples where useful, without requiring
+publication of private conversations or irrelevant personal
+information.</p>
+<h3 id="final-literature-review">7 Final literature review</h3>
+<p>Submit a coherent review that develops a defensible contribution from
+the staged work. It should establish a question and scope, synthesize
+relevant literature, explain relationships and disagreements, and
+identify a plausible gap or a different way to frame the problem.</p>
+<p>The final literature review is 1,500–2,000 words. Include an AI-use
+statement and a short revision memo explaining how the review changed in
+response to evidence and feedback. <strong>[TO CONFIRM]</strong>
+Citation expectations, submission format, memo length, and the detailed
+rubric.</p>
+<p>The final seminar is a workshop for this submission. Aim to arrive
+with a complete working draft. The confirmed 15 December deadline allows
+revision after that workshop.</p>
+<h3 id="assessment-criteria">Assessment criteria</h3>
+<p>The common criteria are:</p>
+<ul>
+<li>significance and feasibility of the question;</li>
+<li>relevance and traceability of sources;</li>
+<li>quality of interpretation and synthesis;</li>
+<li>clarity of organization, framing, and scholarly voice;</li>
+<li>reflexivity and responsible, transparent AI use;</li>
+<li>responsiveness to evidence and feedback.</li>
+</ul>
+<p>The staged tasks emphasize development and reasoned decisions. The
+final review emphasizes how those decisions work together in the
+completed argument. <strong>[TO CONFIRM]</strong> Task-specific
+descriptors and allocation of marks.</p>
+<h3 id="peer-commentary">Peer commentary</h3>
+<p>Peer workshops are proposed in Sessions 4 and 6, with instructor
+feedback on the map and structured draft. Peer commentary supports
+revision and carries no separate percentage in this starting assessment
+structure.</p>
+<p>Share only the material needed for the exercise. Use named recipients
+and institution-supported arrangements. Students may use an anonymized
+extract or an instructor-mediated alternative. Keep grades and private
+instructor comments in Canvas. <strong>[TO CONFIRM]</strong> Pairing,
+access arrangements, and an accessible alternative before the first
+workshop.</p>
+<h3 id="use-of-ai-in-this-course">Use of AI in this course</h3>
+<p>AI is an object of study and a possible research tool. Use it in ways
+that make your own judgment more visible.</p>
+<ul>
+<li>Explore interpretations, test arguments, compare organizational
+choices, and generate search leads.</li>
+<li>Verify citations against the actual source. Read enough to establish
+what the source supports.</li>
+<li>Describe consequential AI use in each submission; retain selected
+examples of useful outputs and errors.</li>
+<li>Distinguish the author’s claim, your interpretation, and an
+AI-generated suggestion.</li>
+<li>Do not present fabricated references, unverified quotations, or
+generated analysis you cannot explain as established scholarship.</li>
+</ul>
+<p>A polished output is not sufficient evidence of learning. Be prepared
+to explain why a source belongs in the review, how a claim follows from
+it, and what you changed. <strong>[TO CONFIRM]</strong> Final course AI
+policy and current University academic-integrity wording.</p>
+<h2 id="weekly-schedule">Weekly schedule</h2>
+<p>Term B is designated as eight weeks. Its instruction period spans
+eight calendar-week blocks, including fall break and a partial final
+week. That leaves seven teaching-week blocks.</p>
+<p>Seminars meet online on <strong>Mondays, 5:00–7:50 PM Central Time
+(America/Chicago)</strong>: <strong>19 October, 26 October, 2 November,
+9 November, 16 November, 30 November, and 7 December 2026</strong>.
+There is no seminar on 23 November during fall break.</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Session</th>
+<th>Teaching week</th>
+<th>Focus</th>
+<th>Reading and preparation</th>
+<th>Milestone</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>19–23 October</td>
+<td>Research questions and academic literature</td>
+<td>Baseline reflection; research-question guide; Weber candidate
+excerpt</td>
+<td>Topic and question, 23 October</td>
+</tr>
+<tr>
+<td>2</td>
+<td>26–30 October</td>
+<td>Article anatomy review design and mapping a field</td>
+<td>Compare articles from your field; review-method guidance</td>
+<td>Review plan, 30 October</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2–6 November</td>
+<td>AI-assisted close and distant reading</td>
+<td>Annotate a difficult passage; prepare a source-backed conceptual
+map</td>
+<td>Conceptual map, 6 November</td>
+</tr>
+<tr>
+<td>4</td>
+<td>9–13 November</td>
+<td>Difficult texts audiences and scholarly voice</td>
+<td>Spivak candidate excerpt; bring a writing sample</td>
+<td>Writing sample, 13 November; peer workshop</td>
+</tr>
+<tr>
+<td>5</td>
+<td>16–20 November</td>
+<td>Structure signposting and scholarly communities</td>
+<td>Bring an outline and draft; sociology-of-knowledge reading to be
+selected</td>
+<td>Structured draft, 20 November</td>
+</tr>
+<tr>
+<td>—</td>
+<td>21–29 November</td>
+<td>Fall break</td>
+<td>No new required submission</td>
+<td>No seminar or deadline</td>
+</tr>
+<tr>
+<td>6</td>
+<td>30 November–4 December</td>
+<td>Reflexivity positionality and AI in scholarship</td>
+<td>Revisit the draft and AI-use record; reflection reading to be
+selected</td>
+<td>AI and reflexivity statement, 4 December; peer workshop</td>
+</tr>
+<tr>
+<td>7</td>
+<td>7–9 December</td>
+<td>The future of scholarship and final review workshop</td>
+<td>Bring a complete working draft; selected case on automation</td>
+<td>Final review workshop</td>
+</tr>
+<tr>
+<td>—</td>
+<td>15 December</td>
+<td>Final submission</td>
+<td>Revision memo and AI-use statement accompany the review</td>
+<td>Final literature review, 40%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Proposed seminar format:</strong> three hours, with
+ten-minute breaks between the hours. Start with discussion of current
+research problems and previous work; combine short lectures and close
+reading with a workshop on the week’s task. The balance can vary with
+the project stage.</p>
+<p>Session 7 prioritizes the final review. Future-facing AI
+demonstrations should be selected to clarify a scholarly problem,
+leaving enough time for feedback and revision.</p>
+<h2 id="grading-scale">Grading scale</h2>
+<p>The scale below is retained from the 479 syllabus as a draft starting
+point. <strong>[TO CONFIRM]</strong> Final course and program grading
+arrangements.</p>
+<table>
+<thead>
+<tr>
+<th>Grade</th>
+<th>Percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A+</td>
+<td>96.0–100</td>
+</tr>
+<tr>
+<td>A</td>
+<td>93.0–95.9</td>
+</tr>
+<tr>
+<td>A−</td>
+<td>90.0–92.9</td>
+</tr>
+<tr>
+<td>B+</td>
+<td>86.0–89.9</td>
+</tr>
+<tr>
+<td>B</td>
+<td>83.0–85.9</td>
+</tr>
+<tr>
+<td>B−</td>
+<td>80.0–82.9</td>
+</tr>
+<tr>
+<td>C+</td>
+<td>76.0–79.9</td>
+</tr>
+<tr>
+<td>C</td>
+<td>73.0–75.9</td>
+</tr>
+<tr>
+<td>C−</td>
+<td>70.0–72.9</td>
+</tr>
+<tr>
+<td>D+</td>
+<td>66.0–69.9</td>
+</tr>
+<tr>
+<td>D</td>
+<td>63.0–65.9</td>
+</tr>
+<tr>
+<td>D−</td>
+<td>60.0–62.9</td>
+</tr>
+<tr>
+<td>F</td>
+<td>Below 60.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>[TO CONFIRM]</strong> Rounding rule, treatment of fractional
+boundary values, and whether this scale is appropriate for the enrolled
+sections.</p>
+<h2 id="policies">Policies</h2>
+<p><strong>Attendance.</strong> Participate in the scheduled seminars
+and collaborative activities. If you must miss a session, contact me to
+arrange an equivalent way to engage with the work. <strong>[TO
+CONFIRM]</strong> Attendance and participation requirements.</p>
+<p><strong>Late work.</strong> Contact me early if a deadline creates a
+problem. Staged tasks support later work, so an extension should include
+a realistic plan for catching up. <strong>[TO CONFIRM]</strong> Any
+penalties, extension procedure, and the final submission cutoff. The
+Registrar lists the faculty grade-reporting deadline as <strong>22
+December 2026 at 2:00 PM</strong>; this is an instructor deadline, not a
+student submission date.</p>
+<p><strong>Accessibility.</strong> Contact the instructor about access
+needs and consult <a
+href="https://www.disability.illinois.edu/">Disability Resources and
+Educational Services</a>. <strong>[TO CONFIRM]</strong> Insert the
+current approved accommodations statement and check that readings,
+documents, maps, and activities have accessible alternatives.</p>
+<p><strong>Recording and sharing.</strong> <strong>[TO CONFIRM]</strong>
+Whether seminars will be recorded, the consent and access arrangements,
+and retention. Do not assume that a class recording or peer document may
+be shared outside the course.</p>
+<p><strong>Academic integrity.</strong> The <a
+href="https://studentcode.illinois.edu/article1/part4/1-401/">University
+Student Code academic-integrity provisions</a> apply alongside the
+course’s AI-use instructions. <strong>[TO CONFIRM]</strong> Current
+required institutional wording and procedures.</p>
+<p><strong>Student support.</strong> Support information is available
+through the <a href="https://counselingcenter.illinois.edu/">Counseling
+Center</a>. <strong>[TO CONFIRM]</strong> Add current College and
+University syllabus statements and links.</p>
+<h2 id="instructor-completion-checklist">Instructor completion
+checklist</h2>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="" />EPOL 590, Section AIL,
+CRN 73886, 4 credit hours; online Mondays 5:00–7:50 PM
+Central.</label></li>
+<li><label><input type="checkbox" />Final literature review due Tuesday
+15 December 2026 at 11:59 PM Central.</label></li>
+<li><label><input type="checkbox" />Set lengths, source expectations,
+submission formats, and task rubrics.</label></li>
+<li><label><input type="checkbox" />Choose readings and update AI
+examples before each seminar.</label></li>
+<li><label><input type="checkbox" />Confirm the feedback schedule and
+peer-work alternatives.</label></li>
+<li><label><input type="checkbox" />Create fresh collaborative documents
+and check student access.</label></li>
+<li><label><input type="checkbox" />Complete the grading, AI,
+accessibility, recording, and support policies.</label></li>
+<li><label><input type="checkbox" />Create Canvas assignments with
+weights and dates totaling 100%.</label></li>
+</ul>
+<h2 id="adaptation-and-calendar-sources">Adaptation and calendar
+sources</h2>
+<p>Structure adapted from <a
+href="https://github.com/liammagee/machinespirits-content-philosophy/blob/6fb85c6fe30d61fa54d7b5b9c5ffb3f7952fa646/courses/479-fall-2026/syllabus.md">EPOL
+479 Fall 2026 syllabus</a>. Course content and starting weights come
+from the <a
+href="https://github.com/liammagee/machinespirits-content-philosophy/tree/6fb85c6fe30d61fa54d7b5b9c5ffb3f7952fa646/courses/590">590
+materials</a>.</p>
+<p>Official calendar anchors: <a
+href="https://www.registrar.illinois.edu/fall-2026-academic-calendar/">Illinois
+Registrar Fall 2026 academic calendar</a>: Term B begins 19 October;
+fall break is 21–29 November; instruction ends 9 December; reading day
+is 10 December; final examinations run on weekdays 11–17 December;
+faculty grades are due 22 December at 2:00 PM. The final review deadline
+is confirmed as 15 December 2026 at 11:59 PM Central. Other milestone
+dates remain proposed.</p>
+</body>
+</html>

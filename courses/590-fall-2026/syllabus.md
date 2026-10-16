@@ -1,5 +1,5 @@
 ---
-title: "ERAM 590 Syllabus Draft — AI and Academic Literature"
+title: "EPOL 590 Syllabus Draft — AI and Academic Literature"
 course: "590-fall-2026"
 type: "syllabus"
 instructor: "Liam Magee"
@@ -12,25 +12,25 @@ status: "draft"
 
 # AI and Academic Literature
 
-## ERAM 590 · Fall 2026 Term B · 4 credit hours
+## EPOL 590 · Fall 2026 Term B · 4 credit hours
 
 **Developing Literature Reviews in the Age of AI**
 
-> **Instructor working draft.** Proposed course arrangements and assignment dates are ready for revision. Items marked **[TO CONFIRM]** need completion before release to students.
+> **Instructor working draft.** The final literature review is due Tuesday 15 December 2026 at 11:59 PM Central. Other course arrangements and assignment dates remain ready for revision. Items marked **[TO CONFIRM]** need completion before release to students.
 
 | Course detail | Arrangement |
 |---|---|
-| Meeting time | **[TO CONFIRM]** Day and time, Central Time |
-| Format | Proposed: live online seminar with asynchronous reading, research, and writing |
-| Location | **[TO CONFIRM]** Zoom link or room; access information on Canvas |
+| Meeting time | Mondays, 5:00–7:50 PM Central Time (America/Chicago) |
+| Format | Live online seminar with asynchronous reading, research, and writing |
+| Location | Online via Zoom. **[TO CONFIRM]** Meeting link; access information on Canvas |
 | Term | Term B instruction: 19 October–9 December 2026; fall break: 21–29 November |
-| Sections and CRNs | **[TO CONFIRM]** |
-| Course site | Canvas — **[TO CONFIRM]** insert course URL |
-| Final review | Proposed: Tuesday 15 December 2026, 11:59 PM Central |
+| Section and CRN | Section AIL · CRN 73886 · 4 credit hours |
+| Course site | [Canvas course](https://canvas.illinois.edu/courses/75598) |
+| Final review | Tuesday 15 December 2026, 11:59 PM Central |
 
 **Instructor:** Professor Liam Magee, Department of Education Policy, Organization and Leadership, College of Education  
 **Email:** <lmagee@illinois.edu> — the best way to reach me  
-**Office hours:** by appointment; email me to arrange a time. **[TO CONFIRM]** Any regular office-hour slot.
+**Office hours:** meetings by appointment; email <lmagee@illinois.edu> to arrange a time.
 
 ## Course description
 
@@ -38,7 +38,7 @@ How do we conduct scholarly research in an era of generative AI? This graduate c
 
 The practical work and the critical questions belong together. AI can produce a summary, propose a conceptual map, or suggest a gap. We will ask how those outputs were made, whose knowledge they privilege, what they miss, and what responsibility remains with the researcher. The aim is to develop better scholarly judgment while learning to use these tools.
 
-**[TO CONFIRM]** Insert the official catalog description, course designation, credit hours, and any formal prerequisites. The description above is the working course description.
+**[TO CONFIRM]** Insert the official catalog description and any formal prerequisites. The description above is the working course description.
 
 ## Course outline
 
@@ -122,7 +122,7 @@ The starting assessment structure retains the six staged tasks and final review 
 | 7 Final literature review | 40% | Tuesday 15 December |
 | **Total** | **100%** | |
 
-All proposed submissions are due at **11:59 PM Central Time** through Canvas. These dates are a planning recommendation, not an assigned examination schedule. **[TO CONFIRM]** Final submission arrangements against the section's schedule and applicable University requirements.
+All proposed submissions are due at **11:59 PM Central Time** through Canvas. The final literature review deadline is confirmed as Tuesday 15 December 2026 at 11:59 PM Central. Other dates remain planning recommendations.
 
 ### Baseline reflection
 
@@ -176,9 +176,9 @@ Explain where AI influenced searching, reading, mapping, or writing; what you ch
 
 Submit a coherent review that develops a defensible contribution from the staged work. It should establish a question and scope, synthesize relevant literature, explain relationships and disagreements, and identify a plausible gap or a different way to frame the problem.
 
-Include an AI-use statement and a short revision memo explaining how the review changed in response to evidence and feedback. **[TO CONFIRM]** Word range, citation expectations, submission format, memo length, and the detailed rubric.
+The final literature review is 1,500–2,000 words. Include an AI-use statement and a short revision memo explaining how the review changed in response to evidence and feedback. **[TO CONFIRM]** Citation expectations, submission format, memo length, and the detailed rubric.
 
-The final seminar is a workshop for this submission. Aim to arrive with a complete working draft. The proposed 15 December deadline allows revision after that workshop.
+The final seminar is a workshop for this submission. Aim to arrive with a complete working draft. The confirmed 15 December deadline allows revision after that workshop.
 
 ### Assessment criteria
 
@@ -215,7 +215,7 @@ A polished output is not sufficient evidence of learning. Be prepared to explain
 
 Term B is designated as eight weeks. Its instruction period spans eight calendar-week blocks, including fall break and a partial final week. That leaves seven teaching-week blocks.
 
-The date ranges below do not assume a meeting day. If the seminar meets on Mondays, the candidate dates are **19 October, 26 October, 2 November, 9 November, 16 November, 30 November, and 7 December**. **[TO CONFIRM]** Actual section meeting day and time.
+Seminars meet online on **Mondays, 5:00–7:50 PM Central Time (America/Chicago)**: **19 October, 26 October, 2 November, 9 November, 16 November, 30 November, and 7 December 2026**. There is no seminar on 23 November during fall break.
 
 | Session | Teaching week | Focus | Reading and preparation | Milestone |
 |---|---|---|---|---|
@@ -227,7 +227,7 @@ The date ranges below do not assume a meeting day. If the seminar meets on Monda
 | — | 21–29 November | Fall break | No new required submission | No seminar or deadline |
 | 6 | 30 November–4 December | Reflexivity positionality and AI in scholarship | Revisit the draft and AI-use record; reflection reading to be selected | AI and reflexivity statement, 4 December; peer workshop |
 | 7 | 7–9 December | The future of scholarship and final review workshop | Bring a complete working draft; selected case on automation | Final review workshop |
-| — | 15 December | Proposed final submission | Revision memo and AI-use statement accompany the review | Final literature review, 40% |
+| — | 15 December | Final submission | Revision memo and AI-use statement accompany the review | Final literature review, 40% |
 
 **Proposed seminar format:** three hours, with ten-minute breaks between the hours. Start with discussion of current research problems and previous work; combine short lectures and close reading with a workshop on the week's task. The balance can vary with the project stage.
 
@@ -271,8 +271,8 @@ The scale below is retained from the 479 syllabus as a draft starting point. **[
 
 ## Instructor completion checklist
 
-- [ ] Confirm course code, credit hours, sections, meeting pattern, and modality.
-- [ ] Confirm the proposed 15 December final deadline against section arrangements.
+- [x] EPOL 590, Section AIL, CRN 73886, 4 credit hours; online Mondays 5:00–7:50 PM Central.
+- [ ] Final literature review due Tuesday 15 December 2026 at 11:59 PM Central.
 - [ ] Set lengths, source expectations, submission formats, and task rubrics.
 - [ ] Choose readings and update AI examples before each seminar.
 - [ ] Confirm the feedback schedule and peer-work alternatives.
@@ -284,4 +284,4 @@ The scale below is retained from the 479 syllabus as a draft starting point. **[
 
 Structure adapted from [EPOL 479 Fall 2026 syllabus](https://github.com/liammagee/machinespirits-content-philosophy/blob/6fb85c6fe30d61fa54d7b5b9c5ffb3f7952fa646/courses/479-fall-2026/syllabus.md). Course content and starting weights come from the [590 materials](https://github.com/liammagee/machinespirits-content-philosophy/tree/6fb85c6fe30d61fa54d7b5b9c5ffb3f7952fa646/courses/590).
 
-Official calendar anchors: [Illinois Registrar Fall 2026 academic calendar](https://www.registrar.illinois.edu/fall-2026-academic-calendar/): Term B begins 19 October; fall break is 21–29 November; instruction ends 9 December; reading day is 10 December; final examinations run on weekdays 11–17 December; faculty grades are due 22 December at 2:00 PM. Milestone dates and the 15 December final review are proposed course choices.
+Official calendar anchors: [Illinois Registrar Fall 2026 academic calendar](https://www.registrar.illinois.edu/fall-2026-academic-calendar/): Term B begins 19 October; fall break is 21–29 November; instruction ends 9 December; reading day is 10 December; final examinations run on weekdays 11–17 December; faculty grades are due 22 December at 2:00 PM. The final review deadline is confirmed as 15 December 2026 at 11:59 PM Central. Other milestone dates remain proposed.
