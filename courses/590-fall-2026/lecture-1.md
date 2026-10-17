@@ -32,13 +32,19 @@ All required material (video lectures, readings etc.) will be provided to studen
 
 ### What we'll cover...
 
-- Week 1 - Course Overview / What's a Good Research Question? / AI tools for literature
-- Week 2 - Where's the Gap? Mapping a Field  / Anatomy of a Journal Article
-- Week 3 - Does Artificial Intelligence mean  Artificial Knowledge? How AI is Impacting Academia / Vibe Scholarship (Is It as Bad as It Sounds?)
-- Week 4 - Academic Audiences and Techniques of Persuasion / Finding Your Scholarly Voice: Peers / Audience / Venue / Field 
-- Week 5 - "What Do I Know?" Towards A Sociology of Knowledge / Designing a Literature Review
-- Week 6 - The Reflexive Researcher
-- Week 7 - The Automatic Academy? The Future of Scholarship
+Seminars meet online on Mondays, 5:00–7:50 PM Central. Each task is due the Friday after its seminar at 11:59 PM Central, on Canvas.
+
+| Session | Seminar | Focus | Task due |
+| --- | --- | --- | --- |
+| 1 | October 19 | Research questions and academic literature | Task 1, October 23 |
+| 2 | October 26 | Article anatomy, review design and mapping a field | Task 2, October 30 |
+| 3 | November 2 | AI-assisted close and distant reading | Task 3, November 6 |
+| 4 | November 9 | Difficult texts, audiences and scholarly voice | Task 4, November 13 |
+| 5 | November 16 | Structure, signposting and scholarly communities | Task 5, November 20 |
+| — | November 23 | Fall break: no seminar, nothing due | — |
+| 6 | November 30 | Reflexivity, positionality and AI in scholarship | Task 6, December 4 |
+| 7 | December 7 | The future of scholarship and final review workshop | — |
+| Final | — | Final literature review | Task 7, Tuesday December 15 |
 
 ---
 
@@ -53,41 +59,26 @@ That all said, the purpose of the course is to support a dissertation / journal 
 
 ### Assessments: Building a 'Mock' (or Real) Literature Review
 
- - Week 1: First Draft of Research Topic / Research Question (10%)
- - Week 2: Design, Method and Structure of the Literature Review  (10%)
- - Week 3: Concept Map of the Literature (10%)
- - Week 4: Literature Review Sample: In the Scientific Mode / In the Humanities Mode (10%)
- - Week 5: Literature Review: Signposting (10%) 
- - Week 6: Statement about the use of AI in your Literature Review / Reflection about the role of AI in academia (10%)
- - Week 7: Final Literature Review (40%) - **Due Tuesday December 15, 2026, 11:59 PM Central**
+ 1. Research topic and question (10%) — Friday, October 23
+ 2. Review design method and scope (10%) — Friday, October 30
+ 3. Conceptual map of the literature (10%) — Friday, November 6
+ 4. Literature review writing sample (10%) — Friday, November 13
+ 5. Structured draft and signposting (10%) — Friday, November 20
+ 6. AI-use statement and reflexive commentary (10%) — Friday, December 4
+ 7. Final literature review (40%) — **Tuesday, December 15, 2026, 11:59 PM Central**; 1,500–2,000 words, with an AI-use statement and a short revision memo
 
-
-
----
-
-
-| **Week** | **Theory** | **Practice** | **Assessment** |
-| --- | --- | --- | --- |
-| **1** | Course Overview / Anatomy of a Journal Article / What Makes a Good Research Question?  | AI Tools for Literature | First Draft of Research Topic / Research Question |
-| **2** | Academic Audiences and Techniques of Persuasion | Where's the Gap? Mapping a Field | Design, Method and Structure of the Literature Review |
-| **3** | Does Artificial Intelligence Mean Artificial Knowledge? How AI is Impacting Academia  | Vibe Scholarship (Is It as Bad as It Sounds?) | Concept Map of the Literature |
-| **4** | Finding Your Scholarly Voice: Peers / Audience / Venue / Field | Drafting a section of your review in a *scientific* and *humanities* mode | Literature Review Sample: In the Scientific Mode |
-| **5** | "What Do I Know?" Towards A Sociology of Knowledge | Framing Language: "Carry" Your Reader | Frame up your Literature Review |
-| **6** | The Reflexive Researcher and Interpreting Scholarship | Reflecting on your positionality vis-a-vis interpretation; drafting a statement about AI’s epistemic role | Statement on the Use of AI in Your Literature Review / Reflection on the Role of AI in Academia |
-| **7** | The Automatic Academy? The Future of Scholarship | Compiling a complete literature review | Final Literature Review |
+All tasks are submitted on Canvas by 11:59 PM Central. Before or during the first seminar, also write the short, ungraded baseline reflection described in the syllabus.
 
 ---
 
-### Rubric / Criteria
+### Assessment criteria
 
-
- - **Develop** novel, significant and feasible research question
- - **Compile** relevant map of the field relating to the research question
- - **Choose** and **apply** appropriate citation practices (science / humanities / mix) for question & field
- - **Use** framing / signposting / metadiscursive language
- - **Show** reflexivity as a scholar
- - **Acknowledge** and **demonstrate** appropriate use of AI
- - Use all of the above to **highlight** a plausible gap in the literature 
+ - Significance and feasibility of the question
+ - Relevance and traceability of sources
+ - Quality of interpretation and synthesis
+ - Clarity of organization, framing and scholarly voice
+ - Reflexivity and responsible, transparent AI use
+ - Responsiveness to evidence and feedback
 
 ---
 
@@ -196,16 +187,6 @@ That all said, the purpose of the course is to support a dissertation / journal 
  - Is it likely to remain novel throughout my research? Think of AI: "No one has studied the impact of Gemini 3 / ChatGPT 6 on student learning" (because these systems aren't released yet - but once they are, the studies will follow).
 
 
-
----
-
-### What Makes a Good Research Question? Consequences
-
-
- - What happens when I know the results 
- - Is it *doable* and *feasible*? Or would I need 100 years / 1 billion dollars / a vast research team to do it?
- - Will I be able to answer this question with *methods* that I know and *data* that I can access?
- 
 
 ---
 
