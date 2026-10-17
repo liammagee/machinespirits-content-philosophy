@@ -40,7 +40,7 @@
  - Navel gazing? Perhaps. But relevant for all academia because it helps us calibrate our writing (tone / citations )
  - We've already touched on this
    - Two Cultures (Snow (1959) – Humanities and the Sciences)
- - But also: what are **financial** / **political** drivers of research? What are the conceptual or ideological **frames**? What are the standards for **evidence** or **truth**? Compare Spivak (1988) to Zhang et al. (2025)
+ - But also: what are **financial** / **political** drivers of research? What are the conceptual or ideological **frames**? What are the standards for **evidence** or **truth**? Compare Spivak (1988) to Liu et al. (2025)
  
 
 ---

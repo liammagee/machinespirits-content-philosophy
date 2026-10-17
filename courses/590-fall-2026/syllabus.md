@@ -97,9 +97,45 @@ By the end of the course, you should be able to:
 
 ## Texts readings and tools
 
-No book purchase is proposed. Required readings and access information will be posted on Canvas. **[TO CONFIRM]** The final reading list, editions, excerpts, and student access.
+No book purchase is required. Readings will be posted on Canvas as library links or course copies, under each session's module. Read the required readings before the seminar; the optional readings are there for students whose projects call for them. **[TO CONFIRM]** Editions, excerpts, page ranges, and student access.
 
-Starting points carried over from 590 include Weber's *Science as a Vocation*, guidance on developing research questions and literature reviews, Spivak's *Can the Subaltern Speak?*, and material on the sociology of knowledge, positionality, and AI in scholarship. These are candidates for the revised reading sequence, not a finalized reading list.
+### Session 1 · Research questions and academic literature
+
+- Required: Weber, M. (1946). Science as a vocation. In H. H. Gerth & C. W. Mills (Eds. & Trans.), *From Max Weber: Essays in sociology* (pp. 129–156). Oxford University Press.
+- Required: University of Minnesota Libraries. (n.d.). [*Characteristics of a good research question*](https://libguides.umn.edu/c.php?g=1337354&p=9854773). Literature Searching research guide.
+
+### Session 2 · Article anatomy, review design and mapping a field
+
+- Required: Grant, M. J., & Booth, A. (2009). A typology of reviews: An analysis of 14 review types and associated methodologies. *Health Information & Libraries Journal, 26*(2), 91–108. [doi:10.1111/j.1471-1842.2009.00848.x](https://doi.org/10.1111/j.1471-1842.2009.00848.x)
+- Required: Purdue Online Writing Lab. (n.d.). [*Writing a literature review*](https://owl.purdue.edu/owl/research_and_citation/conducting_research/writing_a_literature_review.html). Purdue University.
+- In class: Keerthiraj, & Misra, A. (2025). Who owns the future? AI, digital sovereignty, and the politics of knowledge. *AI & Society*. [doi:10.1007/s00146-025-02641-y](https://doi.org/10.1007/s00146-025-02641-y)
+- In class: Liu, J., Zhang, Y., Li, W., Wang, Q., Niu, P., & Zhang, X. (2025). Adaptive vs. planned metacognitive scaffolding for computational thinking: Evidence from generative AI-supported programming in elementary education. *Computers & Education*, Article 105473. [doi:10.1016/j.compedu.2025.105473](https://doi.org/10.1016/j.compedu.2025.105473)
+
+### Session 3 · AI-assisted close and distant reading
+
+- Required: Moretti, F. (2013). *Distant reading*. Verso. Two chapters: "Conjectures on world literature" and "Graphs, maps, trees".
+- Optional: Snow, C. P. (1959). *The two cultures and the scientific revolution*. Cambridge University Press.
+
+### Session 4 · Difficult texts, audiences and scholarly voice
+
+- Required: Spivak, G. C. (1988). Can the subaltern speak? In C. Nelson & L. Grossberg (Eds.), *Marxism and the interpretation of culture* (pp. 271–313). University of Illinois Press.
+
+### Session 5 · Structure, signposting and scholarly communities
+
+- Required: Hyland, K. (2005). *Metadiscourse: Exploring interaction in writing*. Continuum. One chapter on the interpersonal model of metadiscourse.
+- Required: Berger, P. L., & Luckmann, T. (1966). *The social construction of reality: A treatise in the sociology of knowledge*. Doubleday. Introduction.
+- Optional: Swales, J. M. (1990). *Genre analysis: English in academic and research settings*. Cambridge University Press. The chapter on discourse communities.
+
+### Session 6 · Reflexivity, positionality and AI in scholarship
+
+- Required: Haraway, D. (1988). Situated knowledges: The science question in feminism and the privilege of partial perspective. *Feminist Studies, 14*(3), 575–599. [doi:10.2307/3178066](https://doi.org/10.2307/3178066)
+- Required: Bender, E. M., Gebru, T., McMillan-Major, A., & Shmitchell, S. (2021). On the dangers of stochastic parrots: Can language models be too big? In *Proceedings of the 2021 ACM Conference on Fairness, Accountability, and Transparency* (pp. 610–623). [doi:10.1145/3442188.3445922](https://doi.org/10.1145/3442188.3445922)
+- Optional: Harding, S. (1992). Rethinking standpoint epistemology: What is "strong objectivity"? *The Centennial Review, 36*(3), 437–470.
+
+### Session 7 · The future of scholarship and final review workshop
+
+- Required: Messeri, L., & Crockett, M. J. (2024). Artificial intelligence and illusions of understanding in scientific research. *Nature, 627*, 49–58. [doi:10.1038/s41586-024-07146-0](https://doi.org/10.1038/s41586-024-07146-0)
+- Optional: Bush, V. (1945). As we may think. *The Atlantic Monthly, 176*(1), 101–108.
 
 **Canvas** carries announcements, materials, assignment instructions, submissions, grades, and private instructor comments. A running document may be used for drafting and collaboration. **[TO CONFIRM]** Create a new class workspace; do not reuse last year's shared document.
 
@@ -219,14 +255,14 @@ Seminars meet online on **Mondays, 5:00–7:50 PM Central Time (America/Chicago)
 
 | Session | Teaching week | Focus | Reading and preparation | Milestone |
 |---|---|---|---|---|
-| 1 | 19–23 October | Research questions and academic literature | Baseline reflection; research-question guide; Weber candidate excerpt | Topic and question, 23 October |
-| 2 | 26–30 October | Article anatomy review design and mapping a field | Compare articles from your field; review-method guidance | Review plan, 30 October |
-| 3 | 2–6 November | AI-assisted close and distant reading | Annotate a difficult passage; prepare a source-backed conceptual map | Conceptual map, 6 November |
-| 4 | 9–13 November | Difficult texts audiences and scholarly voice | Spivak candidate excerpt; bring a writing sample | Writing sample, 13 November; peer workshop |
-| 5 | 16–20 November | Structure signposting and scholarly communities | Bring an outline and draft; sociology-of-knowledge reading to be selected | Structured draft, 20 November |
+| 1 | 19–23 October | Research questions and academic literature | Baseline reflection; Weber; research-question guide | Topic and question, 23 October |
+| 2 | 26–30 October | Article anatomy review design and mapping a field | Grant & Booth; Purdue OWL; compare articles from your field | Review plan, 30 October |
+| 3 | 2–6 November | AI-assisted close and distant reading | Moretti; annotate a difficult passage; prepare a source-backed conceptual map | Conceptual map, 6 November |
+| 4 | 9–13 November | Difficult texts audiences and scholarly voice | Spivak; bring a writing sample | Writing sample, 13 November; peer workshop |
+| 5 | 16–20 November | Structure signposting and scholarly communities | Hyland; Berger & Luckmann; bring an outline and draft | Structured draft, 20 November |
 | — | 21–29 November | Fall break | No new required submission | No seminar or deadline |
-| 6 | 30 November–4 December | Reflexivity positionality and AI in scholarship | Revisit the draft and AI-use record; reflection reading to be selected | AI and reflexivity statement, 4 December; peer workshop |
-| 7 | 7–9 December | The future of scholarship and final review workshop | Bring a complete working draft; selected case on automation | Final review workshop |
+| 6 | 30 November–4 December | Reflexivity positionality and AI in scholarship | Haraway; Bender et al.; revisit the draft and AI-use record | AI and reflexivity statement, 4 December; peer workshop |
+| 7 | 7–9 December | The future of scholarship and final review workshop | Messeri & Crockett; bring a complete working draft | Final review workshop |
 | — | 15 December | Final submission | Revision memo and AI-use statement accompany the review | Final literature review, 40% |
 
 **Proposed seminar format:** three hours, with ten-minute breaks between the hours. Start with discussion of current research problems and previous work; combine short lectures and close reading with a workshop on the week's task. The balance can vary with the project stage.

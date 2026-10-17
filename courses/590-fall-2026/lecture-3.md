@@ -120,7 +120,7 @@ Discuss - [EPOL 590 Fall 2026 class document](https://docs.google.com/document/d
 
 ### If there's time
 
-A complex humanities text: Spivak, G. C. (2023). Can the subaltern speak?. In *Imperialism* (pp. 171-219). Routledge.
+A complex humanities text: Spivak, G. C. (1988). Can the subaltern speak? In C. Nelson & L. Grossberg (Eds.), *Marxism and the interpretation of culture* (pp. 271–313). University of Illinois Press.
  - [users.uoa.gr](http://users.uoa.gr/~cdokou/TheoryCriticismTexts/Spivak-Subaltern.pdf)
 
 
