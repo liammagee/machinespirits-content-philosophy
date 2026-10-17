@@ -115,7 +115,7 @@ All required material (video lectures, readings etc.) will be provided to studen
  
 Let's answer this collaboratively:
 
-[ERAM 590 - Google Docs](https://docs.google.com/document/d/1wyWkvOju-FPXxWnpSlzrrgugqy0RdZGNL6S3Kh5wHd4/edit?tab=t.0)
+[EPOL 590 Fall 2026 class document](https://docs.google.com/document/d/1JATwv9qBCeN9ld3AEHc5FeZVi6ZamubNqLHzVQjeWGY/edit)
 
 ---
 
@@ -270,7 +270,7 @@ Lots of answers, lots of guidance...
 
 Other ideas?
 
-[ERAM 590 - Google Docs](https://docs.google.com/document/d/1wyWkvOju-FPXxWnpSlzrrgugqy0RdZGNL6S3Kh5wHd4/edit?tab=t.0)
+[EPOL 590 Fall 2026 class document](https://docs.google.com/document/d/1JATwv9qBCeN9ld3AEHc5FeZVi6ZamubNqLHzVQjeWGY/edit)
 
 
 ---

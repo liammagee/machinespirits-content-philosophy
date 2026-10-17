@@ -250,6 +250,7 @@ Make sure to *introduce* and *conclude* the paragraph. **Exaggerate** the scient
 
 ### Future Weeks
 
- - Week 5: Scaffolding
- - Week 7: Drafting / Use of AI
- - Week 8: Final Literature Review
+ - Session 5 (November 16): Structure, signposting and scholarly communities
+ - Session 6 (November 30): Reflexivity, positionality and AI in scholarship
+ - Session 7 (December 7): The future of scholarship and final review workshop
+ - Final literature review due Tuesday, December 15, 11:59 PM Central

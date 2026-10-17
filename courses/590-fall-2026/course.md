@@ -36,7 +36,7 @@ readings:
 
 # AI and Academic Literature
 
-Welcome to ERAM 590: AI and Academic Literature. This course addresses a fundamental question: how do we conduct scholarly research in an era of generative AI?
+Welcome to EPOL 590: AI and Academic Literature. This course addresses a fundamental question: how do we conduct scholarly research in an era of generative AI?
 
 ## Course Overview
 

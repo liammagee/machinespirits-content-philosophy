@@ -1,7 +1,7 @@
 
 
 
-# ERAM 590 - AI and Academic Literature
+# EPOL 590 - AI and Academic Literature
 
 
 
@@ -144,7 +144,7 @@ That all said, the purpose of the course is to support a dissertation / journal 
  - Box / Microsoft Office? HIPAA-compliant but cumbersome
  - Canvas options?
  - Google Docs? Not HIPAA-compliant
-   - [ERAM 590 - Google Docs](https://docs.google.com/document/d/1wyWkvOju-FPXxWnpSlzrrgugqy0RdZGNL6S3Kh5wHd4/edit?usp=sharing)
+   - [EPOL 590 Fall 2026 class document](https://docs.google.com/document/d/1JATwv9qBCeN9ld3AEHc5FeZVi6ZamubNqLHzVQjeWGY/edit)
 
 
 

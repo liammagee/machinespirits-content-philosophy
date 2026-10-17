@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
+  <meta name="generator" content="pandoc 3.12.1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>lecture-3</title>
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     html {
       color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
       background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
     }
     body {
       margin: 0 auto;
@@ -33,12 +39,16 @@
     }
     @media print {
       html {
-        background-color: white;
+        color-scheme: light only;
       }
-      body {
+      html, body, pre, code {
         background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
         color: black;
-        font-size: 12pt;
+      }
+      pre, code {
+        padding: 0;
       }
       p, h2, h3 {
         orphans: 3;
@@ -51,11 +61,8 @@
     p {
       margin: 1em 0;
     }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
+    a, a:visited {
+      color: inherit;
     }
     img {
       max-width: 100%;
@@ -84,10 +91,14 @@
     blockquote {
       margin: 1em 0 1em 1.7em;
       padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
       color: #606060;
+      color: light-dark(#606060, #b6b6b6);
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -107,8 +118,8 @@
      overflow: visible;
     }
     hr {
-      background-color: #1a1a1a;
       border: none;
+      border-top: 1px solid currentColor;
       height: 1px;
       margin: 1em 0;
     }
@@ -125,11 +136,11 @@
     }
     tbody {
       margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
     }
     th {
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       padding: 0.25em 0.5em 0.25em 0.5em;
     }
     td {
@@ -151,10 +162,13 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     /* The extra [class] is a hack that increases specificity enough to
        override a similar rule in reveal.js */
@@ -165,7 +179,71 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
 </head>
 <body>
@@ -224,8 +302,8 @@ academic genre)?</li>
 <h3 id="topic-1-opening-an-article">Topic 1: Opening an article</h3>
 <p>What do we do when we open an article? How do we read it?</p>
 <p>Discuss - <a
-href="https://docs.google.com/document/d/1wyWkvOju-FPXxWnpSlzrrgugqy0RdZGNL6S3Kh5wHd4/edit?tab=t.g5l1snpbq01z">ERAM
-590 - Google Docs</a></p>
+href="https://docs.google.com/document/d/1JATwv9qBCeN9ld3AEHc5FeZVi6ZamubNqLHzVQjeWGY/edit">EPOL
+590 Fall 2026 class document</a></p>
 <hr />
 <h3 id="what-can-ai-add">What can AI add?</h3>
 <ul>
@@ -294,8 +372,8 @@ both human and AI?)</li>
 <li>What are some terms we might want to look up?</li>
 </ul>
 <p>Discuss - <a
-href="https://docs.google.com/document/d/1wyWkvOju-FPXxWnpSlzrrgugqy0RdZGNL6S3Kh5wHd4/edit?tab=t.g5l1snpbq01z">ERAM
-590 - Google Docs</a></p>
+href="https://docs.google.com/document/d/1JATwv9qBCeN9ld3AEHc5FeZVi6ZamubNqLHzVQjeWGY/edit">EPOL
+590 Fall 2026 class document</a></p>
 <hr />
 <h3 id="if-theres-time">If there’s time</h3>
 <p>A complex humanities text: Spivak, G. C. (2023). Can the subaltern
@@ -334,8 +412,8 @@ alt="Image" />
 <h3 id="topic-2-finding-literature">Topic 2: Finding literature</h3>
 <p>How do we locate literature relevant to our topic?</p>
 <p>Discuss - <a
-href="https://docs.google.com/document/d/1wyWkvOju-FPXxWnpSlzrrgugqy0RdZGNL6S3Kh5wHd4/edit?tab=t.g5l1snpbq01z">ERAM
-590 - Google Docs</a></p>
+href="https://docs.google.com/document/d/1JATwv9qBCeN9ld3AEHc5FeZVi6ZamubNqLHzVQjeWGY/edit">EPOL
+590 Fall 2026 class document</a></p>
 <hr />
 <h3 id="what-can-ai-add-1">What can AI add?</h3>
 <ul>
@@ -394,249 +472,250 @@ Allow you to evolve &amp; iterate a representation</p></li>
 <hr />
 <h3 id="ai-consciousness-subjectivity-discussion-example-1">AI
 Consciousness / Subjectivity Discussion: Example 1</h3>
-<pre class="mermaid"><code>
-%%-----------------------------------------------
-%% Distant Reading Map: AI Consciousness Discourse (2024–2025)
-%%-----------------------------------------------
-
-graph TD
-    %% Core Concept
-    A[&quot;AI Consciousness Discourse&lt;br/&gt;(2024–2025)&quot;]:::core
-
-    %% Three macro-axes
-    B1[&quot;Embodiment &amp; Biological Grounding&quot;]:::axis
-    B2[&quot;Ethics &amp; Moral Consideration&quot;]:::axis
-    B3[&quot;Posthuman / Reflexive Turn&quot;]:::axis
-
-    A --&gt; B1
-    A --&gt; B2
-    A --&gt; B3
-
-    %% Embodiment cluster
-    B1 --&gt; C1[&quot;Miller et al. 2025&lt;br/&gt;&lt;i&gt;BioSystems&lt;/i&gt;&lt;br/&gt;‘Biological mechanisms contradict AI consciousness’&quot;]:::bio
-    B1 --&gt; C2[&quot;Torres-Martínez 2025&lt;br/&gt;&lt;i&gt;AI &amp; Society&lt;/i&gt;&lt;br/&gt;‘Organic consciousness vs. posthumanism’&quot;]:::bio
-
-    %% Ethics cluster
-    B2 --&gt; D1[&quot;Butlin &amp; Lappas 2025&lt;br/&gt;&lt;i&gt;JAIR&lt;/i&gt;&lt;br/&gt;‘Principles for Responsible AI Consciousness Research’&quot;]:::ethics
-    B2 --&gt; D2[&quot;Sebo &amp; Long 2025&lt;br/&gt;&lt;i&gt;AI and Ethics&lt;/i&gt;&lt;br/&gt;‘Moral consideration for AI systems by 2030’&quot;]:::ethics
-    B2 --&gt; D3[&quot;Dung 2025&lt;br/&gt;&lt;i&gt;Erkenntnis&lt;/i&gt;&lt;br/&gt;‘Tests of Animal Consciousness as Tests of Machine Consciousness’&quot;]:::ethics
-
-    %% Posthuman cluster
-    B3 --&gt; E1[&quot;D’Amato 2024&lt;br/&gt;&lt;i&gt;AI &amp; Society&lt;/i&gt;&lt;br/&gt;‘ChatGPT: towards AI subjectivity’&quot;]:::posthuman
-    B3 --&gt; E2[&quot;Yan 2024&lt;br/&gt;&lt;i&gt;Qualitative Inquiry&lt;/i&gt;&lt;br/&gt;‘Posthuman Creativity: Cyborg Subjectivity Through ChatGPT’&quot;]:::posthuman
-    B3 --&gt; E3[&quot;Prabhu &amp; Premraj 2024&lt;br/&gt;&lt;i&gt;AI &amp; Society&lt;/i&gt;&lt;br/&gt;‘Artificial Consciousness in AI: A Posthuman Fallacy’&quot;]:::posthuman
-
-    %% Bridging cluster — empirical/heuristic
-    B1 --&gt; F1[&quot;Evers et al. 2025&lt;br/&gt;&lt;i&gt;Physics of Life Reviews&lt;/i&gt;&lt;br/&gt;‘Preliminaries to Artificial Consciousness’&quot;]:::bridge
-    B2 --&gt; F2[&quot;Li et al. 2025&lt;br/&gt;&lt;i&gt;arXiv&lt;/i&gt;&lt;br/&gt;‘AI Awareness’&quot;]:::bridge
-
-    %% Cross-links between axes
-    C1 --- D1
-    D2 --- E1
-    E2 --- B1
-    F1 --- F2
-
-    %% Legends
-    classDef core fill:#272b30,stroke:#fff,color:#fff,font-weight:bold;
-    classDef axis fill:#444,stroke:#fff,color:#fff,font-style:italic;
-    classDef bio fill:#7a4c32,stroke:#fff,color:#fff;
-    classDef ethics fill:#31567a,stroke:#fff,color:#fff;
-    classDef posthuman fill:#6a3d8a,stroke:#fff,color:#fff;
-    classDef bridge fill:#557a31,stroke:#fff,color:#fff;
-</code></pre>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode mermaid"><code class="sourceCode mermaid"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">%%-----------------------------------------------</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">%% Distant Reading Map: AI Consciousness Discourse (2024–2025)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">%%-----------------------------------------------</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="cn">TD</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">%% Core Concept</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">A</span>[<span class="st">&quot;AI Consciousness Discourse</span><span class="sc">&lt;br/&gt;</span><span class="st">(2024–2025)&quot;</span>]<span class="fu">:::core</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">%% Three macro-axes</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B1</span>[<span class="st">&quot;Embodiment &amp; Biological Grounding&quot;</span>]<span class="fu">:::axis</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B2</span>[<span class="st">&quot;Ethics &amp; Moral Consideration&quot;</span>]<span class="fu">:::axis</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B3</span>[<span class="st">&quot;Posthuman / Reflexive Turn&quot;</span>]<span class="fu">:::axis</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">A</span> <span class="pp">--&gt;</span> <span class="dt">B1</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">A</span> <span class="pp">--&gt;</span> <span class="dt">B2</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">A</span> <span class="pp">--&gt;</span> <span class="dt">B3</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">%% Embodiment cluster</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B1</span> <span class="pp">--&gt;</span> <span class="dt">C1</span>[<span class="st">&quot;Miller et al. 2025</span><span class="sc">&lt;br/&gt;&lt;i&gt;</span><span class="st">BioSystems</span><span class="sc">&lt;/i&gt;&lt;br/&gt;</span><span class="st">‘Biological mechanisms contradict AI consciousness’&quot;</span>]<span class="fu">:::bio</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B1</span> <span class="pp">--&gt;</span> <span class="dt">C2</span>[<span class="st">&quot;Torres-Martínez 2025</span><span class="sc">&lt;br/&gt;&lt;i&gt;</span><span class="st">AI &amp; Society</span><span class="sc">&lt;/i&gt;&lt;br/&gt;</span><span class="st">‘Organic consciousness vs. posthumanism’&quot;</span>]<span class="fu">:::bio</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">%% Ethics cluster</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B2</span> <span class="pp">--&gt;</span> <span class="dt">D1</span>[<span class="st">&quot;Butlin &amp; Lappas 2025</span><span class="sc">&lt;br/&gt;&lt;i&gt;</span><span class="st">JAIR</span><span class="sc">&lt;/i&gt;&lt;br/&gt;</span><span class="st">‘Principles for Responsible AI Consciousness Research’&quot;</span>]<span class="fu">:::ethics</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B2</span> <span class="pp">--&gt;</span> <span class="dt">D2</span>[<span class="st">&quot;Sebo &amp; Long 2025</span><span class="sc">&lt;br/&gt;&lt;i&gt;</span><span class="st">AI and Ethics</span><span class="sc">&lt;/i&gt;&lt;br/&gt;</span><span class="st">‘Moral consideration for AI systems by 2030’&quot;</span>]<span class="fu">:::ethics</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B2</span> <span class="pp">--&gt;</span> <span class="dt">D3</span>[<span class="st">&quot;Dung 2025</span><span class="sc">&lt;br/&gt;&lt;i&gt;</span><span class="st">Erkenntnis</span><span class="sc">&lt;/i&gt;&lt;br/&gt;</span><span class="st">‘Tests of Animal Consciousness as Tests of Machine Consciousness’&quot;</span>]<span class="fu">:::ethics</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">%% Posthuman cluster</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B3</span> <span class="pp">--&gt;</span> <span class="dt">E1</span>[<span class="st">&quot;D’Amato 2024</span><span class="sc">&lt;br/&gt;&lt;i&gt;</span><span class="st">AI &amp; Society</span><span class="sc">&lt;/i&gt;&lt;br/&gt;</span><span class="st">‘ChatGPT: towards AI subjectivity’&quot;</span>]<span class="fu">:::posthuman</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B3</span> <span class="pp">--&gt;</span> <span class="dt">E2</span>[<span class="st">&quot;Yan 2024</span><span class="sc">&lt;br/&gt;&lt;i&gt;</span><span class="st">Qualitative Inquiry</span><span class="sc">&lt;/i&gt;&lt;br/&gt;</span><span class="st">‘Posthuman Creativity: Cyborg Subjectivity Through ChatGPT’&quot;</span>]<span class="fu">:::posthuman</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B3</span> <span class="pp">--&gt;</span> <span class="dt">E3</span>[<span class="st">&quot;Prabhu &amp; Premraj 2024</span><span class="sc">&lt;br/&gt;&lt;i&gt;</span><span class="st">AI &amp; Society</span><span class="sc">&lt;/i&gt;&lt;br/&gt;</span><span class="st">‘Artificial Consciousness in AI: A Posthuman Fallacy’&quot;</span>]<span class="fu">:::posthuman</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">%% Bridging cluster — empirical/heuristic</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B1</span> <span class="pp">--&gt;</span> <span class="dt">F1</span>[<span class="st">&quot;Evers et al. 2025</span><span class="sc">&lt;br/&gt;&lt;i&gt;</span><span class="st">Physics of Life Reviews</span><span class="sc">&lt;/i&gt;&lt;br/&gt;</span><span class="st">‘Preliminaries to Artificial Consciousness’&quot;</span>]<span class="fu">:::bridge</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B2</span> <span class="pp">--&gt;</span> <span class="dt">F2</span>[<span class="st">&quot;Li et al. 2025</span><span class="sc">&lt;br/&gt;&lt;i&gt;</span><span class="st">arXiv</span><span class="sc">&lt;/i&gt;&lt;br/&gt;</span><span class="st">‘AI Awareness’&quot;</span>]<span class="fu">:::bridge</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">%% Cross-links between axes</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="dt">C1</span> <span class="pp">---</span> <span class="dt">D1</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="dt">D2</span> <span class="pp">---</span> <span class="dt">E1</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="dt">E2</span> <span class="pp">---</span> <span class="dt">B1</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="dt">F1</span> <span class="pp">---</span> <span class="dt">F2</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="co">%% Legends</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">classDef</span> <span class="fu">core</span> <span class="at">fill:</span><span class="im">#272b30</span>,<span class="at">stroke:</span><span class="im">#fff</span>,<span class="at">color:</span><span class="im">#fff</span>,<span class="at">font-weight:</span>bold;</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">classDef</span> <span class="fu">axis</span> <span class="at">fill:</span><span class="im">#444</span>,<span class="at">stroke:</span><span class="im">#fff</span>,<span class="at">color:</span><span class="im">#fff</span>,<span class="at">font-style:</span>italic;</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">classDef</span> <span class="fu">bio</span> <span class="at">fill:</span><span class="im">#7a4c32</span>,<span class="at">stroke:</span><span class="im">#fff</span>,<span class="at">color:</span><span class="er">#fff;</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">classDef</span> <span class="fu">ethics</span> <span class="at">fill:</span><span class="im">#31567a</span>,<span class="at">stroke:</span><span class="im">#fff</span>,<span class="at">color:</span><span class="er">#fff;</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">classDef</span> <span class="fu">posthuman</span> <span class="at">fill:</span><span class="im">#6a3d8a</span>,<span class="at">stroke:</span><span class="im">#fff</span>,<span class="at">color:</span><span class="er">#fff;</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="kw">classDef</span> <span class="fu">bridge</span> <span class="at">fill:</span><span class="im">#557a31</span>,<span class="at">stroke:</span><span class="im">#fff</span>,<span class="at">color:</span><span class="er">#fff;</span></span></code></pre></div>
 <hr />
 <h3
 id="ai-consciousness-subjectivity-discussion-example-2-mood-board">AI
 Consciousness / Subjectivity Discussion: Example 2 – Mood Board</h3>
-<pre class="mermaid"><code>%%----------------------------------------------------
-%% Distant Reading Mood Map: Affective Landscape (2024–2025)
-%%----------------------------------------------------
-
-graph LR
-    %% Core
-    A[&quot;AI Consciousness Debate&lt;br/&gt;(2024–2025)&quot;]:::core
-
-    %% Radial branches
-    A --&gt; B1[&quot;Embodiment &amp; Realist Caution&lt;br/&gt;🔬 grounded skepticism&quot;]:::caution
-    A --&gt; B2[&quot;Ethical Anxiety &amp; Responsibility&lt;br/&gt;⚖️ moral anticipation&quot;]:::ethics
-    A --&gt; B3[&quot;Posthuman Curiosity &amp; Aesthetic Wonder&lt;br/&gt;🌌 reflexive experimentation&quot;]:::wonder
-
-    %% Branch 1 — Caution (Embodiment)
-    B1 --&gt; C1[&quot;Miller et al. (BioSystems)&lt;br/&gt;&lt;i&gt;‘Spaces between the notes’&lt;/i&gt;&lt;br/&gt;Mood: defensive realism / reverence for life&quot;]:::bio
-    B1 --&gt; C2[&quot;Torres-Martínez (AI &amp; Society)&lt;br/&gt;&lt;i&gt;‘Dehumanizing the human…’&lt;/i&gt;&lt;br/&gt;Mood: embodied humanism, critique of reductivism&quot;]:::bio
-
-    %% Branch 2 — Ethics (Responsibility)
-    B2 --&gt; D1[&quot;Butlin &amp; Lappas (JAIR)&lt;br/&gt;‘Responsible AI Consciousness Research’&lt;br/&gt;Mood: procedural vigilance&quot;]:::ethics
-    B2 --&gt; D2[&quot;Sebo &amp; Long (AI &amp; Ethics)&lt;br/&gt;‘Moral Consideration for AI by 2030’&lt;br/&gt;Mood: earnest moral futurism&quot;]:::ethics
-    B2 --&gt; D3[&quot;Dung (Erkenntnis)&lt;br/&gt;‘Animal Tests as Machine Tests’&lt;br/&gt;Mood: empirical pragmatism&quot;]:::ethics
-    B2 --&gt; D4[&quot;Li et al. (arXiv)&lt;br/&gt;‘AI Awareness’&lt;br/&gt;Mood: techno-optimistic caution&quot;]:::ethics
-
-    %% Branch 3 — Wonder (Posthuman)
-    B3 --&gt; E1[&quot;D’Amato (AI &amp; Society)&lt;br/&gt;‘ChatGPT: Towards AI Subjectivity’&lt;br/&gt;Mood: Foucauldian curiosity, power–knowledge play&quot;]:::post
-    B3 --&gt; E2[&quot;Yan (Qualitative Inquiry)&lt;br/&gt;‘Posthuman Creativity’&lt;br/&gt;Mood: lyrical openness, cyborg empathy&quot;]:::post
-    B3 --&gt; E3[&quot;Prabhu &amp; Premraj (AI &amp; Society)&lt;br/&gt;‘Posthuman Fallacy’&lt;br/&gt;Mood: cinematic cautionary awe&quot;]:::post
-    B3 --&gt; F1[&quot;Evers et al. (Physics of Life Reviews)&lt;br/&gt;‘Preliminaries to Artificial Consciousness’&lt;br/&gt;Mood: analytical optimism&quot;]:::bridge
-
-    %% Cross-sensory connectors
-    C1 --- D1
-    D2 --- E1
-    E2 --- C2
-    F1 --- D4
-
-    %% Legend Styles
-    classDef core fill:#272b30,stroke:#fff,color:#fff,font-weight:bold;
-    classDef caution fill:#7a4c32,stroke:#fff,color:#fff;
-    classDef ethics fill:#31567a,stroke:#fff,color:#fff;
-    classDef post fill:#6a3d8a,stroke:#fff,color:#fff;
-    classDef bridge fill:#557a31,stroke:#fff,color:#fff;</code></pre>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode mermaid"><code class="sourceCode mermaid"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">%%----------------------------------------------------</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">%% Distant Reading Mood Map: Affective Landscape (2024–2025)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">%%----------------------------------------------------</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="cn">LR</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">%% Core</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">A</span>[<span class="st">&quot;AI Consciousness Debate</span><span class="sc">&lt;br/&gt;</span><span class="st">(2024–2025)&quot;</span>]<span class="fu">:::core</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">%% Radial branches</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">A</span> <span class="pp">--&gt;</span> <span class="dt">B1</span>[<span class="st">&quot;Embodiment &amp; Realist Caution</span><span class="sc">&lt;br/&gt;</span><span class="st">🔬 grounded skepticism&quot;</span>]<span class="fu">:::caution</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">A</span> <span class="pp">--&gt;</span> <span class="dt">B2</span>[<span class="st">&quot;Ethical Anxiety &amp; Responsibility</span><span class="sc">&lt;br/&gt;</span><span class="st">⚖️ moral anticipation&quot;</span>]<span class="fu">:::ethics</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">A</span> <span class="pp">--&gt;</span> <span class="dt">B3</span>[<span class="st">&quot;Posthuman Curiosity &amp; Aesthetic Wonder</span><span class="sc">&lt;br/&gt;</span><span class="st">🌌 reflexive experimentation&quot;</span>]<span class="fu">:::wonder</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">%% Branch 1 — Caution (Embodiment)</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B1</span> <span class="pp">--&gt;</span> <span class="dt">C1</span>[<span class="st">&quot;Miller et al. (BioSystems)</span><span class="sc">&lt;br/&gt;&lt;i&gt;</span><span class="st">‘Spaces between the notes’</span><span class="sc">&lt;/i&gt;&lt;br/&gt;</span><span class="st">Mood: defensive realism / reverence for life&quot;</span>]<span class="fu">:::bio</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B1</span> <span class="pp">--&gt;</span> <span class="dt">C2</span>[<span class="st">&quot;Torres-Martínez (AI &amp; Society)</span><span class="sc">&lt;br/&gt;&lt;i&gt;</span><span class="st">‘Dehumanizing the human…’</span><span class="sc">&lt;/i&gt;&lt;br/&gt;</span><span class="st">Mood: embodied humanism, critique of reductivism&quot;</span>]<span class="fu">:::bio</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">%% Branch 2 — Ethics (Responsibility)</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B2</span> <span class="pp">--&gt;</span> <span class="dt">D1</span>[<span class="st">&quot;Butlin &amp; Lappas (JAIR)</span><span class="sc">&lt;br/&gt;</span><span class="st">‘Responsible AI Consciousness Research’</span><span class="sc">&lt;br/&gt;</span><span class="st">Mood: procedural vigilance&quot;</span>]<span class="fu">:::ethics</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B2</span> <span class="pp">--&gt;</span> <span class="dt">D2</span>[<span class="st">&quot;Sebo &amp; Long (AI &amp; Ethics)</span><span class="sc">&lt;br/&gt;</span><span class="st">‘Moral Consideration for AI by 2030’</span><span class="sc">&lt;br/&gt;</span><span class="st">Mood: earnest moral futurism&quot;</span>]<span class="fu">:::ethics</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B2</span> <span class="pp">--&gt;</span> <span class="dt">D3</span>[<span class="st">&quot;Dung (Erkenntnis)</span><span class="sc">&lt;br/&gt;</span><span class="st">‘Animal Tests as Machine Tests’</span><span class="sc">&lt;br/&gt;</span><span class="st">Mood: empirical pragmatism&quot;</span>]<span class="fu">:::ethics</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B2</span> <span class="pp">--&gt;</span> <span class="dt">D4</span>[<span class="st">&quot;Li et al. (arXiv)</span><span class="sc">&lt;br/&gt;</span><span class="st">‘AI Awareness’</span><span class="sc">&lt;br/&gt;</span><span class="st">Mood: techno-optimistic caution&quot;</span>]<span class="fu">:::ethics</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">%% Branch 3 — Wonder (Posthuman)</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B3</span> <span class="pp">--&gt;</span> <span class="dt">E1</span>[<span class="st">&quot;D’Amato (AI &amp; Society)</span><span class="sc">&lt;br/&gt;</span><span class="st">‘ChatGPT: Towards AI Subjectivity’</span><span class="sc">&lt;br/&gt;</span><span class="st">Mood: Foucauldian curiosity, power–knowledge play&quot;</span>]<span class="fu">:::post</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B3</span> <span class="pp">--&gt;</span> <span class="dt">E2</span>[<span class="st">&quot;Yan (Qualitative Inquiry)</span><span class="sc">&lt;br/&gt;</span><span class="st">‘Posthuman Creativity’</span><span class="sc">&lt;br/&gt;</span><span class="st">Mood: lyrical openness, cyborg empathy&quot;</span>]<span class="fu">:::post</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B3</span> <span class="pp">--&gt;</span> <span class="dt">E3</span>[<span class="st">&quot;Prabhu &amp; Premraj (AI &amp; Society)</span><span class="sc">&lt;br/&gt;</span><span class="st">‘Posthuman Fallacy’</span><span class="sc">&lt;br/&gt;</span><span class="st">Mood: cinematic cautionary awe&quot;</span>]<span class="fu">:::post</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B3</span> <span class="pp">--&gt;</span> <span class="dt">F1</span>[<span class="st">&quot;Evers et al. (Physics of Life Reviews)</span><span class="sc">&lt;br/&gt;</span><span class="st">‘Preliminaries to Artificial Consciousness’</span><span class="sc">&lt;br/&gt;</span><span class="st">Mood: analytical optimism&quot;</span>]<span class="fu">:::bridge</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">%% Cross-sensory connectors</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="dt">C1</span> <span class="pp">---</span> <span class="dt">D1</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="dt">D2</span> <span class="pp">---</span> <span class="dt">E1</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="dt">E2</span> <span class="pp">---</span> <span class="dt">C2</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="dt">F1</span> <span class="pp">---</span> <span class="dt">D4</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="co">%% Legend Styles</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">classDef</span> <span class="fu">core</span> <span class="at">fill:</span><span class="im">#272b30</span>,<span class="at">stroke:</span><span class="im">#fff</span>,<span class="at">color:</span><span class="im">#fff</span>,<span class="at">font-weight:</span>bold;</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">classDef</span> <span class="fu">caution</span> <span class="at">fill:</span><span class="im">#7a4c32</span>,<span class="at">stroke:</span><span class="im">#fff</span>,<span class="at">color:</span><span class="er">#fff;</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">classDef</span> <span class="fu">ethics</span> <span class="at">fill:</span><span class="im">#31567a</span>,<span class="at">stroke:</span><span class="im">#fff</span>,<span class="at">color:</span><span class="er">#fff;</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="kw">classDef</span> <span class="fu">post</span> <span class="at">fill:</span><span class="im">#6a3d8a</span>,<span class="at">stroke:</span><span class="im">#fff</span>,<span class="at">color:</span><span class="er">#fff;</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">classDef</span> <span class="fu">bridge</span> <span class="at">fill:</span><span class="im">#557a31</span>,<span class="at">stroke:</span><span class="im">#fff</span>,<span class="at">color:</span><span class="er">#fff;</span></span></code></pre></div>
 <hr />
 <h3 id="ai-consciousness-subjectivity-discussion-example-3-timeline">AI
 Consciousness / Subjectivity Discussion: Example 3 – Timeline</h3>
-<pre class="mermaid"><code>%%----------------------------------------------------
-%% Timeline: Evolution of AI Consciousness Discourse (2023–2025)
-%%----------------------------------------------------
-
-timeline
-    title Evolution of the &quot;AI Consciousness&quot; Discourse — 2023 → 2025
-
-    section 2023 — Seeds of Speculation 🌱
-        Early Cultural Anxiety
-        • Media fascination with AI consciousness
-        • LaMDA “sentience” claims
-        Mood: Uncertain
-        Color: gray
-
-        Dung (2023)
-        Animal consciousness tests adapted to AI
-        Mood: Cautious empiricism
-        Color: blue
-
-    section 2024 — Philosophical Polarization ⚡️
-        Miller et al. (BioSystems, Dec 2024)
-        &quot;Biological mechanisms contradict AI consciousness&quot;
-        Mood: Defensive realism
-        Color: brown
-
-        D’Amato (AI &amp; Society, Apr 2024)
-        &quot;ChatGPT: Toward AI Subjectivity&quot;
-        Mood: Foucauldian reflection / reflexive ethics
-        Color: violet
-
-        Yan (Qualitative Inquiry, 2024)
-        &quot;Posthuman Creativity&quot;
-        Mood: Poetic experimentation / cyborg empathy
-        Color: violet
-
-        Prabhu &amp; Premraj (AI &amp; Society, 2024)
-        &quot;Artificial Consciousness in AI: A Posthuman Fallacy&quot;
-        Mood: Cinematic critique of techno-myth
-        Color: violet
-
-    section 2025 — Systematization &amp; Ethical Turn ⚖️
-        Evers et al. (Physics of Life Reviews, Jan 2025)
-        &quot;Preliminaries to Artificial Consciousness&quot;
-        Mood: Conceptual synthesis / pragmatic optimism
-        Color: green
-
-        Li et al. (arXiv, Apr 2025)
-        &quot;AI Awareness&quot;
-        Mood: Empirical frameworks &amp; safety concerns
-        Color: blue
-
-        Butlin &amp; Lappas (JAIR, Mar 2025)
-        &quot;Responsible AI Consciousness Research&quot;
-        Mood: Governance &amp; policy ethics
-        Color: blue
-
-        Sebo &amp; Long (AI &amp; Ethics, 2025)
-        &quot;Moral Consideration for AI by 2030&quot;
-        Mood: Moral anticipation / urgency
-        Color: blue
-
-        Torres-Martínez (AI &amp; Society, Jan 2025)
-        &quot;Dehumanizing the Human, Humanizing the Machine&quot;
-        Mood: Extended humanism / embodied critique
-        Color: brown
-
-    section 2025+ — Emerging Synthesis 🔮
-        Integrative Realism + Ethics + Aesthetics
-        From “Can AI be conscious?” → “What does it mean to be conscious with AI?”
-        Mood: Dialogical, post-disciplinary synthesis
-        Color: purple
-</code></pre>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode mermaid"><code class="sourceCode mermaid"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">%%----------------------------------------------------</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">%% Timeline: Evolution of AI Consciousness Discourse (2023–2025)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">%%----------------------------------------------------</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">timeline</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">title</span><span class="vs"> Evolution of the &quot;AI Consciousness&quot; Discourse — 2023 → 2025</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">section</span><span class="do"> 2023 — Seeds of Speculation 🌱</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Early Cultural Anxiety</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">• Media fascination with AI consciousness</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">• LaMDA “sentience” claims</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Mood: </span><span class="vs">Uncertain</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Color: </span><span class="vs">gray</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Dung (2023)</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Animal consciousness tests adapted to AI</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Mood: </span><span class="vs">Cautious empiricism</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Color: </span><span class="vs">blue</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">section</span><span class="do"> 2024 — Philosophical Polarization ⚡️</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Miller et al. (BioSystems, Dec 2024)</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;Biological mechanisms contradict AI consciousness&quot;</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Mood: </span><span class="vs">Defensive realism</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Color: </span><span class="vs">brown</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        <span class="dt">D’Amato (AI &amp; Society, Apr 2024)</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;ChatGPT: </span><span class="vs">Toward AI Subjectivity&quot;</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Mood: </span><span class="vs">Foucauldian reflection / reflexive ethics</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Color: </span><span class="vs">violet</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Yan (Qualitative Inquiry, 2024)</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;Posthuman Creativity&quot;</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Mood: </span><span class="vs">Poetic experimentation / cyborg empathy</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Color: </span><span class="vs">violet</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Prabhu &amp; Premraj (AI &amp; Society, 2024)</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;Artificial Consciousness in AI: </span><span class="vs">A Posthuman Fallacy&quot;</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Mood: </span><span class="vs">Cinematic critique of techno-myth</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Color: </span><span class="vs">violet</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">section</span><span class="do"> 2025 — Systematization &amp; Ethical Turn ⚖️</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Evers et al. (Physics of Life Reviews, Jan 2025)</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;Preliminaries to Artificial Consciousness&quot;</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Mood: </span><span class="vs">Conceptual synthesis / pragmatic optimism</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Color: </span><span class="vs">green</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Li et al. (arXiv, Apr 2025)</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;AI Awareness&quot;</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Mood: </span><span class="vs">Empirical frameworks &amp; safety concerns</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Color: </span><span class="vs">blue</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Butlin &amp; Lappas (JAIR, Mar 2025)</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;Responsible AI Consciousness Research&quot;</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Mood: </span><span class="vs">Governance &amp; policy ethics</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Color: </span><span class="vs">blue</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Sebo &amp; Long (AI &amp; Ethics, 2025)</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;Moral Consideration for AI by 2030&quot;</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Mood: </span><span class="vs">Moral anticipation / urgency</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Color: </span><span class="vs">blue</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Torres-Martínez (AI &amp; Society, Jan 2025)</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;Dehumanizing the Human, Humanizing the Machine&quot;</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Mood: </span><span class="vs">Extended humanism / embodied critique</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Color: </span><span class="vs">brown</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>    <span class="kw">section</span><span class="do"> 2025+ — Emerging Synthesis 🔮</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Integrative Realism + Ethics + Aesthetics</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>        <span class="dt">From “Can AI be conscious?” → “What does it mean to be conscious with AI?”</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Mood: </span><span class="vs">Dialogical, post-disciplinary synthesis</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Color: </span><span class="vs">purple</span></span></code></pre></div>
 <hr />
 <h3
 id="ai-consciousness-subjectivity-discussion-example-4-timeline-concept-map">AI
 Consciousness / Subjectivity Discussion: Example 4 – Timeline &amp;
 Concept Map</h3>
-<pre class="mermaid"><code>
-%%----------------------------------------------------------
-%% Spatial Map v2 — Evolution of the &quot;AI Consciousness&quot; Discourse (2023–2025+)
-%% with Mood / Concept Terrain
-%%----------------------------------------------------------
-
-graph LR
-
-%% ==== TIME CLUSTERS ====
-
-subgraph Y2023[&quot;2023 — Seeds of Speculation 🌱&quot;]
-    A1[&quot;Early Cultural Anxiety\n(Media fascination, LaMDA &#39;sentience&#39;)&quot;]:::uncertain
-    A2[&quot;Dung (2023)\nAnimal consciousness tests → AI&quot;]:::empirical
-end
-
-subgraph Y2024[&quot;2024 — Philosophical Polarization ⚡️&quot;]
-    B1[&quot;Miller et al. (BioSystems)\nBiological mechanisms contradict AI consciousness&quot;]:::realism
-    B2[&quot;D’Amato (AI &amp; Society)\nChatGPT: Toward AI Subjectivity&quot;]:::posthuman
-    B3[&quot;Yan (Qualitative Inquiry)\nPosthuman Creativity&quot;]:::posthuman
-    B4[&quot;Prabhu &amp; Premraj (AI &amp; Society)\nArtificial Consciousness in AI: A Posthuman Fallacy&quot;]:::posthuman
-end
-
-subgraph Y2025[&quot;2025 — Systematization &amp; Ethical Turn ⚖️&quot;]
-    C1[&quot;Evers et al. (Physics of Life Reviews)\nPreliminaries to Artificial Consciousness&quot;]:::empirical
-    C2[&quot;Li et al. (arXiv)\nAI Awareness&quot;]:::empirical
-    C3[&quot;Butlin &amp; Lappas (JAIR)\nResponsible AI Consciousness Research&quot;]:::ethics
-    C4[&quot;Sebo &amp; Long (AI &amp; Ethics)\nMoral Consideration for AI by 2030&quot;]:::ethics
-    C5[&quot;Torres-Martínez (AI &amp; Society)\nDehumanizing the Human, Humanizing the Machine&quot;]:::realism
-end
-
-subgraph Y2025plus[&quot;2025 + — Emerging Synthesis 🔮&quot;]
-    D1[&quot;Integrative Realism + Ethics + Aesthetics\nFrom “Can AI be conscious?” → “Conscious with AI?”&quot;]:::synthesis
-end
-
-
-%% ==== CHRONOLOGICAL FLOW ====
-A1 --&gt; A2 --&gt; B1 --&gt; B2 --&gt; B3 --&gt; B4 --&gt; C1 --&gt; C2 --&gt; C3 --&gt; C4 --&gt; C5 --&gt; D1
-
-%% ==== VERTICAL / THEMATIC CONNECTIONS ====
-B1 --- C5
-A2 --- C1
-C1 --- C2 --- C3 --- C4
-B2 --- B3 --- B4
-B3 -.-&gt; C1
-C2 -.-&gt; C3
-C4 -.-&gt; D1
-C5 -.-&gt; D1
-B2 -.-&gt; D1
-
-%% ==== CLASS DEFINITIONS ====
-classDef realism fill:#b37a4c,stroke:#fff,color:#fff;
-classDef ethics fill:#31567a,stroke:#fff,color:#fff;
-classDef empirical fill:#557a31,stroke:#fff,color:#fff;
-classDef posthuman fill:#6a3d8a,stroke:#fff,color:#fff;
-classDef uncertain fill:#777777,stroke:#fff,color:#fff;
-classDef synthesis fill:#7b5abf,stroke:#fff,color:#fff;
-classDef mood fill:#e5e5e5,stroke:none,color:#222,font-size:13px;
-
-%% ==== MOOD / CONCEPT TERRAIN (BOTTOM ROW) ====
-subgraph MOODS[&quot;Affective &amp; Conceptual Terrain (across the discourse)&quot;]
-    M1[&quot;2023 → Speculative Anxiety\n⚪ Mood: Uncertainty&quot;]:::mood
-    M2[&quot;2024 → Polar Inquiry\n🟣 Mood: Caution ↔ Curiosity&quot;]:::mood
-    M3[&quot;2025 → Systematic Ethics\n🔵 Mood: Vigilance / Responsibility&quot;]:::mood
-    M4[&quot;2025 + → Posthuman Integration\n🟣 Mood: Awe / Dialogue / Synthesis&quot;]:::mood
-end
-
-M1 --&gt; M2 --&gt; M3 --&gt; M4
-</code></pre>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode mermaid"><code class="sourceCode mermaid"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">%%----------------------------------------------------------</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">%% Spatial Map v2 — Evolution of the &quot;AI Consciousness&quot; Discourse (2023–2025+)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">%% with Mood / Concept Terrain</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">%%----------------------------------------------------------</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="cn">LR</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">%% ==== TIME CLUSTERS ====</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">subgraph</span> <span class="dt">Y2023</span>[<span class="st">&quot;2023 — Seeds of Speculation 🌱&quot;</span>]</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">A1</span>[<span class="st">&quot;Early Cultural Anxiety\n(Media fascination, LaMDA &#39;sentience&#39;)&quot;</span>]<span class="fu">:::uncertain</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">A2</span>[<span class="st">&quot;Dung (2023)\nAnimal consciousness tests → AI&quot;</span>]<span class="fu">:::empirical</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="kw">subgraph</span> <span class="dt">Y2024</span>[<span class="st">&quot;2024 — Philosophical Polarization ⚡️&quot;</span>]</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B1</span>[<span class="st">&quot;Miller et al. (BioSystems)\nBiological mechanisms contradict AI consciousness&quot;</span>]<span class="fu">:::realism</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B2</span>[<span class="st">&quot;D’Amato (AI &amp; Society)\nChatGPT: Toward AI Subjectivity&quot;</span>]<span class="fu">:::posthuman</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B3</span>[<span class="st">&quot;Yan (Qualitative Inquiry)\nPosthuman Creativity&quot;</span>]<span class="fu">:::posthuman</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">B4</span>[<span class="st">&quot;Prabhu &amp; Premraj (AI &amp; Society)\nArtificial Consciousness in AI: A Posthuman Fallacy&quot;</span>]<span class="fu">:::posthuman</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="kw">subgraph</span> <span class="dt">Y2025</span>[<span class="st">&quot;2025 — Systematization &amp; Ethical Turn ⚖️&quot;</span>]</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">C1</span>[<span class="st">&quot;Evers et al. (Physics of Life Reviews)\nPreliminaries to Artificial Consciousness&quot;</span>]<span class="fu">:::empirical</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">C2</span>[<span class="st">&quot;Li et al. (arXiv)\nAI Awareness&quot;</span>]<span class="fu">:::empirical</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="dt">C3</span>[<span class="st">&quot;Butlin &amp; Lappas (JAIR)\nResponsible AI Consciousness Research&quot;</span>]<span class="fu">:::ethics</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">C4</span>[<span class="st">&quot;Sebo &amp; Long (AI &amp; Ethics)\nMoral Consideration for AI by 2030&quot;</span>]<span class="fu">:::ethics</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="dt">C5</span>[<span class="st">&quot;Torres-Martínez (AI &amp; Society)\nDehumanizing the Human, Humanizing the Machine&quot;</span>]<span class="fu">:::realism</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="kw">subgraph</span> <span class="dt">Y2025plus</span>[<span class="st">&quot;2025 + — Emerging Synthesis 🔮&quot;</span>]</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    <span class="dt">D1</span>[<span class="st">&quot;Integrative Realism + Ethics + Aesthetics\nFrom “Can AI be conscious?” → “Conscious with AI?”&quot;</span>]<span class="fu">:::synthesis</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="co">%% ==== CHRONOLOGICAL FLOW ====</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="dt">A1</span> <span class="pp">--&gt;</span> <span class="dt">A2</span> <span class="pp">--&gt;</span> <span class="dt">B1</span> <span class="pp">--&gt;</span> <span class="dt">B2</span> <span class="pp">--&gt;</span> <span class="dt">B3</span> <span class="pp">--&gt;</span> <span class="dt">B4</span> <span class="pp">--&gt;</span> <span class="dt">C1</span> <span class="pp">--&gt;</span> <span class="dt">C2</span> <span class="pp">--&gt;</span> <span class="dt">C3</span> <span class="pp">--&gt;</span> <span class="dt">C4</span> <span class="pp">--&gt;</span> <span class="dt">C5</span> <span class="pp">--&gt;</span> <span class="dt">D1</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="co">%% ==== VERTICAL / THEMATIC CONNECTIONS ====</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="dt">B1</span> <span class="pp">---</span> <span class="dt">C5</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="dt">A2</span> <span class="pp">---</span> <span class="dt">C1</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="dt">C1</span> <span class="pp">---</span> <span class="dt">C2</span> <span class="pp">---</span> <span class="dt">C3</span> <span class="pp">---</span> <span class="dt">C4</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="dt">B2</span> <span class="pp">---</span> <span class="dt">B3</span> <span class="pp">---</span> <span class="dt">B4</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="dt">B3</span> <span class="pp">-.-&gt;</span> <span class="dt">C1</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="dt">C2</span> <span class="pp">-.-&gt;</span> <span class="dt">C3</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="dt">C4</span> <span class="pp">-.-&gt;</span> <span class="dt">D1</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="dt">C5</span> <span class="pp">-.-&gt;</span> <span class="dt">D1</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="dt">B2</span> <span class="pp">-.-&gt;</span> <span class="dt">D1</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="co">%% ==== CLASS DEFINITIONS ====</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="kw">classDef</span> <span class="fu">realism</span> <span class="at">fill:</span><span class="im">#b37a4c</span>,<span class="at">stroke:</span><span class="im">#fff</span>,<span class="at">color:</span><span class="er">#fff;</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="kw">classDef</span> <span class="fu">ethics</span> <span class="at">fill:</span><span class="im">#31567a</span>,<span class="at">stroke:</span><span class="im">#fff</span>,<span class="at">color:</span><span class="er">#fff;</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="kw">classDef</span> <span class="fu">empirical</span> <span class="at">fill:</span><span class="im">#557a31</span>,<span class="at">stroke:</span><span class="im">#fff</span>,<span class="at">color:</span><span class="er">#fff;</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="kw">classDef</span> <span class="fu">posthuman</span> <span class="at">fill:</span><span class="im">#6a3d8a</span>,<span class="at">stroke:</span><span class="im">#fff</span>,<span class="at">color:</span><span class="er">#fff;</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="kw">classDef</span> <span class="fu">uncertain</span> <span class="at">fill:</span><span class="im">#777777</span>,<span class="at">stroke:</span><span class="im">#fff</span>,<span class="at">color:</span><span class="er">#fff;</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="kw">classDef</span> <span class="fu">synthesis</span> <span class="at">fill:</span><span class="im">#7b5abf</span>,<span class="at">stroke:</span><span class="im">#fff</span>,<span class="at">color:</span><span class="er">#fff;</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="kw">classDef</span> <span class="fu">mood</span> <span class="at">fill:</span><span class="im">#e5e5e5</span>,<span class="at">stroke:</span>none,<span class="at">color:</span><span class="im">#222</span>,<span class="at">font-size:</span><span class="dv">13</span><span class="dt">px</span>;</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="co">%% ==== MOOD / CONCEPT TERRAIN (BOTTOM ROW) ====</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="kw">subgraph</span> <span class="dt">MOODS</span>[<span class="st">&quot;Affective &amp; Conceptual Terrain (across the discourse)&quot;</span>]</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>    <span class="dt">M1</span>[<span class="st">&quot;2023 → Speculative Anxiety\n⚪ Mood: Uncertainty&quot;</span>]<span class="fu">:::mood</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>    <span class="dt">M2</span>[<span class="st">&quot;2024 → Polar Inquiry\n🟣 Mood: Caution ↔ Curiosity&quot;</span>]<span class="fu">:::mood</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>    <span class="dt">M3</span>[<span class="st">&quot;2025 → Systematic Ethics\n🔵 Mood: Vigilance / Responsibility&quot;</span>]<span class="fu">:::mood</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>    <span class="dt">M4</span>[<span class="st">&quot;2025 + → Posthuman Integration\n🟣 Mood: Awe / Dialogue / Synthesis&quot;</span>]<span class="fu">:::mood</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="dt">M1</span> <span class="pp">--&gt;</span> <span class="dt">M2</span> <span class="pp">--&gt;</span> <span class="dt">M3</span> <span class="pp">--&gt;</span> <span class="dt">M4</span></span></code></pre></div>
 <hr />
 <h3 id="putting-it-together-what-have-we-missed">Putting it Together:
 What have we missed?</h3>

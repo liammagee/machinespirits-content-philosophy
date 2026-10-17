@@ -44,7 +44,7 @@
 What do we do when we open an article? How do we read it?
 
 
-Discuss - [ERAM 590 - Google Docs](https://docs.google.com/document/d/1wyWkvOju-FPXxWnpSlzrrgugqy0RdZGNL6S3Kh5wHd4/edit?tab=t.g5l1snpbq01z)
+Discuss - [EPOL 590 Fall 2026 class document](https://docs.google.com/document/d/1JATwv9qBCeN9ld3AEHc5FeZVi6ZamubNqLHzVQjeWGY/edit)
 
 ---
 
@@ -112,7 +112,7 @@ Discuss - [ERAM 590 - Google Docs](https://docs.google.com/document/d/1wyWkvOju-
  - What are some wider implications (e.g. around "typicality bias" in both human and AI?)
  - What are some terms we might want to look up?
 
-Discuss - [ERAM 590 - Google Docs](https://docs.google.com/document/d/1wyWkvOju-FPXxWnpSlzrrgugqy0RdZGNL6S3Kh5wHd4/edit?tab=t.g5l1snpbq01z)
+Discuss - [EPOL 590 Fall 2026 class document](https://docs.google.com/document/d/1JATwv9qBCeN9ld3AEHc5FeZVi6ZamubNqLHzVQjeWGY/edit)
 
 
 
@@ -157,7 +157,7 @@ A complex humanities text: Spivak, G. C. (2023). Can the subaltern speak?. In *I
 
 How do we locate literature relevant to our topic?
 
-Discuss - [ERAM 590 - Google Docs](https://docs.google.com/document/d/1wyWkvOju-FPXxWnpSlzrrgugqy0RdZGNL6S3Kh5wHd4/edit?tab=t.g5l1snpbq01z)
+Discuss - [EPOL 590 Fall 2026 class document](https://docs.google.com/document/d/1JATwv9qBCeN9ld3AEHc5FeZVi6ZamubNqLHzVQjeWGY/edit)
 
 
 

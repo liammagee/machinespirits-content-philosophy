@@ -1,4 +1,4 @@
-# 584 Lecture 0 - AI Overview
+# AI Overview
 
 
 
