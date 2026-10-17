@@ -32,7 +32,7 @@
    - Issue of the "so what" question. Why does the reader care, or need to know this?
    - Having sympathy for the reader / reviewer / examiner...
 3. "Gap" not justified by the preceding review. The review must read like a (legal?) dossier of **evidence** about the claim of gaps
-   - Styles may differ (e.g. Spivak (1988) and Zhang et al. (2025))
+   - Styles may differ (e.g. Spivak (1988) and Liu et al. (2025))
 
 
 
@@ -180,7 +180,7 @@ Pick a **principle**:
  - Navel gazing? Perhaps. But relevant for all academia because it helps us calibrate our writing (tone / citations )
  - We've already touched on this
    - Two Cultures (Snow) – Humanities and the Sciences)
- - But also: what are **financial** / **political** drivers of research? What are the conceptual or ideological **frames**? What are the standards for **evidence** or **truth**? Compare Spivak (1988) to Zhang et al. (2025)
+ - But also: what are **financial** / **political** drivers of research? What are the conceptual or ideological **frames**? What are the standards for **evidence** or **truth**? Compare Spivak (1988) to Liu et al. (2025)
  
 
 ---

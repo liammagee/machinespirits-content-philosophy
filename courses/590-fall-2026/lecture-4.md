@@ -74,7 +74,7 @@
 
 ### Can the subaltern speak?
 
-Spivak, G. C. (2023). . In *Imperialism* (pp. 171-219). Routledge.
+Spivak, G. C. (1988). Can the subaltern speak? In C. Nelson & L. Grossberg (Eds.), *Marxism and the interpretation of culture* (pp. 271–313). University of Illinois Press.
 
 [jan.ucc.nau.edu](https://jan.ucc.nau.edu/~sj6/Spivak%20CanTheSubalternSpeak.pdf)
 
@@ -224,7 +224,7 @@ Make sure to *introduce* and *conclude* the paragraph. **Exaggerate** the scient
 ### The *Humanities* literature review
 
  - What does your **humanities** audience expect?
- - Use Spivak, G. C. (2023). [jan.ucc.nau.edu](https://jan.ucc.nau.edu/~sj6/Spivak%20CanTheSubalternSpeak.pdf) - or other examples
+ - Use Spivak (1988): [jan.ucc.nau.edu](https://jan.ucc.nau.edu/~sj6/Spivak%20CanTheSubalternSpeak.pdf) - or other examples
  - Write 4-5 sentences - cite 1+ references
  - Use metadiscourse to introduce / compare / contrast / conclude / transition the paragraph
  - 15 minutes?
@@ -250,6 +250,7 @@ Make sure to *introduce* and *conclude* the paragraph. **Exaggerate** the scient
 
 ### Future Weeks
 
- - Week 5: Scaffolding
- - Week 7: Drafting / Use of AI
- - Week 8: Final Literature Review
+ - Session 5 (November 16): Structure, signposting and scholarly communities
+ - Session 6 (November 30): Reflexivity, positionality and AI in scholarship
+ - Session 7 (December 7): The future of scholarship and final review workshop
+ - Final literature review due Tuesday, December 15, 11:59 PM Central

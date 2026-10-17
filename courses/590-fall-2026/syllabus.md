@@ -97,9 +97,31 @@ By the end of the course, you should be able to:
 
 ## Texts readings and tools
 
-No book purchase is proposed. Required readings and access information will be posted on Canvas. **[TO CONFIRM]** The final reading list, editions, excerpts, and student access.
+No book purchase is required. Readings will be posted on Canvas under each session's module. **[TO CONFIRM]** The final reading list, editions, excerpts, and student access.
 
-Starting points carried over from 590 include Weber's *Science as a Vocation*, guidance on developing research questions and literature reviews, Spivak's *Can the Subaltern Speak?*, and material on the sociology of knowledge, positionality, and AI in scholarship. These are candidates for the revised reading sequence, not a finalized reading list.
+### Session 1 · Research questions and academic literature
+
+- Weber, M. (1946). Science as a vocation. In H. H. Gerth & C. W. Mills (Eds. & Trans.), *From Max Weber: Essays in sociology* (pp. 129–156). Oxford University Press.
+- University of Minnesota Libraries. (n.d.). [*Characteristics of a good research question*](https://libguides.umn.edu/c.php?g=1337354&p=9854773). Literature Searching research guide.
+
+### Session 2 · Article anatomy, review design and mapping a field
+
+- Purdue Online Writing Lab. (n.d.). [*Writing a literature review*](https://owl.purdue.edu/owl/research_and_citation/conducting_research/writing_a_literature_review.html). Purdue University.
+- In class: Keerthiraj, & Misra, A. (2025). Who owns the future? AI, digital sovereignty, and the politics of knowledge. *AI & Society*. [doi:10.1007/s00146-025-02641-y](https://doi.org/10.1007/s00146-025-02641-y)
+- In class: Liu, J., Zhang, Y., Li, W., Wang, Q., Niu, P., & Zhang, X. (2025). Adaptive vs. planned metacognitive scaffolding for computational thinking: Evidence from generative AI-supported programming in elementary education. *Computers & Education*, Article 105473. [doi:10.1016/j.compedu.2025.105473](https://doi.org/10.1016/j.compedu.2025.105473)
+
+### Session 3 · AI-assisted close and distant reading
+
+- Moretti, F. (2013). *Distant reading*. Verso.
+- Snow, C. P. (1959). *The two cultures and the scientific revolution*. Cambridge University Press.
+
+### Session 4 · Difficult texts, audiences and scholarly voice
+
+- Spivak, G. C. (1988). Can the subaltern speak? In C. Nelson & L. Grossberg (Eds.), *Marxism and the interpretation of culture* (pp. 271–313). University of Illinois Press.
+
+### Sessions 5–7
+
+**[TO CONFIRM]** A sociology-of-knowledge reading for Session 5, a reflection reading for Session 6, and a case on automation for Session 7.
 
 **Canvas** carries announcements, materials, assignment instructions, submissions, grades, and private instructor comments. A running document may be used for drafting and collaboration. **[TO CONFIRM]** Create a new class workspace; do not reuse last year's shared document.
 
@@ -168,7 +190,7 @@ Develop a section that synthesizes literature rather than describing articles on
 
 Submit an outline and a developed draft section showing the review's organizing argument. Use headings, transitions, and metadiscourse to make relationships explicit. Explain one structural revision and how it improves the reader's understanding.
 
-### 6 AI use and reflexive commentary
+### 6 AI-use statement and reflexive commentary
 
 Explain where AI influenced searching, reading, mapping, or writing; what you checked; what you rejected; and what responsibility you retained. Connect your position as a researcher to a specific choice in the review. Include selected examples where useful, without requiring publication of private conversations or irrelevant personal information.
 
@@ -219,13 +241,13 @@ Seminars meet online on **Mondays, 5:00–7:50 PM Central Time (America/Chicago)
 
 | Session | Teaching week | Focus | Reading and preparation | Milestone |
 |---|---|---|---|---|
-| 1 | 19–23 October | Research questions and academic literature | Baseline reflection; research-question guide; Weber candidate excerpt | Topic and question, 23 October |
-| 2 | 26–30 October | Article anatomy review design and mapping a field | Compare articles from your field; review-method guidance | Review plan, 30 October |
-| 3 | 2–6 November | AI-assisted close and distant reading | Annotate a difficult passage; prepare a source-backed conceptual map | Conceptual map, 6 November |
-| 4 | 9–13 November | Difficult texts audiences and scholarly voice | Spivak candidate excerpt; bring a writing sample | Writing sample, 13 November; peer workshop |
-| 5 | 16–20 November | Structure signposting and scholarly communities | Bring an outline and draft; sociology-of-knowledge reading to be selected | Structured draft, 20 November |
+| 1 | 19–23 October | Research questions and academic literature | Baseline reflection; Weber; research-question guide | Topic and question, 23 October |
+| 2 | 26–30 October | Article anatomy, review design and mapping a field | Purdue OWL; compare articles from your field | Review plan, 30 October |
+| 3 | 2–6 November | AI-assisted close and distant reading | Moretti; Snow; annotate a difficult passage; prepare a source-backed conceptual map | Conceptual map, 6 November |
+| 4 | 9–13 November | Difficult texts, audiences and scholarly voice | Spivak; bring a writing sample | Writing sample, 13 November; peer workshop |
+| 5 | 16–20 November | Structure, signposting and scholarly communities | Bring an outline and draft; sociology-of-knowledge reading to be selected | Structured draft, 20 November |
 | — | 21–29 November | Fall break | No new required submission | No seminar or deadline |
-| 6 | 30 November–4 December | Reflexivity positionality and AI in scholarship | Revisit the draft and AI-use record; reflection reading to be selected | AI and reflexivity statement, 4 December; peer workshop |
+| 6 | 30 November–4 December | Reflexivity, positionality and AI in scholarship | Revisit the draft and AI-use record; reflection reading to be selected | AI and reflexivity statement, 4 December; peer workshop |
 | 7 | 7–9 December | The future of scholarship and final review workshop | Bring a complete working draft; selected case on automation | Final review workshop |
 | — | 15 December | Final submission | Revision memo and AI-use statement accompany the review | Final literature review, 40% |
 

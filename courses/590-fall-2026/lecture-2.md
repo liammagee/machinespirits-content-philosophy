@@ -115,7 +115,7 @@ All required material (video lectures, readings etc.) will be provided to studen
  
 Let's answer this collaboratively:
 
-[ERAM 590 - Google Docs](https://docs.google.com/document/d/1wyWkvOju-FPXxWnpSlzrrgugqy0RdZGNL6S3Kh5wHd4/edit?tab=t.0)
+[EPOL 590 Fall 2026 class document](https://docs.google.com/document/d/1JATwv9qBCeN9ld3AEHc5FeZVi6ZamubNqLHzVQjeWGY/edit)
 
 ---
 
@@ -248,8 +248,8 @@ Lots of answers, lots of guidance...
 
 
 1. Keerthiraj, & Misra, A. (2025). Who owns the future? AI, digital sovereignty, and the politics of knowledge. AI & SOCIETY, 1-13. https://link.springer.com/article/10.1007/s00146-025-02641-y  
-2. Liu, J., Zhang, Y., Li, W., Wang, Q., Niu, P., & Zhang, X. (2025). Adaptive vs. Planned Metacognitive Scaffolding for Computational Thinking: Evidence from Generative AI-Supported Programming in Elementary Education. Computers & Education, 105473. https://www.sciencedirect.com/science/article/pii/S0360131525002416?casa_token=cBNpQ0r7f4oAAAAA:THnluE0eVY1uTJ3bnp1V6j-fsLEXobOB6QqoszFx_hsNacpAVPMmIe61gO70IXtFPiT2vIRcGPk
-3. Spivak, G. C. (2023). Can the subaltern speak?. In Imperialism (pp. 171-219). Routledge. http://users.uoa.gr/~cdokou/TheoryCriticismTexts/Spivak-Subaltern.pdf
+2. Liu, J., Zhang, Y., Li, W., Wang, Q., Niu, P., & Zhang, X. (2025). Adaptive vs. Planned Metacognitive Scaffolding for Computational Thinking: Evidence from Generative AI-Supported Programming in Elementary Education. Computers & Education, 105473. https://doi.org/10.1016/j.compedu.2025.105473
+3. Spivak, G. C. (1988). Can the subaltern speak? In C. Nelson & L. Grossberg (Eds.), *Marxism and the interpretation of culture* (pp. 271–313). University of Illinois Press. http://users.uoa.gr/~cdokou/TheoryCriticismTexts/Spivak-Subaltern.pdf
 
 
  - Why these two (three) examples? Contrasting methods, yes - but more than this, these articles reflect different orientations towards *scholarly techniques of persuasion*
@@ -270,7 +270,7 @@ Lots of answers, lots of guidance...
 
 Other ideas?
 
-[ERAM 590 - Google Docs](https://docs.google.com/document/d/1wyWkvOju-FPXxWnpSlzrrgugqy0RdZGNL6S3Kh5wHd4/edit?tab=t.0)
+[EPOL 590 Fall 2026 class document](https://docs.google.com/document/d/1JATwv9qBCeN9ld3AEHc5FeZVi6ZamubNqLHzVQjeWGY/edit)
 
 
 ---
@@ -287,14 +287,14 @@ Keerthiraj, & Misra, A. (2025). Who owns the future? AI, digital sovereignty, an
 
 ### Adaptive vs. Planned Metacognitive Scaffolding for Computational Thinking
 
-Liu, J., Zhang, Y., Li, W., Wang, Q., Niu, P., & Zhang, X. (2025). Adaptive vs. Planned Metacognitive Scaffolding for Computational Thinking: Evidence from Generative AI-Supported Programming in Elementary Education. Computers & Education, 105473. https://www.sciencedirect.com/science/article/pii/S0360131525002416?casa_token=cBNpQ0r7f4oAAAAA:THnluE0eVY1uTJ3bnp1V6j-fsLEXobOB6QqoszFx_hsNacpAVPMmIe61gO70IXtFPiT2vIRcGPk
+Liu, J., Zhang, Y., Li, W., Wang, Q., Niu, P., & Zhang, X. (2025). Adaptive vs. Planned Metacognitive Scaffolding for Computational Thinking: Evidence from Generative AI-Supported Programming in Elementary Education. Computers & Education, 105473. https://doi.org/10.1016/j.compedu.2025.105473
 
 
 ---
 
 ### Can the subaltern speak?
  
-Spivak, G. C. (2023). Can the subaltern speak?. In Imperialism (pp. 171-219). Routledge. http://users.uoa.gr/~cdokou/TheoryCriticismTexts/Spivak-Subaltern.pdf
+Spivak, G. C. (1988). Can the subaltern speak? In C. Nelson & L. Grossberg (Eds.), *Marxism and the interpretation of culture* (pp. 271–313). University of Illinois Press. http://users.uoa.gr/~cdokou/TheoryCriticismTexts/Spivak-Subaltern.pdf
 
 
 ---

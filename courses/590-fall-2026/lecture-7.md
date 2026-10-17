@@ -255,7 +255,7 @@ Human vs LLM thematic analysis:
 
 [System Prompts - Claude Docs](https://platform.claude.com/docs/en/release-notes/system-prompts)
 
-[ERAM 590 - Google Docs](https://docs.google.com/document/d/1wyWkvOju-FPXxWnpSlzrrgugqy0RdZGNL6S3Kh5wHd4/edit?tab=t.p1f3avygez4c)
+[EPOL 590 Fall 2026 class document](https://docs.google.com/document/d/1JATwv9qBCeN9ld3AEHc5FeZVi6ZamubNqLHzVQjeWGY/edit)
 
 Following Claude's example we are going to develop a fancy multipart prompt:
  - Assignment (from the syllabus) 
@@ -327,7 +327,7 @@ I need to write this literature review. Don't write it for me. Instead, be my di
 ### Re-cap on course purpose
 
 Dual:
- - ERAM - focus on mechanics, technical detail of the literature review
+ - EPOL 590 - focus on mechanics, technical detail of the literature review
  - But also examine how AI is being worked into practices of scholarship - and to be attentive and crtical towards that
  - Future is complex, challenging - "cyber-social" – with mixed effects and opportunities
  - Need for critical AI literacies - stay vigilant!
