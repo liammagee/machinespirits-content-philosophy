@@ -112,7 +112,7 @@
       save.disabled = true;
       try {
         const ref = db.doc("answers/" + uid), s = await ref.get();
-        const body = { name: entry.name, answers: { [state.current]: { text: t, at: entry.at } }, updatedAt: entry.at };
+        const body = { name: entry.name, answers: { ...(s.exists ? s.data().answers || {} : {}), [state.current]: { text: t, at: entry.at } }, updatedAt: entry.at }; // update replaces whole fields, so keep earlier prompts' answers
         if (s.exists) await ref.update(body); else await ref.set(body);
         pop.hidden = true; Board.toast("Answer added");
         setTimeout(() => { const n = Board.byId("u:" + uid); if (n) { Board.select(n); Board.fly(n); } }, 900);

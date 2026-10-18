@@ -10,6 +10,7 @@
   const students = () => new Map([...real.students, ...sim.students]);
   const papers = () => new Map([...real.papers, ...sim.papers]);
   let db = null, uid = null, liveSearch = "unknown";
+  const HOSTED = Boolean((window.BOARD_CONFIG || {}).hosted); // machinespirits.org: the server searches OpenAlex and files terms
   const tabId = Math.random().toString(36).slice(2);
 
   const labelFor = (key) => { if (key === COURSE_KEY) return COURSE_LABEL; for (const s of students().values()) for (const t of s.terms) if (t.key === key) return t.label; return state.terms.get(key)?.label || key; };
@@ -100,7 +101,7 @@
       save.disabled = true;
       try {
         await db.doc("students/" + uid).set(entry);
-        for (const t of terms) { const ref = db.doc("terms/" + t.key); const s = await ref.get(); if (!s.exists) await ref.set({ label: t.label, kind: t.kind, fetchedAt: "" }); }
+        if (!HOSTED) for (const t of terms) { const ref = db.doc("terms/" + t.key); const s = await ref.get(); if (!s.exists) await ref.set({ label: t.label, kind: t.kind, fetchedAt: "" }); }
         Board.toast("You're on the map"); pop.hidden = true;
         setTimeout(() => { const me = Board.byId("s:" + uid); if (me) { Board.select(me); Board.fly(me); } }, 900);
       } catch (err) { msg.textContent = err && err.code === "quota_exceeded" ? "The board is full. Ask your instructor to clear old papers." : "Could not save. Check your connection and try again."; msg.className = "note warn"; }
@@ -210,6 +211,7 @@ self.onmessage = async (e) => {
       if (newest && liveSearch !== "live") Board.setStatus(liveSearch === "blocked" ? "waiting" : "", "Papers last added " + new Date(newest).toLocaleString([], { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }));
       rebuild();
     });
+    if (HOSTED) { liveSearch = "server"; return; }
     startWorker(); setTimeout(workerTick, 4000); setInterval(workerTick, 120000);
   });
   rebuild();

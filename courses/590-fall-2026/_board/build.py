@@ -2,18 +2,22 @@
 """Build the EPOL 590 boards: inline src/base.css, src/engine.js and each board's app into one HTML file.
 
     python3 build.py              # writes dist/students.html and dist/responses.html
-    python3 build.py --hosted     # the same, but share links point at the page's own address (for machinespirits.org)
+    python3 build.py --hosted     # writes hosted/*.html for machinespirits.org (/590/map, /590/respond): adds the
+                                  # src/hosted.js shim over the site's /api/boards store, shares the page's own address
 
 Single files publish as claude.ai artifacts and also run as plain static pages.
 """
 import json, pathlib, sys
 
 HERE = pathlib.Path(__file__).parent
-SRC, DIST = HERE / "src", HERE / "dist"
+SRC, DIST, HOSTED = HERE / "src", HERE / "dist", HERE / "hosted"
 CDN = """<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three-spritetext@1.9.0/dist/three-spritetext.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.73.4/dist/3d-force-graph.min.js"></script>"""
 FONTS = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap">'
+
+# Store names in the site's /api/boards (machinespirits-website routes/boardsRoutes.js).
+BOARD = {"students": "epol590-map", "responses": "epol590-respond"}
 
 # Canonical claude.ai links for the review copies; --hosted drops them so the page shares its own address.
 SHARE = {
@@ -68,7 +72,7 @@ SHELL = """<meta charset="utf-8">
 <div id="toast" hidden role="status"></div>
 {cdn}
 <script>window.BOARD_CONFIG = {config};</script>
-<script>
+{shim}<script>
 {engine}
 </script>
 <script>
@@ -78,14 +82,16 @@ SHELL = """<meta charset="utf-8">
 
 
 def build(hosted=False):
-    DIST.mkdir(exist_ok=True)
+    out = HOSTED if hosted else DIST
+    out.mkdir(exist_ok=True)
     css, engine = (SRC / "base.css").read_text(), (SRC / "engine.js").read_text()
+    shim = "<script>\n" + (SRC / "hosted.js").read_text() + "</script>\n" if hosted else ""
     for name, page in PAGES.items():
-        config = json.dumps({"shareUrl": "" if hosted else SHARE[name]})
-        html = SHELL.format(title=page["title"], fonts=FONTS, css=css, field=page["field"], head=page["head"],
-                            empty=page["empty"], cdn=CDN, config=config, engine=engine, app=(SRC / f"{name}.js").read_text())
-        (DIST / f"{name}.html").write_text(html)
-        print(f"wrote dist/{name}.html ({len(html):,} bytes)")
+        cfg = {"shareUrl": "", "hosted": True, "board": BOARD[name]} if hosted else {"shareUrl": SHARE[name]}
+        html = SHELL.format(title=page["title"], fonts=FONTS, css=css, field=page["field"], head=page["head"], empty=page["empty"],
+                            cdn=CDN, config=json.dumps(cfg), shim=shim, engine=engine, app=(SRC / f"{name}.js").read_text())
+        (out / f"{name}.html").write_text(html)
+        print(f"wrote {out.name}/{name}.html ({len(html):,} bytes)")
 
 
 if __name__ == "__main__":

@@ -58,6 +58,8 @@ label small { font: 400 12px/1.35 var(--body); color: var(--muted); }
 .row { display: flex; gap: 6px; flex-wrap: wrap; }
 #pop { top: calc(14px + env(safe-area-inset-top, 0px)); left: max(14px, env(safe-area-inset-left, 0px)); width: min(340px, calc(100vw - 28px)); max-height: calc(100% - 120px); overflow: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; z-index: 4; }
 #pop form { display: flex; flex-direction: column; gap: 10px; }
+.keygate { top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(360px, calc(100vw - 32px)); padding: 20px; display: flex; flex-direction: column; gap: 12px; z-index: 20; }
+.keygate h2 { margin: 0; font: 700 22px/1.2 var(--display); }
 .pophead { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 
 /* drawer */
@@ -734,7 +736,7 @@ const Board = (() => {
       save.disabled = true;
       try {
         const ref = db.doc("answers/" + uid), s = await ref.get();
-        const body = { name: entry.name, answers: { [state.current]: { text: t, at: entry.at } }, updatedAt: entry.at };
+        const body = { name: entry.name, answers: { ...(s.exists ? s.data().answers || {} : {}), [state.current]: { text: t, at: entry.at } }, updatedAt: entry.at }; // update replaces whole fields, so keep earlier prompts' answers
         if (s.exists) await ref.update(body); else await ref.set(body);
         pop.hidden = true; Board.toast("Answer added");
         setTimeout(() => { const n = Board.byId("u:" + uid); if (n) { Board.select(n); Board.fly(n); } }, 900);
