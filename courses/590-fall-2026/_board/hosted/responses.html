@@ -1,0 +1,968 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EPOL 590 Responses</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Layout: a full-bleed 3D field. A compact header card at the top left, a reading drawer at the right,
+   a movable toolbar (bottom centre by default), and one slim legend strip along the bottom.
+   The look follows the Lecture 1 deck: ink #15161D, paper #F3EEE4, orange, blue and teal, Space Grotesk and
+   Source Serif 4, flat panels with chunky borders and pill buttons. Dark (ink) is the default; light is paper. */
+:root {
+  --bg: #15161D; --panel: #1C1D27; --panel-2: #23253A; --border: #3A3C4E; --rule: #2C2E3D;
+  --fg: #F3EEE4; --fg-2: #C9C4B8; --muted: #9C978C;
+  --accent: #FF7A50; --accent-ink: #FF7A50; --on-accent: #15161D; --blue: #7F9BE8; --teal: #4FC3B0; --ok: #7BD88F; --on-c: #15161D;
+  --display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --body: "Source Serif 4", Georgia, serif;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) {
+  --bg: #F3EEE4; --panel: #FBF8F2; --panel-2: #E8E1D3; --border: #15161D; --rule: #DDD5C6;
+  --fg: #15161D; --fg-2: #4A4A55; --muted: #6A6670;
+  --accent: #F2552C; --accent-ink: #B83A16; --on-accent: #15161D; --blue: #2F4FA8; --teal: #1F7A70; --ok: #2B7A3E; --on-c: #FFFFFF;
+  color-scheme: light;
+} }
+:root[data-theme="light"] {
+  --bg: #F3EEE4; --panel: #FBF8F2; --panel-2: #E8E1D3; --border: #15161D; --rule: #DDD5C6;
+  --fg: #15161D; --fg-2: #4A4A55; --muted: #6A6670;
+  --accent: #F2552C; --accent-ink: #B83A16; --on-accent: #15161D; --blue: #2F4FA8; --teal: #1F7A70; --ok: #2B7A3E; --on-c: #FFFFFF;
+  color-scheme: light;
+}
+:root[data-theme="dark"] { color-scheme: dark; }
+html, body { height: 100%; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); overflow: hidden; }
+#field { position: fixed; inset: 0; }
+.panel { box-sizing: border-box; position: fixed; z-index: 2; background: var(--panel); border: 2px solid var(--border); border-radius: 18px; }
+@keyframes appear { from { opacity: 0; } }
+#caption { animation: appear .35s ease both; }
+.eyebrow { font: 600 11px/1 var(--display); letter-spacing: .18em; text-transform: uppercase; color: var(--accent-ink); }
+button { font: 600 13px/1 var(--display); border-radius: 999px; padding: 9px 14px; cursor: pointer; border: 2px solid var(--accent); background: var(--accent); color: var(--on-accent); }
+button.ghost { background: transparent; color: var(--fg); border-color: var(--border); }
+button.ghost:hover { background: var(--panel-2); }
+button:disabled { opacity: .5; cursor: default; }
+button:focus-visible, a:focus-visible, .chip:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+a { color: var(--blue); }
+input, textarea, select { font: 400 15px/1.35 var(--body); color: var(--fg); background: var(--bg); border: 2px solid var(--border); border-radius: 10px; padding: 8px 10px; width: 100%; box-sizing: border-box; }
+textarea { resize: vertical; min-height: 64px; }
+label { display: flex; flex-direction: column; gap: 5px; font: 600 12px/1.2 var(--display); color: var(--fg-2); }
+label small { font: 400 12px/1.35 var(--body); color: var(--muted); }
+.note { margin: 0; font-size: 13px; line-height: 1.45; color: var(--muted); }
+.note.warn { color: var(--accent-ink); }
+
+/* header card */
+#head { top: calc(14px + env(safe-area-inset-top, 0px)); left: max(14px, env(safe-area-inset-left, 0px)); width: min(300px, calc(100vw - 28px)); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+#head h1 { margin: 0; font: 700 21px/1.1 var(--display); letter-spacing: -.01em; text-wrap: balance; }
+.counts { display: flex; gap: 14px; font: 500 12px/1 var(--display); color: var(--muted); font-variant-numeric: tabular-nums; }
+.counts b { color: var(--fg); font: 700 15px/1 var(--display); margin-right: 3px; }
+.row { display: flex; gap: 6px; flex-wrap: wrap; }
+#pop { top: calc(14px + env(safe-area-inset-top, 0px)); left: max(14px, env(safe-area-inset-left, 0px)); width: min(340px, calc(100vw - 28px)); max-height: calc(100% - 120px); overflow: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; z-index: 4; }
+#pop form { display: flex; flex-direction: column; gap: 10px; }
+.keygate { top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(360px, calc(100vw - 32px)); padding: 20px; display: flex; flex-direction: column; gap: 12px; z-index: 20; }
+.keygate h2 { margin: 0; font: 700 22px/1.2 var(--display); }
+.pophead { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+
+/* drawer */
+#drawer { top: calc(14px + env(safe-area-inset-top, 0px)); right: max(14px, env(safe-area-inset-right, 0px)); width: min(330px, calc(100vw - 28px)); max-height: calc(100% - 150px); overflow: auto; padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px; z-index: 3; }
+#drawer h2 { margin: 0; font: 600 19px/1.25 var(--body); text-wrap: balance; }
+#drawer .meta { font: 400 13px/1.45 var(--display); color: var(--fg-2); }
+#drawer.min > :not(.dhead) { display: none; }
+.dhead { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.dhead .row { flex-wrap: nowrap; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.quote { margin: 0; font: italic 400 17px/1.5 var(--body); color: var(--fg); }
+.abstract { margin: 0; font-size: 14px; line-height: 1.55; color: var(--fg-2); }
+.abstract.clamp { display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden; }
+a.cta { display: inline-block; font: 600 12px/1 var(--display); padding: 9px 13px; border-radius: 999px; background: var(--accent); color: var(--on-accent); text-decoration: none; border: 2px solid var(--accent); }
+a.cta.alt { background: transparent; color: var(--fg); border-color: var(--border); }
+
+/* toolbar: draggable */
+#tools { left: 50%; bottom: calc(66px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); padding: 5px; display: flex; gap: 3px; align-items: center; flex-wrap: wrap; width: max-content; max-width: calc(100vw - 28px); border-radius: 14px; touch-action: none; }
+#tools.placed { transform: none; }
+#tools { cursor: grab; }
+#tools button:not(.grip) { cursor: pointer; }
+#tools .sep { width: 2px; height: 22px; background: var(--rule); margin: 0 3px; border-radius: 2px; }
+.icon { width: 34px; height: 34px; padding: 0; display: inline-grid; place-items: center; border-radius: 10px; background: transparent; color: var(--fg); border: 2px solid transparent; }
+.icon:hover { background: var(--panel-2); }
+.icon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.icon[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
+.icon.grip { cursor: grab; color: var(--muted); width: 22px; }
+.icon.grip:active { cursor: grabbing; }
+.menu { position: fixed; z-index: 5; min-width: 220px; padding: 8px; display: flex; flex-direction: column; gap: 2px; }
+.menu button.item { display: flex; justify-content: space-between; gap: 16px; width: 100%; text-align: left; background: transparent; color: var(--fg); border: 0; border-radius: 10px; padding: 9px 10px; font: 500 13px/1.2 var(--display); }
+.menu button.item:hover { background: var(--panel-2); }
+.menu kbd { font: 500 11px/1 var(--display); color: var(--muted); }
+.menu .label { padding: 6px 10px 2px; }
+.menu hr { border: 0; border-top: 2px solid var(--rule); margin: 4px 0; }
+.menu form { display: flex; gap: 6px; padding: 4px; }
+.menu form input { padding: 6px 8px; font-size: 14px; }
+.menu form button { padding: 6px 10px; }
+.view { display: flex; gap: 4px; align-items: center; }
+.view button.item { flex: 1; }
+.view .x { width: 28px; height: 28px; padding: 0; background: transparent; color: var(--muted); border: 0; border-radius: 8px; }
+.view .x:hover { background: var(--panel-2); color: var(--fg); }
+
+/* legend strip */
+#legend { left: max(14px, env(safe-area-inset-left, 0px)); right: max(14px, env(safe-area-inset-right, 0px)); bottom: calc(14px + env(safe-area-inset-bottom, 0px)); padding: 6px 8px 6px 10px; display: flex; gap: 12px; align-items: center; border-radius: 14px; }
+#chips { display: flex; gap: 6px; flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+#chips::-webkit-scrollbar { display: none; }
+.chip { flex: none; font: 600 12px/1 var(--display); padding: 6px 10px; border-radius: 999px; border: 2px solid var(--c); color: var(--fg); background: transparent; white-space: nowrap; }
+.chip:hover { background: color-mix(in srgb, var(--c) 18%, transparent); }
+.chip[aria-pressed="true"] { background: var(--c); color: var(--on-c); }
+#status { flex: none; font: 400 12px/1.3 var(--display); color: var(--muted); white-space: nowrap; max-width: 46%; overflow: hidden; text-overflow: ellipsis; }
+#status i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--muted); margin-right: 7px; vertical-align: 0; }
+#status.live i { background: var(--ok); animation: ping 1.8s ease-out infinite; }
+#status.waiting i { background: var(--accent); }
+@keyframes ping { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ok) 60%, transparent); } 100% { box-shadow: 0 0 0 8px transparent; } }
+body.bare .panel:not(#tools), body.bare .menu { display: none; }
+
+#caption { position: fixed; z-index: 2; left: 50%; top: calc(18px + env(safe-area-inset-top, 0px)); transform: translateX(-50%); width: min(520px, calc(100vw - 32px)); text-align: center; pointer-events: none; padding: 10px 16px; background: var(--panel); border: 2px solid var(--border); border-radius: 16px; }
+#caption .eyebrow { margin-bottom: 6px; }
+#caption .t { font: 600 18px/1.3 var(--body); color: var(--fg); text-wrap: balance; }
+#tip { position: fixed; z-index: 6; max-width: 300px; pointer-events: none; padding: 7px 10px; border-radius: 10px; background: var(--panel); border: 2px solid var(--border); font: 400 13px/1.4 var(--body); color: var(--fg); }
+#empty { position: fixed; z-index: 1; left: 50%; bottom: calc(132px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); width: min(360px, calc(100vw - 32px)); text-align: center; pointer-events: none; color: var(--fg-2); font-size: 14px; line-height: 1.5; }
+#empty strong { display: block; font: 600 15px/1.3 var(--display); color: var(--fg); margin-bottom: 4px; }
+#toast { position: fixed; z-index: 7; left: 50%; top: calc(18px + env(safe-area-inset-top, 0px)); transform: translateX(-50%); padding: 9px 14px; border-radius: 999px; background: var(--fg); color: var(--bg); font: 600 13px/1 var(--display); }
+
+@media (max-width: 760px) {
+  #head { width: calc(100vw - 28px); }
+  #drawer { top: auto; bottom: calc(66px + env(safe-area-inset-bottom, 0px)); max-height: 46%; width: calc(100vw - 28px); }
+  #tools .sep, #t-left, #t-up, #t-down, #t-right, #t-reset { display: none; }
+  .icon { width: 32px; height: 32px; }
+  #drawer { bottom: calc(118px + env(safe-area-inset-bottom, 0px)); }
+  #status { display: none; }
+  #legend:has(#chips:empty) { display: none; }
+
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+
+</style>
+<div id="field" aria-label="Three-dimensional mind map of the class's answers to the current question, clustered by the words they share"></div>
+<section id="head" class="panel">
+  <div class="eyebrow" id="q-lecture">EPOL 590 · Lecture 1</div>
+  <h1 id="q-title">What is academic literature?</h1>
+  <div class="counts"><span><b id="n-answers">0</b>responses</span><span><b id="n-themes">0</b>themes</span></div>
+  <select id="q-switch" aria-label="Choose a question" hidden></select>
+  <div class="row"><button id="act-respond" type="button">Respond</button><button id="act-link" class="ghost" type="button">Copy link</button></div>
+</section>
+<section id="pop" class="panel" hidden></section>
+<aside id="drawer" class="panel" hidden aria-live="polite"></aside>
+<div id="tip" hidden role="tooltip"></div>
+<div id="caption" hidden aria-live="polite"><div class="eyebrow"></div><div class="t"></div></div>
+<div id="tools" class="panel" role="toolbar" aria-label="View controls"></div>
+<footer id="legend" class="panel">
+  <div id="chips" role="group" aria-label="Filter the map"></div>
+  <div id="status" role="status"><i></i><span id="status-text">Connecting…</span></div>
+</footer>
+<div id="empty" hidden><strong>No responses yet</strong>Press Respond to add yours. Themes appear when two answers share a word.</div>
+<div id="toast" hidden role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three-spritetext@1.9.0/dist/three-spritetext.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.73.4/dist/3d-force-graph.min.js"></script>
+<script>window.BOARD_CONFIG = {"shareUrl": "", "hosted": true, "board": "epol590-respond"};</script>
+<script>
+// Hosted shim (machinespirits.org only; build.py --hosted). The boards were written against the claude.ai
+// artifact runtime: window.claude.use("db" | "user" | "downloads"). This provides the same calls over the
+// site's /api/boards store, polling for changes instead of holding a live connection.
+//
+// Keys travel in the URL once and then live in this browser: ?k=<class key> (kept in the address so
+// Copy link carries it) and ?admin=<instructor key> (removed from the address straight away).
+(() => {
+  const CFG = window.BOARD_CONFIG || {};
+  const API = "/api/boards/" + CFG.board;
+  const ls = {
+    get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch {} },
+  };
+
+  const url = new URL(location.href);
+  if (url.searchParams.get("k")) ls.set("epol590-class-key", url.searchParams.get("k"));
+  if (url.searchParams.get("admin")) { ls.set("epol590-admin-key", url.searchParams.get("admin")); url.searchParams.delete("admin"); }
+  const classKey = ls.get("epol590-class-key") || "";
+  if (classKey) url.searchParams.set("k", classKey);
+  history.replaceState(null, "", url);
+
+  let token = ls.get("epol590-board-token");
+  if (!token) {
+    token = [...crypto.getRandomValues(new Uint8Array(16))].map((b) => b.toString(16).padStart(2, "0")).join("");
+    ls.set("epol590-board-token", token);
+  }
+  const adminKey = ls.get("epol590-admin-key") || "";
+
+  async function req(method, path, body) {
+    const headers = { "X-Board-Token": token };
+    if (classKey) headers["X-Class-Key"] = classKey;
+    if (adminKey) headers["X-Admin-Key"] = adminKey;
+    if (body !== undefined) headers["Content-Type"] = "application/json";
+    const r = await fetch(API + path, { method, headers, body: body === undefined ? undefined : JSON.stringify(body) });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) {
+      const err = new Error(j.error || "HTTP " + r.status); err.code = j.error; err.status = r.status;
+      if (j.error === "class_key_required") askKey();
+      throw err;
+    }
+    return j;
+  }
+
+  // ------------------------------------------------------------ class key prompt
+  let asked = false;
+  function askKey() {
+    if (asked) return; asked = true;
+    const box = document.createElement("form");
+    box.className = "panel keygate";
+    box.innerHTML = '<div class="eyebrow">EPOL 590</div><h2>Enter the class key</h2><p class="note">It is in the Zoom chat and on Canvas. You only need it once in this browser.</p>';
+    const input = document.createElement("input"); input.autocomplete = "off"; input.required = true; input.setAttribute("aria-label", "Class key");
+    const go = document.createElement("button"); go.type = "submit"; go.textContent = "Open the board";
+    box.append(input, go);
+    box.onsubmit = (e) => { e.preventDefault(); const u = new URL(location.href); u.searchParams.set("k", input.value.trim()); location.replace(u); };
+    document.body.append(box); setTimeout(() => input.focus(), 0);
+  }
+
+  // ------------------------------------------------------------ polling cache
+  const cache = new Map(); // "coll/id" -> data
+  const subs = new Set();
+  let seq = 0, primed = false, timer = null, inflight = false, again = false, failures = 0;
+  const collOf = (p) => p.split("/")[0];
+
+  async function poll() {
+    if (inflight) { again = true; return; }
+    inflight = true; clearTimeout(timer);
+    let changed = null;
+    try {
+      const j = await req("GET", "/changes?since=" + seq);
+      if (j.seq < seq) { cache.clear(); seq = 0; primed = false; inflight = false; return poll(); } // the store was reset
+      for (const p of j.deleted) cache.delete(p);
+      for (const d of j.docs) cache.set(d.path, d.data);
+      const recovered = failures >= 3;
+      changed = !primed || recovered ? null : new Set([...j.docs, ...j.deleted.map((path) => ({ path }))].map((d) => collOf(d.path)));
+      seq = j.seq; primed = true; failures = 0;
+    } catch (err) {
+      failures++;
+      if (failures === 3) for (const s of subs) s.fail && s.fail(err);
+      changed = false;
+    }
+    inflight = false;
+    if (changed !== false) for (const s of subs) if (!changed || changed.has(s.coll)) s.emit();
+    if (again) { again = false; return poll(); }
+    timer = setTimeout(poll, document.hidden ? 30000 : 4000);
+  }
+  document.addEventListener("visibilitychange", () => { if (!document.hidden && primed) poll(); });
+  const kick = () => setTimeout(poll, 150);
+
+  function snapshot(q) {
+    let rows = [...cache.entries()].filter(([p]) => collOf(p) === q.coll).map(([p, data]) => ({ id: p.slice(q.coll.length + 1), data }));
+    if (q.order) { const [f, dir] = q.order; rows.sort((a, b) => String(a.data[f] ?? "").localeCompare(String(b.data[f] ?? "")) * (dir === "desc" ? -1 : 1)); }
+    if (q.limit) rows = rows.slice(0, q.limit);
+    const docs = rows.map((r) => ({ id: r.id, exists: true, data: () => r.data }));
+    return { docs, size: docs.length, empty: !docs.length };
+  }
+
+  function query(q) {
+    return {
+      orderBy: (field, dir = "asc") => query({ ...q, order: [field, dir] }),
+      limit: (n) => query({ ...q, limit: n }),
+      async get() { if (!primed) await poll(); return snapshot(q); },
+      onSnapshot(next, fail) {
+        const sub = { coll: q.coll, emit: () => next(snapshot(q)), fail };
+        subs.add(sub);
+        if (primed) setTimeout(sub.emit, 0); else if (!timer && !inflight) poll();
+        return () => subs.delete(sub);
+      },
+    };
+  }
+
+  const docSnap = (id, j) => ({ id, exists: Boolean(j.exists), data: () => j.data });
+  function doc(path) {
+    const priv = path.match(/^data\/users\/[^/]+\/([A-Za-z0-9_-]+)$/);
+    const id = path.split("/").pop();
+    if (priv) {
+      const at = "/private/" + priv[1];
+      return {
+        id,
+        get: async () => docSnap(id, await req("GET", at)),
+        set: (d) => req("PUT", at, d),
+        update: async (d) => { const cur = await req("GET", at); return req("PUT", at, { ...(cur.data || {}), ...d }); },
+      };
+    }
+    const at = "/doc/" + path;
+    return {
+      id,
+      get: async () => docSnap(id, await req("GET", at)),
+      set: async (d) => { await req("PUT", at, d); kick(); },
+      update: async (d) => { await req("PUT", at + "?merge=1", d); kick(); },
+      delete: async () => { await req("DELETE", at); kick(); },
+      acquire: async () => ({ acquired: false }), // the server runs the literature worker
+    };
+  }
+
+  const db = { doc, collection: (coll) => query({ coll }) };
+  let me = null;
+  const who = () => (me ||= req("GET", "/me").catch(() => ({ uid: null, admin: false })));
+  const user = { id: async () => (await who()).uid, isOwner: async () => (await who()).admin, canEdit: async () => (await who()).admin };
+
+  window.claude = { use: async (name) => (name === "db" ? db : name === "user" ? user : null) };
+})();
+</script>
+<script>
+"use strict";
+// Shared engine for the EPOL 590 boards: the 3D field, themes, the movable toolbar, focus mode,
+// flythrough, saved views, PNG snapshots, CSV export, link copying and the status line.
+// Each board (students.js, responses.js) supplies its data and its drawer content through Board.init().
+const Board = (() => {
+  const $ = (id) => document.getElementById(id);
+  const el = (tag, text, cls) => { const e = document.createElement(tag); if (text != null && text !== "") e.textContent = text; if (cls) e.className = cls; return e; };
+  const extLink = (text, href, cls) => { const a = el("a", text, cls); a.href = href; a.target = "_blank"; a.rel = "noopener"; return a; };
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const V3 = THREE.Vector3;
+
+  // ------------------------------------------------------------ themes (match the Lecture 1 deck)
+  const THEMES = {
+    dark: { name: "dark", bg: "#15161D", fg: "#F3EEE4", muted: "#9C978C", dim: "#2A2C3A70", dust: "#9AA3C8", dustOpacity: .4, add: true, glow: 1,
+      hues: ["#FF7A50", "#7F9BE8", "#4FC3B0", "#F5C542", "#FF6FA8", "#A98BFF", "#8FD16A", "#58C7F3", "#FFA94D", "#E07BE0"] },
+    light: { name: "light", bg: "#F3EEE4", fg: "#15161D", muted: "#6A6670", dim: "#D5CCBC90", dust: "#A69A86", dustOpacity: .3, add: false, glow: .45,
+      hues: ["#F2552C", "#2F4FA8", "#1F7A70", "#B7791F", "#C2185B", "#6B4FBB", "#3F7D2C", "#1C6EA4", "#C05621", "#8E3FA8"] },
+  };
+  const store = { get(k) { try { return localStorage.getItem(k); } catch { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch {} } };
+  const saved = store.get("epol590-theme");
+  if (saved === "light" || saved === "dark") document.documentElement.dataset.theme = saved;
+  const themeName = () => document.documentElement.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+  let theme = THEMES[themeName()] || THEMES.dark;
+  let colorOf = new Map();
+  function assignColors(keys) { const h = theme.hues; colorOf = new Map([...keys].sort().map((k, i) => [k, h[i % h.length]])); }
+  const colorFor = (key) => colorOf.get(key) || theme.muted;
+
+  // ------------------------------------------------------------ icons
+  const ICON = {
+    zin: '<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M11 8v6M8 11h6"/>',
+    zout: '<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M8 11h6"/>',
+    fit: '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>',
+    reset: '<path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v5h5"/>',
+    up: '<path d="M12 19V5M6 11l6-6 6 6"/>', down: '<path d="M12 5v14M6 13l6 6 6-6"/>',
+    left: '<path d="M19 12H5M11 6l-6 6 6 6"/>', right: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+    spin: '<ellipse cx="12" cy="12" rx="9" ry="3.6"/><circle cx="12" cy="12" r="1.6"/>',
+    tour: '<path d="M3 18c4-1 6-4 8-8s5-5 10-5"/><circle cx="21" cy="5" r="1.3"/><circle cx="3" cy="18" r="1.3"/>',
+    views: '<path d="M6 3h12v18l-6-4-6 4z"/>',
+    snap: '<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>',
+    theme: '<path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/>',
+    sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+    link: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
+    more: '<circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/>',
+    grip: '<circle cx="9" cy="6" r="1.2"/><circle cx="15" cy="6" r="1.2"/><circle cx="9" cy="12" r="1.2"/><circle cx="15" cy="12" r="1.2"/><circle cx="9" cy="18" r="1.2"/><circle cx="15" cy="18" r="1.2"/>',
+    min: '<path d="M5 12h14"/>', max: '<path d="M5 12h14M12 5v14"/>', close: '<path d="M6 6l12 12M18 6L6 18"/>',
+  };
+  const svg = (name) => '<svg viewBox="0 0 24 24" aria-hidden="true">' + ICON[name] + "</svg>";
+  function iconButton(id, name, label, extra = "") { const b = el("button", "", "icon"); b.type = "button"; if (id) b.id = id; b.title = label + (extra ? " (" + extra + ")" : ""); b.setAttribute("aria-label", label); b.innerHTML = svg(name); return b; }
+
+  // ------------------------------------------------------------ status, toast
+  let baseStatus = ["", "Connecting…"], flashMsg = null, opts = null;
+  function paintStatus() {
+    const s = opts && opts.statusOverride ? opts.statusOverride() : null;
+    let [kind, text] = baseStatus;
+    if (s) [kind, text] = s;
+    else if (flashMsg && Date.now() < flashMsg.until) { kind = "live"; text = flashMsg.text; }
+    $("status").className = kind; $("status-text").textContent = text;
+  }
+  const setStatus = (kind, text) => { baseStatus = [kind, text]; paintStatus(); };
+  const flash = (text, ms = 4000) => { flashMsg = { text, until: Date.now() + ms }; paintStatus(); };
+  let toastTimer = null;
+  function toast(text) { const t = $("toast"); t.textContent = text; t.hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, 2600); }
+
+  // ------------------------------------------------------------ 3D: textures, sprites, nodes
+  function canvasTex(draw, size = 128) { const c = document.createElement("canvas"); c.width = c.height = size; draw(c.getContext("2d"), size); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; }
+  const tex = {
+    glow: canvasTex((g, s) => { const r = g.createRadialGradient(s/2, s/2, 0, s/2, s/2, s/2); r.addColorStop(0, "rgba(255,255,255,1)"); r.addColorStop(.2, "rgba(255,255,255,.5)"); r.addColorStop(.5, "rgba(255,255,255,.1)"); r.addColorStop(1, "rgba(255,255,255,0)"); g.fillStyle = r; g.fillRect(0, 0, s, s); }),
+    ring: canvasTex((g, s) => { g.beginPath(); g.arc(s/2, s/2, s*.36, 0, Math.PI*2); g.lineWidth = s*.08; g.strokeStyle = "#fff"; g.stroke(); }),
+    disc: canvasTex((g, s) => { g.beginPath(); g.arc(s/2, s/2, s*.34, 0, Math.PI*2); g.fillStyle = "#fff"; g.fill(); }),
+    diamond: canvasTex((g, s) => { g.translate(s/2, s/2); g.rotate(Math.PI/4); g.lineWidth = s*.08; g.strokeStyle = "#fff"; g.strokeRect(-s*.26, -s*.26, s*.52, s*.52); g.fillStyle = "rgba(255,255,255,.2)"; g.fillRect(-s*.26, -s*.26, s*.52, s*.52); }),
+  };
+  const sprite = (map, color, scale, opacity = 1) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map, color, transparent: true, opacity, depthWrite: false, blending: theme.add ? THREE.AdditiveBlending : THREE.NormalBlending })); s.scale.set(scale, scale, 1); return s; };
+  const label = (text, color, h, italic) => { const t = new SpriteText(text, h, color); t.fontFace = italic ? "Source Serif 4, Georgia, serif" : "Space Grotesk, Arial, sans-serif"; t.fontWeight = italic ? "400" : "600"; t.material.depthWrite = false; return t; };
+  const trim = (s, n) => s.length > n ? s.slice(0, n - 1) + "…" : s;
+
+  // Node kinds: center (the course or the question), hub (an interest, topic or theme word),
+  // person (a student), leaf (a paper or a response). Every node keeps [material, base opacity]
+  // pairs so focus mode can dim it, a pulse halo for hubs, and ripple rings for "being searched".
+  function nodeObject(n) {
+    const g = new THREE.Group(), mats = [];
+    const add = (o, base) => { o.material.transparent = true; o.material.opacity = base; g.add(o); mats.push([o.material, base]); return o; };
+    const col = n.kind === "center" ? theme.fg : n.color;
+    if (n.kind === "leaf") {
+      const r = (n.size || 1.6) + (n.weight || 1) * .8;
+      add(sprite(tex.glow, col, r * 7), .45 * theme.glow);
+      if (n.shape === "disc") add(sprite(tex.disc, col, r * 2.6), 1);
+      else add(new THREE.Mesh(new THREE.SphereGeometry(r, 16, 12), new THREE.MeshBasicMaterial({ color: col })), 1);
+    } else if (n.kind === "person") {
+      add(sprite(tex.diamond, theme.fg, 10), .95);
+      const t = add(label(trim(n.label, 28), theme.fg, 3.4), .95); t.position.y = 7.5;
+    } else {
+      const big = n.kind === "center";
+      const halo = add(sprite(tex.glow, col, big ? 70 : 32), (big ? .5 : .3) * theme.glow);
+      g.userData.pulse = halo; g.userData.pulseBase = halo.scale.x;
+      add(sprite(tex.ring, col, big ? 16 : 10), .95);
+      g.userData.rippleBase = big ? 16 : 10;
+      g.userData.ripples = [0, 1, 2].map(() => { const r = sprite(tex.ring, col, g.userData.rippleBase, 0); g.add(r); return r; });
+      const t = add(label(trim(n.label, big ? 60 : 44), col, big ? 5 : n.italic ? 3.1 : 3.7, n.italic), .92); t.position.y = big ? 13 : 8.5;
+    }
+    g.userData.mats = mats; n.__obj = g; highlightOne(n);
+    return g;
+  }
+
+  // ------------------------------------------------------------ graph
+  const field = $("field");
+  const S = { filter: null, focus: null, selected: null, bloom: new Map(), index: new Map() };
+  const endId = (e) => typeof e === "object" ? e.id : e;
+  const graph = ForceGraph3D({ controlType: "orbit" })(field)
+    .backgroundColor(theme.bg).showNavInfo(false)
+    .nodeId("id").nodeLabel(() => "").nodeThreeObject(nodeObject)
+    .nodeVisibility((n) => visible(n))
+    .linkVisibility((l) => visible(byId(endId(l.source))) && visible(byId(endId(l.target))))
+    .linkColor((l) => !S.focus || (S.focus.has(endId(l.source)) && S.focus.has(endId(l.target))) ? l.color : theme.dim)
+    .linkOpacity(.34).linkWidth((l) => l.kind === "own" ? .5 : 0)
+    .linkDirectionalParticles((l) => l.kind === "flow" ? 1 : 0).linkDirectionalParticleSpeed(.004).linkDirectionalParticleWidth(1.1)
+    .linkDirectionalParticleColor((l) => l.color)
+    .onNodeClick((n) => select(n)).onBackgroundClick(() => select(null))
+    .onNodeHover((n) => { field.style.cursor = n ? "pointer" : ""; showTip(n); })
+    .warmupTicks(40).cooldownTime(9000);
+  graph.d3Force("charge").strength((n) => n.fx !== undefined && n.born > performance.now() ? 0 : n.kind === "center" ? -220 : n.kind === "leaf" ? -26 : -90);
+  graph.d3Force("link").distance((l) => l.kind === "flow" ? 32 : l.kind === "own" ? 46 : 70);
+  const pull = (alpha) => { for (const n of graph.graphData().nodes) { if (n.fx !== undefined) continue; const k = (n.kind === "center" ? .08 : .012) * alpha; n.vx -= n.x * k; n.vy -= n.y * k; n.vz -= n.z * k; } };
+  pull.initialize = () => {};
+  graph.d3Force("pull", pull);
+  let fitted = false;
+  const fewNodes = () => graph.graphData().nodes.length < 4;
+  graph.onEngineStop(() => { if (!fitted) { fitted = true; if (!fewNodes()) graph.zoomToFit(900, 90); } });
+  addEventListener("resize", () => { graph.width(innerWidth).height(innerHeight); clampTools(); });
+  let dust;
+  { const n = 1300, pos = new Float32Array(n * 3);
+    for (let i = 0; i < n; i++) { const r = 700 + Math.random() * 1800, th = Math.random() * Math.PI * 2, ph = Math.acos(2 * Math.random() - 1); pos.set([r * Math.sin(ph) * Math.cos(th), r * Math.sin(ph) * Math.sin(th) * .6, r * Math.cos(ph)], i * 3); }
+    const geo = new THREE.BufferGeometry(); geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+    dust = new THREE.Points(geo, new THREE.PointsMaterial({ size: 3, map: tex.glow, color: theme.dust, transparent: true, opacity: theme.dustOpacity, depthWrite: false, blending: theme.add ? THREE.AdditiveBlending : THREE.NormalBlending }));
+    graph.scene().add(dust); }
+  graph.cameraPosition({ x: 0, y: 40, z: 420 });
+  (function spin(tries = 0) { const c = graph.controls(); if (!c) { if (tries < 60) requestAnimationFrame(() => spin(tries + 1)); return; }
+    c.autoRotate = !reduceMotion; c.autoRotateSpeed = .35; syncSpin();
+    field.addEventListener("pointerdown", () => { c.autoRotate = false; syncSpin(); }, { once: true }); })();
+
+  const byId = (id) => S.index.get(id);
+  function visible(n) {
+    if (!n || !S.filter) return true;
+    if (n.kind === "center") return true;
+    if (n.kind === "hub") return n.key === S.filter;
+    return (n.terms || []).includes(S.filter);
+  }
+  // Replace the graph's data, keeping the positions of nodes that survive and flying new ones in.
+  function setGraph(nodes, links) {
+    const prev = new Map(graph.graphData().nodes.map((n) => [n.id, n]));
+    for (const n of nodes) {
+      const p = prev.get(n.id);
+      if (p) Object.assign(n, { x: p.x, y: p.y, z: p.z, vx: p.vx, vy: p.vy, vz: p.vz, born: p.born, fx: p.fx, fy: p.fy, fz: p.fz });
+      else if (S.bloom.has(n.id)) { launch(n, S.bloom.get(n.id)); S.bloom.delete(n.id); }
+    }
+    S.index = new Map(nodes.map((n) => [n.id, n]));
+    graph.graphData({ nodes, links });
+    if (S.selected && !byId(S.selected.id)) select(null);
+    else if (S.selected) { S.selected = byId(S.selected.id); S.focus = neighbours(S.selected); }
+    renderLegend();
+  }
+  // Hold a node out at the edge of the field until `at`, then let it fly in to its first hub.
+  function launch(n, at) {
+    n.born = at; if (reduceMotion) return;
+    const hub = byId("h:" + ((n.terms || [])[0])) || byId("center") || { x: 0, y: 0, z: 0 };
+    const a = Math.random() * Math.PI * 2, b = Math.acos(2 * Math.random() - 1), R = 200 + Math.random() * 90;
+    n.fx = n.x = (hub.x || 0) + R * Math.sin(b) * Math.cos(a); n.fy = n.y = (hub.y || 0) + R * Math.cos(b) * .6; n.fz = n.z = (hub.z || 0) + R * Math.sin(b) * Math.sin(a);
+  }
+  function replay() {
+    const leaves = graph.graphData().nodes.filter((n) => n.kind === "leaf").sort((a, b) => String(a.at || "").localeCompare(String(b.at || "")));
+    const now = performance.now(); leaves.forEach((n, i) => launch(n, now + 300 + i * 220)); graph.d3ReheatSimulation();
+  }
+
+  // ------------------------------------------------------------ focus mode
+  function neighbours(n) {
+    const ids = new Set([n.id]), links = graph.graphData().links;
+    for (const l of links) { const s = endId(l.source), t = endId(l.target); if (s === n.id) ids.add(t); if (t === n.id) ids.add(s); }
+    if (n.kind === "person") for (const l of links) { const s = endId(l.source), t = endId(l.target); if (l.kind === "flow" && ids.has(t)) ids.add(s); }
+    return ids;
+  }
+  function highlightOne(n) { const o = n.__obj; if (!o) return; const k = !S.focus || S.focus.has(n.id) ? 1 : .1; for (const [m, base] of o.userData.mats) m.opacity = base * k; }
+  function highlight() { for (const n of graph.graphData().nodes) highlightOne(n); graph.linkColor(graph.linkColor()); }
+
+  // ------------------------------------------------------------ motion
+  requestAnimationFrame(function tick() {
+    const now = performance.now(), t = now / 1000;
+    for (const n of graph.graphData().nodes) {
+      const o = n.__obj; if (!o) continue;
+      if (n.born) {
+        const age = (now - n.born) / 1600;
+        if (age < 0) o.scale.setScalar(.01);
+        else {
+          if (n.fx !== undefined) { n.fx = n.fy = n.fz = undefined; graph.d3ReheatSimulation(); }
+          if (age < 1 && !reduceMotion) o.scale.setScalar(Math.max(.01, (1 - Math.pow(1 - age, 3)) * (1 + (1 - age) * 1.6)));
+          else { o.scale.setScalar(1); n.born = 0; }
+        }
+      }
+      if (o.userData.pulse && !reduceMotion) { const s = o.userData.pulseBase * (1 + .1 * Math.sin(t * 1.4 + (n.x || 0) * .05)); o.userData.pulse.scale.set(s, s, 1); }
+      if (o.userData.ripples) {
+        const on = !reduceMotion && opts && opts.isBusy && opts.isBusy(n);
+        o.userData.ripples.forEach((r, i) => { if (!on) { r.material.opacity = 0; return; } const ph = (t * .7 + i / 3) % 1, s = o.userData.rippleBase * (1 + ph * 4.5); r.scale.set(s, s, 1); r.material.opacity = .55 * (1 - ph); });
+      }
+    }
+    requestAnimationFrame(tick);
+  });
+
+  // ------------------------------------------------------------ tooltip, drawer
+  const tip = $("tip");
+  field.addEventListener("pointermove", (e) => { tip.style.left = Math.min(e.clientX + 14, innerWidth - 310) + "px"; tip.style.top = e.clientY + 14 + "px"; });
+  function showTip(n) { const text = n && opts.tipText ? opts.tipText(n) : ""; tip.textContent = text; tip.hidden = !text; }
+  function drawerHead(d, kind) {
+    const head = el("div", "", "dhead"), btns = el("div", "", "row");
+    const min = iconButton(null, "min", "Minimise"); min.onclick = () => { const on = d.classList.toggle("min"); min.innerHTML = svg(on ? "max" : "min"); min.setAttribute("aria-label", on ? "Expand" : "Minimise"); min.title = on ? "Expand" : "Minimise"; };
+    const close = iconButton(null, "close", "Close"); close.onclick = () => select(null);
+    btns.append(min, close); head.append(el("div", kind, "eyebrow"), btns); d.append(head);
+  }
+  function select(n) {
+    S.selected = n; S.focus = n ? neighbours(n) : null; highlight();
+    const d = $("drawer");
+    if (!n) { d.hidden = true; return; }
+    d.replaceChildren(); d.hidden = false; d.classList.remove("min");
+    opts.drawer(n, d, { head: (kind) => drawerHead(d, kind), el, extLink });
+  }
+  function fly(n) { if (n.x === undefined) return; stopSpin(); const d = n.kind === "leaf" ? 70 : 120, len = Math.hypot(n.x, n.y, n.z) || 1, k = 1 + d / len; graph.cameraPosition({ x: n.x * k, y: n.y * k + 10, z: n.z * k }, n, 1300); }
+
+  // ------------------------------------------------------------ legend (filter chips)
+  function renderLegend() {
+    const chips = $("chips"); chips.replaceChildren();
+    for (const it of opts.legend()) {
+      const b = el("button", trim(it.label, 30), "chip"); b.type = "button"; b.style.setProperty("--c", it.color);
+      b.setAttribute("aria-pressed", String(S.filter === it.key)); b.title = it.label;
+      b.onclick = () => { S.filter = S.filter === it.key ? null : it.key; graph.nodeVisibility(graph.nodeVisibility()); graph.linkVisibility(graph.linkVisibility()); renderLegend(); };
+      chips.append(b);
+    }
+  }
+
+  // ------------------------------------------------------------ camera controls
+  function syncSpin() { const c = graph.controls(); const b = $("t-spin"); if (b) b.setAttribute("aria-pressed", String(!!(c && c.autoRotate))); }
+  function stopSpin() { const c = graph.controls(); if (c) c.autoRotate = false; syncSpin(); }
+  function zoomBy(f) { stopSpin(); const c = graph.camera(), t = graph.controls().target.clone(); graph.cameraPosition(t.clone().add(c.position.clone().sub(t).multiplyScalar(f)), t, 350); }
+  function panBy(dx, dy) {
+    stopSpin(); const c = graph.camera(), t = graph.controls().target.clone(), dist = c.position.distanceTo(t);
+    const off = new V3().setFromMatrixColumn(c.matrix, 0).multiplyScalar(dx * dist * .18).add(new V3().setFromMatrixColumn(c.matrix, 1).multiplyScalar(dy * dist * .18));
+    graph.cameraPosition(c.position.clone().add(off), t.add(off), 350);
+  }
+  const fitAll = () => { stopSpin(); if (fewNodes()) graph.cameraPosition({ x: 0, y: 40, z: 420 }, { x: 0, y: 0, z: 0 }, 700); else graph.zoomToFit(700, 70); };
+  const resetView = () => { stopTour(); graph.cameraPosition({ x: 0, y: 40, z: 420 }, { x: 0, y: 0, z: 0 }, 900); };
+
+  // ------------------------------------------------------------ flythrough
+  let tour = null;
+  function caption(n) {
+    const cap = $("caption"); if (!n) { cap.hidden = true; return; }
+    const [kind, text] = opts.captionFor(n); cap.querySelector(".eyebrow").textContent = kind; cap.querySelector(".t").textContent = text; cap.hidden = false;
+  }
+  function flyClose(n, ms) {
+    if (n.x === undefined) return;
+    const c = graph.camera().position, d = n.kind === "leaf" ? 60 : n.kind === "center" ? 150 : 100;
+    const dir = new V3(c.x - n.x, c.y - n.y, c.z - n.z).normalize().applyAxisAngle(new V3(0, 1, 0), .5);
+    graph.cameraPosition({ x: n.x + dir.x * d, y: n.y + dir.y * d + 12, z: n.z + dir.z * d }, n, ms);
+  }
+  function startTour() {
+    stopTour(); stopSpin(); select(null);
+    const stops = opts.tourStops(graph.graphData().nodes); if (!stops.length) return;
+    let i = 0; $("t-tour").setAttribute("aria-pressed", "true"); $("t-tour").title = "Stop flythrough (T)";
+    const step = () => { const n = stops[i++ % stops.length]; S.focus = neighbours(n); highlight(); flyClose(n, 2600); caption(n); tour = setTimeout(step, n.kind === "leaf" ? 4200 : 3600); };
+    step();
+  }
+  function stopTour() { if (!tour) return; clearTimeout(tour); tour = null; caption(null); $("t-tour").setAttribute("aria-pressed", "false"); $("t-tour").title = "Fly through (T)"; S.focus = S.selected ? neighbours(S.selected) : null; highlight(); }
+  field.addEventListener("pointerdown", stopTour);
+
+  // ------------------------------------------------------------ theme switching
+  function applyTheme() {
+    theme = THEMES[themeName()] || THEMES.dark;
+    graph.backgroundColor(theme.bg);
+    dust.material.color.set(theme.dust); dust.material.opacity = theme.dustOpacity;
+    dust.material.blending = theme.add ? THREE.AdditiveBlending : THREE.NormalBlending; dust.material.needsUpdate = true;
+    const b = $("t-theme"); if (b) { const light = themeName() === "light"; b.innerHTML = svg(light ? "theme" : "sun"); b.title = (light ? "Switch to dark" : "Switch to light") + " (L)"; b.setAttribute("aria-label", light ? "Switch to dark" : "Switch to light"); }
+    opts && opts.rebuild();
+  }
+  function toggleTheme() { const next = themeName() === "light" ? "dark" : "light"; document.documentElement.dataset.theme = next; store.set("epol590-theme", next); applyTheme(); }
+  matchMedia("(prefers-color-scheme: light)").addEventListener("change", applyTheme);
+  new MutationObserver(applyTheme).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+  // ------------------------------------------------------------ files: PNG snapshot and CSV export
+  let caps = { db: null, user: null, downloads: null, uid: null, isOwner: false, canEdit: false };
+  async function saveFile(filename, blob) {
+    if (caps.downloads) {
+      try { await caps.downloads.save({ filename, data: blob }); toast("Saved " + filename); }
+      catch (e) { if (e && e.code !== "declined") toast("Could not save the file here."); }
+      return;
+    }
+    const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = filename; document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000); toast("Downloading " + filename);
+  }
+  const stamp = () => new Date().toISOString().slice(0, 16).replace(/[:T]/g, "-");
+  function snapshot() {
+    const r = graph.renderer(); r.render(graph.scene(), graph.camera());
+    const src = r.domElement, w = src.width, h = src.height, scale = w / innerWidth;
+    const c = document.createElement("canvas"); c.width = w; c.height = h; const g = c.getContext("2d");
+    g.fillStyle = theme.bg; g.fillRect(0, 0, w, h); g.drawImage(src, 0, 0);
+    const pad = 22 * scale; g.fillStyle = theme.fg;
+    g.font = `600 ${11 * scale}px "Space Grotesk", Arial, sans-serif`; g.globalAlpha = .7; g.fillText(opts.snapshotEyebrow().toUpperCase(), pad, h - pad - 26 * scale);
+    g.globalAlpha = 1; g.font = `700 ${20 * scale}px "Space Grotesk", Arial, sans-serif`; g.fillText(opts.snapshotTitle(), pad, h - pad);
+    c.toBlob((blob) => blob && saveFile(opts.slug + "-" + stamp() + ".png", blob), "image/png");
+  }
+  const csvCell = (v) => { const s = v == null ? "" : String(v); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+  function exportCsv() { const rows = opts.csvRows(); const text = rows.map((r) => r.map(csvCell).join(",")).join("\n"); saveFile(opts.slug + "-" + stamp() + ".csv", new Blob(["﻿" + text], { type: "text/csv" })); }
+
+  // ------------------------------------------------------------ saved views (per viewer)
+  let views = [];
+  const viewsKey = () => "epol590-views-" + opts.slug;
+  async function loadViews() {
+    if (caps.db && caps.uid) { try { const s = await caps.db.doc("data/users/" + caps.uid + "/prefs").get(); views = s.exists ? (s.data()[opts.slug] || []) : []; return; } catch {} }
+    try { views = JSON.parse(store.get(viewsKey()) || "[]"); } catch { views = []; }
+  }
+  async function persistViews() {
+    if (caps.db && caps.uid) {
+      const ref = caps.db.doc("data/users/" + caps.uid + "/prefs");
+      try { const s = await ref.get(); if (s.exists) await ref.update({ [opts.slug]: views }); else await ref.set({ [opts.slug]: views }); return; } catch {}
+    }
+    store.set(viewsKey(), JSON.stringify(views));
+  }
+  function currentView(name) { const c = graph.camera().position, t = graph.controls().target; return { name, cam: { x: c.x, y: c.y, z: c.z }, target: { x: t.x, y: t.y, z: t.z }, filter: S.filter, theme: themeName(), extra: opts.viewExtra ? opts.viewExtra() : null }; }
+  function goView(v) {
+    stopTour(); stopSpin();
+    if (v.extra && opts.applyViewExtra) opts.applyViewExtra(v.extra);
+    S.filter = v.filter || null; graph.nodeVisibility(graph.nodeVisibility()); graph.linkVisibility(graph.linkVisibility()); renderLegend();
+    graph.cameraPosition(v.cam, v.target, 1200);
+  }
+
+  // ------------------------------------------------------------ copy link
+  async function copyLink(hash) {
+    const url = (opts.shareUrl || location.href.split("#")[0]) + (hash ? "#" + hash : "");
+    try { await navigator.clipboard.writeText(url); toast("Link copied. Paste it into the Zoom chat."); }
+    catch { const i = el("input"); i.value = url; document.body.append(i); i.select(); try { document.execCommand("copy"); toast("Link copied."); } catch { toast(url); } i.remove(); }
+  }
+
+  // ------------------------------------------------------------ menus
+  let openMenu = null;
+  function closeMenu() { if (openMenu) { openMenu.remove(); openMenu = null; } }
+  document.addEventListener("pointerdown", (e) => { if (openMenu && !openMenu.contains(e.target) && !e.target.closest("#tools")) closeMenu(); });
+  function placeMenu(menu, anchor) {
+    document.body.append(menu); openMenu = menu;
+    const r = anchor.getBoundingClientRect(), mw = menu.offsetWidth, mh = menu.offsetHeight;
+    let left = Math.min(Math.max(14, r.left + r.width / 2 - mw / 2), innerWidth - mw - 14);
+    let top = r.top - mh - 8; if (top < 14) top = r.bottom + 8;
+    menu.style.left = left + "px"; menu.style.top = Math.min(top, innerHeight - mh - 14) + "px";
+  }
+  function menuItem(text, kbd, run) { const b = el("button", "", "item"); b.type = "button"; b.append(el("span", text)); if (kbd) b.append(el("kbd", kbd)); b.onclick = () => { closeMenu(); run(); }; return b; }
+  function moreMenu(anchor) {
+    closeMenu(); const m = el("div", "", "panel menu"); m.setAttribute("role", "menu");
+    for (const it of opts.moreItems()) { if (it === "-") { m.append(el("hr")); continue; } if (it.show && !it.show()) continue; m.append(menuItem(it.label, it.kbd, it.run)); }
+    m.append(el("hr"));
+    m.append(menuItem("Copy link to this board", "", () => copyLink(opts.shareHash && opts.shareHash())));
+    m.append(menuItem("Download snapshot (PNG)", "S", snapshot));
+    m.append(menuItem("Export data (CSV)", "", exportCsv));
+    m.append(menuItem(document.body.classList.contains("bare") ? "Show panels" : "Hide panels", "H", toggleBare));
+    m.append(el("hr")); const help = el("p", "Drag to rotate · right-drag to pan · scroll to zoom · arrow keys pan · + and − zoom · F fits · R resets · T flies through · L switches theme", "note"); help.style.padding = "4px 10px 6px"; help.style.maxWidth = "260px"; m.append(help);
+    placeMenu(m, anchor);
+  }
+  async function viewsMenu(anchor) {
+    closeMenu(); const m = el("div", "", "panel menu"); m.append(el("div", "Saved views", "eyebrow label"));
+    const f = el("form"); const i = el("input"); i.id = "view-name"; i.placeholder = "Name this view"; i.maxLength = 40; i.setAttribute("aria-label", "Name for the saved view");
+    const sb = el("button", "Save"); sb.type = "submit"; f.append(i, sb);
+    f.onsubmit = async (e) => { e.preventDefault(); views.push(currentView(i.value.trim() || "View " + (views.length + 1))); views = views.slice(-20); await persistViews(); toast("View saved"); viewsMenu(anchor); };
+    m.append(f);
+    if (!views.length) m.append(Object.assign(el("p", "Saved views keep the camera angle, the filter and the theme. They are private to you.", "note"), { style: "padding:4px 10px 6px;max-width:250px" }));
+    views.forEach((v, k) => {
+      const row = el("div", "", "view"); const go = menuItem(v.name, "", () => goView(v));
+      const x = el("button", "×", "x"); x.type = "button"; x.title = "Delete " + v.name; x.setAttribute("aria-label", "Delete " + v.name);
+      x.onclick = async () => { views.splice(k, 1); await persistViews(); viewsMenu(anchor); };
+      row.append(go, x); m.append(row);
+    });
+    placeMenu(m, anchor); setTimeout(() => i.focus(), 0);
+  }
+
+  // ------------------------------------------------------------ toolbar (draggable, position remembered)
+  function toggleBare() { document.body.classList.toggle("bare"); closeMenu(); }
+  function buildTools() {
+    const t = $("tools"); t.replaceChildren();
+    const grip = iconButton("t-grip", "grip", "Move toolbar"); grip.classList.add("grip"); grip.title = "Drag to move · double-click to reset";
+    const sep = () => el("span", "", "sep");
+    const B = (id, ic, lab, key, fn) => { const b = iconButton(id, ic, lab, key); b.onclick = fn; return b; };
+    t.append(grip,
+      B("t-zin", "zin", "Zoom in", "+", () => zoomBy(.7)), B("t-zout", "zout", "Zoom out", "−", () => zoomBy(1.4)),
+      B("t-fit", "fit", "Fit everything", "F", fitAll), B("t-reset", "reset", "Reset view", "R", resetView), sep(),
+      B("t-left", "left", "Pan left", "←", () => panBy(-1, 0)), B("t-up", "up", "Pan up", "↑", () => panBy(0, 1)),
+      B("t-down", "down", "Pan down", "↓", () => panBy(0, -1)), B("t-right", "right", "Pan right", "→", () => panBy(1, 0)), sep(),
+      B("t-spin", "spin", "Auto-rotate", "", () => { const c = graph.controls(); if (c) { c.autoRotate = !c.autoRotate; syncSpin(); } }),
+      B("t-tour", "tour", "Fly through", "T", () => tour ? stopTour() : startTour()),
+      B("t-views", "views", "Saved views", "V", (e) => viewsMenu(e.currentTarget)),
+      B("t-snap", "snap", "Download snapshot", "S", snapshot),
+      B("t-theme", "sun", "Switch theme", "L", toggleTheme),
+      B("t-more", "more", "More", "", (e) => moreMenu(e.currentTarget)));
+    $("t-spin").setAttribute("aria-pressed", "true"); $("t-tour").setAttribute("aria-pressed", "false");
+    applyTheme();
+    // dragging
+    // drag by the grip or by any empty part of the toolbar
+    let drag = null;
+    t.addEventListener("pointerdown", (e) => {
+      if (e.target.closest("button") && e.target.closest("button") !== grip) return;
+      const r = t.getBoundingClientRect(); drag = { dx: e.clientX - r.left, dy: e.clientY - r.top, moved: false };
+      try { t.setPointerCapture(e.pointerId); } catch {}
+      e.preventDefault();
+    });
+    t.addEventListener("pointermove", (e) => { if (!drag) return; drag.moved = true; placeTools(e.clientX - drag.dx, e.clientY - drag.dy); });
+    const endDrag = () => { if (!drag) return; const moved = drag.moved; drag = null; if (!moved) return; const r = t.getBoundingClientRect(); store.set("epol590-tools", JSON.stringify({ x: r.left / innerWidth, y: r.top / innerHeight })); };
+    t.addEventListener("pointerup", endDrag); t.addEventListener("pointercancel", endDrag);
+    grip.addEventListener("dblclick", () => { t.classList.remove("placed"); t.style.left = t.style.top = t.style.bottom = ""; store.set("epol590-tools", ""); });
+    grip.addEventListener("keydown", (e) => { const step = e.shiftKey ? 40 : 10, r = t.getBoundingClientRect(), m = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] }[e.key]; if (m) { e.preventDefault(); e.stopPropagation(); placeTools(r.left + m[0], r.top + m[1]); } });
+    try { const p = JSON.parse(store.get("epol590-tools") || "null"); if (p) placeTools(p.x * innerWidth, p.y * innerHeight); } catch {}
+  }
+  function placeTools(x, y) {
+    const t = $("tools"), r = t.getBoundingClientRect();
+    t.classList.add("placed"); t.style.bottom = "auto";
+    t.style.left = Math.min(Math.max(6, x), innerWidth - r.width - 6) + "px"; t.style.top = Math.min(Math.max(6, y), innerHeight - r.height - 6) + "px";
+  }
+  function clampTools() { const t = $("tools"); if (t && t.classList.contains("placed")) { const r = t.getBoundingClientRect(); placeTools(r.left, r.top); } }
+
+  // ------------------------------------------------------------ keyboard
+  addEventListener("keydown", (e) => {
+    if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) || e.metaKey || e.ctrlKey || e.altKey) return;
+    const act = { "+": () => zoomBy(.7), "=": () => zoomBy(.7), "-": () => zoomBy(1.4), "_": () => zoomBy(1.4),
+      ArrowUp: () => panBy(0, 1), ArrowDown: () => panBy(0, -1), ArrowLeft: () => panBy(-1, 0), ArrowRight: () => panBy(1, 0),
+      f: fitAll, r: resetView, t: () => tour ? stopTour() : startTour(), h: toggleBare, l: toggleTheme, s: snapshot,
+      v: () => viewsMenu($("t-views")), Escape: () => { closeMenu(); stopTour(); select(null); } }[e.key.length === 1 ? e.key.toLowerCase() : e.key];
+    if (act) { e.preventDefault(); act(); }
+  });
+
+  // ------------------------------------------------------------ counters
+  function tween(elm, to) {
+    const from = +elm.textContent || 0; if (from === to) return;
+    if (reduceMotion) { elm.textContent = to; return; }
+    const t0 = performance.now();
+    (function step(now) { const k = Math.min(1, (now - t0) / 500); elm.textContent = Math.round(from + (to - from) * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); })(t0);
+  }
+
+  // ------------------------------------------------------------ init
+  async function init(o) {
+    opts = o;
+    buildTools();
+    setInterval(paintStatus, 1000);
+    const c = window.claude;
+    if (c) {
+      [caps.db, caps.user, caps.downloads] = await Promise.all([c.use("db"), c.use("user"), c.use("downloads")]);
+      caps.uid = caps.user ? await caps.user.id() : null;
+      caps.isOwner = caps.user ? await caps.user.isOwner() : false;
+      caps.canEdit = caps.user ? await caps.user.canEdit() : false;
+    } else { caps.isOwner = caps.canEdit = true; } // a local or offline copy is the owner's own
+    await loadViews();
+    return caps;
+  }
+
+  return {
+    $, el, extLink, svg, reduceMotion, init, caps: () => caps, theme: () => theme, assignColors, colorFor, setGraph, byId, select, fly, launch, replay,
+    nodes: () => graph.graphData().nodes, setStatus, flash, toast, tween, copyLink, S, graph, trim,
+    refreshFit() { fitted = false; },
+  };
+})();
+
+</script>
+<script>
+"use strict";
+// Response board: students answer a prompt ("What is academic literature?"). Each answer is a node;
+// words that two or more answers share become theme hubs, so the class's ideas cluster as they arrive.
+// One board serves every lecture: each prompt has its own link (#prompt-id).
+(() => {
+  const { $, el, svg } = Board;
+  const DEFAULT_PROMPT = "what-is-academic-literature";
+  const slug = (s) => s.toLowerCase().normalize("NFKD").replace(/[^\w\s-]/g, "").trim().replace(/[\s_]+/g, "-").replace(/-+/g, "-").slice(0, 48);
+  const state = { prompts: new Map(), answers: new Map(), seen: null, current: null };
+  const sim = { answers: new Map(), timer: null };
+  let db = null, uid = null, caps = null;
+
+  // ------------------------------------------------------------ themes from shared words
+  const STOP = new Set(("a about above after again against all also am an and any are as at be because been before being below between both but by can could did do does doing down during each few for from further had has have having he her here hers him his how i if in into is it its itself just me more most my no nor not now of off on once only or other our out over own same she should so some such than that the their them then there these they this those through to too under until up very was we were what when where which while who whom why will with would you your yours yourself "+
+    "really things thing way ways lot lots kind make makes made get gets use used using also often maybe something anything everything one ones two may might must us like").split(" "));
+  const stem = (w) => w.length > 4 && w.endsWith("ies") ? w.slice(0, -3) + "y" : w.length > 4 && w.endsWith("s") && !w.endsWith("ss") && !w.endsWith("us") && !w.endsWith("is") ? w.slice(0, -1) : w;
+  const words = (text) => text.toLowerCase().replace(/[^a-z\s'-]/g, " ").split(/\s+/).map((w) => w.replace(/^['-]+|['-]+$/g, "")).filter((w) => w.length > 2 && !STOP.has(w));
+  function themesFor(list, question) {
+    const qWords = new Set(words(question).map(stem)), df = new Map(), surface = new Map();
+    for (const a of list) { const seen = new Set(); for (const w of words(a.text)) { const s = stem(w); if (qWords.has(s) || seen.has(s)) continue; seen.add(s); df.set(s, (df.get(s) || 0) + 1); const sf = surface.get(s) || new Map(); sf.set(w, (sf.get(w) || 0) + 1); surface.set(s, sf); } a.stems = seen; }
+    return [...df].filter(([, c]) => c >= 2).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 9)
+      .map(([s, c]) => ({ key: s, label: [...surface.get(s)].sort((a, b) => b[1] - a[1])[0][0], count: c }));
+  }
+
+  // ------------------------------------------------------------ current prompt
+  const prompt = () => state.prompts.get(state.current) || { question: "What is academic literature?", lecture: "Lecture 1", open: true };
+  function answersFor(pid) {
+    const out = [];
+    for (const [id, a] of state.answers) { const r = a.answers && a.answers[pid]; if (r && r.text) out.push({ id: "u:" + id, author: id, name: a.name || "Anonymous", text: r.text, at: r.at }); }
+    for (const [id, a] of sim.answers) if (a.pid === pid) out.push({ id: "sim:" + id, author: id, name: a.name, text: a.text, at: a.at, simulated: true });
+    return out.sort((a, b) => String(a.at).localeCompare(String(b.at)));
+  }
+  let themes = [], list = [];
+  function rebuild() {
+    const p = prompt(); list = answersFor(state.current); themes = themesFor(list, p.question);
+    Board.assignColors(themes.map((t) => t.key));
+    const nodes = [{ id: "center", kind: "center", key: "center", label: p.question }], links = [];
+    for (const t of themes) { nodes.push({ id: "h:" + t.key, kind: "hub", key: t.key, label: t.label, color: Board.colorFor(t.key) }); links.push({ source: "h:" + t.key, target: "center", kind: "own", color: Board.colorFor(t.key) }); }
+    for (const a of list) {
+      const hits = themes.filter((t) => a.stems.has(t.key)).map((t) => t.key);
+      nodes.push({ id: a.id, kind: "leaf", shape: "disc", size: 1.8, aid: a.id, terms: hits, weight: Math.min(3, 1 + hits.length * .5), color: hits.length ? Board.colorFor(hits[0]) : Board.theme().fg, at: a.at });
+      if (hits.length) for (const k of hits) links.push({ source: a.id, target: "h:" + k, kind: "flow", color: Board.colorFor(k) });
+      else links.push({ source: a.id, target: "center", kind: "flow", color: Board.theme().muted });
+    }
+    Board.setGraph(nodes, links);
+    $("q-title").textContent = p.question; $("q-lecture").textContent = "EPOL 590 · " + (p.lecture || "Responses") + (p.open === false ? " · closed" : "");
+    Board.tween($("n-answers"), list.length); Board.tween($("n-themes"), themes.length);
+    $("act-respond").disabled = p.open === false; $("act-respond").textContent = p.open === false ? "Closed" : mine() ? "Edit my answer" : "Respond";
+    $("empty").hidden = list.length > 0;
+    renderSwitcher();
+  }
+  const mine = () => uid && state.answers.get(uid)?.answers?.[state.current]?.text;
+  const byAnswer = (aid) => list.find((a) => a.id === aid);
+
+  function renderSwitcher() {
+    const sel = $("q-switch"), ps = [...state.prompts.entries()].sort((a, b) => (a[1].order ?? 99) - (b[1].order ?? 99) || String(a[1].createdAt).localeCompare(String(b[1].createdAt)));
+    sel.hidden = ps.length < 2; if (sel.hidden) return;
+    sel.replaceChildren(...ps.map(([id, q]) => { const o = el("option", (q.lecture ? q.lecture + ": " : "") + Board.trim(q.question, 60)); o.value = id; o.selected = id === state.current; return o; }));
+  }
+  function choose(pid) {
+    if (!pid || pid === state.current) return;
+    state.current = pid; state.seen = null; Board.S.filter = null; Board.select(null); Board.refreshFit();
+    if (location.hash.slice(1) !== pid) history.replaceState(null, "", "#" + pid);
+    rebuild();
+  }
+
+  // ------------------------------------------------------------ drawer
+  function drawer(n, d, { head }) {
+    if (n.kind === "leaf") {
+      const a = byAnswer(n.aid); head(a.simulated ? "Response · simulated" : "Response");
+      d.append(el("p", "“" + a.text + "”", "quote"), el("div", "— " + a.name + (a.at ? " · " + new Date(a.at).toLocaleDateString([], { month: "short", day: "numeric" }) : ""), "meta"));
+      if (n.terms.length) { const tags = el("div", "", "tags"); for (const k of n.terms) tags.append(chip(k)); d.append(tags); }
+      else d.append(el("p", "No theme yet. It joins one when another answer shares a word with it.", "note"));
+    } else if (n.kind === "hub") {
+      const t = themes.find((x) => x.key === n.key); head("Theme"); d.append(el("h2", t.label), el("div", t.count + " answers use this word", "meta"));
+      const ul = el("ul"); ul.style.cssText = "margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.45";
+      for (const a of list.filter((x) => x.stems.has(n.key)).slice(0, 12)) { const li = el("li"), link = el("a", Board.trim(a.text, 120)); link.href = "#"; link.onclick = (e) => { e.preventDefault(); const an = Board.byId(a.id); if (an) { Board.select(an); Board.fly(an); } }; li.append(link, el("span", " — " + a.name, "note")); ul.append(li); }
+      d.append(ul);
+    } else {
+      const p = prompt(); head(p.lecture || "Prompt"); d.append(el("h2", p.question), el("div", list.length + (list.length === 1 ? " response" : " responses") + " · " + themes.length + " themes" + (p.open === false ? " · closed" : ""), "meta"));
+      d.append(el("p", "Themes are words that two or more answers share. Common words and words from the question are left out.", "note"));
+      if (caps && caps.canEdit && db && state.prompts.has(state.current)) {
+        const row = el("div", "", "row"), b = el("button", p.open === false ? "Reopen responses" : "Close responses", "ghost"); b.type = "button";
+        b.onclick = async () => { await db.doc("prompts/" + state.current).update({ open: p.open === false }); Board.toast(p.open === false ? "Responses reopened" : "Responses closed"); Board.select(null); };
+        row.append(b); d.append(row);
+      }
+    }
+  }
+  function chip(key) { const t = themes.find((x) => x.key === key); const c = el("span", t ? t.label : key, "chip"); c.style.setProperty("--c", Board.colorFor(key)); return c; }
+
+  // ------------------------------------------------------------ popovers: respond, new prompt
+  function popShell(title) {
+    const pop = $("pop"); pop.replaceChildren(); pop.hidden = false;
+    const head = el("div", "", "pophead"), close = el("button", "", "icon"); close.type = "button"; close.innerHTML = svg("close"); close.setAttribute("aria-label", "Close"); close.title = "Close"; close.onclick = () => { pop.hidden = true; };
+    head.append(el("div", title, "eyebrow"), close); pop.append(head); return pop;
+  }
+  function field(f, id, text, small, tag = "input") { const l = el("label"); l.htmlFor = id; l.append(text); if (small) l.append(el("small", small)); const i = el(tag); i.id = id; f.append(l, i); return i; }
+  function openRespond() {
+    const p = prompt(); if (p.open === false) return;
+    const pop = popShell(mine() ? "Edit your answer" : "Respond");
+    pop.append(el("h2", p.question)); pop.lastChild.style.cssText = "margin:0;font:600 19px/1.25 var(--body)";
+    const f = el("form"); f.autocomplete = "off";
+    const text = field(f, "r-text", "Your answer", "A sentence or two. Up to 400 characters.", "textarea"); text.maxLength = 400; text.required = true; text.rows = 4;
+    const name = field(f, "r-name", "Name to show", "Optional. Leave blank to appear as Anonymous."); name.maxLength = 40;
+    const me = uid && state.answers.get(uid); if (me) { name.value = me.name && me.name !== "Anonymous" ? me.name : ""; text.value = me.answers?.[state.current]?.text || ""; }
+    const save = el("button", mine() ? "Update my answer" : "Add my answer"); save.type = "submit"; const msg = el("p", "", "note"); msg.setAttribute("role", "status");
+    f.append(save, msg); pop.append(f);
+    f.onsubmit = async (e) => {
+      e.preventDefault(); const t = text.value.trim().slice(0, 400); if (t.length < 3) { msg.textContent = "Write a sentence or two first."; msg.className = "note warn"; return; }
+      const entry = { name: name.value.trim().slice(0, 40) || "Anonymous", text: t, at: new Date().toISOString() };
+      if (!db || !uid) { sim.answers.set("local", { pid: state.current, name: entry.name, text: t, at: entry.at }); rebuild(); pop.hidden = true; Board.toast("Added in this browser only"); return; }
+      save.disabled = true;
+      try {
+        const ref = db.doc("answers/" + uid), s = await ref.get();
+        const body = { name: entry.name, answers: { ...(s.exists ? s.data().answers || {} : {}), [state.current]: { text: t, at: entry.at } }, updatedAt: entry.at }; // update replaces whole fields, so keep earlier prompts' answers
+        if (s.exists) await ref.update(body); else await ref.set(body);
+        pop.hidden = true; Board.toast("Answer added");
+        setTimeout(() => { const n = Board.byId("u:" + uid); if (n) { Board.select(n); Board.fly(n); } }, 900);
+      } catch { msg.textContent = "Could not save. Check your connection and try again."; msg.className = "note warn"; }
+      finally { save.disabled = false; }
+    };
+    setTimeout(() => text.focus(), 0);
+  }
+  function openNewPrompt() {
+    const pop = popShell("New prompt"), f = el("form"); f.autocomplete = "off";
+    const q = field(f, "p-q", "Question", "What students will answer.", "textarea"); q.maxLength = 160; q.required = true; q.rows = 2;
+    const lec = field(f, "p-lec", "Lecture", "Shown above the question, for example Lecture 3."); lec.maxLength = 40;
+    const save = el("button", "Create and open"); save.type = "submit"; const msg = el("p", "", "note"); f.append(save, msg); pop.append(f);
+    f.onsubmit = async (e) => {
+      e.preventDefault(); const question = q.value.trim(); if (!question) return;
+      let id = slug(question) || "prompt"; while (state.prompts.has(id)) id += "-2";
+      const body = { question, lecture: lec.value.trim(), open: true, order: state.prompts.size + 1, createdAt: new Date().toISOString() };
+      if (!db) { state.prompts.set(id, body); pop.hidden = true; choose(id); return; }
+      save.disabled = true;
+      try { await db.doc("prompts/" + id).set(body); pop.hidden = true; Board.toast("Prompt created. Copy its link from the header."); choose(id); }
+      catch { msg.textContent = "Only the board's editors can add prompts."; msg.className = "note warn"; }
+      finally { save.disabled = false; }
+    };
+    setTimeout(() => q.focus(), 0);
+  }
+
+  // ------------------------------------------------------------ simulation (owner only, this browser only)
+  const SIM = ["Peer-reviewed research that builds on what others have argued before.", "Journal articles and books written by researchers for other researchers.",
+    "The ongoing conversation in a field, written down and cited.", "Published research that has been reviewed by other experts.", "Books, articles and theses that make an argument with evidence and citations.",
+    "Writing that enters a scholarly conversation and responds to other research.", "Research articles in journals, mostly behind paywalls.", "Evidence and arguments that a field treats as credible, usually peer-reviewed.",
+    "The record of what a discipline knows and argues about.", "Scholarly writing that uses citations to show where its ideas come from.", "Texts written for an academic audience, with a method and a review of other research.",
+    "Anything a field cites: articles, books, conference papers, sometimes reports.", "Research that has been through peer review and published in journals or books.", "A conversation between researchers across time, carried by citations."];
+  function startSim() {
+    stopSim(); Board.refreshFit(); let i = sim.answers.size;
+    const step = () => { if (i >= SIM.length) { sim.timer = null; return; } const id = "s" + i; sim.answers.set(id, { pid: state.current, name: "Student " + String(i + 1).padStart(2, "0") + " (simulated)", text: SIM[i], at: new Date().toISOString() }); Board.S.bloom.set("sim:" + id, performance.now()); i++; rebuild(); sim.timer = setTimeout(step, 1300 + Math.random() * 900); };
+    step();
+  }
+  function stopSim() { clearTimeout(sim.timer); sim.timer = null; }
+  function clearSim() { stopSim(); sim.answers.clear(); rebuild(); }
+
+  // ------------------------------------------------------------ boot
+  state.current = location.hash.slice(1) || DEFAULT_PROMPT;
+  addEventListener("hashchange", () => choose(location.hash.slice(1)));
+  $("act-respond").onclick = openRespond;
+  $("act-link").onclick = () => Board.copyLink(state.current);
+  $("q-switch").onchange = (e) => choose(e.target.value);
+  Board.init({
+    slug: "responses", shareUrl: (window.BOARD_CONFIG || {}).shareUrl, shareHash: () => state.current,
+    rebuild,
+    legend: () => themes.map((t) => ({ key: t.key, label: t.label + " · " + t.count, color: Board.colorFor(t.key) })),
+    tipText: (n) => { if (n.kind === "leaf") { const a = byAnswer(n.aid); return a ? Board.trim(a.text, 110) + " — " + a.name : ""; } if (n.kind === "hub") { const t = themes.find((x) => x.key === n.key); return t ? t.label + " · " + t.count + " answers" : ""; } return prompt().question; },
+    captionFor: (n) => { if (n.kind === "leaf") { const a = byAnswer(n.aid); return ["Response · " + a.name, "“" + Board.trim(a.text, 160) + "”"]; } if (n.kind === "hub") return ["Theme", n.label]; return [prompt().lecture || "Prompt", prompt().question]; },
+    tourStops: (nodes) => { const out = [nodes.find((n) => n.kind === "center")].filter(Boolean); for (const h of nodes.filter((n) => n.kind === "hub")) { out.push(h); out.push(...nodes.filter((n) => n.kind === "leaf" && n.terms[0] === h.key).slice(0, 2)); } if (out.length < 3) out.push(...nodes.filter((n) => n.kind === "leaf").slice(0, 6)); return out; },
+    drawer,
+    isBusy: () => false,
+    snapshotEyebrow: () => "EPOL 590 · " + (prompt().lecture || "Responses") + " · " + new Date().toLocaleDateString([], { month: "long", day: "numeric", year: "numeric" }),
+    snapshotTitle: () => prompt().question + "  (" + list.length + " responses)",
+    csvRows: () => [["prompt", "name", "response", "themes", "submitted"]].concat(list.filter((a) => !a.simulated).map((a) => [prompt().question, a.name, a.text, themes.filter((t) => a.stems.has(t.key)).map((t) => t.label).join("; "), a.at])),
+    viewExtra: () => ({ prompt: state.current }), applyViewExtra: (x) => x && x.prompt && choose(x.prompt),
+    moreItems: () => [
+      { label: "Replay arrivals", run: Board.replay },
+      { label: "New prompt…", run: openNewPrompt, show: () => caps && caps.canEdit },
+      { label: sim.timer ? "Stop simulation" : "Simulate class responses", run: () => sim.timer ? stopSim() : startSim(), show: () => caps && caps.isOwner },
+      { label: "Clear simulation", run: clearSim, show: () => sim.answers.size > 0 },
+    ],
+  }).then((c) => {
+    caps = c; db = c.db; uid = c.uid;
+    if (!db) { state.prompts.set(DEFAULT_PROMPT, { question: "What is academic literature?", lecture: "Lecture 1", open: true, order: 1 }); Board.setStatus("waiting", "Offline copy: answers stay in this browser"); rebuild(); return; }
+    Board.setStatus("waiting", "Connected");
+    db.collection("prompts").onSnapshot((snap) => {
+      state.prompts = new Map(snap.docs.map((d) => [d.id, d.data()]));
+      if (!state.prompts.has(state.current) && state.prompts.size) state.current = state.prompts.has(DEFAULT_PROMPT) ? DEFAULT_PROMPT : [...state.prompts.keys()][0];
+      rebuild();
+    });
+    db.collection("answers").onSnapshot((snap) => {
+      state.answers = new Map(snap.docs.map((d) => [d.id, d.data()]));
+      const keys = new Set(); for (const [id, a] of state.answers) for (const pid of Object.keys(a.answers || {})) keys.add(id + "|" + pid);
+      if (state.seen) { let k = 0; for (const key of keys) if (!state.seen.has(key)) { const [id, pid] = key.split("|"); if (pid === state.current) Board.S.bloom.set("u:" + id, performance.now() + k++ * 280); } if (k) Board.flash("+" + k + (k === 1 ? " new response" : " new responses")); }
+      else { let k = 0; for (const key of keys) { const [id, pid] = key.split("|"); if (pid === state.current) Board.S.bloom.set("u:" + id, performance.now() + 800 + k++ * 220); } }
+      state.seen = keys; Board.setStatus("live", "Live · responses appear as they arrive"); rebuild();
+    }, () => Board.setStatus("waiting", "Lost the connection. Reload to reconnect."));
+  });
+  rebuild();
+})();
+
+</script>
