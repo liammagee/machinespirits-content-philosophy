@@ -16,7 +16,7 @@ status: "draft"
 
 **Developing Literature Reviews in the Age of AI**
 
-> **Instructor working draft.** The final literature review is due Tuesday 15 December 2026 at 11:59 PM Central. Other course arrangements and assignment dates remain ready for revision. Items marked **[TO CONFIRM]** need completion before release to students.
+> **Instructor working draft.** The final literature review is due Tuesday 15 December 2026 at 11:59 PM Central. Other course arrangements and assignment dates remain ready for revision.
 
 | Course detail | Arrangement |
 |---|---|
@@ -121,7 +121,7 @@ No book purchase is required. Readings are linked or posted on Canvas under each
 
 ### Sessions 5–7
 
-**[TO CONFIRM]** A sociology-of-knowledge reading for Session 5, a reflection reading for Session 6, and a case on automation for Session 7.
+Readings determined by individual projects, to support literature drafting and final assignment.
 
 **Canvas** carries announcements, materials, assignment instructions, submissions, grades, and private instructor comments. A shared class Google Doc, *EPOL 590 Fall 2026*, is used for in-seminar drafting and collaboration; it is linked on Canvas and shared only with the class.
 
@@ -264,7 +264,7 @@ Session 7 prioritizes the final review. Future-facing AI demonstrations should b
 
 ## Grading scale
 
-The scale below is retained from the 479 syllabus as a draft starting point. **[TO CONFIRM]** Final course and program grading arrangements.
+Final course grades are letter grades on the scale below, calculated from the weighted assessment components above.
 
 | Grade | Percentage |
 |---|---|
@@ -282,7 +282,7 @@ The scale below is retained from the 479 syllabus as a draft starting point. **[
 | D− | 60.0–62.9 |
 | F | Below 60.0 |
 
-**[TO CONFIRM]** Rounding rule, treatment of fractional boundary values, and whether this scale is appropriate for the enrolled sections.
+The final percentage is rounded to one decimal place, and a percentage at or above a boundary earns the higher grade: for example, 89.95 rounds to 90.0, an A−. Boundaries will not be raised; I may lower them if that benefits the class.
 
 ## Policies
 
@@ -290,7 +290,7 @@ The scale below is retained from the 479 syllabus as a draft starting point. **[
 
 **Late work.** There is no late penalty. Every task has an automatic 48-hour grace period: submit within 48 hours of the deadline and you do not need to ask or explain. If you need longer, email me before the grace period ends with a short plan for catching up; the staged tasks build on each other, so the plan matters more than the reason. The final cutoff for all work, including Task 7, is **Friday 18 December 2026 at 11:59 PM Central**; nothing can be accepted after that, because grades are due to the Registrar on 22 December.
 
-**Recording and sharing.** **[TO CONFIRM]** Whether seminars will be recorded, the consent and access arrangements, and retention. Do not assume that a class recording or peer document may be shared outside the course.
+**Recording and sharing.** Seminars are recorded on Zoom, and links to the recordings are posted on Canvas each week, so you can review a session or catch up on one you missed. Breakout rooms are not recorded. If you would rather not appear in a recording, keep your camera off, change your display name, or contribute through the chat. Recordings and the class Google Doc are for students enrolled in this course only: do not download, share or post them outside the course, and do not make your own recordings of seminars without asking me first.
 
 ## University policies and resources
 
@@ -325,10 +325,10 @@ The scale below is retained from the 479 syllabus as a draft starting point. **[
 - [x] EPOL 590, Section AIL, CRN 73886, 4 credit hours; online Mondays 5:00–7:50 PM Central.
 - [x] Final literature review due Tuesday 15 December 2026 at 11:59 PM Central.
 - [x] Set lengths, source expectations, submission formats, and task rubrics (Task 7 rubric drafted for review).
-- [ ] Choose readings for Sessions 5–7 and a replacement research-question guide.
+- [ ] Replace the research-question guide (Minnesota link is dead).
 - [x] Confirm the feedback schedule and peer-work alternatives.
 - [x] Create fresh collaborative documents (EPOL 590 Fall 2026 Google Doc). Check student access.
-- [ ] Decide recording and the grading-scale rounding rule. (Late work, AI, accessibility and support statements done.)
+- [x] Grading, late work, recording, AI, accessibility and support policies.
 - [x] Create Canvas assignments with weights and dates totaling 100%.
 
 ## Adaptation and calendar sources
