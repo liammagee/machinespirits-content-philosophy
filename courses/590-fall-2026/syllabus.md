@@ -72,7 +72,7 @@ Come with material to work on: an article, an uncertain interpretation, a draft 
 
 Keep a research record containing your question, search decisions, source notes, maps, drafts, feedback, and AI-use notes. The record should let you explain why the review changed. We will not require a particular commercial tool; **[TO CONFIRM]** the preferred document and reference-management arrangements.
 
-Fall break has no scheduled seminar or submission in the proposed plan. Start the Week 6 reflection before the break if useful, but plan to complete it after teaching resumes.
+Fall break has no scheduled seminar or submission. The structured draft (Task 5) is due the Monday after the break, 30 November. Start the Week 6 reflection before the break if useful, but plan to complete it after teaching resumes.
 
 ## What you should expect from me
 
@@ -131,16 +131,18 @@ Do not put confidential, identifiable, or restricted material into an AI service
 
 ## Evaluation
 
-The starting assessment structure retains the six staged tasks and final review from the previous 590 course.
+The review is built in stages. Task 1 is ungraded: it gets feedback early, before any marks are at stake. Two peer reviews, on Tasks 4 and 6, count for 5% each.
 
 | Component | Weight | Proposed due date |
 |---|---:|---|
-| 1 Research topic and question | 10% | Friday 23 October |
-| 2 Review design method and scope | 10% | Friday 30 October |
-| 3 Conceptual map of the literature | 10% | Friday 6 November |
-| 4 Literature review writing sample | 10% | Friday 13 November |
-| 5 Structured draft and signposting | 10% | Friday 20 November |
-| 6 AI-use statement and reflexive commentary | 10% | Friday 4 December |
+| 1 Research topic and question | Ungraded (feedback only) | Monday 26 October |
+| 2 Review design method and scope | 10% | Monday 2 November |
+| 3 Conceptual map of the literature | 10% | Monday 9 November |
+| 4 Literature review writing sample | 10% | Monday 16 November |
+| 5 Structured draft and signposting | 10% | Monday 30 November |
+| 6 AI-use statement and reflexive commentary | 10% | Monday 7 December |
+| Peer review of Task 4 | 5% | Friday 20 November |
+| Peer review of Task 6 | 5% | Friday 11 December |
 | 7 Final literature review | 40% | Tuesday 15 December |
 | **Total** | **100%** | |
 
@@ -168,11 +170,11 @@ For each staged task:
 5. Revise the relevant part of your review.
 6. Submit the task with a brief account of what changed and how AI contributed, if used.
 
-Self-reflection helps explain your decisions. It does not automatically determine your grade. The 479 self-grading scheme and separately weighted peer-commentary components have been replaced by 590's staged assignments.
+Self-reflection helps explain your decisions. It does not automatically determine your grade. The 479 self-grading scheme and separate peer-commentary components have been replaced by 590's staged assignments and two graded peer reviews.
 
 ### 1 Research topic and question
 
-State a provisional question and explain its significance, feasibility, and relationship to an initial set of sources. Identify what you would need to read or discover to refine it. **[TO CONFIRM]** Length and minimum source expectations.
+This task is ungraded. It is your first chance to get feedback on your question before any marks are at stake. State a provisional question and explain its significance, feasibility, and relationship to an initial set of sources. Identify what you would need to read or discover to refine it. **[TO CONFIRM]** Length and minimum source expectations.
 
 ### 2 Review design method and scope
 
@@ -217,7 +219,7 @@ The staged tasks emphasize development and reasoned decisions. The final review 
 
 ### Peer commentary
 
-Peer workshops are proposed in Sessions 4 and 6, with instructor feedback on the map and structured draft. Peer commentary supports revision and carries no separate percentage in this starting assessment structure.
+Peer workshops run in Sessions 4 and 6, with instructor feedback on the map and structured draft. After you submit Tasks 4 and 6, Canvas assigns you classmates' submissions to review. Each peer review is worth 5%. It is graded complete or incomplete: complete means specific, constructive comments on each assigned submission by the review deadline (Friday 20 November for Task 4, Friday 11 December for Task 6). The Task 6 reviews arrive in time to help with the final review.
 
 Share only the material needed for the exercise. Use named recipients and institution-supported arrangements. Students may use an anonymized extract or an instructor-mediated alternative. Keep grades and private instructor comments in Canvas. **[TO CONFIRM]** Pairing, access arrangements, and an accessible alternative before the first workshop.
 
@@ -241,13 +243,13 @@ Seminars meet online on **Mondays, 5:00–7:50 PM Central Time (America/Chicago)
 
 | Session | Teaching week | Focus | Reading and preparation | Milestone |
 |---|---|---|---|---|
-| 1 | 19–23 October | Research questions and academic literature | Baseline reflection; Weber; research-question guide | Topic and question, 23 October |
-| 2 | 26–30 October | Article anatomy, review design and mapping a field | Purdue OWL; compare articles from your field | Review plan, 30 October |
-| 3 | 2–6 November | AI-assisted close and distant reading | Moretti; Snow; annotate a difficult passage; prepare a source-backed conceptual map | Conceptual map, 6 November |
-| 4 | 9–13 November | Difficult texts, audiences and scholarly voice | Spivak; bring a writing sample | Writing sample, 13 November; peer workshop |
-| 5 | 16–20 November | Structure, signposting and scholarly communities | Bring an outline and draft; sociology-of-knowledge reading to be selected | Structured draft, 20 November |
+| 1 | 19–23 October | Research questions and academic literature | Baseline reflection; Weber; research-question guide | Topic and question, 26 October |
+| 2 | 26–30 October | Article anatomy, review design and mapping a field | Purdue OWL; compare articles from your field | Review plan, 2 November |
+| 3 | 2–6 November | AI-assisted close and distant reading | Moretti; Snow; annotate a difficult passage; prepare a source-backed conceptual map | Conceptual map, 9 November |
+| 4 | 9–13 November | Difficult texts, audiences and scholarly voice | Spivak; bring a writing sample | Writing sample, 16 November; peer workshop |
+| 5 | 16–20 November | Structure, signposting and scholarly communities | Bring an outline and draft; sociology-of-knowledge reading to be selected | Structured draft, 30 November |
 | — | 21–29 November | Fall break | No new required submission | No seminar or deadline |
-| 6 | 30 November–4 December | Reflexivity, positionality and AI in scholarship | Revisit the draft and AI-use record; reflection reading to be selected | AI and reflexivity statement, 4 December; peer workshop |
+| 6 | 30 November–4 December | Reflexivity, positionality and AI in scholarship | Revisit the draft and AI-use record; reflection reading to be selected | AI and reflexivity statement, 7 December; peer workshop |
 | 7 | 7–9 December | The future of scholarship and final review workshop | Bring a complete working draft; selected case on automation | Final review workshop |
 | — | 15 December | Final submission | Revision memo and AI-use statement accompany the review | Final literature review, 40% |
 
