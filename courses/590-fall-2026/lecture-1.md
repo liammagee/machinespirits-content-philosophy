@@ -32,17 +32,17 @@ All required material (video lectures, readings etc.) will be provided to studen
 
 ### What we'll cover...
 
-Seminars meet online on Mondays, 5:00–7:50 PM Central. Each task is due the Friday after its seminar at 11:59 PM Central, on Canvas.
+Seminars meet online on Mondays, 5:00–7:50 PM Central. Each task is due the Monday after its seminar at 11:59 PM Central, on Canvas.
 
 | Session | Seminar | Focus | Task due |
 | --- | --- | --- | --- |
-| 1 | October 19 | Research questions and academic literature | Task 1, October 23 |
-| 2 | October 26 | Article anatomy, review design and mapping a field | Task 2, October 30 |
-| 3 | November 2 | AI-assisted close and distant reading | Task 3, November 6 |
-| 4 | November 9 | Difficult texts, audiences and scholarly voice | Task 4, November 13 |
-| 5 | November 16 | Structure, signposting and scholarly communities | Task 5, November 20 |
+| 1 | October 19 | Research questions and academic literature | Task 1, October 26 |
+| 2 | October 26 | Article anatomy, review design and mapping a field | Task 2, November 2 |
+| 3 | November 2 | AI-assisted close and distant reading | Task 3, November 9 |
+| 4 | November 9 | Difficult texts, audiences and scholarly voice | Task 4, November 16 |
+| 5 | November 16 | Structure, signposting and scholarly communities | Task 5, November 30 |
 | — | November 23 | Fall break: no seminar, nothing due | — |
-| 6 | November 30 | Reflexivity, positionality and AI in scholarship | Task 6, December 4 |
+| 6 | November 30 | Reflexivity, positionality and AI in scholarship | Task 6, December 7 |
 | 7 | December 7 | The future of scholarship and final review workshop | — |
 | Final | — | Final literature review | Task 7, Tuesday December 15 |
 
@@ -59,12 +59,12 @@ That all said, the purpose of the course is to support a dissertation / journal 
 
 ### Assessments: Building a 'Mock' (or Real) Literature Review
 
- 1. Research topic and question (10%) — Friday, October 23
- 2. Review design method and scope (10%) — Friday, October 30
- 3. Conceptual map of the literature (10%) — Friday, November 6
- 4. Literature review writing sample (10%) — Friday, November 13
- 5. Structured draft and signposting (10%) — Friday, November 20
- 6. AI-use statement and reflexive commentary (10%) — Friday, December 4
+ 1. Research topic and question (10%) — Monday, October 26
+ 2. Review design method and scope (10%) — Monday, November 2
+ 3. Conceptual map of the literature (10%) — Monday, November 9
+ 4. Literature review writing sample (10%) — Monday, November 16
+ 5. Structured draft and signposting (10%) — Monday, November 30
+ 6. AI-use statement and reflexive commentary (10%) — Monday, December 7
  7. Final literature review (40%) — **Tuesday, December 15, 2026, 11:59 PM Central**; 1,500–2,000 words, with an AI-use statement and a short revision memo
 
 All tasks are submitted on Canvas by 11:59 PM Central. Before or during the first seminar, also write the short, ungraded baseline reflection described in the syllabus.
