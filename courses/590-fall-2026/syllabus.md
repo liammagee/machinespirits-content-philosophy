@@ -99,8 +99,8 @@ No book purchase is required. Readings are linked or posted on Canvas under each
 
 ### Session 1 · Research questions and academic literature
 
-- Weber, M. (1946). Science as a vocation. In H. H. Gerth & C. W. Mills (Eds. & Trans.), *From Max Weber: Essays in sociology* (pp. 129–156). Oxford University Press.
-- A short guide to writing research questions (link posted on Canvas).
+- Weber, M. (1946). Science as a vocation. In H. H. Gerth & C. W. Mills (Eds. & Trans.), *From Max Weber: Essays in sociology* (pp. 129–156). Oxford University Press. [Read online (Internet Archive)](https://archive.org/details/frommaxweberessa00webe/page/129/mode/2up)
+- University of Illinois Library. (n.d.). [*Develop a topic and dissect your research question*](https://www.library.illinois.edu/tlas/instruction/i-need-to-2/topic-research-question/).
 
 ### Session 2 · Article anatomy, review design and mapping a field
 
