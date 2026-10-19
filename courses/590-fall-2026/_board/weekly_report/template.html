@@ -1,0 +1,136 @@
+<meta charset="utf-8">
+<title>EPOL 590 Weekly Check</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Layout: one reading column; summary tiles, then "this week", then the detail tables. Course riso palette. */
+:root {
+  --bg: #F3EEE4; --panel: #FBF8F2; --ink: #15161D; --muted: #5E5A63; --rule: #D9D1C2;
+  --accent: #B83A16; --blue: #2F4FA8;
+  --ok: #2E6B4F; --ok-bg: #DCEBDF; --warn: #8A5A00; --warn-bg: #F5E6C4; --idle: #6B6670; --idle-bg: #E8E2D6;
+  --display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --body: 'Source Serif 4', Georgia, serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #15161D; --panel: #1C1D27; --ink: #F3EEE4; --muted: #A9A3AE; --rule: #34364A;
+  --accent: #FF7A50; --blue: #8EA6F0;
+  --ok: #8FD3AE; --ok-bg: #1F3A2E; --warn: #F2C46B; --warn-bg: #3D3220; --idle: #A9A3AE; --idle-bg: #26283A; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #15161D; --panel: #1C1D27; --ink: #F3EEE4; --muted: #A9A3AE; --rule: #34364A;
+  --accent: #FF7A50; --blue: #8EA6F0;
+  --ok: #8FD3AE; --ok-bg: #1F3A2E; --warn: #F2C46B; --warn-bg: #3D3220; --idle: #A9A3AE; --idle-bg: #26283A; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font: 16px/1.5 var(--body); }
+.wrap { max-width: 880px; margin: 0 auto; padding-block: 32px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 36px; }
+.eyebrow { font: 600 12px/1 var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0 0 8px; }
+h1 { font: 700 clamp(28px, 5vw, 40px)/1.1 var(--display); margin: 0; text-wrap: balance; }
+h2 { font: 600 20px/1.2 var(--display); margin: 0 0 12px; }
+.meta { color: var(--muted); font-size: 14px; margin: 8px 0 0; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+.tile { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; }
+.tile b { display: block; font: 700 30px/1 var(--display); font-variant-numeric: tabular-nums; }
+.tile span { display: block; font-size: 14px; color: var(--muted); margin-top: 6px; }
+.todo { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.todo li { display: flex; gap: 12px; align-items: baseline; }
+.todo .when { font: 600 13px/1.4 var(--display); color: var(--blue); min-width: 104px; font-variant-numeric: tabular-nums; }
+.scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th { font: 600 12px/1.2 var(--display); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 8px 10px; border-bottom: 2px solid var(--ink); white-space: nowrap; }
+td { padding: 8px 10px; border-bottom: 1px solid var(--rule); vertical-align: baseline; }
+td.num { font-variant-numeric: tabular-nums; text-align: right; }
+th.num { text-align: right; }
+.pill { display: inline-block; font: 600 12px/1 var(--display); padding: 5px 8px; border-radius: 999px; white-space: nowrap; }
+.pill.ok { color: var(--ok); background: var(--ok-bg); }
+.pill.warn { color: var(--warn); background: var(--warn-bg); }
+.pill.idle { color: var(--idle); background: var(--idle-bg); }
+.note { color: var(--muted); font-size: 14px; margin: 10px 0 0; max-width: 65ch; }
+.sync { display: flex; gap: 10px; align-items: center; }
+a { color: var(--blue); }
+footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--rule); padding-top: 12px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">EPOL 590 · Fall 2026 Term B · instructor only</p>
+    <h1 id="heading">Weekly check</h1>
+    <p class="meta" id="generated"></p>
+  </header>
+
+  <section class="tiles" aria-label="Summary">
+    <div class="tile"><b id="t-active"></b><span>students have opened the course</span></div>
+    <div class="tile"><b id="t-task"></b><span id="t-task-label">submissions</span></div>
+    <div class="tile"><b id="t-mods"></b><span>modules visible to students</span></div>
+    <div class="tile"><b id="t-sync"></b><span>Canvas dates match the syllabus</span></div>
+  </section>
+
+  <section>
+    <h2>This week</h2>
+    <ul class="todo" id="todo"></ul>
+  </section>
+
+  <section>
+    <h2>Students</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Student</th><th>Status</th><th>Last active (CT)</th><th class="num">Page views</th><th class="num">Minutes</th></tr></thead>
+      <tbody id="students"></tbody>
+    </table></div>
+    <p class="note">From Canvas analytics. Canvas counts activity in the course site only; it does not see the class Google Doc, Zoom or machinespirits.org. Minutes are Canvas's own estimate and lag behind page views.</p>
+  </section>
+
+  <section>
+    <h2>Assignments</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Assignment</th><th>Due (CT)</th><th>Status</th><th class="num">Submitted</th><th class="num">To grade</th></tr></thead>
+      <tbody id="assignments"></tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>Modules</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Module</th><th>Status</th><th class="num">Items visible</th></tr></thead>
+      <tbody id="modules"></tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>Announcements</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Title</th><th>Posted (CT)</th></tr></thead>
+      <tbody id="anns"></tbody>
+    </table></div>
+  </section>
+
+  <footer>Read from Canvas course 75598 and checked against the syllabus in the content repo. Visible only to you. <a href="https://canvas.illinois.edu/courses/75598" target="_blank" rel="noopener">Open Canvas</a></footer>
+</div>
+
+<script>
+const REPORT = /*REPORT*/null;
+const ct = iso => iso ? new Date(iso).toLocaleString('en-US', { timeZone: 'America/Chicago', weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '—';
+const ctDate = iso => new Date(iso).toLocaleDateString('en-CA', { timeZone: 'America/Chicago' });
+const pill = (cls, text) => `<span class="pill ${cls}">${text}</span>`;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const $ = id => document.getElementById(id);
+
+$('heading').textContent = REPORT.heading || 'Weekly check';
+$('generated').textContent = 'Updated ' + ct(REPORT.generated) + ' Central';
+const active = REPORT.students.filter(s => s[1]).length;
+$('t-active').textContent = `${active} / ${REPORT.students.length}`;
+const t1 = REPORT.assignments.find(a => a[0] === REPORT.focus) || REPORT.assignments[0];
+$('t-task-label').textContent = t1[0].replace(/^(\d) .*/, 'Task $1') + ' submissions · due ' + ct(t1[1]);
+$('t-task').textContent = `${t1[3]} / ${REPORT.students.length}`;
+$('t-mods').textContent = `${REPORT.modules.filter(m => m[1]).length} / ${REPORT.modules.length}`;
+const matches = REPORT.assignments.filter(a => ctDate(a[1]) === a[5]).length;
+$('t-sync').textContent = `${matches} / ${REPORT.assignments.length}`;
+
+$('todo').innerHTML = REPORT.todo.map(([w, t]) => `<li><span class="when">${esc(w)}</span><span>${esc(t)}</span></li>`).join('');
+$('students').innerHTML = REPORT.students.map(([n, last, views, mins]) =>
+  `<tr><td>${esc(n)}</td><td>${last ? pill('ok', 'Active') : pill('idle', 'Not yet')}</td><td>${ct(last)}</td><td class="num">${views}</td><td class="num">${mins}</td></tr>`).join('');
+$('assignments').innerHTML = REPORT.assignments.map(([n, due, pub, sub, grade, syl]) => {
+  const status = pub ? pill('ok', 'Published') : pill('idle', 'Hidden');
+  const synced = ctDate(due) === syl ? '' : ' ' + pill('warn', 'Differs from syllabus');
+  return `<tr><td>${esc(n)}</td><td>${ct(due)}${synced}</td><td>${status}</td><td class="num">${sub === null ? '—' : sub + ' / ' + REPORT.students.length}</td><td class="num">${grade}</td></tr>`;
+}).join('');
+$('modules').innerHTML = REPORT.modules.map(([n, pub, vis, total]) =>
+  `<tr><td>${esc(n)}</td><td>${pub ? pill('ok', 'Visible') : pill('idle', n === 'Instructor review' ? 'Hidden (yours)' : 'Hidden')}</td><td class="num">${vis} / ${total}</td></tr>`).join('');
+$('anns').innerHTML = REPORT.anns.map(([t, p]) => `<tr><td>${esc(t)}</td><td>${ct(p)}</td></tr>`).join('');
+</script>
