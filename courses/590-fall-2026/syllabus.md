@@ -288,7 +288,7 @@ The scale below is retained from the 479 syllabus as a draft starting point. **[
 
 **Attendance.** I hope you can join every seminar, because the discussion and workshops are where much of the learning happens. I also know that graduate students balance work, family, health and other commitments. Attendance is not graded, and you do not need to explain or document an absence. If you miss a seminar, catch up from the slides and Canvas materials, and contact me if you would like to talk through that week's task. Absences covered by the [Student Code](https://studentcode.illinois.edu/article1/part5/1-501), including religious observances, will always be accommodated.
 
-**Late work.** Contact me early if a deadline creates a problem. Staged tasks support later work, so an extension should include a realistic plan for catching up. **[TO CONFIRM]** Any penalties, extension procedure, and the final submission cutoff. The Registrar lists the faculty grade-reporting deadline as **22 December 2026 at 2:00 PM**; this is an instructor deadline, not a student submission date.
+**Late work.** There is no late penalty. Every task has an automatic 48-hour grace period: submit within 48 hours of the deadline and you do not need to ask or explain. If you need longer, email me before the grace period ends with a short plan for catching up; the staged tasks build on each other, so the plan matters more than the reason. The final cutoff for all work, including Task 7, is **Friday 18 December 2026 at 11:59 PM Central**; nothing can be accepted after that, because grades are due to the Registrar on 22 December.
 
 **Recording and sharing.** **[TO CONFIRM]** Whether seminars will be recorded, the consent and access arrangements, and retention. Do not assume that a class recording or peer document may be shared outside the course.
 
@@ -328,7 +328,7 @@ The scale below is retained from the 479 syllabus as a draft starting point. **[
 - [ ] Choose readings for Sessions 5–7 and a replacement research-question guide.
 - [x] Confirm the feedback schedule and peer-work alternatives.
 - [x] Create fresh collaborative documents (EPOL 590 Fall 2026 Google Doc). Check student access.
-- [ ] Decide late work, recording and the grading-scale rounding rule. (AI, accessibility and support statements done.)
+- [ ] Decide recording and the grading-scale rounding rule. (Late work, AI, accessibility and support statements done.)
 - [x] Create Canvas assignments with weights and dates totaling 100%.
 
 ## Adaptation and calendar sources
