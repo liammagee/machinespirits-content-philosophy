@@ -209,7 +209,9 @@ Tasks 1–6 are usually 250–400 words; the sources each needs depend on the ta
 ### Readings
 
 
-Weber, M. (1946). Science as a vocation. In H. H. Gerth & C. W. Mills (Eds. & Trans.), *From Max Weber: Essays in sociology* (pp. 129–156). Oxford University Press.
+Weber, M. (1946). Science as a vocation. In H. H. Gerth & C. W. Mills (Eds. & Trans.), *From Max Weber: Essays in sociology* (pp. 129–156). Oxford University Press. [Read online (Internet Archive)](https://archive.org/details/frommaxweberessa00webe/page/129/mode/2up)
+
+University of Illinois Library. (n.d.). [*Develop a topic and dissect your research question*](https://www.library.illinois.edu/tlas/instruction/i-need-to-2/topic-research-question/).
 
 
 
