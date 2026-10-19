@@ -131,16 +131,18 @@ Do not put confidential, identifiable, or restricted material into an AI service
 
 ## Evaluation
 
-The starting assessment structure retains the six staged tasks and final review from the previous 590 course.
+The review is built in stages. Task 1 is ungraded: it gets feedback early, before any marks are at stake. Two peer reviews, on Tasks 4 and 6, count for 5% each.
 
 | Component | Weight | Proposed due date |
 |---|---:|---|
-| 1 Research topic and question | 10% | Monday 26 October |
+| 1 Research topic and question | Ungraded (feedback only) | Monday 26 October |
 | 2 Review design method and scope | 10% | Monday 2 November |
 | 3 Conceptual map of the literature | 10% | Monday 9 November |
 | 4 Literature review writing sample | 10% | Monday 16 November |
 | 5 Structured draft and signposting | 10% | Monday 30 November |
 | 6 AI-use statement and reflexive commentary | 10% | Monday 7 December |
+| Peer review of Task 4 | 5% | Friday 20 November |
+| Peer review of Task 6 | 5% | Friday 11 December |
 | 7 Final literature review | 40% | Tuesday 15 December |
 | **Total** | **100%** | |
 
@@ -168,11 +170,11 @@ For each staged task:
 5. Revise the relevant part of your review.
 6. Submit the task with a brief account of what changed and how AI contributed, if used.
 
-Self-reflection helps explain your decisions. It does not automatically determine your grade. The 479 self-grading scheme and separately weighted peer-commentary components have been replaced by 590's staged assignments.
+Self-reflection helps explain your decisions. It does not automatically determine your grade. The 479 self-grading scheme and separate peer-commentary components have been replaced by 590's staged assignments and two graded peer reviews.
 
 ### 1 Research topic and question
 
-State a provisional question and explain its significance, feasibility, and relationship to an initial set of sources. Identify what you would need to read or discover to refine it. **[TO CONFIRM]** Length and minimum source expectations.
+This task is ungraded. It is your first chance to get feedback on your question before any marks are at stake. State a provisional question and explain its significance, feasibility, and relationship to an initial set of sources. Identify what you would need to read or discover to refine it. **[TO CONFIRM]** Length and minimum source expectations.
 
 ### 2 Review design method and scope
 
@@ -217,7 +219,7 @@ The staged tasks emphasize development and reasoned decisions. The final review 
 
 ### Peer commentary
 
-Peer workshops are proposed in Sessions 4 and 6, with instructor feedback on the map and structured draft. Peer commentary supports revision and carries no separate percentage in this starting assessment structure.
+Peer workshops run in Sessions 4 and 6, with instructor feedback on the map and structured draft. After you submit Tasks 4 and 6, Canvas assigns you classmates' submissions to review. Each peer review is worth 5%. It is graded complete or incomplete: complete means specific, constructive comments on each assigned submission by the review deadline (Friday 20 November for Task 4, Friday 11 December for Task 6). The Task 6 reviews arrive in time to help with the final review.
 
 Share only the material needed for the exercise. Use named recipients and institution-supported arrangements. Students may use an anonymized extract or an instructor-mediated alternative. Keep grades and private instructor comments in Canvas. **[TO CONFIRM]** Pairing, access arrangements, and an accessible alternative before the first workshop.
 

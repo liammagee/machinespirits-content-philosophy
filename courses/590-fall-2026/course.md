@@ -99,12 +99,14 @@ Students build one literature review across the course. Each staged task develop
 
 | Task | Weight | Due |
 | --- | --- | --- |
-| 1 Research topic and question | 10% | Monday 26 October |
+| 1 Research topic and question | Ungraded | Monday 26 October |
 | 2 Review design, method and scope | 10% | Monday 2 November |
 | 3 Conceptual map of the literature | 10% | Monday 9 November |
 | 4 Literature review writing sample | 10% | Monday 16 November |
 | 5 Structured draft and signposting | 10% | Monday 30 November |
 | 6 AI-use statement and reflexive commentary | 10% | Monday 7 December |
+| Peer review of Task 4 | 5% | Friday 20 November |
+| Peer review of Task 6 | 5% | Friday 11 December |
 | 7 Final literature review (1,500–2,000 words) | 40% | Tuesday 15 December |
 
-All work is due at 11:59 PM Central on Canvas. Peer workshops run in Sessions 4 and 6. See the syllabus for task details and assessment criteria.
+All work is due at 11:59 PM Central on Canvas. Peer workshops run in Sessions 4 and 6, and the peer reviews that follow them are graded complete or incomplete. See the syllabus for task details and assessment criteria.
