@@ -5,7 +5,7 @@
 
 DECK holds the deck's own files as the Slides artifact stores them: deck.json (order), slides/<id>.html
 (one <section> each) and images/<asset id>.jpg for every /_blob/<id> the slides use. The output is one
-self-contained page served by the site at /590/lecture-1: images inlined, x-embed animations as sandboxed
+self-contained page served by the site at /590-fall-2026/lecture-1: images inlined, x-embed animations as sandboxed
 iframes, build-in steps and transitions kept, speaker notes (<aside>) left out, and ?k= class keys stripped
 from links so the key is not published.
 """
