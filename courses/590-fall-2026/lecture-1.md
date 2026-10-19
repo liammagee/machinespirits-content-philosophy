@@ -65,11 +65,11 @@ That all said, the purpose of the course is to support a dissertation / journal 
  4. Literature review writing sample (10%) — Monday, November 16
  5. Structured draft and signposting (10%) — Monday, November 30
  6. AI-use statement and reflexive commentary (10%) — Monday, December 7
- 7. Final literature review (40%) — **Tuesday, December 15, 2026, 11:59 PM Central**; 1,500–2,000 words, with an AI-use statement and a short revision memo
+ 7. Final literature review, or a course outline for teaching how to write one (40%) — **Tuesday, December 15, 2026, 11:59 PM Central**; 1,500–2,000 words, with an AI-use statement and a short revision memo
 
 Peer reviews of Tasks 4 and 6 are worth 5% each, graded complete or incomplete. They are due Friday, November 20 and Friday, December 11.
 
-All tasks are submitted on Canvas by 11:59 PM Central. Before or during the first seminar, also write the short, ungraded baseline reflection described in the syllabus.
+Tasks 1–6 are usually 250–400 words; the sources each needs depend on the task. All tasks are submitted on Canvas by 11:59 PM Central. Before or during the first seminar, also write the short, ungraded baseline reflection described in the syllabus.
 
 ---
 

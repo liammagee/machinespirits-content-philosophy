@@ -82,7 +82,7 @@ Fall break has no scheduled seminar or submission. The structured draft (Task 5)
 - I will clarify assignments when a difficulty affects the class as a whole.
 - I will treat patterns of difficulty as information about the teaching as well as the work.
 
-**Proposed feedback arrangements:** email responses within two working days and feedback on staged submissions within one week. **[TO CONFIRM]** Response times and feedback capacity. Plan substantive instructor feedback after the conceptual map and after the structured draft; use peer workshops to support revision between these points.
+**Feedback and response times:** I aim to reply to email within two working days (Monday to Friday) and to return feedback on staged tasks within one week of the due date. Feedback on the final submission comes with the course grade. Plan substantive instructor feedback after the conceptual map and after the structured draft; use peer workshops to support revision between these points.
 
 ## Course objectives
 
@@ -113,11 +113,11 @@ No book purchase is required. Readings will be posted on Canvas under each sessi
 ### Session 3 · AI-assisted close and distant reading
 
 - Moretti, F. (2013). *Distant reading*. Verso.
-- Snow, C. P. (1959). *The two cultures and the scientific revolution*. Cambridge University Press.
+- Snow, C. P. (1959). *The two cultures and the scientific revolution*. Cambridge University Press. [University Library: online, in *The two cultures* with Stefan Collini's introduction](https://i-share-uiu.primo.exlibrisgroup.com/discovery/search?query=any,contains,The%20two%20cultures%20Snow%20Collini&tab=LibraryCatalog&search_scope=MyInstitution&vid=01CARLI_UIU:CARLI_UIU)
 
 ### Session 4 · Difficult texts, audiences and scholarly voice
 
-- Spivak, G. C. (1988). Can the subaltern speak? In C. Nelson & L. Grossberg (Eds.), *Marxism and the interpretation of culture* (pp. 271–313). University of Illinois Press.
+- Spivak, G. C. (1988). Can the subaltern speak? In C. Nelson & L. Grossberg (Eds.), *Marxism and the interpretation of culture* (pp. 271–313). University of Illinois Press. [University Library: print, Communications Library](https://i-share-uiu.primo.exlibrisgroup.com/discovery/search?query=any,contains,Marxism%20and%20the%20interpretation%20of%20culture%20Nelson%20Grossberg&tab=LibraryCatalog&search_scope=MyInstitution&vid=01CARLI_UIU:CARLI_UIU)
 
 ### Sessions 5–7
 
@@ -143,8 +143,10 @@ The review is built in stages. Task 1 is ungraded: it gets feedback early, befor
 | 6 AI-use statement and reflexive commentary | 10% | Monday 7 December |
 | Peer review of Task 4 | 5% | Friday 20 November |
 | Peer review of Task 6 | 5% | Friday 11 December |
-| 7 Final literature review | 40% | Tuesday 15 December |
+| 7 Final literature review or course outline | 40% | Tuesday 15 December |
 | **Total** | **100%** | |
+
+Tasks 1–6 are usually **250–400 words**, plus any map, outline or extract the task asks for. The number and kind of sources depend on what each task asks for.
 
 All proposed submissions are due at **11:59 PM Central Time** through Canvas. The final literature review deadline is confirmed as Tuesday 15 December 2026 at 11:59 PM Central. Other dates remain planning recommendations.
 
@@ -174,7 +176,7 @@ Self-reflection helps explain your decisions. It does not automatically determin
 
 ### 1 Research topic and question
 
-This task is ungraded. It is your first chance to get feedback on your question before any marks are at stake. State a provisional question and explain its significance, feasibility, and relationship to an initial set of sources. Identify what you would need to read or discover to refine it. **[TO CONFIRM]** Length and minimum source expectations.
+This task is ungraded. It is your first chance to get feedback on your question before any marks are at stake. State a provisional question and explain its significance, feasibility, and relationship to an initial set of sources. Identify what you would need to read or discover to refine it.
 
 ### 2 Review design method and scope
 
@@ -196,11 +198,14 @@ Submit an outline and a developed draft section showing the review's organizing 
 
 Explain where AI influenced searching, reading, mapping, or writing; what you checked; what you rejected; and what responsibility you retained. Connect your position as a researcher to a specific choice in the review. Include selected examples where useful, without requiring publication of private conversations or irrelevant personal information.
 
-### 7 Final literature review
+### 7 Final literature review or course outline
 
-Submit a coherent review that develops a defensible contribution from the staged work. It should establish a question and scope, synthesize relevant literature, explain relationships and disagreements, and identify a plausible gap or a different way to frame the problem.
+Choose one of two forms. Both build on the staged work.
 
-The final literature review is 1,500–2,000 words. Include an AI-use statement and a short revision memo explaining how the review changed in response to evidence and feedback. **[TO CONFIRM]** Citation expectations, submission format, memo length, and the detailed rubric.
+- **Option A: a literature review.** Submit a coherent review that develops a defensible contribution from the staged work. It should establish a question and scope, synthesize relevant literature, explain relationships and disagreements, and identify a plausible gap or a different way to frame the problem.
+- **Option B: a course outline for teaching how to write a literature review.** Design a short course or module that teaches a specific audience to write a literature review in your field. Set out each session's aim, readings, activities and how learning is checked. Justify the design with the course readings and wider literature, including where AI belongs in the process and where it does not. Like a review, the outline needs a clear scope, sources that support its choices, and an argument for why the sequence works.
+
+Either option is 1,500–2,000 words. Include an AI-use statement and a short revision memo explaining how the review changed in response to evidence and feedback. **[TO CONFIRM]** Citation expectations, submission format, memo length, and the detailed rubric.
 
 The final seminar is a workshop for this submission. Aim to arrive with a complete working draft. The confirmed 15 December deadline allows revision after that workshop.
 
@@ -251,7 +256,7 @@ Seminars meet online on **Mondays, 5:00–7:50 PM Central Time (America/Chicago)
 | — | 21–29 November | Fall break | No new required submission | No seminar or deadline |
 | 6 | 30 November–4 December | Reflexivity, positionality and AI in scholarship | Revisit the draft and AI-use record; reflection reading to be selected | AI and reflexivity statement, 7 December; peer workshop |
 | 7 | 7–9 December | The future of scholarship and final review workshop | Bring a complete working draft; selected case on automation | Final review workshop |
-| — | 15 December | Final submission | Revision memo and AI-use statement accompany the review | Final literature review, 40% |
+| — | 15 December | Final submission | Revision memo and AI-use statement accompany the submission | Final review or course outline, 40% |
 
 **Proposed seminar format:** three hours, with ten-minute breaks between the hours. Start with discussion of current research problems and previous work; combine short lectures and close reading with a workshop on the week's task. The balance can vary with the project stage.
 
@@ -281,7 +286,7 @@ The scale below is retained from the 479 syllabus as a draft starting point. **[
 
 ## Policies
 
-**Attendance.** Participate in the scheduled seminars and collaborative activities. If you must miss a session, contact me to arrange an equivalent way to engage with the work. **[TO CONFIRM]** Attendance and participation requirements.
+**Attendance.** I hope you can join every seminar, because the discussion and workshops are where much of the learning happens. I also know that graduate students balance work, family, health and other commitments. Attendance is not graded, and you do not need to explain or document an absence. If you miss a seminar, catch up from the slides and Canvas materials, and contact me if you would like to talk through that week's task. Absences covered by the [Student Code](https://studentcode.illinois.edu/article1/part5/1-501), including religious observances, will always be accommodated.
 
 **Late work.** Contact me early if a deadline creates a problem. Staged tasks support later work, so an extension should include a realistic plan for catching up. **[TO CONFIRM]** Any penalties, extension procedure, and the final submission cutoff. The Registrar lists the faculty grade-reporting deadline as **22 December 2026 at 2:00 PM**; this is an instructor deadline, not a student submission date.
 
