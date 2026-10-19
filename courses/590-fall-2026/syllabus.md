@@ -22,7 +22,7 @@ status: "draft"
 |---|---|
 | Meeting time | Mondays, 5:00–7:50 PM Central Time (America/Chicago) |
 | Format | Live online seminar with asynchronous reading, research, and writing |
-| Location | Online via Zoom. **[TO CONFIRM]** Meeting link; access information on Canvas |
+| Location | Online via Zoom: join from **Zoom Meeting** in the Canvas course menu |
 | Term | Term B instruction: 19 October–9 December 2026; fall break: 21–29 November |
 | Section and CRN | Section AIL · CRN 73886 · 4 credit hours |
 | Course site | [Canvas course](https://canvas.illinois.edu/courses/75598) |
@@ -38,7 +38,7 @@ How do we conduct scholarly research in an era of generative AI? This graduate c
 
 The practical work and the critical questions belong together. AI can produce a summary, propose a conceptual map, or suggest a gap. We will ask how those outputs were made, whose knowledge they privilege, what they miss, and what responsibility remains with the researcher. The aim is to develop better scholarly judgment while learning to use these tools.
 
-**[TO CONFIRM]** Insert the official catalog description and any formal prerequisites. The description above is the working course description.
+**Catalog listing.** EPOL 590 is listed as *Advanced Graduate Seminar* (0–4 hours; may be repeated to a maximum of 12 hours if topics vary). This section, AIL, is restricted to graduate students at Urbana-Champaign. Its catalog description: “This course aims to make sense of a term – academic literature – at once mundane and mystical. It starts with fundamentals: how to build, annotate, analyze, map and translate a literature database into a literature review. It progresses to think about how AI and other technology can help foster more critical, analytic and reflexive modes of interpretation and understandings of the field.”
 
 ## Course outline
 
@@ -58,7 +58,7 @@ The review is provisional throughout. A map can change the question. A difficult
 
 ## What I expect from you
 
-For planning, allow approximately **20 hours per active teaching week**, including the seminar. This is a proposed workload for the four-credit compressed format; **[TO CONFIRM]** the final credit and workload expectations.
+For planning, allow approximately **20–25 hours per active teaching week**, including the seminar. Four credit hours correspond to roughly 180 hours of work across the term, spread over seven teaching weeks.
 
 | Activity | Planning allowance per active week |
 |---|---|
@@ -70,7 +70,7 @@ For planning, allow approximately **20 hours per active teaching week**, includi
 
 Come with material to work on: an article, an uncertain interpretation, a draft section, or a problem in your search. Much of the seminar will be practical, but the work depends on what you have read and prepared outside class.
 
-Keep a research record containing your question, search decisions, source notes, maps, drafts, feedback, and AI-use notes. The record should let you explain why the review changed. We will not require a particular commercial tool; **[TO CONFIRM]** the preferred document and reference-management arrangements.
+Keep a research record containing your question, search decisions, source notes, maps, drafts, feedback, and AI-use notes. The record should let you explain why the review changed. We will not require a particular commercial tool. A Google Doc, Word file or notebook all work; a free reference manager such as Zotero makes citations much easier to keep.
 
 Fall break has no scheduled seminar or submission. The structured draft (Task 5) is due the Monday after the break, 30 November. Start the Week 6 reflection before the break if useful, but plan to complete it after teaching resumes.
 
@@ -82,7 +82,7 @@ Fall break has no scheduled seminar or submission. The structured draft (Task 5)
 - I will clarify assignments when a difficulty affects the class as a whole.
 - I will treat patterns of difficulty as information about the teaching as well as the work.
 
-**Proposed feedback arrangements:** email responses within two working days and feedback on staged submissions within one week. **[TO CONFIRM]** Response times and feedback capacity. Plan substantive instructor feedback after the conceptual map and after the structured draft; use peer workshops to support revision between these points.
+**Feedback and response times:** I aim to reply to email within two working days (Monday to Friday) and to return feedback on staged tasks within one week of the due date. Feedback on the final submission comes with the course grade. Plan substantive instructor feedback after the conceptual map and after the structured draft; use peer workshops to support revision between these points.
 
 ## Course objectives
 
@@ -97,7 +97,7 @@ By the end of the course, you should be able to:
 
 ## Texts readings and tools
 
-No book purchase is required. Readings will be posted on Canvas under each session's module. **[TO CONFIRM]** The final reading list, editions, excerpts, and student access.
+No book purchase is required. Readings are linked or posted on Canvas under each session’s module, with University Library links where available.
 
 ### Session 1 · Research questions and academic literature
 
@@ -113,19 +113,19 @@ No book purchase is required. Readings will be posted on Canvas under each sessi
 ### Session 3 · AI-assisted close and distant reading
 
 - Moretti, F. (2013). *Distant reading*. Verso.
-- Snow, C. P. (1959). *The two cultures and the scientific revolution*. Cambridge University Press.
+- Snow, C. P. (1959). *The two cultures and the scientific revolution*. Cambridge University Press. [University Library: online, in *The two cultures* with Stefan Collini's introduction](https://i-share-uiu.primo.exlibrisgroup.com/discovery/search?query=any,contains,The%20two%20cultures%20Snow%20Collini&tab=LibraryCatalog&search_scope=MyInstitution&vid=01CARLI_UIU:CARLI_UIU)
 
 ### Session 4 · Difficult texts, audiences and scholarly voice
 
-- Spivak, G. C. (1988). Can the subaltern speak? In C. Nelson & L. Grossberg (Eds.), *Marxism and the interpretation of culture* (pp. 271–313). University of Illinois Press.
+- Spivak, G. C. (1988). Can the subaltern speak? In C. Nelson & L. Grossberg (Eds.), *Marxism and the interpretation of culture* (pp. 271–313). University of Illinois Press. [University Library: print, Communications Library](https://i-share-uiu.primo.exlibrisgroup.com/discovery/search?query=any,contains,Marxism%20and%20the%20interpretation%20of%20culture%20Nelson%20Grossberg&tab=LibraryCatalog&search_scope=MyInstitution&vid=01CARLI_UIU:CARLI_UIU)
 
 ### Sessions 5–7
 
 **[TO CONFIRM]** A sociology-of-knowledge reading for Session 5, a reflection reading for Session 6, and a case on automation for Session 7.
 
-**Canvas** carries announcements, materials, assignment instructions, submissions, grades, and private instructor comments. A running document may be used for drafting and collaboration. **[TO CONFIRM]** Create a new class workspace; do not reuse last year's shared document.
+**Canvas** carries announcements, materials, assignment instructions, submissions, grades, and private instructor comments. A shared class Google Doc, *EPOL 590 Fall 2026*, is used for in-seminar drafting and collaboration; it is linked on Canvas and shared only with the class.
 
-Use a reference manager or another reliable way to retain full citations and notes. AI-supported exercises are part of the proposed seminar design. **[TO CONFIRM]** Available tools and equivalent alternatives where access, cost, privacy, or accessibility would create a barrier. No paid AI subscription is required by this draft.
+Use a reference manager or another reliable way to retain full citations and notes. AI-supported exercises are part of the seminar design. The **AI Tools — 2026 Overview** page on Canvas lists the tools the University provides; Copilot Chat, Gemini and NotebookLM are free to students. No paid AI subscription is required. If a tool creates a barrier of access, cost, privacy or accessibility, tell me and we will find an equivalent.
 
 Do not put confidential, identifiable, or restricted material into an AI service. Use public or appropriately permitted materials for experiments and check the relevant institutional guidance before using research data.
 
@@ -143,8 +143,10 @@ The review is built in stages. Task 1 is ungraded: it gets feedback early, befor
 | 6 AI-use statement and reflexive commentary | 10% | Monday 7 December |
 | Peer review of Task 4 | 5% | Friday 20 November |
 | Peer review of Task 6 | 5% | Friday 11 December |
-| 7 Final literature review | 40% | Tuesday 15 December |
+| 7 Final literature review or course outline | 40% | Tuesday 15 December |
 | **Total** | **100%** | |
+
+Tasks 1–6 are usually **250–400 words**, plus any map, outline or extract the task asks for. The number and kind of sources depend on what each task asks for.
 
 All proposed submissions are due at **11:59 PM Central Time** through Canvas. The final literature review deadline is confirmed as Tuesday 15 December 2026 at 11:59 PM Central. Other dates remain planning recommendations.
 
@@ -174,7 +176,7 @@ Self-reflection helps explain your decisions. It does not automatically determin
 
 ### 1 Research topic and question
 
-This task is ungraded. It is your first chance to get feedback on your question before any marks are at stake. State a provisional question and explain its significance, feasibility, and relationship to an initial set of sources. Identify what you would need to read or discover to refine it. **[TO CONFIRM]** Length and minimum source expectations.
+This task is ungraded. It is your first chance to get feedback on your question before any marks are at stake. State a provisional question and explain its significance, feasibility, and relationship to an initial set of sources. Identify what you would need to read or discover to refine it.
 
 ### 2 Review design method and scope
 
@@ -186,7 +188,7 @@ Represent the main concepts, debates, approaches, or historical developments in 
 
 ### 4 Literature review writing sample
 
-Develop a section that synthesizes literature rather than describing articles one at a time. Compare scientific and humanities modes of framing or interpretation; explain which choices serve your question and audience. **[TO CONFIRM]** Whether students submit two short versions or one version with commentary.
+Develop a section that synthesizes literature rather than describing articles one at a time. Compare scientific and humanities modes of framing or interpretation; explain which choices serve your question and audience. Submit one 250–400-word section with a few sentences of commentary on your choices of audience, voice and evidence.
 
 ### 5 Structured draft and signposting
 
@@ -196,11 +198,14 @@ Submit an outline and a developed draft section showing the review's organizing 
 
 Explain where AI influenced searching, reading, mapping, or writing; what you checked; what you rejected; and what responsibility you retained. Connect your position as a researcher to a specific choice in the review. Include selected examples where useful, without requiring publication of private conversations or irrelevant personal information.
 
-### 7 Final literature review
+### 7 Final literature review or course outline
 
-Submit a coherent review that develops a defensible contribution from the staged work. It should establish a question and scope, synthesize relevant literature, explain relationships and disagreements, and identify a plausible gap or a different way to frame the problem.
+Choose one of two forms. Both build on the staged work.
 
-The final literature review is 1,500–2,000 words. Include an AI-use statement and a short revision memo explaining how the review changed in response to evidence and feedback. **[TO CONFIRM]** Citation expectations, submission format, memo length, and the detailed rubric.
+- **Option A: a literature review.** Submit a coherent review that develops a defensible contribution from the staged work. It should establish a question and scope, synthesize relevant literature, explain relationships and disagreements, and identify a plausible gap or a different way to frame the problem.
+- **Option B: a course outline for teaching how to write a literature review.** Design a short course or module that teaches a specific audience to write a literature review in your field. Set out each session's aim, readings, activities and how learning is checked. Justify the design with the course readings and wider literature, including where AI belongs in the process and where it does not. Like a review, the outline needs a clear scope, sources that support its choices, and an argument for why the sequence works.
+
+Either option is 1,500–2,000 words. Include an AI-use statement and a short revision memo explaining how the review changed in response to evidence and feedback. Use one consistent author–date citation style (APA 7th edition unless your field uses another). Submit a Google Doc link or a file. The revision memo is 250–350 words. The rubric is on Canvas.
 
 The final seminar is a workshop for this submission. Aim to arrive with a complete working draft. The confirmed 15 December deadline allows revision after that workshop.
 
@@ -215,13 +220,13 @@ The common criteria are:
 - reflexivity and responsible, transparent AI use;
 - responsiveness to evidence and feedback.
 
-The staged tasks emphasize development and reasoned decisions. The final review emphasizes how those decisions work together in the completed argument. **[TO CONFIRM]** Task-specific descriptors and allocation of marks.
+The staged tasks emphasize development and reasoned decisions. The final review emphasizes how those decisions work together in the completed argument. Each task is marked on Canvas with a rubric built on these six criteria.
 
 ### Peer commentary
 
 Peer workshops run in Sessions 4 and 6, with instructor feedback on the map and structured draft. After you submit Tasks 4 and 6, Canvas assigns you classmates' submissions to review. Each peer review is worth 5%. It is graded complete or incomplete: complete means specific, constructive comments on each assigned submission by the review deadline (Friday 20 November for Task 4, Friday 11 December for Task 6). The Task 6 reviews arrive in time to help with the final review.
 
-Share only the material needed for the exercise. Use named recipients and institution-supported arrangements. Students may use an anonymized extract or an instructor-mediated alternative. Keep grades and private instructor comments in Canvas. **[TO CONFIRM]** Pairing, access arrangements, and an accessible alternative before the first workshop.
+Share only the material needed for the exercise. Use named recipients and institution-supported arrangements. Students may use an anonymized extract or an instructor-mediated alternative. Keep grades and private instructor comments in Canvas. Canvas assigns each student two classmates’ submissions once the task’s deadline passes. If you would rather not share your draft, tell me before the deadline and we will use an anonymized extract or route the exchange through me.
 
 ### Use of AI in this course
 
@@ -233,7 +238,7 @@ AI is an object of study and a possible research tool. Use it in ways that make 
 - Distinguish the author's claim, your interpretation, and an AI-generated suggestion.
 - Do not present fabricated references, unverified quotations, or generated analysis you cannot explain as established scholarship.
 
-A polished output is not sufficient evidence of learning. Be prepared to explain why a source belongs in the review, how a claim follows from it, and what you changed. **[TO CONFIRM]** Final course AI policy and current University academic-integrity wording.
+A polished output is not sufficient evidence of learning. Be prepared to explain why a source belongs in the review, how a claim follows from it, and what you changed. This section is the course AI policy. The University’s academic-integrity rules also apply; see **Academic integrity** under Policies.
 
 ## Weekly schedule
 
@@ -251,7 +256,7 @@ Seminars meet online on **Mondays, 5:00–7:50 PM Central Time (America/Chicago)
 | — | 21–29 November | Fall break | No new required submission | No seminar or deadline |
 | 6 | 30 November–4 December | Reflexivity, positionality and AI in scholarship | Revisit the draft and AI-use record; reflection reading to be selected | AI and reflexivity statement, 7 December; peer workshop |
 | 7 | 7–9 December | The future of scholarship and final review workshop | Bring a complete working draft; selected case on automation | Final review workshop |
-| — | 15 December | Final submission | Revision memo and AI-use statement accompany the review | Final literature review, 40% |
+| — | 15 December | Final submission | Revision memo and AI-use statement accompany the submission | Final review or course outline, 40% |
 
 **Proposed seminar format:** three hours, with ten-minute breaks between the hours. Start with discussion of current research problems and previous work; combine short lectures and close reading with a workshop on the week's task. The balance can vary with the project stage.
 
@@ -281,28 +286,50 @@ The scale below is retained from the 479 syllabus as a draft starting point. **[
 
 ## Policies
 
-**Attendance.** Participate in the scheduled seminars and collaborative activities. If you must miss a session, contact me to arrange an equivalent way to engage with the work. **[TO CONFIRM]** Attendance and participation requirements.
+**Attendance.** I hope you can join every seminar, because the discussion and workshops are where much of the learning happens. I also know that graduate students balance work, family, health and other commitments. Attendance is not graded, and you do not need to explain or document an absence. If you miss a seminar, catch up from the slides and Canvas materials, and contact me if you would like to talk through that week's task. Absences covered by the [Student Code](https://studentcode.illinois.edu/article1/part5/1-501), including religious observances, will always be accommodated.
 
-**Late work.** Contact me early if a deadline creates a problem. Staged tasks support later work, so an extension should include a realistic plan for catching up. **[TO CONFIRM]** Any penalties, extension procedure, and the final submission cutoff. The Registrar lists the faculty grade-reporting deadline as **22 December 2026 at 2:00 PM**; this is an instructor deadline, not a student submission date.
-
-**Accessibility.** Contact the instructor about access needs and consult [Disability Resources and Educational Services](https://www.disability.illinois.edu/). **[TO CONFIRM]** Insert the current approved accommodations statement and check that readings, documents, maps, and activities have accessible alternatives.
+**Late work.** There is no late penalty. Every task has an automatic 48-hour grace period: submit within 48 hours of the deadline and you do not need to ask or explain. If you need longer, email me before the grace period ends with a short plan for catching up; the staged tasks build on each other, so the plan matters more than the reason. The final cutoff for all work, including Task 7, is **Friday 18 December 2026 at 11:59 PM Central**; nothing can be accepted after that, because grades are due to the Registrar on 22 December.
 
 **Recording and sharing.** **[TO CONFIRM]** Whether seminars will be recorded, the consent and access arrangements, and retention. Do not assume that a class recording or peer document may be shared outside the course.
 
-**Academic integrity.** The [University Student Code academic-integrity provisions](https://studentcode.illinois.edu/article1/part4/1-401/) apply alongside the course's AI-use instructions. **[TO CONFIRM]** Current required institutional wording and procedures.
+## University policies and resources
 
-**Student support.** Support information is available through the [Counseling Center](https://counselingcenter.illinois.edu/). **[TO CONFIRM]** Add current College and University syllabus statements and links.
+**Academic integrity.** The University’s academic-integrity policy is in the [Student Code, Article 1, Part 4](https://studentcode.illinois.edu/article1/part4/1-401/). It covers plagiarism, fabrication and other violations, including presenting AI-generated work or invented references as your own scholarship. This course’s AI-use expectations are set out above. If you are unsure whether something is permitted, ask before you submit.
+
+**Disability-related accommodations.** To obtain disability-related academic adjustments or auxiliary aids, contact me as soon as possible and provide a Letter of Academic Accommodations from [Disability Resources and Educational Services (DRES)](https://www.disability.illinois.edu/). If you need accommodations, apply for services with DRES as early as you can ([apply here](https://www.disability.illinois.edu/applying-services)). DRES is at 1207 S. Oak St., Champaign; 217-333-1970; disability@illinois.edu. If you think an undiagnosed condition is affecting your studies, DRES also offers academic screening appointments.
+
+**Religious observances.** Illinois law requires the University to reasonably accommodate students’ religious beliefs, observances and practices in regard to class attendance and the scheduling of work requirements. Check this syllabus for conflicts with your observances and tell me as early as possible, and within the first two weeks of the term, so we can arrange an accommodation.
+
+**Community of Care.** As members of the Illinois community, we each have a responsibility to express care and concern for one another. If a classmate’s behavior concerns you, whether for their well-being or yours, you can refer it to the Dean of Students’ CARE Center (formerly the Student Assistance Center): 217-333-0050 or the [Community of Care referral form](https://odos.illinois.edu/community-of-care/referral/). If you face a challenge that is affecting your coursework, such as a mental health concern, food insecurity, housing loss or a personal emergency, the CARE Center can offer support and referrals.
+
+**Mental health.** Significant stress, mood changes, excessive worry, substance or alcohol misuse, or changes in eating or sleep can affect academic performance and wellbeing. The University offers confidential services, including counseling, crisis intervention and psychiatric services, covered by the Student Health Fee. Getting help is a smart and courageous thing to do.
+
+- [Counseling Center](https://counselingcenter.illinois.edu/): 217-333-3704
+- McKinley Health Center: 217-333-2700
+- 988 Suicide and Crisis Lifeline: call or text 988
+- Rosecrance Crisis Line: 217-359-4141 (24/7)
+- If you are in immediate danger, call 911.
+
+**Sexual misconduct reporting obligation.** The University of Illinois is committed to combating sexual misconduct. Faculty and staff members are required to report any instances of sexual misconduct to the University’s Title IX Office, which will provide information about rights and options, including accommodations, support services, the campus disciplinary process and law enforcement options. Counselors, confidential advisors and medical professionals do not have this reporting responsibility; see the [list of confidential resources](https://wecare.illinois.edu/resources/students/#confidential) and [We Care](https://wecare.illinois.edu/) for more on resources and reporting.
+
+**Bias and inclusion.** Everyone in this course should be able to contribute without ridicule or intolerant language. If you witness or experience discrimination or other offensive behavior, tell me if you feel comfortable doing so, or report it to the [Bias Assessment and Response Team (BART)](https://bart.illinois.edu/).
+
+**Privacy (FERPA).** If you have suppressed your directory information under the Family Educational Rights and Privacy Act, let me know so your privacy in seminars and shared documents can be protected. See the [Registrar’s FERPA page](https://registrar.illinois.edu/academic-records/ferpa/).
+
+**Disruptive behavior.** Behavior that persistently or grossly interferes with class activities, including online seminars, may be referred to the [Office for Student Conflict Resolution](https://conflictresolution.illinois.edu/).
+
+**Emergency response.** Emergency response recommendations are at the [Division of Public Safety’s emergency preparedness page](https://police.illinois.edu/emergency-preparedness/).
 
 ## Instructor completion checklist
 
 - [x] EPOL 590, Section AIL, CRN 73886, 4 credit hours; online Mondays 5:00–7:50 PM Central.
-- [ ] Final literature review due Tuesday 15 December 2026 at 11:59 PM Central.
-- [ ] Set lengths, source expectations, submission formats, and task rubrics.
-- [ ] Choose readings and update AI examples before each seminar.
-- [ ] Confirm the feedback schedule and peer-work alternatives.
-- [ ] Create fresh collaborative documents and check student access.
-- [ ] Complete the grading, AI, accessibility, recording, and support policies.
-- [ ] Create Canvas assignments with weights and dates totaling 100%.
+- [x] Final literature review due Tuesday 15 December 2026 at 11:59 PM Central.
+- [x] Set lengths, source expectations, submission formats, and task rubrics (Task 7 rubric drafted for review).
+- [ ] Choose readings for Sessions 5–7 and a replacement research-question guide.
+- [x] Confirm the feedback schedule and peer-work alternatives.
+- [x] Create fresh collaborative documents (EPOL 590 Fall 2026 Google Doc). Check student access.
+- [ ] Decide recording and the grading-scale rounding rule. (Late work, AI, accessibility and support statements done.)
+- [x] Create Canvas assignments with weights and dates totaling 100%.
 
 ## Adaptation and calendar sources
 

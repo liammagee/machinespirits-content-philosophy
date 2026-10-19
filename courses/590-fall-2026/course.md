@@ -107,6 +107,6 @@ Students build one literature review across the course. Each staged task develop
 | 6 AI-use statement and reflexive commentary | 10% | Monday 7 December |
 | Peer review of Task 4 | 5% | Friday 20 November |
 | Peer review of Task 6 | 5% | Friday 11 December |
-| 7 Final literature review (1,500–2,000 words) | 40% | Tuesday 15 December |
+| 7 Final literature review, or a course outline for teaching how to write one (1,500–2,000 words) | 40% | Tuesday 15 December |
 
-All work is due at 11:59 PM Central on Canvas. Peer workshops run in Sessions 4 and 6, and the peer reviews that follow them are graded complete or incomplete. See the syllabus for task details and assessment criteria.
+Tasks 1–6 are usually 250–400 words. All work is due at 11:59 PM Central on Canvas. Peer workshops run in Sessions 4 and 6, and the peer reviews that follow them are graded complete or incomplete. See the syllabus for task details and assessment criteria.
