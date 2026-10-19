@@ -1,5 +1,5 @@
 ---
-title: "EPOL 590 Syllabus Draft — AI and Academic Literature"
+title: "EPOL 590 Syllabus — AI and Academic Literature"
 course: "590-fall-2026"
 type: "syllabus"
 instructor: "Liam Magee"
@@ -15,8 +15,6 @@ status: "draft"
 ## EPOL 590 · Fall 2026 Term B · 4 credit hours
 
 **Developing Literature Reviews in the Age of AI**
-
-> **Instructor working draft.** The final literature review is due Tuesday 15 December 2026 at 11:59 PM Central. Other course arrangements and assignment dates remain ready for revision.
 
 | Course detail | Arrangement |
 |---|---|
@@ -133,7 +131,7 @@ Do not put confidential, identifiable, or restricted material into an AI service
 
 The review is built in stages. Task 1 is ungraded: it gets feedback early, before any marks are at stake. Two peer reviews, on Tasks 4 and 6, count for 5% each.
 
-| Component | Weight | Proposed due date |
+| Component | Weight | Due date |
 |---|---:|---|
 | 1 Research topic and question | Ungraded (feedback only) | Monday 26 October |
 | 2 Review design method and scope | 10% | Monday 2 November |
@@ -148,7 +146,7 @@ The review is built in stages. Task 1 is ungraded: it gets feedback early, befor
 
 Tasks 1–6 are usually **250–400 words**, plus any map, outline or extract the task asks for. The number and kind of sources depend on what each task asks for.
 
-All proposed submissions are due at **11:59 PM Central Time** through Canvas. The final literature review deadline is confirmed as Tuesday 15 December 2026 at 11:59 PM Central. Other dates remain planning recommendations.
+All submissions are due at **11:59 PM Central Time** through Canvas. The final literature review deadline is confirmed as Tuesday 15 December 2026 at 11:59 PM Central.
 
 ### Baseline reflection
 
@@ -258,7 +256,7 @@ Seminars meet online on **Mondays, 5:00–7:50 PM Central Time (America/Chicago)
 | 7 | 7–9 December | The future of scholarship and final review workshop | Bring a complete working draft; selected case on automation | Final review workshop |
 | — | 15 December | Final submission | Revision memo and AI-use statement accompany the submission | Final review or course outline, 40% |
 
-**Proposed seminar format:** three hours, with ten-minute breaks between the hours. Start with discussion of current research problems and previous work; combine short lectures and close reading with a workshop on the week's task. The balance can vary with the project stage.
+**Seminar format:** three hours, with ten-minute breaks between the hours. Start with discussion of current research problems and previous work; combine short lectures and close reading with a workshop on the week's task. The balance can vary with the project stage.
 
 Session 7 prioritizes the final review. Future-facing AI demonstrations should be selected to clarify a scholarly problem, leaving enough time for feedback and revision.
 
@@ -335,4 +333,4 @@ The final percentage is rounded to one decimal place, and a percentage at or abo
 
 Structure adapted from [EPOL 479 Fall 2026 syllabus](https://github.com/liammagee/machinespirits-content-philosophy/blob/6fb85c6fe30d61fa54d7b5b9c5ffb3f7952fa646/courses/479-fall-2026/syllabus.md). Course content and starting weights come from the [590 materials](https://github.com/liammagee/machinespirits-content-philosophy/tree/6fb85c6fe30d61fa54d7b5b9c5ffb3f7952fa646/courses/590).
 
-Official calendar anchors: [Illinois Registrar Fall 2026 academic calendar](https://www.registrar.illinois.edu/fall-2026-academic-calendar/): Term B begins 19 October; fall break is 21–29 November; instruction ends 9 December; reading day is 10 December; final examinations run on weekdays 11–17 December; faculty grades are due 22 December at 2:00 PM. The final review deadline is confirmed as 15 December 2026 at 11:59 PM Central. Other milestone dates remain proposed.
+Official calendar anchors: [Illinois Registrar Fall 2026 academic calendar](https://www.registrar.illinois.edu/fall-2026-academic-calendar/): Term B begins 19 October; fall break is 21–29 November; instruction ends 9 December; reading day is 10 December; final examinations run on weekdays 11–17 December; faculty grades are due 22 December at 2:00 PM. The final review deadline is confirmed as 15 December 2026 at 11:59 PM Central.

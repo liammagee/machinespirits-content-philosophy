@@ -1,0 +1,30 @@
+<section id="respond" data-transition="fade" style="background:#15161D;color:#F3EEE4;font-family:'Source Serif 4', Georgia, serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<x-embed style="position:absolute;left:880px;top:80px;width:920px;height:900px"><!doctype html><html><head><style>html,body{margin:0;height:100%;background:#15161D;color-scheme:dark;overflow:hidden}canvas{display:block;width:100%;height:100%}</style></head><body><canvas id="c"></canvas><script>
+const c=document.getElementById('c'),x=c.getContext('2d');let W,H,D=devicePixelRatio||1;function rs(){W=c.width=innerWidth*D;H=c.height=innerHeight*D}addEventListener('resize',rs);rs();
+let s=5;const r=()=>{s=(s*16807)%2147483647;return s/2147483647};
+const HUES=['#FF7A50','#7F9BE8','#4FC3B0','#F5C542','#FF6FA8','#A98BFF'];const N=[],L=[];const add=o=>{N.push(o);return N.length-1};
+const core=add({x:0,y:0,z:0,k:'core',c:'#F3EEE4',s:10,born:0});
+const hubs=HUES.map((col,i)=>{const a=i/HUES.length*Math.PI*2;return add({x:Math.cos(a)*200,y:(r()-.5)*170,z:Math.sin(a)*200,k:'hub',c:col,s:6,born:2+i*1.4})});
+hubs.forEach(h=>L.push([h,core,'rgba(243,238,228,.35)']));
+for(let i=0;i<30;i++){const h1=hubs[i%hubs.length],H1=N[h1];const a=add({x:H1.x+(r()-.5)*140,y:H1.y+(r()-.5)*140,z:H1.z+(r()-.5)*140,k:'ans',c:H1.c,s:3+r()*2,born:1+i*.55});L.push([a,h1,H1.c]);if(r()<.35){const h2=hubs[Math.floor(r()*hubs.length)];if(h2!==h1)L.push([a,h2,N[h2].c])}}
+let t0=performance.now();const P=[];
+function proj(n,ca,sa,cb,sb){let X=n.x*ca-n.z*sa,Z=n.x*sa+n.z*ca,Y=n.y*cb-Z*sb;Z=n.y*sb+Z*cb;const f=900/(900+Z+420);return{x:W/2+X*f*D*1.25,y:H/2+Y*f*D*1.25,f,z:Z}}
+function glow(px,py,rad,col,a){const g=x.createRadialGradient(px,py,0,px,py,rad);g.addColorStop(0,col);g.addColorStop(1,'rgba(0,0,0,0)');x.globalAlpha=a;x.fillStyle=g;x.beginPath();x.arc(px,py,rad,0,7);x.fill();x.globalAlpha=1}
+function f(now){const t=((now-t0)/1000)%26;x.clearRect(0,0,W,H);const A=now/1000*.1,B=.3,ca=Math.cos(A),sa=Math.sin(A),cb=Math.cos(B),sb=Math.sin(B);
+for(let i=0;i<N.length;i++)P[i]=proj(N[i],ca,sa,cb,sb);
+x.lineWidth=1.1*D;for(const[a,b,col]of L){if(t<N[a].born||t<N[b].born)continue;x.strokeStyle=col;x.globalAlpha=.3;x.beginPath();x.moveTo(P[a].x,P[a].y);x.lineTo(P[b].x,P[b].y);x.stroke()}
+x.globalAlpha=1;const order=[...N.keys()].sort((i,j)=>P[j].z-P[i].z);
+for(const i of order){const n=N[i],p=P[i];if(t<n.born)continue;const g=Math.min(1,(t-n.born)/1.1),e=1-Math.pow(1-g,3),rad=n.s*p.f*D*1.4*e*(1+(1-g)*.8);
+glow(p.x,p.y,rad*(n.k==='core'?9:n.k==='hub'?7:4),n.c,n.k==='ans'?.35:.45);
+if(n.k!=='ans'){x.strokeStyle=n.c;x.lineWidth=2*D;x.beginPath();x.arc(p.x,p.y,rad*1.6,0,7);x.stroke()}
+x.fillStyle=n.c;x.beginPath();x.arc(p.x,p.y,rad*(n.k==='ans'?1:.7),0,7);x.fill()}
+requestAnimationFrame(f)}requestAnimationFrame(f);
+</script></body></html></x-embed>
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#FF7A50;width:700px">Respond now · then we discuss</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1.1;letter-spacing:-1px;width:700px">What is academic literature?</h2>
+<p data-build-in="rise order 1" style="position:absolute;left:128px;top:460px;width:700px;font-size:32px;line-height:1.4"><span style="color:#FF7A50">1</span>  Open the response board from the link in the Zoom chat.</p>
+<p data-build-in="rise order 2" style="position:absolute;left:128px;top:560px;width:700px;font-size:32px;line-height:1.4"><span style="color:#7F9BE8">2</span>  Answer in a sentence or two. A name is optional.</p>
+<p data-build-in="rise order 3" style="position:absolute;left:128px;top:660px;width:700px;font-size:32px;line-height:1.4"><span style="color:#4FC3B0">3</span>  Watch themes form as answers share words, then we read them together.</p>
+<p data-build-in="fade order 4" style="position:absolute;left:128px;top:800px;width:700px;font-family:'Space Grotesk', Arial, sans-serif;font-size:28px;font-weight:600"><a href="https://machinespirits.org/590/respond?k=epol590-pzpmmw#what-is-academic-literature" style="color:#F3EEE4">Open the response board →</a></p>
+<aside>Post the board link in the Zoom chat before this slide (the Copy link button on the board copies it). The animation on the right is an illustration, not live data: switch to the board itself to read the answers live, then use Fly through or click a theme to discuss it. The same board takes new prompts for later lectures (More, then New prompt), each with its own link. Zoom chat link: https://machinespirits.org/590/respond?k=epol590-pzpmmw#what-is-academic-literature (the class key is in the link, so students skip the key prompt). You manage prompts by opening the board once with your admin key (?admin=…, in ~/.config/epol590/board-keys.txt).</aside>
+</section>
