@@ -294,7 +294,7 @@ The final percentage is rounded to one decimal place, and a percentage at or abo
 
 **Academic integrity.** The University’s academic-integrity policy is in the [Student Code, Article 1, Part 4](https://studentcode.illinois.edu/article1/part4/1-401/). It covers plagiarism, fabrication and other violations, including presenting AI-generated work or invented references as your own scholarship. This course’s AI-use expectations are set out above. If you are unsure whether something is permitted, ask before you submit.
 
-**Disability-related accommodations.** To obtain disability-related academic adjustments or auxiliary aids, contact me as soon as possible and provide a Letter of Academic Accommodations from [Disability Resources and Educational Services (DRES)](https://www.disability.illinois.edu/). If you need accommodations, apply for services with DRES as early as you can ([apply here](https://www.disability.illinois.edu/applying-services)). DRES is at 1207 S. Oak St., Champaign; 217-333-1970; disability@illinois.edu. If you think an undiagnosed condition is affecting your studies, DRES also offers academic screening appointments.
+**Disability-related accommodations.** To obtain disability-related academic adjustments or auxiliary aids, contact me as soon as possible and provide a Letter of Academic Accommodations from [Disability Resources and Educational Services (DRES)](https://dres.illinois.edu/). If you need accommodations, apply for services with DRES as early as you can ([apply here](https://dres.illinois.edu/apply/)). DRES is at 1207 S. Oak St., Champaign; 217-333-1970; disability@illinois.edu. If you think an undiagnosed condition is affecting your studies, DRES also offers academic screening appointments.
 
 **Religious observances.** Illinois law requires the University to reasonably accommodate students’ religious beliefs, observances and practices in regard to class attendance and the scheduling of work requirements. Check this syllabus for conflicts with your observances and tell me as early as possible, and within the first two weeks of the term, so we can arrange an accommodation.
 
@@ -316,7 +316,7 @@ The final percentage is rounded to one decimal place, and a percentage at or abo
 
 **Disruptive behavior.** Behavior that persistently or grossly interferes with class activities, including online seminars, may be referred to the [Office for Student Conflict Resolution](https://conflictresolution.illinois.edu/).
 
-**Emergency response.** Emergency response recommendations are at the [Division of Public Safety’s emergency preparedness page](https://police.illinois.edu/emergency-preparedness/).
+**Emergency response.** Emergency response recommendations are at the [Division of Public Safety’s emergency preparedness page](https://www.police.illinois.edu/em/preparedness/).
 
 ## Instructor completion checklist
 
