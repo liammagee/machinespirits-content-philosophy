@@ -211,7 +211,6 @@ Tasks 1–6 are usually 250–400 words; the sources each needs depend on the ta
 
 Weber, M. (1946). Science as a vocation. In H. H. Gerth & C. W. Mills (Eds. & Trans.), *From Max Weber: Essays in sociology* (pp. 129–156). Oxford University Press.
 
-libguides.umn.edu. n.d. “Characteristics of a Good Research Question - Literature Searching - Research Guides at University of Minnesota Minneapolis.” Libguides.umn.edu. [https://libguides.umn.edu/c.php?g=1337354&p=9854773].
 
 
 

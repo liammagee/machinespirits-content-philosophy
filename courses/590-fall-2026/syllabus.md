@@ -100,7 +100,7 @@ No book purchase is required. Readings are linked or posted on Canvas under each
 ### Session 1 · Research questions and academic literature
 
 - Weber, M. (1946). Science as a vocation. In H. H. Gerth & C. W. Mills (Eds. & Trans.), *From Max Weber: Essays in sociology* (pp. 129–156). Oxford University Press.
-- University of Minnesota Libraries. (n.d.). [*Characteristics of a good research question*](https://libguides.umn.edu/c.php?g=1337354&p=9854773). Literature Searching research guide.
+- A short guide to writing research questions (link posted on Canvas).
 
 ### Session 2 · Article anatomy, review design and mapping a field
 
@@ -146,7 +146,7 @@ The review is built in stages. Task 1 is ungraded: it gets feedback early, befor
 
 Tasks 1–6 are usually **250–400 words**, plus any map, outline or extract the task asks for. The number and kind of sources depend on what each task asks for.
 
-All submissions are due at **11:59 PM Central Time** through Canvas. The final literature review deadline is confirmed as Tuesday 15 December 2026 at 11:59 PM Central.
+All submissions are due at **11:59 PM Central Time** through Canvas.
 
 ### Baseline reflection
 
@@ -170,7 +170,7 @@ For each staged task:
 5. Revise the relevant part of your review.
 6. Submit the task with a brief account of what changed and how AI contributed, if used.
 
-Self-reflection helps explain your decisions. It does not automatically determine your grade. The 479 self-grading scheme and separate peer-commentary components have been replaced by 590's staged assignments and two graded peer reviews.
+Self-reflection helps explain your decisions. It does not automatically determine your grade.
 
 ### 1 Research topic and question
 
@@ -224,7 +224,7 @@ The staged tasks emphasize development and reasoned decisions. The final review 
 
 Peer workshops run in Sessions 4 and 6, with instructor feedback on the map and structured draft. After you submit Tasks 4 and 6, Canvas assigns you classmates' submissions to review. Each peer review is worth 5%. It is graded complete or incomplete: complete means specific, constructive comments on each assigned submission by the review deadline (Friday 20 November for Task 4, Friday 11 December for Task 6). The Task 6 reviews arrive in time to help with the final review.
 
-Share only the material needed for the exercise. Use named recipients and institution-supported arrangements. Students may use an anonymized extract or an instructor-mediated alternative. Keep grades and private instructor comments in Canvas. Canvas assigns each student two classmates’ submissions once the task’s deadline passes. If you would rather not share your draft, tell me before the deadline and we will use an anonymized extract or route the exchange through me.
+Share only the material needed for the exercise. Canvas assigns each student two classmates’ submissions once the task’s deadline passes. If you would rather not share your draft, tell me before the deadline and we will use an anonymized extract or route the exchange through me.
 
 ### Use of AI in this course
 
@@ -250,15 +250,15 @@ Seminars meet online on **Mondays, 5:00–7:50 PM Central Time (America/Chicago)
 | 2 | 26–30 October | Article anatomy, review design and mapping a field | Purdue OWL; compare articles from your field | Review plan, 2 November |
 | 3 | 2–6 November | AI-assisted close and distant reading | Moretti; Snow; annotate a difficult passage; prepare a source-backed conceptual map | Conceptual map, 9 November |
 | 4 | 9–13 November | Difficult texts, audiences and scholarly voice | Spivak; bring a writing sample | Writing sample, 16 November; peer workshop |
-| 5 | 16–20 November | Structure, signposting and scholarly communities | Bring an outline and draft; sociology-of-knowledge reading to be selected | Structured draft, 30 November |
+| 5 | 16–20 November | Structure, signposting and scholarly communities | Bring an outline and draft; readings from your own project | Structured draft, 30 November |
 | — | 21–29 November | Fall break | No new required submission | No seminar or deadline |
-| 6 | 30 November–4 December | Reflexivity, positionality and AI in scholarship | Revisit the draft and AI-use record; reflection reading to be selected | AI and reflexivity statement, 7 December; peer workshop |
-| 7 | 7–9 December | The future of scholarship and final review workshop | Bring a complete working draft; selected case on automation | Final review workshop |
+| 6 | 30 November–4 December | Reflexivity, positionality and AI in scholarship | Revisit the draft and AI-use record; readings from your own project | AI and reflexivity statement, 7 December; peer workshop |
+| 7 | 7–9 December | The future of scholarship and final review workshop | Bring a complete working draft | Final review workshop |
 | — | 15 December | Final submission | Revision memo and AI-use statement accompany the submission | Final review or course outline, 40% |
 
 **Seminar format:** three hours, with ten-minute breaks between the hours. Start with discussion of current research problems and previous work; combine short lectures and close reading with a workshop on the week's task. The balance can vary with the project stage.
 
-Session 7 prioritizes the final review. Future-facing AI demonstrations should be selected to clarify a scholarly problem, leaving enough time for feedback and revision.
+Session 7 prioritizes the final review, with a short look at where AI is taking scholarship and plenty of time for feedback and revision.
 
 ## Grading scale
 
@@ -294,7 +294,7 @@ The final percentage is rounded to one decimal place, and a percentage at or abo
 
 **Academic integrity.** The University’s academic-integrity policy is in the [Student Code, Article 1, Part 4](https://studentcode.illinois.edu/article1/part4/1-401/). It covers plagiarism, fabrication and other violations, including presenting AI-generated work or invented references as your own scholarship. This course’s AI-use expectations are set out above. If you are unsure whether something is permitted, ask before you submit.
 
-**Disability-related accommodations.** To obtain disability-related academic adjustments or auxiliary aids, contact me as soon as possible and provide a Letter of Academic Accommodations from [Disability Resources and Educational Services (DRES)](https://www.disability.illinois.edu/). If you need accommodations, apply for services with DRES as early as you can ([apply here](https://www.disability.illinois.edu/applying-services)). DRES is at 1207 S. Oak St., Champaign; 217-333-1970; disability@illinois.edu. If you think an undiagnosed condition is affecting your studies, DRES also offers academic screening appointments.
+**Disability-related accommodations.** To obtain disability-related academic adjustments or auxiliary aids, contact me as soon as possible and provide a Letter of Academic Accommodations from [Disability Resources and Educational Services (DRES)](https://dres.illinois.edu/). If you need accommodations, apply for services with DRES as early as you can ([apply here](https://dres.illinois.edu/apply/)). DRES is at 1207 S. Oak St., Champaign; 217-333-1970; disability@illinois.edu. If you think an undiagnosed condition is affecting your studies, DRES also offers academic screening appointments.
 
 **Religious observances.** Illinois law requires the University to reasonably accommodate students’ religious beliefs, observances and practices in regard to class attendance and the scheduling of work requirements. Check this syllabus for conflicts with your observances and tell me as early as possible, and within the first two weeks of the term, so we can arrange an accommodation.
 
@@ -316,7 +316,7 @@ The final percentage is rounded to one decimal place, and a percentage at or abo
 
 **Disruptive behavior.** Behavior that persistently or grossly interferes with class activities, including online seminars, may be referred to the [Office for Student Conflict Resolution](https://conflictresolution.illinois.edu/).
 
-**Emergency response.** Emergency response recommendations are at the [Division of Public Safety’s emergency preparedness page](https://police.illinois.edu/emergency-preparedness/).
+**Emergency response.** Emergency response recommendations are at the [Division of Public Safety’s emergency preparedness page](https://www.police.illinois.edu/em/preparedness/).
 
 ## Instructor completion checklist
 

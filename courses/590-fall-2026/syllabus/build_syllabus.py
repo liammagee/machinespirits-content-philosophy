@@ -49,7 +49,7 @@ def inline(p,text):
  for s in re.split(pattern,text):
   if not s:continue
   if re.match(r'^\[[^\]]+\]\(',s):
-   label,url=re.match(r'^\[([^\]]+)\]\((.+)\)$',s).groups();hyperlink(p,label,url)
+   label,url=re.match(r'^\[([^\]]+)\]\((.+)\)$',s).groups();hyperlink(p,label.replace('*',''),url)
   else:
    bold=s.startswith('**');italic=s.startswith('*') and not bold
    if bold:s=s[2:-2]
@@ -124,14 +124,13 @@ section('What I Expect from You','What I expect from you')
 section('What You Should Expect from Me','What you should expect from me')
 section('Evaluation','Evaluation')
 section('Grading Scale','Grading scale')
-d.add_heading('Campus Academic Policies and Course Arrangements',level=1)
+d.add_heading('Course Policies',level=1)
 markdown(sections['Policies'])
+d.add_heading('University Policies and Resources',level=1)
+markdown(sections['University policies and resources'])
 d.add_heading('Course Schedule and Milestones',level=1)
 markdown(sections['Weekly schedule'])
-d.add_heading('Instructor Completion Checklist',level=1)
-markdown(sections['Instructor completion checklist'])
-d.add_heading('Adaptation and Calendar Sources',level=1)
-markdown(sections['Adaptation and calendar sources'])
+# The instructor checklist and adaptation sources stay in syllabus.md only; students do not need them.
 d.core_properties.title='EPOL 590 AI and Academic Literature Syllabus'
 d.core_properties.author='Liam Magee';d.core_properties.subject='Fall 2026 Term B'
 d.core_properties.comments=''
