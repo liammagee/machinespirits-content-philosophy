@@ -2,7 +2,7 @@
 """Build the EPOL 590 boards: inline src/base.css, src/engine.js and each board's app into one HTML file.
 
     python3 build.py              # writes dist/students.html and dist/responses.html
-    python3 build.py --hosted     # writes hosted/*.html for machinespirits.org (/590/map, /590/respond): adds the
+    python3 build.py --hosted     # writes hosted/*.html for machinespirits.org (/590-fall-2026/map, /590-fall-2026/respond): adds the
                                   # src/hosted.js shim over the site's /api/boards store, shares the page's own address
 
 Single files publish as claude.ai artifacts and also run as plain static pages.
