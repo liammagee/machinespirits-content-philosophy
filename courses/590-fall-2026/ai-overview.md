@@ -1,152 +1,61 @@
-# AI Overview
+# AI Tools: 2026 Overview
 
-
-
-
+A quick map of the AI tools you are likely to use for research this term, what the University provides, and how to use them responsibly with scholarly sources. Model names change every few months; the categories below change more slowly.
 
 ---
 
-### "Vibe Coding" for Teaching
+### What Illinois provides
 
- - Review of main AI services:
-   - ChatGPT (800 million users!)
-   - Claude
-   - Gemini
-   - Meta AI / Llama
-   - Grok
- - Don't sleep on open source models! 
-   - DeepSeek
-   - Qwen3 (Alibaba)
-   - GLM 4.6 / z.ai
+From the University's [Enterprise GenAI: AI Apps](https://genai.illinois.edu/ai-apps/) page (checked October 2026):
 
+| Tool | Best for | Who can use it | Cost |
+| --- | --- | --- | --- |
+| Microsoft Copilot Chat | Drafting, summaries, general chat | Students, faculty, staff | Included with Microsoft Office |
+| Google Gemini | Brainstorming, content creation, Q&A | Students, faculty, staff | Included with Google license |
+| Google NotebookLM | Research and synthesis grounded in your own documents | Students, faculty, staff | Included with Google license |
+| Illinois Chat | Building customized chatbots | Students, faculty, staff | No cost |
+| Zoom AI Companion | Meeting summaries and transcripts | Students, faculty, staff | Included with Zoom |
+| Illinois ChatGPT | Writing, research, complex problems | Faculty and staff | $11/month |
+| Illinois Computes | High-performance computing and GPU access | Graduate students, faculty, research staff | Baseline allocation at no cost |
 
----
-
-### LMArena
-
- - [Overview Leaderboard | LMArena](https://lmarena.ai/leaderboard)
-
+No paid subscription is required for this course. The University-approved tools above are enough for every task.
 
 ---
 
-### What is "ChatGPT" today?
+### The main assistants
 
-![Image](/markdown/images/pasted-image-2025-10-14T19-10-24-498Z-7fdf24cd.webp)
-
----
-
-### ChatGPT Features
-
-
-
-| Feature | Purpose | Example |
-| --- | --- | --- |
-| Add photos and files | When you want to add more context | "Analyze these three files for common themes" |
-| Add from Google Drive | As above | "Analyze these three files for common themes" |
-| Deep Research | When you want to include web search results (and can wait) | "Give me the most recent results of AI use at middle school level" |
-| Create image | Generate an image from text | "Create an image of an AI professor"  |
-| Agent mode | Like "Deep Research", but uses tools, autonomy | "Act as a research assistant. Find the most recent (2025) peer-reviewed studies on AI in middle school STEM education in the U.S. Summarize their findings, give DOIs, and extract common themes." |
-| Add sources | Apply ChatGPT to email, docs, file repositories etc (what about security?) | "Add my email as a source of information" |
-| Learn mode | "Prompts" the user - Socratic method |  |
-| Web Search | Like "Deep Research" but faster, less "thinking" | "What's the latest news?" |
-| Canvas | Interactive Documents | "" |
-
-
+- **ChatGPT** (OpenAI), **Claude** (Anthropic), **Gemini** (Google) and **Copilot** (Microsoft) are the general-purpose assistants most people use.
+- Open-weight models (for example DeepSeek, Qwen and Llama) can be run locally or through services such as Illinois Chat, which matters when data cannot leave the University.
+- Rankings shift constantly. For a current comparison, see the [LMArena leaderboard](https://lmarena.ai/leaderboard).
 
 ---
 
-### Create Image
-"Create an image of an AI professor"
+### Features that matter for a literature review
 
-![Image](/markdown/images/pasted-image-2025-10-14T19-41-28-445Z-1a4f6c54.webp)
-
-
----
-
-### Add sources
-
-![Image](/markdown/images/pasted-image-2025-10-14T19-42-23-486Z-c5ac1216.webp)
-
-
-
-
+| Feature | What it does | Use it for | Watch out for |
+| --- | --- | --- | --- |
+| Web search | Answers with links to current pages | Orienting yourself in a topic | Links that do not support the claim |
+| Deep research | A longer, multi-step search that produces a cited report | A first map of a field | Plausible but missing or misdescribed sources |
+| Agents | The assistant uses tools and takes steps on its own | Repetitive search or formatting work | Steps you did not see or check |
+| Your own documents | Upload files or connect Drive (e.g. NotebookLM) | Comparing and annotating sources you have read | Library licensing (below) |
+| Study or learning modes | The assistant questions you instead of answering | Testing your understanding of a difficult text | Mistaking fluency for understanding |
+| Canvases and artifacts | Shared documents, apps and visuals you edit with the assistant | Concept maps, outlines, drafts | Losing track of what you wrote and what it wrote |
+| Code tools | Write and run code (e.g. Claude Code, Codex, Copilot) | Distant reading, bibliometrics, visualizations | Analyses you cannot explain |
 
 ---
 
-### Deep research
+### Using AI with scholarly sources
 
-[ChatGPT - AI in middle schools](https://chatgpt.com/share/68eea5fb-caa0-8007-9709-3eac9f262fb9)
-
-![Image](/markdown/images/pasted-image-2025-10-14T20-26-43-962Z-99d9eef0.webp)
-
----
-
-### Agent mode
-
-[ChatGPT - AI in STEM教育](https://chatgpt.com/share/68eeb0f8-fd34-8007-b76c-9beda6183180)
-
-![Image](/markdown/images/pasted-image-2025-10-14T20-25-15-775Z-472446bc.webp)
+- **Verify every reference.** Check that each source exists, says what the summary claims, and is the version you cite.
+- **Library materials have licence limits.** The University notes that some licensed Library resources may not be uploaded to or shared with AI tools. Check before uploading a PDF from the Library.
+- **Match the tool to the data.** Use only data you are allowed to share; see the University's [data classification guidance](https://genai.illinois.edu/ai-apps/) on the AI Apps page.
+- **Keep a record.** Note which tool you used, for what, and what you checked or rejected. Task 6 and the final AI-use statement draw on this record.
 
 ---
 
+### Try it this week
 
-### Canvas
-
-
-Your Own Private Dissertation Dashboard
-
-
-
-[ChatGPT - Dissertation Dashboard](https://chatgpt.com/canvas/shared/68eeb0b1fa648191833467b7ee2c1426)
-
-![Image](/markdown/images/pasted-image-2025-10-14T20-21-33-593Z-f287d772.webp)
-
-
----
-
-### Use Python
-
-
-Just use it!
-
-> Use Python to generate 100 random numbers between 0 and 1 and plot their histogram.
-
-But no interactivity!
-
----
-
-### How do I generate and run code?
-
-1. Have ChatGPT setup and run code on your local machine. Needs patience, some technical expertise (e.g. terminal / command line)
-2. Install Cursor / Windsurf / VS Code - connect to OpenAI's Codex / Claude 
-3. Use Claude or Gemini - both ahead in this area
-4. Use an online service (Vercel, Replit are examples)
-
-
----
-
-### Claude Interactive Demo
-
-[Interactive School Simulation | Claude | Claude](https://claude.ai/public/artifacts/1811fad3-2d13-4178-9308-1617baf8cc75)
-
-
-
-
----
-
-### Gemini Interactive Demo
-
-
-[Sign in - Google Accounts](https://ai.studio/apps/drive/117Hiv_uEAWVpEhDVYNF-Q1roH6XDQ765)
-
-
-[Gemini School Agent 
-Simulation](https://gemini-school-agent-simulation-615179914493.us-west1.run.app/)
-
-
-
-
-
-
---- 
-## References
+1. Ask two different assistants for the key debates on your research question.
+2. Compare their answers: which sources overlap, and which appear in only one?
+3. Check three of the cited sources in the Library catalogue. Do they exist, and do they say what was claimed?
+4. Bring what you found to the next seminar.
