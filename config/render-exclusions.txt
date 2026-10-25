@@ -19,3 +19,4 @@
 articles/ai-tutor/dramatic-recognition-arc.md
 articles/ai-tutor/geist-atlas.md
 articles/ai-tutor/tutor-blueprint.md
+articles/hegel-essays/phenomenology-walkthrough.md
