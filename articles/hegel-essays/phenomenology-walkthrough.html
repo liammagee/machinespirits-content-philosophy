@@ -1,0 +1,1859 @@
+<!doctype html>
+<!-- Hand-authored. This page IS the source: phenomenology-walkthrough.md beside it
+     carries only /essays index metadata and is listed in config/render-exclusions.txt.
+     German quotations: Hegel, Phänomenologie des Geistes (1807), public domain.
+     English renderings and commentary are original to this page. -->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="dark" />
+<title>Phenomenology Walkthrough</title>
+<meta name="description" content="A three-dimensional walkthrough of Consciousness and Self-Consciousness in Hegel's Phenomenology of Spirit: a map of the whole, and a maze in which each transition must be passed through." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" />
+<style>
+  :root {
+    --bg: #07070a;
+    --surface: rgba(14, 14, 18, 0.88);
+    --surface-2: rgba(30, 30, 38, 0.92);
+    --ink: #f2efe8;
+    --muted: #a7a29a;
+    --faint: #6f6b64;
+    --rule: rgba(255, 255, 255, 0.12);
+    --red: #e63946;
+    --gold: #e8c26a;
+    --cool: #86b6e6;
+    --warm: #ea8a52;
+    --mono: 'Space Mono', ui-monospace, Menlo, monospace;
+    --sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --panel-w: 23rem;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font-family: var(--sans); overflow: hidden; -webkit-font-smoothing: antialiased; }
+  button { font: inherit; color: inherit; }
+  #stage { position: fixed; inset: 0; }
+  #stage canvas { display: block; touch-action: none; outline: none; }
+  #labels { position: fixed; inset: 0; pointer-events: none; }
+
+  /* ── top bar ─────────────────────────────────────────── */
+  #top { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items: flex-start; gap: 1rem; padding: 14px 16px; pointer-events: none; z-index: 5; }
+  #top > * { pointer-events: auto; }
+  .brand { flex: 1 1 auto; min-width: 0; }
+  .kicker { font: 400 10.5px/1.3 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .brand h1 { margin: 2px 0 0; font: 600 21px/1.15 var(--serif); letter-spacing: .01em; }
+  #where { margin-top: 5px; font: 400 11px/1.3 var(--mono); color: var(--gold); letter-spacing: .04em; min-height: 1.3em; }
+  #modes { display: flex; border: 1px solid var(--rule); border-radius: 999px; background: var(--surface); padding: 3px; backdrop-filter: blur(8px); }
+  #modes button { border: 0; background: transparent; border-radius: 999px; padding: 6px 14px; cursor: pointer; text-align: left; line-height: 1.1; }
+  #modes button b { display: block; font: 700 12px/1.2 var(--mono); letter-spacing: .03em; }
+  #modes button span { display: block; font: 400 10.5px/1.2 var(--sans); color: var(--muted); }
+  #modes button.on { background: var(--ink); color: #111; }
+  #modes button.on span { color: #4a463f; }
+  .tools { display: flex; gap: 6px; align-items: center; }
+  .chip { border: 1px solid var(--rule); background: var(--surface); border-radius: 999px; padding: 7px 12px; font: 400 11px/1 var(--mono); cursor: pointer; white-space: nowrap; backdrop-filter: blur(8px); }
+  .chip:hover { border-color: rgba(255,255,255,.3); }
+  .chip.on { border-color: var(--gold); color: var(--gold); }
+  #progress b { color: var(--gold); font-weight: 700; }
+
+  /* ── side panel ──────────────────────────────────────── */
+  #panel { position: fixed; top: 92px; right: 16px; bottom: 16px; width: var(--panel-w); z-index: 4; display: flex; flex-direction: column; pointer-events: none; }
+  #card { pointer-events: auto; max-height: 100%; overflow-y: auto; background: var(--surface); border: 1px solid var(--rule); border-radius: 14px; padding: 18px 20px 20px; backdrop-filter: blur(10px); scrollbar-width: thin; }
+  #panel.collapsed #card { display: none; }
+  #panel-toggle { display: none; }
+  .crumb { font: 400 10.5px/1.4 var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+  .crumb .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+  #card h2 { margin: 6px 0 2px; font: 600 25px/1.1 var(--serif); }
+  #card h3 { margin: 16px 0 6px; font: 700 10.5px/1.3 var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+  #card .sub { font: italic 400 16px/1.3 var(--serif); color: var(--muted); }
+  #card p { margin: 10px 0 0; font-size: 14px; line-height: 1.58; color: #e2ded6; }
+  #card .ref { font: 400 10.5px/1.4 var(--mono); color: var(--faint); margin-top: 10px; }
+  blockquote.de { margin: 14px 0 0; padding: 10px 0 10px 14px; border-left: 2px solid var(--gold); }
+  blockquote.de .g { font: italic 500 17px/1.35 var(--serif); color: var(--ink); }
+  blockquote.de .e { margin-top: 5px; font: 400 13px/1.45 var(--sans); color: var(--muted); }
+  .logic { margin-top: 12px; padding: 12px 14px; border-radius: 10px; background: rgba(232,194,106,.08); border: 1px solid rgba(232,194,106,.28); font-size: 13.5px; line-height: 1.55; }
+  .logic .arrow { font: 700 12px/1.4 var(--mono); color: var(--gold); letter-spacing: .03em; display: block; margin-bottom: 4px; }
+  .status { display: inline-block; margin-top: 10px; font: 700 10.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 5px 8px; border-radius: 6px; }
+  .status.locked { color: #ff8f96; background: rgba(230,57,70,.12); }
+  .status.open { color: var(--gold); background: rgba(232,194,106,.12); }
+  .mlist { list-style: none; margin: 6px 0 0; padding: 0; }
+  .mlist li { display: flex; gap: 9px; align-items: baseline; padding: 6px 0; border-top: 1px solid var(--rule); font-size: 13.5px; cursor: pointer; }
+  .mlist li:hover { color: var(--gold); }
+  .mlist .tick { font: 700 11px/1 var(--mono); color: var(--faint); width: 1em; flex: none; }
+  .mlist li.done .tick { color: var(--gold); }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .btn { border: 1px solid var(--rule); background: var(--surface-2); border-radius: 9px; padding: 9px 13px; font: 600 12.5px/1 var(--sans); cursor: pointer; }
+  .btn:hover { border-color: rgba(255,255,255,.35); }
+  .btn.primary { background: var(--ink); color: #111; border-color: var(--ink); }
+  .live { font: 700 13px/1.4 var(--mono); color: var(--gold); }
+  .legend { display: grid; grid-template-columns: 34px 1fr; gap: 8px 10px; align-items: center; margin-top: 8px; font-size: 13px; color: #d6d2ca; }
+  .legend i { display: block; height: 0; border-top: 3px solid var(--cool); }
+  .legend i.res { border-top: 2px dashed var(--gold); }
+  .legend i.hub { border-top: 1px solid rgba(255,255,255,.35); }
+  .legend i.node { width: 14px; height: 14px; border: 0; border-radius: 50%; background: radial-gradient(circle, #fff 0 30%, var(--warm) 31% 100%); box-shadow: 0 0 10px var(--warm); }
+
+  /* ── map labels ──────────────────────────────────────── */
+  .nlabel { pointer-events: auto; cursor: pointer; padding: 3px 8px; border-radius: 6px; font: 600 12.5px/1.2 var(--sans); white-space: nowrap; background: rgba(8,8,12,.55); border: 1px solid transparent; transform: translateY(-26px); transition: border-color .2s, background .2s; }
+  .nlabel .n { font: 700 10px/1 var(--mono); color: var(--muted); margin-right: 5px; }
+  .nlabel.hot, .nlabel:hover { border-color: rgba(255,255,255,.35); background: rgba(8,8,12,.85); }
+  .nlabel.done::after { content: ' ✓'; color: var(--gold); font-weight: 700; }
+  .hlabel { font: 700 11px/1.2 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.55); white-space: nowrap; pointer-events: auto; cursor: pointer; }
+  .hlabel span { display: block; font: italic 400 14px/1.2 var(--serif); letter-spacing: 0; text-transform: none; color: rgba(255,255,255,.4); text-align: center; }
+  .elabel { font: italic 400 14px/1.2 var(--serif); color: rgba(240,236,228,.85); white-space: nowrap; transition: opacity .25s; opacity: 0; background: rgba(8,8,12,.6); padding: 1px 6px; border-radius: 4px; }
+  .elabel.on { opacity: 1; }
+  .elabel.res { color: rgba(232,194,106,.75); }
+  .mlabel { font: 400 11px/1.2 var(--sans); color: var(--ink); background: rgba(8,8,12,.8); padding: 2px 6px; border-radius: 4px; white-space: nowrap; transform: translateY(-14px); }
+
+  /* ── walk HUD ────────────────────────────────────────── */
+  #minimap { position: fixed; left: 16px; bottom: 16px; z-index: 4; border: 1px solid var(--rule); border-radius: 10px; background: rgba(8,8,12,.75); cursor: pointer; }
+  #hint { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 4; font: 400 11px/1.4 var(--mono); color: var(--muted); background: var(--surface); border: 1px solid var(--rule); padding: 7px 12px; border-radius: 999px; white-space: nowrap; pointer-events: none; }
+  #maptools { position: fixed; left: 16px; bottom: 16px; z-index: 4; display: flex; gap: 6px; flex-wrap: wrap; max-width: calc(100vw - var(--panel-w) - 64px); }
+  #toast { position: fixed; left: 50%; top: 96px; transform: translate(-50%, -12px); z-index: 6; max-width: min(560px, calc(100vw - 32px)); text-align: center; background: rgba(12,12,16,.92); border: 1px solid rgba(232,194,106,.45); border-radius: 12px; padding: 12px 18px; opacity: 0; transition: opacity .35s, transform .35s; pointer-events: none; }
+  #toast.show { opacity: 1; transform: translate(-50%, 0); }
+  #toast .t1 { font: 700 11px/1.3 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+  #toast .t2 { margin-top: 4px; font: italic 500 18px/1.3 var(--serif); }
+  #reticle { position: fixed; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%; background: rgba(255,255,255,.45); z-index: 3; pointer-events: none; }
+  #fade { position: fixed; inset: 0; background: #000; opacity: 0; pointer-events: none; transition: opacity .35s; z-index: 8; }
+  #fade.on { opacity: 1; }
+  #joy { position: fixed; left: 28px; bottom: 150px; width: 112px; height: 112px; border-radius: 50%; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.05); z-index: 4; display: none; touch-action: none; }
+  #joy .knob { position: absolute; left: 50%; top: 50%; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%; background: rgba(255,255,255,.25); }
+  body.touch.walk #joy { display: block; }
+  body.map .walk-only, body.walk .map-only { display: none !important; }
+
+  /* ── overlays ────────────────────────────────────────── */
+  .overlay { position: fixed; inset: 0; z-index: 9; display: grid; place-items: center; background: rgba(4,4,6,.78); backdrop-filter: blur(6px); padding: 16px; }
+  .overlay[hidden] { display: none; }
+  .sheet { width: min(640px, 100%); max-height: calc(100vh - 32px); overflow-y: auto; background: #0e0e12; border: 1px solid var(--rule); border-radius: 16px; padding: 28px 30px; }
+  .sheet h2 { margin: 6px 0 4px; font: 600 34px/1.05 var(--serif); }
+  .sheet .lede { font: italic 400 19px/1.4 var(--serif); color: var(--muted); margin: 0 0 14px; }
+  .sheet p { font-size: 14.5px; line-height: 1.6; color: #dcd8d0; margin: 10px 0 0; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
+  .two > div { border: 1px solid var(--rule); border-radius: 12px; padding: 14px; }
+  .two b { font: 700 12px/1.3 var(--mono); letter-spacing: .04em; }
+  .two em { display: block; font: italic 400 15px/1.3 var(--serif); color: var(--muted); }
+  .two p { font-size: 13px; margin-top: 6px; }
+  .keys { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin-top: 12px; font-size: 13.5px; color: #dcd8d0; }
+  .keys kbd { font: 700 11px/1 var(--mono); border: 1px solid var(--rule); border-radius: 5px; padding: 4px 6px; background: #1a1a20; white-space: nowrap; }
+  .fine { font-size: 12px !important; color: var(--faint) !important; }
+
+  @media (max-width: 760px) {
+    :root { --panel-w: 100vw; }
+    #top { padding: 10px 12px; flex-wrap: wrap; gap: 8px; }
+    .brand h1 { font-size: 17px; }
+    .kicker { display: none; }
+    #modes button { padding: 5px 10px; }
+    #modes button span { display: none; }
+    #panel { left: 0; right: 0; top: auto; bottom: 0; width: auto; max-height: 44vh; }
+    #card { border-radius: 14px 14px 0 0; padding: 14px 16px 18px; }
+    #panel-toggle { display: block; pointer-events: auto; align-self: center; margin-bottom: 6px; border: 1px solid var(--rule); background: var(--surface); border-radius: 999px; padding: 5px 14px; font: 400 11px/1 var(--mono); }
+    #minimap { left: auto; right: 12px; top: 110px; bottom: auto; }
+    #hint { display: none; }
+    #maptools { left: 12px; bottom: auto; top: 104px; max-width: 70vw; }
+    #toast { top: 110px; }
+    #joy { bottom: calc(44vh + 24px); }
+    body:has(#panel.collapsed) #joy { bottom: 64px; }
+    .two { grid-template-columns: 1fr; }
+    .sheet { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body class="map">
+<div id="stage"></div>
+<div id="labels"></div>
+
+<header id="top">
+  <div class="brand">
+    <div class="kicker">Hegel · Phänomenologie des Geistes · 1807</div>
+    <h1>Consciousness &amp; Self-Consciousness</h1>
+    <div id="where"></div>
+  </div>
+  <nav id="modes" aria-label="Level">
+    <button data-mode="map" class="on" title="The whole, as it is for us (M)"><b>Für uns</b><span>the whole</span></button>
+    <button data-mode="walk" title="The experience, as it is for consciousness (M)"><b>Für es</b><span>the experience</span></button>
+  </nav>
+  <div class="tools">
+    <button class="chip" id="progress" title="Moments experienced"><b>0</b> / 0</button>
+    <button class="chip walk-only" id="btn-guide" title="Follow the path to the next moment (G)">Guide</button>
+    <button class="chip" id="btn-help" title="Help">?</button>
+  </div>
+</header>
+
+<aside id="panel">
+  <button id="panel-toggle">hide card</button>
+  <div id="card" aria-live="polite"></div>
+</aside>
+
+<div id="maptools" class="map-only">
+  <button class="chip on" id="tg-res">Resonances</button>
+  <button class="chip on" id="tg-mom">Moments</button>
+  <button class="chip on" id="tg-spin">Rotate</button>
+  <button class="chip" id="tg-reset">Reset view</button>
+</div>
+
+<canvas id="minimap" class="walk-only" width="210" height="190" title="Minimap — click to enlarge"></canvas>
+<div id="hint" class="walk-only">W A S D / arrows · drag to look · shift to run · G guide · M map</div>
+<div id="reticle" class="walk-only"></div>
+<div id="joy" class="walk-only"><div class="knob"></div></div>
+<div id="toast"><div class="t1"></div><div class="t2"></div></div>
+<div id="fade"></div>
+
+<div class="overlay" id="intro">
+  <div class="sheet">
+    <div class="kicker">A walkthrough of chapters I–IV</div>
+    <h2>The Path of Consciousness</h2>
+    <p class="lede">From the bare “this” of sense-certainty to the unhappy consciousness on the threshold of Reason.</p>
+    <p>Hegel calls the <em>Phenomenology</em> the experience of consciousness: each shape of knowing tests itself against its own standard, fails, and from that failure a new object and a new shape arise. Hegel also separates two standpoints. Consciousness undergoes the experience <em>für es</em>, for itself, without seeing where it leads. The philosophical observer sees <em>für uns</em>, for us, how each step follows necessarily from the one before.</p>
+    <p>This walkthrough gives you both standpoints.</p>
+    <div class="two">
+      <div><b>Für uns</b><em>the whole</em><p>A map of the first two parts as one connected figure: stations, the transitions between them, and the resonances that echo across the whole.</p></div>
+      <div><b>Für es</b><em>the experience</em><p>A maze to walk through. Each room is a shape of consciousness. Its gate opens only after you have met every moment of its contradiction.</p></div>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="go-walk">Begin the walk</button>
+      <button class="btn" id="go-map">Survey the whole</button>
+    </div>
+    <p class="fine" style="margin-top:16px">German quotations are from Hegel’s 1807 text. The English renderings and commentary are this page’s own. § numbers follow the paragraph numbering of the Miller translation.</p>
+  </div>
+</div>
+
+<div class="overlay" id="help" hidden>
+  <div class="sheet">
+    <div class="kicker">How to read this</div>
+    <h2>Two levels</h2>
+    <p><b>Für uns</b> is the map: drag to orbit, scroll or pinch to zoom, click a station or one of its orbiting moments. Solid arrows are <em>transitions</em>: the necessity by which one shape becomes the next. Dashed curves are <em>resonances</em>: places where a later shape repeats an earlier logic at a higher level.</p>
+    <p><b>Für es</b> is the walk. Every room is one shape of consciousness, and the pillars inside are its moments. Walk up to a pillar to read it. Once you have read every moment in a room, the gate inscribed with that room's transition opens. Some rooms play out their logic in space: the inverted world turns you upside down, the lord's hall has only one way out, and the Unchangeable recedes as you approach it.</p>
+    <div class="keys">
+      <kbd>W A S D</kbd><span>move (or arrow keys; ← → turn)</span>
+      <kbd>drag</kbd><span>look around</span>
+      <kbd>shift</kbd><span>run</span>
+      <kbd>G</kbd><span>guide: walk to the next unread moment automatically</span>
+      <kbd>M</kbd><span>switch between map and walk</span>
+      <kbd>touch</kbd><span>left joystick moves, drag elsewhere to look</span>
+    </div>
+    <div class="actions">
+      <button class="btn primary" data-close>Close</button>
+      <button class="btn" id="btn-reset">Forget my progress</button>
+    </div>
+  </div>
+</div>
+
+<noscript><div class="overlay"><div class="sheet"><h2>This page needs JavaScript and WebGL.</h2></div></div></noscript>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+
+// Canvas-drawn text in the maze needs the web fonts first; give up waiting after a moment.
+await Promise.race([
+  Promise.all(['600 80px "Cormorant Garamond"', 'italic 500 40px "Cormorant Garamond"', 'italic 400 40px "Cormorant Garamond"',
+    '700 30px "Space Mono"', '400 30px "Inter"'].map(f => document.fonts.load(f))),
+  new Promise(r => setTimeout(r, 2500))
+]).catch(() => {});
+
+/* ════════════════════════════════════════════════════════════════
+   CONTENT
+   Stations are shapes of consciousness; moments are the steps of
+   each shape's experience; transitions are the necessity that
+   carries one shape into the next. `at` / `zone` are maze cells.
+   ════════════════════════════════════════════════════════════════ */
+
+const STATIONS = [
+  {
+    id: 'intro', part: '·', num: '', title: 'Introduction', sub: 'the path of despair', paras: '§§73–89', t: 0,
+    spawn: [2, 8, -Math.PI / 2],
+    summary: 'Hegel refuses to treat knowing as an instrument or medium that could be inspected before it is used. Instead, consciousness examines itself. It carries its own standard of what is true and compares its knowing against that standard. When the two fail to match, both the knowing and the object change. The Phenomenology records these failures. Hegel calls it a path of despair, and also the education of consciousness toward science.',
+    moments: [
+      { id: 'i1', title: 'The measure', at: [3, 6], ref: '§84',
+        de: 'Das Bewußtsein gibt seinen Maßstab an ihm selbst.', en: 'Consciousness supplies its own measure within itself.',
+        text: 'Nothing outside consciousness referees the test. Every shape you meet in this maze has a criterion, its sense of what counts as true, and it fails by that criterion and no other.' },
+      { id: 'i2', title: 'Behind its back', at: [3, 10], ref: '§§86–87',
+        de: 'gleichsam hinter seinem Rücken', en: 'as it were, behind its back',
+        text: 'From each failure a new object arises. Consciousness meets that new object as simply given. We, watching, see how it was produced from the failure before it. That is why this page has two levels: the walk is the experience für es, and the map is the necessity seen für uns.' }
+    ]
+  },
+  {
+    id: 'sense', part: 'A', num: 'I', title: 'Sense-certainty', sub: 'the This and meaning', paras: '§§90–110', t: 1,
+    spawn: [8, 8, -Math.PI / 2],
+    summary: 'Consciousness starts with what looks like the richest and most concrete knowledge: taking in what is here and now, with no concepts in the way. Asked to say what it knows, though, it can only say “this”, “here” and “now”, which are the emptiest universals there are. The richest knowledge proves to be the poorest.',
+    moments: [
+      { id: 's1', title: 'Now is Night', at: [9, 5], ref: '§95', live: 'now',
+        de: 'Das Jetzt ist die Nacht.', en: 'Now is Night.',
+        text: 'Write the truth down; a truth loses nothing by being written. Read it again later and the written truth has gone stale. What survives is a Now that is neither night nor day: a universal, indifferent to whatever fills it.' },
+      { id: 's2', title: 'Here is a tree', at: [12, 8], ref: '§98',
+        de: 'Das Hier ist der Baum.', en: 'Here is a tree.',
+        text: 'Turn around: Here is not a tree but a house. The Here stays the same while tree and house come and go. It too is a simple universal, a “this” that is equally “not this”.' },
+      { id: 's3', title: 'Language is the more truthful', at: [15, 5], ref: '§97',
+        de: 'die Sprache ist das Wahrhaftere', en: 'language is the more truthful',
+        text: 'We mean the singular thing, but what we say is universal. What we mean (meinen) cannot be said. The unsayable is not some deeper truth of things. It is their untruth.' },
+      { id: 's4', title: 'My Here', at: [9, 11], ref: '§§100–102',
+        de: 'Ich, dieser, sehe den Baum', en: 'I, this one, see the tree',
+        text: 'Perhaps the truth lies on my side: it is day because I see it. But another I sees the house where I see the tree, and each certainty is as good as the other. The I proves just as universal as the Now.' },
+      { id: 's5', title: 'Pointing', at: [15, 11], ref: '§§105–108',
+        de: 'Das Jetzt wird gezeigt', en: 'The Now is pointed out',
+        text: 'Finally consciousness stops comparing and just points. By the time it points at the Now, that Now has already passed. Pointing is itself a movement, a Now made of many Nows and a Here made of many Heres. What was supposed to be immediate turns out to be mediated.' }
+    ]
+  },
+  {
+    id: 'perception', part: 'A', num: 'II', title: 'Perception', sub: 'the Thing and deception', paras: '§§111–131', t: 2,
+    spawn: [22, 8, -Math.PI / 2],
+    summary: 'Perception takes its object to be a thing with many properties: this salt is white, and also tart, and also cubical. The difficulty is holding the thing’s unity and its many properties together. Consciousness keeps moving the contradiction back and forth between the thing and itself, until it learns that a thing is what it is only through its relation to other things.',
+    moments: [
+      { id: 'p1', title: 'The Also', at: [23, 10], ref: '§113',
+        de: 'es ist weiß, und auch scharf, auch kubisch gestaltet', en: 'it is white, and also tart, also cubical in shape',
+        text: 'The thing as a medium, “thinghood”, in which properties sit side by side without touching. Whiteness does not affect tartness. The thing is just the “Also” that holds them together.' },
+      { id: 'p2', title: 'The One', at: [29, 10], ref: '§114',
+        de: 'ausschließendes Eins', en: 'an excluding One',
+        text: 'A property is determinate only by excluding others, so the thing is also a One: an exclusive unit set against other things. Now it is both a passive Also and an exclusive One.' },
+      { id: 'p3', title: 'Deception', at: [26, -2], ref: '§§116–121',
+        de: 'die Möglichkeit der Täuschung', en: 'the possibility of deception',
+        text: 'Consciousness knows it might be wrong, so it takes the blame on itself. The thing is One, and it is white to my eyes and tart to my tongue, so the diversity lies in me. Then it reverses: the thing is the Also of its properties, and I am what gathers them into one. You have just walked this circuit.' },
+      { id: 'p4', title: 'Insofar as', at: [26, 12], ref: '§§122–130',
+        de: 'insofern', en: 'insofar as',
+        text: 'Consciousness tries to rescue the thing with distinctions. Insofar as it is for itself it is one, and insofar as it is for another it is many. It has an essential property and inessential ones. But the essential property is precisely what sets it in relation to others, so the thing perishes through its own essential property.' }
+    ]
+  },
+  {
+    id: 'force', part: 'A', num: 'III', title: 'Force and the Understanding', sub: 'appearance and the supersensible world', paras: '§§132–165', t: 3,
+    spawn: [36, 8, -Math.PI / 2],
+    summary: 'The Understanding now thinks the unity behind the senses as force: something that expresses itself in many properties and withdraws back into itself. Beyond the flicker of appearance it posits an inner, supersensible world. That world is first an empty beyond, then a calm realm of laws, then an inverted world. Thinking these through, the Understanding finds that the inner difference it was looking for is its own activity.',
+    moments: [
+      { id: 'f1', title: 'Force and its expression', at: [37, 5], ref: '§§136–137',
+        de: 'die zurückgedrängte Kraft', en: 'force driven back into itself',
+        text: 'Properties now count as the expression of a force driven back into itself. But a force has to be solicited before it will express itself. Another force solicits it, and that force has to be solicited in turn.' },
+      { id: 'f2', title: 'The play of forces', at: [37, 11], ref: '§§138–141',
+        de: 'das Spiel der Kräfte', en: 'the play of forces',
+        text: 'Soliciting and solicited trade places endlessly. The forces have no being apart from this exchange. Their reality consists only in vanishing into each other.' },
+      { id: 'f3', title: 'The inner', at: [41, 11], ref: '§§143–147',
+        de: 'das übersinnliche Jenseits', en: 'the supersensible beyond',
+        text: 'Behind the play stands what is true: the inner of things. At first it is empty, a night in which consciousness sees only what it projects. Its essence is appearance itself, so the inner is appearance taken as appearance.' },
+      { id: 'f4', title: 'The realm of laws', at: [45, 5], ref: '§§148–150',
+        de: 'das ruhige Abbild der Erscheinung', en: 'the tranquil image of appearance',
+        text: 'The Understanding fixes the flux in law: a stable image of something unstable. A law gathers differences into a simple unity, positive and negative electricity, or space and time in the law of falling bodies.' },
+      { id: 'f5', title: 'Explanation', at: [45, 11], ref: '§§154–156',
+        de: 'Erklären', en: 'explaining',
+        text: 'Explaining a law by a force, the Understanding makes a distinction that is no distinction, since the force is built exactly like the law. Explanation is a tautology. Yet in it consciousness is in conversation with itself and enjoys its own movement.' },
+      { id: 'f6', title: 'The inverted world', at: [41, -3], ref: '§§157–160',
+        de: 'die verkehrte Welt', en: 'the inverted world',
+        text: 'A second supersensible world inverts the first. What is sweet here is sour there. What is punishment here is reconciliation there. But the inversion is not somewhere else: each world contains its opposite within itself. You are standing in it now.' },
+      { id: 'f7', title: 'Infinity', at: [45, 8], ref: '§§161–163',
+        de: 'das allgemeine Blut', en: 'the universal blood',
+        text: 'Here difference is a difference from itself: the selfsame repelling itself. Hegel calls this infinity the simple essence of life, the soul of the world, the universal blood. With it, consciousness has an object shaped like itself.' }
+    ]
+  },
+  {
+    id: 'self', part: 'B', num: 'IV', title: 'The Truth of Self-Certainty', sub: 'life and desire', paras: '§§166–177', t: 4,
+    spawn: [50, 8, -Math.PI / 2],
+    summary: 'Self-consciousness at first knows only itself: I = I. The world counts only as something to be negated. But what it faces is Life, an independent whole that keeps renewing itself, and desire, which consumes its objects, keeps producing them again. Self-consciousness can be satisfied only by an object that negates itself: another self-consciousness.',
+    moments: [
+      { id: 'c1', title: 'Behind the curtain', at: [52, 7], ref: '§165',
+        de: 'hinter dem sogenannten Vorhange … nichts zu sehen ist, wenn wir nicht selbst dahinter gehen',
+        en: 'behind the so-called curtain … there is nothing to see unless we ourselves go behind it',
+        text: 'The curtain that was supposed to hide the inner of things hides nothing, or rather it hides us. Seeing and what is seen turn out to be one movement. Consciousness of an other has become consciousness of itself.' },
+      { id: 'c2', title: 'I = I', at: [47, 22], ref: '§167',
+        de: 'Ich bin Ich', en: 'I am I',
+        text: 'The motionless tautology. Self-consciousness is the return from otherness into itself. The sensible world is still there for it, but only as appearance, as something to be cancelled.' },
+      { id: 'c3', title: 'Life', at: [53, 22], ref: '§§168–172',
+        de: 'das Leben', en: 'life',
+        text: 'The object that has returned into itself is alive. Life is a fluid medium that divides into independent shapes and dissolves them again. It is the genus that persists through its individuals, drifting around you here.' },
+      { id: 'c4', title: 'Desire', at: [53, 28], ref: '§§174–175', live: 'desire',
+        de: 'Begierde', en: 'desire',
+        text: 'Certain that the object is nothing, self-consciousness consumes it. But satisfaction needs an object, so desire produces the object again, and the object’s independence keeps coming back. Try it: walk into the drifting lights.' },
+      { id: 'c5', title: 'I that is We', at: [47, 28], ref: '§§175–177',
+        de: 'Ich, das Wir, und Wir, das Ich ist.', en: 'I that is We, and We that is I.',
+        text: 'Self-consciousness reaches its satisfaction only in another self-consciousness. With that, the concept of Spirit is already present for us: a unity of independent selves, each free.' }
+    ]
+  },
+  {
+    id: 'recognition', part: 'B', num: 'IV.A', title: 'Recognition', sub: 'the doubling of self-consciousness', paras: '§§178–184', t: 5,
+    spawn: [41, 25, Math.PI / 2],
+    summary: 'Self-consciousness exists in and for itself only by being acknowledged. Facing another, it finds itself in the other and loses itself there. Whatever it does to the other, it does to itself. The pure concept of recognition is mutual.',
+    moments: [
+      { id: 'r1', title: 'The double', at: [40, 22], ref: '§§179–181',
+        de: 'Es hat sich verloren, denn es findet sich als ein anderes Wesen',
+        en: 'It has lost itself, for it finds itself as an other being',
+        text: 'Look across the room. Self-consciousness has come outside itself: it sees itself in the other, but as an other being. To become certain of itself it must cancel that otherness, and in doing so it cancels itself.' },
+      { id: 'r2', title: 'Mutual recognition', zone: [37, 21, 37, 29], ref: '§184',
+        de: 'Sie anerkennen sich als gegenseitig sich anerkennend.', en: 'They recognize themselves as mutually recognizing one another.',
+        text: 'Each is the middle term through which the other is mediated with itself. What one does, the other does. At this line the movement is doubled and symmetrical: the pure concept of recognition.' },
+      { id: 'r3', title: 'Unequal appearance', at: [34, 28], ref: '§185',
+        de: 'Ungleichheit', en: 'inequality',
+        text: 'The concept has to be lived. As recognition first appears, the two are unequal: one only recognized, the other only recognizing. Each is certain of itself but not of the other, and it must prove that certainty.' }
+    ]
+  },
+  {
+    id: 'struggle', part: 'B', num: 'IV.A', title: 'Life-and-death struggle', sub: 'proof by risk', paras: '§§185–188', t: 6,
+    spawn: [29, 25, Math.PI / 2],
+    summary: 'To show it is not attached to life, each self-consciousness must seek the other’s death and stake its own life. Freedom is proven only by risk. But death destroys the very consciousness that was supposed to be recognized. The struggle teaches that life is as essential to self-consciousness as pure self-consciousness is.',
+    moments: [
+      { id: 't1', title: 'Staking life', at: [27, 23], ref: '§187',
+        de: 'Es ist allein das Daransetzen des Lebens, wodurch die Freiheit … bewährt wird',
+        en: 'Only by staking one’s life is freedom … proven',
+        text: 'Self-consciousness has to show that it is not tied to any particular existence, not even to life. It proves this in a fight to the death.' },
+      { id: 't2', title: 'Abstract negation', at: [27, 27], ref: '§188',
+        de: 'die abstrakte Negation', en: 'abstract negation',
+        text: 'If one of them dies, recognition dies with it. Death is a negation that preserves nothing: the survivor gets nothing from a corpse. The experience teaches that life matters.' },
+      { id: 't3', title: 'Two shapes', at: [24, 25], ref: '§189',
+        de: 'das eine ist der Herr, das andre der Knecht', en: 'the one is lord, the other bondsman',
+        text: 'Consciousness splits in two. One shape is independent: being-for-self is its essence, and it is the lord. The other is dependent: life is its essence, and it is the bondsman. Choose a door.' }
+    ]
+  },
+  {
+    id: 'lord', part: 'B', num: 'IV.A', title: 'Lordship', sub: 'the master’s impasse', paras: '§§189–193', t: 7, spur: true,
+    spawn: [17, 21, Math.PI / 2],
+    summary: 'The lord relates to the thing through the bondsman and to the bondsman through the thing. The lord enjoys and the bondsman works. But the lord’s recognition comes from someone he does not recognize, a consciousness he has made dependent. His truth turns out to be the servile consciousness. This hall has only one exit, and it leads into the workshop.',
+    moments: [
+      { id: 'l1', title: 'Enjoyment', at: [16, 19], ref: '§190',
+        de: 'der Genuß', en: 'enjoyment',
+        text: 'The lord gets pure enjoyment of the thing and leaves its independent side to the bondsman who works on it. Desire finally succeeds, through somebody else’s labour.' },
+      { id: 'l2', title: 'Unequal recognition', at: [12, 18], ref: '§§191–193',
+        de: 'Die Wahrheit des selbständigen Bewußtseins ist demnach das knechtische Bewußtsein.',
+        en: 'The truth of the independent consciousness is therefore the servile consciousness.',
+        text: 'Recognition from a dependent consciousness is worth nothing. The lord has won, and the only place left for him to go is where the bondsman is. Take the passage south.' }
+    ]
+  },
+  {
+    id: 'bond', part: 'B', num: 'IV.A', title: 'Bondage', sub: 'fear, service, work', paras: '§§194–196', t: 7.45,
+    spawn: [21, 28, Math.PI / 2],
+    summary: 'The bondsman has felt the fear of death, the absolute master, and everything stable in him has been shaken. In service he works off his attachment to nature. In work, which is desire held in check, he forms the thing. In the formed object he finds himself: a mind of his own.',
+    moments: [
+      { id: 'b1', title: 'Fear', zone: [17, 28, 21, 28], ref: '§§194–195',
+        de: 'Die Furcht des Herrn ist der Anfang der Weisheit.', en: 'The fear of the lord is the beginning of wisdom.',
+        text: 'The bondsman has trembled in every fibre, and everything fixed in him has been shaken loose. Pure negativity, which the lord only had as a concept, is now the bondsman’s own experience.' },
+      { id: 'b2', title: 'Service', at: [15, 26], ref: '§194',
+        de: 'Dienen', en: 'serving',
+        text: 'Fear becomes discipline. Through service, in each particular task, the bondsman cancels his attachment to natural existence and works it away.' },
+      { id: 'b3', title: 'Work forms', at: [14, 31], ref: '§195', live: 'work',
+        de: 'Die Arbeit hingegen ist gehemmte Begierde, aufgehaltenes Verschwinden, oder sie bildet.',
+        en: 'Work, on the other hand, is desire held in check, vanishing staved off: work forms.',
+        text: 'Desire consumed its object and was left with nothing. Work holds back and gives the thing a form that lasts. In the formed thing the worker sees his own independence as something objective.' },
+      { id: 'b4', title: 'A mind of one’s own', at: [9, 27], ref: '§196',
+        de: 'eigener Sinn', en: 'a mind of one’s own',
+        text: 'Through work the bondsman finds a mind of his own. If he has not passed through absolute fear, that mind is only self-will: skill over some things, not formative power over all of them.' }
+    ]
+  },
+  {
+    id: 'stoicism', part: 'B', num: 'IV.B', title: 'Stoicism', sub: 'freedom in thought', paras: '§§197–201', t: 8.4,
+    spawn: [12, 37, Math.PI],
+    summary: 'A new shape: consciousness that thinks, and that is free in thought rather than in the world. On the throne or in chains, the Stoic is free. But this freedom is indifferent to existence, and its truth and goodness have no content. It is only the concept of freedom, not freedom lived.',
+    moments: [
+      { id: 'st1', title: 'Free in thought', at: [12, 41], ref: '§199',
+        de: 'auf dem Throne wie in den Fesseln', en: 'on the throne as in chains',
+        text: 'In thinking I am at home with myself. My object is my own thought, and so I am free wherever I happen to stand.' },
+      { id: 'st2', title: 'Withdrawal', at: [9, 38], ref: '§199',
+        de: 'eine Zeit der allgemeinen Furcht und Knechtschaft', en: 'a time of universal fear and bondage',
+        text: 'Stoicism could arise only in an age of universal fear and bondage. Its freedom is a retreat from existence into the bare universality of thought: these high walls.' },
+      { id: 'st3', title: 'Without content', at: [15, 44], ref: '§200',
+        de: 'das Wahre und Gute … das Vernünftige', en: 'the true and the good … the rational',
+        text: 'Ask the Stoic what is true and good and the answer is only: the rational, the reasonable. Uplifting words like these soon grow tedious. They supply no content.' }
+    ]
+  },
+  {
+    id: 'skepticism', part: 'B', num: 'IV.B', title: 'Skepticism', sub: 'negation made actual', paras: '§§202–206', t: 9.4,
+    spawn: [20, 41, -Math.PI / 2],
+    summary: 'Skepticism makes the negation real: every determinate claim dissolves under its scrutiny, and it experiences its own freedom in the vanishing of everything fixed. But it lives off what it denies, and perceives, acts and speaks like everyone else. It is a doubled consciousness that never brings its two halves together.',
+    moments: [
+      { id: 'sk1', title: 'Negation made real', at: [22, 39], ref: '§§202–204',
+        de: 'die Freiheit des Selbstbewußtseins', en: 'the freedom of self-consciousness',
+        text: 'Whatever is fixed, whether perception’s thing, the Understanding’s laws or ethical custom, is shown to be unstable. Skepticism experiences its freedom as negativity. Watch the room come and go.' },
+      { id: 'sk2', title: 'Self-contradiction', at: [26, 43], ref: '§205',
+        de: 'das Gezänke eigensinniger Jungen', en: 'the squabbling of self-willed children',
+        text: 'It says “nothing is” while it goes on seeing, and points out difference when you assert sameness and sameness when you point to difference. Its talk is the squabbling of self-willed children.' },
+      { id: 'sk3', title: 'Doubling', at: [26, 39], ref: '§205',
+        de: 'gedoppeltes Bewußtsein', en: 'a doubled consciousness',
+        text: 'It is at once perfectly self-identical and utterly contingent. It holds both thoughts but never brings them together. Another shape will gather them into one.' }
+    ]
+  },
+  {
+    id: 'unhappy', part: 'B', num: 'IV.B', title: 'The Unhappy Consciousness', sub: 'the self divided', paras: '§§206–230', t: 10.4,
+    spawn: [31, 41, -Math.PI / 2],
+    summary: 'Consciousness now knows itself as doubled: an unchangeable essence it longs for, and a changeable, singular self that it treats as nothing. Each attempt to reach the unchangeable, through devotion, through work and thanks, through self-mortification, pushes it further away. In the end the singular self gives up its will through a mediator. Out of that surrender comes the certainty that the singular is the universal: Reason.',
+    moments: [
+      { id: 'u1', title: 'The split', at: [34, 39], ref: '§§206–208',
+        de: 'das Bewußtsein seiner als des gedoppelten, nur widersprechenden Wesens', en: 'consciousness of itself as a doubled, merely contradictory being',
+        text: 'Each time it rises toward the unchangeable it is thrown back on its own singularity. The light at the end of the nave is that unchangeable. Try to reach it.' },
+      { id: 'u2', title: 'Devotion', at: [40, 43], ref: '§217',
+        de: 'ein gestaltloses Sausen des Glockengeläutes oder eine warme Nebelerfüllung', en: 'a shapeless tolling of bells, or a warm filling of mist',
+        text: 'Pure feeling reaching toward the beyond. When it looks for the unchangeable as a singular, present thing, all it finds is the grave.' },
+      { id: 'u3', title: 'Thanks and work', at: [46, 39], ref: '§§218–222',
+        de: 'Danken', en: 'giving thanks',
+        text: 'It works and enjoys, but it gives thanks, since its powers are gifts of the unchangeable. Yet the act of thanking is its own act, so even its renunciation asserts itself.' },
+      { id: 'u4', title: 'Self-sacrifice', at: [52, 43], ref: '§§227–230',
+        de: 'der Mittler', en: 'the mediator',
+        text: 'Through a mediator it gives up its own will, its possessions and its enjoyment. By giving up its singularity it makes its action, implicitly, universal. Now the light comes to you.' }
+    ]
+  },
+  {
+    id: 'reason', part: 'C', num: 'V', title: 'Reason', sub: 'beyond this walkthrough', paras: '§§231ff.', t: 11.6,
+    spawn: [58, 41, -Math.PI / 2],
+    summary: 'The walkthrough ends here. Reason begins with consciousness certain of being all reality, and a new circuit of experience starts: observing nature, acting in the world, and finally Spirit.',
+    moments: []
+  }
+];
+
+const PARTS = [
+  { id: 'A', title: 'Consciousness', de: 'Bewußtsein', stations: ['sense', 'perception', 'force'],
+    summary: 'Consciousness takes its object to be something other than itself: the sensed this, the perceived thing, the force and law behind appearance. Each time, the truth of the object turns out to depend on the form of knowing that grasps it. At the end the curtain is drawn back, and what stood behind it was consciousness itself.' },
+  { id: 'B', title: 'Self-Consciousness', de: 'Selbstbewußtsein', stations: ['self', 'recognition', 'struggle', 'lord', 'bond', 'stoicism', 'skepticism', 'unhappy'],
+    summary: 'Self-consciousness takes itself as its object. Its truth lies not in solitary self-certainty but in relations with another self, through desire, recognition, domination and labour. After that come the inward shapes of the freedom of thought: Stoicism, Skepticism and the Unhappy Consciousness.' }
+];
+
+// Transitions are the logic of the whole; `gate` is where the walk makes you pass through it.
+const TRANSITIONS = [
+  { from: 'intro', to: 'sense', short: 'begin with the immediate', gate: null,
+    logic: 'Knowledge must begin with what is immediate: a knowing that just takes in what is, without changing it.' },
+  { from: 'sense', to: 'perception', short: 'the This is a universal', gate: [18, 8],
+    logic: 'The truth of the This is the universal. Consciousness now takes the universal as its object, and takes it as true (wahr-nehmen): Perception.' },
+  { from: 'perception', to: 'force', short: 'the unconditioned universal', gate: [32, 8],
+    logic: 'The thing is for-itself only by being for-another. What remains is an unconditioned universal, the unity of the two, which only thought can hold. Consciousness becomes Understanding.' },
+  { from: 'force', to: 'self', short: 'the inner is our own movement', gate: [48, 8], curtain: true,
+    logic: 'The inner difference the Understanding found in things is the movement of its own thinking. Consciousness of an other is now consciousness of itself. The curtain is drawn back: Self-consciousness.' },
+  { from: 'self', to: 'recognition', short: 'satisfaction only in another', gate: [44, 25],
+    logic: 'Desire is satisfied only by an object that carries out the negation itself, which means another self-consciousness. Self-consciousness is now doubled: Recognition.' },
+  { from: 'recognition', to: 'struggle', short: 'certainty must be proven', gate: [32, 25],
+    logic: 'In concept, recognition is mutual. As it first appears, each self is certain of itself and not of the other, and must make its certainty true by proving it: the Struggle.' },
+  { from: 'struggle', to: 'lord', short: 'stake life', gate: [22, 23],
+    logic: 'One consciousness holds being-for-self above life and becomes the lord. Pass this way to see where victory leads.' },
+  { from: 'struggle', to: 'bond', short: 'cling to life', gate: [22, 28],
+    logic: 'One consciousness holds life above being-for-self and becomes the bondsman. Pass this way into fear.' },
+  { from: 'lord', to: 'bond', short: 'the lord’s truth is the servant', gate: null,
+    logic: 'The lord’s independence rests on the bondsman’s labour. The truth of the independent consciousness is the servile consciousness.' },
+  { from: 'bond', to: 'stoicism', short: 'from the formed thing to free thought', gate: [12, 34],
+    logic: 'Forming things, consciousness has found itself as a form that is its own, which is to say as thinking. It withdraws into thought as freedom: Stoicism.' },
+  { from: 'stoicism', to: 'skepticism', short: 'negation made actual', gate: [17, 41],
+    logic: 'A thought that is free only within itself leaves the world as it was. Skepticism carries out what Stoicism only conceived: it actually negates the determinate world.' },
+  { from: 'skepticism', to: 'unhappy', short: 'the doubling held in one', gate: [29, 41],
+    logic: 'What Skepticism kept apart now falls together in one consciousness, a self split between the unchangeable and the changeable: the Unhappy Consciousness.' },
+  { from: 'unhappy', to: 'reason', short: 'certain of being all reality', gate: [56, 41],
+    logic: 'In this surrender the singular self becomes for itself what it already was in itself: the unity of the singular and the universal. Consciousness is certain of being all reality. Reason.' }
+];
+
+const RESONANCES = [
+  { a: 'sense', b: 'self', title: 'The I returns',
+    text: 'Sense-certainty fell back on “my” Here and “my” Now and found that the I was as universal as anything else. Self-consciousness makes that universality its explicit object: I = I.' },
+  { a: 'perception', b: 'recognition', title: 'For-self through for-other',
+    text: 'Perception’s thing was for-itself only by being for-another. Self-consciousness lives that same contradiction: it is for itself only in being for another self.' },
+  { a: 'force', b: 'recognition', title: 'Solicitation',
+    text: 'Two forces, each soliciting and solicited, each passing into the other: the play of forces is the logical template of recognition, now lived out by two self-consciousnesses.' },
+  { a: 'force', b: 'skepticism', title: 'Inversion as a practice',
+    text: 'The inverted world taught that everything contains its opposite. Skepticism turns that insight into a way of life: whatever is asserted, it produces the contrary.' },
+  { a: 'force', b: 'unhappy', title: 'The beyond returns',
+    text: 'The supersensible beyond of the Understanding comes back as the Unchangeable. It is no longer something to explain. It is something longed for.' },
+  { a: 'force', b: 'self', title: 'Infinity is life',
+    text: 'Infinity, “the universal blood”, is the logical shape of Life: a whole that differentiates itself and dissolves its own differences.' },
+  { a: 'self', b: 'lord', title: 'Desire satisfied',
+    text: 'The lord finally enjoys what desire could never hold onto, the thing itself, its independence worked away by someone else.' },
+  { a: 'perception', b: 'bond', title: 'The formed thing',
+    text: 'The thing whose unity perception could not hold together is now formed by labour. Its unity is the worker’s own form, made to last.' },
+  { a: 'force', b: 'stoicism', title: 'The element of thought',
+    text: 'The Understanding’s universals become the Stoic’s home. Freedom is the universality of thought, and it is just as empty of content.' }
+];
+
+/* Maze: rooms are unions of cell rectangles [x0, z0, x1, z1] (inclusive). */
+const ROOMS = [
+  { id: 'threshold', station: 'intro', rects: [[0, 6, 4, 10], [5, 8, 6, 8]], floor: '#2a2926', wall: '#4a4741', fog: '#0c0c0e', light: 1.0 },
+  { id: 'sense', station: 'sense', rects: [[7, 3, 17, 13]], floor: '#c9c4b9', wall: '#ece7dd', fog: '#1d1c1a', light: 1.6 },
+  { id: 'perception', station: 'perception', rects: [[19, 8, 20, 8], [21, 3, 31, 13]], floor: '#879cae', wall: '#c3d0da', fog: '#10151b', light: 1.3 },
+  { id: 'ring', station: 'perception', rects: [[23, -2, 23, 2], [24, -2, 28, -2], [29, -2, 29, 2]], floor: '#5d6e80', wall: '#8698aa', fog: '#0b1016', light: 0.9 },
+  { id: 'force', station: 'force', rects: [[33, 8, 34, 8], [35, 3, 47, 13]], floor: '#1f2550', wall: '#3a4590', fog: '#080a1c', light: 1.0 },
+  { id: 'inverted', station: 'force', rects: [[41, 2, 41, 2], [37, -6, 45, 1]], floor: '#1a0f08', wall: '#c8692a', fog: '#1c0d04', light: 1.2, ceiling: '#f2b778' },
+  { id: 'alcove', station: 'self', rects: [[49, 6, 53, 10], [51, 11, 51, 19]], floor: '#170909', wall: '#3a1418', fog: '#070203', light: 0.6 },
+  { id: 'self', station: 'self', rects: [[45, 20, 55, 30]], floor: '#1f432a', wall: '#3c7a4c', fog: '#06120a', light: 1.1 },
+  { id: 'recognition', station: 'recognition', rects: [[42, 25, 43, 25], [33, 21, 41, 29]], floor: '#585862', wall: '#9a9aa8', fog: '#0e0e12', light: 1.2 },
+  { id: 'struggle', station: 'struggle', rects: [[30, 25, 31, 25], [23, 22, 29, 28]], floor: '#561014', wall: '#8a1c22', fog: '#170405', light: 1.0 },
+  { id: 'lord', station: 'lord', rects: [[19, 23, 21, 23], [10, 17, 18, 23]], floor: '#3a2556', wall: '#6a4a8e', fog: '#0e0716', light: 1.1 },
+  { id: 'lordpass', station: 'lord', rects: [[12, 24, 12, 24]], floor: '#2a1d3a', wall: '#4a3a5e', fog: '#0b0710', light: 0.8 },
+  { id: 'fear', station: 'bond', rects: [[17, 28, 21, 28]], floor: '#0c0c0c', wall: '#1b1b1b', fog: '#000000', light: 0.12, dark: true },
+  { id: 'bond', station: 'bond', rects: [[8, 25, 16, 33]], floor: '#6a4c28', wall: '#8f6c3c', fog: '#140d05', light: 1.2 },
+  { id: 'stoicism', station: 'stoicism', rects: [[12, 35, 12, 36], [8, 37, 16, 45]], floor: '#a8a497', wall: '#d2cec2', fog: '#121210', light: 1.3, h: 7 },
+  { id: 'skepticism', station: 'skepticism', rects: [[18, 41, 19, 41], [20, 37, 28, 45]], floor: '#34343e', wall: '#4e4e60', fog: '#0b0b10', light: 0.95 },
+  { id: 'unhappy', station: 'unhappy', rects: [[30, 41, 30, 41], [31, 39, 55, 43]], floor: '#121222', wall: '#25254a', fog: '#04040a', light: 0.6, h: 11 },
+  { id: 'reason', station: 'reason', rects: [[57, 39, 61, 43]], floor: '#c9a656', wall: '#ecd28e', fog: '#2a2210', light: 1.7 }
+];
+
+/* ════════════════════════════════════════════════════════════════
+   INDEXES + STATE
+   ════════════════════════════════════════════════════════════════ */
+
+const S = Object.fromEntries(STATIONS.map((s, i) => [s.id, Object.assign(s, { order: i })]));
+const MOMENTS = STATIONS.flatMap(s => s.moments.map(m => Object.assign(m, { station: s.id })));
+const M = Object.fromEntries(MOMENTS.map(m => [m.id, m]));
+const R = Object.fromEntries(ROOMS.map(r => [r.id, r]));
+const GATES = TRANSITIONS.filter(t => t.gate).map((t, i) => Object.assign(t, { id: 'g' + i }));
+const partOf = id => PARTS.find(p => p.stations.includes(id));
+
+const STORE = 'phg-walkthrough-v1';
+const state = { visited: new Set(), entered: new Set(), passed: new Set(), forced: new Set(), nowStamp: null, desire: 0, pos: null };
+try {
+  const raw = JSON.parse(localStorage.getItem(STORE) || 'null');
+  if (raw) {
+    state.visited = new Set(raw.visited || []);
+    state.entered = new Set(raw.entered || []);
+    state.passed = new Set(raw.passed || []);
+    state.forced = new Set(raw.forced || []);
+    state.nowStamp = raw.nowStamp || null;
+    state.desire = raw.desire || 0;
+    state.pos = raw.pos || null;
+  }
+} catch (e) { /* storage unavailable: progress is per-visit */ }
+function save() {
+  try {
+    localStorage.setItem(STORE, JSON.stringify({
+      visited: [...state.visited], entered: [...state.entered], passed: [...state.passed], forced: [...state.forced],
+      nowStamp: state.nowStamp, desire: state.desire,
+      pos: player ? [player.x, player.z, player.yaw] : null
+    }));
+  } catch (e) { /* ignore */ }
+}
+const stationDone = id => S[id].moments.every(m => state.visited.has(m.id));
+const stationProgress = id => S[id].moments.filter(m => state.visited.has(m.id)).length;
+const gateOpen = g => state.forced.has(g.id) || stationDone(g.from);
+
+/* ════════════════════════════════════════════════════════════════
+   RENDERER, SHARED HELPERS
+   ════════════════════════════════════════════════════════════════ */
+
+const stage = document.getElementById('stage');
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ antialias: true });
+} catch (e) {
+  document.getElementById('intro').querySelector('.sheet').innerHTML = '<h2>WebGL is not available</h2><p>This walkthrough needs a browser with WebGL enabled.</p>';
+  throw e;
+}
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+stage.appendChild(renderer.domElement);
+renderer.domElement.tabIndex = 0;
+
+const labelRenderer = new CSS2DRenderer({ element: document.getElementById('labels') });
+labelRenderer.setSize(innerWidth, innerHeight);
+
+const $ = s => document.querySelector(s);
+const card = $('#card');
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+function wrapLines(ctx, text, maxW) {
+  const words = text.split(/\s+/); const out = []; let line = '';
+  for (const w of words) {
+    const test = line ? line + ' ' + w : w;
+    if (ctx.measureText(test).width > maxW && line) { out.push(line); line = w; } else line = test;
+  }
+  if (line) out.push(line);
+  return out;
+}
+
+// Draws a stack of text blocks onto a canvas texture.
+function textTexture({ w = 1024, h = 256, blocks, bg = null, border = null, mirror = false, valign = 'middle' }) {
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  const x = c.getContext('2d');
+  if (mirror) { x.translate(w, 0); x.scale(-1, 1); }
+  if (bg) { x.fillStyle = bg; x.fillRect(0, 0, w, h); }
+  if (border) { x.strokeStyle = border; x.lineWidth = 6; x.strokeRect(10, 10, w - 20, h - 20); }
+  const pad = w * 0.08; const laid = [];
+  let total = 0;
+  for (const b of blocks) {
+    x.font = b.font;
+    const lines = b.wrap === false ? [b.text] : wrapLines(x, b.text, w - pad * 2);
+    const lh = b.lh || parseInt(b.font.match(/(\d+)px/)[1], 10) * 1.25;
+    laid.push({ b, lines, lh }); total += lines.length * lh + (b.gap || 0);
+  }
+  let y = valign === 'top' ? pad : (h - total) / 2;
+  x.textAlign = 'center'; x.textBaseline = 'top';
+  for (const { b, lines, lh } of laid) {
+    x.font = b.font; x.fillStyle = b.color || '#f2efe8';
+    if (b.spacing) x.letterSpacing = b.spacing;
+    for (const l of lines) { x.fillText(l, w / 2, y); y += lh; }
+    x.letterSpacing = '0px';
+    y += b.gap || 0;
+  }
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;
+  return t;
+}
+
+function textSprite(opts, width) {
+  const tex = textTexture(opts);
+  const mat = new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false });
+  const s = new THREE.Sprite(mat);
+  s.scale.set(width, width * (opts.h || 256) / (opts.w || 1024), 1);
+  return s;
+}
+
+function glowTexture() {
+  const c = document.createElement('canvas'); c.width = c.height = 128;
+  const x = c.getContext('2d');
+  const g = x.createRadialGradient(64, 64, 0, 64, 64, 64);
+  g.addColorStop(0, 'rgba(255,255,255,1)'); g.addColorStop(0.25, 'rgba(255,255,255,.55)');
+  g.addColorStop(0.6, 'rgba(255,255,255,.12)'); g.addColorStop(1, 'rgba(255,255,255,0)');
+  x.fillStyle = g; x.fillRect(0, 0, 128, 128);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+const GLOW = glowTexture();
+const glowSprite = (color, size, opacity = 1) => {
+  const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: GLOW, color, transparent: true, opacity, blending: THREE.AdditiveBlending, depthWrite: false }));
+  s.scale.set(size, size, 1); return s;
+};
+
+// Colour along the spiral: cool for Consciousness, warming through Self-Consciousness, gold at Reason.
+function stationColor(id) {
+  const s = S[id];
+  if (id === 'intro') return new THREE.Color('#b9b2a4');
+  if (id === 'reason') return new THREE.Color('#e8c26a');
+  if (s.part === 'A') return new THREE.Color().setHSL(0.61 - (s.t - 1) / 2 * 0.1, 0.6, 0.7);
+  const k = (s.t - 4) / (10.4 - 4);
+  return new THREE.Color().setHSL((1.12 - k * 0.14) % 1, 0.72, 0.63);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   LEVEL 1 — FÜR UNS: THE MAP
+   ════════════════════════════════════════════════════════════════ */
+
+const mapScene = new THREE.Scene();
+mapScene.background = new THREE.Color('#07070a');
+mapScene.fog = new THREE.FogExp2('#07070a', 0.011);
+const mapCam = new THREE.PerspectiveCamera(48, innerWidth / innerHeight, 0.1, 600);
+const HOME = { pos: new THREE.Vector3(8, 30, 38), target: new THREE.Vector3(0, 2.5, 0) };
+mapCam.position.copy(HOME.pos);
+const orbit = new OrbitControls(mapCam, renderer.domElement);
+orbit.target.copy(HOME.target);
+orbit.enableDamping = true; orbit.dampingFactor = 0.08;
+orbit.autoRotate = true; orbit.autoRotateSpeed = 0.35;
+orbit.minDistance = 8; orbit.maxDistance = 110;
+
+{ // stars
+  const n = 1400, pos = new Float32Array(n * 3);
+  for (let i = 0; i < n; i++) {
+    const v = new THREE.Vector3().randomDirection().multiplyScalar(120 + Math.random() * 160);
+    pos.set([v.x, v.y, v.z], i * 3);
+  }
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  mapScene.add(new THREE.Points(g, new THREE.PointsMaterial({ color: '#8a8478', size: 0.7, sizeAttenuation: true, fog: false })));
+}
+
+function spiralPos(s) {
+  const t = s.t;
+  const r = s.spur ? 17 : 12;
+  const th = -t * 0.5 + 0.4;
+  return new THREE.Vector3(Math.cos(th) * r, -9 + t * 2.0 + (s.spur ? 1.4 : 0), Math.sin(th) * r);
+}
+
+const mapNodes = {};       // station id → { pos, core, halo, label, sats }
+const pickables = [];      // meshes for raycasting
+const edgeObjs = [];       // { kind, labelObj, line, ... }
+const flows = [];          // particles that run along transitions
+const satGroups = [];
+
+// Axis of the spiral, and part hubs on it.
+{
+  const pts = [new THREE.Vector3(0, -11, 0), new THREE.Vector3(0, 16, 0)];
+  const g = new THREE.BufferGeometry().setFromPoints(pts);
+  mapScene.add(new THREE.Line(g, new THREE.LineBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.08 })));
+}
+
+for (const s of STATIONS) {
+  const pos = spiralPos(s); const col = stationColor(s.id);
+  const grp = new THREE.Group(); grp.position.copy(pos); mapScene.add(grp);
+  const ghost = s.id === 'reason';
+  const core = new THREE.Mesh(new THREE.SphereGeometry(ghost ? 0.55 : 0.62, 32, 16),
+    new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: ghost ? 0.5 : 1 }));
+  core.userData = { kind: 'station', id: s.id };
+  grp.add(core); pickables.push(core);
+  const halo = glowSprite(col, 4.2, 0.35); grp.add(halo);
+  const shell = new THREE.Mesh(new THREE.IcosahedronGeometry(1.0, 1),
+    new THREE.MeshBasicMaterial({ color: col, wireframe: true, transparent: true, opacity: 0.18 }));
+  grp.add(shell);
+
+  const el = document.createElement('div');
+  el.className = 'nlabel';
+  el.innerHTML = (s.num ? `<span class="n">${esc(s.num)}</span>` : '') + esc(s.title);
+  el.style.color = '#' + col.getHexString();
+  el.addEventListener('click', ev => { ev.stopPropagation(); selectStation(s.id, true); });
+  el.addEventListener('pointerenter', () => setHover({ kind: 'station', id: s.id }));
+  el.addEventListener('pointerleave', () => setHover(null));
+  const label = new CSS2DObject(el); grp.add(label);
+
+  // Moments orbit their station like satellites.
+  const sats = new THREE.Group(); grp.add(sats); satGroups.push(sats);
+  const satMeshes = [];
+  s.moments.forEach((m, i) => {
+    const a = (i / s.moments.length) * Math.PI * 2;
+    const sat = new THREE.Mesh(new THREE.SphereGeometry(0.16, 16, 8),
+      new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: 0.45 }));
+    sat.position.set(Math.cos(a) * 1.85, Math.sin(a * 2) * 0.35, Math.sin(a) * 1.85);
+    sat.userData = { kind: 'moment', id: m.id };
+    sats.add(sat); pickables.push(sat); satMeshes.push(sat);
+    const mel = document.createElement('div'); mel.className = 'mlabel'; mel.textContent = m.title;
+    const ml = new CSS2DObject(mel); ml.visible = false; sat.add(ml); sat.userData.label = ml;
+  });
+  sats.rotation.y = Math.random() * 6;
+  mapNodes[s.id] = { pos, grp, core, halo, shell, label: el, sats: satMeshes, col };
+}
+
+// Part hubs: on the axis, with faint spokes to their stations.
+const hubNodes = {};
+for (const p of PARTS) {
+  const ys = p.stations.map(id => mapNodes[id].pos.y);
+  const hp = new THREE.Vector3(0, (Math.min(...ys) + Math.max(...ys)) / 2, 0);
+  const col = p.id === 'A' ? new THREE.Color('#86b6e6') : new THREE.Color('#ea8a52');
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(1.5, 0.03, 8, 64), new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: 0.55 }));
+  ring.position.copy(hp); ring.rotation.x = Math.PI / 2; mapScene.add(ring);
+  const hub = new THREE.Mesh(new THREE.SphereGeometry(0.35, 16, 8), new THREE.MeshBasicMaterial({ color: col }));
+  hub.position.copy(hp); hub.userData = { kind: 'part', id: p.id }; mapScene.add(hub); pickables.push(hub);
+  for (const id of p.stations) {
+    const g = new THREE.BufferGeometry().setFromPoints([hp, mapNodes[id].pos]);
+    mapScene.add(new THREE.Line(g, new THREE.LineBasicMaterial({ color: col, transparent: true, opacity: 0.13 })));
+  }
+  const el = document.createElement('div'); el.className = 'hlabel';
+  el.innerHTML = `${p.id} · ${esc(p.title)}<span>${esc(p.de)}</span>`;
+  el.addEventListener('click', ev => { ev.stopPropagation(); selectPart(p.id); });
+  const lo = new CSS2DObject(el); lo.position.set(0, 1.9, 0); hub.add(lo);
+  hubNodes[p.id] = { hub, ring, pos: hp };
+}
+
+// Transitions: arrowed tubes bowing outward from the axis.
+for (const t of TRANSITIONS) {
+  const a = mapNodes[t.from].pos, b = mapNodes[t.to].pos;
+  const mid = a.clone().add(b).multiplyScalar(0.5);
+  const out = new THREE.Vector3(mid.x, 0, mid.z).normalize().multiplyScalar(2.2);
+  const ctrl = mid.clone().add(out).add(new THREE.Vector3(0, 0.6, 0));
+  const curve = new THREE.QuadraticBezierCurve3(a.clone(), ctrl, b.clone());
+  const colA = mapNodes[t.from].col;
+  const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, 48, 0.045, 6, false),
+    new THREE.MeshBasicMaterial({ color: colA, transparent: true, opacity: 0.55 }));
+  mapScene.add(tube);
+  const cone = new THREE.Mesh(new THREE.ConeGeometry(0.17, 0.5, 12), new THREE.MeshBasicMaterial({ color: colA }));
+  const at = 0.68; cone.position.copy(curve.getPoint(at));
+  cone.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), curve.getTangent(at).normalize());
+  mapScene.add(cone);
+  for (let k = 0; k < 3; k++) {
+    const p = glowSprite(colA, 0.6, 0.9); mapScene.add(p);
+    flows.push({ sprite: p, curve, phase: k / 3 });
+  }
+  const el = document.createElement('div'); el.className = 'elabel'; el.textContent = t.short;
+  const lo = new CSS2DObject(el); lo.position.copy(curve.getPoint(0.5)); mapScene.add(lo);
+  edgeObjs.push({ kind: 'transition', t, tube, label: el });
+}
+
+// Resonances: dashed arcs that cut through the inside of the spiral.
+const resonanceGroup = new THREE.Group(); mapScene.add(resonanceGroup);
+for (const r of RESONANCES) {
+  const a = mapNodes[r.a].pos, b = mapNodes[r.b].pos;
+  const mid = a.clone().add(b).multiplyScalar(0.5);
+  const ctrl = new THREE.Vector3(mid.x * 0.15, mid.y, mid.z * 0.15);
+  const curve = new THREE.QuadraticBezierCurve3(a.clone(), ctrl, b.clone());
+  const g = new THREE.BufferGeometry().setFromPoints(curve.getPoints(60));
+  const line = new THREE.Line(g, new THREE.LineDashedMaterial({ color: '#e8c26a', dashSize: 0.35, gapSize: 0.25, transparent: true, opacity: 0.38 }));
+  line.computeLineDistances(); resonanceGroup.add(line);
+  const el = document.createElement('div'); el.className = 'elabel res'; el.textContent = r.title;
+  el.style.pointerEvents = 'auto'; el.style.cursor = 'pointer';
+  el.addEventListener('click', ev => { ev.stopPropagation(); selectResonance(r); });
+  const lo = new CSS2DObject(el); lo.position.copy(curve.getPoint(0.5)); resonanceGroup.add(lo);
+  edgeObjs.push({ kind: 'resonance', r, line, label: el, labelObj: lo });
+}
+
+function refreshMap() {
+  for (const s of STATIONS) {
+    const n = mapNodes[s.id];
+    const total = s.moments.length, done = stationProgress(s.id);
+    const complete = total > 0 && done === total;
+    const entered = state.entered.has(s.id);
+    n.halo.material.opacity = complete ? 0.95 : entered ? 0.55 : 0.28;
+    n.shell.material.opacity = complete ? 0.5 : 0.16;
+    n.label.classList.toggle('done', complete);
+    s.moments.forEach((m, i) => {
+      const v = state.visited.has(m.id);
+      n.sats[i].material.opacity = v ? 1 : 0.35;
+      n.sats[i].material.color.copy(v ? new THREE.Color('#ffe7a8') : n.col);
+    });
+  }
+  for (const e of edgeObjs) if (e.kind === 'transition') {
+    const passed = stationDone(e.t.from) || state.passed.has(e.t.from + '>' + e.t.to);
+    e.tube.material.opacity = passed ? 0.9 : 0.4;
+  }
+}
+
+/* ── map interaction ─────────────────────────────────── */
+const ray = new THREE.Raycaster(); const ndc = new THREE.Vector2();
+let hover = null; let selected = null; let selectedRes = null; let downAt = null;
+let focusTween = null;
+
+function pick(ev) {
+  ndc.set((ev.clientX / innerWidth) * 2 - 1, -(ev.clientY / innerHeight) * 2 + 1);
+  ray.setFromCamera(ndc, mapCam);
+  const hit = ray.intersectObjects(pickables, false).find(h => h.object.visible && (h.object.parent.visible !== false));
+  return hit ? hit.object.userData : null;
+}
+function setHover(h) {
+  if (hover && hover.kind === 'moment') mapLabelForMoment(hover.id).visible = false;
+  hover = h;
+  for (const s of STATIONS) mapNodes[s.id].label.classList.toggle('hot', !!h && h.kind === 'station' && h.id === s.id);
+  if (h && h.kind === 'moment') mapLabelForMoment(h.id).visible = true;
+  renderer.domElement.style.cursor = h ? 'pointer' : '';
+  showEdgeLabels();
+}
+// Edge labels speak only for the station under the pointer, or else the selected one.
+function showEdgeLabels() {
+  const h = hover;
+  const id = (h && (h.kind === 'station' ? h.id : h.kind === 'moment' ? M[h.id].station : null)) || selected;
+  for (const e of edgeObjs) {
+    const touches = id && (e.kind === 'transition' ? (e.t.from === id || e.t.to === id) : (e.r.a === id || e.r.b === id));
+    e.label.classList.toggle('on', !!touches || (e.kind === 'resonance' && e.r === selectedRes));
+  }
+}
+function mapLabelForMoment(mid) {
+  const m = M[mid]; const i = S[m.station].moments.indexOf(m);
+  return mapNodes[m.station].sats[i].userData.label;
+}
+function focusOn(target, dist) {
+  const from = orbit.target.clone(); const camFrom = mapCam.position.clone();
+  const dir = camFrom.clone().sub(from).normalize();
+  const to = target.clone(); const camTo = to.clone().add(dir.multiplyScalar(dist ?? camFrom.distanceTo(from)));
+  focusTween = { t: 0, from, to, camFrom, camTo };
+}
+
+renderer.domElement.addEventListener('pointerdown', ev => { downAt = [ev.clientX, ev.clientY]; });
+renderer.domElement.addEventListener('pointermove', ev => {
+  if (mode !== 'map' || ev.pointerType === 'touch') return;
+  const h = pick(ev);
+  if ((h && h.id) !== (hover && hover.id)) setHover(h);
+});
+renderer.domElement.addEventListener('pointerup', ev => {
+  if (mode !== 'map' || !downAt) return;
+  const moved = Math.hypot(ev.clientX - downAt[0], ev.clientY - downAt[1]); downAt = null;
+  if (moved > 6) return;
+  const h = pick(ev);
+  if (!h) return;
+  if (h.kind === 'station') selectStation(h.id, true);
+  else if (h.kind === 'moment') { selectStation(M[h.id].station, true, true); showMoment(h.id, 'map'); }
+  else if (h.kind === 'part') selectPart(h.id);
+});
+
+function selectStation(id, focus, quiet) {
+  selected = id; selectedRes = null; showEdgeLabels();
+  if (focus) { orbit.autoRotate = false; $('#tg-spin').classList.remove('on'); focusOn(mapNodes[id].pos, 20); }
+  if (!quiet) showStation(id, 'map');
+}
+function selectPart(pid) {
+  selected = null; selectedRes = null; showEdgeLabels();
+  const h = hubNodes[pid]; orbit.autoRotate = false; $('#tg-spin').classList.remove('on');
+  focusOn(h.pos, 30); showPart(pid);
+}
+function selectResonance(r) {
+  selected = null; selectedRes = r; showEdgeLabels();
+  const mid = mapNodes[r.a].pos.clone().add(mapNodes[r.b].pos).multiplyScalar(0.5);
+  orbit.autoRotate = false; $('#tg-spin').classList.remove('on'); focusOn(mid, 30); showResonance(r);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   LEVEL 2 — FÜR ES: THE MAZE
+   ════════════════════════════════════════════════════════════════ */
+
+const CELL = 3, WALL_H = 4.2, EYE = 1.65, PR = 0.42;
+const key = (x, z) => x + ',' + z;
+const cellRoom = new Map();      // "x,z" → room id
+const gateAt = new Map();        // "x,z" → gate
+for (const r of ROOMS) for (const [x0, z0, x1, z1] of r.rects)
+  for (let x = x0; x <= x1; x++) for (let z = z0; z <= z1; z++) cellRoom.set(key(x, z), r.id);
+for (const g of GATES) { gateAt.set(key(...g.gate), g); cellRoom.set(key(...g.gate), 'gate:' + g.id); }
+const roomAtCell = (x, z) => { const id = cellRoom.get(key(x, z)); if (!id) return null; return id.startsWith('gate:') ? null : R[id]; };
+const cx = v => Math.floor(v / CELL);
+const centre = (x, z) => [(x + 0.5) * CELL, (z + 0.5) * CELL];
+
+const walkScene = new THREE.Scene();
+walkScene.fog = new THREE.FogExp2('#0c0c0e', 0.026);
+walkScene.background = walkScene.fog.color;
+const walkCam = new THREE.PerspectiveCamera(70, innerWidth / innerHeight, 0.05, 400);
+walkCam.rotation.order = 'YXZ';
+const hemi = new THREE.HemisphereLight('#ffffff', '#30302c', 1.0); walkScene.add(hemi);
+
+// Floors and per-room lights.
+const floorTex = (() => {
+  const c = document.createElement('canvas'); c.width = c.height = 128; const x = c.getContext('2d');
+  x.fillStyle = '#ffffff'; x.fillRect(0, 0, 128, 128);
+  x.strokeStyle = 'rgba(0,0,0,.22)'; x.lineWidth = 3; x.strokeRect(0, 0, 128, 128);
+  x.strokeStyle = 'rgba(0,0,0,.07)'; x.lineWidth = 1; x.beginPath(); x.moveTo(64, 0); x.lineTo(64, 128); x.moveTo(0, 64); x.lineTo(128, 64); x.stroke();
+  const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.colorSpace = THREE.SRGBColorSpace; return t;
+})();
+function floorPlane(x0, z0, x1, z1, color, y = 0, flip = false) {
+  const w = x1 - x0 + 1, d = z1 - z0 + 1;
+  const tex = floorTex.clone(); tex.repeat.set(w, d); tex.needsUpdate = true;
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(w * CELL, d * CELL),
+    new THREE.MeshLambertMaterial({ color, map: tex }));
+  m.rotation.x = flip ? Math.PI / 2 : -Math.PI / 2;
+  m.position.set((x0 + w / 2) * CELL, y, (z0 + d / 2) * CELL);
+  walkScene.add(m); return m;
+}
+for (const r of ROOMS) {
+  for (const [x0, z0, x1, z1] of r.rects) {
+    floorPlane(x0, z0, x1, z1, r.floor);
+    if (r.ceiling) floorPlane(x0, z0, x1, z1, r.ceiling, r.h || WALL_H, true);
+  }
+  const big = r.rects.reduce((a, b) => ((b[2] - b[0] + 1) * (b[3] - b[1] + 1) > (a[2] - a[0] + 1) * (a[3] - a[1] + 1) ? b : a));
+  const lx = (big[0] + big[2] + 1) / 2 * CELL, lz = (big[1] + big[3] + 1) / 2 * CELL;
+  const pl = new THREE.PointLight(r.wall, 30 * r.light, 70, 1.4);
+  pl.position.set(lx, (r.h || WALL_H) * 0.85, lz); walkScene.add(pl);
+  r.centre = [lx, lz];
+}
+// A gate sits in a one-cell corridor; find its axis and which neighbour is the room it leads out of.
+for (const g of GATES) {
+  const [x, z] = g.gate;
+  g.alongX = cellRoom.has(key(x - 1, z)) && cellRoom.has(key(x + 1, z));
+  const ns = g.alongX ? [[x - 1, z], [x + 1, z]] : [[x, z - 1], [x, z + 1]];
+  g.fromCell = ns.find(c => { const r = roomAtCell(...c); return r && r.station === g.from; });
+  g.fromRoom = roomAtCell(...g.fromCell);
+  floorPlane(x, z, x, z, '#2a2620');
+}
+
+// Walls: instanced boxes on every floor-cell edge that faces solid ground.
+{
+  const segs = [];
+  for (const [k, rid] of cellRoom) {
+    const [x, z] = k.split(',').map(Number);
+    const room = rid.startsWith('gate:') ? gateAt.get(k).fromRoom : R[rid];
+    for (const [dx, dz] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+      if (cellRoom.has(key(x + dx, z + dz))) continue;
+      segs.push({ x, z, dx, dz, h: room.h || WALL_H, color: room.wall });
+    }
+  }
+  const geo = new THREE.BoxGeometry(1, 1, 1);
+  const mat = new THREE.MeshLambertMaterial({ color: '#ffffff' });
+  const inst = new THREE.InstancedMesh(geo, mat, segs.length);
+  const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), col = new THREE.Color();
+  segs.forEach((s, i) => {
+    const px = (s.x + 0.5 + s.dx * 0.5) * CELL, pz = (s.z + 0.5 + s.dz * 0.5) * CELL;
+    const sx = s.dx ? 0.3 : CELL + 0.3, sz = s.dx ? CELL + 0.3 : 0.3;
+    m4.compose(new THREE.Vector3(px, s.h / 2, pz), q, new THREE.Vector3(sx, s.h, sz));
+    inst.setMatrixAt(i, m4); inst.setColorAt(i, col.set(s.color));
+  });
+  walkScene.add(inst);
+}
+
+// Room titles float in the air of each room, fading as you come beneath them.
+const titles = [];
+for (const s of STATIONS) {
+  if (s.id === 'intro' || s.id === 'reason') continue;   // these have their own inscriptions
+  const r = ROOMS.find(r => r.station === s.id && !['alcove', 'fear', 'lordpass', 'ring', 'inverted'].includes(r.id));
+  if (!r) continue;
+  const sp = textSprite({ w: 1024, h: 300, blocks: [
+    { text: (s.num ? s.num + ' · ' : '') + s.sub.toUpperCase(), font: '700 34px "Space Mono"', color: 'rgba(255,255,255,.65)', spacing: '4px', gap: 10, wrap: false },
+    { text: s.title, font: '600 92px "Cormorant Garamond"', color: '#ffffff' }
+  ] }, 9);
+  sp.position.set(r.centre[0], (r.h || WALL_H) + 2.2, r.centre[1]);
+  walkScene.add(sp); titles.push(sp);
+}
+
+/* ── steles (moments) ────────────────────────────────── */
+const steles = [];   // { m, x, z, top, ring, label }
+const zones = [];    // { m, rect, glyph }
+for (const m of MOMENTS) {
+  const col = stationColor(m.station);
+  if (m.at) {
+    const [x, z] = centre(...m.at);
+    const g = new THREE.Group(); g.position.set(x, 0, z);
+    const pillar = new THREE.Mesh(new THREE.BoxGeometry(0.62, 1.25, 0.62), new THREE.MeshLambertMaterial({ color: '#1c1c22' }));
+    pillar.position.y = 0.625; g.add(pillar);
+    const top = new THREE.Mesh(new THREE.BoxGeometry(0.72, 0.09, 0.72), new THREE.MeshBasicMaterial({ color: col }));
+    top.position.y = 1.3; g.add(top);
+    const ring = new THREE.Mesh(new THREE.RingGeometry(0.95, 1.08, 40), new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: 0.6, side: THREE.DoubleSide }));
+    ring.rotation.x = -Math.PI / 2; ring.position.y = 0.02; g.add(ring);
+    const glow = glowSprite(col, 1.6, 0.6); glow.position.y = 1.45; g.add(glow);
+    const label = textSprite({ w: 1024, h: 220, blocks: [
+      { text: m.title, font: '600 80px "Cormorant Garamond"', color: '#ffffff' },
+      { text: m.de.length > 46 ? m.de.slice(0, 44).trim() + ' …' : m.de, font: 'italic 400 44px "Cormorant Garamond"', color: 'rgba(255,255,255,.7)' }
+    ] }, 3.4);
+    label.position.y = 2.35; g.add(label);
+    if (m.station === 'force' && m.id === 'f6') label.material.map = textTexture({ w: 1024, h: 220, mirror: true, blocks: [
+      { text: m.title, font: '600 80px "Cormorant Garamond"', color: '#ffffff' },
+      { text: m.de, font: 'italic 400 44px "Cormorant Garamond"', color: 'rgba(255,255,255,.7)' }] });
+    walkScene.add(g);
+    steles.push({ m, x, z, top, ring, glow, col });
+  } else if (m.zone) {
+    const [x0, z0, x1, z1] = m.zone;
+    const w = (x1 - x0 + 1) * CELL, d = (z1 - z0 + 1) * CELL;
+    const glyph = new THREE.Mesh(new THREE.PlaneGeometry(w - 0.4, d - 0.4), new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: 0.12 }));
+    glyph.rotation.x = -Math.PI / 2; glyph.position.set(x0 * CELL + w / 2, 0.03, z0 * CELL + d / 2);
+    walkScene.add(glyph);
+    zones.push({ m, rect: m.zone, glyph, col });
+  }
+}
+function refreshSteles() {
+  for (const s of steles) {
+    const v = state.visited.has(s.m.id);
+    s.top.material.color.set(v ? '#ffe2a0' : s.col);
+    s.ring.material.color.set(v ? '#e8c26a' : s.col);
+    s.ring.material.opacity = v ? 0.9 : 0.45;
+    s.glow.material.opacity = v ? 0.95 : 0.45;
+  }
+  for (const z of zones) z.glyph.material.opacity = state.visited.has(z.m.id) ? 0.22 : 0.1;
+}
+
+/* ── gates (transitions) ─────────────────────────────── */
+function gateTexture(g, open, back) {
+  const from = S[g.from], to = S[g.to];
+  const left = from.moments.length - stationProgress(g.from);
+  const title = back ? `${to.title}  ←  ${from.title}` : `${from.title}  →  ${to.title}`;
+  return textTexture({ w: 720, h: 1008, valign: 'middle',
+    bg: open ? 'rgba(40,30,8,.30)' : (g.curtain ? 'rgba(70,6,14,.92)' : 'rgba(26,8,10,.90)'),
+    border: open ? 'rgba(232,194,106,.9)' : 'rgba(230,57,70,.75)',
+    blocks: [
+      { text: open ? 'PASSAGE OPEN' : 'CONTRADICTION UNRESOLVED', font: '700 30px "Space Mono"', color: open ? '#e8c26a' : '#ff8f96', spacing: '3px', gap: 26, wrap: false },
+      { text: title, font: '600 64px "Cormorant Garamond"', color: '#ffffff', gap: 28 },
+      { text: g.logic, font: '400 34px "Inter"', color: 'rgba(255,255,255,.82)', lh: 48, gap: 30 },
+      { text: open ? 'walk through' : (state.forced.has(g.id) ? '' : `${left} moment${left === 1 ? '' : 's'} of ${from.title.toLowerCase()} still to experience`), font: 'italic 500 38px "Cormorant Garamond"', color: open ? '#e8c26a' : '#ffb3b8' }
+    ] });
+}
+const gateSig = g => gateOpen(g) + ':' + stationProgress(g.from) + ':' + state.forced.has(g.id);
+const gateObjs = [];
+for (const g of GATES) {
+  const [x, z] = centre(...g.gate);
+  const grp = new THREE.Group(); grp.position.set(x, 0, z);
+  if (g.alongX) grp.rotation.y = Math.PI / 2;
+  // A plane's front faces local +z, which is world +x once turned for an x-axis corridor.
+  const frontFacesFrom = g.alongX ? g.fromCell[0] > g.gate[0] : g.fromCell[1] > g.gate[1];
+  const geo = g.curtain ? new THREE.PlaneGeometry(CELL * 0.98, WALL_H * 0.98, 24, 12) : new THREE.PlaneGeometry(CELL * 0.98, WALL_H * 0.98);
+  const mk = back => new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: gateTexture(g, gateOpen(g), back), transparent: true, side: THREE.FrontSide, depthWrite: false }));
+  const front = mk(!frontFacesFrom), rear = mk(frontFacesFrom);
+  front.position.y = rear.position.y = WALL_H * 0.49;
+  rear.rotation.y = Math.PI;
+  grp.add(front, rear);
+  const post = new THREE.MeshLambertMaterial({ color: '#2b2722' });
+  for (const sx of [-1, 1]) { const p = new THREE.Mesh(new THREE.BoxGeometry(0.25, WALL_H + 0.2, 0.5), post); p.position.set(sx * CELL / 2, (WALL_H + 0.2) / 2, 0); grp.add(p); }
+  const lintel = new THREE.Mesh(new THREE.BoxGeometry(CELL + 0.5, 0.3, 0.5), new THREE.MeshBasicMaterial({ color: gateOpen(g) ? '#e8c26a' : '#e63946' }));
+  lintel.position.y = WALL_H + 0.2; grp.add(lintel);
+  walkScene.add(grp);
+  const o = { g, grp, front, rear, lintel, open: gateOpen(g), frontFacesFrom, sig: gateSig(g), base: geo.attributes.position.array.slice() };
+  gateObjs.push(o);
+}
+function refreshGates(announce) {
+  for (const o of gateObjs) {
+    const open = gateOpen(o.g);
+    if (o.sig === gateSig(o.g)) continue;
+    o.sig = gateSig(o.g);
+    o.front.material.map.dispose(); o.rear.material.map.dispose();
+    o.front.material.map = gateTexture(o.g, open, !o.frontFacesFrom);
+    o.rear.material.map = gateTexture(o.g, open, o.frontFacesFrom);
+    o.front.material.opacity = o.rear.material.opacity = open ? (o.g.curtain ? 0.75 : 0.55) : 1;
+    o.lintel.material.color.set(open ? '#e8c26a' : '#e63946');
+    if (announce && open && !o.open) toast('A passage opens', `${S[o.g.from].title} → ${S[o.g.to].title}`);
+    o.open = open;
+  }
+}
+
+/* ── set pieces: the logic made spatial ──────────────── */
+const updaters = [];
+const P = (x, z) => centre(x, z);
+const lamb = c => new THREE.MeshLambertMaterial({ color: c });
+const basic = c => new THREE.MeshBasicMaterial({ color: c });
+
+function tree(x, z, s = 1) {
+  const g = new THREE.Group(); g.position.set(x, 0, z);
+  const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.18 * s, 0.26 * s, 2.2 * s, 10), lamb('#5a4630')); trunk.position.y = 1.1 * s; g.add(trunk);
+  const crown = new THREE.Mesh(new THREE.IcosahedronGeometry(1.25 * s, 1), lamb('#4f7a42')); crown.position.y = 2.9 * s; g.add(crown);
+  return g;
+}
+function house(x, z, s = 1) {
+  const g = new THREE.Group(); g.position.set(x, 0, z);
+  const body = new THREE.Mesh(new THREE.BoxGeometry(2.4 * s, 1.8 * s, 2 * s), lamb('#b9876a')); body.position.y = 0.9 * s; g.add(body);
+  const roof = new THREE.Mesh(new THREE.ConeGeometry(1.95 * s, 1.2 * s, 4), lamb('#6b3a2e')); roof.position.y = 2.4 * s; roof.rotation.y = Math.PI / 4; g.add(roof);
+  const door = new THREE.Mesh(new THREE.BoxGeometry(0.5 * s, 0.9 * s, 0.05), lamb('#3a2a20')); door.position.set(0, 0.45 * s, 1.01 * s); g.add(door);
+  return g;
+}
+function figure(color, emissive = 0.4) {
+  const g = new THREE.Group();
+  const m = new THREE.MeshLambertMaterial({ color, emissive: color, emissiveIntensity: emissive });
+  const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.32, 0.9, 6, 12), m); body.position.y = 0.95; g.add(body);
+  const head = new THREE.Mesh(new THREE.SphereGeometry(0.24, 16, 10), m); head.position.y = 1.72; g.add(head);
+  const visor = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.07, 0.08), basic('#ffffff')); visor.position.set(0, 1.75, -0.22); g.add(visor);
+  return g;
+}
+
+// I. Sense-certainty: here a tree; turn around, here a house.
+{ const [tx, tz] = P(12, 4); walkScene.add(tree(tx, tz, 1.1));
+  const [hx, hz] = P(12, 12); const h = house(hx, hz, 1.1); h.rotation.y = Math.PI; walkScene.add(h); }
+
+// II. Perception: the salt, white and also tart and also cubical.
+{
+  const [x, z] = P(26, 8);
+  const salt = new THREE.Mesh(new THREE.BoxGeometry(1.4, 1.4, 1.4), new THREE.MeshLambertMaterial({ color: '#f5f7fa', emissive: '#a8c0d8', emissiveIntensity: 0.25 }));
+  salt.position.set(x, 1.6, z); walkScene.add(salt);
+  const props = ['white', 'tart', 'cubical', 'heavy'].map((p, i) => {
+    const s = textSprite({ w: 512, h: 160, blocks: [{ text: 'also ' + p, font: 'italic 500 70px "Cormorant Garamond"', color: '#eaf2ff' }] }, 1.9);
+    walkScene.add(s); return s;
+  });
+  const one = textSprite({ w: 512, h: 160, blocks: [{ text: 'One', font: '700 64px "Space Mono"', color: '#ffffff' }] }, 1.4);
+  one.position.set(x, 3.0, z); walkScene.add(one);
+  updaters.push(t => {
+    salt.rotation.y = t * 0.4; salt.rotation.x = Math.sin(t * 0.3) * 0.3;
+    props.forEach((s, i) => { const a = t * 0.5 + i * Math.PI / 2; s.position.set(x + Math.cos(a) * 2.2, 1.6 + Math.sin(t + i) * 0.25, z + Math.sin(a) * 2.2); });
+    one.material.opacity = 0.5 + 0.5 * Math.sin(t * 1.3);
+    props.forEach(s => s.material.opacity = 0.5 - 0.5 * Math.sin(t * 1.3) + 0.3);
+  });
+  const sign = (cxl, czl, text, sub) => {
+    const s = textSprite({ w: 1024, h: 260, blocks: [{ text, font: '600 62px "Cormorant Garamond"', color: '#ffffff', gap: 6 }, { text: sub, font: 'italic 400 42px "Cormorant Garamond"', color: 'rgba(255,255,255,.7)' }] }, 4.4);
+    const [sx, sz] = P(cxl, czl); s.position.set(sx, 3.2, sz); walkScene.add(s);
+  };
+  sign(23, 0, 'The thing is One', 'the diversity is in me');
+  sign(29, 0, 'I am the One', 'the thing is the Also');
+}
+
+// III. Force: two forces soliciting each other; the calm grid of law.
+{
+  const [x, z] = P(40, 8);
+  const a = new THREE.Mesh(new THREE.SphereGeometry(0.6, 24, 16), new THREE.MeshBasicMaterial({ color: '#9fb4ff' }));
+  const b = new THREE.Mesh(new THREE.SphereGeometry(0.6, 24, 16), new THREE.MeshBasicMaterial({ color: '#c79fff' }));
+  const ga = glowSprite('#7f9cff', 3), gb = glowSprite('#b48cff', 3);
+  a.add(ga); b.add(gb); walkScene.add(a, b);
+  const spark = glowSprite('#ffffff', 1.0); walkScene.add(spark);
+  updaters.push(t => {
+    const ph = Math.sin(t * 1.6);
+    a.position.set(x - 1.6, 1.8, z); b.position.set(x + 1.6, 1.8, z);
+    a.scale.setScalar(1 + 0.35 * ph); b.scale.setScalar(1 - 0.35 * ph);
+    spark.position.set(x + 1.6 * Math.cos(t * 1.6), 1.8 + Math.abs(Math.sin(t * 1.6)) * 0.6, z);
+  });
+  const [lx, lz] = P(45, 8);
+  const grid = new THREE.GridHelper(4.5, 9, '#c9d4ff', '#5c6bb0'); grid.position.set(lx - 2.2, 3.4, lz);
+  grid.material.transparent = true; grid.material.opacity = 0.7; walkScene.add(grid);
+  const law = textSprite({ w: 1024, h: 160, blocks: [{ text: 's = ½ g t²', font: 'italic 500 84px "Cormorant Garamond"', color: '#dfe6ff' }] }, 3.2);
+  law.position.set(lx - 2.2, 3.9, lz); walkScene.add(law);
+  // The inverted world hangs from its ceiling.
+  const [ix, iz] = P(41, -4);
+  const it = tree(0, 0, 0.9); it.position.set(ix - 4, WALL_H, iz); it.rotation.z = Math.PI; walkScene.add(it);
+  const ih = house(0, 0, 0.9); ih.position.set(ix + 4, WALL_H, iz); ih.rotation.z = Math.PI; walkScene.add(ih);
+  const inv = textSprite({ w: 1024, h: 200, mirror: true, blocks: [{ text: 'what is sweet here is sour there', font: 'italic 500 62px "Cormorant Garamond"', color: '#3a1a06' }] }, 6);
+  inv.position.set(ix, WALL_H - 0.8, iz + 3); walkScene.add(inv);
+}
+
+// The curtain, and what is behind it.
+{
+  const [x, z] = P(51, 8);
+  const s = textSprite({ w: 1024, h: 300, blocks: [{ text: 'nothing to see', font: 'italic 500 78px "Cormorant Garamond"', color: '#ffd9dc', gap: 8 }, { text: 'unless we ourselves go behind it', font: 'italic 400 54px "Cormorant Garamond"', color: 'rgba(255,217,220,.7)' }] }, 5);
+  s.position.set(x, 3.3, z); walkScene.add(s);
+  const curtain = gateObjs.find(o => o.g.curtain);
+  updaters.push(t => {
+    for (const mesh of [curtain.front, curtain.rear]) {
+      const pos = mesh.geometry.attributes.position;
+      for (let i = 0; i < pos.count; i++) {
+        const bx = curtain.base[i * 3], by = curtain.base[i * 3 + 1];
+        pos.setZ(i, Math.sin(bx * 3 + t * 1.4) * 0.12 + Math.sin(by * 2 + t) * 0.05);
+      }
+      pos.needsUpdate = true;
+    }
+  });
+}
+
+// IV. Life, and the objects of desire.
+const orbs = [];
+{
+  const n = 500, pos = new Float32Array(n * 3), seeds = [];
+  const [x0, z0] = [45 * CELL, 20 * CELL];
+  for (let i = 0; i < n; i++) { seeds.push([Math.random() * 11 * CELL, Math.random() * 3.6 + 0.2, Math.random() * 11 * CELL, Math.random() * 6]); }
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  const pts = new THREE.Points(g, new THREE.PointsMaterial({ color: '#9fe3a8', map: GLOW, size: 0.28, transparent: true, opacity: 0.85, blending: THREE.AdditiveBlending, depthWrite: false }));
+  walkScene.add(pts);
+  updaters.push(t => {
+    for (let i = 0; i < n; i++) { const s = seeds[i]; pos.set([x0 + s[0] + Math.sin(t * 0.3 + s[3]) * 1.2, s[1] + Math.sin(t * 0.7 + s[3]) * 0.3, z0 + s[2] + Math.cos(t * 0.25 + s[3]) * 1.2], i * 3); }
+    g.attributes.position.needsUpdate = true;
+  });
+  for (let i = 0; i < 6; i++) {
+    const o = new THREE.Mesh(new THREE.IcosahedronGeometry(0.32, 1), new THREE.MeshBasicMaterial({ color: '#c6ff9e' }));
+    o.add(glowSprite('#b8ff8a', 1.8, 0.8)); walkScene.add(o);
+    const orb = { o, home: null, gone: 0, seed: Math.random() * 6 };
+    placeOrb(orb); orbs.push(orb);
+  }
+}
+function placeOrb(orb) {
+  orb.home = [(45 + 1.5 + Math.random() * 8) * CELL, (20 + 1.5 + Math.random() * 8) * CELL];
+}
+
+// IV.A Recognition: your double across the line.
+const double = figure('#d8d8e6', 0.35); walkScene.add(double);
+{
+  const xm = 37.5 * CELL;
+  const line = new THREE.Mesh(new THREE.PlaneGeometry(0.12, 9 * CELL), basic('#ffffff'));
+  line.rotation.x = -Math.PI / 2; line.position.set(xm, 0.04, 25.5 * CELL); walkScene.add(line);
+  const arch = new THREE.Mesh(new THREE.TorusGeometry(2.2, 0.06, 8, 64, Math.PI), basic('#ffffff'));
+  arch.position.set(xm, 0, 25.5 * CELL); arch.rotation.y = Math.PI / 2; walkScene.add(arch);
+}
+// Struggle: two figures, lunging.
+const fighters = [figure('#ff6a6a', 0.5), figure('#ff6a6a', 0.5)];
+fighters.forEach(f => walkScene.add(f));
+{
+  const [x, z] = P(26, 25);
+  updaters.push(t => {
+    const d = 1.1 + Math.abs(Math.sin(t * 2.2)) * 0.9;
+    fighters[0].position.set(x - d, 0, z); fighters[0].rotation.y = -Math.PI / 2;
+    fighters[1].position.set(x + d, 0, z); fighters[1].rotation.y = Math.PI / 2;
+  });
+}
+// Lordship: a throne at the end of the hall, and one way out.
+{
+  const [x, z] = P(10, 20);
+  const gold = new THREE.MeshLambertMaterial({ color: '#d9b45a', emissive: '#6b4f12', emissiveIntensity: 0.6 });
+  const seat = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.8, 1.2), gold); seat.position.set(x + 0.3, 0.4, z); walkScene.add(seat);
+  const back = new THREE.Mesh(new THREE.BoxGeometry(0.25, 2.8, 1.4), gold); back.position.set(x - 0.3, 1.4, z); walkScene.add(back);
+  const s = textSprite({ w: 1024, h: 260, blocks: [{ text: 'the only way on', font: 'italic 500 70px "Cormorant Garamond"', color: '#e8d4ff', gap: 6 }, { text: '↓  into the workshop', font: '700 40px "Space Mono"', color: 'rgba(232,212,255,.75)' }] }, 4);
+  const [px, pz] = P(12, 23); s.position.set(px, 3.4, pz); walkScene.add(s);
+}
+// Bondage: the work that forms. Scattered blocks become an arch once the work is done.
+const work = { blocks: [], k: 0 };
+{
+  const [cxw, czw] = P(10, 31);
+  const targets = [];
+  for (let i = 0; i < 4; i++) { targets.push([cxw - 1.5, 0.35 + i * 0.7, czw]); targets.push([cxw + 1.5, 0.35 + i * 0.7, czw]); }
+  for (let i = -1; i <= 1; i++) targets.push([cxw + i * 1.0, 0.35 + 4 * 0.7, czw]);
+  const mat = new THREE.MeshLambertMaterial({ color: '#d0a46a', emissive: '#3a2410', emissiveIntensity: 0.5 });
+  targets.forEach((tg, i) => {
+    const b = new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.66, 0.9), mat);
+    const a = i * 2.4;
+    const scat = [cxw + Math.cos(a) * (2 + i % 3), 0.33, czw + Math.sin(a) * 1.6 - 1];
+    b.rotation.y = a; walkScene.add(b);
+    work.blocks.push({ b, scat, tg, rot: a });
+  });
+}
+// IV.B Stoicism: an inner court of columns.
+{
+  const [x, z] = P(12, 41);
+  for (let i = 0; i < 8; i++) {
+    const a = i / 8 * Math.PI * 2;
+    const c = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.38, 5.4, 16), lamb('#e9e4d6'));
+    c.position.set(x + Math.cos(a) * 6, 2.7, z + Math.sin(a) * 6); walkScene.add(c);
+  }
+}
+// Skepticism: whatever is set up vanishes; whatever is asserted is denied.
+const flicker = [];
+{
+  for (let i = 0; i < 26; i++) {
+    const x = (20 + Math.random() * 9) * CELL, z = (37 + Math.random() * 9) * CELL, h = 0.6 + Math.random() * 3;
+    const b = new THREE.Mesh(new THREE.BoxGeometry(0.7 + Math.random(), h, 0.7 + Math.random()), new THREE.MeshLambertMaterial({ color: '#8c8ca8', transparent: true, opacity: 0.55 }));
+    b.position.set(x, h / 2, z); walkScene.add(b); flicker.push({ b, phase: Math.random() * 10, rate: 0.6 + Math.random() * 1.8 });
+  }
+  const words = [['it is', 'it is not'], ['same', 'different'], ['this', 'not this']].map((pair, i) => {
+    const sp = pair.map(t => textSprite({ w: 768, h: 180, blocks: [{ text: t, font: 'italic 500 84px "Cormorant Garamond"', color: '#e6e6ff' }] }, 2.6));
+    const [x, z] = P(21 + i * 3, 41 + (i % 2 ? -2 : 2)); sp.forEach(s => { s.position.set(x, 3.2, z); walkScene.add(s); });
+    return sp;
+  });
+  updaters.push(t => {
+    for (const f of flicker) f.b.visible = Math.sin(t * f.rate + f.phase) > -0.2;
+    words.forEach(([a, b], i) => { const on = Math.sin(t * 1.7 + i) > 0; a.visible = on; b.visible = !on; });
+  });
+}
+// The Unhappy Consciousness: the Unchangeable recedes until the self surrenders.
+const unchangeable = new THREE.Group();
+{
+  const core = new THREE.Mesh(new THREE.SphereGeometry(0.7, 32, 16), basic('#fff1c4'));
+  unchangeable.add(core, glowSprite('#ffd27a', 7, 0.9));
+  const l = new THREE.PointLight('#ffd27a', 40, 40, 1.4); unchangeable.add(l);
+  unchangeable.position.set(55 * CELL, 6, 41.5 * CELL);
+  walkScene.add(unchangeable);
+}
+// Reason: the golden room.
+{
+  const [x, z] = P(59, 41);
+  const s = textSprite({ w: 1024, h: 360, blocks: [
+    { text: 'V · REASON', font: '700 36px "Space Mono"', color: 'rgba(60,40,0,.8)', spacing: '5px', gap: 10, wrap: false },
+    { text: 'die Gewißheit, alle Realität zu sein', font: 'italic 500 66px "Cormorant Garamond"', color: '#3a2800', gap: 6 },
+    { text: 'the certainty of being all reality', font: '400 36px "Inter"', color: 'rgba(60,40,0,.75)' }] }, 6);
+  s.position.set(x, 2.6, z); walkScene.add(s);
+}
+// Threshold: the title of the whole.
+{
+  const [x, z] = P(2, 8);
+  const s = textSprite({ w: 1024, h: 360, blocks: [
+    { text: 'INTRODUCTION', font: '700 34px "Space Mono"', color: 'rgba(255,255,255,.6)', spacing: '5px', gap: 10, wrap: false },
+    { text: 'the path of despair', font: 'italic 500 84px "Cormorant Garamond"', color: '#ffffff', gap: 8 },
+    { text: 'walk east to begin', font: '400 34px "Inter"', color: 'rgba(255,255,255,.6)' }] }, 6.5);
+  s.position.set(x + 3, 4.4, z); walkScene.add(s);
+}
+
+/* ── player, input, movement ─────────────────────────── */
+const player = { x: 0, z: 0, yaw: 0, pitch: 0, roll: 0, shake: 0 };
+function placeAt(id) {
+  const [cxs, czs, yaw] = S[id].spawn;
+  [player.x, player.z] = centre(cxs, czs); player.yaw = yaw; player.pitch = 0;
+}
+if (state.pos) { [player.x, player.z, player.yaw] = state.pos; } else placeAt('intro');
+
+const keys = new Set();
+addEventListener('keydown', e => {
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  const k = e.key.toLowerCase();
+  if (k === 'm') { setMode(mode === 'map' ? 'walk' : 'map'); return; }
+  if (k === 'escape') { closeOverlays(); return; }
+  if (mode !== 'walk') return;
+  if (k === 'g') { toggleGuide(); return; }
+  if (['w', 'a', 's', 'd', 'q', 'e', 'arrowup', 'arrowdown', 'arrowleft', 'arrowright', 'shift'].includes(k)) {
+    keys.add(k); if (guide) stopGuide(); e.preventDefault();
+  }
+});
+addEventListener('keyup', e => keys.delete(e.key.toLowerCase()));
+addEventListener('blur', () => keys.clear());
+
+// Look: drag with mouse or a finger on the right; joystick for movement on touch.
+let look = null; const joy = { id: null, x: 0, y: 0, ox: 0, oy: 0 };
+renderer.domElement.addEventListener('pointerdown', e => {
+  if (mode !== 'walk') return;
+  renderer.domElement.setPointerCapture(e.pointerId);
+  look = { id: e.pointerId, x: e.clientX, y: e.clientY };
+});
+renderer.domElement.addEventListener('pointermove', e => {
+  if (mode !== 'walk' || !look || e.pointerId !== look.id) return;
+  const dx = e.clientX - look.x, dy = e.clientY - look.y; look.x = e.clientX; look.y = e.clientY;
+  const inv = Math.cos(player.roll) < 0 ? -1 : 1;
+  player.yaw -= dx * 0.0042 * inv; player.pitch = THREE.MathUtils.clamp(player.pitch - dy * 0.0036 * inv, -1.2, 1.2);
+  if (guide && Math.abs(dx) > 2) stopGuide();
+});
+const endLook = e => { if (look && e.pointerId === look.id) look = null; };
+renderer.domElement.addEventListener('pointerup', endLook);
+renderer.domElement.addEventListener('pointercancel', endLook);
+{
+  const pad = $('#joy'), knob = pad.querySelector('.knob');
+  pad.addEventListener('pointerdown', e => { pad.setPointerCapture(e.pointerId); joy.id = e.pointerId; const r = pad.getBoundingClientRect(); joy.ox = r.left + r.width / 2; joy.oy = r.top + r.height / 2; moveJoy(e); if (guide) stopGuide(); });
+  pad.addEventListener('pointermove', e => { if (e.pointerId === joy.id) moveJoy(e); });
+  const end = e => { if (e.pointerId !== joy.id) return; joy.id = null; joy.x = joy.y = 0; knob.style.transform = ''; };
+  pad.addEventListener('pointerup', end); pad.addEventListener('pointercancel', end);
+  function moveJoy(e) {
+    let dx = e.clientX - joy.ox, dy = e.clientY - joy.oy; const d = Math.hypot(dx, dy), max = 46;
+    if (d > max) { dx *= max / d; dy *= max / d; }
+    joy.x = dx / max; joy.y = dy / max; knob.style.transform = `translate(${dx}px, ${dy}px)`;
+  }
+}
+if (matchMedia('(pointer: coarse)').matches) document.body.classList.add('touch');
+
+function cellFree(x, z) {
+  const k = key(x, z);
+  if (!cellRoom.has(k)) return false;
+  const g = gateAt.get(k); return !g || gateOpen(g);
+}
+function free(x, z) {
+  for (const [ox, oz] of [[-PR, -PR], [PR, -PR], [-PR, PR], [PR, PR]])
+    if (!cellFree(cx(x + ox), cx(z + oz))) return false;
+  return true;
+}
+function moveBy(dx, dz) {
+  if (free(player.x + dx, player.z)) player.x += dx;
+  if (free(player.x, player.z + dz)) player.z += dz;
+  for (const s of steles) {
+    const ddx = player.x - s.x, ddz = player.z - s.z, d = Math.hypot(ddx, ddz), min = 0.85;
+    if (d < min && d > 1e-4) { const nx = s.x + ddx / d * min, nz = s.z + ddz / d * min; if (free(nx, nz)) { player.x = nx; player.z = nz; } }
+  }
+}
+
+/* ── guide: breadth-first path to the next unread moment ─ */
+let guide = null;
+const steleCells = new Set(MOMENTS.filter(m => m.at).map(m => key(...m.at)));
+function guideTarget() {
+  for (const m of MOMENTS) if (!state.visited.has(m.id)) {
+    const c = m.at || [Math.round((m.zone[0] + m.zone[2]) / 2), Math.round((m.zone[1] + m.zone[3]) / 2)];
+    const path = bfs([cx(player.x), cx(player.z)], c);
+    if (path) return { m, path };
+  }
+  const path = bfs([cx(player.x), cx(player.z)], [59, 41]);
+  return path ? { m: null, path } : null;
+}
+function bfs(from, to) {
+  const start = key(...from), goal = key(...to); const prev = new Map([[start, null]]); const q = [from];
+  while (q.length) {
+    const [x, z] = q.shift(); const k = key(x, z);
+    if (k === goal) { const out = []; let c = k; while (c) { out.unshift(c.split(',').map(Number)); c = prev.get(c); } return out; }
+    for (const [dx, dz] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+      const nk = key(x + dx, z + dz);
+      if (!prev.has(nk) && cellFree(x + dx, z + dz) && (nk === goal || !steleCells.has(nk))) { prev.set(nk, k); q.push([x + dx, z + dz]); }
+    }
+  }
+  return null;
+}
+function toggleGuide() { guide ? stopGuide() : startGuide(); }
+function startGuide() {
+  const tgt = guideTarget(); if (!tgt) return;
+  guide = { ...tgt, i: 1 }; $('#btn-guide').classList.add('on');
+  toast('Guide', tgt.m ? `to “${tgt.m.title}” · ${S[tgt.m.station].title}` : 'to Reason');
+}
+function stopGuide() { guide = null; $('#btn-guide').classList.remove('on'); }
+function stepGuide(dt) {
+  if (!guide) return [0, 0];
+  const end = guide.m && guide.m.at ? centre(...guide.m.at) : null;
+  if (end && Math.hypot(player.x - end[0], player.z - end[1]) < 1.7) { stopGuide(); return [0, 0]; }
+  if (guide.i >= guide.path.length) { stopGuide(); return [0, 0]; }
+  const [wx, wz] = centre(...guide.path[guide.i]);
+  const dx = wx - player.x, dz = wz - player.z;
+  if (Math.hypot(dx, dz) < 0.7) { guide.i++; return [0, 0]; }
+  const want = Math.atan2(-dx, -dz);
+  let diff = ((want - player.yaw + Math.PI) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2) - Math.PI;
+  player.yaw += THREE.MathUtils.clamp(diff, -dt * 3.2, dt * 3.2);
+  player.pitch *= 0.92;
+  return [Math.abs(diff) < 0.8 ? 1 : 0.15, 0];
+}
+
+/* ── per-frame walk logic ────────────────────────────── */
+let currentRoom = null, currentStation = null, focusKey = null;
+const fogCol = new THREE.Color('#0c0c0e'), tmpCol = new THREE.Color();
+
+function walkFrame(t, dt) {
+  // movement intent
+  let fwd = 0, side = 0, turn = 0;
+  if (keys.has('w') || keys.has('arrowup')) fwd += 1;
+  if (keys.has('s') || keys.has('arrowdown')) fwd -= 1;
+  if (keys.has('a')) side -= 1;
+  if (keys.has('d')) side += 1;
+  if (keys.has('arrowleft') || keys.has('q')) turn += 1;
+  if (keys.has('arrowright') || keys.has('e')) turn -= 1;
+  if (joy.id !== null) { fwd -= joy.y; side += joy.x * 0.8; }
+  const [gf] = stepGuide(dt); fwd += gf;
+  const inv = Math.cos(player.roll) < 0 ? -1 : 1;   // the inverted world swaps left and right
+  player.yaw += turn * dt * 2.2 * inv;
+  const run = keys.has('shift') ? 1.8 : 1;
+  const sp = 4.6 * run * dt;
+  const sx = -Math.sin(player.yaw), sz = -Math.cos(player.yaw);
+  side *= inv;
+  const mx = (sx * fwd + -sz * side), mz = (sz * fwd + sx * side);
+  const len = Math.hypot(mx, mz);
+  if (len > 0) moveBy(mx / Math.max(1, len) * sp, mz / Math.max(1, len) * sp);
+
+  // where am I?
+  const gx = cx(player.x), gz = cx(player.z);
+  const room = roomAtCell(gx, gz);
+  const gate = gateAt.get(key(gx, gz));
+  if (gate) {
+    const k = gate.from + '>' + gate.to;
+    if (!state.passed.has(k)) { state.passed.add(k); toast(`${S[gate.from].title} → ${S[gate.to].title}`, gate.short); refreshMap(); save(); }
+  }
+  if (room && room !== currentRoom) {
+    currentRoom = room;
+    if (room.station !== currentStation) {
+      currentStation = room.station;
+      if (!state.entered.has(room.station)) { state.entered.add(room.station); refreshMap(); save(); }
+      const s = S[room.station];
+      $('#where').textContent = (s.part !== '·' ? s.part + (s.num ? ' · ' + s.num : '') + ' — ' : '') + s.title;
+      if (room.station === 'reason') toast('You have reached Reason', stationsAllDone() ? 'every moment experienced' : 'the threshold of a new experience');
+    }
+  }
+
+  // moments by proximity
+  let near = null, nd = 2.3;
+  for (const s of steles) { const d = Math.hypot(player.x - s.x, player.z - s.z); if (d < nd) { nd = d; near = s.m; } }
+  for (const z of zones) { const [x0, z0, x1, z1] = z.rect; if (gx >= x0 && gx <= x1 && gz >= z0 && gz <= z1) near = z.m; }
+  if (near && !state.visited.has(near.id)) visit(near);
+
+  // what the card should show: a moment you stand at, else a gate you face, else the station
+  let nearGate = null;
+  for (const o of gateObjs) { const d = Math.hypot(player.x - o.grp.position.x, player.z - o.grp.position.z); if (d < 4.6) nearGate = o.g; }
+  const fk = near ? 'm:' + near.id : nearGate ? 'g:' + nearGate.id + ':' + gateOpen(nearGate) : currentStation ? 's:' + currentStation : null;
+  if (fk !== focusKey) {
+    focusKey = fk;
+    if (near) showMoment(near.id, 'walk'); else if (nearGate) showGate(nearGate); else if (currentStation) showStation(currentStation, 'walk');
+  }
+
+  // atmosphere
+  if (currentRoom) {
+    fogCol.lerp(tmpCol.set(currentRoom.fog), Math.min(1, dt * 2));
+    walkScene.fog.color.copy(fogCol);
+    hemi.intensity += (currentRoom.light * 1.05 - hemi.intensity) * Math.min(1, dt * 2);
+    walkScene.fog.density += ((currentRoom.dark ? 0.09 : currentRoom.id === 'unhappy' ? 0.02 : 0.026) - walkScene.fog.density) * Math.min(1, dt * 2);
+  }
+  const wantRoll = currentRoom && currentRoom.id === 'inverted' && gz < 2 ? Math.PI : 0;
+  player.roll += (wantRoll - player.roll) * Math.min(1, dt * 1.6);
+  player.shake += ((currentRoom && currentRoom.id === 'fear' ? 1 : 0) - player.shake) * Math.min(1, dt * 3);
+
+  walkCam.position.set(player.x + (Math.random() - 0.5) * 0.07 * player.shake, EYE + Math.sin(t * 7) * 0.012 * Math.min(1, len) + (Math.random() - 0.5) * 0.05 * player.shake, player.z);
+  walkCam.rotation.set(player.pitch, player.yaw, player.roll);
+
+  // recognition: the double mirrors you across the line
+  if (currentRoom && currentRoom.id === 'recognition') {
+    const xm = 37.5 * CELL; double.visible = true;
+    double.position.set(2 * xm - player.x, 0, player.z); double.rotation.y = -player.yaw;
+  } else { double.visible = true; double.position.set(35.5 * CELL, 0, 25.5 * CELL); double.rotation.y = -Math.PI / 2; }
+
+  // desire: consume what you touch; it comes back
+  for (const orb of orbs) {
+    if (orb.gone > 0) { orb.gone -= dt; orb.o.visible = false; if (orb.gone <= 0) placeOrb(orb); continue; }
+    orb.o.visible = true;
+    orb.o.position.set(orb.home[0] + Math.sin(t * 0.6 + orb.seed) * 1.4, 1.5 + Math.sin(t * 1.3 + orb.seed) * 0.35, orb.home[1] + Math.cos(t * 0.5 + orb.seed) * 1.4);
+    orb.o.rotation.y = t;
+    if (Math.hypot(player.x - orb.o.position.x, player.z - orb.o.position.z) < 1.1) {
+      orb.gone = 2.2; state.desire++; save();
+      toast('Consumed', state.desire === 1 ? 'and another appears' : `${state.desire} consumed · the object returns`);
+      if (focusKey === 'm:c4') showMoment('c4', 'walk');
+    }
+  }
+
+  // work forms
+  const target = state.visited.has('b3') ? 1 : 0;
+  work.k += (target - work.k) * Math.min(1, dt * 0.9);
+  for (const w of work.blocks) {
+    w.b.position.set(THREE.MathUtils.lerp(w.scat[0], w.tg[0], work.k), THREE.MathUtils.lerp(w.scat[1], w.tg[1], work.k) + Math.sin(work.k * Math.PI) * 1.2, THREE.MathUtils.lerp(w.scat[2], w.tg[2], work.k));
+    w.b.rotation.y = w.rot * (1 - work.k);
+  }
+
+  // the Unchangeable recedes
+  const u = S.unhappy.moments.every(m => state.visited.has(m.id));
+  const ux = u ? Math.min(player.x + 5, 55.5 * CELL) : Math.min(Math.max(player.x + 24, 44 * CELL), 55.6 * CELL);
+  unchangeable.position.x += (ux - unchangeable.position.x) * Math.min(1, dt * (u ? 0.8 : 2.5));
+  unchangeable.position.y = (u ? 2.6 : 6.5) + Math.sin(t * 0.9) * 0.3;
+
+  for (const f of updaters) f(t, dt);
+  for (const s of steles) s.glow.scale.setScalar(1.4 + Math.sin(t * 2 + s.x) * 0.15);
+  for (const sp of titles) sp.material.opacity = THREE.MathUtils.clamp((Math.hypot(player.x - sp.position.x, player.z - sp.position.z) - 9) / 10, 0, 1);
+}
+const stationsAllDone = () => MOMENTS.every(m => state.visited.has(m.id));
+
+function visit(m) {
+  state.visited.add(m.id);
+  if (m.id === 's1' && !state.nowStamp) state.nowStamp = Date.now();
+  save(); updateProgress(); refreshSteles(); refreshGates(true); refreshMap();
+}
+
+/* ── minimap ─────────────────────────────────────────── */
+const mm = $('#minimap'), mx = mm.getContext('2d');
+let mmBig = false;
+mm.addEventListener('click', () => { mmBig = !mmBig; sizeMinimap(); });
+function sizeMinimap() {
+  const small = innerWidth < 760;
+  const w = mmBig ? Math.min(innerWidth - 32, 560) : small ? 130 : 210;
+  const h = Math.round(w * 0.9);
+  mm.width = w * devicePixelRatio; mm.height = h * devicePixelRatio; mm.style.width = w + 'px'; mm.style.height = h + 'px';
+}
+function drawMinimap() {
+  const W = mm.width, H = mm.height; mx.clearRect(0, 0, W, H);
+  const minX = -1, maxX = 63, minZ = -8, maxZ = 47;
+  const sc = Math.min(W / (maxX - minX), H / (maxZ - minZ));
+  const ox = (W - (maxX - minX) * sc) / 2, oz = (H - (maxZ - minZ) * sc) / 2;
+  const X = x => ox + (x - minX) * sc, Z = z => oz + (z - minZ) * sc;
+  for (const [k, rid] of cellRoom) {
+    const [x, z] = k.split(',').map(Number);
+    if (rid.startsWith('gate:')) { const g = gateAt.get(k); mx.fillStyle = gateOpen(g) ? '#e8c26a' : '#e63946'; }
+    else { const r = R[rid]; mx.fillStyle = state.entered.has(r.station) ? r.wall : '#3a3a40'; mx.globalAlpha = state.entered.has(r.station) ? 0.75 : 0.5; }
+    mx.fillRect(X(x), Z(z), sc + 0.5, sc + 0.5); mx.globalAlpha = 1;
+  }
+  for (const s of steles) {
+    mx.fillStyle = state.visited.has(s.m.id) ? '#ffe2a0' : '#ffffff';
+    mx.beginPath(); mx.arc(X(s.x / CELL), Z(s.z / CELL), Math.max(1.6, sc * 0.32), 0, 7); mx.fill();
+  }
+  const px = X(player.x / CELL), pz = Z(player.z / CELL);
+  mx.save(); mx.translate(px, pz); mx.rotate(-player.yaw);
+  mx.fillStyle = '#ff4757'; mx.beginPath(); const a = Math.max(5, sc * 1.1);
+  mx.moveTo(0, -a); mx.lineTo(a * 0.6, a * 0.7); mx.lineTo(-a * 0.6, a * 0.7); mx.closePath(); mx.fill(); mx.restore();
+  if (guide) {
+    mx.strokeStyle = 'rgba(232,194,106,.8)'; mx.lineWidth = Math.max(1, sc * 0.3); mx.beginPath();
+    guide.path.slice(guide.i - 1).forEach(([x, z], i) => { const fx = X(x + 0.5), fz = Z(z + 0.5); i ? mx.lineTo(fx, fz) : mx.moveTo(fx, fz); }); mx.stroke();
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   CARDS
+   ════════════════════════════════════════════════════════════════ */
+
+let liveTimer = null;
+function setCard(html) { clearInterval(liveTimer); liveTimer = null; card.innerHTML = html; card.scrollTop = 0; wireCard(); }
+const dot = id => `<span class="dot" style="background:#${stationColor(id).getHexString()}"></span>`;
+const crumbFor = s => `${dot(s.id)}${s.part !== '·' ? 'Part ' + s.part + ' · ' : ''}${s.num ? s.num + ' · ' : ''}${esc(s.paras)}`;
+const fmtTime = d => new Date(d).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+function showStation(id, ctx) {
+  const s = S[id];
+  const out = TRANSITIONS.filter(t => t.from === id), inn = TRANSITIONS.filter(t => t.to === id);
+  const res = RESONANCES.filter(r => r.a === id || r.b === id);
+  const p = partOf(id);
+  setCard(`
+    <div class="crumb">${crumbFor(s)}</div>
+    <h2>${esc(s.title)}</h2><div class="sub">${esc(s.sub)}</div>
+    <p>${esc(s.summary)}</p>
+    ${s.moments.length ? `<h3>Moments · ${stationProgress(id)} of ${s.moments.length} experienced</h3>
+    <ul class="mlist">${s.moments.map(m => `<li class="${state.visited.has(m.id) ? 'done' : ''}" data-moment="${m.id}"><span class="tick">${state.visited.has(m.id) ? '✓' : '○'}</span><span>${esc(m.title)}</span></li>`).join('')}</ul>` : ''}
+    ${inn.map(t => `<div class="logic"><span class="arrow">${esc(S[t.from].title)} → here</span>${esc(t.logic)}</div>`).join('')}
+    ${out.map(t => `<div class="logic"><span class="arrow">here → ${esc(S[t.to].title)}</span>${esc(t.logic)}</div>`).join('')}
+    ${res.length ? `<h3>Resonances</h3><ul class="mlist">${res.map(r => `<li data-res="${RESONANCES.indexOf(r)}"><span class="tick">⇢</span><span>${esc(r.title)} · <em>${esc(S[r.a === id ? r.b : r.a].title)}</em></span></li>`).join('')}</ul>` : ''}
+    <div class="actions">
+      ${ctx === 'map' ? `<button class="btn primary" data-walk="${id}">Walk this station</button>` : `<button class="btn" data-mapsel="${id}">See it in the whole</button>`}
+      ${p ? `<button class="btn" data-part="${p.id}">Part ${p.id}: ${esc(p.title)}</button>` : ''}
+    </div>`);
+}
+function showMoment(mid, ctx) {
+  const m = M[mid], s = S[m.station];
+  let live = '';
+  if (m.live === 'now') live = `<div class="logic"><span class="arrow">your experiment</span>You wrote: <span class="live">Now is ${state.nowStamp ? fmtTime(state.nowStamp) : '…'}</span>.<br>Look again: it is now <span class="live" id="live-now">${fmtTime(Date.now())}</span>. The written truth has gone stale. What has held through every change is just <em>Now</em>, a universal.</div>`;
+  if (m.live === 'desire') live = `<div class="logic"><span class="arrow">your experiment</span>Objects consumed: <span class="live">${state.desire}</span>. Objects still standing in the room: <span class="live">6</span>. Desire produces the object again by consuming it.</div>`;
+  if (m.live === 'work') live = `<div class="logic"><span class="arrow">your experiment</span>Desire consumed the lights and was left with nothing. The blocks behind you now hold their form.</div>`;
+  setCard(`
+    <div class="crumb">${dot(s.id)}${esc(s.title)} · ${esc(m.ref)}</div>
+    <h2>${esc(m.title)}</h2>
+    <blockquote class="de"><div class="g">${esc(m.de)}</div><div class="e">${esc(m.en)}</div></blockquote>
+    <p>${esc(m.text)}</p>
+    ${live}
+    <div class="actions">
+      <button class="btn" data-station="${s.id}">${esc(s.title)}</button>
+      ${ctx === 'map' ? `<button class="btn primary" data-walk="${s.id}">Walk this station</button>` : ''}
+    </div>`);
+  if (m.live === 'now') liveTimer = setInterval(() => { const el = $('#live-now'); if (el) el.textContent = fmtTime(Date.now()); }, 1000);
+}
+function showGate(g) {
+  const open = gateOpen(g); const from = S[g.from];
+  setCard(`
+    <div class="crumb">${dot(g.from)}Transition</div>
+    <h2>${esc(from.title)} → ${esc(S[g.to].title)}</h2>
+    <div class="sub">${esc(g.short)}</div>
+    <div class="logic"><span class="arrow">the necessity</span>${esc(g.logic)}</div>
+    <span class="status ${open ? 'open' : 'locked'}">${open ? 'passage open' : 'contradiction unresolved'}</span>
+    ${open ? '' : `<p>This shape has not yet run through its whole experience. Still to meet:</p><ul class="mlist">${from.moments.filter(m => !state.visited.has(m.id)).map(m => `<li data-moment="${m.id}"><span class="tick">○</span><span>${esc(m.title)}</span></li>`).join('')}</ul>
+      <div class="actions"><button class="btn" data-guide>Guide me</button></div>`}`);
+}
+function showPart(pid) {
+  const p = PARTS.find(p => p.id === pid);
+  setCard(`
+    <div class="crumb">Part ${p.id} · ${esc(p.de)}</div>
+    <h2>${esc(p.title)}</h2>
+    <p>${esc(p.summary)}</p>
+    <h3>Stations</h3>
+    <ul class="mlist">${p.stations.map(id => `<li class="${stationDone(id) ? 'done' : ''}" data-station="${id}"><span class="tick">${stationDone(id) ? '✓' : '○'}</span><span>${esc(S[id].num)} · ${esc(S[id].title)}</span></li>`).join('')}</ul>`);
+}
+function showResonance(r) {
+  setCard(`
+    <div class="crumb">Resonance</div>
+    <h2>${esc(r.title)}</h2>
+    <div class="sub">${esc(S[r.a].title)} ⇢ ${esc(S[r.b].title)}</div>
+    <p>${esc(r.text)}</p>
+    <p class="fine">A resonance is not a transition. The later shape repeats an earlier logic at a higher level: what was once true of an object now holds of a self.</p>
+    <div class="actions"><button class="btn" data-station="${r.a}">${esc(S[r.a].title)}</button><button class="btn" data-station="${r.b}">${esc(S[r.b].title)}</button></div>`);
+}
+function showOverview() {
+  const done = state.visited.size;
+  setCard(`
+    <div class="crumb">Für uns · the whole</div>
+    <h2>The path, seen whole</h2>
+    <p>The spiral climbs from <em>Sense-certainty</em> at the bottom to the threshold of <em>Reason</em> at the top. Each station is a shape of consciousness, and the small bodies orbiting it are its moments. Colour warms as consciousness turns from its object back toward itself.</p>
+    <div class="legend">
+      <i></i><span>Transition: one shape’s failure is the next shape’s object</span>
+      <i class="res"></i><span>Resonance: a later shape repeats an earlier logic</span>
+      <i class="hub"></i><span>Belongs to Part A or Part B</span>
+      <i class="node"></i><span>Station: brighter once you have walked through it</span>
+    </div>
+    <p>${done ? `You have experienced <b>${done}</b> of ${MOMENTS.length} moments. The map lights up as you walk.` : 'The map lights up as you walk through it. For Hegel, the true is the whole, but the whole only becomes visible through the experience of getting there.'}</p>
+    <div class="actions"><button class="btn primary" data-walk-resume>Enter the walk</button><button class="btn" data-part="A">Part A</button><button class="btn" data-part="B">Part B</button></div>`);
+}
+function wireCard() {
+  card.querySelectorAll('[data-moment]').forEach(el => el.onclick = () => {
+    const m = M[el.dataset.moment];
+    if (mode === 'map') { selectStation(m.station, true, true); showMoment(m.id, 'map'); }
+    else showMoment(m.id, 'walk');
+  });
+  card.querySelectorAll('[data-station]').forEach(el => el.onclick = () => mode === 'map' ? selectStation(el.dataset.station, true) : showStation(el.dataset.station, 'walk'));
+  card.querySelectorAll('[data-walk]').forEach(el => el.onclick = () => walkTo(el.dataset.walk));
+  card.querySelectorAll('[data-walk-resume]').forEach(el => el.onclick = () => setMode('walk'));
+  card.querySelectorAll('[data-mapsel]').forEach(el => el.onclick = () => { setMode('map'); selectStation(el.dataset.mapsel, true); });
+  card.querySelectorAll('[data-part]').forEach(el => el.onclick = () => { if (mode !== 'map') setMode('map'); selectPart(el.dataset.part); });
+  card.querySelectorAll('[data-res]').forEach(el => el.onclick = () => { if (mode !== 'map') setMode('map'); selectResonance(RESONANCES[+el.dataset.res]); });
+  card.querySelectorAll('[data-guide]').forEach(el => el.onclick = () => startGuide());
+}
+
+/* ════════════════════════════════════════════════════════════════
+   MODES, HUD, LOOP
+   ════════════════════════════════════════════════════════════════ */
+
+let mode = 'map';
+function setMode(m, after) {
+  if (m === mode) { after && after(); return; }
+  const fade = $('#fade'); fade.classList.add('on');
+  setTimeout(() => {
+    mode = m;
+    document.body.classList.toggle('map', m === 'map'); document.body.classList.toggle('walk', m === 'walk');
+    document.querySelectorAll('#modes button').forEach(b => b.classList.toggle('on', b.dataset.mode === m));
+    orbit.enabled = m === 'map';
+    labelRenderer.domElement.style.display = m === 'map' ? '' : 'none';
+    keys.clear(); stopGuide(); setHover(null);
+    if (m === 'map') { $('#where').textContent = 'the whole, as it is for us'; refreshMap(); if (currentStation) selectStation(currentStation, true); else showOverview(); }
+    else { focusKey = null; currentRoom = null; currentStation = null; renderer.domElement.focus(); }
+    after && after();
+    setTimeout(() => fade.classList.remove('on'), 60);
+  }, 360);
+}
+function walkTo(id) {
+  // Walking straight into a later station presupposes the path before it.
+  for (const g of GATES) if (S[g.to].order <= S[id].order && S[g.from].order < S[id].order) state.forced.add(g.id);
+  refreshGates(false);
+  placeAt(id); save();
+  setMode('walk', () => { focusKey = null; });
+  if (mode === 'walk') { focusKey = null; currentRoom = null; currentStation = null; }
+}
+function updateProgress() { $('#progress').innerHTML = `<b>${state.visited.size}</b> / ${MOMENTS.length}`; }
+
+let toastTimer;
+function toast(a, b) {
+  const el = $('#toast'); el.querySelector('.t1').textContent = a; el.querySelector('.t2').textContent = b || '';
+  el.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => el.classList.remove('show'), 2800);
+}
+
+document.querySelectorAll('#modes button').forEach(b => b.onclick = () => setMode(b.dataset.mode));
+$('#progress').onclick = () => setMode('map');
+$('#btn-guide').onclick = () => toggleGuide();
+$('#btn-help').onclick = () => { $('#help').hidden = false; };
+$('#help').addEventListener('click', e => { if (e.target.id === 'help' || e.target.matches('[data-close]')) $('#help').hidden = true; });
+$('#btn-reset').onclick = () => {
+  try { localStorage.removeItem(STORE); } catch (e) { /* ignore */ }
+  state.visited.clear(); state.entered.clear(); state.passed.clear(); state.forced.clear(); state.nowStamp = null; state.desire = 0;
+  placeAt('intro'); refreshGates(false); refreshSteles(); refreshMap(); updateProgress(); save();
+  $('#help').hidden = true; focusKey = null; mode === 'map' ? showOverview() : showStation('intro', 'walk');
+};
+function closeOverlays() { $('#help').hidden = true; if (!$('#intro').hidden) { $('#intro').hidden = true; } }
+$('#go-walk').onclick = () => { $('#intro').hidden = true; setMode('walk'); };
+$('#go-map').onclick = () => { $('#intro').hidden = true; showOverview(); };
+if (state.visited.size) $('#go-walk').textContent = 'Continue the walk';
+$('#tg-res').onclick = e => { resonanceGroup.visible = !resonanceGroup.visible; e.currentTarget.classList.toggle('on', resonanceGroup.visible);
+  for (const o of edgeObjs) if (o.kind === 'resonance') o.label.style.display = resonanceGroup.visible ? '' : 'none'; };
+$('#tg-mom').onclick = e => { const v = !satGroups[0].visible; satGroups.forEach(g => g.visible = v); e.currentTarget.classList.toggle('on', v); };
+$('#tg-spin').onclick = e => { orbit.autoRotate = !orbit.autoRotate; e.currentTarget.classList.toggle('on', orbit.autoRotate); };
+$('#tg-reset').onclick = () => { selected = selectedRes = null; showEdgeLabels(); focusTween = { t: 0, from: orbit.target.clone(), to: HOME.target.clone(), camFrom: mapCam.position.clone(), camTo: HOME.pos.clone() }; showOverview(); };
+$('#panel-toggle').onclick = () => { const p = $('#panel'); p.classList.toggle('collapsed'); $('#panel-toggle').textContent = p.classList.contains('collapsed') ? 'show card' : 'hide card'; };
+
+function onResize() {
+  renderer.setSize(innerWidth, innerHeight); labelRenderer.setSize(innerWidth, innerHeight);
+  mapCam.aspect = walkCam.aspect = innerWidth / innerHeight;
+  // On wide screens, centre the map in the space left of the card.
+  const shift = innerWidth > 760 ? $('#panel').offsetWidth / 2 + 8 : 0;
+  if (shift) mapCam.setViewOffset(innerWidth, innerHeight, shift, 0, innerWidth, innerHeight); else mapCam.clearViewOffset();
+  mapCam.updateProjectionMatrix(); walkCam.updateProjectionMatrix();
+  sizeMinimap();
+}
+addEventListener('resize', onResize);
+
+const clock = new THREE.Clock();
+let saveTick = 0;
+function frame() {
+  const dt = Math.min(clock.getDelta(), 0.05), t = clock.elapsedTime;
+  if (mode === 'map') {
+    if (focusTween) {
+      focusTween.t = Math.min(1, focusTween.t + dt * 1.6);
+      const k = 1 - Math.pow(1 - focusTween.t, 3);
+      orbit.target.lerpVectors(focusTween.from, focusTween.to, k);
+      mapCam.position.lerpVectors(focusTween.camFrom, focusTween.camTo, k);
+      if (focusTween.t >= 1) focusTween = null;
+    }
+    orbit.update();
+    for (const f of flows) f.sprite.position.copy(f.curve.getPoint((t * 0.18 + f.phase) % 1));
+    satGroups.forEach((g, i) => g.rotation.y += dt * 0.25);
+    for (const s of STATIONS) { const n = mapNodes[s.id]; n.shell.rotation.y += dt * 0.2; n.shell.rotation.x += dt * 0.07; }
+    renderer.render(mapScene, mapCam);
+    labelRenderer.render(mapScene, mapCam);
+  } else {
+    walkFrame(t, dt);
+    renderer.render(walkScene, walkCam);
+    drawMinimap();
+    if ((saveTick += dt) > 2) { saveTick = 0; save(); }
+  }
+  requestAnimationFrame(frame);
+}
+
+// Canvas text needs the web fonts before the walk world is painted, so textures are refreshed once they arrive.
+updateProgress(); onResize(); refreshSteles(); refreshMap(); showOverview();
+orbit.enabled = true;
+$('#where').textContent = 'the whole, as it is for us';
+frame();
+</script>
+</body>
+</html>
