@@ -15,6 +15,11 @@ usage: python3 md2deck.py lecture-2.md DECK
 """
 import html, json, re, sys, pathlib
 from markdown_it import MarkdownIt
+try:
+    import linkify_it  # bare URLs become links when linkify-it-py is installed
+    LINKIFY = True
+except ImportError:
+    LINKIFY = False
 from bs4 import BeautifulSoup, NavigableString, Tag
 
 SRC, OUT = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2])
@@ -28,7 +33,7 @@ MARKERS = ["•", "◦", "▪", "–"]
 def S(r):  # a size relative to the slide's base font size
     return f"S[{r}]"
 
-md = MarkdownIt("commonmark", {"html": True, "linkify": True}).enable(["table", "linkify"])
+md = MarkdownIt("commonmark", {"html": True, "linkify": LINKIFY}).enable(["table"] + (["linkify"] if LINKIFY else []))
 
 def inline_one(c):
     """One inline markdown node -> the subset's inline tags."""
