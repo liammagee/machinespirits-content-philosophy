@@ -105,6 +105,18 @@ Use the slide's own words as the prompt, unchanged, so students can compare the 
 > circumference, and returns to the page in her hands, so part and whole keep illuminating each other. Quiet,
 > contemplative, seen from slightly above, the circle of the room clearly legible.
 
+## Shark Tank?: the literature review as a pitch to investors
+
+> A graduate researcher stands alone on the polished floor of a dark, theatrical pitch studio, presenting to a
+> row of five investors in deep leather armchairs. Instead of a product on a plinth, the researcher's display is
+> a model of the "market" of ideas: a miniature trading floor of bookstalls and journal stacks, crowded with
+> traders, crates of bound volumes and busy little shopfronts, except for one small, empty, lit-up plot in
+> the middle where nobody is selling anything yet. The researcher points at that empty plot. The investors
+> lean forward: one peers through reading glasses at the gap, one taps a pen against a stack of offprints,
+> one is unconvinced, arms folded. Spotlights from above, the studio behind falling away into darkness. The
+> mood is sceptical, high-stakes and slightly comic, as if a literature review were a business pitch. The empty
+> plot is the one ember-orange accent in the picture. No price tags, no signage and no television branding.
+
 ## More on tone...
 
 > Two writing desks facing each other across a narrow room: one a spotless laboratory bench with instruments,

@@ -114,7 +114,7 @@ def block(el, first_heading):
         inner = inline(el).strip()
         return text_p(inner, 1.0, SOFT) if inner else ""
     if n in ("ul", "ol"):
-        return f'<div style="display:flex;flex-direction:column;gap:{S(0.3)}">' + "".join(list_rows(el)) + "</div>"
+        return f'<div style="display:flex;flex-direction:column;gap:{S(0.4)}">' + "".join(list_rows(el)) + "</div>"
     if n == "blockquote":
         ps = "".join(f'<p style="font-family:{MONO};font-size:{S(0.74, )};line-height:1.45;color:{INK}">{inline(p)}</p>'
                      for p in el.find_all("p"))
@@ -123,6 +123,26 @@ def block(el, first_heading):
     if n == "table":
         return table(el)
     return text_p(html.escape(el.get_text(), quote=False))
+
+LIST_LINE = re.compile(r"^( *)([-*+]|\d+[.)])( +)(.*)$")
+
+def nest_lists(block):
+    """Read list nesting the way the author typed it: a bullet indented further than the one above is its
+    child, whatever the exact number of spaces. CommonMark needs a child to reach the parent's text column,
+    so ' - a' / '  - b' would otherwise come out flat. Re-indent to 4 spaces per level; words are untouched."""
+    out, stack = [], []  # stack of typed indents, one per open level
+    for line in block.splitlines():
+        m = LIST_LINE.match(line)
+        if not m:
+            if not line.strip() or not line.startswith(" "):
+                if line.strip() and not line.startswith(" "): stack = []
+                out.append(line); continue
+            out.append(" " * (4 * len(stack)) + line.lstrip()); continue  # continuation text of the item above
+        ind = len(m.group(1))
+        while stack and ind <= stack[-1]: stack.pop()  # back out to this item's parent
+        level = len(stack); stack.append(ind)
+        out.append(" " * (4 * level) + m.group(2) + " " + m.group(4))
+    return "\n".join(out)
 
 def slug(s, used):
     b = re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")[:40].strip("-") or "slide"
@@ -138,7 +158,7 @@ used, order, sections = set(), [], {}
 (OUT / "slides").mkdir(parents=True, exist_ok=True)
 
 for block_md in blocks:
-    soup = BeautifulSoup(md.render(block_md), "html.parser")
+    soup = BeautifulSoup(md.render(nest_lists(block_md)), "html.parser")
     top = [c for c in soup.children if isinstance(c, Tag)]
     imgs = []
     for img in soup.find_all("img"):
@@ -169,14 +189,12 @@ for block_md in blocks:
         if imgs:
             k = len(imgs)
             words = len(soup.get_text())  # the more text, the narrower the picture, so the text stays readable
-            w = 820 if words < 700 else 640 if words < 1100 else 500
-            h = (800 - 24 * (k - 1)) // k
-            side = k == 2 and words < 700  # two pictures and little text: side by side, larger
-            if side:
-                w = h = 520
+            # pictures sit in a column at most ~40% of the slide, so the text column stays wide enough to read
+            w = 760 if words < 500 else 640 if words < 1000 else 540
+            h = min(w, (860 - 24 * (k - 1)) // k)
+            if k > 1:
+                w = h  # stacked pictures: square, one above the other
             pics = "".join(f'<img src="{s}" alt="{html.escape(a)}" style="width:{w}px;height:{h}px;object-fit:contain;border-radius:14px">' for s, a in imgs)
-            if side:
-                pics = f'<div style="display:flex;flex-direction:row;gap:24px">{pics}</div>'
             body = (f'<div style="display:flex;flex-direction:row;gap:64px;flex:1">'
                     f'<div data-fit style="flex:1;display:flex;flex-direction:column;gap:{S(0.55)}">{col(top)}</div>'
                     f'<div style="display:flex;flex-direction:column;gap:24px;justify-content:center">{pics}</div></div>')

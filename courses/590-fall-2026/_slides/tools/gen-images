@@ -32,6 +32,7 @@ SLIDES = [
     ("Metaphors of Knowledge", "metaphors", "Metaphors of Knowledge: Navigating fields and finding gaps", "full"),
     ("Work it like a Puzzle", "puzzle", "Work it like a Puzzle", "full"),
     ("Work it like a Puzzle: the hermeneutic circle", "hermeneutic", "Work it like a Puzzle", "full"),
+    ("Shark Tank?: the literature review as a pitch to investors", "shark-tank", "Shark Tank?", "full"),
     ("More on tone...", "tone", "More on tone...", "full"),
     ("First: What do we do when we open an article?", "opening", "First: What do we do when we open an article?", "full"),
     ("Hour 3", "hour-3", "Hour 3", "full"),
