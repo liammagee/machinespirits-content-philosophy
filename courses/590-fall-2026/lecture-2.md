@@ -378,11 +378,23 @@ Liu, J., Zhang, Y., Li, W., Wang, Q., Niu, P., & Zhang, X. (2025). Adaptive vs. 
 
 ### Gap Finder: refine your question until it meets a gap
 
- - **Goal:** refine the question until fewer than 25 articles answer it, with plenty nearby
- - Start from *How is generative AI used in literature reviews?* Add or remove a concept (who, which practice, which issue, where) and watch the field move
- - Then write your own question and try again
+What you are doing: testing a research question against the published literature, one change at a time, to find where a review could add something.
+
+ - **Goal:** a question that fewer than 25 articles answer, with plenty of research nearby
+ - **Steps**
+   1. **Start** from *How is generative AI used in literature reviews?* Thousands of articles answer it: crowded
+   2. **Refine:** add a concept on the right (who, which practice, which issue, where) to narrow the question; remove one to broaden it
+   3. **Check:** click a sphere to list its articles. Are they really about your question?
+   4. **Your turn:** when you reach a gap, read the draft gap statement, then choose *Write your own* and try your own question
  - [Open Gap Finder](https://machinespirits.org/590-fall-2026/gap-finder)
  - It searches titles and abstracts of journal articles since 2022 in OpenAlex. The matching is rough ("supervision" also finds banking supervision): treat the verdict as a prompt to read, not a finding
+
+#### Reading the field
+
+ - **Centre:** the articles that answer your question, combining all your concepts. Its colour is the verdict: red for crowded, green for a gap, yellow for too thin
+ - **Around it:** one sphere per concept, holding the articles that have all your other concepts but not that one (its label names the missing concept)
+ - **Size is volume:** the more articles, the bigger the sphere, and every speck stands for the same number of articles
+ - **A gap is a small centre among large neighbours:** plenty of research on the parts, little on the combination. If a neighbour is tiny too, the question may be too narrow, or that concept goes by another name in this field
 
 ---
 
@@ -390,7 +402,7 @@ Liu, J., Zhang, Y., Li, W., Wang, Q., Niu, P., & Zhang, X. (2025). Adaptive vs. 
 
 As with the class constellation, it was built with Claude over several conversations. This prompt is a starting point for a similar game:
 
-> Build a single-file interactive HTML game for a graduate seminar on literature reviews that shows how a research question and its literature shape each other. Search OpenAlex through a small server route that holds the API key. The student builds a question by adding or removing concepts (topic, who, which practice, which issue, where), or types their own question and the game picks out its concepts. For each version of the question, count the journal articles whose title or abstract combines every concept, and those that combine all but one. Show the field in 3D with three.js: papers matching every concept gather at the centre, papers matching all but one orbit nearby, and the rest drift outward, moving each time the question changes. The goal is to refine the question until fewer than 25 articles answer it directly while many sit nearby. Record each change as a version on a visible path, and when the goal is met, list the papers to read and draft a signposted gap statement.
+> Build a single-file interactive HTML game for a graduate seminar on literature reviews that shows how a research question and its literature shape each other. Search OpenAlex through a small server route that holds the API key. The student builds a question by adding or removing concepts (topic, who, which practice, which issue, where), or types their own question and the game picks out its concepts. For each version of the question, count the journal articles whose title or abstract combines every concept, and those that combine all but one. Show the field in 3D with three.js as glass spheres whose volume is proportional to the number of articles: one at the centre for the articles that combine every concept, coloured by verdict, and one around it for each concept, holding the articles that have all the others but not that one. Label each sphere with its count, and let the student click a sphere to list its articles. The goal is to refine the question until fewer than 25 articles answer it directly while many sit nearby. Record each change as a version on a visible path, and when the goal is met, list the papers to read and draft a signposted gap statement.
 
  - The key stays on the server: a page published on its own (for example on claude.ai) cannot call OpenAlex live
  - Iterate one change at a time, and check every paper it shows against the source

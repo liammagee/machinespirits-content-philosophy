@@ -36,11 +36,19 @@ body{background:var(--bg);color:var(--ink);font-family:var(--display)}
 .field{grid-column:1;position:relative;min-height:0;overflow:hidden}
 #stage{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab}
 .hint{position:absolute;left:14px;bottom:12px;margin:0;font-size:12px;color:var(--muted);pointer-events:none}
-.key{position:absolute;right:14px;top:12px;display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted);pointer-events:none}
+.key{position:absolute;right:14px;top:12px;display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted);pointer-events:none;text-align:right;max-width:300px;background:rgba(16,17,25,.7);padding:6px 8px;border-radius:8px}
+.key b{color:var(--ink)}
 .view{position:absolute;right:14px;bottom:12px;display:flex;gap:4px;z-index:2}
 .view button{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-family:var(--display);font-size:16px;font-weight:700;cursor:pointer;line-height:1}
 .view button:hover{border-color:var(--ember)}
 #stage{touch-action:none}
+.labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.lbl{position:absolute;left:0;top:0;margin:-30px 0 0;translate:-50% 0;font-size:12px;white-space:nowrap;background:rgba(23,24,34,.85);border:1px solid var(--line);border-radius:999px;padding:3px 9px;color:var(--ink)}
+.lbl.below{margin:8px 0 0}
+.lbl.out{margin:-12px 0 0}
+.lbl b{font-variant-numeric:tabular-nums}
+.paper ol{margin:4px 0 0;padding-left:18px;font-family:var(--serif);font-size:14px;line-height:1.3;display:flex;flex-direction:column;gap:4px;max-height:40vh;overflow:auto}
+.paper ol a{font-size:14px;font-weight:400}
 .key i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
 .side{grid-column:2;grid-row:2;padding:14px;display:flex;flex-direction:column;gap:12px;overflow:auto;min-height:0}
 .side h2{margin:0;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
@@ -115,8 +123,9 @@ button.alt{font-family:var(--display);font-size:14px;font-weight:600;padding:7px
   </section>
   <section class="card field">
     <canvas id="stage" aria-label="The field of papers around your question, in 3D"></canvas>
-    <div class="key"><span><i style="background:#FF7A50"></i><b id="k-direct">–</b> answer your question</span><span><i style="background:#7F9BE8"></i><b id="k-near">–</b> nearby: all but one concept</span><span><i style="background:#6E6A78"></i>a sample of each is shown</span></div>
-    <p class="hint">Drag to turn · shift-drag or right-drag to pan · scroll or pinch to zoom · click a dot to see the paper</p>
+    <div id="labels" class="labels" aria-hidden="true"></div>
+    <div class="key"><span><b>Centre</b>: <b id="k-direct">–</b> articles answer your question (colour = verdict)</span><span><b>Around it</b>: <b id="k-near">–</b> nearby, each sphere missing one of your concepts</span><span>Size is volume: <b id="k-speck">each speck is one article</b></span><span>Aim for a small centre among large neighbours</span></div>
+    <p class="hint">Drag to turn · shift-drag to pan · scroll or pinch to zoom · click a sphere to list its articles</p>
     <div class="view" aria-label="View controls"><button type="button" id="v-in" title="Zoom in" aria-label="Zoom in">+</button><button type="button" id="v-out" title="Zoom out" aria-label="Zoom out">−</button><button type="button" id="v-reset" title="Reset view" aria-label="Reset view">⟲</button></div>
     <div class="card paper" id="paper" hidden></div>
   </section>
@@ -156,7 +165,7 @@ const C = {
   "higher education":    { g:"Where",    q:["higher education"], detect:["higher education","university","universities","college"], phrase:"in higher education" }
 };
 const GROUPS = ["Topic","Who","Practice","Issue","Where"];
-const COLORS = ["#FF7A50","#7F9BE8","#5FD3C0","#F2C14E","#E77BB0","#A98BFF","#9BD35F"];
+const COLORS = ["#FF7A50","#7F9BE8","#5FD3C0","#F2C14E","#E77BB0","#A98BFF","#9BD35F","#4FC3F7","#FF9F43","#F48FB1","#C5E1A5","#B39DDB","#FFD180"];
 const START = ["generative AI","literature reviews"];
 const CROWDED = 25, NEAR_MIN = 10;
 
@@ -317,16 +326,17 @@ $("q-cancel").addEventListener("click", () => { $("q-view").hidden = false; $("q
 $("q-text").addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); submitOwn(); } });
 function esc(s){ return String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
 
-// ---------------------------------------------------------------- 3D field: a pool of dots, each standing for one sampled article
+// ---------------------------------------------------------------- 3D field: one glass sphere per set of articles; its VOLUME is the number of articles
+// Centre: articles that answer your question (colour = verdict). Around it: one sphere per concept, holding the articles
+// that combine all your other concepts but not that one. Specks have the same density in every sphere.
 let layout = () => {}, burst = () => {};
-const canvas = $("stage");
+const canvas = $("stage"), labels = $("labels");
 if (window.THREE) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 3));
   renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.1;
-  const scene = new THREE.Scene(); scene.background = new THREE.Color("#101119"); scene.fog = new THREE.Fog("#101119", 12, 28);
-  const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
-  // A small studio of soft light panels, baked into an environment map, gives the glass dots their reflections.
+  const scene = new THREE.Scene(); scene.background = new THREE.Color("#101119");
+  const camera = new THREE.PerspectiveCamera(45, 1, 0.02, 600);
   { const pm = new THREE.PMREMGenerator(renderer), studio = new THREE.Scene();
     studio.add(new THREE.Mesh(new THREE.SphereGeometry(20, 16, 16), new THREE.MeshBasicMaterial({ color: 0x1a1b26, side: THREE.BackSide })));
     [[0, 9, 4, 14, 3, 0xffffff], [-9, 3, 2, 3, 10, 0xffd9c8], [9, 2, -3, 3, 8, 0xc8d4ff], [0, -8, 0, 12, 2, 0x404050]].forEach(([x, y, z, w, h, c]) => {
@@ -335,76 +345,110 @@ if (window.THREE) {
   scene.add(new THREE.AmbientLight(0xffffff, 0.25));
   const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(6, 8, 10); scene.add(key);
   const rim = new THREE.DirectionalLight(0x9fb4ff, 0.8); rim.position.set(-8, -2, -6); scene.add(rim);
-  const core = new THREE.Mesh(new THREE.SphereGeometry(0.3, 32, 32), new THREE.MeshStandardMaterial({ color: 0xF3EEE4, emissive: 0xF3EEE4, emissiveIntensity: 0.6 })); scene.add(core);
-  const shellMat = new THREE.MeshBasicMaterial({ color: 0x5FD39A, transparent: true, opacity: 0.12, wireframe: true });
-  const shell = new THREE.Mesh(new THREE.SphereGeometry(1.7, 24, 16), shellMat); scene.add(shell);
-  const ring = new THREE.Mesh(new THREE.TorusGeometry(3.6, 0.01, 8, 120), new THREE.MeshBasicMaterial({ color: 0x7F9BE8, transparent: true, opacity: 0.25 })); ring.rotation.x = Math.PI / 2; scene.add(ring);
-  const geo = new THREE.SphereGeometry(0.17, 32, 24);
-  const LEVEL = [ { r: 1.15, color: 0xFF7A50, size: 1.6, e: 0.8 }, { r: 3.6, color: 0x7F9BE8, size: 1.0, e: 0.35 }, null, { r: 10, color: 0x34343F, size: 0.6, e: 0 } ];
-  const POOL = 60;
-  const dots = Array.from({ length: POOL }, (_, k) => {
-    const y = 1 - (k + 0.5) * 2 / POOL, rr = Math.sqrt(1 - y * y), th = k * 2.399963;
-    const dir = new THREE.Vector3(Math.cos(th) * rr, y * 0.7, Math.sin(th) * rr).normalize();
-    const m = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({ color: 0x34343F, emissive: 0x000000, roughness: 0.06, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.04, transparent: true, opacity: 0.62, envMapIntensity: 1.4, ior: 1.45, specularIntensity: 1 }));
-    m.userData = { dir, target: dir.clone().multiplyScalar(10), jitter: 0.85 + ((k * 7919) % 1000) / 1000 * 0.3, level: 3, size: 0.6, paper: null, missing: null };
-    m.position.copy(m.userData.target); scene.add(m); return m;
+  // A faint floor grid gives a sense of scale (each square is one unit).
+  const grid = new THREE.GridHelper(80, 80, 0x2E3040, 0x1d1e29); grid.position.y = -0.01; grid.material.transparent = true; grid.material.opacity = 0.5; scene.add(grid);
+
+  const SCALE = 0.09, MIN_R = 0.1, MAXP = 800;
+  const radius = (n) => Math.max(MIN_R, SCALE * Math.cbrt(Math.max(0, n)));   // volume grows with the count
+  const unit = new Float32Array(MAXP * 3);
+  for (let i = 0; i < MAXP; i++) { let x, y, z; do { x = Math.random() * 2 - 1; y = Math.random() * 2 - 1; z = Math.random() * 2 - 1; } while (x * x + y * y + z * z > 1); unit.set([x * 0.9, y * 0.9, z * 0.9], i * 3); }
+  const sphereGeo = new THREE.SphereGeometry(1, 64, 40);
+  const blobs = Array.from({ length: 6 }, () => {
+    const g = new THREE.Group();
+    const glass = new THREE.Mesh(sphereGeo, new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.05, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.03, transparent: true, opacity: 0.2, depthWrite: false, envMapIntensity: 1.5, emissive: 0x000000 }));
+    const wire = new THREE.Mesh(new THREE.SphereGeometry(1, 16, 10), new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0 }));
+    const pg = new THREE.BufferGeometry(); pg.setAttribute("position", new THREE.BufferAttribute(unit.slice(), 3));
+    const pts = new THREE.Points(pg, new THREE.PointsMaterial({ color: 0xffffff, size: 2 * renderer.getPixelRatio(), sizeAttenuation: false, transparent: true, opacity: 0.95, depthWrite: false }));
+    pts.rotation.set(Math.random() * 6, Math.random() * 6, 0);
+    g.add(glass, wire, pts); g.visible = false; g.scale.setScalar(0.001); scene.add(g);
+    const el = document.createElement("div"); el.className = "lbl"; el.hidden = true; labels.appendChild(el);
+    g.userData = { glass, wire, pts, el, r: 0.001, rT: 0.001, pos: new THREE.Vector3(), info: null };
+    glass.userData.blob = g; return g;
   });
+  const setBlob = (b, info, pos) => { const u = b.userData, col = new THREE.Color(info.color); u.info = info; u.rT = radius(info.count); u.pos.copy(pos); b.visible = true;
+    u.glass.material.color.copy(col); u.glass.material.emissive.copy(col); u.glass.material.emissiveIntensity = 0.1; u.glass.material.opacity = info.count ? 0.2 : 0.03;
+    u.wire.material.color.copy(col); u.wire.material.opacity = info.count ? 0 : 0.45;
+    u.pts.material.color.copy(col).lerp(new THREE.Color(0xffffff), 0.4); u.pts.geometry.setDrawRange(0, info.count ? Math.ceil(info.count / perSpeck) : 0);
+    u.el.hidden = false; u.el.style.borderColor = info.color; u.el.classList.toggle("below", info.kind === "direct"); u.el.classList.toggle("out", info.kind === "near");
+    u.el.innerHTML = `<b style="color:${info.color}">${fmt(info.count)}</b> ${esc(info.text)}`; };
+  let fitR = 3, perSpeck = 1;
   layout = (s) => {
-    const assign = [];
-    if (s && s.res) { s.res.direct.papers.forEach(p => assign.push([p, 0, null])); s.res.near.forEach(n => n.papers.forEach(p => assign.push([p, 1, n.missing]))); }
-    dots.forEach((m, i) => { const d = m.userData, a = assign[i];
-      const lv = a ? a[1] : 3, L = LEVEL[lv]; d.level = lv; d.paper = a ? a[0] : null; d.missing = a ? a[2] : null;
-      // near papers sit on the side of the concept they lack
-      let dir = d.dir;
-      if (lv === 1 && s) { const n = s.k, ang = d.missing * 2 * Math.PI / n + (d.jitter - 1) * 2.2; dir = new THREE.Vector3(Math.cos(ang), (d.jitter - 1) * 1.6, Math.sin(ang)).normalize(); }
-      d.target = dir.clone().multiplyScalar(L.r * (lv === 0 ? 0.6 + d.jitter * 0.4 : d.jitter));
-      m.material.color.setHex(L.color); m.material.emissive.setHex(L.color); m.material.emissiveIntensity = L.e * 0.45; m.material.opacity = lv === 3 ? 0.35 : 0.62; d.size = L.size; });
-    const st = s === "busy" ? STATES.busy : s && s.state ? STATES[s.state] : STATES.start;
-    shellMat.color.set(st.hex); shellMat.opacity = s && s.state === "gap" ? 0.28 : 0.12;
+    if (s === "busy") return;                       // keep the last field on screen while searching
+    if (!s || !s.res) { blobs.forEach(b => { b.userData.rT = 0.001; b.userData.info = null; b.userData.el.hidden = true; }); fitR = 3; return; }
+    const st = STATES[s.state];
+    // Same density everywhere: one speck stands for the same number of articles in every sphere.
+    perSpeck = Math.max(1, Math.ceil(Math.max(s.direct, ...s.res.near.map(n => n.count)) / MAXP));
+    $("k-speck").textContent = perSpeck === 1 ? "each speck is one article" : `each speck ≈ ${fmt(perSpeck)} articles`;
+    setBlob(blobs[0], { kind: "direct", count: s.direct, papers: s.res.direct.papers, color: st.hex, text: s.direct === 1 ? "article answers your question" : "articles answer your question" }, new THREE.Vector3());
+    const rc = radius(s.direct), rs = s.res.near.map(n => radius(n.count)), rmax = Math.max(...rs, MIN_R), k = s.res.near.length;
+    // one ring for the neighbours, wide enough that none touch the centre or each other
+    const D = Math.max(rc + rmax + 0.4, k > 1 ? (2 * rmax + 0.3) / (2 * Math.sin(Math.PI / k)) : 0);
+    s.res.near.forEach((n, i) => { const c = active[n.missing], a = n.missing * 2 * Math.PI / s.k + 0.5;
+      setBlob(blobs[i + 1], { kind: "near", count: n.count, papers: n.papers, missing: c, color: colorOf(c), text: "without “" + c + "”" }, new THREE.Vector3(Math.sin(a) * D, 0, Math.cos(a) * D)); });
+    blobs.slice(k + 1).forEach(b => { b.userData.rT = 0.001; b.userData.info = null; b.userData.el.hidden = true; });
+    fitR = Math.max(rc, D + rmax);
+    target.set(0, 0, 0); touched = false;               // each new version of the question: step back to see the whole field
   };
   let sparks = [];
-  burst = () => { for (let i = 0; i < 70; i++) { const m = new THREE.Mesh(new THREE.SphereGeometry(0.05, 8, 8), new THREE.MeshBasicMaterial({ color: 0x5FD39A, transparent: true }));
-    const v = new THREE.Vector3(Math.random() - .5, Math.random() - .5, Math.random() - .5).normalize().multiplyScalar(0.08 + Math.random() * 0.12); scene.add(m); sparks.push({ m, v, life: 1 }); } };
-  const resize = () => { const w = canvas.clientWidth, h = canvas.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); home = w < 600 ? 13.2 : 9.8; if (!touched) dist = home; place(); };
-  // View: yaw turns the field, pitch tilts the camera, dist zooms, target pans.
-  let home = 9.8, dist = 9.8, pitch = 0.25, touched = false; const target = new THREE.Vector3();
-  const place = () => { camera.position.set(target.x, target.y + Math.sin(pitch) * dist, target.z + Math.cos(pitch) * dist); camera.lookAt(target); };
-  const zoom = (f) => { dist = Math.min(26, Math.max(2.2, dist * f)); touched = true; place(); };
-  const pan = (dx, dy) => { const k = dist * 0.0016, right = new THREE.Vector3().setFromMatrixColumn(camera.matrix, 0), up = new THREE.Vector3().setFromMatrixColumn(camera.matrix, 1);
-    target.addScaledVector(right, -dx * k).addScaledVector(up, dy * k); touched = true; place(); };
-  const resetView = () => { dist = home; pitch = 0.25; target.set(0, 0, 0); touched = false; place(); };
+  burst = () => { for (let i = 0; i < 70; i++) { const m = new THREE.Mesh(new THREE.SphereGeometry(0.03, 8, 8), new THREE.MeshBasicMaterial({ color: 0x5FD39A, transparent: true }));
+    const v = new THREE.Vector3(Math.random() - .5, Math.random() - .5, Math.random() - .5).normalize().multiplyScalar(0.02 + Math.random() * 0.05); scene.add(m); sparks.push({ m, v, life: 1 }); } };
+
+  // View: yaw and pitch orbit the camera around a target; dist zooms; panning moves the target.
+  let yaw = 0.6, pitch = 1.0, dist = 10, touched = false; const target = new THREE.Vector3();
+  const place = () => { camera.position.set(target.x + Math.cos(pitch) * Math.sin(yaw) * dist, target.y + Math.sin(pitch) * dist, target.z + Math.cos(pitch) * Math.cos(yaw) * dist); camera.lookAt(target); camera.updateMatrixWorld(); };
+  const fitDist = () => Math.max(1.5, fitR / Math.sin(camera.fov * Math.PI / 360) * (camera.aspect < 1 ? 1.5 : 1.05));
+  const zoom = (f) => { dist = Math.min(400, Math.max(0.3, dist * f)); touched = true; };
+  const pan = (dx, dy) => { const kk = dist * 0.0016, right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0), up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1);
+    target.addScaledVector(right, -dx * kk).addScaledVector(up, dy * kk); touched = true; };
+  const resetView = () => { target.set(0, 0, 0); pitch = 1.0; touched = false; $("paper").hidden = true; };
+  const resize = () => { const w = canvas.clientWidth, h = canvas.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); };
+  addEventListener("resize", resize);
   canvas.addEventListener("wheel", (e) => { e.preventDefault(); zoom(Math.exp(e.deltaY * (e.ctrlKey ? 0.01 : 0.0015))); }, { passive: false });
   canvas.addEventListener("contextmenu", (e) => e.preventDefault());
-  const pts = new Map(); let pinch = 0;
-  canvas.addEventListener("pointerdown", (e) => { pts.set(e.pointerId, [e.clientX, e.clientY]); canvas.setPointerCapture(e.pointerId); if (pts.size === 2) { const [a, b] = [...pts.values()]; pinch = Math.hypot(a[0] - b[0], a[1] - b[1]); } });
-  const lift = (e) => { pts.delete(e.pointerId); pinch = 0; };
-  canvas.addEventListener("pointerup", lift); canvas.addEventListener("pointercancel", lift);
-  $("v-in").addEventListener("click", () => zoom(0.8)); $("v-out").addEventListener("click", () => zoom(1.25)); $("v-reset").addEventListener("click", resetView);
-  addEventListener("resize", resize);
-  const ray = new THREE.Raycaster(), mouse = new THREE.Vector2(); let hover = null, drag = 0, angle = 0;
+  $("v-in").addEventListener("click", () => zoom(0.75)); $("v-out").addEventListener("click", () => zoom(1.33)); $("v-reset").addEventListener("click", resetView);
+  const ray = new THREE.Raycaster(), mouse = new THREE.Vector2(), pts = new Map(); let pinch = 0, hover = null, drag = 0;
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  canvas.addEventListener("pointermove", (e) => { const r = canvas.getBoundingClientRect(); mouse.set((e.clientX - r.left) / r.width * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+  const pick = (e) => { const r = canvas.getBoundingClientRect(); mouse.set((e.clientX - r.left) / r.width * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1); ray.setFromCamera(mouse, camera);
+    const hit = ray.intersectObjects(blobs.filter(b => b.visible && b.userData.info).map(b => b.userData.glass))[0]; return hit ? hit.object.userData.blob : null; };
+  canvas.addEventListener("pointerdown", (e) => { drag = 0; pts.set(e.pointerId, [e.clientX, e.clientY]); canvas.setPointerCapture(e.pointerId); if (pts.size === 2) { const [a, b] = [...pts.values()]; pinch = Math.hypot(a[0] - b[0], a[1] - b[1]); } });
+  canvas.addEventListener("pointermove", (e) => {
     if (pts.has(e.pointerId)) { const prev = pts.get(e.pointerId), dx = e.clientX - prev[0], dy = e.clientY - prev[1]; pts.set(e.pointerId, [e.clientX, e.clientY]);
       if (pts.size === 2) { const [a, b] = [...pts.values()], d2 = Math.hypot(a[0] - b[0], a[1] - b[1]); if (pinch) zoom(pinch / d2); pinch = d2; drag += 5; return; }
-      if (e.buttons & 2 || e.buttons & 4 || e.shiftKey) pan(dx, dy); else { angle -= dx * 0.005; pitch = Math.min(1.4, Math.max(-1.2, pitch + dy * 0.004)); touched = true; place(); }
+      if (e.buttons & 2 || e.buttons & 4 || e.shiftKey) pan(dx, dy); else { yaw -= dx * 0.005; pitch = Math.min(1.45, Math.max(-0.2, pitch + dy * 0.004)); }
       drag += Math.abs(dx) + Math.abs(dy); }
-    ray.setFromCamera(mouse, camera); const hit = ray.intersectObjects(dots)[0]; hover = hit && hit.object.userData.paper ? hit.object : null;
-    const tip = $("tip"); if (hover) { tip.hidden = false; tip.style.left = e.clientX + "px"; tip.style.top = e.clientY + "px"; tip.textContent = hover.userData.paper.title; canvas.style.cursor = "pointer"; } else { tip.hidden = true; canvas.style.cursor = "grab"; } });
-  canvas.addEventListener("pointerdown", () => { drag = 0; });
-  canvas.addEventListener("pointerup", () => { if (drag < 3 && hover) openPaper(hover.userData); });
+    hover = pick(e); const tip = $("tip");
+    if (hover && !drag) { const i = hover.userData.info; tip.hidden = false; tip.style.left = e.clientX + "px"; tip.style.top = e.clientY + "px"; tip.textContent = `${fmt(i.count)} ${i.text}. Click to list them.`; canvas.style.cursor = "pointer"; }
+    else { tip.hidden = true; canvas.style.cursor = "grab"; } });
+  canvas.addEventListener("pointerup", (e) => { pts.delete(e.pointerId); pinch = 0; if (drag < 4) { const b = pick(e); if (b) { openSet(b.userData.info); target.copy(b.position); dist = Math.max(0.6, b.userData.rT * 4.5); touched = true; } } });
+  canvas.addEventListener("pointercancel", (e) => { pts.delete(e.pointerId); pinch = 0; });
   canvas.addEventListener("pointerleave", () => { $("tip").hidden = true; hover = null; });
-  let t = 0;
-  const frame = () => { t += 0.016; if (!reduce && !hover) angle += 0.0018; scene.rotation.y = angle;
-    dots.forEach(m => { const d = m.userData; m.position.lerp(d.target, reduce ? 1 : 0.06); const s = d.size * (m === hover ? 1.8 : 1) * (d.level === 0 ? 1 + 0.15 * Math.sin(t * 3 + d.jitter * 9) : 1); m.scale.setScalar(m.scale.x + (s - m.scale.x) * 0.15); });
-    shell.rotation.y += busy ? 0.03 : 0.002; core.scale.setScalar(1 + 0.05 * Math.sin(t * 2));
+  let t = 0; const v = new THREE.Vector3();
+  const frame = () => { t += 0.016;
+    if (!reduce && !hover && !touched && !pts.size) yaw += 0.0012;
+    if (!touched) dist += (fitDist() - dist) * 0.05;
+    place();
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    blobs.forEach(b => { const u = b.userData; u.r += (u.rT - u.r) * (reduce ? 1 : 0.08); b.position.lerp(u.pos, reduce ? 1 : 0.08);
+      const pulse = busy && u.info ? 1 + 0.03 * Math.sin(t * 8) : 1; b.scale.setScalar(Math.max(u.r, 0.001) * pulse); u.pts.rotation.y += 0.0015;
+      if (u.rT < 0.01 && u.r < 0.01) b.visible = false;
+      if (!b.visible || !u.info) { u.el.hidden = true; return; }
+      // centre label sits below the centre; each neighbour's label sits on its outer side, away from the centre
+      if (u.info.kind === "direct") { v.copy(b.position); v.y -= u.r; } else { v.copy(b.position).setY(0).normalize().multiplyScalar(u.r * 1.1).add(b.position); }
+      v.project(camera);
+      u.el.hidden = v.z > 1 || Math.abs(v.x) > 1.2 || Math.abs(v.y) > 1.2;
+      u.el.style.transform = `translate(${(v.x + 1) / 2 * w}px, ${(1 - v.y) / 2 * h}px)`; });
     sparks = sparks.filter(sp => { sp.m.position.add(sp.v); sp.life -= 0.012; sp.m.material.opacity = sp.life; if (sp.life <= 0) { scene.remove(sp.m); return false; } return true; });
     renderer.render(scene, camera); requestAnimationFrame(frame); };
   resize(); frame();
 } else canvas.hidden = true;
-function openPaper(d){
-  const p = d.paper, lacks = d.level === 1 && last && active[d.missing];
+function openSet(i){
+  const why = i.kind === "direct"
+    ? "Journal articles since 2022 whose title or abstract combines every concept in your question. Read these first: they are the work your review answers to."
+    : `Articles that combine your other concepts but not “${esc(i.missing)}”. The bigger this sphere and the smaller the centre, the more “${esc(i.missing)}” is what makes your question new.`;
+  const list = (i.papers || []).slice(0, 8);
   $("paper").hidden = false;
-  $("paper").innerHTML = `<button aria-label="Close" id="pc">×</button><h3>${esc(p.title)}</h3><div>${esc([p.authors, p.year, p.venue].filter(Boolean).join(" · "))}</div><div>${d.level === 0 ? "Combines all your concepts" : `Nearby: everything except <b style="color:${colorOf(lacks)}">${esc(lacks)}</b>`}</div><a href="${linkOf(p)}" target="_blank" rel="noopener">Open the article ↗</a>`;
+  $("paper").innerHTML = `<button aria-label="Close" id="pc">×</button><h3><span style="color:${i.color}">${fmt(i.count)}</span> ${esc(i.text)}</h3><div>${why}</div>` +
+    (list.length ? `<ol>${list.map(p => `<li><a href="${linkOf(p)}" target="_blank" rel="noopener">${esc(p.title)}</a> <span>(${esc(p.year || "n.d.")})</span></li>`).join("")}</ol>${i.count > list.length ? `<div>A sample of ${list.length} of ${fmt(i.count)}.</div>` : ""}` : `<div>None yet.</div>`);
   $("pc").addEventListener("click", () => { $("paper").hidden = true; });
 }
 reset();
