@@ -378,11 +378,11 @@ Liu, J., Zhang, Y., Li, W., Wang, Q., Niu, P., & Zhang, X. (2025). Adaptive vs. 
 
 ### Gap Finder: refine your question until it meets a gap
 
- - **Goal:** refine the question until only 1–3 papers answer it, with plenty nearby
+ - **Goal:** refine the question until fewer than 25 articles answer it, with plenty nearby
  - Start from *How is generative AI used in literature reviews?* Add or remove a concept (who, which practice, which issue, where) and watch the field move
  - Then write your own question and try again
- - [Open Gap Finder](https://claude.ai/artifact/N4LeTAw29V4vZaEkReDNZY)
- - The field is a sample of 92 recent OpenAlex articles on AI, academic writing and doctoral education. The matching is rough: treat the verdict as a prompt to read, not a finding
+ - [Open Gap Finder](https://machinespirits.org/590-fall-2026/gap-finder)
+ - It searches titles and abstracts of journal articles since 2022 in OpenAlex. The matching is rough ("supervision" also finds banking supervision): treat the verdict as a prompt to read, not a finding
 
 ---
 
@@ -390,9 +390,9 @@ Liu, J., Zhang, Y., Li, W., Wang, Q., Niu, P., & Zhang, X. (2025). Adaptive vs. 
 
 As with the class constellation, it was built with Claude over several conversations. This prompt is a starting point for a similar game:
 
-> Build a single-file interactive HTML game for a graduate seminar on literature reviews that shows how a research question and its literature shape each other. Embed a small field of real article records (title, year, authors, venue, DOI, a line from the abstract) taken from OpenAlex. The student builds a question by adding or removing concepts (topic, who, which practice, which issue, where), or types their own question and the game picks out its concepts. Score each paper by how many of the question's concepts appear in its title or abstract. Show the field in 3D with three.js: papers matching every concept gather at the centre, papers matching all but one orbit nearby, and the rest drift outward, moving each time the question changes. The goal is to refine the question until only 1–3 papers answer it directly while many sit nearby. Record each change as a version on a visible path, and when the goal is met, list the papers to read and draft a signposted gap statement.
+> Build a single-file interactive HTML game for a graduate seminar on literature reviews that shows how a research question and its literature shape each other. Search OpenAlex through a small server route that holds the API key. The student builds a question by adding or removing concepts (topic, who, which practice, which issue, where), or types their own question and the game picks out its concepts. For each version of the question, count the journal articles whose title or abstract combines every concept, and those that combine all but one. Show the field in 3D with three.js: papers matching every concept gather at the centre, papers matching all but one orbit nearby, and the rest drift outward, moving each time the question changes. The goal is to refine the question until fewer than 25 articles answer it directly while many sit nearby. Record each change as a version on a visible path, and when the goal is met, list the papers to read and draft a signposted gap statement.
 
- - The game can only search what is embedded in it: a page published on claude.ai cannot call OpenAlex live
+ - The key stays on the server: a page published on its own (for example on claude.ai) cannot call OpenAlex live
  - Iterate one change at a time, and check every paper it shows against the source
 
 ---
