@@ -301,6 +301,8 @@ Lots of answers, lots of guidance...
 
  - If it helps: the literature review analyzes the "market" of ideas, and identifies a gap in that market
 
+![Image](/markdown/images/lecture-2-shark-tank.png)
+
 
 ---
 
@@ -559,7 +561,7 @@ As with the class constellation, it was built with Claude over several conversat
    - "Create a database of 10 articles"
    - "Scan the articles for relevance - discard those that are not relevant"
    - "With remaining articles: review references, search for more recent citations"
-   - "Once I have 50 articles: code / annototate for relevance"
+   - "Once I have 50 articles: code / annotate for relevance"
    - "Map out review structure; add citations, continue to search under subheadings"
    - "Supply list of refs to AI and ask if I'm missing anything crucial"
 3. Write down what you **imagine** or **hope** will be the gap in the literature (should be close to your research question). Importantly: what would *evidence of a gap look like*? (this is of course a hard question).
