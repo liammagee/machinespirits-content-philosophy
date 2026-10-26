@@ -44,3 +44,15 @@ python3 -m playwright install chromium
 - `check_deck.py` word-for-word check against the markdown, and a check for tags the Slides format rejects
 - `fit_deck.py` picks the largest text size (52px down, never under 24px) that fits each slide; previews
 - `build-deck` runs the three, then `_board/build_lecture.py`
+
+## Generating images with Codex
+
+```
+courses/590-fall-2026/_slides/tools/gen-images 2            # all prompts
+courses/590-fall-2026/_slides/tools/gen-images 2 salon      # just one (slugs are listed in the script)
+```
+
+Runs each prompt in `_slides/lecture-2/image-prompts.md` through `codex exec` and its `$imagegen` skill, saves
+`assets/images/lecture-2-<slug>.png`, and adds `![Image](/markdown/images/lecture-2-<slug>.png)` at the end of
+the matching slide in `lecture-2.md`. Images already on disk are skipped, so it can be rerun after a failure.
+Needs the Codex CLI, logged in. Then ask Claude to upload the images to the Slides deck and rebuild.

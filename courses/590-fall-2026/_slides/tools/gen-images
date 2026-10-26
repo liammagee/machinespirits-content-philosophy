@@ -1,0 +1,88 @@
+#!/usr/bin/env python3
+"""Generate Lecture N's slide images with Codex, then link each one into lecture-N.md.
+
+Reads the prompts in _slides/lecture-N/image-prompts.md, runs each through `codex exec` with its $imagegen
+skill (gpt-image), saves the picture as assets/images/lecture-N-<slug>.png and inserts
+![Image](/markdown/images/lecture-N-<slug>.png) at the end of the matching slide in lecture-N.md.
+An image already on disk is not regenerated and is not linked twice, so the script can be rerun safely.
+
+usage: courses/590-fall-2026/_slides/tools/gen-images 2 [slug …]     (needs Codex CLI, logged in)
+"""
+import pathlib, re, subprocess, sys
+
+HERE = pathlib.Path(__file__).resolve().parent
+COURSE, REPO = HERE.parents[1], HERE.parents[3]
+N = sys.argv[1] if len(sys.argv) > 1 else sys.exit(__doc__)
+ONLY = set(sys.argv[2:])
+PROMPTS = (COURSE / f"_slides/lecture-{N}/image-prompts.md").read_text()
+MD = COURSE / f"lecture-{N}.md"
+IMAGES = REPO / "assets/images"
+
+# prompt heading (start of its "## " line) -> slug, the slide heading in lecture-N.md (its start: the first
+# heading that begins with it), how much house style
+SLIDES = [
+    ("Quick history (1)", "salon", "Quick history", "minimal"),
+    ("Anatomy of a Journal Article", "anatomy", "Anatomy of a Journal Article", "full"),
+    ("Aside: Perversity of Publishing", "perversity", "Aside: Perversity of Publishing", "full"),
+    ("What is the purpose of an article?", "purpose", "What is the **purpose** of an article?", "full"),
+    ("Typical structure of an Article", "structure", "Typical structure of an Article", "full"),
+    ("Learn from Marx?", "marx", "Learn from Marx?", "full"),
+    ("Google Gemini's view", "chatgpt-view", "Google Gemini's view", "none"),
+    ("Hour 2", "hour-2", "Hour 2 (might get here early)...", "full"),
+    ("Metaphors of Knowledge", "metaphors", "Metaphors of Knowledge: Navigating fields and finding gaps", "full"),
+    ("Work it like a Puzzle", "puzzle", "Work it like a Puzzle", "full"),
+    ("More on tone...", "tone", "More on tone...", "full"),
+    ("First: What do we do when we open an article?", "opening", "First: What do we do when we open an article?", "full"),
+    ("Hour 3", "hour-3", "Hour 3", "full"),
+    ("Growing your database", "database", "Growing your database", "full"),
+    ("Also consider...", "heteroscopia", "Also consider...", "full"),
+]
+
+def house_style():
+    m = re.search(r"\*\*House style \(append to every prompt\):\*\*\s*(.+?)\n\n", PROMPTS, re.S)
+    return " ".join(m.group(1).split())
+
+def prompt_for(start):
+    sec = re.search(r"^## " + re.escape(start) + r".*?\n(.*?)(?=^## |\Z)", PROMPTS, re.S | re.M)
+    if not sec:
+        sys.exit(f"no prompt starting '## {start}' in image-prompts.md")
+    quote = [l[1:].strip() for l in sec.group(1).splitlines() if l.startswith(">")]
+    return " ".join(quote)
+
+def link_into_markdown(heading, rel):
+    text = MD.read_text()
+    if rel in text:
+        return
+    lines = text.split("\n")
+    at = next((i for i, l in enumerate(lines) if re.match(r"#+\s+" + re.escape(heading), l.strip())), None)
+    if at is None:
+        print(f"  ! heading not found in {MD.name}: {heading} (image saved, not linked)")
+        return
+    end = next((i for i in range(at + 1, len(lines)) if lines[i].strip() == "---"), len(lines))
+    while end > at + 1 and not lines[end - 1].strip():
+        end -= 1
+    lines[end:end] = ["", f"![Image]({rel})"]
+    MD.write_text("\n".join(lines))
+    print(f"  linked in {MD.name} under '{heading}'")
+
+style = house_style()
+minimal = "No text, letters, logos or captions anywhere in the image. Square, 1:1."
+IMAGES.mkdir(parents=True, exist_ok=True)
+for start, slug, heading, mode in SLIDES:
+    if ONLY and slug not in ONLY:
+        continue
+    out = IMAGES / f"lecture-{N}-{slug}.png"
+    rel = f"/markdown/images/{out.name}"
+    if not out.exists():
+        prompt = prompt_for(start) + {"full": " " + style, "minimal": " " + minimal, "none": ""}[mode]
+        print(f"→ {slug}: generating")
+        task = (f"Use $imagegen to generate exactly one square image from the prompt below, then save the final "
+                f"image as a PNG at {out}. Do not change any other file.\n\nPROMPT:\n{prompt}")
+        r = subprocess.run(["codex", "exec", "--full-auto", "--skip-git-repo-check", "-C", str(REPO), task])
+        if r.returncode or not out.exists():
+            print(f"  ! {slug}: no image saved (codex exit {r.returncode}); skipping")
+            continue
+    else:
+        print(f"→ {slug}: already generated")
+    link_into_markdown(heading, rel)
+print("Done. Ask Claude to upload the new images to the Slides deck and rebuild it.")
