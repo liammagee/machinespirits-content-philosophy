@@ -78,7 +78,7 @@ for start, slug, heading, mode in SLIDES:
         print(f"→ {slug}: generating")
         task = (f"Use $imagegen to generate exactly one square image from the prompt below, then save the final "
                 f"image as a PNG at {out}. Do not change any other file.\n\nPROMPT:\n{prompt}")
-        r = subprocess.run(["codex", "exec", "--full-auto", "--skip-git-repo-check", "-C", str(REPO), task])
+        r = subprocess.run(["codex", "exec", "--sandbox", "workspace-write", "--skip-git-repo-check", "-C", str(REPO), task])
         if r.returncode or not out.exists():
             print(f"  ! {slug}: no image saved (codex exit {r.returncode}); skipping")
             continue
