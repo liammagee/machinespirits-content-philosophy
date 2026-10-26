@@ -171,7 +171,12 @@ for block_md in blocks:
             words = len(soup.get_text())  # the more text, the narrower the picture, so the text stays readable
             w = 820 if words < 700 else 640 if words < 1100 else 500
             h = (800 - 24 * (k - 1)) // k
+            side = k == 2 and words < 700  # two pictures and little text: side by side, larger
+            if side:
+                w = h = 520
             pics = "".join(f'<img src="{s}" alt="{html.escape(a)}" style="width:{w}px;height:{h}px;object-fit:contain;border-radius:14px">' for s, a in imgs)
+            if side:
+                pics = f'<div style="display:flex;flex-direction:row;gap:24px">{pics}</div>'
             body = (f'<div style="display:flex;flex-direction:row;gap:64px;flex:1">'
                     f'<div data-fit style="flex:1;display:flex;flex-direction:column;gap:{S(0.55)}">{col(top)}</div>'
                     f'<div style="display:flex;flex-direction:column;gap:24px;justify-content:center">{pics}</div></div>')
