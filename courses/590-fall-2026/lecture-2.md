@@ -1,5 +1,12 @@
 
 
+
+
+# EPOL 590 - AI and Academic Literature
+
+
+
+
 ---
 
 ## 590 Lecture 2: Anatomy of a Journal Article / Where's the Gap? Mapping a Field  
@@ -15,6 +22,23 @@ Topics:
 
 ---
 
+### Tonight
+
+| Time | |
+| --- | --- |
+| 5:00 | Welcome back, Week 1 recap and Task 1 |
+| 5:10 | Overdue: breakout rooms |
+| 5:40 | Anatomy of a journal article; what is a literature review? |
+| 6:00 | *Break* |
+| 6:10 | Mapping fields and minding gaps; tone; what do we do when we open an article? |
+| 7:00 | *Break* |
+| 7:10 | Designing a literature review |
+| 7:35 | This week's activity, Task 2 and next week's readings |
+
+Times are a guide. Two ten-minute breaks, on the hour.
+
+---
+
 ## Recap on Week 1
 
 - What is this course about? Do we need another course on academic literature?
@@ -24,22 +48,35 @@ Topics:
 
 How do you build a sense of your field and its gaps? This course aims to make sense of a term – academic literature – at once mundane and mystical. It starts with fundamentals: how to build, annotate, analyze, map and translate a literature database into a literature review. It progresses to think about how AI and other technology can help foster more critical, analytic and reflexive modes of interpretation and understandings of the field.
 
-All required material (video lectures, readings etc.) will be provided to students.
+
+
+  
+---
+
+## Overdue: Breakout rooms...
+
+Discuss:
+
+ - What is your research question / topic? Why does it matter?
+ - What do you already know about it? What is your initial answer? What could possibly change once you've done your research? Is there capacity for you and your audiences to be surprised?
+ - How might AI be changing how you (or others) go about answering this question?
+
+Then discuss collectively:
+
+ - Was it easy to phrase your question? Did your peers understand the question? 
+
+
 
 ---
 
-## Recap on Week 1
+### How was the Week 1 class constellation made?
 
-| **Week** | **Theory** | **Practice** | **Assessment** |
-| --- | --- | --- | --- |
-| **1** | Course Overview / Anatomy of a Journal Article / What Makes a Good Research Question?  | AI Tools for Literature | First Draft of Research Topic / Research Question |
-| **2** | Academic Audiences and Techniques of Persuasion | Where's the Gap? Mapping a Field | Design, Method and Structure of the Literature Review |
-| **3** | Does Artificial Intelligence Mean Artificial Knowledge? How AI is Impacting Academia  | Vibe Scholarship (Is It as Bad as It Sounds?) | Concept Map of the Literature |
-| **4** | Finding Your Scholarly Voice: Peers / Audience / Venue / Field | Drafting a section of your review in a *scientific* and *humanities* mode | Literature Review Sample: In the Scientific Mode |
-| **5** | "What Do I Know?" Towards A Sociology of Knowledge | Framing Language: "Carry" Your Reader | Frame up your Literature Review |
-| **6** | The Reflexive Researcher and Interpreting Scholarship | Reflecting on your positionality vis-a-vis interpretation; drafting a statement about AI’s epistemic role | Statement on the Use of AI in Your Literature Review / Reflection on the Role of AI in Academia |
-| **7** | The Automatic Academy? The Future of Scholarship | Compiling a complete literature review | Final Literature Review |
+It was built with Claude over several conversations, so there is no single original prompt. This prompt is a starting point for a similar page:
 
+> Build a single-file interactive HTML page for a graduate seminar, EPOL 590: AI and Academic Literature. Each student adds their name, up to five research interests and a one-sentence research topic. Show the class as a slowly rotating 3D network: the course at the centre, each interest as a coloured hub, and students linked to the hubs they share. For each interest, fetch a few recent papers from the OpenAlex API and attach them to its hub as small nodes in the same colour. Clicking a paper shows its title, authors, year, abstract and a link to the full article; clicking a student shows their topic and who shares their interests. Use only HTML, CSS and JavaScript in one file.
+
+ - A single HTML file can't share entries between students on its own: that needs shared storage, such as a Claude artifact's database or a small server
+ - Then iterate: ask for one change at a time, and check every paper it shows against the source
 
 ---
 
@@ -244,15 +281,14 @@ Lots of answers, lots of guidance...
 
 ---
 
-### Two (or Three) (Pseudo-)Random Articles
+### Two (Pseudo-)Random Articles
 
 
 1. Keerthiraj, & Misra, A. (2025). Who owns the future? AI, digital sovereignty, and the politics of knowledge. AI & SOCIETY, 1-13. https://link.springer.com/article/10.1007/s00146-025-02641-y  
 2. Liu, J., Zhang, Y., Li, W., Wang, Q., Niu, P., & Zhang, X. (2025). Adaptive vs. Planned Metacognitive Scaffolding for Computational Thinking: Evidence from Generative AI-Supported Programming in Elementary Education. Computers & Education, 105473. https://doi.org/10.1016/j.compedu.2025.105473
-3. Spivak, G. C. (1988). Can the subaltern speak? In C. Nelson & L. Grossberg (Eds.), *Marxism and the interpretation of culture* (pp. 271–313). University of Illinois Press. http://users.uoa.gr/~cdokou/TheoryCriticismTexts/Spivak-Subaltern.pdf
 
 
- - Why these two (three) examples? Contrasting methods, yes - but more than this, these articles reflect different orientations towards *scholarly techniques of persuasion*
+ - Why these two examples? Contrasting methods, yes - but more than this, these articles reflect different orientations towards *scholarly techniques of persuasion*
 
 
 ---
@@ -292,12 +328,6 @@ Liu, J., Zhang, Y., Li, W., Wang, Q., Niu, P., & Zhang, X. (2025). Adaptive vs. 
 
 ---
 
-### Can the subaltern speak?
- 
-Spivak, G. C. (1988). Can the subaltern speak? In C. Nelson & L. Grossberg (Eds.), *Marxism and the interpretation of culture* (pp. 271–313). University of Illinois Press. http://users.uoa.gr/~cdokou/TheoryCriticismTexts/Spivak-Subaltern.pdf
-
-
----
 
 ## Hour 3 
 
@@ -325,7 +355,7 @@ Spivak, G. C. (1988). Can the subaltern speak? In C. Nelson & L. Grossberg (Eds.
  - **Time**, followed by **theme**, followed by **space**
  - Just be approximate
 
-"Criticism of AI **dates back** to the inception of the field itself. For example, Dreyfus (1966 - or thereabouts) discussed the brittleness of (etc)... By the early 1980s, scepticism voiced by philosophers such as Searle (1981) in his famous "Chinese room" experiment, contributed to the emergence of an AI winter. **More recently**, as generative AI has largely revived the field, criticism has been directed toward both issues of **social justice and bias** (e.g. Bender et al. 2021) and potential **existential risk** (e.g. lesswrong blog). In some cases, critical AI scholars have also argued the existential case is a convenient disguise that obscures more immediate negative social effects (Gebru and Torres 2024). Moreover scholars from **outside the US** - particularly in the Global South – have begun to argue AI constitutes a form of **neocolonialism**, impacting digital sovereignty (Keerthiraj, & Misra 2025)"
+"Criticism of AI **dates back** to the inception of the field itself. For example, Dreyfus (1965) discussed the brittleness of (etc)... By the early 1980s, scepticism voiced by philosophers such as Searle (1980) in his famous "Chinese room" experiment, contributed to the emergence of an AI winter. **More recently**, as generative AI has largely revived the field, criticism has been directed toward both issues of **social justice and bias** (e.g. Bender et al. 2021) and potential **existential risk** (e.g. lesswrong blog). In some cases, critical AI scholars have also argued the existential case is a convenient disguise that obscures more immediate negative social effects (Gebru and Torres 2024). Moreover scholars from **outside the US** - particularly in the Global South – have begun to argue AI constitutes a form of **neocolonialism**, impacting digital sovereignty (Keerthiraj, & Misra 2025)"
 
  - Can work with or without AI - useful just to test how this or that understanding helps make your case (about gaps)
  - Don't commit to this structure just yet! 
@@ -346,13 +376,34 @@ Spivak, G. C. (1988). Can the subaltern speak? In C. Nelson & L. Grossberg (Eds.
 
 ---
 
-### Also consider
+### Gap Finder: refine your question until it meets a gap
+
+ - **Goal:** refine the question until only 1–3 papers answer it, with plenty nearby
+ - Start from *How is generative AI used in literature reviews?* Add or remove a concept (who, which practice, which issue, where) and watch the field move
+ - Then write your own question and try again
+ - [Open Gap Finder](https://claude.ai/artifact/N4LeTAw29V4vZaEkReDNZY)
+ - The field is a sample of 92 recent OpenAlex articles on AI, academic writing and doctoral education. The matching is rough: treat the verdict as a prompt to read, not a finding
+
+---
+
+### How was Gap Finder made?
+
+As with the class constellation, it was built with Claude over several conversations. This prompt is a starting point for a similar game:
+
+> Build a single-file interactive HTML game for a graduate seminar on literature reviews that shows how a research question and its literature shape each other. Embed a small field of real article records (title, year, authors, venue, DOI, a line from the abstract) taken from OpenAlex. The student builds a question by adding or removing concepts (topic, who, which practice, which issue, where), or types their own question and the game picks out its concepts. Score each paper by how many of the question's concepts appear in its title or abstract. Show the field in 3D with three.js: papers matching every concept gather at the centre, papers matching all but one orbit nearby, and the rest drift outward, moving each time the question changes. The goal is to refine the question until only 1–3 papers answer it directly while many sit nearby. Record each change as a version on a visible path, and when the goal is met, list the papers to read and draft a signposted gap statement.
+
+ - The game can only search what is embedded in it: a page published on claude.ai cannot call OpenAlex live
+ - Iterate one change at a time, and check every paper it shows against the source
+
+---
+
+### Also consider...
 
  - Different perspectives - outside the ordinary frame of discipline, time
    - e.g. "heteroscopia" ("many visions") - concept by Jaireth (2001) to describe Indian cinema
    - But also a useful term for thinking about machinic vision, generative AI 
  - Less-known authors (especially not widely cited) - this can enrich a review, demonstrating greater awareness beyond the same few authors / studies...
-   - e.g. History of AI - typically focussed on US developments. But Schmidhuber (1922) argues the importance of developments in Ukraine (USSR), Japan, Finland in the 1960s/70s. Who knew? 
+   - e.g. History of AI - typically focussed on US developments. But Schmidhuber (2022) argues the importance of developments in Ukraine (USSR), Japan, Finland in the 1960s/70s. Who knew? 
  - **In short: surprise us!**
 
 
@@ -370,6 +421,7 @@ Different techniques for expanding your database:
   - **Go sideways**: What else was published in the same journal / issue
 - Check common "authorities": Wikipedia, syllabi, AI
   - e.g. "Critical AI" - people will be citing Bender et al. (2021) stochastic parrots paper 
+- Tools (from the Notes tab of the class document, Week 2): [Connected Papers](https://www.connectedpapers.com/), [Semantic Scholar](https://www.semanticscholar.org/), [ResearchRabbit](https://www.researchrabbit.ai/), [Testing AI academic search engines](https://musingsaboutlibrarianship.blogspot.com/2025/03/testing-ai-academic-search-engines-1.html)
 
 
 ---
@@ -378,7 +430,7 @@ Different techniques for expanding your database:
 
 1. Write down the gap (should be close to your research question)
 2. Write down your assumed audience / field. What do you know about them? Do they prefer lots of recent citations (science)? Or fewer, with more emphasis on the classics (philosophy, theory, some qual studies)?
-3. Create a short plan / recipe method:
+3. Create a short plan / recipe *method*:
    - "Search for these terms / filters"
    - "Create a database of 10 articles"
    - "Scan the articles for relevance - discard those that are not relevant"
@@ -401,8 +453,19 @@ Different techniques for expanding your database:
 
 ---
 
+### Task 2 · Review design method and scope (10%)
+
+ - This week's activity, written in your tab of the [EPOL 590 Fall 2026 class document](https://docs.google.com/document/d/1JATwv9qBCeN9ld3AEHc5FeZVi6ZamubNqLHzVQjeWGY/edit), under Week 2
+ - Then submit the link to your tab on Canvas by **Monday 2 November, 11:59 PM Central**
+
+---
+
 ### Next Week's Readings
 
-[sciencepolicy.colorado.edu](https://sciencepolicy.colorado.edu/students/envs_5110/snow_1959.pdf)
-<!-- 
-Aarseth, E. J. (1997). Cybertext: Perspectives on ergodic literature. JHU Press. [williamwolff.org](https://williamwolff.org/wp-content/uploads/2013/01/aarseth-ergodic-ch1-1997.pdf)  -->
+Moretti, F. (2000). Conjectures on world literature. *New Left Review*, 1, 54–68. [University Library](https://i-share-uiu.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma992311912205899&vid=01CARLI_UIU:CARLI_UIU)
+
+Optional, the full book: Moretti, F. (2013). *Distant reading*. Verso.
+
+Snow, C. P. (1959). *The two cultures and the scientific revolution*. Cambridge University Press. [University Library](https://i-share-uiu.primo.exlibrisgroup.com/discovery/search?query=any,contains,The%20two%20cultures%20Snow%20Collini&tab=LibraryCatalog&search_scope=MyInstitution&vid=01CARLI_UIU:CARLI_UIU)
+
+Aarseth, E. J. (1997). Cybertext: Perspectives on ergodic literature. JHU Press. [williamwolff.org](https://williamwolff.org/wp-content/uploads/2013/01/aarseth-ergodic-ch1-1997.pdf) 

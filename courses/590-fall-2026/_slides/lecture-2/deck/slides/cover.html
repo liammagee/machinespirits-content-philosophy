@@ -1,0 +1,19 @@
+<section id="cover" data-transition="fade" style="background:#15161D;color:#F3EEE4;font-family:'Source Serif 4', Georgia, serif;padding:128px;display:flex;flex-direction:column;justify-content:end;gap:32px">
+<x-embed style="position:absolute;left:0px;top:0px;width:1920px;height:1080px"><!doctype html><html><head><style>html,body{margin:0;height:100%;background:#15161D;color-scheme:dark;overflow:hidden}canvas{display:block;width:100%;height:100%}</style></head><body><canvas id="c"></canvas><script>
+const c=document.getElementById('c'),x=c.getContext('2d');let W,H,N=[],t=0;
+function rs(){W=c.width=innerWidth*devicePixelRatio;H=c.height=innerHeight*devicePixelRatio}addEventListener('resize',rs);rs();
+let seed=11;const r=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+for(let i=0;i<70;i++){N.push({x:0.42+r()*0.58,y:r(),vx:(r()-.5)*.00025,vy:(r()-.5)*.00025,s:1+r()*3.2,o:r()<.18,b:i})}
+function f(){t++;x.clearRect(0,0,W,H);const d=Math.min(W,H)*.19;
+for(const n of N){n.x+=n.vx;n.y+=n.vy;if(n.x<.38||n.x>1)n.vx*=-1;if(n.y<0||n.y>1)n.vy*=-1}
+for(let i=0;i<N.length;i++)for(let j=i+1;j<N.length;j++){const a=N[i],b=N[j],dx=(a.x-b.x)*W,dy=(a.y-b.y)*H,l=Math.hypot(dx,dy);if(l<d){x.strokeStyle=(a.o||b.o)?'rgba(242,85,44,'+(0.55*(1-l/d))+')':'rgba(98,128,214,'+(0.38*(1-l/d))+')';x.lineWidth=devicePixelRatio*1.2;x.beginPath();x.moveTo(a.x*W,a.y*H);x.lineTo(b.x*W,b.y*H);x.stroke()}}
+for(const n of N){const p=n.o?1+0.35*Math.sin(t/40+n.b):1;x.fillStyle=n.o?'#F2552C':'#6280D6';x.beginPath();x.arc(n.x*W,n.y*H,n.s*p*devicePixelRatio*2.2,0,7);x.fill()}
+const g=x.createLinearGradient(0,0,W*.62,0);g.addColorStop(0,'rgba(21,22,29,1)');g.addColorStop(.75,'rgba(21,22,29,.85)');g.addColorStop(1,'rgba(21,22,29,0)');x.fillStyle=g;x.fillRect(0,0,W*.62,H);
+requestAnimationFrame(f)}f();
+</script></body></html></x-embed>
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:32px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#FF7A50">EPOL 590 · Lecture 2 · Monday 26 October 2026</p>
+<h1 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:120px;font-weight:700;line-height:1.0;letter-spacing:-3px;color:#F3EEE4;width:1100px">Anatomy of an article</h1>
+<p style="font-size:44px;font-style:italic;line-height:1.3;color:#C9C4B8;width:1000px">Where’s the gap? Mapping a field and designing a review</p>
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;color:#C9C4B8">Professor Liam Magee · Education Policy, Organization and Leadership · University of Illinois Urbana-Champaign</p>
+<aside>Welcome back. Tonight follows the Week 2 Collaboration tab of the class document hour by hour: why articles share a structure, how we choose a tone and open an article, then designing your own review. Task 1 is due tonight at 11:59 PM Central: submit the link to your tab on Canvas.</aside>
+</section>
