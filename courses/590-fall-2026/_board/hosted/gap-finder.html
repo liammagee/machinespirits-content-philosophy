@@ -37,6 +37,10 @@ body{background:var(--bg);color:var(--ink);font-family:var(--display)}
 #stage{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab}
 .hint{position:absolute;left:14px;bottom:12px;margin:0;font-size:12px;color:var(--muted);pointer-events:none}
 .key{position:absolute;right:14px;top:12px;display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted);pointer-events:none}
+.view{position:absolute;right:14px;bottom:12px;display:flex;gap:4px;z-index:2}
+.view button{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-family:var(--display);font-size:16px;font-weight:700;cursor:pointer;line-height:1}
+.view button:hover{border-color:var(--ember)}
+#stage{touch-action:none}
 .key i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
 .side{grid-column:2;grid-row:2;padding:14px;display:flex;flex-direction:column;gap:12px;overflow:auto;min-height:0}
 .side h2{margin:0;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
@@ -112,7 +116,8 @@ button.alt{font-family:var(--display);font-size:14px;font-weight:600;padding:7px
   <section class="card field">
     <canvas id="stage" aria-label="The field of papers around your question, in 3D"></canvas>
     <div class="key"><span><i style="background:#FF7A50"></i><b id="k-direct">–</b> answer your question</span><span><i style="background:#7F9BE8"></i><b id="k-near">–</b> nearby: all but one concept</span><span><i style="background:#6E6A78"></i>a sample of each is shown</span></div>
-    <p class="hint">Drag to turn · hover or click a dot to see the paper</p>
+    <p class="hint">Drag to turn · shift-drag or right-drag to pan · scroll or pinch to zoom · click a dot to see the paper</p>
+    <div class="view" aria-label="View controls"><button type="button" id="v-in" title="Zoom in" aria-label="Zoom in">+</button><button type="button" id="v-out" title="Zoom out" aria-label="Zoom out">−</button><button type="button" id="v-reset" title="Reset view" aria-label="Reset view">⟲</button></div>
     <div class="card paper" id="paper" hidden></div>
   </section>
   <aside class="card side" aria-label="Moves">
@@ -214,17 +219,24 @@ function phrase(list){
   return q + "?";
 }
 function plainQuestion(list){ const d = document.createElement("div"); d.innerHTML = phrase(list); return d.textContent.replace(/\s+/g, " "); }
-const STOP = new Set("a an the of in on for to and or with by how what why does do is are can could should would which who whom when where into from its their as at be been being this that these those use used using between among about vs versus more most less into through students student research study their there them they other others within across affect affects impact impacts shape shapes role roles effect effects influence perceive perceptions experiences possible".split(" "));
+const STOP = new Set("a an the of in on for to and or with by how what why does do is are can could should would which who whom when where into from its their as at be been being this that these those use used using between among about vs versus more most less into through students student research study their there them they other others within across affect affects impact impacts shape shapes role roles effect effects influence perceive perceptions experiences possible possess possesses shaping shape help helps helping support supports supporting change changes changing transform transforms transforming improve improves improving enable enables enabling make makes making become becomes being get gets".split(" "));
 function extract(text){
   const low = " " + text.toLowerCase().replace(/[?.,;:()"“”]/g, " ") + " ";
   Object.keys(C).filter(n => C[n].g === "Yours").forEach(n => delete C[n]);
   const found = [];
   for (const [name, c] of Object.entries(C)) { const t = [name.toLowerCase()].concat(c.detect).find(x => low.includes(x.trim().length > 3 ? x.trim() : x)); if (t) { found.push(name); c.hit = t.trim(); } }
   let list = found.filter(n => !(n === "academic writing" && found.includes("literature reviews") && !/academic writing/.test(low)) && !(n === "critical reading" && !/critical reading/.test(low) && found.length > 2));
-  const covered = list.flatMap(n => [C[n].hit].concat(C[n].detect).map(x => x.trim()).filter(x => x.length > 2));
-  const words = low.split(/\s+/).filter(w => w.length > 4 && !STOP.has(w) && !covered.some(h => h.includes(w) || w.includes(h)));
-  words.sort((a, b) => b.length - a.length).slice(0, Math.max(0, 4 - list.length)).forEach(w => { if (C[w]) return;
-    C[w] = { g:"Yours", q:[w], detect:[w], phrase:w, hit:w }; list.push(w); });
+  // Blank out the words the recognised concepts used, then split what is left into phrases at stop words,
+  // so "in the social sciences" becomes one concept, "social sciences", not two words.
+  let rest = low.replace(/[!]/g, " ");
+  list.forEach(n => { const h = C[n].hit; if (h) rest = rest.replace(new RegExp("\\b" + h.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\w*", "i"), " | "); });
+  const phrases = []; let run = [];
+  rest.split(/\s+/).forEach(w => { if (!w || w === "|" || STOP.has(w) || /^\d+$/.test(w)) { if (run.length) phrases.push(run); run = []; } else run.push(w); });
+  if (run.length) phrases.push(run);
+  phrases.map(ws => { while (ws.length > 1 && /ing$/.test(ws[0])) ws = ws.slice(1); return ws.slice(-3).join(" "); }).filter(ph => ph.replace(/ /g, "").length > 4)
+    .sort((a, b) => b.split(" ").length - a.split(" ").length || b.length - a.length)
+    .slice(0, Math.max(0, Math.min(2, 5 - list.length)))
+    .forEach(ph => { if (C[ph]) return; C[ph] = { g:"Yours", q:[ph], detect:[ph], phrase:"in " + ph, hit:ph }; list.push(ph); });
   return list.slice(0, 5);
 }
 function openWriter(){ $("q-view").hidden = true; $("q-edit").hidden = false; $("q-text").value = own ? own.text : plainQuestion(active); $("q-text").focus(); $("q-text").select(); }
@@ -310,22 +322,30 @@ let layout = () => {}, burst = () => {};
 const canvas = $("stage");
 if (window.THREE) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 3));
+  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.1;
   const scene = new THREE.Scene(); scene.background = new THREE.Color("#101119"); scene.fog = new THREE.Fog("#101119", 12, 28);
   const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
-  scene.add(new THREE.AmbientLight(0xffffff, 0.55));
-  const key = new THREE.PointLight(0xffffff, 1.1, 40); key.position.set(6, 8, 10); scene.add(key);
+  // A small studio of soft light panels, baked into an environment map, gives the glass dots their reflections.
+  { const pm = new THREE.PMREMGenerator(renderer), studio = new THREE.Scene();
+    studio.add(new THREE.Mesh(new THREE.SphereGeometry(20, 16, 16), new THREE.MeshBasicMaterial({ color: 0x1a1b26, side: THREE.BackSide })));
+    [[0, 9, 4, 14, 3, 0xffffff], [-9, 3, 2, 3, 10, 0xffd9c8], [9, 2, -3, 3, 8, 0xc8d4ff], [0, -8, 0, 12, 2, 0x404050]].forEach(([x, y, z, w, h, c]) => {
+      const pnl = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: c, side: THREE.DoubleSide })); pnl.position.set(x, y, z); pnl.lookAt(0, 0, 0); studio.add(pnl); });
+    scene.environment = pm.fromScene(studio, 0.04).texture; pm.dispose(); }
+  scene.add(new THREE.AmbientLight(0xffffff, 0.25));
+  const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(6, 8, 10); scene.add(key);
+  const rim = new THREE.DirectionalLight(0x9fb4ff, 0.8); rim.position.set(-8, -2, -6); scene.add(rim);
   const core = new THREE.Mesh(new THREE.SphereGeometry(0.3, 32, 32), new THREE.MeshStandardMaterial({ color: 0xF3EEE4, emissive: 0xF3EEE4, emissiveIntensity: 0.6 })); scene.add(core);
   const shellMat = new THREE.MeshBasicMaterial({ color: 0x5FD39A, transparent: true, opacity: 0.12, wireframe: true });
   const shell = new THREE.Mesh(new THREE.SphereGeometry(1.7, 24, 16), shellMat); scene.add(shell);
   const ring = new THREE.Mesh(new THREE.TorusGeometry(3.6, 0.01, 8, 120), new THREE.MeshBasicMaterial({ color: 0x7F9BE8, transparent: true, opacity: 0.25 })); ring.rotation.x = Math.PI / 2; scene.add(ring);
-  const geo = new THREE.SphereGeometry(0.17, 16, 16);
+  const geo = new THREE.SphereGeometry(0.17, 32, 24);
   const LEVEL = [ { r: 1.15, color: 0xFF7A50, size: 1.6, e: 0.8 }, { r: 3.6, color: 0x7F9BE8, size: 1.0, e: 0.35 }, null, { r: 10, color: 0x34343F, size: 0.6, e: 0 } ];
   const POOL = 60;
   const dots = Array.from({ length: POOL }, (_, k) => {
     const y = 1 - (k + 0.5) * 2 / POOL, rr = Math.sqrt(1 - y * y), th = k * 2.399963;
     const dir = new THREE.Vector3(Math.cos(th) * rr, y * 0.7, Math.sin(th) * rr).normalize();
-    const m = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: 0x34343F, emissive: 0x000000, roughness: 0.5 }));
+    const m = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({ color: 0x34343F, emissive: 0x000000, roughness: 0.06, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.04, transparent: true, opacity: 0.62, envMapIntensity: 1.4, ior: 1.45, specularIntensity: 1 }));
     m.userData = { dir, target: dir.clone().multiplyScalar(10), jitter: 0.85 + ((k * 7919) % 1000) / 1000 * 0.3, level: 3, size: 0.6, paper: null, missing: null };
     m.position.copy(m.userData.target); scene.add(m); return m;
   });
@@ -338,19 +358,36 @@ if (window.THREE) {
       let dir = d.dir;
       if (lv === 1 && s) { const n = s.k, ang = d.missing * 2 * Math.PI / n + (d.jitter - 1) * 2.2; dir = new THREE.Vector3(Math.cos(ang), (d.jitter - 1) * 1.6, Math.sin(ang)).normalize(); }
       d.target = dir.clone().multiplyScalar(L.r * (lv === 0 ? 0.6 + d.jitter * 0.4 : d.jitter));
-      m.material.color.setHex(L.color); m.material.emissive.setHex(L.color); m.material.emissiveIntensity = L.e; d.size = L.size; });
+      m.material.color.setHex(L.color); m.material.emissive.setHex(L.color); m.material.emissiveIntensity = L.e * 0.45; m.material.opacity = lv === 3 ? 0.35 : 0.62; d.size = L.size; });
     const st = s === "busy" ? STATES.busy : s && s.state ? STATES[s.state] : STATES.start;
     shellMat.color.set(st.hex); shellMat.opacity = s && s.state === "gap" ? 0.28 : 0.12;
   };
   let sparks = [];
   burst = () => { for (let i = 0; i < 70; i++) { const m = new THREE.Mesh(new THREE.SphereGeometry(0.05, 8, 8), new THREE.MeshBasicMaterial({ color: 0x5FD39A, transparent: true }));
     const v = new THREE.Vector3(Math.random() - .5, Math.random() - .5, Math.random() - .5).normalize().multiplyScalar(0.08 + Math.random() * 0.12); scene.add(m); sparks.push({ m, v, life: 1 }); } };
-  const resize = () => { const w = canvas.clientWidth, h = canvas.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); camera.position.set(0, 2.5, w < 600 ? 13 : 9.5); camera.lookAt(0, 0, 0); };
+  const resize = () => { const w = canvas.clientWidth, h = canvas.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); home = w < 600 ? 13.2 : 9.8; if (!touched) dist = home; place(); };
+  // View: yaw turns the field, pitch tilts the camera, dist zooms, target pans.
+  let home = 9.8, dist = 9.8, pitch = 0.25, touched = false; const target = new THREE.Vector3();
+  const place = () => { camera.position.set(target.x, target.y + Math.sin(pitch) * dist, target.z + Math.cos(pitch) * dist); camera.lookAt(target); };
+  const zoom = (f) => { dist = Math.min(26, Math.max(2.2, dist * f)); touched = true; place(); };
+  const pan = (dx, dy) => { const k = dist * 0.0016, right = new THREE.Vector3().setFromMatrixColumn(camera.matrix, 0), up = new THREE.Vector3().setFromMatrixColumn(camera.matrix, 1);
+    target.addScaledVector(right, -dx * k).addScaledVector(up, dy * k); touched = true; place(); };
+  const resetView = () => { dist = home; pitch = 0.25; target.set(0, 0, 0); touched = false; place(); };
+  canvas.addEventListener("wheel", (e) => { e.preventDefault(); zoom(Math.exp(e.deltaY * (e.ctrlKey ? 0.01 : 0.0015))); }, { passive: false });
+  canvas.addEventListener("contextmenu", (e) => e.preventDefault());
+  const pts = new Map(); let pinch = 0;
+  canvas.addEventListener("pointerdown", (e) => { pts.set(e.pointerId, [e.clientX, e.clientY]); canvas.setPointerCapture(e.pointerId); if (pts.size === 2) { const [a, b] = [...pts.values()]; pinch = Math.hypot(a[0] - b[0], a[1] - b[1]); } });
+  const lift = (e) => { pts.delete(e.pointerId); pinch = 0; };
+  canvas.addEventListener("pointerup", lift); canvas.addEventListener("pointercancel", lift);
+  $("v-in").addEventListener("click", () => zoom(0.8)); $("v-out").addEventListener("click", () => zoom(1.25)); $("v-reset").addEventListener("click", resetView);
   addEventListener("resize", resize);
   const ray = new THREE.Raycaster(), mouse = new THREE.Vector2(); let hover = null, drag = 0, angle = 0;
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   canvas.addEventListener("pointermove", (e) => { const r = canvas.getBoundingClientRect(); mouse.set((e.clientX - r.left) / r.width * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
-    if (e.buttons) { angle -= e.movementX * 0.005; drag++; }
+    if (pts.has(e.pointerId)) { const prev = pts.get(e.pointerId), dx = e.clientX - prev[0], dy = e.clientY - prev[1]; pts.set(e.pointerId, [e.clientX, e.clientY]);
+      if (pts.size === 2) { const [a, b] = [...pts.values()], d2 = Math.hypot(a[0] - b[0], a[1] - b[1]); if (pinch) zoom(pinch / d2); pinch = d2; drag += 5; return; }
+      if (e.buttons & 2 || e.buttons & 4 || e.shiftKey) pan(dx, dy); else { angle -= dx * 0.005; pitch = Math.min(1.4, Math.max(-1.2, pitch + dy * 0.004)); touched = true; place(); }
+      drag += Math.abs(dx) + Math.abs(dy); }
     ray.setFromCamera(mouse, camera); const hit = ray.intersectObjects(dots)[0]; hover = hit && hit.object.userData.paper ? hit.object : null;
     const tip = $("tip"); if (hover) { tip.hidden = false; tip.style.left = e.clientX + "px"; tip.style.top = e.clientY + "px"; tip.textContent = hover.userData.paper.title; canvas.style.cursor = "pointer"; } else { tip.hidden = true; canvas.style.cursor = "grab"; } });
   canvas.addEventListener("pointerdown", () => { drag = 0; });
