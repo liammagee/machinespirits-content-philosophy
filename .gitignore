@@ -32,3 +32,6 @@ _students/
 # 479-fall-2026/hegel-experience links Pinkard's Phenomenology to the copy
 # marxists.org hosts. Course-authored readings belong in a plain `readings/`.
 _readings/
+
+# Slide previews written by courses/*/_slides/tools/fit_deck.py
+courses/*/_slides/*/preview/

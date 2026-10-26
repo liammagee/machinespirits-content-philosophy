@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Rebuild a lecture's slides from its markdown, literally.   usage: _slides/tools/build-deck 2
+# 1. md2deck.py   lecture-N.md -> _slides/lecture-N/deck (slide files + deck.json)
+# 2. check_deck.py  every slide holds exactly the markdown's words, no notes, only Slides-format tags
+# 3. fit_deck.py  sizes each slide's text to fit; previews in _slides/lecture-N/preview/
+# 4. build_lecture.py  the hosted page, _board/hosted/lecture-N.html
+set -euo pipefail
+here="$(cd "$(dirname "$0")" && pwd)"; course="$(cd "$here/../.." && pwd)"
+n="${1:?usage: build-deck <lecture number>}"
+md="$course/lecture-$n.md"; deck="$course/_slides/lecture-$n/deck"
+mkdir -p "$deck/slides" "$deck/images"
+python3 "$here/md2deck.py" "$md" "$deck"
+python3 "$here/check_deck.py" "$md" "$deck"
+python3 "$here/fit_deck.py" "$deck"
+(cd "$course/_board" && python3 build_lecture.py "../_slides/lecture-$n/deck" "hosted/lecture-$n.html")
+echo
+echo "Done. Look at $course/_slides/lecture-$n/preview/, then ask Claude to publish $deck to the Slides artifact."
