@@ -31,6 +31,7 @@ SLIDES = [
     ("Hour 2", "hour-2", "Hour 2 (might get here early)...", "full"),
     ("Metaphors of Knowledge", "metaphors", "Metaphors of Knowledge: Navigating fields and finding gaps", "full"),
     ("Work it like a Puzzle", "puzzle", "Work it like a Puzzle", "full"),
+    ("Work it like a Puzzle: the hermeneutic circle", "hermeneutic", "Work it like a Puzzle", "full"),
     ("More on tone...", "tone", "More on tone...", "full"),
     ("First: What do we do when we open an article?", "opening", "First: What do we do when we open an article?", "full"),
     ("Hour 3", "hour-3", "Hour 3", "full"),
@@ -43,7 +44,8 @@ def house_style():
     return " ".join(m.group(1).split())
 
 def prompt_for(start):
-    sec = re.search(r"^## " + re.escape(start) + r".*?\n(.*?)(?=^## |\Z)", PROMPTS, re.S | re.M)
+    sec = re.search(r"^## " + re.escape(start) + r"\s*\n(.*?)(?=^## |\Z)", PROMPTS, re.S | re.M) \
+          or re.search(r"^## " + re.escape(start) + r".*?\n(.*?)(?=^## |\Z)", PROMPTS, re.S | re.M)
     if not sec:
         sys.exit(f"no prompt starting '## {start}' in image-prompts.md")
     quote = [l[1:].strip() for l in sec.group(1).splitlines() if l.startswith(">")]

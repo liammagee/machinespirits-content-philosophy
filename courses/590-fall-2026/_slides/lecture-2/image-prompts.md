@@ -96,6 +96,15 @@ Use the slide's own words as the prompt, unchanged, so students can compare the 
 > the box lid showing the whole picture leans against a stack of books. A visual hermeneutic circle: part and
 > whole at once.
 
+## Work it like a Puzzle: the hermeneutic circle
+
+> The hermeneutic circle as a place: a reader sits at the centre of a round, domed reading room whose curved
+> wall is one continuous manuscript, its lines running all the way around the room and back to where they began.
+> In her hands she holds a single torn fragment of that same manuscript, and she is looking up from it to the
+> wall. A thin thread of warm light runs from the fragment out to its place in the wall, travels the whole
+> circumference, and returns to the page in her hands, so part and whole keep illuminating each other. Quiet,
+> contemplative, seen from slightly above, the circle of the room clearly legible.
+
 ## More on tone...
 
 > Two writing desks facing each other across a narrow room: one a spotless laboratory bench with instruments,
