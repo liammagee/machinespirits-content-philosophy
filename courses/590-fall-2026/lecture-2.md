@@ -14,7 +14,7 @@
 
 Topics (and rough timing):
 
-  - What is a Journal Article? What is a Literature Review? (hours 1) 
+  - What is a Journal Article? What is a Literature Review? (hour 1) 
   - Mapping a Field (and Minding the Gap) (hour 2)
   - Does a Literature Review Need a Methodology? (hour 3)
 
@@ -155,11 +155,11 @@ Then discuss collectively:
 
 ### Aside: Perversity of Publishing
 
- - **University libraries** pay  subscriptions to the **publisher** for articles that its own employees have authored (and edited and reviewed)
+ - **University libraries** pay subscriptions to the **publisher** for articles that its own employees have authored (and edited and reviewed)
    - **Why?**
  - Are there alternatives?
    - Open access publishing (but questions of sustainability of volunteer labour / reputation / distribution reach)
-   - Rise of "predatory publishing" (& dreaded "Article Processing Charge" - upto $8K USD)
+   - Rise of "predatory publishing" (& dreaded "Article Processing Charge" - up to $8K USD)
 
 ![Image](/markdown/images/lecture-2-perversity.png)
 
@@ -290,8 +290,8 @@ Lots of answers, lots of guidance...
   - It could be a *history* of your field...
   - Or a collection of *related themes / topics*...
   - Or a *geographical survey*... 
-  - Or it could be path from the *abstract* ("According to Piaget, childhood development...") that proceeds to the *concrete* ("Studies in Illinois over the past decade show a deficit in pre-K")...
- - Great, now I now what *others* have said. But tell me: what are *you* going to add to that conversation? 
+  - Or it could be a path from the *abstract* ("According to Piaget, childhood development...") that proceeds to the *concrete* ("Studies in Illinois over the past decade show a deficit in pre-K")...
+ - Great, now I know what *others* have said. But tell me: what are *you* going to add to that conversation? 
  - Persuade me; tell me this has never been said before. Think of the parlor situation: is this something really new? or just gossip I've heard before? 
 
 
@@ -340,7 +340,7 @@ Lots of answers, lots of guidance...
  - Develop a *Methodology*:
    - Choose relevant search terms (think about AI's ability to translate the terms you think of to the ones you don't)
      - Pick a couple of relevant articles and read the references
-   - Choose an organization principles:
+   - Choose an organizing principle:
      - Organize by theme? What are the themes?
      - Organize by time? How have debates on topic X *evolved*?
  - Construct an *Introduction* and *Conclusion*
@@ -357,13 +357,13 @@ Lots of answers, lots of guidance...
    - If we are on a "path" through the "field", join the dots:
      - Move up / down: general - specific
        - "More generally...", "At an abstract level", "Theoretically...", "Globally / Nationally..."
-       - "More specifically...", "At an concrete level", "Practically", "Locally
+       - "More specifically...", "At a concrete level", "Practically", "Locally..."
      - Move side to side: similar - different
        - "Similarly...", "Along the same lines...", 
        - "However...", "Conversely...", "On the other hand...", "In contrast..." 
    - "Control" your navigation:
      - "This review *will* cover...", "The literature describes several facets of..."
-     - Add some drama: "Meanwhile...", "Despite...", "X has dispute Y's findings..."
+     - Add some drama: "Meanwhile...", "Despite...", "X has disputed Y's findings..."
      - "This review *has* covered..."
 
 ![Image](/markdown/images/lecture-2-metaphors.png)
@@ -375,9 +375,9 @@ Lots of answers, lots of guidance...
  - Look at the whole picture - does it make sense?
  - Fill it in piece by piece
  - Iterate - whole to part, then part to whole, then whole to part
- - More vocabularly: the *Hermeneutic Circle*
+ - More vocabulary: the *Hermeneutic Circle*
    - Understand the Whole (in order to Interpret the Part)
-   - Interpret the Part (in order to Understanding the Whole)
+   - Interpret the Part (in order to Understand the Whole)
 
 ![Image](/markdown/images/lecture-2-puzzle.png)
 
@@ -387,7 +387,7 @@ Lots of answers, lots of guidance...
 
 ## Common Pitfalls
 
- - The Annotated Bibliography and the Literature Review - whats the difference?
+ - The Annotated Bibliography and the Literature Review - what's the difference?
   - You cannot convey *all* of the literature (a population); you get to *sample* selectively
   - Don't persuade the reader you've read everything (you can't); persuade the reader of the gap
  - Tone: Navigating the "Two Cultures" (see Snow 1959)
@@ -448,7 +448,7 @@ Different techniques for expanding your database:
   - **Go sideways**: What else was published in the same journal / issue
 - Check common "authorities": Wikipedia, syllabi, AI
   - e.g. "Critical AI" - people will be citing Bender et al. (2021) stochastic parrots paper 
-- Investigate: Who are the classics that shaped a field? Who are the contemporaries that are re-shapping the field?
+- Investigate: Who are the classics that shaped a field? Who are the contemporaries that are re-shaping the field?
 - Water cooler conversation: what names keep appearing in lecture notes, conference papers, other student essays, discussions?
 - Tools: 
   - [Connected Papers](https://www.connectedpapers.com/)
@@ -465,7 +465,7 @@ Different techniques for expanding your database:
 ## Population to Sample to Sub-sample
 
  - Your database is a sample of a population
- - Your review will (usually) be a sammple of that sample
+ - Your review will (usually) be a sample of that sample
  - What determines what to include? what to exclude? How do you determine *relevance*?
  - No hard answers but consider:
   - Classics in the field
@@ -496,7 +496,7 @@ Different techniques for expanding your database:
 1. Tentative gap - what do you think it is?
 2. Scaffold your review - how many sections? do you need subsections? Add preliminary citations
 3. Develop a sense of key transitions - what's the drama in the review? "also argued", "moreover" etc
-4. Be light, noncommital - prepared to cut/paste
+4. Be light, noncommittal - prepared to cut/paste
 5. As your literature grows, you might need to *qualify* the statement of the gap. Maybe there **are** studies of the general topic X - but you can add *adjectives* to the gap (research question) to narrow it down... Go back to Step 1, rinse and repeat...
 
 
