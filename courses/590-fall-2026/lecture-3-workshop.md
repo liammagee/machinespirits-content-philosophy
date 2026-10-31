@@ -1,6 +1,6 @@
 # Lecture 3 — Workshop guide: Two articles, two scholarly traditions
 
-**EPOL 590: AI and Academic Literature | Monday, November 2, 2026 | 5:00–6:00 p.m. Central**
+**EPOL 590: AI and Academic Literature | Monday, November 2, 2026 | first workshop approximately 5:00–6:20 p.m. Central**
 
 Instructor working copy. This is a **separate workshop companion** to `lecture-3.md`; the original lecture remains unchanged.
 
@@ -33,110 +33,79 @@ Students compare how two academic articles construct arguments, establish eviden
 
 **Safety and accessibility:** Do not upload student records, unpublished research, restricted publisher PDFs, or confidential information without appropriate authorization. Use approved institutional accounts where required. If access or uploads fail, students can read the paper and critically compare peer-generated interpretations instead. Offer equivalent participation without a paid AI service.
 
-## Revised first-hour timing (5:15–6:00)
+## Hour 1 — Reading strategies workshop (flexible 5:15–6:20)
 
-Keep the six triads and two seed articles below, but compress the activities:
+**Attendance-flexible arrangement:** Form **two article groups**, not six triads. Group A reads Keerthiraj & Misra (humanities/critical scholarship); Group B reads Liu et al. (empirical education). If attendance is large enough, each article group can split into two subgroups, but the exercise works with as few as two students per article. If attendance is extremely low, read one article together and use the second as a comparison demonstrated by the instructor.
 
-- **5:15–5:27 (12 min):** Human-first reading, no AI: each triad records claim, evidence/warrant, and one question with passage references.
-- **5:27–5:40 (13 min):** AI-assisted descriptive and critical reading: compare with human reading, verify claims, record one insight and one error.
-- **5:40–5:53 (13 min):** Pair A1/B1, A2/B2, A3/B3; exchange interpretations and compare disciplinary standards.
-- **5:53–6:00 (7 min):** Whole-class synthesis: what counts as evidence, and did AI preserve or flatten the differences?
+**Experimental variable:** Students approach the *same article* using different reading strategies. They answer the same questions and record the same evidence. This is a structured comparison of reading practices, not a controlled experiment or a race to finish an entire paper.
 
-The longer activity instructions below remain a prompt bank; **the revised timing above supersedes their original timestamps**.
+### 5:15–5:20 — Predict and choose (5 min)
 
-## Group arrangement
+Briefly revisit Lecture 2's question: *What do we do when we open an article?* Within each article group, students select or are assigned one of three approaches. With only two students, choose two strategies and discuss the third as an alternative.
 
-With 18 students, make **six triads**: A1–A3 read Keerthiraj & Misra; B1–B3 read Liu et al. Each triad has a lens:
+1. **Sequential:** Begin at the abstract and move through the paper in its published order. Track how the argument develops; do not pretend a long article can be fully read in twelve minutes.
+2. **Strategic / overview-first:** Read abstract, introduction, conclusion, then jump to sections needed to test the claimed contribution.
+3. **Investigative / question-first:** Start at methodology or results (empirical article), or theoretical framework, references, or a contested passage (critical article). Work outward to reconstruct the whole.
 
-| Triad | Lens | Guiding question |
-|---|---|---|
-| A1 / B1 | Argument | What is the claim, and what is the author trying to persuade us to believe? |
-| A2 / B2 | Evidence and method | What counts as evidence, and how is it used? |
-| A3 / B3 | Assumptions and field | What is assumed, cited, excluded, or contested? |
+Each student predicts which strategy will yield the strongest interpretation, which will be fastest, and which will raise the most questions.
 
-Assign a **reader**, **skeptic**, and **recorder/reporter** in each triad; rotate these roles in later activities. Students should record claims with page or section references.
+### 5:20–5:33 — Human reading (13 min; no AI)
 
-## Minute-by-minute facilitation
+Students independently read using their chosen route and note **where they started and what they skipped**. Everyone produces the same four-part reading record:
 
-### 5:00–5:05 — Opening (5 min)
+- **Claim:** What is the paper trying to persuade its readers to believe?
+- **Warrant:** What evidence, reasoning, method, or examples support it? Give a passage or section reference.
+- **Uncertainty:** What remains unclear or unconvincing?
+- **Reading path:** What did your chosen route reveal or conceal?
 
-Say: “Last week we considered the anatomy of an article and the literature review as persuasion. Tonight you will test that idea on two very different papers. First read without AI; then invite AI into the argument. We want to know what changes.”
+Do not penalize incomplete readings; make their incompleteness part of the analysis.
 
-Show the two article titles and allocate triads. Ask students to open the paper and a shared notes document or their own notes.
+### 5:33–5:45 — Compare strategies within each article group (12 min)
 
-### 5:05–5:20 — Round 1: Human reading (15 min, no AI)
+Each student reports their strategy, interpretation, and one cited passage. Compare where accounts converge or conflict. Ask: *Which disagreement comes from the article, and which comes from where we entered it?* Nominate one spokesperson per article.
 
-Each student independently skims the abstract, introduction, conclusion, and the section most relevant to their triad's lens (5 min). Then triads discuss and produce **three sentences** (10 min):
+### 5:45–6:00 — AI follows the same reading route (15 min)
 
-1. “The paper argues that …”
-2. “Its strongest warrant or evidence is …”
-3. “The point we would challenge or need to understand better is …”
+Students use NotebookLM, Gemini, or another permitted AI tool, supplying the actual article or allowed excerpt. Ask AI to follow the **same strategy** they used. If the tool has only an excerpt, explicitly constrain claims to it.
 
-**Prompts by lens:**
+**Sequential prompt:** “Read the supplied text in its presented order. At each section, record how the central argument develops, which evidence is added, and what remains unresolved. Cite passages. Do not fill in missing sections.”
 
-- **Argument:** What problem motivates the paper? What would readers have to believe differently after reading it? Is its main contribution conceptual, empirical, political, methodological, or a combination?
-- **Evidence/method:** What kinds of observations, sources, analysis, reasoning, or examples support the claim? What would count as a counterexample? Is the standard of evidence explicit?
-- **Assumptions/field:** Which scholarly conversations and terms does the article invoke? Whose perspective is centered? What does it leave outside its scope?
+**Overview-first prompt:** “Start with the abstract, introduction, and conclusion. State your provisional interpretation, then identify the specific additional sections that would most seriously test it. Read those sections and revise the interpretation, citing passages.”
 
-Recorder captures one short passage or page/section reference for each conclusion. Avoid declaring one disciplinary style superior.
+**Investigative prompt:** “Begin with [named section/question]. Explain what that section establishes, then trace backward and forward to reconstruct the article's larger argument. Distinguish what you verified from what you inferred.”
 
-### 5:20–5:35 — Round 2: AI as interlocutor (15 min)
+**Common challenge:** “Compare this reading with my human notes. Identify one insight, one unsupported or flattened interpretation, and one question worth pursuing. Quote or cite supporting passages; do not invent page numbers.”
 
-Students may use an AI tool of their choice, with the actual paper or a clearly identified excerpt. If no tool is available, the triad can critique a peer's summary instead.
+Students record what changed when AI followed their path rather than simply requesting a generic summary. An AI-free alternative is a peer applying the same prompts.
 
-**Prompt 1 — descriptive reading:**
-> Using only the article or excerpt I provide, state its central argument, method or reasoning, main evidence, and conclusion in 150 words. For each claim, cite the relevant section or passage. Say when the supplied text does not support an answer.
+### 6:00–6:15 — Exchange across articles (15 min)
 
-**Prompt 2 — critical reading:**
-> Now act as a demanding but fair reviewer. Identify two contestable assumptions, one plausible alternative interpretation, and one question the article leaves open. Distinguish an actual weakness in the article from a question outside its declared scope. Quote or cite passages to support your criticism.
+Bring the two groups together. Each spokesperson gives a 3-minute account; reserve time for questions and comparison. Ask:
 
-**Prompt 3 — disciplinary sensitivity:**
-> What standards of argument and evidence does this article seem to adopt? Do not automatically apply experimental standards to conceptual or critical work, or treat empirical results as sufficient to settle normative questions. Where might your first reading have flattened disciplinary distinctions?
+- Did the humanities and empirical articles reward different reading routes?
+- Which strategies exposed the authors' standards of evidence and persuasion?
+- Did AI preserve disciplinary differences or impose a generic template?
+- How did reading the *part* alter understanding of the *whole*, and vice versa (the hermeneutic circle)?
 
-Triads mark **one helpful AI insight**, **one misleading or unsupported AI claim**, and **one unresolved disagreement**. Verify each against the paper. Do not accept fabricated page numbers or citations.
+**Output:** A two-column comparison of article/reading strategy, plus one shared caution about AI reading.
 
-### 5:35–5:50 — Cross-article exchange (15 min)
+### 6:15–6:20 — Synthesis and transition (5 min)
 
-Pair A1 with B1, A2 with B2, A3 with B3 in three mixed groups of six. Each original triad has **3 minutes** to teach its paper to the other, followed by **3 minutes** of cross-questioning and **3 minutes** to record a joint comparison.
+Invite students to revise their predictions. Distinguish **reading for information extraction** from **reading to develop an interpretation**. Ask: “If AI can traverse a paper in many orders, what makes our practice of reading scholarly?”
 
-**Cross-examination prompts:**
-- What does each article ask the reader to accept, and on what grounds?
-- If we applied the other article's standards of evidence, what would be illuminated—and what would be distorted?
-- What did AI make easier to understand? What nuance did it obscure?
-- Can a paper persuade without an experiment? Can experimental evidence settle questions of value, power, or sovereignty?
+**Time policy:** This first workshop may run to **6:20**, intentionally crossing the original hour boundary. If discussion is especially productive, it may continue to 6:30; shorten the next segment's demonstration, not the student comparison. Take a 10-minute break before the literature-search workshop.
 
-**Joint output:** One substantive difference in scholarly persuasion, one similarity, and one caution about AI-assisted interpretation.
+## What to collect
 
-### 5:50–6:00 — Whole-class synthesis (10 min)
-
-Invite one sentence from each mixed group, then ask:
-
-1. **Argument:** How did the two papers try to change their readers' minds?
-2. **Evidence:** What counts as a good reason in each scholarly tradition?
-3. **AI:** Did the AI preserve the difference, or turn both into a generic problem–method–results–conclusion template?
-4. **Transfer:** Which reading technique will help you with your own literature review?
-
-Close with: “Next we follow these papers outward into their bibliographies, citations, and competing perspectives. In the final hour we will map the fields and test whether the gaps we see are real.”
-
-## What to collect (light-touch)
-
-Each triad posts or retains a **six-line reading record**:
-- Article and triad lens
-- Human interpretation (one sentence)
-- Supporting passage/section
-- AI insight worth keeping
-- AI claim rejected or qualified, with reason
-- Open question for literature search
-
-Each mixed group adds its **difference / similarity / AI caution**. Use these records as the starting material for Hour 2 rather than a separate graded assignment.
+Each student: article, chosen reading path, prediction, claim, warrant with source passage, uncertainty, and what AI changed. Each article group: one point of agreement and one divergence across strategies. Whole class: one difference between disciplinary reading practices and one question to investigate through literature search.
 
 ## Facilitator contingencies
 
-- **Late arrivals or fewer than 18:** Keep two article cohorts; use pairs or groups of four as needed. Preserve the cross-article exchange.
-- **Students have not read the papers:** Use abstract, introduction, and conclusion as a minimum common corpus; make clear that provisional interpretations are not full-paper assessments.
-- **AI access fails:** Have groups exchange their own summaries and apply the same critical prompts.
-- **Time slips:** Shorten AI prompting to one descriptive and one critical question, not the human-first or cross-article comparison.
-- **Unequal expertise:** Invite students to challenge what counts as evidence rather than assuming that one article is simply “scientific” and the other “subjective.”
+- **Small turnout:** Two article groups; no requirement for three strategies per group. Students can compare routes verbally or in pairs.
+- **Very small turnout:** One group jointly compares the two articles, with students choosing contrasting reading routes.
+- **Incomplete or inaccessible papers:** Use permitted excerpts and mark interpretations provisional.
+- **AI access problems:** Compare human readings; the pedagogical objective survives without an AI tool.
+- **Timing:** Do not rush the cross-article exchange merely to preserve a 6:00 boundary.
 
 ## Link to the rest of Lecture 3
 
