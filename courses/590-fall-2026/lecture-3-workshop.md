@@ -16,6 +16,30 @@ Students compare how two academic articles construct arguments, establish eviden
 
 **Preparation:** Check student access to full text for both papers; provide PDFs or permitted institutional links. Do not assume AI systems can access publisher paywalls. Students can use excerpts if necessary. No paid AI account required.
 
+## 5:00–5:15 — AI research workbench setup (15 minutes)
+
+**Goal:** Everyone can work with at least one of the two assigned papers in an AI environment; students understand the distinction between a desktop interface, cloud inference, and local file access. **No paid tool, terminal, or installation is required.**
+
+**Before class:** Share the two article links and, where licensing permits, downloadable PDFs. Ask students to bring a laptop, install an application *if they wish*, and create a folder called `EPOL590-literature`. Provide an accessible browser fallback and a text excerpt for anyone without a PDF. Do not upload confidential or restricted material to an unapproved service.
+
+- **5:00–5:03 — Show of hands / quick poll:** Who uses ChatGPT, Claude, another AI, or none? Browser, desktop app, IDE, terminal? Who can open a PDF locally? Pair confident users with novices.
+- **5:03–5:07 — Demonstration:** Download/open one paper in `EPOL590-literature`. Explain: the desktop ChatGPT/Claude apps are interfaces, not automatically on-device models; file attachment or local-folder access varies by tool and permissions. Show one supported way to attach a PDF and ask a question anchored to a passage.
+- **5:07–5:12 — Choose a route and try it:** (A) ChatGPT or Claude desktop app, installed via the vendor's official site and signed in; (B) optional Claude Code or other file-capable agent for students who already have it configured, with explicit permission boundaries and a folder limited to course papers; (C) browser app with file upload or pasted excerpt. Do not require students to install Claude Code during class, run unreviewed shell commands, or grant unrestricted filesystem access. If an app cannot read a folder directly, upload the specific document instead.
+- **5:12–5:15 — Smoke test:** Ask: “Using only this document, identify its main claim and point me to the supporting passage. If you cannot access the document, say so.” Verify the passage exists. Students report **ready / needs a partner / browser fallback**. Move on promptly; unresolved installs can be handled after class.
+
+**Facilitator notes:** A cloud-based tool can still process multiple PDFs uploaded from a desktop; local file access is a workflow capability, not proof of local inference. Be explicit about privacy, publisher restrictions, institutional rules, and the possibility of invented quotations or citations. Students may complete all subsequent tasks without AI if access fails.
+
+## Revised first-hour timing (5:15–6:00)
+
+Keep the six triads and two seed articles below, but compress the activities:
+
+- **5:15–5:27 (12 min):** Human-first reading, no AI: each triad records claim, evidence/warrant, and one question with passage references.
+- **5:27–5:40 (13 min):** AI-assisted descriptive and critical reading: compare with human reading, verify claims, record one insight and one error.
+- **5:40–5:53 (13 min):** Pair A1/B1, A2/B2, A3/B3; exchange interpretations and compare disciplinary standards.
+- **5:53–6:00 (7 min):** Whole-class synthesis: what counts as evidence, and did AI preserve or flatten the differences?
+
+The longer activity instructions below remain a prompt bank; **the revised timing above supersedes their original timestamps**.
+
 ## Group arrangement
 
 With 18 students, make **six triads**: A1–A3 read Keerthiraj & Misra; B1–B3 read Liu et al. Each triad has a lens:
