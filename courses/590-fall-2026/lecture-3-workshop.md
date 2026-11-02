@@ -1,8 +1,8 @@
 # Lecture 3 — Workshop guide: Two articles, two scholarly traditions
 
-**EPOL 590: AI and Academic Literature | Monday, November 2, 2026 | first workshop approximately 5:00–6:20 p.m. Central**
+**EPOL 590: AI and Academic Literature | Monday, November 2, 2026 | 5:00–7:50 p.m. Central**
 
-Instructor working copy. This is a **separate workshop companion** to `lecture-3.md`; the original lecture remains unchanged.
+Instructor working copy. This is a **separate workshop companion** to `lecture-3.md`, which holds the slide deck.
 
 ## Purpose
 
@@ -15,6 +15,21 @@ Students compare how two academic articles construct arguments, establish eviden
 **Empirical education research:** Liu, J., Zhang, Y., Li, W., Wang, Q., Niu, P., & Zhang, X. (2025), “Adaptive vs. Planned Metacognitive Scaffolding for Computational Thinking: Evidence from Generative AI-Supported Programming in Elementary Education,” *Computers & Education*. https://doi.org/10.1016/j.compedu.2025.105473
 
 **Preparation:** Check student access to full text for both papers; provide PDFs or permitted institutional links. Do not assume AI systems can access publisher paywalls. Students can use excerpts if necessary. No paid AI account required.
+
+## Shared record: Google Docs
+
+**Google Docs is the authoritative record for all three workshops** — notes, reading tables, handover briefs, discoveries, maps, and reflections. No Canvas, no Google Sheets, no other documentation platform. Avoid entering the same data twice.
+
+Prepare **Doc A — Digital sovereignty / Keerthiraj & Misra** and **Doc B — Metacognitive scaffolding / Liu et al.** (or two tabs/sections of the existing class Doc). Each contains:
+
+1. Article link, group roster/recorder, chosen reading strategies.
+2. **Hour 1 reading table:** reader/strategy; claim; evidence with passage; uncertainty; AI comparison; what changed.
+3. **Handover brief (copy/paste to the other Doc):** central claim; two unresolved questions; one promising reference; source passage(s).
+4. **Hour 2 discovery log:** publication/DOI; backward, forward, or sideways discovery; conventional vs AI suggestion; verified?; significance to the original article. The receiving group adds to the article's document.
+5. **Hour 3 mapping:** links to initial and revised maps (or embedded images); map type; labeled relationships; peer critique; possible gaps and how to verify them; revision rationale.
+6. **Final reflection:** Did AI deepen reading and scholarship or just accelerate production?
+
+Each group nominates a recorder, and optionally a separate workbench operator. Project the shared Docs during the first two workshops and the maps during the third. The Machine Spirits literature workbench is optional, for PDFs, visualizations, and personal experimentation; it is not the record.
 
 ## 5:00–5:15 — AI research workbench setup (15 minutes)
 
@@ -93,11 +108,39 @@ Bring the two groups together. Each spokesperson gives a 3-minute account; reser
 
 Invite students to revise their predictions. Distinguish **reading for information extraction** from **reading to develop an interpretation**. Ask: “If AI can traverse a paper in many orders, what makes our practice of reading scholarly?”
 
-**Time policy:** This first workshop may run to **6:20**, intentionally crossing the original hour boundary. If discussion is especially productive, it may continue to 6:30; shorten the next segment's demonstration, not the student comparison. Take a 10-minute break before the literature-search workshop.
+Each article group then writes its **handover brief** in its Doc — central claim, two unresolved questions, one promising reference, and the supporting source passage(s) — ready to pass to the other group after the break.
+
+**Time policy:** This first workshop runs to **6:20**, intentionally crossing the original hour boundary. Break 6:20–6:30; the second workshop starts at 6:30. If discussion runs long, take the time from the break or the 7:15 mapping demonstration, not from the student comparison or the groups' mapping time.
+
+## Hour 2 — Literature discovery workshop (6:30–7:15)
+
+**Swap the articles.** Each group now searches outward from the article it did *not* read, starting from the other group's handover brief. **Do not identify gaps in this hour** — gaps belong to mapping, where they can be tested.
+
+- **6:30–6:35 — Swap and receive the brief:** Copy each handover brief into the receiving group's working section. Readers clarify the claim and questions in a sentence or two.
+- **6:35–6:45 — Conventional search:** Trace citations **backward** (the article's references), **forward** (later work citing it), and **sideways** (dissenting, heterodox, or adjacent positions). Log each find in the discovery log.
+- **6:45–7:00 — AI-assisted search:** Repeat with a permitted AI tool. Verify every suggested reference exists and says what is claimed; mark AI suggestions separately from conventional finds. Select **three useful works**.
+- **7:00–7:10 — Report back:** Each group reports its discoveries to the article's original readers, who reconsider their Hour 1 interpretation in light of them.
+- **7:10–7:15 — Consolidate:** Record verified discoveries only. No gap analysis yet.
+
+## Hour 3 — Mapping workshop (7:15–7:50)
+
+Each group returns to **its original article** and maps the field emerging around it, using its own reading plus the other group's discoveries.
+
+- **7:15–7:20 — Demonstration:** Briefly show three views of the same literature: **chronological**, **conceptual**, and **relational**.
+- **7:20–7:32 — Map:** Groups map their original article's emerging field, labeling relationships between works.
+- **7:32–7:40 — Exchange and critique:** Groups swap maps and question the relationships. Where do possible gaps appear?
+- **7:40–7:46 — Revise:** Revise the map and record why.
+- **7:46–7:50 — Final reflection:** Is an absence a gap in the field, or a gap in the map — an artifact of search or representation? Return to vibe scholarship: did AI deepen reading and scholarship, or just accelerate production?
 
 ## What to collect
 
-Each student: article, chosen reading path, prediction, claim, warrant with source passage, uncertainty, and what AI changed. Each article group: one point of agreement and one divergence across strategies. Whole class: one difference between disciplinary reading practices and one question to investigate through literature search.
+Everything goes in the article group's Google Doc.
+
+- **Hour 1, each student:** article, chosen reading path, prediction, claim, warrant with source passage, uncertainty, and what AI changed (reading table).
+- **Hour 1, each article group:** one point of agreement and one divergence across strategies, plus the handover brief.
+- **Hour 1, whole class:** one difference between disciplinary reading practices and one question to investigate through literature search.
+- **Hour 2, receiving group:** the discovery log in the original article's Doc, with three verified works selected.
+- **Hour 3, each group:** initial and revised maps, peer critique, possible gaps and how to verify them, revision rationale, and the final reflection.
 
 ## Facilitator contingencies
 
@@ -107,10 +150,27 @@ Each student: article, chosen reading path, prediction, claim, warrant with sour
 - **AI access problems:** Compare human readings; the pedagogical objective survives without an AI tool.
 - **Timing:** Do not rush the cross-article exchange merely to preserve a 6:00 boundary.
 
-## Link to the rest of Lecture 3
+## Full timetable (Central)
 
-**Hour 2:** A/B cohorts trace citations backward, find later citing work, search sideways for dissenting or heterodox positions, and verify every reference.
+| Time | Activity |
+|---|---|
+| 5:00–5:15 | AI research workbench setup and source-grounded smoke test |
+| 5:15–5:20 | Two article groups; select/predict reading strategies |
+| 5:20–5:33 | Human-first reading; record claim, warrant, uncertainty, path |
+| 5:33–5:45 | Compare strategies within article group |
+| 5:45–6:00 | AI follows chosen strategy; compare with human interpretation |
+| 6:00–6:15 | Cross-article exchange: evidence, argument, disciplinary differences |
+| 6:15–6:20 | Synthesis and written handover brief |
+| 6:20–6:30 | Break |
+| 6:30–6:35 | Swap articles and receive other group's brief |
+| 6:35–6:45 | Conventional literature search: backward/forward/sideways |
+| 6:45–7:00 | AI-assisted search; verify references; select three useful works |
+| 7:00–7:10 | Report findings to original readers; reconsider interpretation |
+| 7:10–7:15 | Consolidate verified discoveries; no gap analysis yet |
+| 7:15–7:20 | Short chronological/conceptual/relational mapping demonstration |
+| 7:20–7:32 | Groups map their original article's emerging field |
+| 7:32–7:40 | Exchange/critique maps; question relationships and possible gaps |
+| 7:40–7:46 | Revise maps and record why |
+| 7:46–7:50 | Final reflection: gaps in field vs gaps in map; vibe scholarship |
 
-**Hour 3:** Build two contrasting field maps, compare what their structures foreground and omit, and end by transferring the method to students' own research topics.
-
-The original `courses/590-fall-2026/lecture-3.md` is unchanged.
+This is a working schedule, not an inflexible script: protect meaningful student comparisons and the final mapping time.
