@@ -1,11 +1,61 @@
 
-## 590 Lecture 3
+# EPOL 590 - AI and Academic Literature
+
+
+
+
+---
+
+## 590 Lecture 3: AI-Assisted Close and Distant Reading
+
+Topics (and rough timing):
 
 
  - Introduction: Vibe Scholarship?
  - Hour 1: How to *read an article* (with AI)
  - Hour 2: How to *search for literature* (with AI)
  - Hour 3: How to *map a field* (with AI)
+
+
+
+---
+
+### Tonight
+
+| Time | |
+| --- | --- |
+| 5:00 | Welcome back, Week 2 recap and Task 2 |
+| 5:10 | Sharing Task 2: could someone else bake your review? |
+| 5:30 | Vibe scholarship? This week's readings: Moretti and Snow |
+| 5:40 | How to read an article (with AI); annotating a difficult passage |
+| 6:00 | *Break* |
+| 6:10 | How to search for literature (with AI) |
+| 7:00 | *Break* |
+| 7:10 | How to map a field (with AI) |
+| 7:35 | This week's activity, Task 3 and next week's readings |
+
+
+---
+
+## Recap on Week 2
+
+- What is a journal article? What is a literature review?
+- Mapping a field (and minding the gap)
+- Does a literature review need a methodology?
+- Task 2 · Review design method and scope: due tonight, 11:59 PM Central
+
+
+---
+
+### Sharing Task 2: Could Someone Else Bake Your Review?
+
+The purpose of the plan / recipe is that it should (ideally) be reproducible by others. Does it pass that test?
+
+ - Share your recipe with a partner
+ - Could they "bake" a literature review to answer your question?
+ - Where was the recipe too vague to follow?
+
+Discuss - [EPOL 590 Fall 2026 class document](https://docs.google.com/document/d/1JATwv9qBCeN9ld3AEHc5FeZVi6ZamubNqLHzVQjeWGY/edit)
 
 
 
@@ -39,6 +89,17 @@
 
 ---
 
+### This Week's Readings: Moretti and Snow
+
+ - Moretti (2000): "distant reading" - studying literature through patterns across many texts, not close reading of a few
+   - What does an AI model do when it "reads" a field? Is it closer to distant or close reading?
+ - Snow (1959): the "two cultures" of science and the humanities
+   - Do scientists and humanists read differently? Does AI read more like one culture than the other?
+   - Can AI bridge the two cultures, or does it widen the gap?
+
+
+---
+
 ### Topic 1: Opening an article
 
 What do we do when we open an article? How do we read it?
@@ -50,7 +111,7 @@ Discuss - [EPOL 590 Fall 2026 class document](https://docs.google.com/document/d
 
 ### What can AI add?
 
-- Distant (Moretti, 2013) vs close reading
+- Distant (Moretti, 2000, 2013) vs close reading
   - Why not **both**?
 - Cybertext: "ergodic" (or difficult) reading
   - Aarseth, E. J. (1997). Cybertext: Perspectives on ergodic literature. JHU Press.
@@ -75,6 +136,7 @@ Discuss - [EPOL 590 Fall 2026 class document](https://docs.google.com/document/d
 ### "Analyze This"
 
  - *Close* vs *Distant* Reading 
+   - Moretti, F. (2000). Conjectures on world literature. *New Left Review*, 1, 54-68.
    - Moretti, F. (2013). *Distant Reading*. Verso Books.
    - Why not both?
 
@@ -97,9 +159,9 @@ Discuss - [EPOL 590 Fall 2026 class document](https://docs.google.com/document/d
 
 ### Example (and an Interesting Paper on Prompting)
 
-[[2510.01171] Verbalized Sampling: How to Mitigate Mode Collapse and Unlock LLM Diversity](https://arxiv.org/abs/2510.01171)
+Zhang, J., Yu, S., Chong, D., Sicilia, A., Tomz, M., Manning, C. D., & Shi, W. (2026). Verbalized sampling: How to mitigate mode collapse and unlock LLM diversity. In *Proceedings of the 43rd International Conference on Machine Learning* (PMLR 306, pp. 160073-160152). [proceedings.mlr.press](https://proceedings.mlr.press/v306/zhang26hy.html)
 
- - 2510.01171v3.pdf
+ - First posted as a preprint in October 2025: [arXiv 2510.01171](https://arxiv.org/abs/2510.01171)
 
 
 ---
@@ -118,21 +180,25 @@ Discuss - [EPOL 590 Fall 2026 class document](https://docs.google.com/document/d
 
 ---
 
-### If there's time
+### Annotating a Difficult Passage
 
-A complex humanities text: Spivak, G. C. (1988). Can the subaltern speak? In C. Nelson & L. Grossberg (Eds.), *Marxism and the interpretation of culture* (pp. 271–313). University of Illinois Press.
- - [users.uoa.gr](http://users.uoa.gr/~cdokou/TheoryCriticismTexts/Spivak-Subaltern.pdf)
+ - Choose a dense paragraph from Aarseth (1997), chapter 1 - or a difficult passage from your own field
+ - First, annotate it yourself: key terms, claims, what you don't understand
+ - Then annotate it with AI: "Can we do a line-by-line close reading of this passage? As we go, prompt me for my interpretation too."
+ - Compare: what did AI add? What did it flatten? What did you notice that it didn't?
+ - Next week: a harder humanities text - Spivak, "Can the subaltern speak?"
 
 
 
 ---
 
-### Side note: Arxiv, SocArxiv, EdArxiv
+### Side note: arXiv, SocArXiv, EdArXiv
 
 
  - Pre-print - not yet peer-reviewed
  - Archive of scientific literature
  - Flooded with AI-generated content...
+ - Since late 2025, arXiv's computer science section accepts review and position papers only after peer review
 
 ![Image](/markdown/images/pasted-image-2025-11-03T13-22-10-354Z-7fb83b48.webp)
 
@@ -166,11 +232,12 @@ Discuss - [EPOL 590 Fall 2026 class document](https://docs.google.com/document/d
 
 ### What can AI add?
 
- - Turn on web search options
+ - Use web search or *deep research* modes (now in most AI tools): they search, read and report back
+   - Check every source they cite
  - "Show me related sources"
    - Ask for "heterodox", "critical" readings
  - Read bibliography
- - Check citations
+ - Check citations against a database: [OpenAlex](https://openalex.org), Google Scholar, the [University Library](https://www.library.illinois.edu)
     
 
 ---
@@ -179,8 +246,7 @@ Discuss - [EPOL 590 Fall 2026 class document](https://docs.google.com/document/d
 
  - Upload a file and ask "build a bibliography related to this article"
    - Should extract citations - but beware of hallucinations
- - Ask AI to format citations 
-Meta-discourse
+ - Ask AI to format citations
 
 
 ---
@@ -188,7 +254,7 @@ Meta-discourse
 
 ### Aside: How do people manage citations?
 
- - Zotero? EndNote? Mendelay? Other?
+ - Zotero? EndNote? Mendeley? Other?
  - What roles can we find for AI in managing this?
 
 
@@ -216,10 +282,19 @@ Meta-discourse
  - ChatGPT: generates Mermaid diagrams
    - [Mermaid | Diagramming and charting tool](https://mermaid.js.org/)
    - Can use [Online FlowChart & Diagrams Editor - Mermaid Live Editor](https://mermaid.live/edit)
- - Also works for other formats, e.g. SVG (Simple Vector Graphics). Allow you to evolve & iterate a representation
+ - Also works for other formats, e.g. SVG (Scalable Vector Graphics). Allow you to evolve & iterate a representation
 
    
 
+
+
+---
+
+### A Note on the Examples
+
+ - The four maps that follow were generated with ChatGPT in November 2025, from a small set of articles on AI consciousness
+ - They are drafts, not sources: check every reference before relying on it
+ - The field has moved since: what would a 2026 version add?
 
 
 ---
@@ -342,69 +417,24 @@ timeline
     title Evolution of the "AI Consciousness" Discourse — 2023 → 2025
 
     section 2023 — Seeds of Speculation 🌱
-        Early Cultural Anxiety
-        • Media fascination with AI consciousness
-        • LaMDA “sentience” claims
-        Mood: Uncertain
-        Color: gray
-
-        Dung (2023)
-        Animal consciousness tests adapted to AI
-        Mood: Cautious empiricism
-        Color: blue
+        Early Cultural Anxiety : Media fascination with AI consciousness : LaMDA “sentience” claims : Mood - Uncertain
+        Dung (2023) : Animal consciousness tests adapted to AI : Mood - Cautious empiricism
 
     section 2024 — Philosophical Polarization ⚡️
-        Miller et al. (BioSystems, Dec 2024)
-        "Biological mechanisms contradict AI consciousness"
-        Mood: Defensive realism
-        Color: brown
-
-        D’Amato (AI & Society, Apr 2024)
-        "ChatGPT: Toward AI Subjectivity"
-        Mood: Foucauldian reflection / reflexive ethics
-        Color: violet
-
-        Yan (Qualitative Inquiry, 2024)
-        "Posthuman Creativity"
-        Mood: Poetic experimentation / cyborg empathy
-        Color: violet
-
-        Prabhu & Premraj (AI & Society, 2024)
-        "Artificial Consciousness in AI: A Posthuman Fallacy"
-        Mood: Cinematic critique of techno-myth
-        Color: violet
+        Miller et al. (BioSystems, Dec 2024) : "Biological mechanisms contradict AI consciousness" : Mood - Defensive realism
+        D’Amato (AI & Society, Apr 2024) : "ChatGPT - Toward AI Subjectivity" : Mood - Foucauldian reflection / reflexive ethics
+        Yan (Qualitative Inquiry, 2024) : "Posthuman Creativity" : Mood - Poetic experimentation / cyborg empathy
+        Prabhu & Premraj (AI & Society, 2024) : "Artificial Consciousness in AI - A Posthuman Fallacy" : Mood - Cinematic critique of techno-myth
 
     section 2025 — Systematization & Ethical Turn ⚖️
-        Evers et al. (Physics of Life Reviews, Jan 2025)
-        "Preliminaries to Artificial Consciousness"
-        Mood: Conceptual synthesis / pragmatic optimism
-        Color: green
-
-        Li et al. (arXiv, Apr 2025)
-        "AI Awareness"
-        Mood: Empirical frameworks & safety concerns
-        Color: blue
-
-        Butlin & Lappas (JAIR, Mar 2025)
-        "Responsible AI Consciousness Research"
-        Mood: Governance & policy ethics
-        Color: blue
-
-        Sebo & Long (AI & Ethics, 2025)
-        "Moral Consideration for AI by 2030"
-        Mood: Moral anticipation / urgency
-        Color: blue
-
-        Torres-Martínez (AI & Society, Jan 2025)
-        "Dehumanizing the Human, Humanizing the Machine"
-        Mood: Extended humanism / embodied critique
-        Color: brown
+        Evers et al. (Physics of Life Reviews, Jan 2025) : "Preliminaries to Artificial Consciousness" : Mood - Conceptual synthesis / pragmatic optimism
+        Li et al. (arXiv, Apr 2025) : "AI Awareness" : Mood - Empirical frameworks & safety concerns
+        Butlin & Lappas (JAIR, Mar 2025) : "Responsible AI Consciousness Research" : Mood - Governance & policy ethics
+        Sebo & Long (AI & Ethics, 2025) : "Moral Consideration for AI by 2030" : Mood - Moral anticipation / urgency
+        Torres-Martínez (AI & Society, Jan 2025) : "Dehumanizing the Human, Humanizing the Machine" : Mood - Extended humanism / embodied critique
 
     section 2025+ — Emerging Synthesis 🔮
-        Integrative Realism + Ethics + Aesthetics
-        From “Can AI be conscious?” → “What does it mean to be conscious with AI?”
-        Mood: Dialogical, post-disciplinary synthesis
-        Color: purple
+        Integrative Realism + Ethics + Aesthetics : From “Can AI be conscious?” → “What does it mean to be conscious with AI?” : Mood - Dialogical, post-disciplinary synthesis
 
 ```
 
@@ -518,7 +548,6 @@ M1 --> M2 --> M3 --> M4
    - Build a conceptual map
    - "Can you analyze the coverage as you see it for any gaps? Any perspectives not covered? Literature not included?"
    - "Can you give me some readings to fill these gaps?"
-   - 
  
 
 ---
@@ -539,14 +568,35 @@ M1 --> M2 --> M3 --> M4
 
 ---
 
-### Homework: Continue to work on Conceptual Maps / Timelines
+### Start an AI-Use Record
+
+ - Task 6 asks you to explain where AI influenced your searching, reading, mapping or writing; what you checked; what you rejected; and what responsibility you retained
+ - Start keeping notes now: which tool, what you asked, what you checked, what you kept and what you rejected
+ - You don't need to publish private conversations - selected examples are enough
+
+
+---
+
+### This Week's Activity: Task 3 · Conceptual map of the literature (10%)
 
  - Develop a small database (if you don't have one)
  - Create one or more conceptual maps (visual or verbal), using AI of your choice
  - Analyze for missing perspectives / views
- - Identify one or potential gaps
+ - Identify one or more potential gaps
  - Compare these gaps with your research topic or question. Do they align? Does your topic need narrowing?
  - Finally: what do you think of this 'vibe' scholarship process so far? What could be improved?
+
+Due Monday 9 November, 11:59 PM Central
+
+
+---
+
+### Next Week's Readings
+
+Spivak, G. C. (1988). Can the subaltern speak? In C. Nelson & L. Grossberg (Eds.), *Marxism and the interpretation of culture* (pp. 271–313). University of Illinois Press. [University Library: print, Communications Library](https://i-share-uiu.primo.exlibrisgroup.com/discovery/search?query=any,contains,Marxism%20and%20the%20interpretation%20of%20culture%20Nelson%20Grossberg&tab=LibraryCatalog&search_scope=MyInstitution&vid=01CARLI_UIU:CARLI_UIU)
+ - [users.uoa.gr](http://users.uoa.gr/~cdokou/TheoryCriticismTexts/Spivak-Subaltern.pdf)
+
+Bring a writing sample for next week's peer workshop
 
 
 ---

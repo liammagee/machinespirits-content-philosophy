@@ -22,6 +22,8 @@ for b, sid in zip(blocks, order):
         + (["em/rem/margin"] if re.search(r"\d(em|rem)\b|margin", str(slide)) else [])
     for m in slide.select("[data-m]"):
         m.decompose()  # list markers stand for the markdown's bullets and numbers
+    if any(i.get("alt") == "Diagram" for i in slide.find_all("img")):  # a mermaid block shown as its diagram
+        b = re.sub(r"^ {0,3}```mermaid\n.*?^ {0,3}```", "", b, flags=re.S | re.M)
     if words(BeautifulSoup(md.render(b), "html.parser").get_text()) != words(slide.get_text()) or bad:
         problems += 1
         print("MISMATCH" if not bad else "FORMAT " + ", ".join(bad), sid)

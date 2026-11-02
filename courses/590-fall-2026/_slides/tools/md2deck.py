@@ -154,7 +154,7 @@ def slug(s, used):
 
 text = re.sub(r"<!--.*?-->", "", SRC.read_text(), flags=re.S)
 blocks = [b.strip() for b in re.split(r"^---\s*$", text, flags=re.M) if b.strip()]
-used, order, sections = set(), [], {}
+used, order, sections, mermaid_n = set(), [], {}, 0
 (OUT / "slides").mkdir(parents=True, exist_ok=True)
 
 for block_md in blocks:
@@ -166,11 +166,21 @@ for block_md in blocks:
         if key in IMAGES:
             imgs.append((f"/_blob/{IMAGES[key]}", img.get("alt", "Image")))
     top = [c for c in top if not (c.name == "p" and not c.get_text(strip=True) and c.find("img"))]
+    # A ```mermaid block is shown as its rendered diagram, full width under the slide's text, when
+    # images.json maps "<lecture>-mermaid-<k>" (k counts the lecture's mermaid blocks from 1) to an asset id.
+    # Without one, the block stays as text, and check_deck.py flags the slide.
+    diagrams = []
+    for pre in [c for c in top if c.name == "pre" and c.find("code", class_="language-mermaid")]:
+        mermaid_n += 1
+        key = f"{SRC.stem}-mermaid-{mermaid_n}"
+        if key in IMAGES:
+            diagrams.append(f"/_blob/{IMAGES[key]}")
+            top.remove(pre)
     heads = [c for c in top if c.name in ("h1", "h2", "h3", "h4")]
     title = heads[0].get_text(" ", strip=True) if heads else block_md.splitlines()[0]
     sid = slug(title, used)
     order.append(sid)
-    divider = all(c.name in ("h1", "h2", "h3") for c in top) and not imgs
+    divider = all(c.name in ("h1", "h2", "h3") for c in top) and not imgs and not diagrams
 
     if divider:  # a slide of headings only: a section opener
         hs = "".join(
@@ -186,7 +196,16 @@ for block_md in blocks:
         first = heads[0] if heads else None
         h4 = next((c for c in top if c.name in ("h4", "h5", "h6")), None)
         col = lambda els: "".join(block(c, first) for c in els)
-        if imgs:
+        if diagrams:
+            # room left under the text: 924px inside the padding, less the heading (~100px a line at the
+            # 52px base, about 32 characters a line), its rule and the gaps, less ~90px per other block
+            lines = -(-len(title) // 32) if heads else 0
+            room = 924 - 100 * lines - 70 - 90 * (len(top) - (1 if heads else 0))
+            h = (room - 24 * (len(diagrams) - 1)) // len(diagrams)
+            pics = "".join(f'<img src="{s}" alt="Diagram" style="width:1680px;height:{h}px;object-fit:contain">' for s in diagrams)
+            body = (f'<div style="display:flex;flex-direction:column;gap:32px;flex:1">'
+                    f'<div data-fit style="display:flex;flex-direction:column;gap:{S(0.55)}">{col(top)}</div>{pics}</div>')
+        elif imgs:
             k = len(imgs)
             words = len(soup.get_text())  # the more text, the narrower the picture, so the text stays readable
             # pictures sit in a column at most ~40% of the slide, so the text column stays wide enough to read

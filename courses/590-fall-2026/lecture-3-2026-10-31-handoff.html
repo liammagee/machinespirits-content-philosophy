@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.12.1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>lecture-3-2026-10-31-handoff</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
+      background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a, a:visited {
+      color: inherit;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
+      color: #606060;
+      color: light-dark(#606060, #b6b6b6);
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid currentColor;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+    }
+    th {
+      border-top: 1px solid currentColor;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+<h1 id="epol-590-lecture-3-saturday-planning-handoff">EPOL 590 Lecture 3
+— Saturday planning handoff</h1>
+<p><strong>Prepared:</strong> October 31, 2026.
+<strong>Seminar:</strong> Monday November 2, 2026, 5:00–7:50 p.m.
+Central.<br />
+<strong>Purpose:</strong> Preserve decisions and unresolved
+implementation work for when instructor returns to a computer. This
+handoff supplements, but does not overwrite, <code>lecture-3.md</code>
+or <code>lecture-3-workshop.md</code>.</p>
+<h2 id="decisions-agreed">Decisions agreed</h2>
+<ul>
+<li>Preserve Lecture 3’s <strong>reading → literature discovery →
+conceptual mapping</strong> scaffold; prioritize student activity over
+exposition (~70/30).</li>
+<li>Use <strong>two seed articles from Lecture 2</strong>, not students’
+divergent research interests:
+<ul>
+<li>Keerthiraj &amp; Misra (2025), <em>Who owns the future? AI, digital
+sovereignty, and the politics of knowledge</em>, <em>AI &amp;
+Society</em>:
+https://link.springer.com/article/10.1007/s00146-025-02641-y</li>
+<li>Liu et al. (2025), <em>Adaptive vs. Planned Metacognitive
+Scaffolding for Computational Thinking</em>, <em>Computers &amp;
+Education</em>: https://doi.org/10.1016/j.compedu.2025.105473</li>
+</ul></li>
+<li>Attendance may be well below the 18-person roster. Use <strong>two
+flexible groups</strong> (one article each), with two-by-two subgroups
+only if attendance warrants. No six-triad requirement.</li>
+<li>Compare <strong>three ways of reading</strong> within each group:
+sequential; abstract/introduction/conclusion then selective;
+investigative entry through methodology, results, theory, or references.
+Keep shared questions about claim, evidence/warrant, uncertainty, and
+passage references. Read without AI first, then ask AI to follow the
+same reading route.</li>
+<li>At the second workshop <strong>swap the articles between
+groups</strong>. Each group leaves a short handover brief (claim, two
+questions, promising reference). New readers pursue backward, forward,
+sideways searching, conventional and AI-assisted; verify sources.
+<strong>Do not identify gaps in hour 2.</strong></li>
+<li>Mapping is where <strong>possible gaps</strong> arise, using
+chronological, conceptual, and relational views, then critique/revision.
+An absence in a map may be a search/representation artifact, not a real
+literature gap.</li>
+<li><strong>No Canvas or additional documentation platform for the
+workshop.</strong> Use <strong>Google Docs as the authoritative shared
+record</strong>, including brainstorming, notes, handovers, discoveries,
+and reflections. Prefer two Docs (one per seed article) with a clear
+handover section; copy/paste the brief into the other group’s document
+or designated tab/section. The Machine Spirits HTML Workbench is
+<strong>optional</strong> for PDFs, visualizations, and personal
+experimentation, not the canonical record. Avoid duplicate data entry.
+No Google Sheets requirement.</li>
+<li>Each group nominates a recorder; optionally a separate workbench
+operator. Project shared Docs for the first two workshops, maps in the
+third.</li>
+<li>Initial AI setup should favor UIUC-supported
+<strong>NotebookLM/Gemini</strong>, with Illinois Chat/Copilot as
+alternatives; existing personal ChatGPT/Claude subscriptions are
+optional for permitted content. Claude Code/Codex optional advanced
+routes, never required. No paid account, terminal, or unrestricted
+local-folder access required. Distinguish desktop interface from
+on-device inference. Respect publisher licensing, privacy, and source
+verification.</li>
+</ul>
+<h2 id="agreed-timetable-central">Agreed timetable (Central)</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Time</th>
+<th>Activity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5:00–5:15</td>
+<td>AI research workbench setup and source-grounded smoke test</td>
+</tr>
+<tr>
+<td>5:15–5:20</td>
+<td>Two article groups; select/predict reading strategies</td>
+</tr>
+<tr>
+<td>5:20–5:33</td>
+<td>Human-first reading; record claim, warrant, uncertainty, path</td>
+</tr>
+<tr>
+<td>5:33–5:45</td>
+<td>Compare strategies within article group</td>
+</tr>
+<tr>
+<td>5:45–6:00</td>
+<td>AI follows chosen strategy; compare with human interpretation</td>
+</tr>
+<tr>
+<td>6:00–6:15</td>
+<td>Cross-article exchange: evidence, argument, disciplinary
+differences</td>
+</tr>
+<tr>
+<td>6:15–6:20</td>
+<td>Synthesis and written handover brief</td>
+</tr>
+<tr>
+<td>6:20–6:30</td>
+<td>Break</td>
+</tr>
+<tr>
+<td>6:30–6:35</td>
+<td>Swap articles and receive other group’s brief</td>
+</tr>
+<tr>
+<td>6:35–6:45</td>
+<td>Conventional literature search: backward/forward/sideways</td>
+</tr>
+<tr>
+<td>6:45–7:00</td>
+<td>AI-assisted search; verify references; select three useful
+works</td>
+</tr>
+<tr>
+<td>7:00–7:10</td>
+<td>Report findings to original readers; reconsider interpretation</td>
+</tr>
+<tr>
+<td>7:10–7:15</td>
+<td>Consolidate verified discoveries; no gap analysis yet</td>
+</tr>
+<tr>
+<td>7:15–7:20</td>
+<td>Short chronological/conceptual/relational mapping demonstration</td>
+</tr>
+<tr>
+<td>7:20–7:32</td>
+<td>Groups map their original article’s emerging field</td>
+</tr>
+<tr>
+<td>7:32–7:40</td>
+<td>Exchange/critique maps; question relationships and possible
+gaps</td>
+</tr>
+<tr>
+<td>7:40–7:46</td>
+<td>Revise maps and record why</td>
+</tr>
+<tr>
+<td>7:46–7:50</td>
+<td>Final reflection: gaps in field vs gaps in map; vibe
+scholarship</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Flexibility:</strong> The first workshop may run over its
+original hour boundary; protect meaningful student comparisons and the
+final mapping time. The above is a working schedule, not an inflexible
+script.</p>
+<h2 id="google-docs-layout-to-prepare">Google Docs layout to
+prepare</h2>
+<p><strong>Doc A — Digital sovereignty / Keerthiraj &amp; Misra</strong>
+and <strong>Doc B — Metacognitive scaffolding / Liu et al.</strong> Each
+should contain:</p>
+<ol type="1">
+<li>Article link, group roster/recorder, chosen reading strategies.</li>
+<li><strong>Hour 1 reading table:</strong> reader/strategy; claim;
+evidence with passage; uncertainty; AI comparison; what changed.</li>
+<li><strong>Handover brief (copy/paste to other Doc):</strong> central
+claim; two unresolved questions; one promising reference; source
+passage(s).</li>
+<li><strong>Hour 2 discovery log:</strong> publication/DOI; backward,
+forward, or sideways discovery; conventional vs AI suggestion;
+verified?; significance to original article. The receiving group adds to
+the article’s document.</li>
+<li><strong>Hour 3 mapping:</strong> links to initial and revised maps
+(or embedded images); map type; labeled relationships; peer critique;
+possible gaps and how to verify them; revision rationale.</li>
+<li>Final reflection: Did AI deepen reading and scholarship or just
+accelerate production?</li>
+</ol>
+<p><strong>Important:</strong> The two actual Docs/templates have
+<strong>not yet been created</strong>. An existing shared class Doc was
+used previously:
+https://docs.google.com/document/d/1JATwv9qBCeN9ld3AEHc5FeZVi6ZamubNqLHzVQjeWGY/edit
+. Decide whether to use two new Docs or sections/tabs in the existing
+Doc, while preserving the simple copy/paste handover. No Canvas work
+requested.</p>
+<h2 id="machine-spirits-workbench-status">Machine Spirits Workbench
+status</h2>
+<ul>
+<li>Editable HTML:
+<code>courses/590-fall-2026/literature-workbench.html</code></li>
+<li>Hosted-content copy:
+<code>courses/590-fall-2026/_board/hosted/literature-workbench.html</code></li>
+<li>Current features: article interpretation fields, literature
+discovery log, basic concept network, SVG/Mermaid export, local JSON,
+multi-PDF selection/text extraction (PDF.js loaded from CDN), and a
+discovery-method bar chart.</li>
+<li><strong>Not implemented/verified:</strong> shared live
+collaboration, AI API integration, chronological/conceptual/relational
+switchable views, map version history, reliable offline PDF extraction,
+browser QA, and public deployment. Do not imply the workbench is
+live.</li>
+<li>Website route proposed in <strong>draft PR #62</strong>:
+https://github.com/liammagee/machinespirits/pull/62 for intended URL
+https://machinespirits.org/590-fall-2026/literature-workbench . Needs
+tests, review, merge, and deployment. Local Devspace workspace opening
+failed during previous attempt.</li>
+<li>For Monday, <strong>Google Docs is the fallback and authoritative
+record</strong> even if workbench deployment fails. No need to make live
+collaboration a Monday prerequisite.</li>
+</ul>
+<h2 id="when-back-at-a-computer-priority-checklist">When back at a
+computer — priority checklist</h2>
+<ol type="1">
+<li>Create and share two simple Google Docs (or two tabs/sections if
+that is easier), using the structure above. Verify student edit access,
+and test copy/paste handover.</li>
+<li>Verify access to both full articles and permission to upload PDFs to
+chosen AI tools; prepare permissible excerpts/fallback.</li>
+<li>Update the lecture workshop guide to include the agreed second and
+third workshop instructions and timetable (the first workshop was
+already revised for two groups and reading strategies).</li>
+<li>Test HTML workbench in desktop and mobile browsers, especially
+multi-PDF extraction, citations/excerpts, JSON export/import,
+SVG/Mermaid export, and safety of local storage. Correct defects before
+student use.</li>
+<li>Review and test draft website PR #62, confirm content is pinned in
+deployment, merge only after validation, and verify the live URL. If
+blocked, use Google Docs without delaying class.</li>
+<li>Optional later work: prompt-copy buttons, secure AI integration,
+shared state, three map views, and versioned revisions. Do not add extra
+interfaces or student account requirements for Monday.</li>
+<li>Prepare one concise student-facing instructions page with article
+links, Docs, timings, AI options, and expectations. Keep Canvas out of
+the workshop.</li>
+</ol>
+<p><strong>Open decisions:</strong> Whether to use two new Docs versus
+two tabs in existing class Doc; whether the optional workbench is
+reliable enough to demo Monday. All other core pedagogical decisions
+above are agreed.</p>
+</body>
+</html>

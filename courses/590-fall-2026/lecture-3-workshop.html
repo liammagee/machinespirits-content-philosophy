@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.12.1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>lecture-3-workshop</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
+      background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a, a:visited {
+      color: inherit;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
+      color: #606060;
+      color: light-dark(#606060, #b6b6b6);
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid currentColor;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+    }
+    th {
+      border-top: 1px solid currentColor;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+<h1
+id="lecture-3-workshop-guide-two-articles-two-scholarly-traditions">Lecture
+3 — Workshop guide: Two articles, two scholarly traditions</h1>
+<p><strong>EPOL 590: AI and Academic Literature | Monday, November 2,
+2026 | first workshop approximately 5:00–6:20 p.m. Central</strong></p>
+<p>Instructor working copy. This is a <strong>separate workshop
+companion</strong> to <code>lecture-3.md</code>; the original lecture
+remains unchanged.</p>
+<h2 id="purpose">Purpose</h2>
+<p>Students compare how two academic articles construct arguments,
+establish evidence, and position themselves in a scholarly field. They
+first interpret a text independently, then test AI-assisted readings,
+then teach the other cohort what they found. The aim is not simply to
+produce summaries but to notice what different scholarly traditions
+count as convincing and whether AI preserves those distinctions.</p>
+<h2 id="seed-articles-from-lecture-2">Seed articles (from Lecture
+2)</h2>
+<p><strong>Humanities / critical scholarship:</strong> Keerthiraj &amp;
+Misra (2025), “Who owns the future? AI, digital sovereignty, and the
+politics of knowledge,” <em>AI &amp; Society</em>.
+https://link.springer.com/article/10.1007/s00146-025-02641-y</p>
+<p><strong>Empirical education research:</strong> Liu, J., Zhang, Y.,
+Li, W., Wang, Q., Niu, P., &amp; Zhang, X. (2025), “Adaptive vs. Planned
+Metacognitive Scaffolding for Computational Thinking: Evidence from
+Generative AI-Supported Programming in Elementary Education,”
+<em>Computers &amp; Education</em>.
+https://doi.org/10.1016/j.compedu.2025.105473</p>
+<p><strong>Preparation:</strong> Check student access to full text for
+both papers; provide PDFs or permitted institutional links. Do not
+assume AI systems can access publisher paywalls. Students can use
+excerpts if necessary. No paid AI account required.</p>
+<h2 id="ai-research-workbench-setup-15-minutes">5:00–5:15 — AI research
+workbench setup (15 minutes)</h2>
+<p><strong>Goal:</strong> Everyone can work with at least one of the two
+assigned papers in an AI environment and verify a passage-based answer.
+No paid account, terminal installation, or unrestricted file access
+required.</p>
+<p><strong>Illinois-supported starting points:</strong> Consult the <a
+href="https://genai.illinois.edu/ai-apps/">Illinois AI Apps
+directory</a> and <a
+href="https://guides.library.illinois.edu/generativeAI/tools">Illinois
+Library guidance</a> before class. Recommend <strong>Google
+NotebookLM</strong> for source-grounded comparison of documents and
+<strong>Gemini</strong> through eligible Illinois Google accounts;
+<strong>Microsoft Copilot Chat</strong> and <strong>Illinois
+Chat</strong> are alternatives. Availability and entitlements vary by
+account; students should verify sign-in and access. <strong>ChatGPT
+Edu/Codex access should not be assumed for every student.</strong>
+Students with existing ChatGPT or Claude subscriptions may use them for
+<em>permitted, non-sensitive material</em>; personal subscriptions are
+not a substitute for institutional data protection. Claude Code and
+Codex are optional advanced file-oriented routes, not required
+installations.</p>
+<p><strong>Important distinction:</strong> A desktop application can
+still call a cloud model. A browser app can work with multiple PDFs when
+its upload or source-collection feature permits. A local-folder-capable
+agent requires deliberate permissions. Do not imply NotebookLM
+automatically reads arbitrary desktop folders.</p>
+<p><strong>Before class:</strong> Share both article links and
+accessible excerpts. Verify that licensing permits any planned PDF
+upload to the chosen service; otherwise use a permissible excerpt or
+public-access text. Encourage students to create an
+<code>EPOL590-literature</code> folder, but don’t require any particular
+operating system or software installation.</p>
+<ul>
+<li><strong>5:00–5:03 — Inventory:</strong> Quick poll: NotebookLM,
+Gemini, Illinois Chat, Copilot, ChatGPT, Claude, other, none? Browser or
+desktop? Can students access the article text? Pair students for
+support.</li>
+<li><strong>5:03–5:08 — Demonstration:</strong> Open NotebookLM using an
+eligible Illinois account, add a permitted source (article text or
+excerpt), and ask: “What is the central claim? Cite the supporting
+passage, and say if the source does not answer.” Open and verify the
+citation in the actual source. Explain that source citations still need
+checking.</li>
+<li><strong>5:08–5:13 — Student setup:</strong> Students choose an
+available Illinois-supported route first, or an existing personal
+subscription for permitted material. Upload/add the relevant article or
+paste an excerpt. Advanced students may use a file-aware tool with
+access limited to the course-paper folder; no one needs to install a CLI
+in class.</li>
+<li><strong>5:13–5:15 — Smoke test:</strong> Everyone obtains one claim
+with a verifiable source passage, or switches to a peer/browser
+fallback. Record “ready / partner / fallback”; proceed on time.</li>
+</ul>
+<p><strong>Safety and accessibility:</strong> Do not upload student
+records, unpublished research, restricted publisher PDFs, or
+confidential information without appropriate authorization. Use approved
+institutional accounts where required. If access or uploads fail,
+students can read the paper and critically compare peer-generated
+interpretations instead. Offer equivalent participation without a paid
+AI service.</p>
+<h2 id="hour-1-reading-strategies-workshop-flexible-515620">Hour 1 —
+Reading strategies workshop (flexible 5:15–6:20)</h2>
+<p><strong>Attendance-flexible arrangement:</strong> Form <strong>two
+article groups</strong>, not six triads. Group A reads Keerthiraj &amp;
+Misra (humanities/critical scholarship); Group B reads Liu et
+al. (empirical education). If attendance is large enough, each article
+group can split into two subgroups, but the exercise works with as few
+as two students per article. If attendance is extremely low, read one
+article together and use the second as a comparison demonstrated by the
+instructor.</p>
+<p><strong>Experimental variable:</strong> Students approach the
+<em>same article</em> using different reading strategies. They answer
+the same questions and record the same evidence. This is a structured
+comparison of reading practices, not a controlled experiment or a race
+to finish an entire paper.</p>
+<h3 id="predict-and-choose-5-min">5:15–5:20 — Predict and choose (5
+min)</h3>
+<p>Briefly revisit Lecture 2’s question: <em>What do we do when we open
+an article?</em> Within each article group, students select or are
+assigned one of three approaches. With only two students, choose two
+strategies and discuss the third as an alternative.</p>
+<ol type="1">
+<li><strong>Sequential:</strong> Begin at the abstract and move through
+the paper in its published order. Track how the argument develops; do
+not pretend a long article can be fully read in twelve minutes.</li>
+<li><strong>Strategic / overview-first:</strong> Read abstract,
+introduction, conclusion, then jump to sections needed to test the
+claimed contribution.</li>
+<li><strong>Investigative / question-first:</strong> Start at
+methodology or results (empirical article), or theoretical framework,
+references, or a contested passage (critical article). Work outward to
+reconstruct the whole.</li>
+</ol>
+<p>Each student predicts which strategy will yield the strongest
+interpretation, which will be fastest, and which will raise the most
+questions.</p>
+<h3 id="human-reading-13-min-no-ai">5:20–5:33 — Human reading (13 min;
+no AI)</h3>
+<p>Students independently read using their chosen route and note
+<strong>where they started and what they skipped</strong>. Everyone
+produces the same four-part reading record:</p>
+<ul>
+<li><strong>Claim:</strong> What is the paper trying to persuade its
+readers to believe?</li>
+<li><strong>Warrant:</strong> What evidence, reasoning, method, or
+examples support it? Give a passage or section reference.</li>
+<li><strong>Uncertainty:</strong> What remains unclear or
+unconvincing?</li>
+<li><strong>Reading path:</strong> What did your chosen route reveal or
+conceal?</li>
+</ul>
+<p>Do not penalize incomplete readings; make their incompleteness part
+of the analysis.</p>
+<h3 id="compare-strategies-within-each-article-group-12-min">5:33–5:45 —
+Compare strategies within each article group (12 min)</h3>
+<p>Each student reports their strategy, interpretation, and one cited
+passage. Compare where accounts converge or conflict. Ask: <em>Which
+disagreement comes from the article, and which comes from where we
+entered it?</em> Nominate one spokesperson per article.</p>
+<h3 id="ai-follows-the-same-reading-route-15-min">5:45–6:00 — AI follows
+the same reading route (15 min)</h3>
+<p>Students use NotebookLM, Gemini, or another permitted AI tool,
+supplying the actual article or allowed excerpt. Ask AI to follow the
+<strong>same strategy</strong> they used. If the tool has only an
+excerpt, explicitly constrain claims to it.</p>
+<p><strong>Sequential prompt:</strong> “Read the supplied text in its
+presented order. At each section, record how the central argument
+develops, which evidence is added, and what remains unresolved. Cite
+passages. Do not fill in missing sections.”</p>
+<p><strong>Overview-first prompt:</strong> “Start with the abstract,
+introduction, and conclusion. State your provisional interpretation,
+then identify the specific additional sections that would most seriously
+test it. Read those sections and revise the interpretation, citing
+passages.”</p>
+<p><strong>Investigative prompt:</strong> “Begin with [named
+section/question]. Explain what that section establishes, then trace
+backward and forward to reconstruct the article’s larger argument.
+Distinguish what you verified from what you inferred.”</p>
+<p><strong>Common challenge:</strong> “Compare this reading with my
+human notes. Identify one insight, one unsupported or flattened
+interpretation, and one question worth pursuing. Quote or cite
+supporting passages; do not invent page numbers.”</p>
+<p>Students record what changed when AI followed their path rather than
+simply requesting a generic summary. An AI-free alternative is a peer
+applying the same prompts.</p>
+<h3 id="exchange-across-articles-15-min">6:00–6:15 — Exchange across
+articles (15 min)</h3>
+<p>Bring the two groups together. Each spokesperson gives a 3-minute
+account; reserve time for questions and comparison. Ask:</p>
+<ul>
+<li>Did the humanities and empirical articles reward different reading
+routes?</li>
+<li>Which strategies exposed the authors’ standards of evidence and
+persuasion?</li>
+<li>Did AI preserve disciplinary differences or impose a generic
+template?</li>
+<li>How did reading the <em>part</em> alter understanding of the
+<em>whole</em>, and vice versa (the hermeneutic circle)?</li>
+</ul>
+<p><strong>Output:</strong> A two-column comparison of article/reading
+strategy, plus one shared caution about AI reading.</p>
+<h3 id="synthesis-and-transition-5-min">6:15–6:20 — Synthesis and
+transition (5 min)</h3>
+<p>Invite students to revise their predictions. Distinguish
+<strong>reading for information extraction</strong> from <strong>reading
+to develop an interpretation</strong>. Ask: “If AI can traverse a paper
+in many orders, what makes our practice of reading scholarly?”</p>
+<p><strong>Time policy:</strong> This first workshop may run to
+<strong>6:20</strong>, intentionally crossing the original hour
+boundary. If discussion is especially productive, it may continue to
+6:30; shorten the next segment’s demonstration, not the student
+comparison. Take a 10-minute break before the literature-search
+workshop.</p>
+<h2 id="what-to-collect">What to collect</h2>
+<p>Each student: article, chosen reading path, prediction, claim,
+warrant with source passage, uncertainty, and what AI changed. Each
+article group: one point of agreement and one divergence across
+strategies. Whole class: one difference between disciplinary reading
+practices and one question to investigate through literature search.</p>
+<h2 id="facilitator-contingencies">Facilitator contingencies</h2>
+<ul>
+<li><strong>Small turnout:</strong> Two article groups; no requirement
+for three strategies per group. Students can compare routes verbally or
+in pairs.</li>
+<li><strong>Very small turnout:</strong> One group jointly compares the
+two articles, with students choosing contrasting reading routes.</li>
+<li><strong>Incomplete or inaccessible papers:</strong> Use permitted
+excerpts and mark interpretations provisional.</li>
+<li><strong>AI access problems:</strong> Compare human readings; the
+pedagogical objective survives without an AI tool.</li>
+<li><strong>Timing:</strong> Do not rush the cross-article exchange
+merely to preserve a 6:00 boundary.</li>
+</ul>
+<h2 id="link-to-the-rest-of-lecture-3">Link to the rest of Lecture
+3</h2>
+<p><strong>Hour 2:</strong> A/B cohorts trace citations backward, find
+later citing work, search sideways for dissenting or heterodox
+positions, and verify every reference.</p>
+<p><strong>Hour 3:</strong> Build two contrasting field maps, compare
+what their structures foreground and omit, and end by transferring the
+method to students’ own research topics.</p>
+<p>The original <code>courses/590-fall-2026/lecture-3.md</code> is
+unchanged.</p>
+</body>
+</html>
