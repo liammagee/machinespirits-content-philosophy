@@ -10,9 +10,9 @@ Students compare how two academic articles construct arguments, establish eviden
 
 ## Seed articles
 
-The two articles illustrate C. P. Snow's "two cultures". Both address the same concern, AI's relationship to truth, from opposite sides: one argues conceptually, the other measures.
+The two articles illustrate C. P. Snow's "two cultures". Both address the same concern, aligning AI with human values, from opposite sides: one reads a field's literature to ask what "values" means, the other runs experiments on what preference-based training does.
 
-**Humanities (philosophy):** Hicks, M. T., Humphries, J., & Slater, J. (2024), “ChatGPT is bullshit,” *Ethics and Information Technology*, 26(2), 38. https://doi.org/10.1007/s10676-024-09775-5
+**Humanities / critical studies:** Smart, A., Ahmed, S., Kay, J., Tobin, J., Shrishak, K., & Birhane, A. (2026), “Toward a Theory of Value in AI Alignment,” arXiv:2608.10327 (preprint). https://arxiv.org/abs/2608.10327 The method is qualitative: the authors annotated 94 value-alignment papers to recover the theory of value they assume.
 
 **Computer science (alignment):** Sharma, M., Tong, M., Korbak, T., Duvenaud, D., Askell, A., Bowman, S. R., et al. (2024), “Towards Understanding Sycophancy in Language Models,” *International Conference on Learning Representations (ICLR 2024)*. https://arxiv.org/abs/2310.13548 — read the main paper (about 9 pages); the appendices are optional.
 
@@ -22,12 +22,12 @@ The two articles illustrate C. P. Snow's "two cultures". Both address the same c
 
 **Google Docs is the authoritative record for all three workshops** — notes, reading tables, handover briefs, discoveries, maps, and reflections. No Canvas, no Google Sheets, no other documentation platform. Avoid entering the same data twice.
 
-Prepare **Doc A — ChatGPT is bullshit / Hicks et al.** and **Doc B — Sycophancy in language models / Sharma et al.** (or two tabs/sections of the existing class Doc). Each contains:
+Prepare one Doc (or tab) per group: **Doc A — Humanities group** (reads Smart et al. first) and **Doc B — Computer Science group** (reads Sharma et al. first). In the class Doc these are the DocA and DocB tabs under Week 3 Collaboration. Each contains:
 
-1. Article link, group roster/recorder, chosen reading strategies.
+1. Both article links (the group's own article, and the one it searches from in Hour 2), group roster/recorder, chosen reading strategies.
 2. **Hour 1 reading table:** reader/strategy; claim; evidence with passage; uncertainty; AI comparison; what changed.
-3. **Handover brief (copy/paste to the other Doc):** central claim; two unresolved questions; one promising reference; source passage(s).
-4. **Hour 2 discovery log:** publication/DOI; backward, forward, or sideways discovery; conventional vs AI suggestion; verified?; significance to the original article. The receiving group adds to the article's document.
+3. **Handover brief (copy/paste into the other group's Doc):** central claim; two unresolved questions; one promising reference; source passage(s).
+4. **Hour 2 discovery log:** publication/DOI; backward, forward, or sideways discovery; conventional vs AI suggestion; verified?; significance to the original article. Each group logs its discoveries about the *other* group's article in its own Doc.
 5. **Hour 3 mapping:** links to initial and revised maps (or embedded images); map type; labeled relationships; peer critique; possible gaps and how to verify them; revision rationale.
 6. **Final reflection:** Did AI deepen reading and scholarship or just accelerate production?
 
@@ -52,7 +52,7 @@ Each group nominates a recorder, and optionally a separate workbench operator. P
 
 ## Hour 1 — Reading strategies workshop (flexible 5:15–6:20)
 
-**Attendance-flexible arrangement:** Form **two article groups**, not six triads. Group A reads Hicks et al. (humanities/philosophy); Group B reads Sharma et al. (computer science). If attendance is large enough, each article group can split into two subgroups, but the exercise works with as few as two students per article. If attendance is extremely low, read one article together and use the second as a comparison demonstrated by the instructor.
+**Attendance-flexible arrangement:** Form **two article groups**, not six triads. Group A, the Humanities group, reads Smart et al.; Group B, the Computer Science group, reads Sharma et al. If attendance is large enough, each article group can split into two subgroups, but the exercise works with as few as two students per article. If attendance is extremely low, read one article together and use the second as a comparison demonstrated by the instructor.
 
 **Experimental variable:** Students approach the *same article* using different reading strategies. They answer the same questions and record the same evidence. This is a structured comparison of reading practices, not a controlled experiment or a race to finish an entire paper.
 
@@ -62,7 +62,7 @@ Briefly revisit Lecture 2's question: *What do we do when we open an article?* W
 
 1. **Sequential:** Begin at the abstract and move through the paper in its published order. Track how the argument develops; do not pretend a long article can be fully read in twelve minutes.
 2. **Strategic / overview-first:** Read abstract, introduction, conclusion, then jump to sections needed to test the claimed contribution.
-3. **Investigative / question-first:** Start at methodology or results (computer science article), or the central distinction, references, or a contested passage (philosophy article). Work outward to reconstruct the whole.
+3. **Investigative / question-first:** Start at methodology or results (either article: Sharma's experiments, Smart's annotation scheme), or at the references or a contested passage. Work outward to reconstruct the whole.
 
 Each student predicts which strategy will yield the strongest interpretation, which will be fastest, and which will raise the most questions.
 
@@ -100,7 +100,7 @@ Students record what changed when AI followed their path rather than simply requ
 Bring the two groups together. Each spokesperson gives a 3-minute account; reserve time for questions and comparison. Ask:
 
 - Did the humanities and computer science articles reward different reading routes?
-- Both articles are about AI and truth. Where do they agree, and what does each culture's method let it see that the other misses?
+- Both articles are about aligning AI with human values. Sharma et al. treat human preferences as the signal; Smart et al. ask whether preferences can stand in for values. Where do they agree, and what does each culture's method let it see that the other misses?
 - Which strategies exposed the authors' standards of evidence and persuasion?
 - Did AI preserve disciplinary differences or impose a generic template?
 - How did reading the *part* alter understanding of the *whole*, and vice versa (the hermeneutic circle)?
@@ -119,7 +119,7 @@ Each article group then writes its **handover brief** in its Doc — central cla
 
 **Swap the articles.** Each group now searches outward from the article it did *not* read, starting from the other group's handover brief. **Do not identify gaps in this hour** — gaps belong to mapping, where they can be tested.
 
-- **6:30–6:35 — Swap and receive the brief:** Copy each handover brief into the receiving group's working section. Readers clarify the claim and questions in a sentence or two.
+- **6:30–6:35 — Swap and receive the brief:** Copy each handover brief into the receiving group's Doc. Readers clarify the claim and questions in a sentence or two.
 - **6:35–6:45 — Conventional search:** Trace citations **backward** (the article's references), **forward** (later work citing it), and **sideways** (dissenting, heterodox, or adjacent positions). Log each find in the discovery log.
 - **6:45–7:00 — AI-assisted search:** Repeat with a permitted AI tool. Verify every suggested reference exists and says what is claimed; mark AI suggestions separately from conventional finds. Select **three useful works**.
 - **7:00–7:10 — Report back:** Each group reports its discoveries to the article's original readers, who reconsider their Hour 1 interpretation in light of them.
@@ -137,12 +137,12 @@ Each group returns to **its original article** and maps the field emerging aroun
 
 ## What to collect
 
-Everything goes in the article group's Google Doc.
+Everything goes in the group's Google Doc tab.
 
 - **Hour 1, each student:** article, chosen reading path, prediction, claim, warrant with source passage, uncertainty, and what AI changed (reading table).
 - **Hour 1, each article group:** one point of agreement and one divergence across strategies, plus the handover brief.
 - **Hour 1, whole class:** one difference between disciplinary reading practices and one question to investigate through literature search.
-- **Hour 2, receiving group:** the discovery log in the original article's Doc, with three verified works selected.
+- **Hour 2, each group:** the discovery log in its own Doc, with three verified works selected.
 - **Hour 3, each group:** initial and revised maps, peer critique, possible gaps and how to verify them, revision rationale, and the final reflection.
 
 ## Facilitator contingencies
