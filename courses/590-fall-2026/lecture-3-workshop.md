@@ -14,7 +14,7 @@ The two articles illustrate C. P. Snow's "two cultures". Both address the same c
 
 **Humanities / critical studies:** Smart, A., Ahmed, S., Kay, J., Tobin, J., Shrishak, K., & Birhane, A. (2026), “Toward a Theory of Value in AI Alignment,” arXiv:2608.10327 (preprint). https://arxiv.org/abs/2608.10327 The method is qualitative: the authors annotated 94 value-alignment papers to recover the theory of value they assume.
 
-**Computer science (alignment):** Sharma, M., Tong, M., Korbak, T., Duvenaud, D., Askell, A., Bowman, S. R., et al. (2024), “Towards Understanding Sycophancy in Language Models,” *International Conference on Learning Representations (ICLR 2024)*. https://arxiv.org/abs/2310.13548 — read the main paper (about 9 pages); the appendices are optional.
+**Science (computer science, alignment):** Sharma, M., Tong, M., Korbak, T., Duvenaud, D., Askell, A., Bowman, S. R., et al. (2024), “Towards Understanding Sycophancy in Language Models,” *International Conference on Learning Representations (ICLR 2024)*. https://arxiv.org/abs/2310.13548 — read the main paper (about 9 pages); the appendices are optional.
 
 **Licensing:** Both articles are open access under **CC BY 4.0**, so students may download them, share them, and upload the full PDFs to AI tools. They replace the Lecture 2 seed articles (Keerthiraj & Misra; Liu et al.), which are subscription content whose library licences do not clearly permit uploading to AI services. No paid AI account required.
 
@@ -22,7 +22,7 @@ The two articles illustrate C. P. Snow's "two cultures". Both address the same c
 
 **Google Docs is the authoritative record for all three workshops** — notes, reading tables, handover briefs, discoveries, maps, and reflections. No Canvas, no Google Sheets, no other documentation platform. Avoid entering the same data twice.
 
-Prepare one Doc (or tab) per group: **Doc A — Humanities group** (reads Smart et al. first) and **Doc B — Computer Science group** (reads Sharma et al. first). In the class Doc these are the DocA and DocB tabs under Week 3 Collaboration. Each contains:
+Prepare one Doc (or tab) per group: **Doc A — Humanities group** (reads Smart et al. first) and **Doc B — Science group** (reads Sharma et al. first). In the class Doc these are the Group A - Humanities and Group B - Science tabs under Week 3 Collaboration. Each contains:
 
 1. Both article links (the group's own article, and the one it searches from in Hour 2), group roster/recorder, chosen reading strategies.
 2. **Hour 1 reading table:** reader/strategy; claim; evidence with passage; uncertainty; AI comparison; what changed.
@@ -52,7 +52,7 @@ Each group nominates a recorder, and optionally a separate workbench operator. P
 
 ## Hour 1 — Reading strategies workshop (flexible 5:15–6:20)
 
-**Attendance-flexible arrangement:** Form **two article groups**, not six triads. Group A, the Humanities group, reads Smart et al.; Group B, the Computer Science group, reads Sharma et al. If attendance is large enough, each article group can split into two subgroups, but the exercise works with as few as two students per article. If attendance is extremely low, read one article together and use the second as a comparison demonstrated by the instructor.
+**Attendance-flexible arrangement:** Form **two article groups**, not six triads. Group A, the Humanities group, reads Smart et al.; Group B, the Science group, reads Sharma et al. If attendance is large enough, each article group can split into two subgroups, but the exercise works with as few as two students per article. If attendance is extremely low, read one article together and use the second as a comparison demonstrated by the instructor.
 
 **Experimental variable:** Students approach the *same article* using different reading strategies. They answer the same questions and record the same evidence. This is a structured comparison of reading practices, not a controlled experiment or a race to finish an entire paper.
 
@@ -99,7 +99,7 @@ Students record what changed when AI followed their path rather than simply requ
 
 Bring the two groups together. Each spokesperson gives a 3-minute account; reserve time for questions and comparison. Ask:
 
-- Did the humanities and computer science articles reward different reading routes?
+- Did the humanities and science articles reward different reading routes?
 - Both articles are about aligning AI with human values. Sharma et al. treat human preferences as the signal; Smart et al. ask whether preferences can stand in for values. Where do they agree, and what does each culture's method let it see that the other misses?
 - Which strategies exposed the authors' standards of evidence and persuasion?
 - Did AI preserve disciplinary differences or impose a generic template?
