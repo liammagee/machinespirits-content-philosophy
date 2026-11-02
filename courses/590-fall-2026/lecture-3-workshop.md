@@ -8,19 +8,19 @@ Instructor working copy. This is a **separate workshop companion** to `lecture-3
 
 Students compare how two academic articles construct arguments, establish evidence, and position themselves in a scholarly field. They first interpret a text independently, then test AI-assisted readings, then teach the other cohort what they found. The aim is not simply to produce summaries but to notice what different scholarly traditions count as convincing and whether AI preserves those distinctions.
 
-## Seed articles (from Lecture 2)
+## Seed articles
 
-**Humanities / critical scholarship:** Keerthiraj & Misra (2025), “Who owns the future? AI, digital sovereignty, and the politics of knowledge,” *AI & Society*. https://link.springer.com/article/10.1007/s00146-025-02641-y
+**Humanities / critical scholarship:** Kavanagh, E. (2026), “Pluralistic AI governance: Indigenous knowledge and the right of Indigenous peoples to self-determination,” *AI & Society*. https://doi.org/10.1007/s00146-026-02938-6
 
-**Empirical education research:** Liu, J., Zhang, Y., Li, W., Wang, Q., Niu, P., & Zhang, X. (2025), “Adaptive vs. Planned Metacognitive Scaffolding for Computational Thinking: Evidence from Generative AI-Supported Programming in Elementary Education,” *Computers & Education*. https://doi.org/10.1016/j.compedu.2025.105473
+**Empirical education research:** Ma, B., Li, H., Li, G., Chen, L., Tang, C., Xie, Y., Gu, C., Shimada, A., & Konomi, S. (2025), “Scaffolding Metacognition in Programming Education: Understanding Student-AI Interactions and Design Implications,” arXiv:2511.04144 (preprint, not yet peer reviewed). https://arxiv.org/abs/2511.04144
 
-**Preparation:** Check student access to full text for both papers; provide PDFs or permitted institutional links. Do not assume AI systems can access publisher paywalls. Students can use excerpts if necessary. No paid AI account required.
+**Licensing:** Both articles are open access under **CC BY 4.0**, so students may download them, share them, and upload the full PDFs to AI tools. They replace the Lecture 2 seed articles (Keerthiraj & Misra; Liu et al.), which are subscription content whose library licences do not clearly permit uploading to AI services. No paid AI account required.
 
 ## Shared record: Google Docs
 
 **Google Docs is the authoritative record for all three workshops** — notes, reading tables, handover briefs, discoveries, maps, and reflections. No Canvas, no Google Sheets, no other documentation platform. Avoid entering the same data twice.
 
-Prepare **Doc A — Digital sovereignty / Keerthiraj & Misra** and **Doc B — Metacognitive scaffolding / Liu et al.** (or two tabs/sections of the existing class Doc). Each contains:
+Prepare **Doc A — Indigenous knowledge and AI governance / Kavanagh** and **Doc B — Metacognition in programming / Ma et al.** (or two tabs/sections of the existing class Doc). Each contains:
 
 1. Article link, group roster/recorder, chosen reading strategies.
 2. **Hour 1 reading table:** reader/strategy; claim; evidence with passage; uncertainty; AI comparison; what changed.
@@ -39,7 +39,7 @@ Each group nominates a recorder, and optionally a separate workbench operator. P
 
 **Important distinction:** A desktop application can still call a cloud model. A browser app can work with multiple PDFs when its upload or source-collection feature permits. A local-folder-capable agent requires deliberate permissions. Do not imply NotebookLM automatically reads arbitrary desktop folders.
 
-**Before class:** Share both article links and accessible excerpts. Verify that licensing permits any planned PDF upload to the chosen service; otherwise use a permissible excerpt or public-access text. Encourage students to create an `EPOL590-literature` folder, but don't require any particular operating system or software installation.
+**Before class:** Share both article links (or the PDFs themselves). Because both are CC BY, full-PDF upload to NotebookLM or another tool is permitted; for any *other* paper a student brings, check the licence first and fall back to a short excerpt. Encourage students to create an `EPOL590-literature` folder, but don't require any particular operating system or software installation.
 
 - **5:00–5:03 — Inventory:** Quick poll: NotebookLM, Gemini, Illinois Chat, Copilot, ChatGPT, Claude, other, none? Browser or desktop? Can students access the article text? Pair students for support.
 - **5:03–5:08 — Demonstration:** Open NotebookLM using an eligible Illinois account, add a permitted source (article text or excerpt), and ask: “What is the central claim? Cite the supporting passage, and say if the source does not answer.” Open and verify the citation in the actual source. Explain that source citations still need checking.
@@ -50,7 +50,7 @@ Each group nominates a recorder, and optionally a separate workbench operator. P
 
 ## Hour 1 — Reading strategies workshop (flexible 5:15–6:20)
 
-**Attendance-flexible arrangement:** Form **two article groups**, not six triads. Group A reads Keerthiraj & Misra (humanities/critical scholarship); Group B reads Liu et al. (empirical education). If attendance is large enough, each article group can split into two subgroups, but the exercise works with as few as two students per article. If attendance is extremely low, read one article together and use the second as a comparison demonstrated by the instructor.
+**Attendance-flexible arrangement:** Form **two article groups**, not six triads. Group A reads Kavanagh (humanities/critical scholarship); Group B reads Ma et al. (empirical education). If attendance is large enough, each article group can split into two subgroups, but the exercise works with as few as two students per article. If attendance is extremely low, read one article together and use the second as a comparison demonstrated by the instructor.
 
 **Experimental variable:** Students approach the *same article* using different reading strategies. They answer the same questions and record the same evidence. This is a structured comparison of reading practices, not a controlled experiment or a race to finish an entire paper.
 
