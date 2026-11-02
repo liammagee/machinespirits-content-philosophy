@@ -10,9 +10,11 @@ Students compare how two academic articles construct arguments, establish eviden
 
 ## Seed articles
 
-**Humanities / critical scholarship:** Kavanagh, E. (2026), “Pluralistic AI governance: Indigenous knowledge and the right of Indigenous peoples to self-determination,” *AI & Society*. https://doi.org/10.1007/s00146-026-02938-6
+The two articles illustrate C. P. Snow's "two cultures". Both address the same concern, AI's relationship to truth, from opposite sides: one argues conceptually, the other measures.
 
-**Empirical education research:** Ma, B., Li, H., Li, G., Chen, L., Tang, C., Xie, Y., Gu, C., Shimada, A., & Konomi, S. (2025), “Scaffolding Metacognition in Programming Education: Understanding Student-AI Interactions and Design Implications,” arXiv:2511.04144 (preprint, not yet peer reviewed). https://arxiv.org/abs/2511.04144
+**Humanities (philosophy):** Hicks, M. T., Humphries, J., & Slater, J. (2024), “ChatGPT is bullshit,” *Ethics and Information Technology*, 26(2), 38. https://doi.org/10.1007/s10676-024-09775-5
+
+**Computer science (alignment):** Sharma, M., Tong, M., Korbak, T., Duvenaud, D., Askell, A., Bowman, S. R., et al. (2024), “Towards Understanding Sycophancy in Language Models,” *International Conference on Learning Representations (ICLR 2024)*. https://arxiv.org/abs/2310.13548 — read the main paper (about 9 pages); the appendices are optional.
 
 **Licensing:** Both articles are open access under **CC BY 4.0**, so students may download them, share them, and upload the full PDFs to AI tools. They replace the Lecture 2 seed articles (Keerthiraj & Misra; Liu et al.), which are subscription content whose library licences do not clearly permit uploading to AI services. No paid AI account required.
 
@@ -20,7 +22,7 @@ Students compare how two academic articles construct arguments, establish eviden
 
 **Google Docs is the authoritative record for all three workshops** — notes, reading tables, handover briefs, discoveries, maps, and reflections. No Canvas, no Google Sheets, no other documentation platform. Avoid entering the same data twice.
 
-Prepare **Doc A — Indigenous knowledge and AI governance / Kavanagh** and **Doc B — Metacognition in programming / Ma et al.** (or two tabs/sections of the existing class Doc). Each contains:
+Prepare **Doc A — ChatGPT is bullshit / Hicks et al.** and **Doc B — Sycophancy in language models / Sharma et al.** (or two tabs/sections of the existing class Doc). Each contains:
 
 1. Article link, group roster/recorder, chosen reading strategies.
 2. **Hour 1 reading table:** reader/strategy; claim; evidence with passage; uncertainty; AI comparison; what changed.
@@ -50,7 +52,7 @@ Each group nominates a recorder, and optionally a separate workbench operator. P
 
 ## Hour 1 — Reading strategies workshop (flexible 5:15–6:20)
 
-**Attendance-flexible arrangement:** Form **two article groups**, not six triads. Group A reads Kavanagh (humanities/critical scholarship); Group B reads Ma et al. (empirical education). If attendance is large enough, each article group can split into two subgroups, but the exercise works with as few as two students per article. If attendance is extremely low, read one article together and use the second as a comparison demonstrated by the instructor.
+**Attendance-flexible arrangement:** Form **two article groups**, not six triads. Group A reads Hicks et al. (humanities/philosophy); Group B reads Sharma et al. (computer science). If attendance is large enough, each article group can split into two subgroups, but the exercise works with as few as two students per article. If attendance is extremely low, read one article together and use the second as a comparison demonstrated by the instructor.
 
 **Experimental variable:** Students approach the *same article* using different reading strategies. They answer the same questions and record the same evidence. This is a structured comparison of reading practices, not a controlled experiment or a race to finish an entire paper.
 
@@ -60,7 +62,7 @@ Briefly revisit Lecture 2's question: *What do we do when we open an article?* W
 
 1. **Sequential:** Begin at the abstract and move through the paper in its published order. Track how the argument develops; do not pretend a long article can be fully read in twelve minutes.
 2. **Strategic / overview-first:** Read abstract, introduction, conclusion, then jump to sections needed to test the claimed contribution.
-3. **Investigative / question-first:** Start at methodology or results (empirical article), or theoretical framework, references, or a contested passage (critical article). Work outward to reconstruct the whole.
+3. **Investigative / question-first:** Start at methodology or results (computer science article), or the central distinction, references, or a contested passage (philosophy article). Work outward to reconstruct the whole.
 
 Each student predicts which strategy will yield the strongest interpretation, which will be fastest, and which will raise the most questions.
 
@@ -97,7 +99,8 @@ Students record what changed when AI followed their path rather than simply requ
 
 Bring the two groups together. Each spokesperson gives a 3-minute account; reserve time for questions and comparison. Ask:
 
-- Did the humanities and empirical articles reward different reading routes?
+- Did the humanities and computer science articles reward different reading routes?
+- Both articles are about AI and truth. Where do they agree, and what does each culture's method let it see that the other misses?
 - Which strategies exposed the authors' standards of evidence and persuasion?
 - Did AI preserve disciplinary differences or impose a generic template?
 - How did reading the *part* alter understanding of the *whole*, and vice versa (the hermeneutic circle)?
