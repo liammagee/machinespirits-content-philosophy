@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.12.1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>lecture-3-final</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
+      background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a, a:visited {
+      color: inherit;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
+      color: #606060;
+      color: light-dark(#606060, #b6b6b6);
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid currentColor;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+    }
+    th {
+      border-top: 1px solid currentColor;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+<h1 id="epol-590---ai-and-academic-literature">EPOL 590 - AI and
+Academic Literature</h1>
+<p><strong>EPOL 590: AI and Academic Literature | Monday, November 2,
+2026 | 5:00–7:50 p.m. Central</strong></p>
+<hr />
+<h2 id="lecture-3-ai-assisted-close-and-distant-reading">590 Lecture 3:
+AI-Assisted Close and Distant Reading</h2>
+<h3 id="today-workshop-using-ai">Today: Workshop using AI</h3>
+<p>Purpose:</p>
+<ul>
+<li>Getting comfortable (?) with AI</li>
+<li>What happens when we read an article - with and without AI?</li>
+<li>What happens when we search for, and map, a body of literature?</li>
+<li>Can we develop a conceptual map?</li>
+</ul>
+<hr />
+<h2 id="where-we-are-in-the-course">Where we are in the course</h2>
+<ul>
+<li>Week 1 (19 October): Research questions and academic literature</li>
+<li>Week 2 (26 October): Article anatomy, review design and mapping a
+field</li>
+<li><strong>Week 3 (2 November): AI-assisted close and distant reading -
+tonight</strong></li>
+<li>Week 4 (9 November): Difficult texts, audiences and scholarly
+voice</li>
+<li>Week 5 (16 November): Structure, signposting and scholarly
+communities</li>
+<li>Fall break (23 November): no seminar</li>
+<li>Week 6 (30 November): Reflexivity, positionality and AI in
+scholarship</li>
+<li>Week 7 (7 December): The future of scholarship and final review
+workshop</li>
+<li>Final submission: 15 December</li>
+</ul>
+<hr />
+<h2 id="recap-on-week-2">Recap on Week 2</h2>
+<ul>
+<li>What is a journal article? What is a literature review?</li>
+<li>Mapping a field (and minding the gap)</li>
+<li>Does a literature review need a methodology?</li>
+<li>Task 2 · Review design method and scope: due tonight, 11:59 PM
+Central</li>
+</ul>
+<hr />
+<h3 id="sharing-task-2-could-someone-else-bake-your-review">Sharing Task
+2: Could Someone Else Bake Your Review?</h3>
+<p>The purpose of the plan / recipe is that it should (ideally) be
+reproducible by others. Does it pass that test?</p>
+<ul>
+<li>Share your recipe with a partner</li>
+<li>Could they “bake” a literature review to answer your question?</li>
+<li>Where was the recipe too vague to follow?</li>
+</ul>
+<p>Discuss - <a
+href="https://docs.google.com/document/d/1JATwv9qBCeN9ld3AEHc5FeZVi6ZamubNqLHzVQjeWGY/edit">EPOL
+590 Fall 2026 class document</a></p>
+<figure>
+<img src="/markdown/images/lecture-3-final-task-2-recipe.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="vibe-scholarship">Vibe Scholarship</h3>
+<table>
+<thead>
+<tr>
+<th>Qualities</th>
+<th>Coding</th>
+<th>Scholarship</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Traditional</td>
+<td>Waterfall</td>
+<td>Individualized</td>
+</tr>
+<tr>
+<td>Collaborative</td>
+<td>Agile</td>
+<td>Interdisciplinary</td>
+</tr>
+<tr>
+<td>AI-assisted</td>
+<td>Vibe?</td>
+<td>Vibe?</td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-09-23T22-03-12-524Z-2c346f2b.webp"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="this-weeks-readings-moretti-and-snow">This Week’s Readings:
+Moretti and Snow</h3>
+<ul>
+<li>Moretti (2000): “distant reading” - studying literature through
+patterns across many texts, not close reading of a few
+<ul>
+<li>What does an AI model do when it “reads” a field? Is it closer to
+distant or close reading?</li>
+</ul></li>
+<li>Snow (1959): the “two cultures” of science and the humanities
+<ul>
+<li>Do scientists and humanists read differently? Does AI read more like
+one culture than the other?</li>
+<li>Can AI bridge the two cultures, or does it widen the gap?</li>
+</ul></li>
+</ul>
+<figure>
+<img src="/markdown/images/lecture-3-final-moretti-snow.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h2 id="initial-orientation-to-ai-on-the-desktop">Initial Orientation to
+AI on the desktop</h2>
+<ul>
+<li>Quick check: what AI do people use?</li>
+<li>Web, Desktop or Console?</li>
+<li>Free, Paid, Open source?</li>
+</ul>
+<hr />
+<h3 id="uiuc-links">UIUC Links:</h3>
+<ul>
+<li><a href="https://genai.illinois.edu/ai-apps/">AI Apps | Enterprise
+GenAI | Office of the Chief Information Officer | Illinois</a></li>
+<li><a
+href="https://guides.library.illinois.edu/generativeAI/tools">Illinois
+Library guidance</a></li>
+</ul>
+<h3 id="uiuc-options">UIUC Options:</h3>
+<ul>
+<li>Illinois ChatGPT</li>
+<li>Illinois Chat</li>
+<li>Copilot Chat</li>
+<li>Google NotebookLM / Gemini</li>
+<li>Zoom AI Companion</li>
+</ul>
+<hr />
+<h2 id="commercial-options">Commercial Options</h2>
+<ul>
+<li>Anthropic: Claude</li>
+<li>OpenAI: ChatGPT</li>
+<li>Google: Gemini</li>
+<li>Meta: Muse</li>
+<li>X: Grok</li>
+</ul>
+<p><em>Lightly</em> recommend trialling Claude / ChatGPT at $20 per
+month. Not mandatory for this course. But these have strong support for
+data analysis / literature reviews. Claude is my preference (better at
+mocking academic criticism).</p>
+<hr />
+<h2 id="analyzing-pdfs">Analyzing PDFs?</h2>
+<ul>
+<li>Take care: articles / books are copyrighted, and may not be allowed
+to be uploaded to an AI service</li>
+<li>But exemptions - Creative Commons-licensed content, institutional
+repositories, some publishers</li>
+<li>And <em>open source AI</em> on your own computer - exempt, because
+not a service, no information is transferred (but not as powerful)</li>
+<li><a
+href="https://guides.library.illinois.edu/generativeAI/protectyourwork">Protect
+Your Work - Introduction to Generative AI (University Library)</a></li>
+</ul>
+<figure>
+<img src="/markdown/images/lecture-3-final-pdfs.png" alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h2 id="confirm-setup">Confirm setup</h2>
+<ul>
+<li>Everyone has access to a web or desktop tool?</li>
+</ul>
+<hr />
+<h2 id="close-reading-with-and-without-ai">Close reading, with and
+without AI</h2>
+<p>Consider: - Snow’s different cultures - Different practices of
+reading - Reading with and without AI</p>
+<hr />
+<h2
+id="seed-articles---the-two-cultures-and-the-problem-of-alignment">Seed
+articles - The Two Cultures and the Problem of Alignment</h2>
+<p>Humanities / critical studies: Smart, A., Ahmed, S., Kay, J., Tobin,
+J., Shrishak, K., &amp; Birhane, A. (2026), “Toward a Theory of Value in
+AI Alignment,” arXiv:2608.10327 (preprint).
+https://arxiv.org/abs/2608.10327 (method: annotation of 94
+value-alignment papers)</p>
+<p>Science (computer science, alignment): Sharma, M., Tong, M., Korbak,
+T., Duvenaud, D., Askell, A., Bowman, S. R., et al. (2024), “Towards
+Understanding Sycophancy in Language Models,” <em>ICLR 2024</em>.
+https://arxiv.org/abs/2310.13548 (main paper about 9 pages; appendices
+optional)</p>
+<p>[Claude asks:]</p>
+<blockquote>
+<p>Both articles are about aligning AI with human values. Sharma et
+al. treat human preferences as the signal; Smart et al. ask whether
+preferences can stand in for values. Where do they agree, and what does
+each culture’s method let it see that the other misses?</p>
+</blockquote>
+<figure>
+<img src="/markdown/images/lecture-3-final-two-cultures.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="side-note-arxiv-socarxiv-edarxiv">Side note: arXiv, SocArXiv,
+EdArXiv</h3>
+<ul>
+<li>Pre-print - not yet peer-reviewed</li>
+<li>Archive of scientific literature</li>
+<li>Flooded with AI-generated content…</li>
+<li>Since late 2025, arXiv’s computer science section accepts review and
+position papers only after peer review</li>
+</ul>
+<figure>
+<img
+src="/markdown/images/pasted-image-2025-11-03T13-22-10-354Z-7fb83b48.webp"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h2 id="fast-reading-vibe-scholarship-two-groups">‘Fast’ Reading /
+‘Vibe’ Scholarship: Two groups</h2>
+<ul>
+<li>The Humanities group (Group A) - reads the Humanities paper
+<em>first</em></li>
+<li>The Science group (Group B) - reads the Science paper
+<em>first</em></li>
+<li>3 approaches: strategic (outside &gt; in), sequential (top &gt;
+bottom), methodological (inside &gt; out). <strong>1 or 2 people per
+approach</strong></li>
+<li>Answer the mock research question: “how should we align AI?”
+<ul>
+<li>And implicit sub-question: are these two articles compatible,
+contradictory - or talking past each other?</li>
+</ul></li>
+</ul>
+<figure>
+<img src="/markdown/images/lecture-3-final-two-groups.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h2 id="prompt-samples---for-people-as-well-as-machines">Prompt samples
+- for people as well as machines!</h2>
+<p>Strategic prompt: “Work outside in. Start with the abstract,
+introduction, references, and conclusion. State your provisional
+interpretation, then identify the specific additional sections that
+would most seriously test it. Read those sections and revise the
+interpretation, citing passages. Use references to situate the
+article.”</p>
+<p>Sequential prompt: “Work top to bottom. Read the supplied text in its
+presented order. At each section, record how the central argument
+develops, which evidence is added, and what remains unresolved. Cite
+passages. Do not fill in missing sections.”</p>
+<p>Methodological prompt: “Work inside out. Begin with the methodology.
+Explain what that section establishes, then trace backward and forward
+to reconstruct the article’s larger argument. Distinguish what you
+verified from what you inferred.”</p>
+<hr />
+<h2 id="first-paper-speed-group-reading-without-ai-15-minutes">First
+paper: Speed Group Reading, without AI (15 minutes)</h2>
+<p>Scan and discuss the first paper according to 3 strategies:</p>
+<ul>
+<li>strategically (what does it really say?) (outside &gt; in)</li>
+<li>sequentially (how is the argument organized?) (top &gt; bottom)</li>
+<li>methodologically (what does it do?) (inside &gt; out)</li>
+</ul>
+<p>Make notes:</p>
+<ul>
+<li>what does it really say (strategic)?</li>
+<li>how is the argument organized (sequential)?</li>
+<li>what does it do (methodological)?</li>
+</ul>
+<figure>
+<img src="/markdown/images/lecture-3-final-first-paper.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h2 id="second-paper-speed-augmented-reading-15-minutes">Second paper:
+Speed <em>Augmented</em> Reading (15 minutes)</h2>
+<p>Scan and discuss the second paper with AI, using the prompts:</p>
+<ul>
+<li>strategically (what does it really say?) (outside &gt; in)</li>
+<li>sequentially (how is the argument organized?) (top &gt; bottom)</li>
+<li>methodologically (what does it do?) (inside &gt; out)</li>
+</ul>
+<p>Make notes:</p>
+<ul>
+<li>what does it really say (strategic)?</li>
+<li>how is the argument organized (sequential)?</li>
+<li>what does it do (methodological)?</li>
+</ul>
+<figure>
+<img src="/markdown/images/lecture-3-final-second-paper.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h2 id="synthesis-10-minutes">Synthesis (10 minutes)</h2>
+<ul>
+<li>Compare and contrast the articles - answer the question
+<ul>
+<li>Answer the mock research question: “how should we align AI?”
+<ul>
+<li>And implicit sub-question: are these two articles compatible,
+contradictory - or talking past each other?</li>
+</ul></li>
+</ul></li>
+<li>What reading strategy worked better? What did you prefer?</li>
+<li>To read with AI or without AI? Which AI prompt worked better? (may
+not be much difference)</li>
+<li>Group vs individual reading?</li>
+<li>Preferences for humanities or science style of writing?</li>
+</ul>
+<hr />
+<h2 id="share-and-discuss-results">Share and Discuss Results</h2>
+<ul>
+<li>Discuss results</li>
+<li>Preferences? science / humanities? reading with / without AI?
+Reading strategy?</li>
+</ul>
+<hr />
+<h2 id="break">Break!</h2>
+<figure>
+<img src="/markdown/images/lecture-3-final-break.png" alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h2
+id="from-the-article-close-reading-to-the-conversation-distant-reading">From
+the Article (close reading) to the Conversation (distant reading)</h2>
+<p>Two activities:</p>
+<ul>
+<li>Discover literature</li>
+<li>Map literature</li>
+</ul>
+<figure>
+<img src="/markdown/images/lecture-3-final-close-to-distant.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h2 id="strategies-for-literature-discovery">Strategies for literature
+discovery</h2>
+<p>Traditional:</p>
+<ul>
+<li>Keyword search (find the keywords in the respective articles; search
+Google Scholar, library databases)</li>
+<li>Author search (have these authors written collectively or
+individually on this topic?)</li>
+<li>What does this article reference? (mine the articles’
+references)</li>
+<li>What has referenced this article? (find what has cited these
+articles in Google Scholar)</li>
+<li>Journal / issue navigation (what else is published in this venue?
+and what are other journals commonly cited by this article?)</li>
+<li>Other?</li>
+</ul>
+<p>Augmented: - AI as exploration / discovery: make up queries: -
+“Anthropic researchers authored this article. What research have other
+companies published on alignment?” - “Birhane has published a lot on
+critical AI. Has she written elsewhere on alignment?” - Connect to your
+own expertise: “I’ve been reading about how organizational leadership is
+responding to AI. Have there been studies of how leadership addresses
+alignment?”</p>
+<hr />
+<h2 id="new-breakout-rooms">New Breakout Rooms</h2>
+<ul>
+<li>Collectively build a small database (10-20 articles) of literature
+using “traditional” techniques - but tag each article with one of the
+approaches (keyword, author, references, cited by, journal, other). Use
+your group’s rows in the <a
+href="https://docs.google.com/spreadsheets/d/1DyAPcTG0DRmLIFoYMT_iS9Hk5ZMrRYa3J2ckm3O56vI/edit">literature
+database</a>.</li>
+<li>Separately build a small database via AI querying (Found via:
+AI)</li>
+</ul>
+<p>Then test:</p>
+<ul>
+<li>Did the databases overlap?</li>
+<li>What are the strengths / weaknesses of each approach?</li>
+<li>What is the right balance of traditional / AI approaches?</li>
+</ul>
+<hr />
+<h2 id="strategies-for-literature-mapping">Strategies for literature
+mapping</h2>
+<p>Consider the organizational approaches we discussed last week:</p>
+<ul>
+<li>Chronological (this literature follows from this other
+literature)</li>
+<li>Thematic / conceptual (this literature discusses this theme; this
+other literature discusses this other theme - and this is where they
+overlap / differ)</li>
+<li>Relational (this literature relates / responds to this other
+literature)</li>
+<li>Spatial (this literature studies phenomenon X in the US; this
+literature studies phenomenon X in South Africa)</li>
+</ul>
+<p>Can we start to make sense of our emergent database via one or more
+of these approaches?</p>
+<figure>
+<img src="/markdown/images/lecture-3-final-mapping.png" alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h2 id="new-breakout-rooms-1">New Breakout Rooms</h2>
+<ul>
+<li>In the same database, use one or more of the mapping strategies to
+apply codes (Mapping principle, Our code)
+<ul>
+<li>For example, choose “Chronological” and add “early 20th century”,
+“1980s”, “2020s”</li>
+<li>Or “Thematic”, and add “philosophies of alignment”, “human
+values”</li>
+<li>Or “Relational”, and add “cites Sharma et al.”</li>
+<li>Or “Spatial”, and add “examines differing approaches between East
+Asian and American companies to AI alignment”</li>
+</ul></li>
+<li>Ask AI to do the same, and record its codes alongside yours (this
+could even be Gemini in Google Sheets, if that is enabled)</li>
+</ul>
+<hr />
+<h2 id="generate-and-visualize-the-mapping">Generate and visualize the
+mapping</h2>
+<p>Ask AI to generate:</p>
+<ul>
+<li>A <strong>visualization</strong> of the mapping</li>
+<li>A mock literature review <strong>structure</strong></li>
+<li>A mock statement of the <strong>gap in the literature</strong></li>
+</ul>
+<p>Sample prompt:</p>
+<blockquote>
+<p>“From this coded database, generate a rich visual map of the key
+chronological, thematic and relational connections between these
+works.”</p>
+</blockquote>
+<figure>
+<img src="/markdown/images/lecture-3-final-visualize.png" alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3 id="aside-using-text-as-interim-format-for-images">Aside: using text
+as interim format for images</h3>
+<ul>
+<li><p>Why? More plastic / fluid representation</p></li>
+<li><p>Example: Mermaid is a plain text format - so very easy to iterate
+with using AI - “contract it”, “expand it”, “simplify it” etc.</p></li>
+<li><p>ChatGPT: generates Mermaid diagrams</p>
+<ul>
+<li><a href="https://mermaid.js.org/">Mermaid | Diagramming and charting
+tool</a></li>
+<li>Can use <a href="https://mermaid.live/edit">Online FlowChart &amp;
+Diagrams Editor - Mermaid Live Editor</a></li>
+</ul></li>
+<li><p>Also works for other formats, e.g. SVG (Scalable Vector
+Graphics). Allow you to evolve &amp; iterate a representation</p></li>
+</ul>
+<hr />
+<h2 id="general-discussion">General discussion</h2>
+<ul>
+<li>Share the visualizations, mock structure and gap in the
+literature</li>
+<li>Reflect: what are the affordances of AI for literature discovery and
+mapping? Where does it fit - or “align” - with traditional approaches?
+What are the risks?</li>
+<li>Vibe scholarship: did AI deepen reading and scholarship, or just
+accelerate production?</li>
+</ul>
+<hr />
+<h3 id="start-an-ai-use-record">Start an AI-Use Record</h3>
+<ul>
+<li>Task 6 asks you to explain where AI influenced your searching,
+reading, mapping or writing; what you checked; what you rejected; and
+what responsibility you retained</li>
+<li>Start keeping notes now: which tool, what you asked, what you
+checked, what you kept and what you rejected</li>
+<li>You don’t need to publish private conversations - selected examples
+are enough</li>
+</ul>
+<figure>
+<img src="/markdown/images/lecture-3-final-ai-use-record.png"
+alt="Image" />
+<figcaption aria-hidden="true">Image</figcaption>
+</figure>
+<hr />
+<h3
+id="this-weeks-activity-task-3-conceptual-map-of-the-literature-10">This
+Week’s Activity: Task 3 · Conceptual map of the literature (10%)</h3>
+<ul>
+<li>Develop a small database (if you don’t have one)</li>
+<li>Create one or more conceptual maps (visual or verbal), using AI of
+your choice</li>
+<li>Analyze for missing perspectives / views</li>
+<li>Identify one or more potential gaps</li>
+<li>Compare these gaps with your research topic or question. Do they
+align? Does your topic need narrowing?</li>
+</ul>
+<p>Due Monday 9 November, 11:59 PM Central</p>
+<hr />
+<h3 id="next-weeks-readings">Next Week’s Readings</h3>
+<p>Spivak, G. C. (1988). Can the subaltern speak? In C. Nelson &amp; L.
+Grossberg (Eds.), <em>Marxism and the interpretation of culture</em>
+(pp. 271–313). University of Illinois Press. <a
+href="https://i-share-uiu.primo.exlibrisgroup.com/discovery/search?query=any,contains,Marxism%20and%20the%20interpretation%20of%20culture%20Nelson%20Grossberg&amp;tab=LibraryCatalog&amp;search_scope=MyInstitution&amp;vid=01CARLI_UIU:CARLI_UIU">University
+Library: print, Communications Library</a> - <a
+href="http://users.uoa.gr/~cdokou/TheoryCriticismTexts/Spivak-Subaltern.pdf">users.uoa.gr</a></p>
+<p>Bring a writing sample for next week’s peer workshop</p>
+</body>
+</html>
