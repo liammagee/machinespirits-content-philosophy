@@ -66,7 +66,7 @@ html,body{margin:0;height:100%;background:#0E0F14;overflow:hidden;font-family:'S
     });
     document.getElementById('count').textContent = (cur + 1) + ' / ' + slides.length;
     document.getElementById('bar').style.width = ((cur + (steps[cur] ? step / (steps[cur] + 1) : 0)) / (slides.length - 1 || 1) * 100) + '%';
-    history.replaceState(null, '', '#' + slides[cur].id);
+    try { history.replaceState(null, '', '#' + slides[cur].id); } catch (e) {}
   }
   function go(i, s, dir) { cur = Math.max(0, Math.min(slides.length - 1, i)); step = s; paint(dir); }
   function next() { if (step < steps[cur]) { step++; paint(1); } else if (cur < slides.length - 1) go(cur + 1, 0, 1); }
