@@ -11,7 +11,7 @@ order = json.loads((DECK / "deck.json").read_text())["order"]
 PAGE = "<!doctype html><style>body{margin:0;background:#000}section{position:relative;width:1920px;height:1080px;box-sizing:border-box;overflow:hidden}section *{margin:0;box-sizing:border-box}</style>"
 FITS = """(() => { const s = document.querySelector('section'), f = s.querySelector('[data-fit]') || s;
   const sb = s.getBoundingClientRect(), r = [f, ...f.querySelectorAll('*')].map(e => e.getBoundingClientRect());
-  return Math.max(...r.map(x => x.bottom)) <= sb.bottom - 64 && Math.max(...r.map(x => x.right)) <= sb.right - 100; })()"""
+  return Math.max(...r.map(x => x.bottom)) <= sb.bottom - 56 && Math.max(...r.map(x => x.right)) <= sb.right - 104; })()"""
 
 def sized(tpl, base):
     tpl = re.sub(r"font-size:S\[([\d.]+)\]", lambda m: f"font-size:{max(24, round(base * float(m.group(1))))}px", tpl)
@@ -30,9 +30,9 @@ async def main():
         await pg.route("http://deck.test/", lambda r: r.fulfill(body="<!doctype html><title>deck</title>", content_type="text/html"))
         await pg.goto("http://deck.test/")
         for i, sid in enumerate(order):
-            f = DECK / "slides" / f"{sid}.html"; tpl = f.read_text(); base = 52
+            f = DECK / "slides" / f"{sid}.html"; tpl = f.read_text(); base = 60
             if "S[" in tpl:
-                for base in range(52, 23, -1):
+                for base in range(60, 23, -1):
                     await pg.set_content(PAGE + sized(tpl, base), wait_until="load")
                     if await pg.evaluate(FITS):
                         break

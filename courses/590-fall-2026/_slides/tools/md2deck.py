@@ -58,10 +58,10 @@ def inline(node):
 def text_p(inner, r=1.0, color=INK, extra=""):
     return f'<p style="font-size:{S(r)};line-height:1.4;color:{color}{extra}">{inner}</p>'
 
-def list_rows(lst, depth=0):
+def list_rows(lst, depth=0, top_first=True):
     """A (possibly nested) list -> rows of marker + text, indented by depth."""
     rows, n = [], int(lst.get("start", 1))
-    for li in lst.find_all("li", recursive=False):
+    for k, li in enumerate(lst.find_all("li", recursive=False)):
         parts, nested = [], []
         for c in li.children:
             if isinstance(c, Tag) and c.name in ("ul", "ol"):
@@ -77,11 +77,11 @@ def list_rows(lst, depth=0):
         body = "".join(parts).strip()
         if body:
             rows.append(
-                f'<div style="display:flex;flex-direction:row;gap:{S(0.45)};padding:0px 0px 0px {S(1.15 * depth)}">'
+                f'<div style="display:flex;flex-direction:row;gap:{S(0.45)};padding:{S(0.34) if depth == 0 and (k or not top_first) else "0px"} 0px 0px {S(1.15 * depth)}">'
                 f'<p data-m style="font-size:{S(r)};line-height:1.4;color:{EMBER};font-weight:700;min-width:{S(0.9 if lst.name == "ol" else 0.6)}">{mark}</p>'
                 f'<p style="font-size:{S(r)};line-height:1.4;color:{color};flex:1">{body}</p></div>')
         for sub in nested:
-            rows += list_rows(sub, depth + 1)
+            rows += list_rows(sub, depth + 1, False)
     return rows
 
 def table(t):
@@ -105,7 +105,8 @@ def block(el, first_heading):
         size = {"h1": 2.9, "h2": 2.1, "h3": 1.75}[n]
         h = (f'<{n} style="font-family:{DISPLAY};font-size:{S(size)};font-weight:700;line-height:1.1;color:{INK}">{inline(el)}</{n}>')
         if el is first_heading:
-            h += f'<div style="width:120px;height:6px;background:{EMBER};border-radius:3px"></div>'
+            h = (f'<div style="display:flex;flex-direction:column;gap:20px;padding:0px 0px {S(0.25)} 0px">{h}'
+                 f'<div style="width:120px;height:6px;background:{EMBER};border-radius:3px"></div></div>')
         return h
     if n in ("h4", "h5", "h6"):
         return (f'<p style="font-family:{DISPLAY};font-size:{S(0.8)};font-weight:700;letter-spacing:3px;'
@@ -114,7 +115,7 @@ def block(el, first_heading):
         inner = inline(el).strip()
         return text_p(inner, 1.0, SOFT) if inner else ""
     if n in ("ul", "ol"):
-        return f'<div style="display:flex;flex-direction:column;gap:{S(0.4)}">' + "".join(list_rows(el)) + "</div>"
+        return f'<div style="display:flex;flex-direction:column;gap:{S(0.16)}">' + "".join(list_rows(el)) + "</div>"
     if n == "blockquote":
         ps = "".join(f'<p style="font-family:{MONO};font-size:{S(0.74, )};line-height:1.45;color:{INK}">{inline(p)}</p>'
                      for p in el.find_all("p"))
@@ -204,7 +205,7 @@ for block_md in blocks:
             h = (room - 24 * (len(diagrams) - 1)) // len(diagrams)
             pics = "".join(f'<img src="{s}" alt="Diagram" style="width:1680px;height:{h}px;object-fit:contain">' for s in diagrams)
             body = (f'<div style="display:flex;flex-direction:column;gap:32px;flex:1">'
-                    f'<div data-fit style="display:flex;flex-direction:column;gap:{S(0.55)}">{col(top)}</div>{pics}</div>')
+                    f'<div data-fit style="display:flex;flex-direction:column;gap:{S(0.85)}">{col(top)}</div>{pics}</div>')
         elif imgs:
             k = len(imgs)
             words = len(soup.get_text())  # the more text, the narrower the picture, so the text stays readable
@@ -215,17 +216,17 @@ for block_md in blocks:
                 w = h  # stacked pictures: square, one above the other
             pics = "".join(f'<img src="{s}" alt="{html.escape(a)}" style="width:{w}px;height:{h}px;object-fit:contain;border-radius:14px">' for s, a in imgs)
             body = (f'<div style="display:flex;flex-direction:row;gap:64px;flex:1">'
-                    f'<div data-fit style="flex:1;display:flex;flex-direction:column;gap:{S(0.55)}">{col(top)}</div>'
+                    f'<div data-fit style="flex:1;display:flex;flex-direction:column;gap:{S(0.85)}">{col(top)}</div>'
                     f'<div style="display:flex;flex-direction:column;gap:24px;justify-content:center">{pics}</div></div>')
         elif h4 is not None:  # a sub-heading starts a second column
             i = top.index(h4)
             body = (f'<div data-fit style="display:flex;flex-direction:row;gap:72px">'
-                    f'<div style="flex:1.15;display:flex;flex-direction:column;gap:{S(0.55)}">{col(top[:i])}</div>'
-                    f'<div style="flex:1;display:flex;flex-direction:column;gap:{S(0.55)};border-left:2px solid {LINE};padding:{S(2.6)} 0px 0px 48px">{col(top[i:])}</div></div>')
+                    f'<div style="flex:1.15;display:flex;flex-direction:column;gap:{S(0.85)}">{col(top[:i])}</div>'
+                    f'<div style="flex:1;display:flex;flex-direction:column;gap:{S(0.85)};border-left:2px solid {LINE};padding:{S(2.6)} 0px 0px 48px">{col(top[i:])}</div></div>')
         else:
-            body = f'<div data-fit style="display:flex;flex-direction:column;gap:{S(0.55)}">{col(top)}</div>'
+            body = f'<div data-fit style="display:flex;flex-direction:column;gap:{S(0.85)}">{col(top)}</div>'
         slide = (f'<section id="{sid}" data-transition="push" style="background:{BG};color:{INK};font-family:{SERIF};'
-                 f'padding:84px 120px 72px;display:flex;flex-direction:column">{body}</section>')
+                 f'padding:64px 104px 56px;display:flex;flex-direction:column">{body}</section>')
     (OUT / "slides" / f"{sid}.html").write_text(slide)
 
 for f in (OUT / "slides").glob("*.html"):

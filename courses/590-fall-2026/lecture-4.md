@@ -98,6 +98,7 @@ Some examples
  - Thematic ("The concept of 'attention' is used in roughly similar ways in machine and human learning...")
  - Spatial ("Studies in Asian universities show that ...; in contrast, findings from North American universities suggest...")
  - Developmental ("First I will discuss Descartes' presentation of the mind/body problem. I then move on to look at 20th century critiques of this distinction....")
+ - Relational ("Authors X and Y argue.... Claiming systemic flaws in X and Y's methods, Z suggests...")
  - Other?
  - Nested Categories (chronology then thematic, etc)?
 
@@ -115,6 +116,8 @@ Some examples
    - And how your study attends to a location or zone not previously studied
  - Developmental: Works well when you plan to build your argument through a sequence of positions / thinkers / ideas
    - And show how you will blend, contrast or critique all of these positions / thinkers / ideas
+ - Relational: works well when you find a key schism or debate in the literature
+   - And show how you will contribute / sidestep / undermine the terms of that debate
 
 
 ---
@@ -166,6 +169,14 @@ Some examples
 
    - Developmental: "As this review shows, recent work in philosophy of mind has responded to the emergence of AI with extended definitions of sentience, consciousness and cognition. However, this work is yet to address the related idea whether **intention** can be divorced from consciousness, and become an independent construct to be assessed in computational as well as biological organisms..."
    - One strategy: find two or concepts that are seldom referenced together (see earlier: Magee et al. 2023, "AI" and "the unconscious")
+
+
+---
+
+### Relational
+
+   - Relational: "Authors X and Y both argue that childhood development is largely unimpacted by high use of technological devices. Claiming flaws in the methodology of X and Y, Z instead analyzes recent longitudinal data..."
+   - One strategy: find a famous argument / academic antagonism (Chomsky vs Pinker; Derrida vs Searle; Honneth vs Fraser)
 
 ---
 
@@ -247,8 +258,9 @@ Consider the organizational approaches:
 
  - Chronological (this literature follows from this other literature)
  - Thematic / conceptual (this literature discusses this theme; this other literature discusses this other theme - and this is where they overlap / differ)
- - Relational (this literature relates / responds to this other literature)
  - Spatial (this literature studies phenomenon X in the US; this literature studies phenomenon X in South Africa)
+ - Developmental (this literature contributes this part; this other literature contributes another part...)
+ - Relational (this literature relates / responds to this other literature)
  
 Can we start to make sense of our emergent database via one or more of these approaches?
 
@@ -260,9 +272,8 @@ Can we start to make sense of our emergent database via one or more of these app
 
 ## Generate and visualize the mapping
 
-Ask AI to generate:
 
- - A **visualization** of the mapping
+ - Ask AI to generate a **visualization** of the mapping
  - A mock literature review **structure**
  - A mock statement of the **gap in the literature**
 
@@ -270,7 +281,7 @@ Sample prompt:
 
 > "From this coded database, generate a rich visual map of the key [chronological, thematic or relational] connections between these works."
 
-![Image](/markdown/images/lecture-3-final-visualize.png)
+![Image](images/pasted-image-2026-11-09T22-35-58-200Z-d126ace0.png)
 
 ---
 
@@ -290,11 +301,13 @@ Sample prompt:
 ## New Breakout Rooms
 
  - In the same [database as Week 3](https://docs.google.com/spreadsheets/d/1DyAPcTG0DRmLIFoYMT_iS9Hk5ZMrRYa3J2ckm3O56vI/edit), use one or more of the mapping strategies to apply codes (Mapping principle, Our code)
-   - For example, choose "Chronological" and add "early 20th century", "1980s", "2020s"
-   - Or "Thematic", and add "philosophies of alignment", "human values"
-   - Or "Relational", and add "cites Sharma et al."
-   - Or "Spatial", and add "examines differing approaches between East Asian and American companies to AI alignment"
- - Ask AI to do the same, and record its codes alongside yours (this could even be Gemini in Google Sheets, if that is enabled)
+   - For example, choose "Chronological" and add, for example, "early 20th century", "1980s", "2020s"
+   - Or "Thematic", and add, for example, "philosophies of alignment", "human values"
+   - Or "Spatial", and add, for example, "examines differing approaches between East Asian and American companies to AI alignment"
+   - Or "Developmental", and add, for example, "Contributes X to the literature"
+   - Or "Relational", and add, for example, "cites Sharma et al."
+
+ - Then ask AI to do the same, and record its codes alongside yours (this could even be Gemini in Google Sheets, if that is enabled)
 
 
 ---
@@ -302,7 +315,7 @@ Sample prompt:
 ## General discussion
 
  - Share the visualizations, mock structure and gap in the literature
- - Reflect: what are the affordances of AI for literature discovery and mapping? Where does it fit - or "align" - with traditional approaches? What are the risks?
+ - Reflect: what are the affordances of AI for literature discovery and mapping? Where does it fit - or "align" - with traditional approaches? What are the risks? Do we agree with Al Kalbani et al. (2026)?
 
 
 
