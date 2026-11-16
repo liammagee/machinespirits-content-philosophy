@@ -1,4 +1,12 @@
-# 590 Lecture 5
+# EPOL 590 - AI and Academic Literature
+
+**EPOL 590: AI and Academic Literature | Monday, November 16, 2026 | 5:00–7:50 p.m. Central**
+
+
+---
+
+
+## 590 Lecture 5: Structure, Signposting and Scholarly Communities
 
 ---
 
@@ -282,3 +290,25 @@ Pick a **principle**:
  - For each: develop 3-6 headings that shows how you might organize the literature you have collected so far
  - Add this to Week 5
  - Ask AI to do the same thing with your article collection, and write 3-5 sentences evaluating how useful you thought its results were
+
+---
+
+### Week 6 Readings: Reflexivity and Positionality
+
+Read **one** of Bloor or Bourdieu, **and** Ahmed:
+
+Bloor, D. (1991). The strong programme in the sociology of knowledge. In *Knowledge and social imagery* (2nd ed., ch. 1). University of Chicago Press. (First published 1976.) [University Library search](https://i-share-uiu.primo.exlibrisgroup.com/discovery/search?query=any,contains,Knowledge%20and%20social%20imagery%20Bloor&tab=LibraryCatalog&search_scope=MyInstitution&vid=01CARLI_UIU:CARLI_UIU)
+ - Four tenets: causality, impartiality, symmetry, **reflexivity** - a sociology of knowledge must be able to explain itself
+ - Symmetry and AI: explain an AI's right *and* wrong answers by the same kinds of causes
+
+Bourdieu, P. (2003). Participant objectivation. *Journal of the Royal Anthropological Institute*, 9(2), 281–294. [doi:10.1111/1467-9655.00150](https://doi.org/10.1111/1467-9655.00150)
+ - Turning analysis back on the researcher: your position, training and interests are part of the research
+
+Ahmed, S. (2004). Declarations of whiteness: The non-performativity of anti-racism. *borderlands*, 3(2). [borderlands.net.au](http://www.borderlands.net.au/vol3no2_2004/ahmed_declarations.htm)
+ - The critique: declaring your privilege or position can stand in for the change it names
+ - What does a positionality statement actually *do*?
+
+Optional: Kim, D. O. (2025). Reflection-AI: Artificial intelligence or algorithmic instruction problem? Empowering students through situated knowledges-based reflexivity. *Frontiers in Communication*, 10. [doi:10.3389/fcomm.2025.1598082](https://doi.org/10.3389/fcomm.2025.1598082)
+ - Positionality, situated knowledges and student writing with AI
+
+How do your position - and your use of AI - shape the review you are writing? (Task 6)
